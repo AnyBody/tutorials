@@ -1,0 +1,279 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 6: Adding Real Bone Geometries &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Lesson 5: Definition of Muscles and External Forces" href="lesson5.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson5.html" title="Lesson 5: Definition of Muscles and External Forces"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Getting started: AnyScript Programming</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-6-adding-real-bone-geometries">
+<h1>Lesson 6: Adding Real Bone Geometries<a class="headerlink" href="#lesson-6-adding-real-bone-geometries" title="Permalink to this headline">¶</a></h1>
+<p>Here’s an AnyScript file to start on if you have not completed the
+previous lesson:
+<a class="reference download internal" href="../_downloads/demo.lesson6.any" download=""><code class="xref download docutils literal"><span class="pre">*demo.lesson6.any*</span></code></a>.</p>
+<p>So far, the graphics of the model you have developed is what we can call
+a stick figure representation. You may be wondering how you can add
+bones and other geometries that will be visually more pleasing. Apart
+from mere aesthetics, real bone geometries give you instant visual
+feedback on where the muscle is located in the organism as illustrated
+by the two pictures below.</p>
+<p><a class="reference internal" href="../_images/image1.jpeg"><img alt="oldleg1" src="../_images/image1.jpeg" style="width: 2.57292in; height: 2.63542in;" /></a> <a class="reference internal" href="../_images/image2.jpeg"><img alt="oldleg2" src="../_images/image2.jpeg" style="width: 2.61094in; height: 2.63208in;" /></a></p>
+<div class="section" id="visualization-object-file-formats">
+<h2>Visualization object File formats<a class="headerlink" href="#visualization-object-file-formats" title="Permalink to this headline">¶</a></h2>
+<p>Adding geometric models such as bones is fortunately very simple. All
+you need is a file with a 3-D graphical representation of the bone or
+another component you may wish to add. The format of the file must be
+STL ASCII. STL is a very simple graphical file format that basically
+contains triangles. Virtually any CAD system you can think of can save
+geometry in STL format, so if you have your geometry described in IGES,
+STEP, DXF or any other usual type, just run it through your favorite CAD
+system and convert it to STL. STL comes in two varieties: ASCII and
+binary. AnyBody needs an ASCII file, so please make sure to choose that
+option if you create your own STL files in a CAD system.</p>
+</div>
+<div class="section" id="importing-a-stl-file">
+<h2>Importing a STL file<a class="headerlink" href="#importing-a-stl-file" title="Permalink to this headline">¶</a></h2>
+<p>The bone models you see in the pictures above are a bit elaborate for a
+short tutorial, so we shall start with something a little simpler. What
+we want to do now is to add a dumbbell geometry to the arm model we have
+just created. You can find an STL file to use <a class="reference download internal" href="../_downloads/dumbbell.stl" download=""><code class="xref download docutils literal"><span class="pre">here</span>
+<span class="pre">(dumbell.stl)</span></code></a>.</p>
+<p>The dumbbell should be added to the forearm, so the first thing to do it
+to add a reference to the STL file we just saved to the definition of
+the forearm:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="kt">AnyDrawSeg</span> <span class="n">DrwSeg</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="gr">AnyDrawSTL DrwSTL = {</span>
+<span class="gr">    FileName = &quot;dumbbell.stl&quot;;</span>
+<span class="gr">  };</span>
+<span class="p">};</span> <span class="c1">// ForeArm</span>
+</pre></div>
+</div>
+<p>Try reloading the model again. You will probably&nbsp;see nothing
+but&nbsp;gray&nbsp;the Model view. &nbsp;A closer investigation of the problem would
+reveal that the entire arm model is actually situated inside the
+dumbbell handle. This is because the STL file was created in
+millimeters, where the arm model is in meters. Rather than going back to
+whatever CAD system was used and scale the dumbbell model down 1000
+times, we can add the scale definition to AnyScript in the following
+way:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyDrawSTL</span> <span class="n">DrwSTL</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;dumbbell.stl&quot;</span><span class="p">;</span>
+  <span class="gr">ScaleXYZ = {0.001, 0.001, 0.001};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>When you reload the model, the picture you get should be similar to what
+you see below. The dumbbell is visible now and has the right size, but
+it is sitting at the center of gravity of the lower arm rather than at
+the hand, and it is not oriented correctly.</p>
+<p><a class="reference internal" href="../_images/image3.jpeg"><img alt="ModelView dumbbell1" src="../_images/image3.jpeg" style="width: 3.12500in; height: 3.52083in;" /></a></p>
+</div>
+<div class="section" id="re-orienting-your-stl-object">
+<h2>Re-orienting your STL object<a class="headerlink" href="#re-orienting-your-stl-object" title="Permalink to this headline">¶</a></h2>
+<p>The fact is that, when you attach something to a segment, it is
+positioned at the segment’s origin which is usually the same as the
+center of mass. However, you can also attach stuff to points, so moving
+the dumbbell to the hand is simply a question of moving the reference to
+it from the ForeArm segment to the PalmNode that we defined previously.
+Block the entire AnyDrawSTL folder with the mouse and cut it out. Then
+re-insert it under the PalmNode like this:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="kt">AnyRefNode</span> <span class="n">PalmNode</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.27</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+    <span class="gr">AnyDrawSTL DrwSTL = {</span>
+<span class="gr">      FileName = &quot;dumbbell.stl&quot;;</span>
+<span class="gr">      ScaleXYZ = {0.001, 0.001, 0.001};</span>
+<span class="gr">    };</span>
+  <span class="p">};</span>
+
+  <span class="kt">AnyDrawSeg</span> <span class="n">DrwSeg</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="p">};</span> <span class="c1">// ForeArm</span>
+</pre></div>
+</div>
+<p>On reload, this produces a new picture with the dumbbell attached at the
+right location, but it is still not oriented correctly.</p>
+<p><a class="reference internal" href="../_images/image4.jpeg"><img alt="ModelView dumbbell2" src="../_images/image4.jpeg" style="width: 3.12500in; height: 3.44792in;" /></a></p>
+<p>We want to rotate the dumbbell 90 degrees about the y-axis. We could do
+that by going back to the CAD system and modifying the dumbbell STL
+file, but an easier option is to rotate it directly inside AnyScript.</p>
+<p>A geometrical object that you insert gets the same orientation as the
+coordinate system it is attached to. In this case, the dumbbell is
+attached to PalmNode. Nodes are actually reference frames with the
+ability to be positioned and oriented relatively to other reference
+frames, for instance, a segment or another node. We have already
+positioned nodes by means of the member vector sRel, and relative
+orientation happens similarly with the member matrix ARel, the relative
+rotational transformation matrix. We wish to rotate the dumbbell 90
+degrees about the local y-axis and hence write:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="n">PalmNode</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.27</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+  <span class="gr">ARel = RotMat(90\*pi/180, y);</span>
+  <span class="kt">AnyDrawSTL</span> <span class="n">DrwSTL</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;dumbbell.stl&quot;</span><span class="p">;</span>
+    <span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">};</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>As a final cosmetic touch, you may want to change the color of the
+dumbbell. This can be done by adding the property RGB to the STL file
+reference:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span> <span class="kt">AnyDrawSTL</span> <span class="n">DrwSTL</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;dumbbell.stl&quot;</span><span class="p">;</span>
+   <span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">};</span>
+   <span class="gr">RGB = {0.2,0.4,0.5};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The RGB property specifies the blend of colors Red, Green, and Blue in
+that order for displaying the STL geometry. The combination above
+produces a dull blue shade.</p>
+<p><a class="reference internal" href="../_images/image5.jpeg"><img alt="ModelView dumbbell3" src="../_images/image5.jpeg" style="width: 3.12500in; height: 3.11458in;" /></a></p>
+<p>This completes the Getting Started with AnyScript tutorial. The final
+result of the efforts is in
+<a class="reference download internal" href="../_downloads/demo.arm2d.any" download=""><code class="xref download docutils literal"><span class="pre">*demo.arm2d.any*</span></code></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Front Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Getting started: AnyScript Programming</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html"> Lesson 5</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 6</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#visualization-object-file-formats">Visualization object File formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importing-a-stl-file">Importing a STL file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#re-orienting-your-stl-object">Re-orienting your STL object</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson5.html" title="Lesson 5: Definition of Muscles and External Forces"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" >Getting started: AnyScript Programming</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Tehcnology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
