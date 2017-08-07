@@ -1,0 +1,232 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 1: Creating a Standing Model using Template &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 2: Controlling the Posture" href="lesson2.html" />
+    <link rel="prev" title="Getting Started" href="intro.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Controlling the Posture"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Getting Started"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Getting Started</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-1-creating-a-standing-model-using-template">
+<h1>Lesson 1: Creating a Standing Model using Template<a class="headerlink" href="#lesson-1-creating-a-standing-model-using-template" title="Permalink to this headline">¶</a></h1>
+<p>The model repository contains many applications in the Examples folder.
+A few of these are generic in nature and can serve dual purposes: Either
+they can be used as they are or they can be modified and become models
+of something else. In this lesson, we will load the Standing Model as it
+is and introduce the available options.</p>
+<p>The standing model can be found in the repository under
+Applications/Examples. The model comprises most of the available body
+parts in the library. The main file is called StandingModel.Main.any and
+this is the one you must load to see the model.</p>
+<p>You can open the file with the File-&gt;Open menu in AnyBody or through
+Windows Explorer.</p>
+<p>The standing model has a few predefined features and some that you can
+modify. Here is a short list:</p>
+<ul class="simple">
+<li>The model is supported by having both feet always connected to the
+ground, even when the feet move.</li>
+<li>The posture of the model is controlled via anatomical angles for all
+major joints except the ankles. The model has a place where these
+joint angles can be specified directly. We shall return to this topic
+shortly.</li>
+<li>The model automatically balances its posture by means of the ankle
+angles such that its collective center of mass remains vertically
+above the ankle joints. For instance, if the model extends the arms,
+the entire model will move slightly backward to maintain the balance.</li>
+<li>The model has a set of predefined points to which three-dimensional
+external forces can be applied; they are defined as spatial vectors.
+When doing so, the muscles of the model will be recruited to balance
+the external forces.</li>
+</ul>
+<div class="section" id="open-model-template">
+<h2>Open model template<a class="headerlink" href="#open-model-template" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter, we will show you how to create a new standing model
+using templates. You do this by pressing the Create Model button <a class="reference internal" href="../_images/image11.png"><img alt="Model button" src="../_images/image11.png" style="width: 0.29167in; height: 0.30556in;" /></a> in the editor window toolbar or the create model button in the
+mainframe toolbar:</p>
+<p><a class="reference internal" href="../_images/image2.png"><img alt="ModelLoadButton" src="../_images/image2.png" style="width: 4.44444in; height: 0.93750in;" /></a></p>
+<p>The Template dialogue opens and displays a list of pre-defined templates
+supported in the AnyBody Managed Model Repository (AMMR). Choose the
+‘Human Standing’ template and select the folder you want to save your
+new Human Standing model in. To demonstrate, let us create a ‘MyModels’
+folder in the ‘AMMR\Application\’ folder and set it as the target
+folder. Save the model as ‘MyStandingHuman’. Press the OK button on
+completion.</p>
+<p><a class="reference internal" href="../_images/image3.png"><img alt="TemplateDialog" src="../_images/image3.png" style="width: 4.84722in; height: 4.64583in;" /></a></p>
+<p>Your new ‘MyStandingHuman.main.any’ file opens in the script Editor. The
+location of the file is shown in the title bar:</p>
+<p><a class="reference internal" href="../_images/image4.png"><img alt="MyStandingHumanModel.main.any" src="../_images/image4.png" style="width: 6.69444in; height: 4.82639in;" /></a></p>
+</div>
+<div class="section" id="load-model">
+<h2>Load model<a class="headerlink" href="#load-model" title="Permalink to this headline">¶</a></h2>
+<p>To see the graphical representation of the model, you need to load.
+Load/reload is a frequent operation and has been assigned to function
+key F7.</p>
+</div>
+<div class="section" id="display-the-model">
+<h2>Display the model<a class="headerlink" href="#display-the-model" title="Permalink to this headline">¶</a></h2>
+<p>After loading is completed, the Model View window opens and shows the
+standing model: (You can open it manually from View -&gt; Model Views).</p>
+<p><a class="reference internal" href="../_images/image5.png"><img alt="Model View" src="../_images/image5.png" style="width: 3.18056in; height: 4.85417in;" /></a></p>
+<p>The icons in the toolbar at the top of the Model View window allow you
+to modify the image: zoom, pan, rotate, etc. They should be mostly
+self-explanatory. Now is a good time to play a bit around with them and
+to familiarize yourself with the options.</p>
+<p>In practical use it is often necessary to change quickly between these
+functions, so keyboard shortcuts have been provided:</p>
+<ul class="simple">
+<li>The Ctrl button activates the Pan function.</li>
+<li>The Shift button activates the Zoom function.</li>
+<li>The Ctrl-Shift combination activates the rotation function.</li>
+<li>If you have a scrolling wheel on your mouse, this will zoom the model
+in and out.</li>
+</ul>
+<p>You can now proceed to <a class="reference internal" href="lesson2.html"><span class="doc">*Lesson 2: Controlling the
+posture*</span></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Front Page</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#open-model-template">Open model template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-model">Load model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#display-the-model">Display the model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Controlling the Posture"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Getting Started"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" >Getting Started</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Tehcnology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,245 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The Typical (and Recommended) Structure of Application Models &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Getting started: AnyScript Programming" href="../A_Getting_started_anyscript/intro.html" />
+    <link rel="prev" title="The Application Demos in AMMR" href="lesson4.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../A_Getting_started_anyscript/intro.html" title="Getting started: AnyScript Programming"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="The Application Demos in AMMR"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Getting Started: The Model Repository</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-typical-and-recommended-structure-of-application-models">
+<h1>The Typical (and Recommended) Structure of Application Models<a class="headerlink" href="#the-typical-and-recommended-structure-of-application-models" title="Permalink to this headline">¶</a></h1>
+<p>There is no unique way to setup an application model. A model might look
+different for each user and each case. Models will also be different
+depending on the skills of the user. Here are some examples how a model
+can be structured. Good examples are the StandingMan, the MoCap Model,
+and the BikeModel, but even those differ slightly due to their different
+creators:</p>
+<p>Typically, you can find 3 folders and one (or several) main files in the
+application. The <em>main file</em> (*.main.any) is the file to load in
+AnyBody and from where you run the application. There is an Input folder
+that contains the data necessary as input for the application, this can
+be for example motion capture (C3D) files for a MOCAP driven model, or
+it can be the geometry files (STL) of a bike. The Output folder is empty
+by default, but many models have a switch (a #define statement) to save
+the model as H5 anydata files into the output folder. These files
+contain basically every output data and can be loaded again at a later
+time point to look at graphs again or to replay the motion again. In the
+Model folder, you can find all the AnyScript files that implement the
+application model. We do not recommend to edit those files separately.
+The best is to load the main file and look at the structure of the
+model. By opening the included file from the model (either by
+double-clicking on the #include-statement in an already opened file or
+by selection in the File Tree), you can make alterations to the files
+from there. You can see immediately by reloading (press F7) if the
+changes will cause the desired outcome or a failure to correct before
+continuing.</p>
+<p>Here comes a number of typical item of the application models that are
+worth to notice:</p>
+<ol class="arabic simple">
+<li><strong>Library definition (libdef.any):</strong> Usually, a main file starts with
+the inclusion of the libdef.any, a file that creates the link to the
+body folder as well as other so-called library settings. A model
+library is basically a folder with a libdef.any file in; here you
+specify parameters to be shared by the whole library of models). In
+practice, you can, therefore, have an application model in a
+different location than the AMMR Application folder, meaning that the
+application could be in “MyFiles” on your computer, while the body
+model is the installed version next to the AnyBody software in
+“Program Files”. This requires only the right path definition in this
+libdef.any file for your library in “MyFiles”. (Occationally, a
+libdef.any only points to “../libdef.any” etc. and only the top one
+contains the actual library definitions incl. the path of the body
+model).</li>
+<li><strong>Model Description:</strong> Most models have either a separate file called
+description in the top, or a detailed description in code, of the
+functionality and features of the application. Please read that
+description carefully to see if the model suits you. And as a model
+author, it is of course recommended to maintain it well for own and
+others purpose. Please notice, the functionality of making so-called
+Documentation Comments in the code; Documentation Comments are
+in-code comments that will be attached to the associated object in
+the model and will be displayed when navigating the model for
+instance in the Model Tree. This makes your effort in mode
+documentation far more transparent to other users. (Notice that
+Documentation Comments are typically made with /// instead of normal
+// for code comments; see the AnyScript Reference Manual for more
+details)</li>
+<li><strong>Standard Output:</strong> Typical main files have a switch to export the
+results as mentioned above or not. By default this is set to 0,
+meaning it is off, you can change it to 1 to save the output after
+each simulation. Please be aware that in most cases the existing H5
+output file will be overwritten after running a new simulation.
+Additionally, you should be aware, that those H5 files contain a lot
+of data and can be very large for complex models. Finally, notice
+that it is recommended to use the standard output path definition
+(typically provided in the Library definitions in libdef.any). This
+ensures that the output of all models in the library
+easily/systematically can be directed to an external location outside
+the folders of your model. This can be very beneficial when
+processing large data sets and using many different model parameters
+(or even model version).</li>
+<li><strong>Run Application operation:</strong> Many main files (typically in the
+Demos of the AMMR) have a RunApplication file included that
+implements the RunApplication operation which is found on the left
+side of the AMS in the Operations tab. It contains the sequence
+operations of what studies to be executed. This is the model author’s
+way of showing which operations that are expected to execute and to
+make it easy for you to do so. This concept can also be recommended
+for your own models.</li>
+<li><strong>Main items in the Model Tree:</strong> Most basic models have three basic
+levels, a Main level, a Main.Model level, and a Main.Study level. It
+is recommended to keep this structure for new or altered models. In
+most models, the human model is included in the Main level. The
+Main.Model level includes this human model using a reference and adds
+an environment to it. The Main.Study level includes the Main.Model
+using a reference. This structure allows having several studies using
+the same model (i.e. Main.Model), but applying different analyses to
+it. This structure is also prepared for having multiple models, i.e.,
+Main.Model1 and Main.Model2 that may use the same HumanModel but in
+different context.</li>
+</ol>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Front Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Getting Started: The Model Repository</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../A_Getting_started_anyscript/intro.html" title="Getting started: AnyScript Programming"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="The Application Demos in AMMR"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" >Getting Started: The Model Repository</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Tehcnology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
