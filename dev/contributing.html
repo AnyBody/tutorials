@@ -32,7 +32,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Getting Started" href="A_Getting_started/intro.html" />
-    <link rel="prev" title="Welcome to AnyBody Tutorials’s documentation!" href="index.html" /> 
+    <link rel="prev" title="AnyBody Tutorials!" href="index.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
@@ -51,7 +51,7 @@
           <a href="A_Getting_started/intro.html" title="Getting Started"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="index.html" title="Welcome to AnyBody Tutorials’s documentation!"
+          <a href="index.html" title="AnyBody Tutorials!"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
  
@@ -77,8 +77,8 @@ formats. reStructuredText are simple text files with extra markup to define head
 and formating. Having the tutorials as reStructuredText makes it easy to control
 changes to the documents and ensure consistent style.</p>
 </div>
-<div class="section" id="restructured-text-reference-guide">
-<h2>Restructured text reference guide<a class="headerlink" href="#restructured-text-reference-guide" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="short-restructuredtext-guide">
+<h2>Short reStructuredText guide<a class="headerlink" href="#short-restructuredtext-guide" title="Permalink to this headline">¶</a></h2>
 <p>There are plenty of guides on reStructuredText available on Google. So here is just a
 quick primer for the reST concepts which are important for the tutorials.</p>
 <div class="section" id="paragraphs">
@@ -131,7 +131,7 @@ paragraph must be left aligned to the same indentation.</p>
 <h3>Highlighting code<a class="headerlink" href="#highlighting-code" title="Permalink to this headline">¶</a></h3>
 <p>Highlighting AnyScript code snippets is also supported, using the <code class="docutils literal"><span class="pre">pygments_anyscript</span></code>
 extension to pygments.</p>
-<p>AnyScript highlighting is started using the <code class="xref rst rst-dir docutils literal"><span class="pre">code-block</span></code>
+<p>AnyScript highlighting is started using the <code class="docutils literal"><span class="pre">code-block</span></code>
 directive and specifing <code class="docutils literal"><span class="pre">AnyScriptDoc</span></code> as the highlighting language</p>
 <dl class="directive">
 <dt id="directive-..code-block:: AnyScriptDoc">
@@ -190,22 +190,25 @@ branch the tutorials becomes availble online.</p>
 <p>The lates version of the tutorial which has git tag in the repository is always
 available here: <a class="reference external" href="http://anyscript.org/tutorials/">http://anyscript.org/tutorials/</a> A development version (the
 master branch) can be viewed at  <a class="reference external" href="http://anyscript.org/tutorials/dev">http://anyscript.org/tutorials/dev</a></p>
+<div class="section" id="building-the-tutorials-locally">
+<h3>Building the tutorials locally<a class="headerlink" href="#building-the-tutorials-locally" title="Permalink to this headline">¶</a></h3>
 <p>It is also nice to be able to build the tutorials locally to view the layout
 before pushing to the server. It is often not necesssary when making small fixes
 to existing tutorials. But when writing major new sections it nice to view how
 things look.</p>
 <p>The easiest way to install the packages, is to have the Anaconda python distribution.</p>
 <p>Then run the following commands to install the necesssary packages.</p>
-<div class="highlight-conosle"><div class="highlight"><pre><span></span>conda install sphinx pandoc cloud_sptheme pygments_anyscript
+<div class="highlight-bat"><div class="highlight"><pre><span></span>conda install sphinx pandoc cloud_sptheme pygments_anyscript
 pip install sphinxcontrib-fulltoc
 </pre></div>
 </div>
 <p>Once the packages are install run this command s to build.</p>
-<div class="highlight-conosle"><div class="highlight"><pre><span></span>C:\User\mel\anybody-tutorials&gt; make html
+<div class="highlight-bat"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\User\mel\anybody-tutorials</span><span class="c1">&gt; make html</span>
 </pre></div>
 </div>
 <p>Once complete open the file: <code class="docutils literal"><span class="pre">build/html/index.html</span></code> in a browser to view
 the result.</p>
+</div>
 </div>
 </div>
 
@@ -234,14 +237,17 @@ the result.</p>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Front Page</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contribute</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-contribute">How to contribute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#restructured-text-reference-guide">Restructured text reference guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#short-restructuredtext-guide">Short reStructuredText guide</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#paragraphs">Paragraphs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#headers">Headers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#lists-and-quote-like">Lists and Quote-like</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#highlighting-code">Highlighting code</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#building-the-tutorials">Building the tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-the-tutorials">Building the tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-tutorials-locally">Building the tutorials locally</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="A_Getting_started/intro.html">Getting Started</a></li>
@@ -285,7 +291,7 @@ the result.</p>
           <a href="A_Getting_started/intro.html" title="Getting Started"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="index.html" title="Welcome to AnyBody Tutorials’s documentation!"
+          <a href="index.html" title="AnyBody Tutorials!"
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
  
