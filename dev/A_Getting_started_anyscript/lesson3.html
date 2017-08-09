@@ -68,9 +68,11 @@
             
   <div class="section" id="lesson-3-connecting-segments-by-joints">
 <h1>Lesson 3: Connecting Segments by Joints<a class="headerlink" href="#lesson-3-connecting-segments-by-joints" title="Permalink to this headline">¶</a></h1>
-<p>Here’s an AnyScript file to start on if you have not completed the
-previous lesson:
-<a class="reference download internal" href="../_downloads/demo.lesson3.any" download=""><code class="xref download docutils literal"><span class="pre">demo.lesson3.any</span></code></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Here’s an AnyScript file to start on if you have not completed the
+previous lesson: <a class="reference download internal" href="../_downloads/demo.lesson3.any" download=""><code class="xref download docutils literal"><span class="pre">demo.lesson3.any</span></code></a>.</p>
+</div>
 <div class="section" id="some-quick-theory">
 <h2>Some quick theory<a class="headerlink" href="#some-quick-theory" title="Permalink to this headline">¶</a></h2>
 <p>You can think of joints in different ways. We tend to perceive them as
@@ -211,11 +213,14 @@ perpendicular to these axes. The out-of-plane relative orientation of
 the two segments can be adjusted by rotating the reference frames of the
 nodes being connected. This is relevant if you want one of the segments
 to rotate about some skewed axis.</p>
-<p><strong>Important note:</strong> According to default settings, the first of the two
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><strong>Important note:</strong> According to default settings, the first of the two
 nodes declared in the joint (in this case GroundNode) becomes the
 default reference frame for the joint. When directly accessing the
 post-simulation values of constraint reaction forces etc., you must
 remember to interpret them in the joint’s default reference frame.</p>
+</div>
 </div>
 <div class="section" id="creating-a-revolute-elbow-joint">
 <h2>Creating a revolute elbow joint<a class="headerlink" href="#creating-a-revolute-elbow-joint" title="Permalink to this headline">¶</a></h2>
@@ -260,19 +265,20 @@ into the Elbow joint definition where you placed the cursor. Notice that
 this method inserts the absolute and not the relative path. Repeat the
 process to expand the ForeArm segment and insert its ElbowNode in the
 line below to obtain this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>     <span class="kt">AnyRevoluteJoint</span> <span class="n">Elbow</span> <span class="o">=</span> <span class="p">{</span>
-       <span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span><span class="p">;</span>
-       <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">UpperArmNode</span> <span class="o">=</span>
-<span class="gr">Main.ArmModel.Segs.UpperArm.ElbowNode</span><span class="p">;</span>
-       <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">ForeArmNode</span> <span class="o">=</span>
-<span class="gr">Main.ArmModel.Segs.ForeArm.ElbowNode</span><span class="p">;</span>
-     <span class="p">};</span> <span class="c1">// Elbow joint</span>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyRevoluteJoint</span> <span class="n">Elbow</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span><span class="p">;</span>
+  <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">UpperArmNode</span> <span class="o">=</span> <span class="gr">Main.ArmModel.Segs.UpperArm.ElbowNode</span><span class="p">;</span>
+  <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">ForeArmNode</span> <span class="o">=</span>  <span class="gr">Main.ArmModel.Segs.ForeArm.ElbowNode</span><span class="p">;</span>
+<span class="p">};</span> <span class="c1">// Elbow joint</span>
 </pre></div>
 </div>
 <p>It seems like everything is connected now. So why do we still get the
 annoying error message when we reload the model?:</p>
-<p><strong>Model Warning: Study ‘Main.ArmStudy’ contains too few kinematic
-constraints to be kinematically determinate.</strong></p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Model Warning: Study ‘Main.ArmStudy’ contains too few kinematic
+constraints to be kinematically determinate.</p>
+</div>
 <p>The explanation is that we have connected the model, but we have not
 specified its position yet. Each of the two joints can still take any
 angular position, so there are two degrees of freedom whose kinematic
