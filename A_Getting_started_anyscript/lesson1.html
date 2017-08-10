@@ -68,9 +68,12 @@
             
   <div class="section" id="lesson-1-basic-concepts">
 <h1>Lesson 1: Basic Concepts<a class="headerlink" href="#lesson-1-basic-concepts" title="Permalink to this headline">¶</a></h1>
-<p><strong>To follow this tutorial</strong> <strong>it is recommended first to watch the</strong>
-<strong>introductory video found in Help -&gt; AnyBody Assistant, which visually
-demonstrates several important GUI features.</strong></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To follow this tutorial it is recommended first to watch the
+introductory video found in Help -&gt; AnyBody Assistant, which visually
+demonstrates several important GUI features.</p>
+</div>
 <p><a class="reference internal" href="../_images/image16.png"><img alt="AnyBody Assistent" src="../_images/image16.png" style="width: 7.14583in; height: 3.83344in;" /></a></p>
 <p>Let us begin by creating a new AnyScript model from scratch. On the menu
 click File -&gt; New from template… this will bring up a new window in
@@ -165,17 +168,19 @@ file is already loaded, the above action will simply reload the file
 until you give another file loading priority by right-clicking its tab
 and select “Load Model”.</p>
 <p><a class="reference internal" href="../_images/image43.png"><img alt="Load model right click menu" src="../_images/image43.png" style="width: 3.54922in; height: 1.37500in;" /></a></p>
-<p>You may get a similar message in the Output Window.</p>
-<p><strong>Loading Main : “C:...\NewModel.main.any”
-Scanning…
-Parsing…
-Constructing model tree…
-Linking identifiers…
-Evaluating constants…
-Configuring model…
-Evaluating model…
-Loaded successfully.
-Elapsed Time : 0.063000</strong></p>
+<p>You may get a similar message in the Output Window.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Loading</span> <span class="n">Main</span> <span class="p">:</span> <span class="s2">&quot;C:</span><span class="se">\\</span><span class="s2">...</span><span class="se">\\</span><span class="s2">NewModel.main.any&quot;</span>
+<span class="n">Scanning</span><span class="o">...</span>
+<span class="n">Parsing</span><span class="o">...</span>
+<span class="n">Constructing</span> <span class="n">model</span> <span class="n">tree</span><span class="o">...</span>
+<span class="n">Linking</span> <span class="n">identifiers</span><span class="o">...</span>
+<span class="n">Evaluating</span> <span class="n">constants</span><span class="o">...</span>
+<span class="n">Configuring</span> <span class="n">model</span><span class="o">...</span>
+<span class="n">Evaluating</span> <span class="n">model</span><span class="o">...</span>
+<span class="n">Loaded</span> <span class="n">successfully</span><span class="o">.</span>
+<span class="n">Elapsed</span> <span class="n">Time</span> <span class="p">:</span> <span class="mf">0.063000</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="basic-troubleshooting">
 <h2>Basic troubleshooting<a class="headerlink" href="#basic-troubleshooting" title="Permalink to this headline">¶</a></h2>
@@ -183,8 +188,10 @@ Elapsed Time : 0.063000</strong></p>
 mistake is to forget a semicolon somewhere. Try removing the last
 semicolon in the AnyScript file, and load again. You get a message
 saying something like:</p>
-<p><strong>ERROR(SCR.PRS11) : C:...\NewModel.main.any(26) : ‘EOF’ unexpected
-Model loading skipped</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">(</span><span class="n">SCR</span><span class="o">.</span><span class="n">PRS11</span><span class="p">)</span> <span class="p">:</span> <span class="n">C</span><span class="p">:</span>\\<span class="o">...</span>\\<span class="n">NewModel</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span> <span class="p">:</span> <span class="s1">&#39;EOF&#39;</span> <span class="n">unexpected</span>
+<span class="n">Model</span> <span class="n">loading</span> <span class="n">skipped</span>
+</pre></div>
+</div>
 <p>First, there is a message ID, then a file location and finally&nbsp;the body
 of the&nbsp;message. The former two are written in blue and underlined to
 show the underlying active links. The file location is the line where
@@ -208,6 +215,9 @@ successfully.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -222,6 +232,7 @@ successfully.</p>
 <h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Front Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="intro.html">Getting started: AnyScript Programming</a><ul class="current">
@@ -287,7 +298,7 @@ successfully.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, AnyBody Tehcnology.
+        &#169; Copyright 2017, AnyBody Technology.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
     <!-- cloud_sptheme 1.4 -->

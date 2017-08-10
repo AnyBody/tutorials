@@ -238,7 +238,7 @@ body
 div.related
 {
     margin: 0 auto;
-    max-width: 1250px;
+    max-width: 1100px;
     background: #5682AD;
     line-height: 1.5em;
     padding: .75em 0;
@@ -345,7 +345,7 @@ div.document
     
     position: relative;
     margin: 0 auto;
-    max-width: 1250px;
+    max-width: 1100px;
     background: #F2F2F2;
 
     
@@ -2209,7 +2209,7 @@ table.indextable td > dl > dd > dl
 }
 
 
-@media only screen and (min-width: 1250px)
+@media only screen and (min-width: 1100px)
 {
     
     
@@ -2228,7 +2228,7 @@ table.indextable td > dl > dd > dl
 }
 
 
-@media only screen and (max-width: 1250px),
+@media only screen and (max-width: 1100px),
        only screen and (max-width: 700px),
        only screen and (max-device-width: 700px),
        handheld
@@ -2243,15 +2243,15 @@ table.indextable td > dl > dd > dl
 
         div.bodywrapper
         {
-                margin: 0 0 0 7 in;
+                margin: 0 0 0 3.8in;
             
         }
     
 
-        div.sphinxsidebar { width: 7 in; }
+        div.sphinxsidebar { width: 3.8in; }
     
 
-            .sidebar-toggle-group { width: 7 in; }
+            .sidebar-toggle-group { width: 3.8in; }
         
 
             button.sidebar-toggle#sidebar-show

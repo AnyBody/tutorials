@@ -303,9 +303,12 @@ UpperArm segment looks like this:</p>
 <h2>Rotation matrices in AnyBody<a class="headerlink" href="#rotation-matrices-in-anybody" title="Permalink to this headline">¶</a></h2>
 <p>If your spatial thinking is good, you can start figuring out unit
 vectors for the coordinate system orientation you want and insert them
-into the Axes0 specification instead of the existing ones. <strong>Note that
-matrices in AnyBody are arranged row-wise, so {1, 0, 0} in Axes0 is the
-first row of a 3x3 matrix.</strong></p>
+into the Axes0 specification instead of the existing ones.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Note that matrices in AnyBody are arranged row-wise, so {1, 0, 0} in Axes0 is the
+first row of a 3x3 matrix.</p>
+</div>
 <p>There is an easier solution for generating the rotation matrix:
 AnyScript has a standard function named RotMat, which returns a rotation
 matrix corresponding to a given axis and rotation angle. Therefore, we
@@ -319,12 +322,15 @@ can specify:</p>
 -90 degrees about the z axis as the function arguments indicate. Notice
 the multiplication of the angle by pi/180. AnyBody identifies the word
 “pi” as 3.14159… and dividing this with 180 gives the conversion
-factor between degrees and radians. <strong>Angles in AnyBody are always in
-radians</strong>.</p>
+factor between degrees and radians.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Angles in AnyBody are always in radians.</p>
+</div>
 <p>In the next section, we will look at how joints can be used to constrain
 the movement of segments and allow them to articulate the way we desire.
-So if you are up to it, let’s continue onward to <a class="reference internal" href="lesson3.html"><span class="doc">*Lesson 3: Connecting
-segments by joints*</span></a>.</p>
+So if you are up to it, let’s continue onward to <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Connecting
+segments by joints</span></a>.</p>
 <p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -344,6 +350,9 @@ the rigid parts of the model.</td></tr>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -358,6 +367,7 @@ the rigid parts of the model.</td></tr>
 <h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Front Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="intro.html">Getting started: AnyScript Programming</a><ul class="current">
@@ -424,7 +434,7 @@ the rigid parts of the model.</td></tr>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, AnyBody Tehcnology.
+        &#169; Copyright 2017, AnyBody Technology.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
     <!-- cloud_sptheme 1.4 -->
