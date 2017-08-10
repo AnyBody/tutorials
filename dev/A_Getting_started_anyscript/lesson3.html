@@ -213,10 +213,10 @@ perpendicular to these axes. The out-of-plane relative orientation of
 the two segments can be adjusted by rotating the reference frames of the
 nodes being connected. This is relevant if you want one of the segments
 to rotate about some skewed axis.</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last"><strong>Important note:</strong> According to default settings, the first of the two
-nodes declared in the joint (in this case GroundNode) becomes the
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">The first of the two
+nodes declared in the joint (in this case <code class="docutils literal"><span class="pre">GroundNode</span></code>) becomes the
 default reference frame for the joint. When directly accessing the
 post-simulation values of constraint reaction forces etc., you must
 remember to interpret them in the joint’s default reference frame.</p>
@@ -274,10 +274,9 @@ line below to obtain this:</p>
 </div>
 <p>It seems like everything is connected now. So why do we still get the
 annoying error message when we reload the model?:</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Model Warning: Study ‘Main.ArmStudy’ contains too few kinematic
-constraints to be kinematically determinate.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Model</span> <span class="ne">Warning</span><span class="p">:</span> <span class="n">Study</span> <span class="s1">&#39;Main.ArmStudy&#39;</span> <span class="n">contains</span> <span class="n">too</span> <span class="n">few</span> <span class="n">kinematic</span>
+<span class="n">constraints</span> <span class="n">to</span> <span class="n">be</span> <span class="n">kinematically</span> <span class="n">determinate</span><span class="o">.</span>
+</pre></div>
 </div>
 <p>The explanation is that we have connected the model, but we have not
 specified its position yet. Each of the two joints can still take any
@@ -382,7 +381,7 @@ Drivers</span></a>.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, AnyBody Tehcnology.
+        &#169; Copyright 2017, AnyBody Technology.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
     <!-- cloud_sptheme 1.4 -->

@@ -132,50 +132,35 @@ paragraph must be left aligned to the same indentation.</p>
 <p>Highlighting AnyScript code snippets is also supported, using the <code class="docutils literal"><span class="pre">pygments_anyscript</span></code>
 extension to pygments.</p>
 <p>AnyScript highlighting is started using the <code class="docutils literal"><span class="pre">code-block</span></code>
-directive and specifing <code class="docutils literal"><span class="pre">AnyScriptDoc</span></code> as the highlighting language</p>
-<dl class="directive">
-<dt id="directive-..code-block:: AnyScriptDoc">
-<code class="descname">.. ..code-block:: AnyScriptDoc::</code><a class="headerlink" href="#directive-..code-block:: AnyScriptDoc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Use it like this:</p>
-<div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> AnyScriptDoc
+directive and specifing <code class="docutils literal"><span class="pre">AnyScriptDoc</span></code> as the highlighting language.</p>
+<style> .red {color:red} </style><p>The <code class="docutils literal"><span class="pre">AnyScriptDoc</span></code> is highlighter specifically for the documentation in sphinx.
+It can highlight AnyScript code even if the syntax is not correct, and any code
+fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</p>
+<p>Here is an example:</p>
+<div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">AnyScriptDoc</span>
+
+    <span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
+        <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="gr">-9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+    <span class="p">};</span> <span class="c1">// End of study</span>
 </pre></div>
 </div>
-<blockquote>
-<div><dl class="docutils">
-<dt>AnyBodyStudy Study = {</dt>
-<dd>AnyFolder &amp;Model = .Model;
-Gravity = {0.0, -9.81, 0.0};</dd>
-</dl>
-<p>}; // End of study</p>
-</div></blockquote>
-</dd></dl>
-
 <p>Which gives the following:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
     <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
-    <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+    <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="gr">-9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
 <span class="p">};</span> <span class="c1">// End of study</span>
 </pre></div>
 </div>
-<style> .red {color:red} </style><p>Valid values for the highlighting language are:</p>
+<p>Valid values for the highlighting languages are:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">none</span></code>: no highlighting</li>
 <li><code class="docutils literal"><span class="pre">AnyScript</span></code>: AnyScript (Syntax must be valid)</li>
-<li><code class="docutils literal"><span class="pre">AnyBodyDoc</span></code> AnyScript (Allows invalid syntax, code fenched with <strong>§</strong> are § <span class="red">marked red</span> §)</li>
+<li><code class="docutils literal"><span class="pre">AnyBodyDoc</span></code> AnyScript (Allows invalid syntax)</li>
 <li><code class="docutils literal"><span class="pre">python/c++/ruby</span></code> Different known programming languages</li>
 <li><code class="docutils literal"><span class="pre">rest</span></code> reStructuredText</li>
 <li>… and any other <a class="reference external" href="http://pygments.org/docs/lexers/">lexer alias that Pygments supports</a>.</li>
 </ul>
-<pre class="code rest literal-block">
-<span class="punctuation">..</span> <span class="operator word">code</span><span class="punctuation">::</span> <span class="keyword">AnyScriptDoc</span>
-
-<span class="keyword type"></span>    <span class="keyword type">AnyFolder</span> <span class="name">Model</span><span class="operator">=</span><span class="punctuation">{</span>
-        <span class="keyword type">AnyFolder</span> <span class="operator">&amp;</span><span class="name">HumanModel</span><span class="operator">=</span><span class="generic deleted"></span><span class="generic error">.HumanModel.BodyModel</span><span class="generic deleted"></span><span class="punctuation">;</span>
-</pre>
-<pre class="code AnyScriptDoc literal-block">
-<span class="keyword type">AnyFolder</span> <span class="name">Model</span><span class="operator">=</span><span class="punctuation">{</span>
-    <span class="keyword type">AnyFolder</span> <span class="operator">&amp;</span><span class="name">HumanModel</span><span class="operator">=</span><span class="generic deleted"></span><span class="generic error">.HumanModel.BodyModel</span><span class="generic deleted"></span><span class="punctuation">;</span>
-</pre>
 </div>
 </div>
 <div class="section" id="building-the-tutorials">
@@ -300,7 +285,7 @@ the result.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, AnyBody Tehcnology.
+        &#169; Copyright 2017, AnyBody Technology.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
     <!-- cloud_sptheme 1.4 -->
