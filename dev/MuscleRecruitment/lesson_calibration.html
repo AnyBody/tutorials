@@ -1,0 +1,560 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 7: Calibration &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Force-Dependent Kinematics" href="../ForceDependentKinematics/fdk.html" />
+    <link rel="prev" title="Lesson 6: Composite Recruitment Criteria" href="lesson6.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../ForceDependentKinematics/fdk.html" title="Force-Dependent Kinematics"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson6.html" title="Lesson 6: Composite Recruitment Criteria"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="Inverse_dynamics.html" accesskey="U">Inverse Dynamics of Muscle Systems</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-7-calibration">
+<h1>Lesson 7: Calibration<a class="headerlink" href="#lesson-7-calibration" title="Permalink to this headline">¶</a></h1>
+<p>One of the challenges in body modeling is that models must be able to
+change size to reflect individuals of different statures. Even if you
+are working on a model of a particular individual, you will almost
+always want to change the dimensions of the model as you are building
+it. And if you are developing a generic model to represent a range of
+body proportions, you are likely to want the model to depend on the
+anthropometrical parameters you define. For instance, the weight of a
+segment is often represented as some fraction of the full body weight.
+Such a property you could make parametric by simply defining it as a
+function of the full body weight by means of a simple formula.</p>
+<p>But other dimensions are more subtle and difficult to establish as a
+direct functional dependency of other parameters. Tendon lengths are
+perhaps the most prominent example. If you are in doubt of the
+importance of tendon lengths, just try to bend over and touch your toes
+with your knees stretched. Some of us have hamstring tendons that are so
+short that we can hardly reach beyond our knees, so tendon lengths
+directly limit our ranges of motion. But they also influence the working
+conditions of our muscles even when the muscle-tendon unit is not
+stretched to its limit, so it is important that we define the muscle
+tendon unit so that it fits the body model.</p>
+<p>A muscle-tendon unit is attached to at least two segments at its origin
+and insertion respectively. To make things worse, some muscles span
+several joints, and most muscles wrap over bones and other tissues with
+complex geometries on their way from origin to insertion. So, the basic
+idea behind calibration of tendon lengths in AnyBody is the assumption
+that each muscle-tendon unit has its optimal length at some particular
+position of the joints it spans. We simply define one or several studies
+that put the body model in these positions and adjust the lengths of the
+tendons to give the attached muscles their optimal lengths in those
+positions. When you subsequently run an analysis, the system uses the
+calibrated tendon lengths regardless of how they are defined in the
+AnyScript file. (This means that you have to run the calibration(s)
+every time you have reloaded the model if they are to take effect).</p>
+<p>AnyBody has several different types of muscle models. Some are very
+simple and contain no strength-length relationship, while others do. It
+goes almost without saying that the former type is not affected by
+calibration. If you use one of the latter - more advanced - models,
+however, calibration may be crucial. If the tendon is too long, the
+muscle will end up working in an unnaturally contracted state where it
+has very little strength. If the tendon is too short, the muscle will be
+stretched, and its passive elasticity will affect the force balance in
+the system. Since the passive elastic force in a muscle-tendon unit
+typically grows very rapidly with stretching, a too short tendon can
+cause very large antagonistic muscle actions.</p>
+<p>Enough talk! Let’s define a muscle and calibrate it. We shall begin with
+the simple arm model we developed in the “Getting Started: AnyScript
+Programming” tutorial. If you have not already saved the model in a
+file, get it here: arm2d.any.</p>
+<p>In that simple example, all the muscles were assumed to be of a simple
+type with constant strength. We shall add another and much more detailed
+muscle model:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// -----------------------------------------------------</span>
+<span class="c1">// Muscles</span>
+<span class="c1">// -----------------------------------------------------</span>
+<span class="kt">AnyFolder</span> <span class="n">Muscles</span> <span class="o">=</span> <span class="p">{</span>
+
+  <span class="c1">//---------------------------------</span>
+  <span class="c1">// We define one simple muscle model, which we will use</span>
+  <span class="c1">// for all muscles §except biceps long§</span>
+  <span class="kt">AnyMuscleModel</span> <span class="n">MusMdl</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">F0</span> <span class="o">=</span> <span class="mi">300</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="gr">AnyMuscleModel3E BicepsLongModel = {</span>
+<span class="gr">    AnyVar PCSA = 2.66; // Physiological cross sectional area [cm^2]</span>
+<span class="gr">    F0 = PCSA*30; // Presuming a maximum muscle stress of 30 N/cm^2</span>
+<span class="gr">    Lfbar = 0.123; //Optimum fiber length [m]</span>
+<span class="gr">    Lt0 = 0.26; //First guess of tendon slack length [m]</span>
+<span class="gr">    Gammabar = 0.3*(pi/180); //Pennation angle converted to radians</span>
+<span class="gr">    Epsilonbar = 0.053; //Tendon strain at F0</span>
+<span class="gr">    K1 = 10; //Slow twitch factor</span>
+<span class="gr">    K2 = 0; //Fast twitch factor(zero when no info available)</span>
+<span class="gr">    Fcfast = 0.4; //Percentage of fast to slow factor</span>
+<span class="gr">    Jt = 3.0; //Shape parameter for the tendon stiffness</span>
+<span class="gr">    Jpe = 3.0; //Shape parameter for the parallel stiffness</span>
+<span class="gr">    PEFactor = 5.0; //Parameter for influence of parallel stiffness</span>
+<span class="gr">  }; // End of BicepsLongModel</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>As you can see from the comments, the muscle has many parameters you
+have to set. The significance of each of these is explained in detail in
+the muscle modeling tutorial. For this model to take effect, we must
+assign it to the biceps long muscle. It is a little further down in the
+file, where the red line must be changed:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">//---------------------------------</span>
+<span class="kt">AnyViaPointMuscle</span> <span class="n">BicepsLong</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="gr">AnyMuscleModel &amp;MusMdl = .BicepsLongModel;</span>
+  <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">Org</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">BicepsLong</span><span class="p">;</span>
+  <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">Ins</span> <span class="o">=</span> <span class="p">..</span><span class="n">Segs</span><span class="p">.</span><span class="n">LowerArm</span><span class="p">.</span><span class="n">Biceps</span><span class="p">;</span>
+  <span class="kt">AnyDrawViaPointMuscle</span> <span class="n">DrwMus</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>What we have done here is to give BicepsLong a new and more advanced
+muscle model. In this lesson, we also switch to a different muscle
+recruitment criteria MR_MinMaxStrict, which is better suited for
+InverseDynamics of overloaded models:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">ArmStudy</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">ArmModel</span><span class="p">;</span>
+  <span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="kp">MR_MinMaxStrict</span><span class="p">;</span>
+  <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Let’s have a look at the consequences. Press the M&lt;-S button or F7 and
+subsequently run the InverseDynamics. Then, open a new ChartFX window to
+investigate the results.</p>
+<p><a class="reference internal" href="../_images/image138.png"><img alt="Chart view BicepsLong.Ft" src="../_images/image138.png" style="width: 5.62778in; height: 4.88403in;" /></a></p>
+<p>This graph shows the muscle force or more precisely the force in the
+tendon. The force in this more complex muscle model is composed of two
+elements: The active part coming from the contractile element of the
+muscle, and the passive part due to the stretching of the
+parallel-elastic part of the muscle. The two parts come together in the
+tendon force, Ft. The parallel-elastic part of the muscle is represented
+by Fp in the result tree. If you pick this property, you should get the
+following graph:</p>
+<p><a class="reference internal" href="../_images/image233.png"><img alt="Chart view BicepsLong.Fp" src="../_images/image233.png" style="width: 5.62778in; height: 4.88403in;" /></a></p>
+<p>The parallel-elastic force sets in when the muscle is stretched beyond
+its optimal fiber length. In the movement of this example, the elbow
+starts at 90 degrees flexion, and as the graph shows, this gives rise to
+about 10 N of passive force at the beginning of the movement. This
+indicates that the tendon we have specified is too short. If the
+movement was extending the elbow instead of flexing it, the passive
+force would rise sharply. This means that the result of the simulation
+depends a lot on having the correct length of the tendon. If it is too
+short, too much of the load will be carried by passive muscle forces. In
+this example where we have only one muscle with a complex model, it
+would not be too difficult to adjust the tendon length manually until we
+get it right, but in models with many muscles, this can be a very
+tedious task, particularly since it has to be repeated every time the
+dimensions of the model are changed. Instead, the answer is to let
+AnyBody calibrate the tendon length automatically.</p>
+<p>AnyBody’s advanced muscle model, the AnyMuscleModel3E, is basically a
+phenomenological model based on the classical works of Hill. It presumes
+that each muscle has an optimum contraction in which its fibers have
+their best force-producing capability. If we knew the set of joint
+positions corresponding to this optimum fiber length for each muscle,
+then those joint positions were the ones we would be calibrating the
+muscle in.</p>
+<p>Finding joint positions corresponding to optimum muscle fiber lengths is
+an active and rather young area of research, and the correct values are
+only known for a few muscles in the body. However, it is not surprising
+that we seem to have been built in such a way that our muscles attain
+their optimum fiber lengths in the joint positions where they do most of
+their work, and if you are unable to find the information about optimum
+joint positions you need, then your best choice may be to calibrate the
+muscle in the joint position where it primarily works.</p>
+<p>Calibrating the muscle in a particular position requires a calibration
+study. Its basic definition is very simple:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// =======================================================</span>
+<span class="c1">// &quot;The body study&quot;</span>
+<span class="c1">// =======================================================</span>
+<span class="kt">AnyBodyStudy</span> <span class="n">ArmModelStudy</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">;</span>
+  <span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span><span class="p">.</span><span class="n">Typer</span> <span class="o">=</span> <span class="kp">MR_MinMaxStrict</span><span class="p">;</span>
+  <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+<span class="p">};</span>
+
+<span class="gr">// A new calibration study</span>
+<span class="gr">  AnyBodyCalibrationStudy CalibrationStudy = {</span>
+<span class="gr">    AnyFolder &amp;Model = Main.ArmModel;</span>
+<span class="gr">    nStep = 1;</span>
+<span class="gr">  }; // End of study</span>
+
+</pre></div>
+</div>
+<p>If you load the model in you can study the structure of the new study:</p>
+<p><a class="reference internal" href="../_images/image329.png"><img alt="Operations Main.InverseDynamics" src="../_images/image329.png" style="width: 2.81389in; height: 2.46528in;" /></a></p>
+<p>You can see that it has multiple operations. The interesting ones are
+the two latter: TendonLengthAdjustment and LigamentLengthAdjustment. As
+the names indicate they are for tendon and ligament calibration
+respectively. Notice that the study only has one time step. The model
+posture in that step should be the position in which you wish to
+calibrate the tendon. If you run the TendonLengthAdjustment operation
+you will notice that the model takes the initial posture of the flexion
+movement it was doing in the InverseDynamics. This is because of the
+line</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The ArmModel contains movement drivers, and when they are included in
+the study they cause the model to attain the same posture in the
+calibration study as it does in the inverse dynamic analysis. To be able
+to calibrate in another posture we must perform a small restructuring of
+the model and perhaps recommend a organizing things a little differently
+in general when making models.</p>
+<p>We included the movement in the model when we developed it in the
+“Getting Started with AnyScript” tutorial because we wanted things to be
+simple. But think for a moment about how you would typically want to use
+models. Let’s imagine you have developed a model of a leg. One day you
+might want to simulate squat, another day perhaps gait, and yet another
+day a football kick. You would want to use the same model but with
+different sets of drivers. This speaks in favor of having drivers,
+loads, and other problem-specific properties outside the folder
+containing the body model.</p>
+<p>Calibration is actually an example of using the same model with two
+different movements, so we have to place the drivers outside the
+ArmModel folder. In the editor, highlight the entire Drivers folder, cut
+it out, and paste it in right below the end of the ArmModel folder like
+this:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="p">};</span> <span class="c1">// ArmModel</span>
+
+<span class="gr">AnyFolder Drivers = {</span>
+
+<span class="gr">  //---------------------------------</span>
+<span class="gr">  AnyKinEqSimpleDriver ShoulderMotion = {</span>
+<span class="gr">    AnyRevoluteJoint &amp;Jnt = Main.ArmModel.Jnts.Shoulder;  // Changed!</span>
+<span class="gr">    DriverPos = {-100*pi/180};</span>
+<span class="gr">    DriverVel = {30*pi/180};</span>
+<span class="gr">    Reaction.Type = {Off};</span>
+<span class="gr">  }; // Shoulder driver</span>
+
+<span class="gr">  //---------------------------------</span>
+<span class="gr">  AnyKinEqSimpleDriver ElbowMotion = {</span>
+<span class="gr">    AnyRevoluteJoint &amp;Jnt = Main.ArmModel.Jnts.Elbow;  // Changed!</span>
+<span class="gr">    DriverPos = {90*pi/180};</span>
+<span class="gr">    DriverVel = {45*pi/180};</span>
+<span class="gr">    Reaction.Type = {Off};</span>
+<span class="gr">  }; // Elbow driver</span>
+<span class="gr">}; // Driver folder</span>
+</pre></div>
+</div>
+<p>Notice&nbsp;that after moving the Drivers folder we have changed the
+references to the joints. We also have to change the study a little bit.
+This is because the study points at the ArmModel folder, and that no
+longer contains a movement, so the study would not know how to move the
+model, unless we add this line:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// =======================================================</span>
+<span class="c1">// &quot;The body study&quot;</span>
+<span class="c1">// =======================================================</span>
+<span class="kt">AnyBodyStudy</span> <span class="n">ArmStudy</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">ArmModel</span><span class="p">;</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Drivers</span> <span class="o">=</span> <span class="p">.</span><span class="n">Drivers</span><span class="p">;</span>
+    <span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="kp">MR_MinMaxStrict</span><span class="p">;</span>
+    <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Now we are ready to define a couple of static drivers specifically for
+calibration of the muscles. We create a CalibrationDrivers folder right
+below the Drivers folder:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">// -----------------------------------------------------</span>
+<span class="gr">// Calibration Drivers</span>
+<span class="gr">// -----------------------------------------------------</span>
+<span class="gr">AnyFolder CalibrationDrivers = {</span>
+
+<span class="gr">    //---------------------------------</span>
+<span class="gr">    AnyKinEqSimpleDriver ShoulderMotion = {</span>
+<span class="gr">      AnyJoint &amp;Jnt = Main.ArmModel.Jnts.Shoulder;</span>
+<span class="gr">      DriverPos = {-90*pi/180}; // Vertical upper arm</span>
+<span class="gr">      DriverVel = {0.0};</span>
+<span class="gr">      Reaction.Type = {Off};</span>
+<span class="gr">    };</span>
+<span class="gr">    //---------------------------------</span>
+<span class="gr">    AnyKinEqSimpleDriver ElbowMotion = {</span>
+<span class="gr">      AnyJoint &amp;Jnt = Main.ArmModel.Jnts.Elbow;</span>
+<span class="gr">      DriverPos = {30*pi/180}; // 20 degrees elbow flexion</span>
+<span class="gr">      DriverVel = {0.0};</span>
+<span class="gr">      Reaction.Type = {Off};</span>
+<span class="gr">    };</span>
+<span class="gr">};</span>
+</pre></div>
+</div>
+<p>These drivers are static because their velocities are zero. They specify
+a posture with the upper arm vertical and the elbow at 30 degrees
+flexion. Notice the expressions converting degrees to radians.</p>
+<p>The final step is to modify the calibration study to use the calibration
+drivers:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// A new calibration study</span>
+<span class="kt">AnyBodyCalibrationStudy</span> <span class="n">CalibrationStudy</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">;</span>
+  <span class="gr">AnyFolder &amp;Drivers = .CalibrationDrivers;</span>
+  <span class="n">nStep</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">};</span> <span class="c1">// End of study</span>
+</pre></div>
+</div>
+<p>What we have now is a study that uses the model together with two static
+drivers for calibration of the muscles, and a study that uses the model
+with the previous set of dynamic drivers. If you run the
+CalibrationStudy first, the system will adjust the tendon lengths and
+remember the values for the subsequent run of the AnyBodyStudy. Running
+this sequence of two studies reveals that there is no more passive force
+present in the BicepsLong muscle because it has now been calibrated in a
+more natural position.</p>
+<p>The final issue of this tutorial is: How can we handle calibration of
+different muscles in different positions? For instance, it might be
+reasonable to believe that the elbow extensors should be calibrated in a
+different elbow position than the elbow flexors. How can we accomplish
+that? Well a closer investigation of the calibration study listed above
+can actually give us a clue. The study contains the following two lines:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">;</span>
+<span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Drivers</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">CalibrationDrivers</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This tells us that a study manipulates the objects mentioned inside the
+study folder, in this case the ArmModel and the CalibrationDrivers.
+Perhaps you remember that we took the drivers out of the ArmModel, so
+that we could refer separately to them in the study? We did this to be
+able to not refer to the movement drivers when we run the calibration
+study and vice versa. Similarly, if we want to calibrate a subset of the
+muscles, we simply make it possible to just refer to precisely this
+subset in the study and leave the others out.</p>
+<p>Let us create a new muscle model for TricepsLong and calibrate that in
+another position.</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="p">};</span> <span class="c1">// End of BicepsLongModel</span>
+
+ <span class="gr">AnyMuscleModel3E TricepsLongModel = {</span>
+<span class="gr">   AnyVar PCSA = 15; // Physiological cross sectional area [cm^2]</span>
+<span class="gr">   F0= PCSA*30; // Presuming a maximum muscle stress of 30 N/cm^2</span>
+<span class="gr">   Lfbar= 0.194; //Optimum fiber length [m]</span>
+<span class="gr">   Lt0 = 0.35; //First guess of tendon slack length [m]</span>
+<span class="gr">   Gammabar = 2.0*(pi/180); //Pennation angle converted to radians</span>
+<span class="gr">   Epsilonbar = 0.053; //Tendon strain at F0</span>
+<span class="gr">   K1 = 10.0; //Slow twitch factor</span>
+<span class="gr">   K2 = 0.0; //Fast twitch factor(zero when no info available)</span>
+<span class="gr">   Fcfast = 0.4; //Percentage of fast to slow factor</span>
+<span class="gr">   Jt = 3.0; //Shape parameter for the tendon stiffness</span>
+<span class="gr">   Jpe = 3.0; //Shape parameter for the parallel stiffness</span>
+<span class="gr">   PEFactor = 5.0; //Parameter for influence of parallel stiffness</span>
+<span class="gr"> }; // End of TricepsLongModel</span>
+</pre></div>
+</div>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyViaPointMuscle</span> <span class="n">TricepsLong</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="gr">AnyMuscleModel &amp;MusMdl = .TricepsLongModel;</span>
+  <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">Org</span> <span class="o">=</span> <span class="p">..</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">TricpesLong</span><span class="p">;</span>
+  <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">Ins</span> <span class="o">=</span> <span class="p">..</span><span class="n">Segs</span><span class="p">.</span><span class="n">ForeArmArm</span><span class="p">.</span><span class="n">Tricpes</span><span class="p">;</span>
+  <span class="kt">AnyDrawViaPointMuscle</span> <span class="n">DrwMus</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Once again we need two drivers to put the model into the posture for
+calibration of the TricepsLong muscle:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">// -----------------------------------------------------</span>
+<span class="gr">// Triceps Calibration Drivers</span>
+<span class="gr">// -----------------------------------------------------</span>
+<span class="gr">AnyFolder TricepsCalibrationDrivers = {</span>
+
+<span class="gr">  //---------------------------------</span>
+<span class="gr">  AnyKinEqSimpleDriver ShoulderMotion = {</span>
+<span class="gr">    AnyJoint &amp;Jnt = Main.ArmModel.Jnts.Shoulder;</span>
+<span class="gr">    DriverPos = {-90*pi/180}; // Vertical upper arm</span>
+<span class="gr">    DriverVel = {0.0};</span>
+<span class="gr">    Reaction.Type = {Off};</span>
+<span class="gr">  };</span>
+
+<span class="gr">  //---------------------------------</span>
+<span class="gr">  AnyKinEqSimpleDriver ElbowMotion = {</span>
+<span class="gr">    AnyJoint &amp;Jnt = Main.ArmModel.Jnts.Elbow;</span>
+<span class="gr">    DriverPos = {90*pi/180}; // 30 degrees elbow flexion</span>
+<span class="gr">    DriverVel = {0.0};</span>
+<span class="gr">    Reaction.Type = {Off};</span>
+<span class="gr">  };</span>
+<span class="gr">};</span>
+</pre></div>
+</div>
+<p>As you can see, this differs from the drivers for calibration of
+BicepsLong only by using&nbsp;90 degrees elbow flexion rather than 30
+degrees.</p>
+<p>What we could do now is to take the two advanced muscle models out of
+the ArmModel folder, so that we could refer to them individually in the
+study; just like we did with the drivers. But let’s try something else
+instead. We’ll simply refer directly to the individual elements of the
+ArmModel in the calibration study rather than the entire ArmModel. This
+way we are able to leave out the muscles we do not want to include. So
+we simply make a new study that looks like this:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>   <span class="gr">// A calibration study for TricepsLong</span>
+<span class="gr">   AnyBodyCalibrationStudy TricepsCalibrationStudy = {</span>
+<span class="gr">      AnyFixedRefFrame &amp;GlobalRef = Main.ArmModel.GlobalRef;</span>
+<span class="gr">      AnyFolder &amp;Segs = Main.ArmModel.Segs;</span>
+<span class="gr">      AnyFolder &amp;Jnts = Main.ArmModel.Jnts;</span>
+<span class="gr">      AnyViaPointMuscle &amp;TricepsLong = Main.ArmModel.Muscles.TricepsLong;</span>
+<span class="gr">      AnyFolder&amp; Drivers = Main.TricepsCalibrationDrivers;</span>
+<span class="gr">      nStep = 1;</span>
+<span class="gr">}; // End of study</span>
+</pre></div>
+</div>
+<p>Notice that this study refers to each folder inside the ArmModel
+individually. This way, we can restrict our references only to the
+TricepsLong muscle and leave all the other muscles out. This means that
+the other muscles will not be affected by this calibration. So if you
+initially calibrate all the muscles by the CalibrationStudy and
+subsequently run the TricepsCalibrationStudy, then the latter will not
+overwrite the effect of the former, but only for the muscle mentioned in
+the study, i.e. the TricepsLong.</p>
+<p>Here’s a link to the finished calibration.any example.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html"> Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: Composite Recruitment Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html#references">References</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 7</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../ForceDependentKinematics/fdk.html" title="Force-Dependent Kinematics"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson6.html" title="Lesson 6: Composite Recruitment Criteria"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="Inverse_dynamics.html" >Inverse Dynamics of Muscle Systems</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

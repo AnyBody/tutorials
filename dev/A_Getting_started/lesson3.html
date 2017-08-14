@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 3: Reviewing Analysis Results &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
@@ -109,9 +109,9 @@ right hip joint in the proximodistal direction. If you select another
 value from the left-hand side of the model tree, the ‘Value’ property of
 Chart View will change accordingly.</p>
 <p>It is possible to select and display several properties simultaneously
-in Chart View by using the asterisk (*) character. If you double- click
+in Chart View by using the asterisk (<code class="docutils literal"><span class="pre">*</span></code>) character. If you double- click
 the ‘Value’ property of your Chart View, it becomes editable. Let us
-edit the last ‘Hip_ProximoDistalForce’ term to ‘Hip_*’.</p>
+edit the last <code class="docutils literal"><span class="pre">Hip_ProximoDistalForce</span></code> term to <code class="docutils literal"><span class="pre">Hip_*</span></code>.</p>
 <p><a class="reference internal" href="../_images/image8.png"><img alt="Chart view asterix selection" src="../_images/image8.png" style="width: 6.68750in; height: 3.65972in;" /></a></p>
 <p>Now you will see the ‘Hip_MediolateralForce’, ‘Hip_ProximoDistalForce’
 and ‘Hip_AnteroPosteriorForce’ in the same Chart View.</p>
@@ -122,19 +122,19 @@ and ‘Hip_AnteroPosteriorForce’ in the same Chart View.</p>
 model to see what happens to the hip joint reaction force.</p>
 <p>To adjust the posture of the human model, let us open your Mannequin.any
 file and change the PelvisThoraxExtension value from 0 to -60.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>AnyFolder Mannequin = {
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
 
-AnyFolder Posture = {
+    <span class="kt">AnyFolder</span> <span class="n">Posture</span> <span class="o">=</span> <span class="p">{</span>
 
-…
+        <span class="p">...</span>
 
-§AnyVar PelvisThoraxExtension=-60; §
+        <span class="gr">AnyVar PelvisThoraxExtension=-60; </span>
 
-AnyVar PelvisThoraxLateralBending=0;
+        <span class="kt">AnyVar</span> <span class="n">PelvisThoraxLateralBending</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
-AnyVar PelvisThoraxRotation=0;
+        <span class="kt">AnyVar</span> <span class="n">PelvisThoraxRotation</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
-...
+        <span class="p">...</span>
 </pre></div>
 </div>
 <p>Press the F7 button to reload the model and run the RunApplication
@@ -181,8 +181,7 @@ for topics of particular interest to you.</p>
 <div class="sphinx-toc sphinxglobaltoc">
 <h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Front Page</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="intro.html">Getting Started</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
@@ -196,6 +195,18 @@ for topics of particular interest to you.</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
 </ul>
 </div>
         </div>

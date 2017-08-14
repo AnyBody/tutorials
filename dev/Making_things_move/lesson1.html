@@ -1,0 +1,259 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson1: Simple drivers &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 2: Using motion capture data" href="lesson2.html" />
+    <link rel="prev" title="Making things move" href="intro.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Using motion capture data"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Making things move"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Making things move</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson1-simple-drivers">
+<h1>Lesson1: Simple drivers<a class="headerlink" href="#lesson1-simple-drivers" title="Permalink to this headline">¶</a></h1>
+<p>As mentioned above, we often have preconceived ideas about a system’s
+natural DoFs, such as abduction of the shoulder or flexion of the knee.
+In the case of the pendulum, we might get the idea that the natural DoF
+is its rotational angle away from its resting vertical position. And we
+can very easily drive the pendulum using this DoF.</p>
+<p>The simplest mechanism of motion drivers in AnyBody is called
+AnyKinMotion. With Pendulum.any open in an editor and the model loaded,
+please place the cursor in the editor window just below then ending
+brace of the AnySeg Pendulum definition. Then click the Classes tab on
+the left hand side of the editor window. Unfold the class list and
+scroll down to find AnyKinMotion. Right-click and insert an instance at
+the cursor position:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Pendulum</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Mass</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span><span class="o">/</span><span class="mi">10</span><span class="p">;</span>
+    <span class="kt">AnyRefNode</span> <span class="n">Origin</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+    <span class="p">};</span>
+    <span class="kt">AnyRefNode</span> <span class="n">P1</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+    <span class="p">};</span>
+    <span class="kt">AnyDrawSeg</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="p">};</span>
+<span class="gr">AnyKinMotion &lt;ObjectName&gt; =</span>
+<span class="gr">{</span>
+<span class="gr">    //MeasureOrganizer = ;</span>
+<span class="gr">    //CType = ;</span>
+<span class="gr">    //AnyKinMeasure &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
+<span class="gr">    AnyParamFun &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">};</span>
+</pre></div>
+</div>
+<p>The prototype of the AnyKinMotion class is set up to allow several
+different options. But the simplest of these is to directly specify
+something to drive and a function to drive it with. So we start out by
+giving the object a name and removing all of its content.</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="gr">JointDriver</span> <span class="o">=</span> <span class="p">{</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Then we specify what to drive by making reference to the pendulum joint:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="gr">JointDriver</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="gr">AnyRevoluteJoint &amp;Jnt = .Joint;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Now we have specified what to drive, so all that’s left is to create a
+function to drive it with. AnyBody contains a number of predefined
+function types that you can find in the Classes Tree, for instance
+AnyFunPolynomial. As the name indicates, this is a polynomial function
+and it can have any number of coefficients. A common use is to drive
+motion either in a very standardized way, for instance with constant
+velocity or constant acceleration, or to drive a motion by data to which
+a polynomial has been fitted.</p>
+<p>Try inserting the red part of the code below:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="n">JointDriver</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">.</span><span class="n">Joint</span><span class="p">;</span>
+    <span class="gr">AnyFunPolynomial DriverFun = {</span>
+<span class="gr">        PolyCoef = {{0, 3, 5}};</span>
+<span class="gr">    };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>In the matrix PolyCoef, each row contains the coefficients for a time
+function driving one degree of freedom. The revolute joint we are
+driving only has one degree of freedom, so the matrix only has one row,
+but it still has to be defined as a matrix rather than a vector, i.e.
+with double braces at each end. The polynomial coefficients then come in
+increasing order and define the following driver function:</p>
+<div class="math">
+\[\textrm{Joint angle} = 0 + 3t + 5t^2 \textrm{[rad]}\]</div>
+<p>To get higher polynomial orders, simply add more terms to the vector.</p>
+<p>Now try loading the model. If you have followed the instructions, you
+should no longer get the warning that that model is kinematically
+indeterminate. It now has the same number of drivers as degrees of
+freedom, and we can expand the MyStudy branch in the Operation tree on
+the left hand side of the main frame, select kinematics and click “Run”.
+If you have a model view open, you should see the pendulum starting to
+move and accelerate as it rotates a little more than one round before
+the end of the analysis at <em>t</em> = 1 second.</p>
+<p>The use of AnyKinMotion objects to drive a model is in principle always
+like this, but you can select any Kinematic Measure to drive, i.e. not
+just a simple joint angle, and you can use any function derived from the
+abstract AnyParamFun class to drive it with.</p>
+<p>In <a class="reference internal" href="lesson2.html"><span class="doc">lesson 2</span></a> we shall see how this same mechanism
+allows you to drive the pendulum by motion capture data.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Making things move</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html"> Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html"> Lesson 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson7.html"> Lesson 7</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Using motion capture data"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Making things move"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" >Making things move</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

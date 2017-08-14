@@ -1,0 +1,252 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 2: Linear Muscle Recruitment &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 3: Quadratic Muscle Recruitment" href="lesson3.html" />
+    <link rel="prev" title="Lesson 1: The Basics of Muscle Recruitment" href="lesson1.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: Quadratic Muscle Recruitment"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: The Basics of Muscle Recruitment"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="Inverse_dynamics.html" accesskey="U">Inverse Dynamics of Muscle Systems</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-2-linear-muscle-recruitment">
+<h1>Lesson 2: Linear Muscle Recruitment<a class="headerlink" href="#lesson-2-linear-muscle-recruitment" title="Permalink to this headline">¶</a></h1>
+<p>Let us begin this lesson with a physiological observation. We know that
+there is a metabolic cost involved in development of muscle force. Food
+is a limited resource for living organisms so it is likely that nature
+has programmed us to save muscle work in some sense. But exactly how?</p>
+<p>When two muscles are sharing the load of one joint moment, the options
+seem to be:</p>
+<ul class="simple">
+<li>Letting muscle 1 do the work</li>
+<li>Letting muscle 2 do the work</li>
+<li>Letting the two muscles share the work as we saw in the previous
+lesson</li>
+</ul>
+<p>So we can reduce the load on one muscle, but the cost will be more work
+remaining for the other muscle to do. It seems that a criterion taking
+both muscles into account is needed. Let us just briefly recall the
+formulation of the muscle recruitment problem again:</p>
+<div class="math">
+\[\begin{split}\begin{equation*}
+\begin{aligned}
+&amp; {\text{minimize}}
+&amp; &amp; G\left(\mathbf{f^{(M)}}\right) \\
+&amp; \text{subject to}
+&amp; &amp; \mathbf{Cf} = \mathbf{r} \\
+&amp;&amp;&amp; f_i^{(M)} \geq 0, i=1\ldots n^{(M)}
+\end{aligned}
+\end{equation*}\end{split}\]</div>
+<p>The simplest imaginable choice of objective function taking the effort
+of both muscles into account seems to be a linear combination like this:</p>
+<div class="math">
+\[G = \frac{f_1}{N_1}+ \frac{f_2}{N_2}\]</div>
+<p>i.e., a linear combination of the two muscle forces, where the <span class="math">\(N_1\)</span> and  <span class="math">\(N_2\)</span>
+are some choice of normalization factors. Thinking about the physiology
+we might quickly get the idea that it is reasonable if strong muscles do
+more work than weak muscles, so <span class="math">\(N_i\)</span> acould be measures of the
+strength of each muscle. We are going to stick with that idea for the
+remainder of this tutorial because it actually turns out to make sense
+also experimentally. We can get AnyBody to work with precisely this
+definition by making the following additions to our study:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
+    <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+    <span class="n">nStep</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span> <span class="c1">// Lots of time steps to make it run slowly enough</span>
+    <span class="gr"> InverseDynamics.Criterion = {</span>
+<span class="gr">        Type = MR_Linear;</span>
+<span class="gr">    };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This small addition specifies that the muscles must be recruited as a
+linear combination. The muscles forces are automatically normalized by
+the strengths. Running the analysis and plotting the result as before
+leaves us with this somewhat surprising result:</p>
+<p><a class="reference internal" href="../_images/image2.gif"><img alt="Chart view Model.star.Fm" src="../_images/image2.gif" style="width: 3.12500in; height: 3.19792in;" /></a></p>
+<p>It seems that the weaker M2 is slacking around doing nothing and leaving
+all the work to the stronger M1. It turns out that we always get this
+type of behavior when recruiting muscles with a linear objective
+function. In general, this method will only recruit the minimum number
+of muscles to balance the system, and the chosen muscles are those that
+by combination of their moment arms and strengths are best suited for
+the purpose. While this might be a reasonable strategy, it is
+unfortunately totally non-physiological. It is possible to measure
+activity in muscles electrically, and these measurements show without a
+doubt that several muscles spanning the same joint share the load
+between them.</p>
+<p>This type of muscle recruitment is included in AnyBody for two reasons
+despite being non-physiological:</p>
+<ol class="arabic simple">
+<li>For completeness. The strategy behind AnyBody is to leave decisions
+about physiology to the user as much as possible.</li>
+<li>This type of analysis is excellent for identifying the important
+muscles in a complex system in a given posture and external load. In
+complex systems this can be very challenging to determine manually
+and the result can be useful for a variety of purposes including
+decisions on tendon transfer surgery.</li>
+</ol>
+<p>For normal purposes, however, the linear criterion is not a good choice,
+and we shall therefore proceed to investigate another option in</p>
+<p><a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Quadratic muscle recruitment</span></a>.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html"> Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: Composite Recruitment Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_calibration.html"> Lesson 7</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: Quadratic Muscle Recruitment"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: The Basics of Muscle Recruitment"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="Inverse_dynamics.html" >Inverse Dynamics of Muscle Systems</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

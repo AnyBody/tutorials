@@ -1,0 +1,230 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Force-Dependent Kinematics &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 1: The Baseline Model" href="lesson1.html" />
+    <link rel="prev" title="Lesson 7: Calibration" href="../MuscleRecruitment/lesson_calibration.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: The Baseline Model"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../MuscleRecruitment/lesson_calibration.html" title="Lesson 7: Calibration"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="force-dependent-kinematics">
+<h1>Force-Dependent Kinematics<a class="headerlink" href="#force-dependent-kinematics" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>Let us start by looking at the simplest form of Newton’s second law,
+when it’s written for a point mass particle:</p>
+<div class="math">
+\[a = \frac{F}{m}\]</div>
+<p>Here <strong>F</strong> is the resultant of all forces acting on the particle, <em>m</em> is
+its mass, and <strong>a</strong> is the consequent acceleration. If we knew the
+values of all the applied forces, the accelerations could be computed
+and maybe even integrated over time to predict how the particle would
+move. Such a study of the particle’s physics would be termed a Forward
+Dynamic Analysis.</p>
+<p>Alternatively, the equation could be re-written as:</p>
+<div class="math">
+\[F = ma\]</div>
+<p>This would be more beneficial when the particle’s accelerations could be
+observed using say a video camera, but the forces were unknown. This is
+called an Inverse Dynamic Analysis.</p>
+<p>AnyBody usually performs inverse dynamics since it’s far easier to
+observe motion visually or with motion capture systems than to do a
+forward dynamic analysis with a priori estimates of the internal body
+forces which move to the musculoskeletal system.</p>
+<p>AnyBody extends Newton’s second law to a complex multi-body system
+consisting of many rigid segments inter-connected through “ideal”
+mechanical joints. For example, an ideal spherical joint allows 3
+degrees of rotational freedom, but constrains the 3 degrees of
+translational freedom whose violation is vehemently countered by 3
+corresponding joint reaction forces.</p>
+<p>However, many biomechanical joints are not completely ideal and allow
+for small motions between the bones. These small motions are both
+difficult to measure as well as estimate, since they depend on the
+topology of the bony contact and are often finely stabilized by the
+muscle and ligament forces. A good example of such a motion is the
+anterio-posterior sliding of the femur on the tibia at the knee joint.</p>
+<p>This means that we cannot determine these motions before we know the
+internal forces and, as we just saw above, standard inverse dynamics
+requires the entire system’s motion to be known before we can compute
+the forces. So we are faced with a classic catch-22 problem. This is
+where Force-Dependent Kinematics or FDK comes in to save the day!</p>
+<p>In this tutorial we will construct a very simple model that is easy to
+understand, and fast to build and analyse. It however permits small
+motions between the two bones which will really help us understand the
+detailed functions of real joints. This is what the model will look
+like:</p>
+<p><a class="reference internal" href="../_images/image122.png"><img alt="Simple knee" src="../_images/image122.png" style="width: 3.07857in; height: 2.00994in;" /></a></p>
+<p>This model is a knee joint extended by a single quadriceps muscle. The
+joint, however, is somewhat different from the idealized “engineering”
+revolute joints you often see in musculoskeletal models. It comprises a
+circular condyle in contact with a flat tibial plateau. The contact is
+frictionless, so the condyle can in principle freely slide back and
+forth on the plateau. To stabilize the sliding knee, two perpendicular
+springs are acting between the femur and tibia.</p>
+<p>The first spring is normal to the tibial plateau, and it represents the
+compressive stiffness of the cartilage between the two parts. The second
+spring is parallel to the tibial plateau, and it represents the
+collective effect of the menisci and the ligaments in providing
+anterio-posterior stability.</p>
+<p>Please go ahead and download a template of the model here, and then
+proceed to:</p>
+<p><a class="reference internal" href="lesson1.html"><span class="doc">Lesson 1: The baseline model</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Force-Dependent Kinematics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html"> Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fdkappendix.html"> FDK appendiks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: The Baseline Model"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../MuscleRecruitment/lesson_calibration.html" title="Lesson 7: Calibration"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

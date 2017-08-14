@@ -1,0 +1,497 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 5: Forces &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Advanced Script Features" href="../Advanced_script_features/intro.html" />
+    <link rel="prev" title="Lesson 4: Kinematic Measures" href="lesson4.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Advanced_script_features/intro.html" title="Advanced Script Features"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="Lesson 4: Kinematic Measures"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">The Mechanical Elements</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-5-forces">
+<h1>Lesson 5: Forces<a class="headerlink" href="#lesson-5-forces" title="Permalink to this headline">¶</a></h1>
+<p>There are several types of forces in an AnyBody model; forces in joints,
+forces in muscles, and gravity forces working on the segments. This
+section, however, deals only with the application of external forces. We
+need something to work on, and here’s a copy of the simple arm model you
+can use. Please right-click here and save to your local disk
+(Demo.Forces.1.any). When you have saved the file, please open it up in
+AnyBody.</p>
+<p>At the end of the ArmModel folder you will find that we have added an
+empty&nbsp;folder named Loads:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>   <span class="gr">AnyFolder Loads = {</span>
+
+<span class="gr">      };  // Loads folder</span>
+<span class="p">};</span> <span class="c1">// ArmModel</span>
+</pre></div>
+</div>
+<div class="section" id="anyforce3d-external-forces">
+<h2>AnyForce3D: External forces<a class="headerlink" href="#anyforce3d-external-forces" title="Permalink to this headline">¶</a></h2>
+<p>External forces on a mechanical system are usualy perceived as vectors
+with some point of attack, and this is indeed one of the ways you can
+define forces in AnyScript. Let us begin by defining a force acting on
+the PalmNode of the ForeArm segment. The way to go is to first make sure
+the model is loaded successfully (by having pressed F7). Please do not
+reload the model again before we are finished making the necessary
+changes.</p>
+<p>Place the cursor on the empty line inside the new Loads folder. Then
+select the Classes tab in the tree view on the left hand side of the
+editor window, expand the Class List and scroll down until you come to
+AnyForce3D. Right-click the class and pick Insert Class Template. This
+will give you:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Loads</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="gr">AnyForce3D &lt;ObjectName&gt; =</span>
+<span class="gr">       {</span>
+<span class="gr">         //F = {0, 0, 0};</span>
+<span class="gr">         //Flocal = {0, 0, 0};</span>
+<span class="gr">         AnyRefFrame &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">       };</span>
+ <span class="p">};</span>  <span class="c1">// Loads folder</span>
+</pre></div>
+</div>
+<p>Let us initially give the force a descriptive name:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Loads</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="kt">AnyForce3D</span> <span class="gr">PalmLoad</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1">//F = {0, 0, 0};</span>
+        <span class="c1">//Flocal = {0, 0, 0};</span>
+        <span class="kt">AnyRefFrame</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span> <span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+      <span class="p">};</span>
+<span class="p">};</span>  <span class="c1">// Loads folder</span>
+</pre></div>
+</div>
+<p>One of the missing blanks is an AnyRefFrame. This is the point of attack
+of the force. In our case we want it to work on the PalmNode. We first
+prepare for inserting the name of the node:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Loads</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="kt">AnyForce3D</span> <span class="n">PalmLoad</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="c1">//F = {0, 0, 0};</span>
+         <span class="c1">//Flocal = {0, 0, 0};</span>
+         <span class="kt">AnyRefFrame</span> <span class="gr">&amp;PointOfAttack = </span><span class="p">;</span>
+       <span class="p">};</span>
+ <span class="p">};</span>  <span class="c1">// Loads folder</span>
+</pre></div>
+</div>
+<p>Now, please place the cursor just before the semicolon at the end of the
+PointOfAttack line, select the Model tab in the tree view on the left
+hand side of the editor window,&nbsp;unfold the ArmModel.Segs.ForeArm branch,
+locate the PalmNode, right-click it and select Insert Object Name. You
+should get the following result:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span> <span class="kt">AnyFolder</span> <span class="n">Loads</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="kt">AnyForce3D</span> <span class="n">PalmLoad</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1">//F = {0, 0, 0};</span>
+        <span class="c1">//Flocal = {0, 0, 0};</span>
+        <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">PointOfAttack</span> <span class="o">=</span> <span class="gr">Main.ArmModel.Segs.ForeArm.PalmNode</span><span class="p">;</span>
+      <span class="p">};</span>
+<span class="p">};</span>  <span class="c1">// Loads folder</span>
+</pre></div>
+</div>
+<p>Please notice now that two lines in the middle of the object are
+commented out. We need to enable exactly one of them and we shall begin
+with the first one, specifying also a non-zero force vector:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Loads</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="kt">AnyForce3D</span> <span class="n">PalmLoad</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="gr">F = {0, -50, 0};</span>
+         <span class="c1">//Flocal = {0, 0, 0};</span>
+         <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">PointOfAttack</span> <span class="o">=</span>
+  <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Segs</span><span class="p">.</span><span class="n">ForeArm</span><span class="p">.</span><span class="n">PalmNode</span><span class="p">;</span>
+       <span class="p">};</span>
+ <span class="p">};</span>  <span class="c1">// Loads folder</span>
+</pre></div>
+</div>
+<p>When this specification is used, the force vector gets defined in global
+coordinates. The global <em>y</em> direction in this model is upwards, so the
+vector F = {0, -50, 0} specifies a load directed downwards. Now is the
+time to reload the model and open a Model View window if you have not
+already done so. After successful load, please select the
+InverseDynamicAnalysis and click the Run button. You will see the
+bulging of the muscles in response to the downward load on the hand.</p>
+<p>It may be nice to be able to actually see the force we have applied.
+This can be done with an AnyDrawVector object that we can conveniently
+place inside the PalmLoad object like this:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Loads</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyForce3D</span> <span class="n">PalmLoad</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">F</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+        <span class="c1">//Flocal = {0, -50, 0};</span>
+        <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">PointOfAttack</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Segs</span><span class="p">.</span><span class="n">ForeArm</span><span class="p">.</span><span class="n">PalmNode</span><span class="p">;</span>
+        <span class="gr">AnyDrawVector drF = {</span>
+<span class="gr">          Vec = .Fout/200;   // Scale the length down</span>
+<span class="gr">          Line = {</span>
+<span class="gr">            Style = Line3DStyleFull;</span>
+<span class="gr">            Thickness = 0.01;</span>
+<span class="gr">            RGB = {1, 0, 0};</span>
+<span class="gr">            End = {</span>
+<span class="gr">              Style = Line3DCapStyleArrow;  // This specifies the end to be an arrowhead</span>
+<span class="gr">              RGB = {1, 0, 0};</span>
+<span class="gr">              Thickness = 0.02;  // The head begins with twice the thickness of the shaft</span>
+<span class="gr">              Length = 0.05;</span>
+<span class="gr">            };</span>
+<span class="gr">          };</span>
+<span class="gr">    // attach the arrow to the hand</span>
+<span class="gr">        AnyRefFrame &amp;Palm = Main.ArmModel.Segs.ForeArm.PalmNode;</span>
+<span class="gr">    };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>As you can see, the AnyDrawVec is a class with a lot of different
+settings available, and there are actually much more than listed here.
+You get to see all of them if you use the class tree to insert the
+object. For now, let’s just reload the object and run the model. You
+should see a red arrow pointing down from the hand indicating the
+direction of the force.</p>
+<p><a class="reference internal" href="../_images/image146.png"><img alt="Simple arm model with force" src="../_images/image146.png" style="width: 2.68750in; height: 3.42708in;" /></a></p>
+<p>One of the advantages of defining models in a computer language is that
+numbers can be replaced by mathematical expressions. So instead of the
+constant force vector we can write a function of time, for instance:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Loads</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="kt">AnyForce3D</span> <span class="n">PalmLoad</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="n">F</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">}</span><span class="gr">*sin(2*pi*t)</span><span class="p">;</span>
+         <span class="c1">//Flocal = {0, 0, 0};</span>
+         <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">PointOfAttack</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Segs</span><span class="p">.</span><span class="n">ForeArm</span><span class="p">.</span><span class="n">PalmNode</span><span class="p">;</span>
+       <span class="p">};</span>
+ <span class="p">};</span>  <span class="c1">// Loads folder</span>
+</pre></div>
+</div>
+<p>If you reload and run the InverseDynamicAnalysis again you will see the
+force arrow chage direction and you will also see that the muscle
+activation changes from the frontal to the posterior side of the arm in
+response to the changing load.</p>
+<p>Let’s impose some movement. It is easily done by a small change in the
+elbow driver:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ElbowMotion</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Elbow</span><span class="p">;</span>
+         <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.5</span><span class="p">};</span>
+         <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="gr">60*pi/180</span><span class="p">};</span>
+         <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="kp">Off</span><span class="p">};</span>
+   <span class="p">};</span> <span class="c1">// Elbow driver</span>
+</pre></div>
+</div>
+<p>After this change try reloading the model and running the inverse
+dynamic analysis again. You should see the model flex its elbow.</p>
+<p>For the next issue it is better to change the force back to a constant
+value:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Loads</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="kt">AnyForce3D</span> <span class="n">PalmLoad</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="n">F</span> <span class="o">=</span> <span class="gr">{0, -50, 0}</span><span class="p">;</span>
+         <span class="c1">//Flocal = {0, 0, 0};</span>
+         <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">PointOfAttack</span> <span class="o">=</span>
+  <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Segs</span><span class="p">.</span><span class="n">ForeArm</span><span class="p">.</span><span class="n">PalmNode</span><span class="p">;</span>
+       <span class="p">};</span>
+ <span class="p">};</span>  <span class="c1">// Loads folder</span>
+</pre></div>
+</div>
+<p>Please load and run again and notice how the external force is vertical
+all the time regardless of the movement of the forearm. This is because
+we used the property F to specify the force in the PalmLoad object. How
+would we go about defining a force that follows the direction of the
+hand instead? Well, this is what the Flocal property is for. Let’s make
+a small change in the force specification:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Loads</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="kt">AnyForce3D</span> <span class="n">PalmLoad</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="gr">//</span><span class="c1">F = {0, -50, 0};</span>
+         <span class="gr">Flocal = {0, -50, 0};</span>
+         <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">PointOfAttack</span> <span class="o">=</span>
+  <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Segs</span><span class="p">.</span><span class="n">ForeArm</span><span class="p">.</span><span class="n">PalmNode</span><span class="p">;</span>
+       <span class="p">};</span>
+ <span class="p">};</span>  <span class="c1">// Loads folder</span>
+</pre></div>
+</div>
+<p>The only change here is that we are using the Flocal property rather
+than F to specify the force. Loading and running the model again will
+show the force now changind direction with the movement of the arm but
+maintaining its direction perpendicular to the forearm, i.e. in the
+negative <em>y</em> axis of the PalmNode to which it is attached.</p>
+<p><a class="reference internal" href="../_images/image240.png"><img alt="Arm model with force 2" src="../_images/image240.png" style="width: 3.79167in; height: 2.91667in;" /></a></p>
+</div>
+<div class="section" id="anyforce-internal-forces-sort-of">
+<h2>AnyForce: Internal forces (sort of)<a class="headerlink" href="#anyforce-internal-forces-sort-of" title="Permalink to this headline">¶</a></h2>
+<p>Many applications in biomechanics deal with some notion of joint moment.
+Let us imagine we wanted to apply a given joint moment to the elbow and
+check how the muscles would cope with carrying that.</p>
+<p>Our first idea might be that the Flocal property of AnyForce3D would be
+ideal for this. If we just work out the distance between the elbow and
+the PalmNode then we can easily compute how much Flocal we have to apply
+to the forearm to obtain the desired joint moment in the elbow.</p>
+<p>But first ideas don’t always fly and in this situation the use of
+AnyForce3D with Flocal would have an undesirable side effect: The
+applied force would also generate a moment about the shoulder joint, and
+since there are bi-articular muscles crossing the shoulder as well as
+the elbow this is likely to disturb the muscle recruitment pattern
+significantly. So, what to do?</p>
+<p>Well, what we really want is something that just affects the elbow and
+is balanced perfectly&nbsp;from the point-of-view of the rest of the model.
+We could come up with an applied force that goes from the upper arm to
+the forearm, and should this force then be perpendicular to the forearm
+or to the upper arm? Obviously it cannot be both.</p>
+<p>It looks like it might be nice with a more general force application
+option, and this is what the AnyForce class is. It allows us to apply a
+generalized force to any kinematic measure we can possibly define. The
+AnyForce takes the form of the kinematic measure, so a linear measure
+results in a force and a rotational measure results in a moment.
+Moreover, because kinematic measures&nbsp;are such a general concept there
+are very few limits to the kinds of forces that they can be used to
+specify. So, the elbow moment might simply be applied as an AnyForce
+applied to some rotational measure of the elbow angle, and as the
+measure we can conveniently use the elbow joint.</p>
+<p>We start by disabling the external forces from before:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Loads</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="kt">AnyForce3D</span> <span class="n">PalmLoad</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="c1">//F = {0, -50, 0};</span>
+     <span class="n">Flocal</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="gr">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>Instead, we define an AnyForce. Place the cursor inside the Loads folder
+right after the ending brace of the PalmLoad object. Then click the
+Classes tab in the tree on the left hand side of the editor window,
+unfold the Class list, scroll down to the AnyForce class, right-click it
+and insert a template. You should get this:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Loads</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="kt">AnyForce3D</span> <span class="n">PalmLoad</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="c1">//F = {0, -50, 0};</span>
+         <span class="n">Flocal</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+         <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">PointOfAttack</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Segs</span><span class="p">.</span><span class="n">ForeArm</span><span class="p">.</span><span class="n">PalmNode</span><span class="p">;</span>
+         <span class="kt">AnyDrawVector</span> <span class="n">drF</span> <span class="o">=</span> <span class="p">{</span>
+           <span class="n">Vec</span> <span class="o">=</span> <span class="p">.</span><span class="n">Fout</span><span class="o">/</span><span class="mi">200</span><span class="p">;</span>
+           <span class="n">Line</span> <span class="o">=</span> <span class="p">{</span>
+             <span class="n">Style</span> <span class="o">=</span> <span class="kp">Line3DStyleFull</span><span class="p">;</span>
+             <span class="n">Thickness</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
+             <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+             <span class="n">End</span> <span class="o">=</span> <span class="p">{</span>
+               <span class="n">Style</span> <span class="o">=</span> <span class="kp">Line3DCapStyleArrow</span><span class="p">;</span>
+               <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+               <span class="n">Thickness</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">;</span>
+               <span class="n">Length</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">;</span>
+             <span class="p">};</span>
+           <span class="p">};</span>
+           <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Palm</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Segs</span><span class="p">.</span><span class="n">ForeArm</span><span class="p">.</span><span class="n">PalmNode</span><span class="p">;</span>
+         <span class="p">};</span>
+       <span class="p">};</span>
+
+       <span class="gr">AnyForce &lt;ObjectName&gt; =</span>
+<span class="gr">       {</span>
+<span class="gr">         F = ;</span>
+<span class="gr">         //AnyKinMeasure &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">       };</span>
+
+ <span class="p">};</span>  <span class="c1">// Loads folder</span>
+</pre></div>
+</div>
+<p>The structure of the AnyForce class is obviously very simple. This is
+because it draws so heavily on the kinematic measure inside it for its
+definition. Let’s apply a moment to the elbow:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyForce</span> <span class="gr">ElbowMoment</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="n">F</span> <span class="o">=</span> <span class="gr">{-50}</span><span class="p">;</span>
+         <span class="kt">AnyKinMeasure</span> <span class="o">&amp;</span><span class="gr">Elbow</span> <span class="o">=</span> <span class="gr">Main.ArmModel.Jnts.Elbow</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This applies a moment of -50 units to the elbow. This happens to be an
+extension moment, so when you load and run the model again, you will
+notice activity mainly in the flexor muscles. But how did we know that a
+negative value corresponds to an extension moment? It is actually rather
+simple. The joint has a positive angle direction and the applied
+AnyForce follows the sign convention of the kinematic measure it is
+attached to. In our case we know from the setting of the driver moving
+the elbow joint that a positive angular velocity corresponds to flexion,
+so a negative moment on the corresponding kinematic measure must be an
+extension moment.</p>
+<p>If you look carefully, you will also see activity in some of the
+mono-articular shoulder muscles. Why does this happen? Wasn’t the
+AnyForce supposed to only affect the elbow? Indeed it was and does, but
+some of the muscles crossing the elbow also affect the shoulder, so
+co-contraction is necessary to stabilize the shoulder in the presence of
+elbow muscle activity.</p>
+<p>What makes the AnyForce local, then? The answer is that the AnyForce
+refers to the elbow joint, and the elbow joint refers to the upper arm
+and the forearm. So these are the segments affected by the AnyForce. If
+the AnyForce includes a reference to a fixed reference frame then the
+force applied will have a component going to ground and it will at least
+partially work as an external force, but otherwise it is strictly
+internal.</p>
+<p>AnyForces have many interesting applications. For instance they can be
+used to specify gravity-type force fields if you apply them to an AnyCoM
+measure. Another interesting use of AnyForces is for specification of
+predefined muscle forces. There is a kinematic meaure inside any muscle,
+and if an AnyForce is applied to this measure, that force will be
+predefined in the muscle. Please notice, that the system may decide to
+recruit muscle force beyond what you have applied unless the muscle has
+been set to zero strength.</p>
+</div>
+<div class="section" id="further-studies">
+<h2>Further studies:<a class="headerlink" href="#further-studies" title="Permalink to this headline">¶</a></h2>
+<p>The following two examples illustrate more of the features of forces in
+AnyBody.</p>
+<ol class="arabic simple">
+<li><a class="reference download internal" href="../_downloads/Demo.Forces.any" download=""><code class="xref download docutils literal"><span class="pre">*Demo.Forces.any*</span></code></a></li>
+<li><a class="reference download internal" href="../_downloads/Demo.AnyForce.any" download=""><code class="xref download docutils literal"><span class="pre">*Demo.AnyForce.any*</span></code></a></li>
+</ol>
+<p>The first example is&nbsp;a rather basic application of time-varying forces
+to the aimple arm model. In addition to the subjects covered in the
+sections above it shows forces defined directly as interpolated values a
+set of measured data points, for instance from a force platform.</p>
+<p>The second example illustrates among other things how forces acting on a
+segment can be summed up.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">The Mechanical Elements</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 5</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#anyforce3d-external-forces">AnyForce3D: External forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#anyforce-internal-forces-sort-of">AnyForce: Internal forces (sort of)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#further-studies">Further studies:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Advanced_script_features/intro.html" title="Advanced Script Features"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="Lesson 4: Kinematic Measures"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" >The Mechanical Elements</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

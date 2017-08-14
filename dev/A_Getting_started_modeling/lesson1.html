@@ -1,0 +1,338 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 1: Starting with a New Model &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 2: Adjusting the Human Model" href="lesson2.html" />
+    <link rel="prev" title="Getting Started with Modeling" href="intro.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Adjusting the Human Model"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Getting Started with Modeling"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Getting Started with Modeling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-1-starting-with-a-new-model">
+<h1>Lesson 1: Starting with a New Model<a class="headerlink" href="#lesson-1-starting-with-a-new-model" title="Permalink to this headline">¶</a></h1>
+<p>In some cases, it may be difficult to find an existing model that is
+sufficiently similar to what you want to obtain. In such a case it can
+be reasonable to begin the modeling project from a new model rather than
+an existing model. This is what we shall explore in the forthcoming
+lessons. We shall design a model of a <strong>single leg stepping on a
+pedal</strong>.</p>
+<div class="section" id="generic-model-structure">
+<h2>Generic model structure<a class="headerlink" href="#generic-model-structure" title="Permalink to this headline">¶</a></h2>
+<p>Let us first review the structure of the repository in slightly more
+detail. One of the objectives of its structure is to enable a clear
+division between the body parts and the applications we hook them up to.
+This comes through in the data structure of the model we are going to
+construct. Here is a brief overview of the principles behind that
+structure.</p>
+<p><a class="reference internal" href="../_images/image111.png"><img alt="ModelTree" src="../_images/image111.png" style="width: 2.35833in; height: 1.13194in;" /></a></p>
+<p>The model is primarily divided into three folders as shown above. In
+fact, the structure contains a few more parts that we will get to later,
+but the elements shown above are the more important.</p>
+<p>At the top below the “Main” folder, you see the “HumanModel”. This is
+where we keep the body parts that we are importing from the Body part of
+the repository. This folder contains objects such as segments (bones),
+joints, muscles, and ligaments. We also keep information about the
+scaling of the model in this folder. In general, you don’t need to
+modify this information directly.</p>
+<p>Next, you can see the “Model” folder which contains all the information
+of your model. Below this Model folder, you can find another HumanModel
+folder, and this is the reference of the actual HumanModel below the
+Main folder.</p>
+<p>It is just as important to notice what this folder does not contain:
+movement drivers, forces, and joints between the model and the
+environment. The external hardware parts of the models such as chairs,
+bicycles, tools, or, in the present case,&nbsp;a pedal are stored in the
+“Environment” folder.</p>
+<p>To link the body model together with the environment, we use the
+“ModelEnvironmentConnection” folder which is typically containing the
+joint between the objects of the two former folders.</p>
+</div>
+<div class="section" id="creating-model-from-template">
+<h2>Creating model from template<a class="headerlink" href="#creating-model-from-template" title="Permalink to this headline">¶</a></h2>
+<p>Let us start building the foot pedal model. The toolbar button
+“Template” will generate a default template model that looks much like
+this (let us set the target name as “MyPedal”):</p>
+<p><a class="reference internal" href="../_images/image28.png"><img alt="New template model button" src="../_images/image28.png" style="width: 3.84931in; height: 0.81111in;" /></a></p>
+<p><a class="reference internal" href="../_images/image37.png"><img alt="New Template dialog" src="../_images/image37.png" style="width: 4.95278in; height: 4.76389in;" /></a></p>
+<p>If you press the OK button, it will open an editor window of
+“MyPedal.main.any” file that includes the following lines:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;../libdef.any&quot;</span>
+
+<span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">//If you want to use your own draw settings, please outcomment the next line</span>
+  <span class="c1">//#path BM_DRAWSETTINGS_FILE &quot;Model\DrawSettings.any&quot;</span>
+
+  <span class="c1">// Using your own Mannequin.any file in the Model folder of your model</span>
+  <span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
+
+  <span class="c1">// Include default human model</span>
+  <span class="cp">#include</span> <span class="s">&quot;&lt;ANYBODY_PATH_BODY&gt;\HumanModel.any&quot;</span>
+
+  <span class="kt">AnyFolder</span> <span class="n">Model</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// A link to the human model</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">HumanModel</span><span class="o">=</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModelWithDefaultDrivers</span><span class="p">;</span>
+
+    <span class="c1">// Environment files are used to include objects surrounding human</span>
+    <span class="cp">#include</span> <span class="s">&quot;Model\Environment.any&quot;</span>
+
+    <span class="kt">AnyFolder</span> <span class="n">ModelEnvironmentConnection</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="c1">//&#39;JointsAndDrivers.any&#39; file can include all kinematic constraints such as joints and drivers</span>
+      <span class="cp">#include</span> <span class="s">&quot;Model\JointsAndDrivers.any&quot;</span>
+      <span class="c1">// Additional reactions which are required to run the inverse dynamics analysis</span>
+      <span class="cp">#include</span> <span class="s">&quot;Model\Reactions.any&quot;</span>
+    <span class="p">};</span>
+  <span class="p">};</span>
+
+  <span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
+    <span class="n">Gravity</span><span class="o">=</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+    <span class="n">nStep</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+
+    <span class="c1">// these settings are needed for adding drivers without removing the default set</span>
+    <span class="n">Kinematics</span><span class="p">.</span><span class="n">SolverType</span> <span class="o">=</span> <span class="kp">KinSolOverDeterminate</span><span class="p">;</span>
+    <span class="n">InitialConditions</span><span class="p">.</span><span class="n">SolverType</span> <span class="o">=</span> <span class="n">Kinematics</span><span class="p">.</span><span class="n">SolverType</span> <span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="cp">#include</span> <span class="s">&quot;Model\RunAppSequence.any&quot;</span>
+<span class="p">};</span> <span class="c1">//Main</span>
+</pre></div>
+</div>
+<p>Let’s load this default template model and open a Model View; then you
+can see the HumanModel on your screen like this:</p>
+<p><a class="reference internal" href="../_images/image47.png"><img alt="Model view Full body" src="../_images/image47.png" style="width: 2.92431in; height: 3.71667in;" /></a></p>
+<p>Using the Human template, you could easily introduce the HumanModel into
+your own model framework. This means that you could prepare the
+“HumanModel” folder information in your Model Tree.</p>
+<p>If you can double-click the following line,</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="cp">#include</span> <span class="s">&quot;Model\Environment.any&quot;</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>This will open the “Environment.any” file which is created by the Human template.</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span>
+<span class="p">{</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This folder is for keeping defining the environment. In this case, it is
+the global reference frame, i.e. ground, and the pedal that the foot is
+going to step on. In fact, let us define the global reference frame in
+this folder right away (notice that new AnyScript code is written in red
+while existing code has the normal syntax highlighting):</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">//This is a place holder for the modeling of the environment.</span>
+<span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="gr">AnyFixedRefFrame GlobalRef =</span>
+<span class="gr">  {</span>
+<span class="gr">   AnyDrawRefFrame drw={};</span>
+<span class="gr">  };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Click the “Save” button or Ctrl-S to save what you have typed in this
+Environment.any file.</p>
+</div>
+<div class="section" id="add-pedal-segment">
+<h2>Add pedal segment<a class="headerlink" href="#add-pedal-segment" title="Permalink to this headline">¶</a></h2>
+<p>We now have the framework for adding the pedal to the model. We are
+presuming a pedal hinged in one end and the foot pushing in the other.
+We will define the segment and the hinge in the Environment.any file:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span>
+  <span class="p">{</span>
+   <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span><span class="o">=</span><span class="p">{};</span>
+  <span class="p">};</span>
+  <span class="gr">AnySeg Pedal = {</span>
+<span class="gr">    Mass = 2;</span>
+<span class="gr">    Jii = {0.05, 0.001, 0.05};</span>
+<span class="gr">    AnyRefNode Hinge = {</span>
+<span class="gr">      sRel = {0, -0.15, 0};</span>
+<span class="gr">    };</span>
+<span class="gr">    AnyRefNode FootNode = {</span>
+<span class="gr">      sRel = {0, 0.15, 0};</span>
+<span class="gr">    };</span>
+<span class="gr">    AnyDrawSeg drw = {};</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyRevoluteJoint HingeJoint = {</span>
+<span class="gr">    Axis = z;</span>
+<span class="gr">    AnyFixedRefFrame &amp;Ground = .GlobalRef;</span>
+<span class="gr">    AnyRefNode &amp;Pedal = .Pedal.Hinge;</span>
+<span class="gr">  };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>If you reload the model by pressing the F7 button and open a Model View,
+then you will see the new segment:</p>
+<p><a class="reference internal" href="../_images/image57.png"><img alt="Model view new segment" src="../_images/image57.png" style="width: 2.86806in; height: 3.67014in;" /></a></p>
+<p>This pedal is hinged to the origin of the global reference frame, but
+there is not much information else yet. In the next lesson, we shall
+look at how we can adjust the human model to fit the purpose of your
+simulation using AnyBody.</p>
+<p>Next up is <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2: Adjusting the human model</span></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Getting Started with Modeling</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generic-model-structure">Generic model structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-model-from-template">Creating model from template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-pedal-segment">Add pedal segment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Adjusting the Human Model"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Getting Started with Modeling"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" >Getting Started with Modeling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

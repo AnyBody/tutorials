@@ -1,0 +1,469 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 4: Including a Custom Scaling Law &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Appendix: Scaling based on Patient-Specific Landmarks" href="lesson3_appendix.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3_appendix.html" title="Appendix: Scaling based on Patient-Specific Landmarks"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Scaling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-4-including-a-custom-scaling-law">
+<h1>Lesson 4: Including a Custom Scaling Law<a class="headerlink" href="#lesson-4-including-a-custom-scaling-law" title="Permalink to this headline">¶</a></h1>
+<p>This lesson explains how we can utilize our own custom scaling function
+which we designed in Lesson 3 and combine it with other scaling laws,
+e.g. the scaling laws introduced in Lesson 1 and Lesson 2.</p>
+<div class="section" id="preparing-the-model-for-introduction-of-subject-specific-scaling">
+<h2>Preparing the model for introduction of subject-specific scaling<a class="headerlink" href="#preparing-the-model-for-introduction-of-subject-specific-scaling" title="Permalink to this headline">¶</a></h2>
+<p>When creating a musculoskeletal model, we have to decide on the
+dimensions of the model components. Lessons 1 and 2 described how
+anthropometric regression equations and body measurements can be used to
+define these dimensions. However, the most precise models include
+subject-specific geometries of the bones. To explain how we can include
+these, let us consider a simple scenario: We have a model of a person
+who matches the standard size man and we want to perform an inverse
+dynamics analysis. Additionally, we have the geometry from a CT-scan of
+one of his femur bones. To increase the accuracy of our model, let us
+improve it using a subject-specific scaling for the femur.</p>
+<p>First of all, let us prepare a model matching the standard size man to
+be the basis for further subject-specific improvements. Therefore, we
+look back into <a class="reference internal" href="lesson1.html"><span class="doc">Lesson 1</span></a> and use the model from the
+first section <strong>ScalingStandard,</strong> StandingModelScalingDisplay from the
+AnyBody Managed Model Repository (AMMR). This is well suited to show how
+to use subject-specific geometry in a model.</p>
+</div>
+<div class="section" id="including-custom-scaling-for-a-single-bone">
+<h2>Including custom scaling for a single bone<a class="headerlink" href="#including-custom-scaling-for-a-single-bone" title="Permalink to this headline">¶</a></h2>
+<p>Let us configure this example to use ScalingStandard. Just like in
+lesson 1, we need to define <code class="docutils literal"><span class="pre">BM_SCALING</span></code> as <code class="docutils literal"><span class="pre">CONST_SCALING_STANDARD</span></code>
+and out-comment all other parts of the scaling configuration block.
+With this setting, the model is now scaled to the generic size. We can
+now include individual scaling laws for each segment, which will be
+done in a special file <em>CustomScaling.any</em>, where all the
+modifications related to individual segment morphing are supposed to
+be done. This file is already present in the example and you can
+include it as shown below:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cm">/*------------- SCALING CONFIGURATION SECTION --------------------*/</span>
+<span class="c1">// Actual scaling law</span>
+<span class="gr"> #define BM_SCALING CONST_SCALING_STANDARD</span>
+
+<span class="c1">// Scaling laws using joint to joint measures</span>
+<span class="c1">//  #define BM_SCALING CONST_SCALING_UNIFORM</span>
+<span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASS</span>
+<span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASSFAT</span>
+
+
+<span class="c1">// Scaling laws using external measures</span>
+<span class="c1">//  #define BM_SCALING CONST_SCALING_UNIFORM_EXTMEASUREMENTS</span>
+<span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASS_EXTMEASUREMENTS</span>
+<span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASSFAT_EXTMEASUREMENTS</span>
+
+<span class="c1">// Anthropometric data file (unchanged files can be found in AAUHuman\Scaling\AnyFamily)</span>
+<span class="c1">//  #path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyMan.any&quot;</span>
+<span class="c1">//  #path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyManUniform.any&quot;</span>
+<span class="c1">//  #path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyManExternal.any&quot;</span>
+<span class="c1">//  #path BM_SCALING_ANTHRO_FILE</span>
+<span class="s">&quot;Model\AnyFamily\AnyManExtPercentile.any&quot;</span>
+<span class="c1">//  #path BM_SCALING_ANTHRO_FILE</span>
+<span class="s">&quot;Model\AnyFamily\AnyWomanExtPercentile.any&quot;</span>
+<span class="c1">//--------------- END OF SCALING CONFIGURATION -------------------</span>
+
+<span class="gr">#include &quot;Model\CustomScaling.any&quot;</span>
+
+<span class="cp">#include</span> <span class="s">&quot;&lt;ANYBODY_PATH_BODY&gt;/HumanModel.any&quot;</span>
+</pre></div>
+</div>
+<p>If we open this file by a double click, we can see that a common place
+to make modifications has already been prepared. Further, we can find
+an access point to the geometrical scaling law folder, which will be
+used to specify individual scaling laws.</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// This is a place holder for the inclusion of custom scaling laws</span>
+<span class="n">HumanModel</span><span class="p">.</span><span class="n">Scaling</span><span class="p">.</span><span class="n">GeometricalScaling</span> <span class="o">=</span> <span class="p">{</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>So let us introduce a custom scaling law for the left femur from
+:download:<a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3</span></a>. We prepared a single file
+<cite>MyScalingLaw.any &lt;Downloads/MyScalingLaw.any&gt;</cite> holding the scaling
+transforms from the previous lesson. We also need to download the
+<a class="reference download internal" href="../_downloads/SourceFemur.stl" download=""><code class="xref download docutils literal"><span class="pre">source</span></code></a> (native to AMMR) and
+<cite>target &lt;Downloads/TargetFemur.stl&gt;</cite> (courtesy of Prof. Sebastian
+Dendorfer, University of Regensburg, Germany) femur surface
+geometries, and copy them to the <em>Model</em> folder of the
+StandingModelScalingDisplay example. Now, we need to make several
+small adjustments to the scaling law for smooth incorporation into the
+model structure.</p>
+<p>Starting from the AMMR v1.6.2, individual segment scaling is
+implemented in the anatomical reference frame. We will call this frame
+a scaling reference frame, since there might be several definitions of
+anatomical reference frames. In general, the segmental frame can be
+different from the scaling reference frame. The human body model
+internally handles relevant reference frame changes without needing
+users to do anything. However, this leads to small modifications
+needed for the subject-specific scaling inclusion into the full-body
+model.</p>
+<p>In order to perform the scaling in another reference frame – all source
+entities need to be moved into that reference frame. This can be done
+using a rigid body transformation to preserve sizes of the modelling
+objects. In our scaling law (MyScalingLaw.any) the source entities are</p>
+<ul class="simple">
+<li>MyScalingLaw.AffineTransform.Points0,</li>
+<li>MyScalingLaw.RBFTransform.Points0,</li>
+<li>MyScalingLaw.STLTransform.Input.SourceSrf.</li>
+</ul>
+<p>We just need to get the rigid body transformation that we do not know
+yet.</p>
+<p>In the version 1.6.2 such transformations will be segment dependent and
+will only be needed for right and left shank and femur as well as for
+the pelvis. For all other segments this transform can be defined as an
+identity transformation or does not have to be applied to the source
+entities. The following transforms can be referenced as TSeg2ScaleFrame,
+the name that will be used further:</p>
+<ul class="simple">
+<li>HumanModel.BodyModel.Left[<em>Right</em>].Seg.Thigh[<em>Shank</em>].Scale.T0</li>
+<li>HumanModel.BodyModel.Trunk.SegmentsLumbar.PelvisSeg.Scale_Trunk_Pelvis.ScaleAfterInterfaceMorphingDef.Scale.T0.</li>
+</ul>
+<p>Starting from the AMMR v1.6.3 (corresponds to the AMS v 6.0.3) this
+transform, TSeg2ScaleFrame, is already defined and can be found in the
+subfolder of HumanModel.Scaling.GeometricalScaling, which corresponds to
+the morphed segment and has a similar name. This transform can be easily
+accessed as demonstrated below.</p>
+<p>Let us subject the source entities of the scaling law to the rigid body
+transformation, TSeg2ScaleFrame. We will need to make the following 3
+changes. Please note how we look up out of the <em>MyScalingLaw</em> folder
+using double and quadruple dots:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="kt">AnyFunTransform3DLin2</span> <span class="n">AffineTransform</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="n">Points0</span> <span class="o">=</span> <span class="gr">..TSeg2ScaleFrame(</span>
+    <span class="p">{{</span><span class="mf">0.0138187</span><span class="p">,</span><span class="mf">0.00136731</span><span class="p">,</span><span class="mf">0.0273618</span><span class="p">},</span>    <span class="c1">// fovea capitis</span>
+    <span class="p">...</span>
+      <span class="p">{</span><span class="mf">0.0368766</span><span class="p">,</span><span class="o">-</span><span class="mf">0.393677</span><span class="p">,</span><span class="mf">0.0266919</span><span class="p">}}</span><span class="gr">)</span><span class="p">;</span>    <span class="c1">// medial posterior condyle</span>
+    <span class="n">Points1</span> <span class="o">=</span>
+    <span class="p">{{</span><span class="mf">0.289913</span><span class="p">,</span><span class="mf">0.420538</span><span class="p">,</span><span class="mf">0.0138931</span><span class="p">},</span>    <span class="c1">// fovea capitis</span>
+    <span class="p">...</span>
+      <span class="p">{</span><span class="mf">0.261891</span><span class="p">,</span><span class="mf">0.47585</span><span class="p">,</span><span class="o">-</span><span class="mf">0.372696</span><span class="p">}};</span>    <span class="c1">// medial posterior condyle</span>
+    <span class="n">Mode</span> <span class="o">=</span> <span class="kp">VTK_LANDMARK_AFFINE</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">...</span>
+  <span class="kt">AnyFunTransform3DRBF</span> <span class="n">RBFTransform</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="n">PreTransforms</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="p">.</span><span class="n">AffineTransform</span><span class="p">};</span>
+    <span class="n">RBFDef</span> <span class="o">=</span>
+    <span class="p">{</span>
+      <span class="n">Type</span> <span class="o">=</span> <span class="kp">RBF_ThinPlate</span><span class="p">;</span>
+      <span class="n">Param</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="n">Points0</span> <span class="o">=</span> <span class="gr">..TSeg2ScaleFrame(</span><span class="p">{</span>
+      <span class="p">{</span> <span class="mf">0.0138</span><span class="p">,</span> <span class="mf">0.0014</span><span class="p">,</span> <span class="mf">0.0274</span><span class="p">},</span>
+    <span class="p">...</span>
+      <span class="p">{</span> <span class="mf">0.0010</span><span class="p">,</span> <span class="mf">0.0013</span><span class="p">,</span> <span class="mf">0.0069</span><span class="p">}</span>
+    <span class="p">}</span><span class="gr">)</span><span class="p">;</span>
+<span class="p">...</span>
+  <span class="kt">AnyFunTransform3DSTL</span> <span class="n">STLTransform</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="n">PreTransforms</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="p">.</span><span class="n">RBFTransform</span><span class="p">};</span>
+    <span class="n">RBFDef</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="kp">RBF_ThinPlate</span><span class="p">;</span>
+    <span class="kt">AnyFixedRefFrame</span> <span class="n">Input</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="kt">AnySurfSTL</span> <span class="n">SourceSurf</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;SourceFemur.stl&quot;</span><span class="p">;</span>
+        <span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+        <span class="gr">AnyFunTransform3D &amp;pre = ....TSeg2ScaleFrame; </span>
+      <span class="p">};</span>
+</pre></div>
+</div>
+<p>As you will see from the following changes the modification simply links
+the transformations to the folder containing our MyScalingLaw.any file.
+In our case, this folder is
+HumanModel.Scaling.GeometricalScaling.Left.Thigh, which corresponds to
+the name of the segment, we are trying to morph, and contains our
+TSeg2ScaleFrame rigid body transform.</p>
+<p>So finally let us add this scaling function to the model. Please
+insert the following lines as shown below into the file
+CustomScaling.any:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">HumanModel</span><span class="p">.</span><span class="n">Scaling</span><span class="p">.</span><span class="n">GeometricalScaling</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gr">#define CUSTOM_SCALING_Left_Thigh</span>
+<span class="gr">Left.Thigh = {</span>
+<span class="gr">  #include &quot;MyScalingLaw.any&quot;</span>
+<span class="gr">  AnyFunTransform3D &amp;ScaleFunction = MyScalingLaw.Transform;</span>
+<span class="gr">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>In this modification, we added a pre-processor command (#define) that
+notifies the model assembling block that the anthropometric scaling
+for the left thigh segment is not being used. To process other body
+parts you will need to add a similar definition, but utilize actual
+bone segment, e.g. #define CUSTOM_SCALING_&lt;Side&gt;_&lt;SegmentName&gt; for
+different sides or CUSTOM_SCALING_&lt;SegmentName&gt; for parts of the
+body that do not have sides. You can find a list of segments by
+browsing the scaling law in the Model tab:</p>
+<p><a class="reference internal" href="../_images/image145.png"><img alt="Model tree" src="../_images/image145.png" style="width: 2.62778in; height: 6.43056in;" /></a></p>
+<p>The other change was to assign the new custom scaling function to be
+used in the segment of the left thigh instead of the excluded one. If
+we now comment in DrawExternalMeasures.any and look in the Model View,
+we can see that the left femur is now shorter and a little thinner
+than with the standard scaling. So we have now successfully introduced
+our custom scaling law into the model.</p>
+<p><a class="reference internal" href="../_images/image239.png"><img alt="Model view Lower body custom femur" src="../_images/image239.png" style="width: 3.37089in; height: 4.48958in;" /></a></p>
+<p>If we would have used a bone that does not have a mirrored pair, e.g.
+vertebrae, skull, etc., or we just want to scale a single side with a
+patient-specific scaling law, we would be finished now and could
+continue with running the inverse dynamics. But here, we want to
+continue and scale the other side as well. Normally we would use the
+patient-specific bones of the other side. In case that only one side
+is available, we can assume that the body is symmetric, which is
+typically true up to a certain accuracy. Thus, we will include a
+similar scaling for the corresponding mirrored pair. In the next
+section we will describe how to make mirroring modifications to our
+transformation.</p>
+</div>
+<div class="section" id="introducing-a-mirrored-pair-of-a-custom-scaling">
+<h2>Introducing a mirrored pair of a custom scaling<a class="headerlink" href="#introducing-a-mirrored-pair-of-a-custom-scaling" title="Permalink to this headline">¶</a></h2>
+<p>We start by making a copy of MyScalingLaw.any that will be used to
+construct the mirrored transform and call it MyScalingLaw_Mirrored.any.
+What we have to do is to define a symmetry plane and reflect relevant
+entities accordingly. In this example such plane corresponds to the
+global XY plane. To perform the reflection, we need to multiply all
+relevant landmark points contained in the MyScalingLaw_Mirrored.any
+file by a mirroring matrix:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyScalingLaw</span><span class="gr">_Mirrored</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="gr">AnyMatrix AMirroring = { // XY plane symmetry</span>
+<span class="gr">    {1,0,0},</span>
+<span class="gr">    {0,1,0},</span>
+<span class="gr">    {0,0,-1}</span>
+<span class="gr">  };</span>
+<span class="p">...</span>
+  <span class="kt">AnyFunTransform3DLin2</span> <span class="n">AffineTransform</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="n">Points0</span> <span class="o">=</span> <span class="p">..</span><span class="n">TSeg2ScaleFrame</span><span class="p">({...}</span> <span class="gr">* .AMirroring</span><span class="p">);</span>
+    <span class="n">Points1</span> <span class="o">=</span> <span class="p">{...}</span> <span class="gr">* .AMirroring</span><span class="p">;</span>
+    <span class="n">Mode</span> <span class="o">=</span> <span class="kp">VTK_LANDMARK_AFFINE</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">...</span>
+  <span class="kt">AnyFunTransform3DRBF</span> <span class="n">RBFTransform</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="n">Points0</span> <span class="o">=</span> <span class="p">..</span><span class="n">TSeg2ScaleFrame</span><span class="p">({...}</span> <span class="gr">* .AMirroring</span><span class="p">);</span>
+    <span class="n">Points1</span> <span class="o">=</span> <span class="p">{...}</span> <span class="gr">* .AMirroring</span><span class="p">;</span>
+    <span class="p">...</span>
+  <span class="p">};</span>
+<span class="p">};</span>  <span class="c1">// MyScalingLaw§_Mirrored§</span>
+</pre></div>
+</div>
+<p>After mirroring the landmarks, we have to think about the surfaces
+which were also used in the construction of this transform. So we have
+to reflect them too. This can be done easily by just changing the
+ScaleXYZ members of the input surfaces of the AnyFunTransform3DSTL
+class:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyScalingLaw_Mirrored</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="kt">AnyFunTransform3DSTL</span> <span class="n">STLTransform</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="n">PreTransforms</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="p">.</span><span class="n">RBFTransform</span><span class="p">};</span>
+    <span class="n">RBFDef</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="kp">RBF_ThinPlate</span><span class="p">;</span>
+    <span class="kt">AnyFixedRefFrame</span> <span class="n">Input</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="kt">AnySurfSTL</span> <span class="n">SourceSurf</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;SourceFemur.stl&quot;</span><span class="p">;</span>
+        <span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="gr">{1, 1, -1}</span><span class="p">;</span>
+        <span class="kt">AnyFunTransform3D</span> <span class="o">&amp;</span><span class="n">pre</span> <span class="o">=</span> <span class="p">....</span><span class="n">TSeg2ScaleFrame</span><span class="p">;</span>
+      <span class="p">};</span>
+      <span class="kt">AnySurfSTL</span> <span class="n">TargetSurf</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;TargetFemur.stl&quot;</span><span class="p">;</span>
+        <span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="gr">{1, 1, -1}</span><span class="p">;</span>
+      <span class="p">};</span>
+    <span class="p">};</span>
+
+    <span class="n">SurfaceObjects0</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="n">Input</span><span class="p">.</span><span class="n">SourceSurf</span><span class="p">};</span>
+    <span class="n">SurfaceObjects1</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="n">Input</span><span class="p">.</span><span class="n">TargetSurf</span><span class="p">};</span>
+    <span class="c1">//FileName0 = &quot;SourceFemur.stl&quot;;    // such definition was used previously</span>
+    <span class="c1">//FileName1 = &quot;TargetFemur.stl&quot;;    // such definition was used previously</span>
+    <span class="n">NumPoints</span> <span class="o">=</span> <span class="mi">400</span><span class="p">;</span>
+    <span class="n">BoundingBox</span><span class="p">.</span><span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">};</span>
+    <span class="n">BoundingBox</span><span class="p">.</span><span class="n">DivisionFactorXYZ</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+    <span class="n">BoundingBoxOnOff</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="p">...</span>
+<span class="p">};</span>  <span class="c1">// MyScalingLaw_Mirrored</span>
+</pre></div>
+</div>
+<p>Finally, we have to include the mirrored scaling into the model exactly
+the same way the left thigh scaling was included:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#define</span> <span class="n">CUSTOM_SCALING_Left_Thigh</span>
+<span class="gr">#define CUSTOM_SCALING_Right_Thigh</span>
+<span class="n">Left</span><span class="p">.</span><span class="n">Thigh</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="cp">#include</span> <span class="s">&quot;MyScalingLaw.any&quot;</span>
+  <span class="kt">AnyFunTransform3D</span> <span class="o">&amp;</span><span class="n">ScaleFunction</span> <span class="o">=</span> <span class="n">MyScalingLaw</span><span class="p">.</span><span class="n">Transform</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="gr"> Right.Thigh = {</span>
+<span class="gr">  #include &quot;MyScalingLaw_Mirrored.any&quot;</span>
+<span class="gr">  AnyFunTransform3D &amp;ScaleFunction = MyScalingLaw_Mirrored.Transform;</span>
+<span class="gr">};</span>
+</pre></div>
+</div>
+<p>Now the right and left thigh are morphed according to the custom scaling
+law. When we load the model and look at our Model View, we can see that
+the model looks symmetric again and, compared to the standard scaling
+model, the bones look smaller. We can also see this in the following
+image where the model changed from the standard scaling case (left) to
+the custom scaling one (right):</p>
+<p><a class="reference internal" href="../_images/image335.png"><img alt="Model view scaling comparison" src="../_images/image335.png" style="width: 6.69792in; height: 4.18750in;" /></a></p>
+<p>This concludes the subject-specific scaling tutorial. The modifications
+utilized for the mirrored transformed model can be downloaded from here:
+MyScalingLaw_Mirrored.final.any</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Scaling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preparing-the-model-for-introduction-of-subject-specific-scaling">Preparing the model for introduction of subject-specific scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#including-custom-scaling-for-a-single-bone">Including custom scaling for a single bone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#introducing-a-mirrored-pair-of-a-custom-scaling">Introducing a mirrored pair of a custom scaling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3_appendix.html" title="Appendix: Scaling based on Patient-Specific Landmarks"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" >Scaling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

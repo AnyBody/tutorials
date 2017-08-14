@@ -1,0 +1,675 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 1: Joint to Joint Scaling Methods &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 2: Scaling based on External Body Measurements" href="lesson2.html" />
+    <link rel="prev" title="Scaling" href="intro.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Scaling based on External Body Measurements"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Scaling"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Scaling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-1-joint-to-joint-scaling-methods">
+<h1>Lesson 1: Joint to Joint Scaling Methods<a class="headerlink" href="#lesson-1-joint-to-joint-scaling-methods" title="Permalink to this headline">¶</a></h1>
+<p>This lesson covers four of the scaling laws available in AnyBody:</p>
+<ul class="simple">
+<li>ScalingStandard (do not scale)</li>
+<li>ScalingUniform (scale equally in all directions; input is joint to
+joint distances)</li>
+<li>ScalingLengthMass (scale taking mass into account; input is joint to
+joint distances and mass)</li>
+<li>ScalingLengthMassFat (scale taking mass and fat into account; input
+is joint to joint distances)</li>
+</ul>
+<div class="section" id="scalingstandard">
+<h2>ScalingStandard<a class="headerlink" href="#scalingstandard" title="Permalink to this headline">¶</a></h2>
+<p>This scaling law produces a model with default parameters for mass and
+size (corresponding roughly to the 50th percentile European male). It is
+used by default for non-specific models, or when there is no data
+available about the modeled subject. This law does not use the AnyMan
+file because there is no parameter to modify.</p>
+<p>With the AnyBody Modeling System you already have a repository of models
+available; for details please see the AnyBody Assistant available from
+the menu. Let us practice, as a starting point for this tutorial, please
+find the model:</p>
+<p>Application/Examples/StandingModelScalingDisplay/StandingModelScalingDisplay.main.</p>
+<p>This tutorial has been written using the AnyBody Managed Model
+Repository Ver. 1.6 (AMMRV1.6), so you may see differences between the
+tutorial and your own results.</p>
+<p>To use this law you do not need to do anything at all; however, for
+demonstration purposes scaling law configuration parameter (BM_SCALING)
+will be set to use the default value:</p>
+<p><a class="reference internal" href="../_images/image112.jpeg"><img alt="ScalingStandardSize" src="../_images/image112.jpeg" style="width: 1.56250in; height: 4.09375in;" /></a></p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>   <span class="cm">/*------------- SCALING CONFIGURATION SECTION --------------------*/</span>
+   <span class="c1">// Actual scaling law</span>
+   <span class="gr">#define BM_SCALING CONST_SCALING_STANDARD</span>
+
+   <span class="c1">// Scaling laws using joint to joint measures</span>
+   <span class="c1">//  #define BM_SCALING CONST_SCALING_UNIFORM</span>
+   <span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASS</span>
+   <span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASSFAT</span>
+
+   <span class="c1">// Scaling laws using external measures</span>
+   <span class="c1">//  #define BM_SCALING CONST_SCALING_UNIFORM_EXTMEASUREMENTS</span>
+   <span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASS_EXTMEASUREMENTS</span>
+   <span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASSFAT_EXTMEASUREMENTS</span>
+
+   <span class="c1">// Anthropometric data file (unchanged files can be found in AAUHuman\Scaling\AnyFamily)</span>
+   <span class="c1">//  #path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyMan.any&quot;</span>
+   <span class="c1">//  #path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyManUniform.any&quot;</span>
+   <span class="c1">//  #path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyManExternal.any&quot;</span>
+   <span class="c1">//  #path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyManExtPercentile.any&quot;</span>
+   <span class="c1">//  #path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyWomanExtPercentile.any&quot;</span>
+   <span class="c1">//--------------- END OF SCALING CONFIGURATION -------------------</span>
+
+
+<span class="n">Now</span> <span class="n">load</span> <span class="n">the</span> <span class="n">model</span> <span class="n">and</span> <span class="n">open</span> <span class="n">a</span> <span class="n">Model</span> <span class="n">View</span> <span class="n">window</span><span class="p">.</span> <span class="n">You</span> <span class="n">will</span> <span class="n">see</span> <span class="n">the</span>
+ <span class="n">standing</span> <span class="n">model</span> <span class="n">with</span> <span class="n">the</span> <span class="n">standard</span> <span class="n">size</span><span class="p">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scalinguniform">
+<h2>ScalingUniform<a class="headerlink" href="#scalinguniform" title="Permalink to this headline">¶</a></h2>
+<p>This law allows you to define the total weight of the model and the
+individual sizes of the bones. The length of each bone is defined as a
+joint to joint distance and the bone is then scaled in three dimensions
+proportionally to its length. To use this law you must change the
+scaling parameter to be CONST_SCALING_UNIFORM and set the
+anthropometry file (BM_SCALING_ANTHRO_FILE) to use an AnyMan.any
+file. Please note this model contains a folder called AnyFamily, which
+provides predefined anthropometric measurements. If you decide to reuse
+this example for something else or to do this tutorial again – please
+copy an unchanged version of the AnyFamily folder from the
+AMMR\AAUHuman\Scaling\AnyFamily:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cm">/*------------- SCALING CONFIGURATION SECTION --------------------*/</span>
+<span class="c1">// Actual scaling law</span>
+<span class="gr">//#define BM_SCALING CONST_SCALING_STANDARD</span>
+
+<span class="c1">// Scaling laws using joint to joint measures</span>
+<span class="gr">#define BM_SCALING CONST_SCALING_UNIFORM</span>
+<span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASS</span>
+<span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASSFAT</span>
+<span class="p">...</span>
+<span class="c1">// Anthropometric data file (unchanged files can be found in AAUHuman\Scaling\AnyFamily)</span>
+<span class="gr">#path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyMan.any&quot;</span>
+<span class="c1">//  #path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyManUniform.any&quot;</span>
+<span class="p">...</span>
+<span class="c1">//--------------- END OF SCALING CONFIGURATION -------------------</span>
+</pre></div>
+</div>
+<p>AnyMan.any is the file in which you can modify the mass and size
+parameters. We will now try to use it. Please load the model and have
+a look at the Model View window. Notice that the body size did not
+change from the standard scaling version. This is because the default
+values for segment masses and sizes in this file are the same as the
+standard values. But if you change them, the model will scale
+according to your specifications.</p>
+<p>Please double-click on the following line to access your AnyMan.any
+file:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#path</span> <span class="x x-Statements">BM_SCALING_ANTHRO_FILE</span> <span class="s">&quot;Model\AnyFamily\AnyMan.any&quot;</span>
+</pre></div>
+</div>
+<p>Let us have a closer look. The total body weight is expressed in
+kilograms by the variable <code class="docutils literal"><span class="pre">Body_Mass</span></code> at the top of the file:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyVar</span> <span class="n">Body_Mass</span> <span class="o">=</span> <span class="mi">75</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Try changing it to 90 kg and load the model again. Once again the size
+of the body did not change. In the ScalingUniform law, the <code class="docutils literal"><span class="pre">Body_Mass</span></code>
+parameter controls the mass of the segments but not their sizes. Further
+down in the AnyMan file you can see that the <code class="docutils literal"><span class="pre">Body_Mass</span></code> parameter is
+distributed to the segments according to some coefficients:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>   <span class="c1">//Segment masses in kg from Winter (&quot;Biomechanics and motor control of human movement.&quot; David A. Winter)</span>
+   <span class="kt">AnyVar</span> <span class="n">lumbar</span> <span class="o">=</span> <span class="mf">0.139</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span> <span class="c1">// T12-L1 to L5-Sacrum</span>
+   <span class="kt">AnyVar</span> <span class="n">thorax</span> <span class="o">=</span> <span class="mf">0.1894</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span> <span class="c1">// C7-T1 to T12-L1 (modified from 0.216 winter to separate scapula)</span>
+   <span class="kt">AnyVar</span> <span class="n">pelvis</span> <span class="o">=</span> <span class="mf">0.142</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">clavicle_r</span> <span class="o">=</span> <span class="mf">0.0133</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">upper_arm_r</span> <span class="o">=</span> <span class="mf">0.028</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">lower_arm_r</span> <span class="o">=</span> <span class="mf">0.016</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">hand_r</span> <span class="o">=</span> <span class="mf">0.006</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">clavicle_l</span> <span class="o">=</span> <span class="mf">0.0133</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">upper_arm_l</span> <span class="o">=</span> <span class="mf">0.028</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">lower_arm_l</span> <span class="o">=</span> <span class="mf">0.016</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">hand_l</span> <span class="o">=</span> <span class="mf">0.006</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">head</span> <span class="o">=</span> <span class="mf">0.081</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span> <span class="c1">// head and cervical</span>
+   <span class="kt">AnyVar</span> <span class="n">thigh_r</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">lower_leg_r</span> <span class="o">=</span> <span class="mf">0.0465</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">foot_r</span> <span class="o">=</span> <span class="mf">0.0145</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">ball_r</span> <span class="o">=</span> <span class="mf">0.000</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">thigh_l</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">lower_leg_l</span> <span class="o">=</span> <span class="mf">0.0465</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">foot_l</span> <span class="o">=</span> <span class="mf">0.0145</span><span class="o">*</span><span class="n">Body_Mass</span><span class="p">;</span>
+   <span class="kt">AnyVar</span> <span class="n">ball_l</span> <span class="o">=</span> <span class="mf">0.000</span><span class="p">;</span>
+
+   <span class="c1">// These two folders are used by the scaling laws</span>
+   <span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span><span class="p">{</span>
+    <span class="kt">AnyVar</span> <span class="n">thigh</span> <span class="o">=</span> <span class="p">.</span><span class="n">thigh_r</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">lower_leg</span> <span class="o">=</span> <span class="p">.</span><span class="n">lower_leg_r</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">talus</span> <span class="o">=</span> <span class="mf">0.2</span><span class="o">*</span><span class="p">.</span><span class="n">foot_r</span><span class="p">;</span> <span class="c1">//20% of total foot (from bone volume ratio)</span>
+    <span class="kt">AnyVar</span> <span class="n">foot</span> <span class="o">=</span> <span class="mf">0.8</span><span class="o">*</span><span class="p">.</span><span class="n">foot_r</span><span class="p">;</span> <span class="c1">//80% of total foot (from bone volume ratio)</span>
+    <span class="kt">AnyVar</span> <span class="n">ball</span> <span class="o">=</span> <span class="p">.</span><span class="n">ball_r</span><span class="p">;</span>
+   <span class="p">};</span>
+   <span class="kt">AnyFolder</span> <span class="n">Left</span><span class="o">=</span><span class="p">{</span>
+    <span class="kt">AnyVar</span> <span class="n">thigh</span> <span class="o">=</span> <span class="p">.</span><span class="n">thigh_l</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">lower_leg</span> <span class="o">=</span> <span class="p">.</span><span class="n">lower_leg_l</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">talus</span> <span class="o">=</span> <span class="mf">0.2</span><span class="o">*</span><span class="p">.</span><span class="n">foot_l</span><span class="p">;</span> <span class="c1">//20% of total foot (from bone volume ratio)</span>
+    <span class="kt">AnyVar</span> <span class="n">foot</span> <span class="o">=</span> <span class="mf">0.8</span><span class="o">*</span><span class="p">.</span><span class="n">foot_l</span><span class="p">;</span> <span class="c1">//80% of total foot (from bone volume ratio)</span>
+    <span class="kt">AnyVar</span> <span class="n">ball</span> <span class="o">=</span> <span class="p">.</span><span class="n">ball_l</span><span class="p">;</span>
+   <span class="p">};</span>
+
+
+<span class="o">|</span><span class="n">ScalingBigFemur</span><span class="o">|</span>
+</pre></div>
+</div>
+<p>So the <code class="docutils literal"><span class="pre">Body_Mass</span></code> parameter only controls the segment masses. The size
+of the model is controlled by another list of variables defining the
+lengths of the different bones:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">AnthroSegmentLengths</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="kt">AnyVar</span> <span class="n">PelvisWidth</span> <span class="o">=</span> <span class="mf">0.176</span><span class="p">;</span>       <span class="c1">//distance between hip joints (0.16 for old leg model)</span>
+ <span class="kt">AnyVar</span> <span class="n">HeadHeight</span> <span class="o">=</span> <span class="mf">0.14</span><span class="p">;</span>         <span class="c1">//height in neutral position from  C1HatNode to top of head</span>
+ <span class="kt">AnyVar</span> <span class="n">TrunkHeight</span> <span class="o">=</span> <span class="mf">0.620233</span><span class="p">;</span>    <span class="c1">//height in neutral position from  C1HatNode to L5SacrumJnt</span>
+ <span class="kt">AnyVar</span> <span class="n">UpperArmLength</span> <span class="o">=</span> <span class="mf">0.340079</span><span class="p">;</span>
+ <span class="kt">AnyVar</span> <span class="n">LowerArmLength</span> <span class="o">=</span><span class="mf">0.2690167</span><span class="p">;</span>
+ <span class="kt">AnyVar</span> <span class="n">HandLength</span> <span class="o">=</span> <span class="mf">0.182</span><span class="p">;</span>
+ <span class="kt">AnyVar</span> <span class="n">HandBreadth</span> <span class="o">=</span> <span class="mf">0.085</span><span class="p">;</span>
+
+ <span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span><span class="p">{</span>
+    <span class="kt">AnyVar</span> <span class="n">ThighLength</span> <span class="o">=</span> <span class="mf">0.4098364</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">ShankLength</span> <span class="o">=</span> <span class="mf">0.4210448</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">FootLength</span> <span class="o">=</span> <span class="mf">0.2571425</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">TalusLength</span> <span class="o">=</span> <span class="mf">0.133</span><span class="o">*</span><span class="n">FootLength</span><span class="p">;</span> <span class="c1">//calculated automaticaly from the foot size</span>
+ <span class="p">};</span>
+ <span class="kt">AnyFolder</span> <span class="n">Left</span> <span class="o">=</span><span class="p">{</span>
+    <span class="kt">AnyVar</span> <span class="n">ThighLength</span> <span class="o">=</span> <span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">ThighLength</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">ShankLength</span> <span class="o">=</span> <span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">ShankLength</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">FootLength</span> <span class="o">=</span> <span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">FootLength</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">TalusLength</span> <span class="o">=</span> <span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">TalusLength</span><span class="p">;</span>
+ <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The length of each segment can be set independently, for example we
+can increase the length of the thigh by modifying this line:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyVar</span> <span class="n">ThighLength</span> <span class="o">=</span> <span class="gr">0.626</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Load the model again and have a look at the Model View window. The
+femur bone is now bigger. It has been scaled uniformly in 3 directions
+according to the defined length. Notice that we only changed the size
+of the femur and not the other bones, so the femur looks unreasonably
+big compared to the rest of the body. To avoid results such as this,
+it is important to feed those variables with consistent data rooted in
+real anthropometry.</p>
+<p>Let us apply a more reasonable size. Please change the default values
+to the following set of consistent measures:</p>
+<p><a class="reference internal" href="../_images/image35.jpeg"><img alt="ScalingUniformTall" src="../_images/image35.jpeg" style="width: 1.56250in; height: 3.97917in;" /></a></p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyVar</span> <span class="n">PelvisWidth</span> <span class="o">=</span> <span class="gr">0.180</span><span class="p">;</span>    <span class="c1">//distance between hip joints</span>
+<span class="kt">AnyVar</span> <span class="n">HeadHeight</span> <span class="o">=</span> <span class="gr">0.169</span><span class="p">;</span>      <span class="c1">//height in neutral position from  C1HatNode to top of head</span>
+<span class="kt">AnyVar</span> <span class="n">TrunkHeight</span> <span class="o">=</span> <span class="gr">0.754</span><span class="p">;</span> <span class="c1">//height in neutral position from  C1HatNode to L5SacrumJnt</span>
+<span class="kt">AnyVar</span> <span class="n">UpperArmLength</span> <span class="o">=</span> <span class="gr">0.405</span><span class="p">;</span>
+<span class="kt">AnyVar</span> <span class="n">LowerArmLength</span> <span class="o">=</span><span class="gr">0.316</span><span class="p">;</span>
+<span class="kt">AnyVar</span> <span class="n">HandLength</span> <span class="o">=</span> <span class="mf">0.182</span><span class="p">;</span>
+<span class="kt">AnyVar</span> <span class="n">HandBreadth</span> <span class="o">=</span> <span class="mf">0.085</span><span class="p">;</span>
+
+
+<span class="c1">// Those two folders are used by the scaling laws</span>
+<span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span><span class="p">{</span>
+  <span class="kt">AnyVar</span> <span class="n">ThighLength</span> <span class="o">=</span> <span class="gr">0.548</span><span class="p">;</span>
+  <span class="kt">AnyVar</span> <span class="n">ShankLength</span> <span class="o">=</span> <span class="gr">0.551</span><span class="p">;</span>
+  <span class="kt">AnyVar</span> <span class="n">FootLength</span> <span class="o">=</span> <span class="gr">0.243</span><span class="p">;</span>
+  <span class="kt">AnyVar</span> <span class="n">TalusLength</span> <span class="o">=</span> <span class="mf">0.133</span><span class="o">*</span><span class="n">FootLength</span><span class="p">;</span> <span class="c1">//calculated automaticaly from the foot size</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>When you reload the model you should see a tall body and with
+proportionate sizes of the segments. If you can’t see the difference
+from the standard size model, notice how the feet are now sticking down
+below the reference frame.</p>
+<p>It should be obvious that this type of scaling requires good
+anthropometric data to give reasonable results. But such data is not
+always easily available. So there is a version of the AnyMan file called
+AnyManUniform.any. This file only takes as input the body mass and the
+body height and subsequently scales all the segment lengths uniformly
+according to the defined body height. This may not give you a model
+where each bone matches a given subject, but it can be a reasonable
+estimate in cases where only the overall mass and height of the body is
+known. Try using the AnyManUniform.any file:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">//#path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyMan.any&quot;</span>
+<span class="gr">#path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyManUniform.any&quot;</span>
+</pre></div>
+</div>
+<p>Now it is easy to scale the body down to represent a small person. Open
+the AnyManUniform file from the Files tab again and change the mass and
+height variable as following:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">AnthroData</span> <span class="o">=</span> <span class="p">{</span>
+<span class="kt">AnyVar</span> <span class="n">Body_Mass</span> <span class="o">=</span> <span class="gr">60</span><span class="p">;</span>
+<span class="kt">AnyVar</span> <span class="n">body_height</span> <span class="o">=</span> <span class="gr">165/100</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>When you load the model you will see all the segments automatically
+scaling down. The mass is also scaled, but as we said previously this is
+not visible graphically with this scaling law.</p>
+</div>
+<div class="section" id="scaling-based-on-length-and-mass">
+<h2>Scaling based on length and mass<a class="headerlink" href="#scaling-based-on-length-and-mass" title="Permalink to this headline">¶</a></h2>
+<p>This law scales the size of the body according not only to the segment
+lengths but also to the segments masses, so unlike the ScalingUniform
+law it provides the opportunity to define tall and skinny people or
+small and squat people. Like in the ScalingUniform law, the total body
+mass is defined by the variable <code class="docutils literal"><span class="pre">Body_Mass</span></code>. Just as previously, this
+total mass is then divided between the segments by means of
+coefficients, but the size scaling is different. Let us investigate it.
+In the main file, please choose the ScalingLengthMass law and switch
+back to the AnyMan file:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>   <span class="c1">// Scaling laws using joint to joint measures</span>
+   <span class="gr">//#define BM_SCALING CONST_SCALING_UNIFORM</span>
+<span class="gr">     #define BM_SCALING CONST_SCALING_LENGTHMASS</span>
+   <span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASSFAT</span>
+   <span class="p">...</span>
+   <span class="c1">// Anthropometric data file (unchanged files can be found in AAUHuman\Scaling\AnyFamily)</span>
+   <span class="gr">#path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyMan.any&quot;</span>
+<span class="gr">   //  #path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyManUniform.any&quot;</span>
+   <span class="p">...</span>
+
+
+<span class="o">|</span><span class="n">ScalingMass110</span><span class="o">|</span>
+</pre></div>
+</div>
+<p>In the AnyMan file, switch back the segment length values to the initial
+ones and increase the body mass to 110 kg:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyVar</span> <span class="n">Body_Mass</span> <span class="o">=</span> <span class="gr">110</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="kt">AnyFolder</span> <span class="n">AnthroSegmentLengths</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyVar</span> <span class="n">PelvisWidth</span> <span class="o">=</span> <span class="gr">0.176</span><span class="p">;</span>    <span class="c1">//distance between hip joints</span>
+  <span class="kt">AnyVar</span> <span class="n">HeadHeight</span> <span class="o">=</span> <span class="gr">0.14</span><span class="p">;</span>      <span class="c1">//height in neutral position from  C1HatNode to top of head</span>
+  <span class="kt">AnyVar</span> <span class="n">TrunkHeight</span> <span class="o">=</span> <span class="gr">0.620233</span><span class="p">;</span> <span class="c1">//height in neutral position from  C1HatNode to L5SacrumJnt</span>
+  <span class="kt">AnyVar</span> <span class="n">UpperArmLength</span> <span class="o">=</span> <span class="gr">0.340079</span><span class="p">;</span>
+  <span class="kt">AnyVar</span> <span class="n">LowerArmLength</span> <span class="o">=</span><span class="gr">0.2690167</span><span class="p">;</span>
+  <span class="kt">AnyVar</span> <span class="n">HandLength</span> <span class="o">=</span> <span class="mf">0.182</span><span class="p">;</span>
+  <span class="kt">AnyVar</span> <span class="n">HandBreadth</span> <span class="o">=</span> <span class="mf">0.085</span><span class="p">;</span>
+
+
+  <span class="c1">// Those two folders are used by the scaling laws</span>
+  <span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span><span class="p">{</span>
+    <span class="kt">AnyVar</span> <span class="n">ThighLength</span> <span class="o">=</span> <span class="gr">0.45579</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">ShankLength</span> <span class="o">=</span> <span class="gr">0.46</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">FootLength</span> <span class="o">=</span> <span class="gr">0.200771</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">TalusLength</span> <span class="o">=</span> <span class="mf">0.133</span><span class="o">*</span><span class="n">FootLength</span><span class="p">;</span> <span class="c1">//calculated automaticaly from the foot size</span>
+  <span class="p">};</span>
+</pre></div>
+</div>
+<p>Load the model and look at the Model View. Our model looks strange!
+The body is deformed and looks a bit like a Neanderthal.</p>
+<p>What really happens is that the ScalingLengthMass law scales the sizes
+of the segments according to their masses, but only in two directions.
+The third scaling direction is controlled by the segment length
+variables. Unlike in the ScalingUniform law, the segment length
+variables just control one scaling direction and not the two others.</p>
+<p>So to have a normal-looking model we have to adjust segment mass and
+length simultaneously. As the mass we defined is 110 kg, a height of
+1.98 m could be reasonable. As we do not have a clear idea of the
+individual segment lengths, we shall simply multiply all of them by a
+single coefficient (it is also a good opportunity to use the
+AnyManUniform file and directly enter the 1.98 m height, you can try
+it). The initial segment lengths correspond to a body of 1.80 m, so the
+ratio we are going to multiply the segment length with is 1.1:</p>
+<p><a class="reference internal" href="../_images/image54.jpeg"><img alt="ScalingLengthMassFinal" src="../_images/image54.jpeg" style="width: 1.56250in; height: 4.22917in;" /></a></p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">AnthroSegmentLengths</span> <span class="o">=</span> <span class="p">{</span>
+
+  <span class="kt">AnyVar</span> <span class="n">PelvisWidth</span> <span class="o">=</span> <span class="mf">0.176</span><span class="gr">*1.1</span><span class="p">;</span> <span class="c1">//distance between hip joints</span>
+  <span class="kt">AnyVar</span> <span class="n">HeadHeight</span> <span class="o">=</span> <span class="mf">0.14</span><span class="gr">*1.1</span><span class="p">;</span> <span class="c1">//height in neutral position from  C1HatNode to top of head</span>
+  <span class="kt">AnyVar</span> <span class="n">TrunkHeight</span> <span class="o">=</span> <span class="mf">0.620233</span><span class="gr">*1.1</span><span class="p">;</span> <span class="c1">//height in neautral position from  C1HatNode to L5SacrumJnt</span>
+  <span class="kt">AnyVar</span> <span class="n">UpperArmLength</span> <span class="o">=</span> <span class="mf">0.340079</span><span class="gr">*1.1</span><span class="p">;</span>
+  <span class="kt">AnyVar</span> <span class="n">LowerArmLength</span> <span class="o">=</span><span class="mf">0.2690167</span><span class="gr">*1.1</span><span class="p">;</span>
+  <span class="kt">AnyVar</span> <span class="n">HandLength</span> <span class="o">=</span> <span class="mf">0.182</span><span class="gr">*1.1</span><span class="p">;</span>
+  <span class="kt">AnyVar</span> <span class="n">HandBreadth</span> <span class="o">=</span> <span class="mf">0.085</span><span class="gr">*1.1</span><span class="p">;</span>
+
+ <span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span><span class="p">{</span>
+    <span class="kt">AnyVar</span> <span class="n">ThighLength</span> <span class="o">=</span> <span class="mf">0.4098364</span><span class="gr">*1.1</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">ShankLength</span> <span class="o">=</span> <span class="mf">0.4210448</span><span class="gr">*1.1</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">FootLength</span> <span class="o">=</span> <span class="mf">0.2571425</span><span class="gr">*1.1</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">TalusLength</span> <span class="o">=</span> <span class="mf">0.133</span><span class="o">*</span><span class="n">FootLength</span><span class="gr">*1.1</span><span class="p">;</span>
+ <span class="p">};</span>
+</pre></div>
+</div>
+<p>When you load the model you will see a more <em>Homo sapiens</em>-looking
+figure corresponding to a large 110kg and 1.98 m person.</p>
+<p>We mentioned at the beginning of the tutorial that the muscle strength
+is also scaled. It is time to have a look at it and compare muscle
+forces from different scaled models. To do so we need a body with
+muscles. Please add the muscles by commenting out the following section
+of the general configuration block:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">//  #define BM_LEG_MUSCLES_BOTH CONST_MUSCLES_NONE</span>
+<span class="gr">//  #define BM_ARM_MUSCLES_BOTH CONST_MUSCLES_NONE</span>
+<span class="gr">//  #define BM_TRUNK_MUSCLES CONST_MUSCLES_NONE</span>
+</pre></div>
+</div>
+<p>We also need to add some forces to the model in order to make it react
+and see muscle activity. This can be done by adding the following lines
+to the Environment.any file. This piece of code creates a force of 50 N
+on each hand and displays it in the model view:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span><span class="n">Origin</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">};};</span>
+<span class="p">};</span>
+ <span class="gr"></span>
+<span class="gr">AnyForce3D RightHandLoad = {</span>
+<span class="gr">    F = {0, -50, 0};</span>
+<span class="gr"> AnyRefFrame &amp;Hand = Main.HumanModel.BodyModel.Right.ShoulderArm.Seg.Glove;</span>
+<span class="gr">};</span>
+
+<span class="gr">  AnyForce3D LeftHandLoad = {</span>
+<span class="gr">    F = {0, -50, 0};</span>
+<span class="gr">    AnyRefFrame &amp;Hand = Main.HumanModel.BodyModel.Left.ShoulderArm.Seg.Glove;</span>
+<span class="gr">  };</span>
+
+<span class="gr">  AnyDrawVector DrawRightLoad = {</span>
+<span class="gr">    Vec = .RightHandLoad.F*0.015;</span>
+<span class="gr">    PointAway = On;</span>
+<span class="gr">    GlobalCoord = On;</span>
+<span class="gr">    Line = {</span>
+<span class="gr">      Style = Line3DStyleFull;</span>
+<span class="gr">      Thickness = 0.01;</span>
+<span class="gr">      RGB = {0, 0, 0};</span>
+<span class="gr">      End = {</span>
+<span class="gr">        Style = Line3DCapStyleArrow;</span>
+<span class="gr">        RGB = {0, 0, 0};</span>
+<span class="gr">        Thickness = 0.025;</span>
+<span class="gr">        Length = 0.025;</span>
+<span class="gr">      };</span>
+<span class="gr">    };</span>
+<span class="gr">    AnyRefFrame &amp;Hand = .RightHandLoad.Hand;</span>
+<span class="gr">  };</span>
+
+<span class="gr">  AnyDrawVector DrawLeftLoad = {</span>
+<span class="gr">    Vec = .LeftHandLoad.F*0.015;</span>
+<span class="gr">    PointAway = On;</span>
+<span class="gr">    GlobalCoord = On;</span>
+<span class="gr">    Line = {</span>
+<span class="gr">      Style = Line3DStyleFull;</span>
+<span class="gr">      Thickness = 0.01;</span>
+<span class="gr">      RGB = {0, 0, 0};</span>
+<span class="gr">      End = {</span>
+<span class="gr">        Style = Line3DCapStyleArrow;</span>
+<span class="gr">        RGB = {0, 0, 0};</span>
+<span class="gr">        Thickness = 0.025;</span>
+<span class="gr">        Length = 0.025;</span>
+<span class="gr">      };</span>
+<span class="gr">    };</span>
+<span class="gr">    AnyRefFrame &amp;Hand = .LeftHandLoad.Hand;</span>
+<span class="gr">  };</span>
+</pre></div>
+</div>
+<p>We are now ready to run an inverse dynamic analysis with our large 110kg
+model. Please load the model and run the RunApplication operation from
+the Operations tab. Then open an AnyChart window to investigate the
+results. By browsing your way to the MaxMuscleActivity in Main.Study you
+should get the following value:</p>
+<p><a class="reference internal" href="../_images/image611.png"><img alt="Chart view MaxMuscleActivity" src="../_images/image611.png" style="width: 6.68889in; height: 4.83958in;" /></a></p>
+<p>We will now try to model a small person to compare his muscle activity
+with the one we have just plotted. In the AnyMan file let us enter the
+parameters for a 65kg and 1.70 m person:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyVar</span> <span class="n">Body_Mass</span> <span class="o">=</span> <span class="gr">65</span> <span class="p">;</span>
+<span class="kt">AnyVar</span> <span class="n">body_height</span> <span class="o">=</span> <span class="gr">170</span> <span class="o">/</span><span class="mi">100</span><span class="p">;</span>
+<span class="p">...</span>
+
+<span class="kt">AnyFolder</span> <span class="n">AnthroSegmentLengths</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyVar</span> <span class="n">PelvisWidth</span> <span class="o">=</span> <span class="mf">0.176</span><span class="gr">*0.95</span><span class="p">;</span> <span class="c1">//distance between hip joints</span>
+  <span class="kt">AnyVar</span> <span class="n">HeadHeight</span> <span class="o">=</span> <span class="mf">0.14</span><span class="gr">*0.95</span><span class="p">;</span> <span class="c1">//height in neutral position from  C1HatNode to top of head</span>
+  <span class="kt">AnyVar</span> <span class="n">TrunkHeight</span> <span class="o">=</span> <span class="mf">0.620233</span><span class="gr">*0.95</span><span class="p">;</span> <span class="c1">//height in neautral position from  C1HatNode to L5SacrumJnt</span>
+  <span class="kt">AnyVar</span> <span class="n">UpperArmLength</span> <span class="o">=</span> <span class="mf">0.340079</span><span class="gr">*0.95</span><span class="p">;</span>
+  <span class="kt">AnyVar</span> <span class="n">LowerArmLength</span> <span class="o">=</span><span class="mf">0.2690167</span><span class="gr">*0.95</span><span class="p">;</span>
+  <span class="kt">AnyVar</span> <span class="n">HandLength</span> <span class="o">=</span> <span class="mf">0.182</span><span class="gr">*0.95</span><span class="p">;</span>
+  <span class="kt">AnyVar</span> <span class="n">HandBreadth</span> <span class="o">=</span> <span class="mf">0.085</span><span class="gr">*0.95</span><span class="p">;</span>
+<span class="p">};</span>
+
+ <span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span><span class="p">{</span>
+    <span class="kt">AnyVar</span> <span class="n">ThighLength</span> <span class="o">=</span> <span class="mf">0.4098364</span><span class="gr">*0.95</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">ShankLength</span> <span class="o">=</span> <span class="mf">0.4210448</span><span class="gr">*0.95</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">FootLength</span> <span class="o">=</span> <span class="mf">0.2571425</span><span class="gr">*0.95</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">TalusLength</span> <span class="o">=</span> <span class="mf">0.133</span><span class="o">*</span><span class="n">FootLength</span><span class="gr">*0.95</span><span class="p">;</span>
+ <span class="p">};</span>
+</pre></div>
+</div>
+<p>We can load the model, run the inverse dynamics analysis and check the
+resultant value.</p>
+<p><a class="reference internal" href="../_images/image78.png"><img alt="Chart View MaxMuscleAcitivty 2" src="../_images/image78.png" style="width: 6.68889in; height: 4.84931in;" /></a></p>
+<p>For the same load on the hands (50 N) the tall heavy model has a muscle
+activity of 41.2 %, whereas the short model reaches 63.4 % of muscle
+activity. So our small model is definitely weaker than the tall one.</p>
+</div>
+<div class="section" id="scalinglengthmassfat">
+<h2>ScalingLengthMassFat<a class="headerlink" href="#scalinglengthmassfat" title="Permalink to this headline">¶</a></h2>
+<p>Most scaled models used for practical investigations use the
+ScalingLengthMassFat law. It works exactly like the ScalingLengthMass
+but with an additional parameter: It takes the fat percentage of the
+body into account. The argument is that the fat percentage adds to the
+mass of each segment and in the ScalingLengthMass law would lead an
+estimation of more muscle tissue rather than fat tissue. So the fat
+percentage in this scaling model does not modify the mass or the size
+of the body. It is only used to calculate the strength of the muscles.
+Between two persons of similar segment masses, the one with higher fat
+percentage will have less muscle strength, because the volume
+otherwise occupied by the muscles is replaced by inactive fat.</p>
+<p>So the mass and size scales are controlled as in the ScalingLengthMass
+model by the <code class="docutils literal"><span class="pre">Body_Mass</span></code> variable and all the segment length variables
+respectively. The fat percentage is controlled in concert by the
+variables <code class="docutils literal"><span class="pre">Body_Height</span></code> and <code class="docutils literal"><span class="pre">Body_Mass</span></code>. These two variables are used to
+calculate the BMI (Body-Mass Index), and the BMI is used to calculate
+the fat percentage of the body according to Frankenfield, D. C.; Rowe,
+W. A.; Cooney, R. N.; Smith, J. S. &amp; Becker, D. (2001): Limits of body
+mass index to detect obesity and predict body composition, Nutrition
+17(1), 26-30.</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>AnyVar BMI = AnthroData.Body_Mass/(AnthroData.body_height^2);
+AnyVar FatPercent = (-0.09 + 0.0149*BMI - 0.00009 *BMI^2)*100; //Estimation from Frankenfield et al. (2001) valid for men
+</pre></div>
+</div>
+<p>Obviously it is important to input the correct height
+of the body when using this law. Please notice, however, that it is
+very easy for the user to substitute the formula for the fat
+percentage by another equation or possibly by a fixed number for
+modeling of a particular individual for whom the fat percentage has
+been measured directly.</p>
+<p>The resultant value for the fat percentage is then directly used to
+compute an estimate of the strength of each muscle in the model.</p>
+<p>This advanced strength scaling makes a significant difference for the
+model that is short and heavy. The ScalingLengthMass law tends to
+over-estimate the strength of those models, because they often have a
+high fat percentage that is not taken into account by the law.</p>
+<p>We will try to illustrate this by plotting the muscle activity of the
+same short and heavy model with both ScalingLengthMass and
+ScalingLengthMassFat laws. We will begin by adjusting the AnyMan file
+to match a 85kg and 1.70 m person:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyVar</span> <span class="n">Body_Mass</span> <span class="o">=</span> <span class="gr">85</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Then please load the model and re-run the application. Notice that we
+should still be using the ScalingLengthMass law. You should now get
+the following value for the maximum muscle activity.</p>
+<p><a class="reference internal" href="../_images/image86.png"><img alt="Chart view MaxMuscleActivity 3" src="../_images/image86.png" style="width: 6.68889in; height: 4.85833in;" /></a></p>
+<p>The next step is to run an analysis with the same body but with the
+ScalingLengthMassFat law:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// Scaling laws using joint to joint measures</span>
+<span class="c1">//  #define BM_SCALING CONST_SCALING_UNIFORM</span>
+<span class="gr">//  #define BM_SCALING CONST_SCALING_LENGTHMASS</span>
+<span class="gr">#define BM_SCALING CONST_SCALING_LENGTHMASSFAT</span>
+</pre></div>
+</div>
+<p>Once again load the model and run the inverse dynamics
+analysis by executing the RunApplication operation. We should get the
+following results:</p>
+<p><a class="reference internal" href="../_images/image95.png"><img alt="Chart view MaxMuscleActivity 4" src="../_images/image95.png" style="width: 6.68889in; height: 4.84931in;" /></a></p>
+<p>If we compare these two activity values, the difference is clear. The
+ScalingLengthMassFat law is increasing the muscle activity by
+approximately15 % in this case, from 50 % to 65 %. This shows the
+limits of the ScalingLengthMass law for extreme cases.
+ScalingLengthMassFat is able to cover a wider range of cases while
+keeping its accuracy.</p>
+<p>Just like the ScalingLengthMass law this law can also be used with the
+AnyManUniform file.</p>
+<p>This completes scaling Lesson 1: Joint to joint scaling methods.
+Now move on to <a class="reference internal" href="lesson2.html"><span class="doc">*Lesson 2: Scaling based on external body
+measurements.*</span></a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Scaling</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scalingstandard">ScalingStandard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scalinguniform">ScalingUniform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scaling-based-on-length-and-mass">Scaling based on length and mass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scalinglengthmassfat">ScalingLengthMassFat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Scaling based on External Body Measurements"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Scaling"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" >Scaling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

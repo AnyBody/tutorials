@@ -1,0 +1,323 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 1: The Basics of Muscle Recruitment &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 2: Linear Muscle Recruitment" href="lesson2.html" />
+    <link rel="prev" title="Inverse Dynamics of Muscle Systems" href="Inverse_dynamics.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Linear Muscle Recruitment"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="Inverse_dynamics.html" title="Inverse Dynamics of Muscle Systems"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="Inverse_dynamics.html" accesskey="U">Inverse Dynamics of Muscle Systems</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-1-the-basics-of-muscle-recruitment">
+<h1>Lesson 1: The Basics of Muscle Recruitment<a class="headerlink" href="#lesson-1-the-basics-of-muscle-recruitment" title="Permalink to this headline">¶</a></h1>
+<p>Muscle recruitment in inverse dynamics is the process of determining
+which set of muscle forces will balance a given external load. If we
+take the trouble of setting up the system of equilibrium equations for a
+musculoskeletal system by hand, then we can organize them on the
+following form:</p>
+<div class="math">
+\[\mathbf{Cf}=\mathbf{r}\]</div>
+<p>where <strong>f</strong> is a vector of muscle and joint forces, <strong>r</strong> is a vector
+representing the external forces and inertia forces, and <strong>C</strong> is a
+matrix of equation coefficients. In other words, equilibrium always
+results in a linear system of equations that should be easy to solve.
+Unfortunately, it is not, and this is due to two reasons.</p>
+<p>The first reason is that muscles are unilateral element that can only
+pull and not push. So the part of <strong>r</strong> that is muscle forces is
+restricted in sign, and only solutions with positive or zero muscle
+forces are physiologically reasonable.</p>
+<p>The second reason is known as muscle redundancy. It is due to the fact
+that muscle systems tend to have many more muscles than strictly
+necessary to balance the external forces. The mathematical consequence
+is that the equilibrium equation above has more unknowns than it has
+equations and therefore usually infinitely many solutions.</p>
+<p>So, is muscle recruitment in the living human body random in the sense
+that it just chooses the first and the best solution that balances the
+load? Experiments show that this is not the case. In skilled movements,
+muscles tend to be recruited systematically, so there is some criterion
+behind the central nervous system’s choice of muscle activations.
+Mathematically we can formulate the choice between the infinitely many
+solutions as an optimization problem in the following way:</p>
+<div class="math">
+\[\begin{split}\begin{equation*}
+\begin{aligned}
+&amp; {\text{minimize}}
+&amp; &amp; G\left(\mathbf{f^{(M)}}\right) \\
+&amp; \text{subject to}
+&amp; &amp; \mathbf{Cf} = \mathbf{r} \\
+&amp;&amp;&amp; f_i^{(M)} \geq 0, i=1\ldots n^{(M)}
+\end{aligned}
+\end{equation*}\end{split}\]</div>
+<p>The equilibrium equations are constraints in this problem: whatever
+solution we find must balance the external forces. The requirement for
+positive muscle forces has also been added as a constraint to the
+problem. Only solutions adhering to these two requirements are
+acceptable, but out of these many solutions we are going to change the
+one that minimizes the function <em>G</em>, and are furthermore going to
+anticipate that this function depends on the muscle forces. This seems
+reasonable because muscle recruitment is probably a result of biological
+adaptation and muscle work is costly for the organism and should be
+minimized in an environment where resources are limited. Now we just
+have to figure out what the function <em>G</em> actually is and unfortunately
+there is nobody around who knows it for sure.</p>
+<p>So in the following we are going to play around with different choices
+and see what happens. AnyBody is great for this purpose because the
+settings of the InverseDynamics operation offer the user a lot of
+freedom to choose the function he or she believes is the right one for a
+given purpose.</p>
+<p>So let’s get set up with a model that is suitable for experimentation
+with different definitions of the muscle recruitment problem. We shall
+begin with one that is very, very simple and work our way upwards from
+there. Please download right-click this link and save the file in a
+working area of your hard disk:
+<a class="reference download internal" href="../_downloads/Recruitment.any" download=""><code class="xref download docutils literal"><span class="pre">Recruitment.Main.any</span></code></a>.</p>
+<p>Open the model in the AnyBody Modeling System, load it into memory, open
+a Model View window, select the InverseDynamics operation, and click the
+Run button. You should see something like this:</p>
+<p><a class="reference internal" href="../_images/image326.png"><img alt="Model view simple model" src="../_images/image326.png" style="width: 3.12778in; height: 2.22083in;" /></a></p>
+<p>The thick blue rod is an arm hinged at its left end to the origin of the
+global reference frame. A muscle is attached at the other end and the
+muscle elevates the arm against gravity.</p>
+<p>Please click Window-&gt;Chart (2D) to open up a new window for inspection
+of results. You can expand the tree on the left hand side of that window
+and find the muscle force, Fm, somewhere inside the properties of the M1
+muscle. When you click it you get a graphical representation of the
+muscle force:</p>
+<p><a class="reference internal" href="../_images/image422.png"><img alt="Chart view M1.fm" src="../_images/image422.png" style="width: 4.16250in; height: 3.05833in;" /></a></p>
+<p>Obviously, AnyBody has solved the equilibrium equations and has
+determined what the muscle force is at every instant of the simulation
+time. But which objective function, <span class="math">\(G\)</span>, has the system used?</p>
+<p>If we review this problem we can see that it has only a single degree of
+freedom and only a single muscle to carry the load. This actually means
+that the equilibrium equations are determinate (one degree of freedom
+and one muscle) and in this case it does no matter what <span class="math">\(G\)</span> is, so there
+is little we can do in the settings to influence the result of the
+analysis. The result is given by equilibrium alone and there is no other
+muscle force than the one you see in the graph that would be able to
+balance the model. It does not get really interesting until we apply
+another muscle. A couple of simple additions to the model will
+accomplish this. We first add a new origin node on the global reference
+frame:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// The actual body model goes in this folder</span>
+  <span class="kt">AnyFolder</span> <span class="n">MyModel</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// Global Reference Frame</span>
+    <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span><span class="o">/</span><span class="mi">10</span><span class="p">;</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+      <span class="p">};</span>
+      <span class="kt">AnyRefNode</span> <span class="n">M1</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+      <span class="p">};</span>
+      <span class="gr">AnyRefNode M2 = {</span>
+<span class="gr">        sRel = {0, 0.03, 0};</span>
+<span class="gr">      };</span>
+    <span class="p">};</span> <span class="c1">// Global reference frame</span>
+</pre></div>
+</div>
+<p>Then we define a second muscle by copying the first one and making a few
+changes. Notice that the strength of the second muscle is set to half of
+the strength of the first one:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyViaPointMuscle</span> <span class="n">M1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyMuscleModel</span> <span class="n">Model</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">F0</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Ori</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M1</span><span class="p">;</span>
+  <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Ins</span> <span class="o">=</span> <span class="p">.</span><span class="n">Seg</span><span class="p">.</span><span class="n">M</span><span class="p">;</span>
+  <span class="kt">AnyDrawMuscle</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Bulging</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">MaxStress</span> <span class="o">=</span> <span class="mf">1e5</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+<span class="gr">AnyViaPointMuscle M2 = {</span>
+<span class="gr">  AnyMuscleModel Model = {</span>
+<span class="gr">    F0 = 50;</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyRefFrame &amp;Ori = .GlobalRef.M2;</span>
+<span class="gr">  AnyRefFrame &amp;Ins = .Seg.M;</span>
+<span class="gr">  AnyDrawMuscle drw = {</span>
+<span class="gr">    Bulging = 1;</span>
+<span class="gr">    MaxStress = 1e5;</span>
+<span class="gr">  };</span>
+<span class="gr">}; </span>
+</pre></div>
+</div>
+<p>Now two muscles will have to cooperate on the task of carrying one
+degree of freedom. Let us see what AnyBody, in the absence of any
+special specifications from the user, chooses to do. If you load and run
+the model, plot the muscle force of M1 as you did before, and then
+manually place an asterisk in place of the muscle name in the
+specification line in the Chart window, you should get something like
+this:</p>
+<p><a class="reference internal" href="../_images/image519.png"><img alt="Chart view star.Fm" src="../_images/image519.png" style="width: 3.12778in; height: 3.18611in;" /></a></p>
+<p>We can observe that both muscles are working and that M1, which has the
+higher strength and better moment arm, is exerting more force than the
+weaker M2. This seems immediately reasonable from a physiological
+point-of-view, and this is what you get from AnyBody if you do not make
+any special specifications. We shall get back to the precise nature of
+AnyBody’s standard criterion a little later. For now, let us proceed and
+speculate a bit about what may or may not make physiological sense in</p>
+<p><a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2: Linear muscle recruitment</span></a>.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html"> Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: Composite Recruitment Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_calibration.html"> Lesson 7</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Linear Muscle Recruitment"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="Inverse_dynamics.html" title="Inverse Dynamics of Muscle Systems"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="Inverse_dynamics.html" >Inverse Dynamics of Muscle Systems</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

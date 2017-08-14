@@ -1,0 +1,337 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Translating a SOLIDWORKS CAD model to AnyBody &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Making the translated AnyScript model move" href="lesson2.html" />
+    <link rel="prev" title="Making Models using SOLIDWORKS" href="intro.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Making the translated AnyScript model move"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Making Models using SOLIDWORKS"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Making Models using SOLIDWORKS</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="translating-a-solidworks-cad-model-to-anybody">
+<h1>Translating a SOLIDWORKS CAD model to AnyBody<a class="headerlink" href="#translating-a-solidworks-cad-model-to-anybody" title="Permalink to this headline">¶</a></h1>
+<p>Start by downloading the <code class="xref download docutils literal"><span class="pre">example</span> <span class="pre">SOLIDWORKS</span> <span class="pre">CAD</span> <span class="pre">assembly</span></code></p>
+<p>After having downloaded and opened this model in your SOLIDWORKS
+environment, you will see the following image.</p>
+<p><a class="reference internal" href="../_images/image1.PNG"><img alt="SolidWorks fitnessmachine" src="../_images/image1.PNG" style="width: 6.69306in; height: 3.63889in;" /></a></p>
+<p>As you can see, this SOLIDWORKS assembly contains several parts and
+mates. The assembly has three different configurations, each managing
+different sets of mates. We will discuss the purpose of these different
+configuration settings later.</p>
+<p>The role of the mates in this model is as follows. The ‘MainBase’ part
+should be fixed to the global origin. And the other parts should be
+connected to this base and each other by the mates. The total number of
+DOF (degrees-of-freedom) of this model should be one.</p>
+<p>Let us try to translate this model into a corresponding AnyScript model.
+If you have registered the AnyBody Exporter™ for SOLIDWORKS®
+(AnyExp4SOLIDWORKS™) add-in successfully, then you will see the menu of
+the AnyExp4SOLIDWORKS add-in on the SOLIDWORKS menu like this:</p>
+<p><a class="reference internal" href="../_images/image215.png"><img alt="AnyExp4SOLIDWORKS menu" src="../_images/image215.png" style="width: 1.53000in; height: 1.22000in;" /></a></p>
+<p>Start the translation process by selecting the ‘Export to AnyScript’
+menu item. Doing this will display the following dialog.</p>
+<p><a class="reference internal" href="../_images/image3.PNG"><img alt="AnyExp4SOLIDWORKS dialog" src="../_images/image3.PNG" style="width: 4.00000in; height: 2.70000in;" /></a></p>
+<p>In this dialog you can choose various options for the translation
+process such as indentation method, constraint type for mates, STL file
+type and so on. If you press the OK button after having decided the
+options you want to use, you will see a file dialog asking you to choose
+where your files will be saved. For this tutorial we shall use the
+default options settings. You can change the location and the file name
+to be what you want for this example.</p>
+<p><a class="reference internal" href="../_images/image4.PNG"><img alt="Save as dialog" src="../_images/image4.PNG" style="width: 5.96000in; height: 3.72000in;" /></a></p>
+<p>If you look at the folder where you saved your own files, then you will
+see that there are two AnyScript files (FitnessMachine.any and
+FitnessMachine.main.any) and several STL files.</p>
+<p>Let’s try to open the ‘FitnessMachine.main.any’ file using the AnyBody
+Modeling System. It should look like this:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="c1">// This AnyScript file was automatically generated by the AnyExp4SOLIDWORKS translator add-in.</span>
+<span class="c1">// Translation date: Wed Oct 17 14:09:24 2012</span>
+<span class="c1">// AnyExp4SOLIDWORKS Version: 1.0.0</span>
+<span class="n">Main</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="cp">#include</span> <span class="s">&quot;FitnessMachine.any&quot;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This ‘FitnessMachine.main.any’ file just includes the
+‘FitnessMachine.any’ file. When you load it, you will see that several
+ANYSURF3 files are created from the STL files.</p>
+<p><a class="reference internal" href="../_images/image59.png"><img alt="Model View Fitness machine" src="../_images/image59.png" style="width: 4.06000in; height: 3.62000in;" /></a></p>
+<p>After loading this file, we should check which properties of the
+SOLIDWORKS assembly could be translated into AnyScript. These properties
+are:</p>
+<ul class="simple">
+<li>The SOLIDWORKS assembly model structure</li>
+<li>The part information (mass property, initial position, STL geometry
+file, color)</li>
+<li>Mate information between the different parts in the assemblies</li>
+</ul>
+<div class="section" id="solidworks-assembly-model-structure">
+<h2>SOLIDWORKS assembly model structure<a class="headerlink" href="#solidworks-assembly-model-structure" title="Permalink to this headline">¶</a></h2>
+<p>Let us compare the SOLIDWORKS Feature Tree and the AnyBody Model Tree.</p>
+<p><a class="reference internal" href="../_images/image6.PNG"><img alt="SOLIDWORKS properties" src="../_images/image6.PNG" style="width: 3.20427in; height: 7.50000in;" /></a><a class="reference internal" href="../_images/image7.PNG"><img alt="ANYBODY model tree" src="../_images/image7.PNG" style="width: 2.47000in; height: 7.50000in;" /></a></p>
+<p>First, the top assembly ‘FitnessMachine’ is converted into a
+corresponding AnyFolder object, which has the same name. All individual
+parts are converted into corresponding AnySeg objects. Some reference
+entities such as origin and planes are converted into AnyFixedRefFrame
+or AnyRefNode objects depending on whether they are fixed or attached to
+movable parts. Finally, there is an AnyFolder object named ‘Mates’,
+which contains all converted mate information.</p>
+</div>
+<div class="section" id="part-information-mass-property-initial-position-and-stl-geometry-file">
+<h2>Part information (mass property, initial position and STL geometry file)<a class="headerlink" href="#part-information-mass-property-initial-position-and-stl-geometry-file" title="Permalink to this headline">¶</a></h2>
+<p>If you look at the information about the
+‘Main.FitnessMachine.MainBase___1’ AnySeg object, you will see the
+following piece of code.</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">MainBase___1</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="n">r0</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.455958313e-005</span><span class="p">};</span>
+  <span class="n">Axes0</span><span class="o">=</span><span class="p">{</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span> <span class="p">};</span>
+  <span class="n">Mass</span> <span class="o">=</span> <span class="mf">73.1179928</span><span class="p">;</span>
+  <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mf">6.221732725</span><span class="p">,</span> <span class="mf">13.35441288</span><span class="p">,</span> <span class="mf">17.11071671</span><span class="p">};</span>
+  <span class="n">Jij</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.5751545834</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0006960674174</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0005824144636</span><span class="p">};</span>
+  <span class="n">sCoM</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.189906896</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.04988090848</span><span class="p">,</span> <span class="mf">1.942340762e-005</span><span class="p">};</span>
+  <span class="n">JaboutCoMOnOff</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
+  <span class="kt">AnyDrawSurf</span> <span class="n">drw</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;FitnessMachine.MainCylinder_cfg0_9c1185a5c5e9fc546128.stl&quot;</span><span class="p">;</span>
+    <span class="n">Opacity</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+    <span class="kt">AnyStyleDrawMaterial1</span> <span class="n">style</span> <span class="o">=</span>
+    <span class="p">{</span>
+      <span class="n">EnableCreasing</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
+      <span class="n">CreasingAngle</span> <span class="o">=</span> <span class="mf">0.524</span><span class="p">;</span>
+    <span class="p">};</span>
+  <span class="p">};</span>
+  <span class="kt">AnyRefNode</span> <span class="n">Origin</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+    <span class="n">ARel</span><span class="o">=</span><span class="p">{</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span> <span class="p">};</span>
+  <span class="p">};</span>
+  <span class="p">...</span>
+</pre></div>
+</div>
+<p>As you can see here, mass properties, initial position &amp; rotation and
+geometry information (STL file) were translated into AnyScript.</p>
+</div>
+<div class="section" id="mate-information">
+<h2>Mate information<a class="headerlink" href="#mate-information" title="Permalink to this headline">¶</a></h2>
+<p>Generally, all mate information in a CAD assembly model can be regarded
+as kinematic constraints. Based on these constraints, you can move the
+assembly models inside the CAD system. All these mate objects are
+translated into corresponding kinematics constraints in AnyScript, such
+as AnyKinEq, AnyKinEqSimpleDriver or some standard joint types like
+AnyRevoluteJoint, AnySphericalJoint..</p>
+<p>Let us select one mate in the assembly and look at it in detail inside
+SOLIDWORKS.</p>
+<p><a class="reference internal" href="../_images/image8.PNG"><img alt="SolidWorks assembly" src="../_images/image8.PNG" style="width: 6.69306in; height: 3.99236in;" /></a></p>
+<p>The ‘Concentric11’ mate was established between MainCylinder-1 and
+BeamType1-2 components. In the above picture, the selected violet
+cylinder and a point are included in the MainCylinder-1 component, and
+the selected white point is included in the BeamType1-2 component. So
+this mate is the concentric mate between a point and a cylinder. This
+means that the white point (on BeamType1&lt;2&gt; component) can translate and
+rotate on the axis of this violet cylinder (on MainCylinder&lt;1&gt;). So this
+mate can be translated into two linear constraints in the corresponding
+AnyScript model.</p>
+<p>The AnyScript code for the Concentric11 mate is as follows:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinEqSimpleDriver</span> <span class="n">Concentric11</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="kt">AnyKinLinear</span> <span class="n">lin</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="kt">AnyRefFrame</span><span class="o">&amp;</span> <span class="n">base</span> <span class="o">=</span> <span class="p">...</span><span class="n">MainCylinder___1</span><span class="p">.</span><span class="n">FitnessMachine_Concentric11</span><span class="p">;</span>
+    <span class="kt">AnyRefFrame</span><span class="o">&amp;</span> <span class="n">target</span> <span class="o">=</span> <span class="p">...</span><span class="n">BeamType1___2</span><span class="p">.</span><span class="n">FitnessMachine_Concentric11</span><span class="p">;</span>
+    <span class="n">Ref</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="n">MeasureOrganizer</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+  <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="n">CType</span> <span class="o">=</span> <span class="p">{..</span><span class="n">_ANY_CTYPE_</span><span class="p">,</span> <span class="p">..</span><span class="n">_ANY_CTYPE_</span><span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Where we notice that the ‘MeasureOrganizer’ selects two of the three
+translational measurement defined by the AnyKinLinear object. The
+following picture shows the relationship between these two components.</p>
+<p><a class="reference internal" href="../_images/image91.png"><img alt="SolidWorks Two components" src="../_images/image91.png" style="width: 4.67000in; height: 4.23000in;" /></a></p>
+<p>Here you can see that the AnyKinLinear kinematic measure, which is
+defined between the ‘FitnessMachine_Concentric11’ AnyRefNode object of
+the ‘BeamType1___2’ AnySeg object (dark orange color) and the
+‘FitnessMachine_Concentric11’ AnyRefNode object of the
+‘MainCylinder___1’ AnySeg object (cyan color), should have its x and
+y coordinates as zero position and velocity values. The AnyRefNode
+objects called ‘FitnessMachine_Concentric11’ on both AnySeg objects
+were created automatically by the translation process for the sole
+purpose of creating these constraints.</p>
+<p>Finally notice that the ‘Reaction.Type’ of these constraints is ‘On’ as
+default, since it has not been set by the translator. This implies that
+reaction forces associated with the constraints are indeed active. Also
+notice the constraint type (‘CType’), which is set to parametric value,
+‘_ANY_CTYPE_’, defined by the translator. The parameter,
+‘_ANY_CTYPE_’, can later be modified in the AnyScript model, or by a
+new translation of the model.</p>
+<p>With this we will conclude our brief review of the translated model and
+now let us go to the next <a class="reference internal" href="lesson2.html"><span class="doc">Lesson2.</span></a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Making Models using SOLIDWORKS</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#solidworks-assembly-model-structure">SOLIDWORKS assembly model structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#part-information-mass-property-initial-position-and-stl-geometry-file">Part information (mass property, initial position and STL geometry file)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mate-information">Mate information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Making the translated AnyScript model move"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Making Models using SOLIDWORKS"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" >Making Models using SOLIDWORKS</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

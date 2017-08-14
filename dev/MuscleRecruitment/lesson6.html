@@ -1,0 +1,329 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 6: Composite Recruitment Criteria &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 7: Calibration" href="lesson_calibration.html" />
+    <link rel="prev" title="Lesson 5: Min/Max Muscle Recruitment" href="lesson5.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson_calibration.html" title="Lesson 7: Calibration"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson5.html" title="Lesson 5: Min/Max Muscle Recruitment"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="Inverse_dynamics.html" accesskey="U">Inverse Dynamics of Muscle Systems</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-6-composite-recruitment-criteria">
+<h1>Lesson 6: Composite Recruitment Criteria<a class="headerlink" href="#lesson-6-composite-recruitment-criteria" title="Permalink to this headline">¶</a></h1>
+<p>So far we have investigated recruitment criteria in the form of
+polynomial sums with degrees ranging from 1 (linear recruitment) to
+infinity (min/max recruitment). It is not given, however, that any
+single degree criterion is the right one.</p>
+<p>It seems reasonable that a high order criterion is correct when the
+external load approaches the limit of the organism’s strength because
+that enables the organism to use its full strength. On the other hand,
+it might also be unreasonable that a lot of muscles should be activated
+if the external load is very small and/or some of the muscles have a
+very unfavorable moment arm and therefore can contribute very little.</p>
+<p>Praagman et al (2003, 2006) reviewed the physiological mechanisms behind
+muscle contraction and concluded that there are two energy-consuming
+processes, namely detachment of cross bridges and re-uptake of calcium.
+If muscle recruitment is based on minimization of energy, then it is
+reasonable to think that the objective function contains a contribution
+from both these processes and they turn out to be represented by an
+objective function with a linear as well as a quadratic term. To
+investigate this, let us change the muscle recruitment to the type of
+quadratic criterion that also accepts a linear term:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
+<span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
+  <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+  <span class="n">tEnd</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">BikeParameters</span><span class="p">.</span><span class="n">T</span><span class="p">;</span>
+  <span class="n">nStep</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+  <span class="gr">InverseDynamics.Criterion = {</span>
+<span class="gr">    Type = MR_QuadraticAux;</span>
+<span class="gr">    AuxLinearTerm.Weight = 0.0;</span>
+<span class="gr">  };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>…and let us also reduce the power consumption to a level that does not
+require upper limits on the muscle activation:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// Kinematic parameters</span>
+<span class="kt">AnyVar</span> <span class="n">Cadence</span> <span class="o">=</span> <span class="mf">60.0</span><span class="p">;</span> <span class="c1">//Cadence in RPM</span>
+<span class="kt">AnyVar</span> <span class="n">MechOutput</span> <span class="o">=</span> <span class="gr">250</span><span class="p">;</span> <span class="c1">//Average Mechanical output over a cycle in Watt</span>
+</pre></div>
+</div>
+<p>Loading and running this version will produce the exact same result as
+the standard quadratic criterion because the weight on the linear term
+is set to zero. The result looks like this:</p>
+<p><a class="reference internal" href="../_images/image137.png"><img alt="Chart view Muscle activty" src="../_images/image137.png" style="width: 6.25556in; height: 4.10486in;" /></a></p>
+<p>However, if we add a bit of weight to the linear term:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">Type</span> <span class="o">=</span> <span class="kp">MR_QuadraticAux</span><span class="p">;</span>
+  <span class="n">AuxLinearTerm</span><span class="p">.</span><span class="n">Weight</span> <span class="o">=</span> <span class="gr">0.1</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>…we can influence the resulting recruitment and get the following
+result:</p>
+<p><a class="reference internal" href="../_images/image232.png"><img alt="Chart view Muscle activty linear weight" src="../_images/image232.png" style="width: 6.25556in; height: 4.10486in;" /></a></p>
+<p>The muscle synergy is slightly reduced by the linear term in the
+objective function, and the maximum muscle activation is consequently
+slightly higher. Is this better than the pure quadratic recruitment?
+That is difficult to answer, but the option allows a discerning user to
+influence the recruitment criterion and to build in physiological
+considerations such as those by Praagman et al.</p>
+<p>The min/max muscle recruitment has a similar alternative form that
+allows for the addition of a linear or quadratic term to the objective
+function. In this case the quadratic term turns out to be the more
+interesting, and it does in fact allow for a recruitment behavior that
+combines some of the good features of quadratic and min/max
+recruitments. To investigate this in more detail, let us first take a
+look at the optimization problem that is solved in the min/max muscle
+recruitment problem. We mentioned before that min/max can be interpreted
+as a polynomial criterion for which the power is going to infinity.
+Obviously, the solution of an infinity-powered objective function
+requires some additional mathematical tricks. The trick is to redefine
+the muscle recruitment problem to the following form:</p>
+<p>Minimize</p>
+<div class="math">
+\[\beta\]</div>
+<p>Subject to</p>
+<div class="math">
+\[\frac{f_{i}^{\left( M \right)}}{N_{i}} \leq \beta,\ \ for\ i = 1..n^{(M)}\]</div>
+<div class="math">
+\[\mathbf{\text{Cf}} = \mathbf{r}\]</div>
+<div class="math">
+\[f_{i}^{(M)} \geq 0,\ \ for\ i = 1..n^{(M)}\]</div>
+<p>It is easy to see why this minimizes the maximum muscle activity: The
+only way to reduce the objective function, <span class="math">\(\beta\)</span>, and to honor the
+constraints is to simultaneously reduce all the muscle activities. The
+question now is: what happens if we add a quadratic auxiliary term to
+the objective function, <span class="math">\(\beta\)</span>, this way:</p>
+<p>Minimize</p>
+<div class="math">
+\[\beta + \varepsilon\sum_{i}^{}\left( \frac{f_{i}^{(M)}}{N_{i}} \right)^{2}\]</div>
+<p>Subject to</p>
+<div class="math">
+\[\frac{f_{i}^{\left( M \right)}}{N_{i}} \leq \beta,\ \ for\ i = 1..n^{(M)}\]</div>
+<div class="math">
+\[\mathbf{\text{Cf}} = \mathbf{r}\]</div>
+<div class="math">
+\[f_{i}^{(M)} \geq 0,\ \ for\ i = 1..n^{(M)}\]</div>
+<p>where <span class="math">\(\varepsilon\)</span> is the weight we use to tune the influence of the quadratic
+term.</p>
+<p>We can do this in AnyBody by choosing the auxiliary form of the min/max
+recruitment criterion:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
+<span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span> <span class="o">=</span> <span class="p">{</span>
+<span class="n">Type</span> <span class="o">=</span> <span class="gr">MR\_MinMaxAux;</span>
+<span class="gr">AuxQuadraticTerm.Weight = 1</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Reloading and rerunning produces the following rather attractive result:</p>
+<p><a class="reference internal" href="../_images/image328.png"><img alt="Chart view Muscle activity MinMaxAux" src="../_images/image328.png" style="width: 5.20903in; height: 3.75556in;" /></a></p>
+<p>This appears to produce a combination of soft onset and offset of
+muscles together with a clearly defined envelope on which several
+muscles cooperate evenly to carry the load. Please notice, however, that
+the effect of the Weight property, i.e. the <span class="math">\(\varepsilon\)</span> in the objective
+function, is somewhat problem dependent because the size of the sum that
+it multiplies depends on the number of muscles in the system while the
+size of the <span class="math">\(\beta\)</span> variable remains between 0 and 1 for normal problems. So
+models with many muscles would typically require a smaller value of:math:<cite>varepsilon</cite>.</p>
+<p>From what we have seen so far, the MinMaxAux criterion looks ideal from
+a mathematical and physiological point-of-view. Unfortunately, there is
+one additional, physiological requirement that we have not touched upon,
+and on the MinMaxAux criterion fails on that. To understand it, let us
+make a thought experiment:</p>
+<ol class="arabic simple">
+<li>We create a model of a person lifting a box. The mass of the box is
+10 kg. The muscle recruitment algorithm will return some distribution
+of load between the muscles in the system.</li>
+<li>Then we change the mass of the box to 5 kg and run the model again.
+This gives us a different muscle recruitment pattern. Probably the
+muscles would now be somewhat less loaded than before.</li>
+<li>Now we create a model with two people in it. This is entirely
+possible to do in AnyBody. The two human models are exactly the same
+as before and one is lifting a 10 kg box, and the other is lifting a
+5 kg box. Since the two body models are completely independent from
+each other, except from the fact that they are present in the same
+computer model, we would expect the muscle recruitment we get when
+they are inside a single model to be exactly the same as we got for
+the two single-body models we had before. And this would be the case
+with the polynomial criteria of any degree and with the MinMaxStrict
+criterion, but it would not be the case with the MinMaxAux criterion,
+and this does not seem to be right.</li>
+</ol>
+<p>So the conclusion is that the MinMaxAux criterion, despite its
+attractive features, should be used with care in models where there is a
+chance that some model parts are independent of each other.</p>
+<p>Let us carry on with <a class="reference internal" href="lesson_calibration.html"><span class="doc">Lesson 7: Calibration</span></a></p>
+</div>
+<div class="section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<p>Praagman, M., Veeger, H.E.J., Chadwick, E.K., Colier, W.N., van der
+Helm, F.C. (2003). Muscle oxygen consumption, determined by NIRS, in
+relation to external force and EMG. Journal of Biomechancis, 36,
+905–912.</p>
+<p>Praagman M, Chadwick EKJ, van der Helm FCT, Veeger HEJ (2006): The
+relationship between two different mechanical cost functions and muscle
+oxygen consumption. Journal of Biomechanics, 39, 758–765.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html"> Lesson 5</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 6: Composite Recruitment Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_calibration.html"> Lesson 7</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson_calibration.html" title="Lesson 7: Calibration"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson5.html" title="Lesson 5: Min/Max Muscle Recruitment"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="Inverse_dynamics.html" >Inverse Dynamics of Muscle Systems</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

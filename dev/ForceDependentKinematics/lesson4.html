@@ -1,0 +1,376 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 4: Using Surfaces to Define the Knee Joint &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 5: Using Contact Forces to Replace a Joint in a Human Model" href="lesson5.html" />
+    <link rel="prev" title="Lesson 3: Results of FDK" href="lesson3.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson5.html" title="Lesson 5: Using Contact Forces to Replace a Joint in a Human Model"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: Results of FDK"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="fdk.html" accesskey="U">Force-Dependent Kinematics</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-4-using-surfaces-to-define-the-knee-joint">
+<h1>Lesson 4: Using Surfaces to Define the Knee Joint<a class="headerlink" href="#lesson-4-using-surfaces-to-define-the-knee-joint" title="Permalink to this headline">¶</a></h1>
+<p>The knee model developed in the previous lessons is obviously very
+simple and does not resemble the geometry of a real anatomical knee very
+well. However, AnyBody also contains facilities for development of more
+realistic geometries of surfaces such as the femoral condyles, and we
+shall explore those in this lesson. We start from the model developed in
+the second lesson. If you did not manage to obtain a working model from
+the second lesson, then please download a new one
+<a class="reference download internal" href="../_downloads/DemoSimpleKnee2.any" download=""><code class="xref download docutils literal"><span class="pre">here</span></code></a>.</p>
+<p>In this example, we are modeling the knee joint using some simplified
+2-D implants (see picture) for the femoral head and the tibial plateau.
+To do this, we add some STL surfaces for theses implants to the model
+and use them to calculate a contact force, which changes the joint
+kinematics by making the implant surfaces slide along each other in the
+simulated motion.</p>
+<p><a class="reference internal" href="../_images/image1.jpg"><img alt="Model view Implant surfaces" src="../_images/image1.jpg" style="width: 4.02716in; height: 3.11484in;" /></a></p>
+<p>Due to the Force Dependent Kinematics (FDK), the joint axis for the knee
+moves as a function of external forces and muscle forces. In this lesson
+we want to have a closer look at this migration. We start by adding an
+AnyDrawRefFrame to the KneeCenter node of the thigh and the shank
+segments to show the migration. For the thigh segment we add</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Thigh</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">r0</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+    <span class="n">Axes0</span> <span class="o">=</span> <span class="nb">RotMat</span><span class="p">(</span><span class="kp">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="kp">z</span><span class="p">);</span>
+    <span class="n">Mass</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">}</span><span class="o">*</span><span class="mf">0.7</span><span class="p">;</span>
+
+    <span class="kt">AnyRefNode</span> <span class="n">KneeCenter</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.03</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+      <span class="gr">AnyDrawRefFrame drw = {RGB = {0,0,0}; ScaleXYZ = 0.05 * {1,1,1};};</span>
+
+      <span class="kt">AnyRefNode</span> <span class="n">SurfCenter</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.05</span><span class="p">};</span>
+        <span class="kt">AnySurfCylinder</span> <span class="n">Condyle</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">Radius</span> <span class="o">=</span> <span class="mf">0.06</span><span class="p">;</span>
+          <span class="n">Length</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span>
+          <span class="kt">AnyDrawParamSurf</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+          <span class="p">};</span>
+        <span class="p">};</span>
+      <span class="p">};</span>
+    <span class="p">};</span>
+
+    <span class="kt">AnyRefNode</span> <span class="n">HipCenter</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+    <span class="p">};</span>
+
+    <span class="kt">AnyRefNode</span> <span class="n">Quadriceps</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+    <span class="p">};</span>
+    <span class="kt">AnyDrawSeg</span> <span class="n">drw</span> <span class="o">=</span><span class="p">{</span>
+      <span class="n">Opacity</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="p">};</span>
+  <span class="p">};</span>
+</pre></div>
+</div>
+<p>And we do the same for the shank:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Shank</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">r0</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+      <span class="n">Mass</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+      <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">}</span><span class="o">*</span><span class="mf">0.4</span><span class="p">;</span>
+      <span class="kt">AnyDrawSeg</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Opacity</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+      <span class="p">};</span>
+
+      <span class="kt">AnyRefNode</span> <span class="n">KneeCenter</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+        <span class="gr">AnyDrawRefFrame drw = {RGB = {1,1,1}; ScaleXYZ = 0.05 * {1,1,1};};</span>
+      <span class="p">};</span>
+      <span class="kt">AnyRefNode</span> <span class="n">Quadriceps</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">sRel</span><span class="o">=</span><span class="p">{</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+      <span class="p">};</span>
+    <span class="p">};</span>
+</pre></div>
+</div>
+<p>Hiding the blue cylinder and running the model again shows that there is
+a rather big distance between the knee center nodes of thigh and shank.</p>
+<p>Now we start to add our new knee joint by adding the knee implant parts
+to the model. We need the two STL files
+<a class="reference download internal" href="../_downloads/simplefemoral.stl" download=""><code class="xref download docutils literal"><span class="pre">simplefemoral.stl</span></code></a> and
+<a class="reference download internal" href="../_downloads/simpletibial.stl" download=""><code class="xref download docutils literal"><span class="pre">simpletibial.stl</span></code></a>. First, we define the
+femoral head as an AnySurfSTL inside the KneeCenter and add an
+AnyDrawSurf object inside to also be able to see the geometry:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Thigh</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">r0</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+      <span class="n">Axes0</span> <span class="o">=</span> <span class="nb">RotMat</span><span class="p">(</span><span class="kp">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="kp">z</span><span class="p">);</span>
+      <span class="n">Mass</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+      <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">}</span><span class="o">*</span><span class="mf">0.7</span><span class="p">;</span>
+
+      <span class="kt">AnyRefNode</span> <span class="n">KneeCenter</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.03</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+        <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span><span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span> <span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">};};</span>
+
+        <span class="kt">AnyRefNode</span> <span class="n">SurfCenter</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.05</span><span class="p">};</span>
+          <span class="kt">AnySurfCylinder</span> <span class="n">Condyle</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">Radius</span> <span class="o">=</span> <span class="mf">0.06</span><span class="p">;</span>
+            <span class="n">Length</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span>
+            <span class="kt">AnyDrawParamSurf</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+              <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+            <span class="p">};</span>
+          <span class="p">};</span>
+        <span class="p">};</span>
+
+        <span class="gr">AnySurfSTL FemoralHead =</span>
+<span class="gr">        {</span>
+<span class="gr">          FileName = &quot;simplefemoral.stl&quot;;</span>
+<span class="gr">          AnyDrawSurf drw =</span>
+<span class="gr">          {</span>
+<span class="gr">            FileName = .FileName;</span>
+<span class="gr">            Opacity = 0.5;</span>
+<span class="gr">          };</span>
+<span class="gr">        };</span>
+      <span class="p">};</span>
+
+      <span class="kt">AnyRefNode</span> <span class="n">HipCenter</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+      <span class="p">};</span>
+      <span class="kt">AnyRefNode</span> <span class="n">Quadriceps</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+      <span class="p">};</span>
+      <span class="kt">AnyDrawSeg</span> <span class="n">drw</span> <span class="o">=</span><span class="p">{</span>
+        <span class="n">Opacity</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+      <span class="p">};</span>
+   <span class="p">};</span>
+</pre></div>
+</div>
+<p>The geometry of the tibial plateau would be a little bit misplaced if we
+would just add it the same way as the femoral head. To adjust it to the
+right position, we add a new node SurfSTLCenter centered at the right
+position and define the AnySurfSTL inside this node:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Shank</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">r0</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+      <span class="n">Mass</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+      <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">}</span><span class="o">*</span><span class="mf">0.4</span><span class="p">;</span>
+      <span class="kt">AnyDrawSeg</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Opacity</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+      <span class="p">};</span>
+
+      <span class="kt">AnyRefNode</span> <span class="n">KneeCenter</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+        <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span><span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span> <span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">};};</span>
+
+        <span class="gr">AnyRefNode SurfSTLCenter = {</span>
+<span class="gr">          sRel = {0.01,-0.04,0};</span>
+<span class="gr">          AnySurfSTL TibialPlateau = {</span>
+<span class="gr">            FileName = &quot;simpletibial.stl&quot;;</span>
+<span class="gr">            AnyDrawSurf drw = {</span>
+<span class="gr">              FileName = .FileName;</span>
+<span class="gr">              Opacity = 0.5;</span>
+<span class="gr">            };</span>
+<span class="gr">          };</span>
+<span class="gr">        };</span>
+      <span class="p">};</span>
+      <span class="kt">AnyRefNode</span> <span class="n">Quadriceps</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">sRel</span><span class="o">=</span><span class="p">{</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+      <span class="p">};</span>
+    <span class="p">};</span>
+</pre></div>
+</div>
+<p>When we now run the simulation and hide the blue cylinder in the knee
+center, we can see that the surfaces penetrate each other quite a lot,
+so just putting in the geometries into the model does not change
+anything except that the locations of the two implants are now visible.</p>
+<p><a class="reference internal" href="../_images/image2.jpg"><img alt="Model view knee closeup" src="../_images/image2.jpg" style="width: 4.02716in; height: 3.11484in;" /></a></p>
+<p>Now, we want to make the surfaces slide along each other. Therefore, we
+define a contact force that pushes the surfaces apart as soon as they
+are in contact. We define an AnyForceSurfaceContact and place it just
+below the definition of the Shank. For the definition an
+AnyForceSurfaceContact, we have to specify the two contacting STL
+surfaces (the first one is called master, the second is the slave
+surface) and a pressure module. This pressure module is a constant
+defining a linear law between penetration volume and force. In this
+example we use a more or less arbitrary value for this module. Our
+AnyForceSurfaceContact object looks like this:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">AnyForceSurfaceContact</span> <span class="n">ContactForce</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnySurface</span> <span class="o">&amp;</span><span class="n">surfMaster</span> <span class="o">=</span> <span class="p">.</span><span class="n">Thigh</span><span class="p">.</span><span class="n">KneeCenter</span><span class="p">.</span><span class="n">FemoralHead</span><span class="p">;</span>
+  <span class="kt">AnySurface</span> <span class="o">&amp;</span><span class="n">surfSlave</span> <span class="o">=</span> <span class="p">.</span><span class="n">Shank</span><span class="p">.</span><span class="n">KneeCenter</span><span class="p">.</span><span class="n">SurfSTLCenter</span><span class="p">.</span><span class="n">TibialPlateau</span><span class="p">;</span>
+  <span class="n">PressureModule</span> <span class="o">=</span> <span class="mf">5e7</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The AnyForceSurfaceContact creates a 3-D force vector located in the
+center of pressure whenever the volumes defined by the STL files
+penetrate each other. If the volumes are not penetrating, these forces
+just become zero.</p>
+<p>Running the simulation now shows that the tibial plateau slides along
+the femoral condyle and the reference frames defined in the knee centers
+stay close to each other.</p>
+<p><a class="reference internal" href="../_images/image3.jpg"><img alt="Model view knee closeup 2" src="../_images/image3.jpg" style="width: 4.02716in; height: 3.11484in;" /></a></p>
+<p>While running the analysis, we can see that in many steps the system
+cannot be solved with the requested error tolerance. The reason for this
+problem is that small changes in the position can result in big changes
+in the contact force. Possibilities to improve this behavior are to
+exchange the surface geometries and use finer meshes or to use a softer
+contact by reducing the PressureModule.</p>
+<p>We are now done with this lesson. You can now play around with this
+model by changing e.g. the pressure module to change the penetration of
+the implants or the positions of the tibial part to change the motion.
+If you couldn’t make your model run up to this point, you can find the
+complete model <a class="reference download internal" href="../_downloads/DemoSimpleKnee3.any" download=""><code class="xref download docutils literal"><span class="pre">here</span></code></a>.</p>
+<p>In <a class="reference internal" href="lesson5.html"><span class="doc">Lesson5</span></a> we can see how this kind of joint can be
+included into an existing model based on an AMMR body model.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="fdk.html">Force-Dependent Kinematics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html"> Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fdkappendix.html"> FDK appendiks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson5.html" title="Lesson 5: Using Contact Forces to Replace a Joint in a Human Model"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: Results of FDK"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="fdk.html" >Force-Dependent Kinematics</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 2: Controlling the Posture &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
@@ -75,13 +75,12 @@ down your model file until you come to the point where the Mannequin.any
 file is included. Here is a step by step description:</p>
 <div class="section" id="mannequin-file-structure">
 <h2>Mannequin file structure<a class="headerlink" href="#mannequin-file-structure" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>…
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="p">...</span>
 
-// Using your own Mannequin.any file in the Model folder of your model
+<span class="c1">// Using your own Mannequin.any file in the Model folder of your model</span>
+<span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
 
-#path BM\_MANNEQUIN\_FILE &quot;Model\\Mannequin.any&quot;
-
-…
+<span class="p">...</span>
 </pre></div>
 </div>
 <p>This line means that your model will use this Mannequin.any file which
@@ -127,49 +126,30 @@ body respectively. The first folder, Posture, contains joint angle
 specifications. You can set any of the joint angles to a reasonable
 value (in degrees), and when you reload the model, it will change its
 posture accordingly. Please make sure that the values are as follows:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span> …
- AnyFolder Right = {
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
 
-//Arm
+    <span class="c1">//Arm</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularProtraction</span><span class="o">=-</span><span class="mi">23</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mf">11.5</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularAxialRotation</span><span class="o">=-</span><span class="mi">20</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">GlenohumeralFlexion</span> <span class="o">=-</span><span class="mi">0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">GlenohumeralAbduction</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">GlenohumeralExternalRotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">ElbowFlexion</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">ElbowPronation</span> <span class="o">=</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">WristFlexion</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">WristAbduction</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
-AnyVar SternoClavicularProtraction=-23; //This value is not used for
-initial position
+    <span class="c1">//Leg</span>
+    <span class="kt">AnyVar</span> <span class="n">HipFlexion</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">HipAbduction</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">HipExternalRotation</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">KneeFlexion</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">AnklePlantarFlexion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">SubTalarEversion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
 
-AnyVar SternoClavicularElevation=11.5; //This value is not used for
-initial position
-
-AnyVar SternoClavicularAxialRotation=-20; //This value is not used for
-initial position
-
-AnyVar GlenohumeralFlexion =-0;
-
-AnyVar GlenohumeralAbduction = 10;
-
-AnyVar GlenohumeralExternalRotation = 0;
-
-AnyVar ElbowFlexion = 0.01;
-
-AnyVar ElbowPronation = -20.0;
-
-AnyVar WristFlexion =0;
-
-AnyVar WristAbduction =0;
-
-//Leg
-
-AnyVar HipFlexion = 0.0;
-
-AnyVar HipAbduction = 5.0;
-
-AnyVar HipExternalRotation = 0.0;
-
-AnyVar KneeFlexion = 0.0;
-
-AnyVar AnklePlantarFlexion =0.0;
-
-AnyVar SubTalarEversion =0.0;
-
- …
+<span class="p">...</span>
 </pre></div>
 </div>
 <p>When these parameters are set for the right-hand side, the left-hand
@@ -230,8 +210,7 @@ results</span></a>.</p>
 <div class="sphinx-toc sphinxglobaltoc">
 <h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Front Page</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="intro.html">Getting Started</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 2</a><ul>
@@ -244,6 +223,18 @@ results</span></a>.</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
 </ul>
 </div>
         </div>

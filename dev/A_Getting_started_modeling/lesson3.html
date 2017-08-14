@@ -1,0 +1,637 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 3: Making Ends Meet &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 4: Kinetics - Computing Forces" href="lesson4.html" />
+    <link rel="prev" title="Lesson 2: Adjusting the Human Model" href="lesson2.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="Lesson 4: Kinetics - Computing Forces"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Adjusting the Human Model"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Getting Started with Modeling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-3-making-ends-meet">
+<h1>Lesson 3: Making Ends Meet<a class="headerlink" href="#lesson-3-making-ends-meet" title="Permalink to this headline">¶</a></h1>
+<p>So far we have accomplished to define an environment model with a simple
+pedal and a human model containing the trunk and the right leg. What the
+application is still missing is specifications of how the different
+elements are connected and how the model moves. With kinematics, it is
+usually a good idea, to begin with, an inventory of degrees of freedom
+(DOFs) in the model.</p>
+<div class="section" id="degrees-of-freedom-overview">
+<h2>Degrees of freedom overview<a class="headerlink" href="#degrees-of-freedom-overview" title="Permalink to this headline">¶</a></h2>
+<p>The pedal is simple: It is hinged to the global reference frame and
+therefore just has just one movement capability, namely a rotation about
+the hinge. The human model is more complicated. It is disconnected from
+everything and is, therefore, floating around in space. Furthermore, it
+has a number of internal degrees of freedom that must be controlled:
+Three rotations between the pelvis and the thorax segments, three
+rotations in the hip, one rotation in the knee, and two rotations in the
+ankle. With the 9&nbsp;DOFs of the entire body model in space and the single
+DOF of the pedal, this adds up to 16 DOFs. In other words, we need 16
+constraints before the model is kinematically determinate.</p>
+<p>This is what we plan to do:</p>
+<ol class="arabic simple">
+<li>The pelvis will be fixed completely at a point corresponding to the
+contact to a seat. This will do away with 6 DOFs leaving us with 10
+more to specify.</li>
+<li>The 3 rotations between the trunk and the thorax segments will be
+specified by a driver to a constant position. This leaves us with 7
+more constraints to specify.</li>
+<li>The foot will be connected to the pedal by a spherical joint having 3
+constraints. This leaves us with 4 more constraints to specify.</li>
+<li>The ankle angle will be presumed fixed by two constraints. This
+leaves 2 DOFs to be constrained.</li>
+<li>The lateral position of the knee will be specified by a driver. This
+leaves a single degree of freedom in the system.</li>
+<li>Finally, we are going to drive the pedal angle. With the
+aforementioned constraints, this will allow us to specify the posture
+of the entire system by this single driver.</li>
+</ol>
+<p>At the moment you don’t need to worry about this process of making
+constraints too much. From AMMR V1.6, this human model includes
+so-called ‘default drivers’ which can control the posture of human model
+using the joint angle values and velocities of the Mannequin.any file in
+your model. But because these default drivers are defined as ‘soft’
+constraints by default, you can just add your own drivers on top of
+those drivers. After defining all your own drivers, you can deactivate
+the default drivers using a corresponding BM statement.</p>
+</div>
+<div class="section" id="fixing-the-pelvis-to-the-global-reference-frame">
+<h2>Fixing the pelvis to the global reference frame<a class="headerlink" href="#fixing-the-pelvis-to-the-global-reference-frame" title="Permalink to this headline">¶</a></h2>
+<p>We previously joined the pedal to the origin of the global reference
+frame. This means that the ‘seat’ to which we shall fix the pelvis must
+be displaced a suitable distance from the origin. In the Environment.any
+file, add the following to the definition of the GlobalReferenceFrame:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="gr">AnyRefNode Hpoint = {</span>
+<span class="gr">     sRel = {-0.7, 0.5, 0};</span>
+<span class="gr">   };</span>
+ <span class="p">};</span> <span class="c1">// Global reference frame</span>
+</pre></div>
+</div>
+<p>The name Hpoint is a term used in the seating industry to characterize
+the position of the pelvis in a seat. Here we shall simply attach the
+pelvis to this point by means of a rigid connection.</p>
+<p>All such specifications are traditionally put into a folder called
+ModelEnvironmentConnection, and for historical reasons, it is placed in
+an include file called JointsAndDrivers.any. Let’s open this file by
+double-clicking of the following line in the main file:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="cp">#include</span> <span class="s">&quot;Model\JointsAndDrivers.any&quot;</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>Then you can see the following structure inside:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
+<span class="p">{</span>
+<span class="p">};</span>
+
+<span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
+<span class="p">{</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Here let’s prepare an AnyStdJoint for the fixation of pelvis:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="gr">AnyStdJoint SeatPelvis =</span>
+<span class="gr">  {</span>
+<span class="gr">    AnyRefFrame&amp; Seat = ;</span>
+<span class="gr">    AnyRefFrame&amp; Pelvis = ;</span>
+<span class="gr">  };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The local pointer variables &amp;Seat and &amp;Pelvis need something to point
+to. The best way of locating the necessary points is to use the object
+tree at the left-hand side of the editor window. Place your cursor in
+the editor window on the &amp;Seat line just before the final semicolon.
+Then expand the three in the left-hand side of the window through Model,
+Environment,&nbsp;GlobalRef to find the&nbsp;Hpoint that we defined previously.
+Right-click&nbsp;Hpoint and choose ‘Insert Object Name’. The full name of
+the&nbsp;Hpoint is inserted at the position of the cursor.</p>
+<p>We must repeat the procedure for the Pelvis. Place the cursor on the
+&amp;Pelvis line just before the semicolon and subsequently expand the
+object tree through HumanModel, BodyModel, Trunk, SegmentsLumbar. Inside
+the lumbar segments folder, you will find the PelvisSeg. Right-click and
+insert the object name. You should now have the following:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="kt">AnyStdJoint</span> <span class="n">SeatPelvis</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="kt">AnyRefFrame</span><span class="o">&amp;</span> <span class="n">Seat</span> <span class="o">=</span> <span class="gr">Main.Model.Environment.GlobalRef.Hpoint</span><span class="p">;</span>
+    <span class="kt">AnyRefFrame</span><span class="o">&amp;</span> <span class="n">Pelvis</span> <span class="o">=</span> <span class="gr">Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.PelvisSeg</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Save the file and hit F7 to reload the model. The model still loads in
+the same position as before.</p>
+<p>The initial positions are controlled by the mannequin file. Open it up
+by double-clicking the following line:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
+
+  <span class="kt">AnyFolder</span> <span class="n">Posture</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//This controls the position of the pelvis wrt. to the global reference frame</span>
+    <span class="kt">AnyVar</span> <span class="n">PelvisPosX</span> <span class="o">=</span> <span class="gr">-0.7</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">PelvisPosY</span> <span class="o">=</span> <span class="gr">0.5</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">PelvisPosZ</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>What we have done here is to specify the load-time position of the
+pelvis to the place where we have the seat. After reload you should be
+able to see in the model view that the body model has moved to a new
+position. It is also a good idea to specify the initial joint angles so
+that the foot comes closer to the pedal. This can be done further down
+in the Mannequin file:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>    <span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="c1">//Arm</span>
+      <span class="kt">AnyVar</span> <span class="n">SternoClavicularProtraction</span><span class="o">=-</span><span class="mi">23</span><span class="p">;</span>   <span class="c1">//This value is not used for initial position</span>
+      <span class="kt">AnyVar</span> <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mf">11.5</span><span class="p">;</span>    <span class="c1">//This value is not used for initial position</span>
+      <span class="kt">AnyVar</span> <span class="n">SternoClavicularAxialRotation</span><span class="o">=-</span><span class="mi">20</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+
+      <span class="kt">AnyVar</span> <span class="n">GlenohumeralFlexion</span> <span class="o">=-</span><span class="mi">0</span><span class="p">;</span>
+      <span class="kt">AnyVar</span> <span class="n">GlenohumeralAbduction</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+      <span class="kt">AnyVar</span> <span class="n">GlenohumeralExternalRotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="kt">AnyVar</span> <span class="n">ElbowFlexion</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
+      <span class="kt">AnyVar</span> <span class="n">ElbowPronation</span> <span class="o">=</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">;</span>
+
+      <span class="kt">AnyVar</span> <span class="n">WristFlexion</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+      <span class="kt">AnyVar</span> <span class="n">WristAbduction</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+      <span class="c1">//Leg</span>
+      <span class="kt">AnyVar</span> <span class="n">HipFlexion</span> <span class="o">=</span> <span class="gr">110.0</span><span class="p">;</span>
+      <span class="kt">AnyVar</span> <span class="n">HipAbduction</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>
+      <span class="kt">AnyVar</span> <span class="n">HipExternalRotation</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+
+      <span class="kt">AnyVar</span> <span class="n">KneeFlexion</span> <span class="o">=</span> <span class="gr">100.0</span><span class="p">;</span>
+
+      <span class="kt">AnyVar</span> <span class="n">AnklePlantarFlexion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+      <span class="kt">AnyVar</span> <span class="n">SubTalarEversion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>On reload, you will see that the body now loads in pretty much the
+desired position. Notice that this is only to bring the body close to
+where it will eventually be. It is not necessary to align the model
+exactly with the pedal. The kinematic constraints will take care of this
+once they are properly defined.</p>
+<p><a class="reference internal" href="../_images/image113.png"><img alt="Posture Adjustment1" src="../_images/image113.png" style="width: 2.71667in; height: 3.76389in;" /></a></p>
+</div>
+<div class="section" id="fix-the-trunk-position">
+<h2>Fix the trunk position<a class="headerlink" href="#fix-the-trunk-position" title="Permalink to this headline">¶</a></h2>
+<p>In this model, the trunk does not play any kinematic role. Its purpose
+is only to include the psoas muscles connected to the leg. So we should
+simply set it to a fix position. The trunk has three free rotations,
+flexion, lateral bending and axial rotation plus the rotation of the
+skull that we will fix to zero degrees. This can be done by a so-called
+simple driver. In the JointsAndDrivers file we can see the ‘Driver’s
+folder below the Joints folder:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="kt">AnyStdJoint</span> <span class="n">SeatPelvis</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="kt">AnyRefFrame</span><span class="o">&amp;</span> <span class="n">Seat</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">Model</span><span class="p">.</span><span class="n">Environment</span><span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">Hpoint</span><span class="p">;</span>
+    <span class="kt">AnyRefFrame</span><span class="o">&amp;</span> <span class="n">Pelvis</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SegmentsLumbar</span><span class="p">.</span><span class="n">PelvisSeg</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
+<span class="p">{</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>We then insert two simple drivers into the Drivers folder:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="gr">AnyKinEqSimpleDriver PelvisThoraxDriver =</span>
+<span class="gr">  {</span>
+<span class="gr">    AnyKinMeasure&amp; ref0 = ...HumanModel.BodyModel.Interface.Trunk.PelvisThoraxExtension;</span>
+<span class="gr">    AnyKinMeasure&amp; ref1 = ...HumanModel.BodyModel.Interface.Trunk.PelvisThoraxLateralBending;</span>
+<span class="gr">    AnyKinMeasure&amp; ref2 = ...HumanModel.BodyModel.Interface.Trunk.PelvisThoraxRotation;</span>
+
+<span class="gr">    DriverPos = pi/180*{0,0,0};</span>
+<span class="gr">    DriverVel = pi/180*{0,0,0};</span>
+<span class="gr">  };</span>
+
+<span class="gr">  AnyKinEqSimpleDriver NeckJntDriver =</span>
+<span class="gr">  {</span>
+<span class="gr">    AnyKinMeasure&amp; ref0 = ...HumanModel.BodyModel.Interface.Trunk.NeckJoint;</span>
+<span class="gr">    DriverPos = pi/180*{0};</span>
+<span class="gr">    DriverVel = pi/180*{0};</span>
+<span class="gr">  }; </span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Most of this came about the same way as we have done previously: The
+definition of the AnyKinEqSimpleDriver (and indeed its complex name)
+came from the Object Inserter&nbsp;in the Class Tree at the left-hand&nbsp;side of
+the editor window. The complete name of the thorax and neck rotations
+was inserted from the object tree. The joints are going to be static,
+and in their neutral position, so the DriverVel and DriverPos are simply
+zero.</p>
+</div>
+<div class="section" id="connecting-the-foot-to-the-pedal">
+<h2>Connecting the foot to the pedal<a class="headerlink" href="#connecting-the-foot-to-the-pedal" title="Permalink to this headline">¶</a></h2>
+<p>The foot will be connected to the pedal by a spherical joint. This is
+defined inside the JointsAndDrivers.any file in the following way:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="kt">AnyStdJoint</span> <span class="n">SeatPelvis</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="kt">AnyRefFrame</span><span class="o">&amp;</span> <span class="n">Seat</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">Model</span><span class="p">.</span><span class="n">Environment</span><span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">Hpoint</span><span class="p">;</span>
+    <span class="kt">AnyRefFrame</span><span class="o">&amp;</span> <span class="n">Pelvis</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SegmentsLumbar</span><span class="p">.</span><span class="n">PelvisSeg</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="gr">AnySphericalJoint PedalFoot =</span>
+<span class="gr">  {</span>
+<span class="gr">    AnyRefFrame&amp; Pedal = Main.Model.Environment.Pedal.FootNode;</span>
+<span class="gr">    AnyRefFrame&amp; Foot = Main.HumanModel.BodyModel.Right.Leg.Seg.Foot.MetatarsalJoint2Node;</span>
+<span class="gr">  }; </span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>We have cheated just a little.&nbsp;It is possible to define new nodes on the
+foot for attachment to a specific place, but we have taken the
+cheap-and-dirty solution of picking an existing point close to where we
+presume the contact with the pedal will be. The MetatarsalJoint2Node&nbsp;is
+a good approximation.</p>
+</div>
+<div class="section" id="setting-the-ankle-angle">
+<h2>Setting the ankle angle<a class="headerlink" href="#setting-the-ankle-angle" title="Permalink to this headline">¶</a></h2>
+<p>In the Ankle of this human model, there are 2 degrees of freedom:
+AnklePlantarFlexion and SubTarEversoin. We wish to constrain these
+degrees of freedom to predefined values as zero. This can be done by the
+simple driver. We shall introduce the simple driver into the Drivers
+folder:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
+<span class="p">{</span>
+<span class="p">...</span>
+  <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">NeckJntDriver</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref0</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">NeckJoint</span><span class="p">;</span>
+
+    <span class="n">DriverPos</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="n">DriverVel</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+   <span class="p">};</span>
+
+  <span class="gr">AnyKinEqSimpleDriver AnkleDriver =</span>
+<span class="gr">  {</span>
+<span class="gr">    AnyKinMeasure&amp; ref0 = ...HumanModel.BodyModel.Interface.Right.AnklePlantarFlexion;</span>
+<span class="gr">    AnyKinMeasure&amp; ref1 = ...HumanModel.BodyModel.Interface.Right.SubTalarEversion;</span>
+
+<span class="gr">    DriverPos = pi/180*{0, 0};</span>
+<span class="gr">    DriverVel = pi/180*{0, 0};</span>
+<span class="gr">   };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The model should load again with no significant difference.</p>
+</div>
+<div class="section" id="fix-the-lateral-position-of-the-knee">
+<h2>Fix the lateral position of the knee<a class="headerlink" href="#fix-the-lateral-position-of-the-knee" title="Permalink to this headline">¶</a></h2>
+<p>Imagine your pelvis on a seat and your foot resting on a point like the
+model is right now. You can still move your knee sideways either
+medially or laterally rotating the leg about an axis through the foot
+contact point and the hip joint. We must constrain this movement, and
+the easiest way to do it is by fixing the knee laterally.</p>
+<p>We shall do this by another simple driver in conjunction with a linear
+measure which is so-called as AnyKinLinear class object. Let us add
+another driver to the Drivers folder:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
+<span class="p">{</span>
+<span class="p">...</span>
+  <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">AnkleDriver</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref0</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">AnklePlantarFlexion</span><span class="p">;</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref1</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">SubTalarEversion</span><span class="p">;</span>
+
+    <span class="n">DriverPos</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+    <span class="n">DriverVel</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="p">};</span>
+
+  <span class="gr">AnyKinEqSimpleDriver KneeDriver =</span>
+<span class="gr">  {</span>
+<span class="gr">    AnyKinLinear lin =</span>
+<span class="gr">    {</span>
+<span class="gr">      AnyRefFrame&amp; ref0 = Main.Model.Environment.GlobalRef;</span>
+<span class="gr">      AnyRefFrame&amp; ref1 = Main.HumanModel.BodyModel.Right.Leg.Seg.Thigh.KneeJoint;</span>
+<span class="gr">      Ref = 0;</span>
+<span class="gr">    };</span>
+<span class="gr">    MeasureOrganizer = {2};</span>
+<span class="gr">    DriverPos = {0};</span>
+<span class="gr">    DriverVel = {0};</span>
+<span class="gr">   }; </span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The AnyKinLinear class is really a 3D vector between the two reference
+frames which it refers to, i.e., in this case, the position of the knee
+with respect to the global reference frame. However, we only wish to
+drive one of the coordinates of this vector, namely the lateral
+coordinate. This is the z coordinate, which in an AnyScript model has
+the index number as two because numbering index begins from 0. To drive
+only this one coordinate, we should specify the MeasureOrganizer inside
+the AnyKinEqSimpleDriver object, and this MeasureOrganizer can configure
+which components of the related kinematic measures can be controlled by
+its kinematic drivers. So in this case, the driver will neglect the x
+and y coordinates of the vector returned by the linear measure. You
+should be able to load the model again, but there is no visible
+difference.</p>
+</div>
+<div class="section" id="drive-the-pedal">
+<h2>Drive the pedal<a class="headerlink" href="#drive-the-pedal" title="Permalink to this headline">¶</a></h2>
+<p>The final step is to drive the movement of the pedal. It is hinged to
+the origin of the coordinate system, and we shall add a driver to the
+joint angle pretty much like we did with the ankle and the knee.</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
+<span class="p">{</span>
+<span class="p">...</span>
+  <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">KneeDriver</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="kt">AnyKinLinear</span> <span class="n">lin</span> <span class="o">=</span>
+    <span class="p">{</span>
+      <span class="kt">AnyRefFrame</span><span class="o">&amp;</span> <span class="n">ref0</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">Model</span><span class="p">.</span><span class="n">Environment</span><span class="p">.</span><span class="n">GlobalRef</span><span class="p">;</span>
+      <span class="kt">AnyRefFrame</span><span class="o">&amp;</span> <span class="n">ref1</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">Seg</span><span class="p">.</span><span class="n">Thigh</span><span class="p">.</span><span class="n">KneeJoint</span><span class="p">;</span>
+      <span class="n">Ref</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="n">MeasureOrganizer</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">};</span>
+    <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="c1">//Reaction.Type = {Off};</span>
+  <span class="p">};</span>
+
+  <span class="gr">AnyKinEqSimpleDriver PedalDriver =</span>
+<span class="gr">  {</span>
+<span class="gr">    AnyKinMeasure &amp;ref0 = Main.Model.Environment.HingeJoint;</span>
+<span class="gr">    DriverPos = pi/180*{100};</span>
+<span class="gr">    DriverVel = pi/180*{45};</span>
+<span class="gr">    Reaction.Type = {Off};</span>
+<span class="gr">  };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This puts the pedal in an initial 100-degree angle compared to vertical.
+It also specifies a movement with an angular velocity of 45 degrees per
+second, but let’s postpone the investigation of that for later.</p>
+<p>For now, hit F7 again to reload the model. Notice that the system no
+longer complains about the model being kinematically indeterminate.</p>
+</div>
+<div class="section" id="running-kinematics">
+<h2>Running kinematics<a class="headerlink" href="#running-kinematics" title="Permalink to this headline">¶</a></h2>
+<p>Select the ‘Main.Study.Kinematics’ and run this operation to see how
+your model works kinematically.</p>
+<p><a class="reference internal" href="../_images/image29.png"><img alt="Operations tree Kinematics" src="../_images/image29.png" style="width: 2.19792in; height: 2.35833in;" /></a></p>
+<p>Doing so will show you the movement of the entire system as the pedal is
+rotating.</p>
+<p><a class="reference internal" href="../_images/image38.png"><img alt="Operation Result Kinematics" src="../_images/image38.png" style="width: 2.96250in; height: 3.47153in;" /></a></p>
+</div>
+<div class="section" id="check-if-model-is-kinematic-determined">
+<h2>Check if model is kinematic determined?<a class="headerlink" href="#check-if-model-is-kinematic-determined" title="Permalink to this headline">¶</a></h2>
+<p>Finally, you will check the number of DOFs and the number of kinematic
+constraints from the “Object Description” of the AnyBodyStudy object.
+You can find the “Object Description” of your AnyBodyStudy class object
+in the Model Tree of your model like this:</p>
+<p><a class="reference internal" href="../_images/image48.png"><img alt="Operations tree object description" src="../_images/image48.png" style="width: 3.51875in; height: 2.99028in;" /></a></p>
+<p>Then you see the Object Description dialog will open.</p>
+<p><a class="reference internal" href="../_images/image58.png"><img alt="ObjectDescription DOFs" src="../_images/image58.png" style="width: 4.84931in; height: 5.32986in;" /></a></p>
+<p>This indicates that the total number of DOFs(degrees of freedom) in your
+model is 90. It makes sense because there are 15 segments in your model
+and each segment has 6 DOFs.</p>
+<p>If you scroll down this dialog a little bit more, then you can see the
+following section:</p>
+<p><a class="reference internal" href="../_images/image62.png"><img alt="ObjectDescription Constraints1" src="../_images/image62.png" style="width: 6.68889in; height: 5.16042in;" /></a></p>
+<p>The last message in the above screenshot lets us know that there are 106
+constraints from the joints and the drivers in the model.</p>
+<p>In general, the total number of DOFs in the model should be exactly as
+same as the total number of kinematic constraints in the model. But at
+the moment, the number of kinematic constraints is larger than that of
+DOFs. In this kind of situation, the kinematics of the model may not be
+determined uniquely because there are more equations to be solved than
+the number of unknowns in the system. This may frequently happen if the
+user may not consider this concept of the DOFs and the constraints.</p>
+<p>But you should know why there are more constraints than you have defined
+and how AnyBody could solve the kinematics of the model even in this
+situation. In the “HumanModel” folder there is a subfolder of which name
+is ‘DefaultMannequinDrivers’. In that folder, there are some default
+drivers which can control the posture of the human model based on the
+values in the Mannequin.any file.</p>
+<p><a class="reference internal" href="../_images/image71.png"><img alt="Model tree Default manequin drivers" src="../_images/image71.png" style="width: 2.95278in; height: 7.76389in;" /></a></p>
+<p>The reason why these default drivers exist is that sometimes the user
+may have some difficulties in finding which human joints should be
+driven or what kinds of constraints should be defined for the human
+model. In order to provide a more convenient way of modeling, these
+default drivers of human model can help users even if they may miss some
+necessary drivers to run the kinematics perfectly. And because these
+default drivers are defined as “Soft” constraints, the kinematics of the
+model can be solved with the other normal “Hard” type constraints.
+“Soft” constraint means that it can be compromised with other Soft and
+Hard Constraints.</p>
+<p>Because you could define all necessary “Hard” constraints to run the
+kinematics, let us find the way how to remove these default drivers from
+your model. You can just add one more BM statement in the main file to
+control the default drivers of the human model like this:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">//--&gt;BM statements</span>
+  <span class="c1">// Excluding the muscles in the trunk segments</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_TRUNK_MUSCLES</span> <span class="x x-Options">CONST_MUSCLES_NONE</span>
+  <span class="c1">// Excluding the left arm segments</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_ARM_LEFT</span> <span class="x x-Options">OFF</span>
+  <span class="c1">// Excluding the right arm segments</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_ARM_RIGHT</span> <span class="x x-Options">OFF</span>
+  <span class="c1">// Excluding the left leg segments</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_LEFT</span> <span class="x x-Options">CONST_LEG_MODEL_OFF</span>
+  <span class="c1">// Using the right leg as &#39;TLEM&#39; model</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_RIGHT</span> <span class="x x-Options">CONST_LEG_MODEL_TLEM</span>
+  <span class="c1">// Excluding the muscles in the right leg segments</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_MUSCLES_RIGHT</span> <span class="x x-Options">CONST_MUSCLES_NONE</span>
+  <span class="c1">// Excluding the default drivers for the human model</span>
+  <span class="gr">#define BM_MANNEQUIN_DRIVER_DEFAULT OFF</span>
+  <span class="c1">//&lt;--</span>
+</pre></div>
+</div>
+<p>Save the main file and press F7 button to reload the model. And try to
+open the Object Description dialog of “Study” object in the Model Tree.</p>
+<p><a class="reference internal" href="../_images/image81.png"><img alt="ObjectDescription Constraints2" src="../_images/image81.png" style="width: 6.68889in; height: 3.06597in;" /></a></p>
+<p>You see that now the total number of constraints has been changed to 90
+and this is exactly as same as the total number of DOFs. Of course, you
+can still run the kinematics of your model.</p>
+<p>Now that the kinematics is in order let us move on to the <a class="reference internal" href="lesson4.html"><span class="doc">kinetic
+analysis in Lesson 4 and see what the model is good
+for.</span></a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Getting Started with Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#degrees-of-freedom-overview">Degrees of freedom overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixing-the-pelvis-to-the-global-reference-frame">Fixing the pelvis to the global reference frame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fix-the-trunk-position">Fix the trunk position</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-the-foot-to-the-pedal">Connecting the foot to the pedal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-the-ankle-angle">Setting the ankle angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fix-the-lateral-position-of-the-knee">Fix the lateral position of the knee</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drive-the-pedal">Drive the pedal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-kinematics">Running kinematics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-if-model-is-kinematic-determined">Check if model is kinematic determined?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="Lesson 4: Kinetics - Computing Forces"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Adjusting the Human Model"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" >Getting Started with Modeling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

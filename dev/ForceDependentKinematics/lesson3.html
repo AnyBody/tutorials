@@ -1,0 +1,266 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 3: Results of FDK &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 4: Using Surfaces to Define the Knee Joint" href="lesson4.html" />
+    <link rel="prev" title="Lesson 2: Adding FDK Features" href="lesson2.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="Lesson 4: Using Surfaces to Define the Knee Joint"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Adding FDK Features"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="fdk.html" accesskey="U">Force-Dependent Kinematics</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-3-results-of-fdk">
+<h1>Lesson 3: Results of FDK<a class="headerlink" href="#lesson-3-results-of-fdk" title="Permalink to this headline">¶</a></h1>
+<p>In this lesson we play a little around with our new FDK model and see
+what kind of results we can obtain from it. If you did not manage to
+obtain a working model from the previous lesson, then please download a
+new one <a class="reference download internal" href="../_downloads/DemoSimpleKnee2.any" download=""><code class="xref download docutils literal"><span class="pre">here</span></code></a>.</p>
+<p>After loading the model, open a Model View window, select
+InverseDynamics and then click the Run button. You should see the knee
+extending and the muscle bulging just like you saw with the baseline
+model. However, inside the joint, much more is now going on. We can
+investigate this in detail if we open a ChartFX window and browse down
+to the linear measure inside the joint:</p>
+<p><a class="reference internal" href="../_images/image124.png"><img alt="Chart view Linear pos" src="../_images/image124.png" style="width: 4.54286in; height: 2.96800in;" /></a></p>
+<p>The red curve is the deformation of the joint in the <em>x</em> direction, i.e.
+parallel with the tibial plateau. Despite the stiffness being smaller in
+this direction, the deformation is rather small. This is of course due
+to the muscle force acting rather perpendicularly to the tibial plateau.</p>
+<p>The green curve symbolizes the deformation perpendicular to the tibial
+plateau. It reaches a value of about 4 cm, which is much more than in a
+real knee. This is because we defined very small stiffness values,
+precisely to get some large deformations to look at. If you right-click
+the blue condyle, select ‘Hide” from the context menu and zoom in on the
+joint, you can see the deformation very clearly as a penetration of the
+shank part of the joint into the thigh part:</p>
+<p><a class="reference internal" href="../_images/image220.png"><img alt="Model view Knee close up" src="../_images/image220.png" style="width: 4.54286in; height: 2.40718in;" /></a></p>
+<p>Now let us try something that will create a larger shear deformation in
+the joint: we relocate the position of the insertion node of the
+quadriceps muscle on the tibia:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Shank</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">r0</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+  <span class="n">Mass</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">}</span><span class="o">*</span><span class="mf">0.4</span><span class="p">;</span>
+  <span class="kt">AnyDrawSeg</span> <span class="n">drw</span> <span class="o">=</span><span class="p">{</span>
+    <span class="n">Opacity</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="kt">AnyRefNode</span> <span class="n">KneeCenter</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+  <span class="p">};</span>
+    <span class="kt">AnyRefNode</span> <span class="n">Quadriceps</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span><span class="o">=</span><span class="p">{</span><span class="gr">0.00</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This moves the insertion point of the node from the surface of the tibia
+to centerline of the tibia as shown below:</p>
+<p><a class="reference internal" href="../_images/image316.png"><img alt="Model view Knee wrapping sureface" src="../_images/image316.png" style="width: 3.25000in; height: 2.09176in;" /></a></p>
+<p>Obviously, this causes the muscle to pull much more anteriorly on the
+shank. Please reload and re-run the analysis and investigate the
+deformations once again in the ChartFX window.</p>
+<p><a class="reference internal" href="../_images/image415.png"><img alt="Chart view Linear pos 2" src="../_images/image415.png" style="width: 4.33571in; height: 2.81099in;" /></a></p>
+<p>The shear deformation, symbolized by the green curve, is now comparable
+with the normal deformation depicted by the red curve, and once again it
+is easily visible if we remove the blue condyle from the Model View:</p>
+<p><a class="reference internal" href="../_images/image513.png"><img alt="Model view Knee close up 2" src="../_images/image513.png" style="width: 2.72857in; height: 1.75615in;" /></a></p>
+<p>At this point, we can reflect a bit on what the FDK solver within the
+InverseDynamics analysis actually does. Basically, it finds equilibrium
+for the degrees of freedom that you have specified as ‘ForceDep’. It is
+static equilibrium in the sense that the solver assumes accelerations
+and velocities of these degrees of freedom to be zero, just like if it
+had been an ideal joint without motion. This assumption is fair as long
+as the motion of the degrees of freedom is actually small (negligible);
+but it is your responsibility to make sure that this is okay for your
+model. In the current model, it may be disputable whether it is ok, but
+primarily because we have worked with relatively large deformations for
+the sake of the example.</p>
+<p>We may call the obtained solution a quasi-static equilibrium because it
+is indeed static in the direction of the force-dependent degrees of
+freedom, i.e. the small motions, but it retains all the motion from that
+large motion of the standard kinematical drivers and the thereof
+following inertia forces.</p>
+<p>The FDK solver solves the equilibrium equations numerically and
+therefore it will leave a small residual. You can monitor this residual
+in the output data; in the figure below you see the curve for the
+error/residual (Main.Study.InverseDynamics.ForceDepKin.ForceError) for
+the example at hand</p>
+<p><a class="reference internal" href="../_images/image64.png"><img alt="Chart view ForceDepKin.ForceError" src="../_images/image64.png" style="width: 4.31429in; height: 3.43051in;" /></a></p>
+<p>In this example, the error is completely insignificant and within the
+specified error tolerance
+(Main.Study.InverseDynamics.ForceDepKin.ForceTol). It can, however,
+become harder to reach a solution within a very fine accuracy, when
+models become more complicated and in particular when the stiffness is
+increased a lot. In other words, the solver will have difficulties when
+approaching the case of ideal constraints.</p>
+<p>The solver continues with subsequent time steps, even if it does not
+converge within the specified tolerance. This implies that we can keep
+the tolerance small and subsequently inspect the time steps for which
+the solver fails to honor the tolerance.</p>
+<p>In principle, this completes the introduction to AnyBody’s FDK solver in
+this tutorial. The FDK principle is applicable in many different
+situations where tissue deformations are involved, and models can of
+course be defined in much more realistic detail than we have seen here.
+In the fourth lesson of this tutorial, we shall have a look at how to
+use the simple surface contact force model also available in AnyBody to
+improve on the kinematical behavior in combination with the FDK solver.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="fdk.html">Force-Dependent Kinematics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html"> Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fdkappendix.html"> FDK appendiks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="Lesson 4: Using Surfaces to Define the Knee Joint"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Adding FDK Features"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="fdk.html" >Force-Dependent Kinematics</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

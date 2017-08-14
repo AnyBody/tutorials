@@ -1,0 +1,297 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 3: The Chart View &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 4: The Model Tree and Object Description" href="lesson4.html" />
+    <link rel="prev" title="Lesson 2: The Model View Window" href="lesson2.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="Lesson 4: The Model Tree and Object Description"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: The Model View Window"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">User interface features</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-3-the-chart-view">
+<h1>Lesson 3: The Chart View<a class="headerlink" href="#lesson-3-the-chart-view" title="Permalink to this headline">¶</a></h1>
+<p>The AnyBody Modeling System has the Chart View for displaying results:</p>
+<p>The Chart View gives you the opportunity to make two-dimensional line
+plots and three-dimensional surface plots. You can make identical charts
+in the Chart View and inside the model scene, i.e., in Model View.</p>
+<p><a class="reference internal" href="../_images/image128.png"><img alt="Chart view window" src="../_images/image128.png" style="width: 6.68542in; height: 4.03681in;" /></a></p>
+<p>We will use the CrossTrainer model from the previous tutorial and
+investigate the results (see details on how to load and run the model in
+the previous tutorial)</p>
+<ol class="arabic simple">
+<li>Once the operation is complete, open the Chart View by clicking the
+Chart tab in the Model View.</li>
+<li>Notice that the window is divided into a tree pane on the left and
+the actual data area to the right.</li>
+<li>The tree in the Chart View has been filtered so that you only see the
+output data. This particular category of data only becomes available
+when an operation is started. To reach the output data, expand the
+tree through Main.Study.Output.</li>
+</ol>
+<div class="section" id="global-output-data">
+<h2>Global output data<a class="headerlink" href="#global-output-data" title="Permalink to this headline">¶</a></h2>
+<p>Directly below the tree’s Output node, you will find data pertaining to
+the “global” properties of the model:</p>
+<ul class="simple">
+<li>Ekin - the total kinetic energy of the system</li>
+<li>Epot - the total potential energy of the system</li>
+<li>Emech - the total mechanical energy of the system, i.e. the sum of
+potential and kinetic energies</li>
+<li>Pmech - the mechanical power of the system</li>
+</ul>
+<p>To plot some different data e.g. by clicking Ekin, Epot, and Emech in
+turn.</p>
+</div>
+<div class="section" id="time-dependent-data">
+<h2>Time-dependent data<a class="headerlink" href="#time-dependent-data" title="Permalink to this headline">¶</a></h2>
+<p>The usual way of looking at data is as a function of time or rather time
+steps. If you expand the Model branch down to the
+HumanModelHumanModel.Right.Leg.Seg section, you can investigate the
+movement of e.g. a foot segment. Expand the tree until you get to the
+Talus object as shown to the left. Then click the r property. This
+displays three curves on the screen corresponding to the x, y, and z
+coordinates of the talus’ reference frame. The color codes of the chart
+view are red, green and blue in that order, so red is for x, green is
+for y, and blue is for z.</p>
+<p><a class="reference internal" href="../_images/image224.png"><img alt="Chart view with plots" src="../_images/image224.png" style="width: 6.69306in; height: 4.05069in;" /></a></p>
+<p>Let us look at more complex data, let us find the muscles in the tree by
+expanding to Main.Study.Output.Model.HumanModel.Right.Mus. Take the
+first muscle, SoleusMedialis1SoleusMedialis1, and click the Fm property.</p>
+<p><a class="reference internal" href="../_images/image320.png"><img alt="Chart view, single plot" src="../_images/image320.png" style="width: 5.26214in; height: 4.30826in;" /></a></p>
+<p><strong>An asterisk (``*``) serves as a placeholder in the Chart; if you click in
+the Value field and type an asterisk instead of “Medialis1”, you will
+see all Soleus muscles (muscles whose names start with Soleus).</strong></p>
+<p><a class="reference internal" href="../_images/image418.png"><img alt="Chart view multiple plots with asterix" src="../_images/image418.png" style="width: 5.33981in; height: 4.44161in;" /></a></p>
+<p>If you choose SelectedOutput in the model tree, you will find some
+pre-chosen quantities that are useful from a biomechanical point of
+view, for example, joint reaction forces, moments and muscle envelopes.</p>
+</div>
+<div class="section" id="detailed-data-investigation">
+<h2>Detailed data investigation<a class="headerlink" href="#detailed-data-investigation" title="Permalink to this headline">¶</a></h2>
+<p>If you hold the mouse pointer still above the curve for a moment, a
+small box will pop up and give you the name of the data series and the
+value at the current cursor position (interpolated if between data
+points).</p>
+</div>
+<div class="section" id="working-with-several-series">
+<h2>Working with several Series<a class="headerlink" href="#working-with-several-series" title="Permalink to this headline">¶</a></h2>
+<p>You can plot several data series in the same Chart View. If we, for
+example, want to compare the muscle force of the Soleus muscles to the
+VastusMedialis muscles, we press the button ‘Add series’, select the FM
+property of a VastusMedialis muscle from the tree and use the asterisk
+to show all the muscles the same way as we did it before.</p>
+<p><a class="reference internal" href="../_images/image516.png"><img alt="Chart view, series" src="../_images/image516.png" style="width: 6.69306in; height: 3.74097in;" /></a></p>
+</div>
+<div class="section" id="exporting-data">
+<h2>Exporting data<a class="headerlink" href="#exporting-data" title="Permalink to this headline">¶</a></h2>
+<p>Basically, there are two options for exporting your data. You can export
+the graph as an image or as a data matrix. You can also save the graph
+as a separate file using or copy it to the clipboard and insert it into
+an existing file.</p>
+<p>Copy to clipboard :</p>
+<ul class="simple">
+<li>As a bitmap picture</li>
+<li>As text: copies the graph data to the clipboard in text format. You
+can paste them into a spreadsheet or a text editor.</li>
+<li>As a hi-res bitmap picture</li>
+<li>To Python Matplotlib chart: This function is currently in testing</li>
+</ul>
+<p>Save as image file using the icon <a class="reference internal" href="../_images/image67.png"><img alt="image5" src="../_images/image67.png" style="width: 0.32431in; height: 0.34236in;" /></a>, file name, location and type
+can be selected:</p>
+<ul class="simple">
+<li>Bitmap, jpg, gif, png or tiff picture:</li>
+<li>Text or CSV data file: Saves plot data in CSV format in column
+formatted text file.</li>
+<li>Python file: Exports as python script creating a plot using the
+library Matplotlib.</li>
+</ul>
+<p>A word of caution regarding the text option: Different countries have
+different conventions for decimal numbers. Some use a point as decimal
+separator, and some use a comma. The numbers copied to the clipboard
+from the Chart View follow the nationality settings for the decimal
+point or comma.</p>
+</div>
+<div class="section" id="user-defined-abscissa-and-3d-graphs">
+<h2>User-defined abscissa and 3D graphs<a class="headerlink" href="#user-defined-abscissa-and-3d-graphs" title="Permalink to this headline">¶</a></h2>
+<p>The default abscissa in the chart view is time. However, you can in
+principle plot data against any scalar property the system has computed.
+For this, replace the Main.Study.Output.Abscissa.t specification in the
+Abscissa specification line.</p>
+<p><a class="reference internal" href="../_images/image7.jpeg"><img alt="Chart view userdefined abscissa" src="../_images/image7.jpeg" style="width: 6.13913in; height: 1.08696in;" /></a></p>
+<p>Alternatively, you can add a second abscissa to create a 3D graph. More
+icons will be activated when a second abscissa is identified. Typically
+these 3D graphs are used in parameter studies and optimizations. More
+detailed information is available in the “Parameter studies and
+optimization“ tutorial.</p>
+<p>Continue to <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4: Browsing the Model via Model Tree and Object
+Description</span></a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">User interface features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-output-data">Global output data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time-dependent-data">Time-dependent data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#detailed-data-investigation">Detailed data investigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#working-with-several-series">Working with several Series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exporting-data">Exporting data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-defined-abscissa-and-3d-graphs">User-defined abscissa and 3D graphs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html"> Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html"> Lesson 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson7.html"> Lesson 7</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/intro.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/intro.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/intro.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/intro.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/intro.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/intro.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/intro.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/intro.html">Scaling</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="Lesson 4: The Model Tree and Object Description"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: The Model View Window"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="intro.html" >User interface features</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
