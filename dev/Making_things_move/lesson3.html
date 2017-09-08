@@ -71,7 +71,7 @@
 <p>Let us run the Kinematics operation and investigate the results. After
 the operation has completed, please click Window -&gt; CharFX 2D (New) and
 plot the position vector of the pendulum as shown below:</p>
-<p><a class="reference internal" href="../_images/image133.png"><img alt="pendulum.r" src="../_images/image133.png" style="width: 4.63542in; height: 3.12500in;" /></a></p>
+<p><a class="reference internal" href="../_images/image131.png"><img alt="pendulum.r" src="../_images/image131.png" style="width: 4.63542in; height: 3.12500in;" /></a></p>
 <p>The red, green and blue curves designate x, y and z locations
 respectively of the center of mass of the pendulum. We see the expected
 sinusoidal curves for x and y and a z location that is constantly zero.
@@ -79,11 +79,11 @@ It all looks fine and dandy, but closer investigation will reveal that
 it is not.</p>
 <p>If we plot the velocity, <code class="docutils literal"><span class="pre">rDot</span></code>, rather than the position, we begin to see
 the problem:</p>
-<p><a class="reference internal" href="../_images/image227.png"><img alt="pendulum.rdot" src="../_images/image227.png" style="width: 3.55208in; height: 2.46875in;" /></a></p>
+<p><a class="reference internal" href="../_images/image226.png"><img alt="pendulum.rdot" src="../_images/image226.png" style="width: 3.55208in; height: 2.46875in;" /></a></p>
 <p>It is obvious that the motion is not as smooth as we would expect from
 the first set of graphs, and it gets even worse if we plot the
 accelerations, <code class="docutils literal"><span class="pre">rDDot</span></code>:</p>
-<p><a class="reference internal" href="../_images/image323.png"><img alt="pendulum.rddot" src="../_images/image323.png" style="width: 3.55208in; height: 2.46875in;" /></a></p>
+<p><a class="reference internal" href="../_images/image322.png"><img alt="pendulum.rddot" src="../_images/image322.png" style="width: 3.55208in; height: 2.46875in;" /></a></p>
 <p>Since forces in a mechanical system stem from accelerations, an analysis
 of the force in this system would lead to a completely different result
 than we would expect. The problem is due to noise in the measurements,
@@ -172,7 +172,7 @@ room to eliminate more noise by using a lower value of Fc. If we change</p>
 </pre></div>
 </div>
 <p>…we can get the following accelerations:</p>
-<p><a class="reference internal" href="../_images/image420.png"><img alt="pendulumfilt" src="../_images/image420.png" style="width: 3.94792in; height: 3.00000in;" /></a></p>
+<p><a class="reference internal" href="../_images/image419.png"><img alt="pendulumfilt" src="../_images/image419.png" style="width: 3.94792in; height: 3.00000in;" /></a></p>
 <p>They look much more reasonable, but notice that each end of the curve is
 influenced by the initial conditions of the filter. Filters remove noise
 but they are also sources of artifacts in the model and nothing is ever
@@ -209,7 +209,6 @@ be used to our advantage for other purposes too, as we shall see in
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>

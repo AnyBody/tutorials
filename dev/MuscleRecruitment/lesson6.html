@@ -110,7 +110,7 @@ require upper limits on the muscle activation:</p>
 <p>Loading and running this version will produce the exact same result as
 the standard quadratic criterion because the weight on the linear term
 is set to zero. The result looks like this:</p>
-<p><a class="reference internal" href="../_images/image137.png"><img alt="Chart view Muscle activty" src="../_images/image137.png" style="width: 6.25556in; height: 4.10486in;" /></a></p>
+<p><a class="reference internal" href="../_images/image135.png"><img alt="Chart view Muscle activty" src="../_images/image135.png" style="width: 6.25556in; height: 4.10486in;" /></a></p>
 <p>However, if we add a bit of weight to the linear term:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">Type</span> <span class="o">=</span> <span class="kp">MR_QuadraticAux</span><span class="p">;</span>
@@ -120,7 +120,7 @@ is set to zero. The result looks like this:</p>
 </div>
 <p>…we can influence the resulting recruitment and get the following
 result:</p>
-<p><a class="reference internal" href="../_images/image232.png"><img alt="Chart view Muscle activty linear weight" src="../_images/image232.png" style="width: 6.25556in; height: 4.10486in;" /></a></p>
+<p><a class="reference internal" href="../_images/image231.png"><img alt="Chart view Muscle activty linear weight" src="../_images/image231.png" style="width: 6.25556in; height: 4.10486in;" /></a></p>
 <p>The muscle synergy is slightly reduced by the linear term in the
 objective function, and the maximum muscle activation is consequently
 slightly higher. Is this better than the pure quadratic recruitment?
@@ -176,7 +176,7 @@ recruitment criterion:</p>
 </pre></div>
 </div>
 <p>Reloading and rerunning produces the following rather attractive result:</p>
-<p><a class="reference internal" href="../_images/image328.png"><img alt="Chart view Muscle activity MinMaxAux" src="../_images/image328.png" style="width: 5.20903in; height: 3.75556in;" /></a></p>
+<p><a class="reference internal" href="../_images/image327.png"><img alt="Chart view Muscle activity MinMaxAux" src="../_images/image327.png" style="width: 5.20903in; height: 3.75556in;" /></a></p>
 <p>This appears to produce a combination of soft onset and offset of
 muscles together with a clearly defined envelope on which several
 muscles cooperate evenly to carry the load. Please notice, however, that
@@ -213,9 +213,8 @@ and this does not seem to be right.</li>
 attractive features, should be used with care in models where there is a
 chance that some model parts are independent of each other.</p>
 <p>Let us carry on with <a class="reference internal" href="lesson_calibration.html"><span class="doc">Lesson 7: Calibration</span></a></p>
-</div>
 <div class="section" id="references">
-<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p>Praagman, M., Veeger, H.E.J., Chadwick, E.K., Colier, W.N., van der
 Helm, F.C. (2003). Muscle oxygen consumption, determined by NIRS, in
 relation to external force and EMG. Journal of Biomechancis, 36,
@@ -223,6 +222,7 @@ relation to external force and EMG. Journal of Biomechancis, 36,
 <p>Praagman M, Chadwick EKJ, van der Helm FCT, Veeger HEJ (2006): The
 relationship between two different mechanical cost functions and muscle
 oxygen consumption. Journal of Biomechanics, 39, 758–765.</p>
+</div>
 </div>
 
 
@@ -249,7 +249,6 @@ oxygen consumption. Journal of Biomechanics, 39, 758–765.</p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Getting Started with Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Interface_features/intro.html">User interface features</a></li>
@@ -261,8 +260,10 @@ oxygen consumption. Journal of Biomechanics, 39, 758–765.</p>
 <li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson5.html"> Lesson 5</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 6: Composite Recruitment Criteria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 6</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="lesson_calibration.html"> Lesson 7</a></li>
 </ul>
 </li>
