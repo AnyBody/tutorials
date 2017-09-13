@@ -112,7 +112,7 @@ following lines create a new node located in the Sternoclavicular joint:</p>
 </div>
 <p>Include them e.g. in the Environment file. After reload of the model the
 reference frame is shown</p>
-<p><a class="reference internal" href="../_images/image119.png"><img alt="clavicula ref frame" src="../_images/image119.png" style="width: 3.16785in; height: 2.95158in;" /></a></p>
+<p><a class="reference internal" href="../_images/image118.png"><img alt="clavicula ref frame" src="../_images/image118.png" style="width: 3.16785in; height: 2.95158in;" /></a></p>
 <p>Download the prepared Abaqus file <a class="reference download internal" href="../_downloads/clavicula.inp" download=""><code class="xref download docutils literal"><span class="pre">here</span></code></a> and
 save it in your working directory. Please note that this FE model of
 clavicle was created in the same reference frame as the clavicle model
@@ -128,7 +128,7 @@ the AnyFE Converter does not handle the <code class="docutils literal"><span cla
 mesh file. We shall return to the issue of aligning the coordinate
 systems for the AnyBody forces and the mesh later, and so far we
 consider <code class="docutils literal"><span class="pre">localrefframe</span></code> to be aligned with the mesh coordinate system.</p>
-<p><a class="reference internal" href="../_images/image218.png"><img alt="Clavicula mesh" src="../_images/image218.png" style="width: 6.49028in; height: 3.26389in;" /></a></p>
+<p><a class="reference internal" href="../_images/image217.png"><img alt="Clavicula mesh" src="../_images/image217.png" style="width: 6.49028in; height: 3.26389in;" /></a></p>
 <p>This figure above shows the clavicle bone mesh used for this example.
 This bone is modeled with a reduced stiffness, which can be interpreted
 as an osteoporotic bone.</p>
@@ -358,10 +358,10 @@ when finished, post-process the results. The image below shows the
 results of running the model without any custom adjustments, however in
 the following we shall consider modification of the load application
 regions.</p>
-<p><a class="reference internal" href="../_images/image314.png"><img alt="Clavicula stresses" src="../_images/image314.png" style="width: 6.49028in; height: 3.23611in;" /></a></p>
+<p><a class="reference internal" href="../_images/image313.png"><img alt="Clavicula stresses" src="../_images/image313.png" style="width: 6.49028in; height: 3.23611in;" /></a></p>
 <p>On the following picture, you can see the muscle attachments nodes and
 coupling constraints that are applied to the finite element model.</p>
-<p><a class="reference internal" href="../_images/image413.png"><img alt="Clavicula force application points" src="../_images/image413.png" style="width: 6.49028in; height: 3.55694in;" /></a></p>
+<p><a class="reference internal" href="../_images/image412.png"><img alt="Clavicula force application points" src="../_images/image412.png" style="width: 6.49028in; height: 3.55694in;" /></a></p>
 <p>Bear in mind that the muscle attachment area is considered to have a
 constant radius, however, in many cases these areas are elongated and
 have irregular pattern. Let us assume that the area for the
@@ -374,7 +374,7 @@ of the clavicle as it shown on the following pictures. Please note that
 you will also need to set the influence radius option to ´To outermost
 point of the region´ in order to make sure that you now make the
 coupling to the whole surface.</p>
-<p><a class="reference internal" href="../_images/image511.png"><img alt="Clavicula contraint region" src="../_images/image511.png" style="width: 2.74712in; height: 2.50000in;" /></a> <a class="reference internal" href="../_images/image63.png"><img alt="Edit constraint dialog" src="../_images/image63.png" style="width: 3.57222in; height: 3.74931in;" /></a></p>
+<p><a class="reference internal" href="../_images/image510.png"><img alt="Clavicula contraint region" src="../_images/image510.png" style="width: 2.74712in; height: 2.50000in;" /></a> <a class="reference internal" href="../_images/image63.png"><img alt="Edit constraint dialog" src="../_images/image63.png" style="width: 3.57222in; height: 3.74931in;" /></a></p>
 <p>The following picture shows how the modified constraint looks like; the
 sternocleidomastoid muscle attachment patch is now spread on the surface
 elements of the clavicle mesh.</p>
