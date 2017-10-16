@@ -1,0 +1,518 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Optimization Studies &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Trouble Shooting AnyScript Models" href="../Troubleshooting_anyscript/intro.html" />
+    <link rel="prev" title="Defining a Parameter Study" href="lesson1.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Troubleshooting_anyscript/intro.html" title="Trouble Shooting AnyScript Models"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Defining a Parameter Study"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Parameter Studies and Optimization</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="optimization-studies">
+<h1>Optimization Studies<a class="headerlink" href="#optimization-studies" title="Permalink to this headline">¶</a></h1>
+<p>The parameter study introduced in the preceding lesson&nbsp;provides a
+complete overview of the design space, but the study is only feasible
+when the problem has few independent parameters, preferably one or two.
+In the previous lesson we considered a problem with two parameters and 5
+steps in each direction of the design space leading to 5^2 = 5 x 5 = 25
+analyses. If the problem had 10 parameters we would be facing 5^10 = 9.7
+million analyses, which is an entirely different matter in terms of
+computation times. The truth is that such so-called full factorial
+parameter studies are computationally infeasible when the problem has
+more than very few independent parameters. So what to do?</p>
+<p>The solution is to use a method that picks the combinations to compute
+carefully and only has to evaluate a few of them. One class of such
+methods is optimization. An optimization algorithm systematically
+searches through the design space for the combination of parameters that
+minimizes the value of a function&nbsp;of the parameters, the so-called
+objective function. Some algorithms also allow the definition of
+constraint functions, which are dependent parameters that must be
+maintained below a certain upper limit.</p>
+<p>The AnyBody Modeling System provides a study to handle optimization
+problems. The mathematical definition of the problem it solves is as
+follows:</p>
+<p>Minimize</p>
+<p><em>g:sub:`0`</em>(<em>x:sub:`1`..x:sub:`n`</em>)</p>
+<p>Subject to</p>
+<p><em>g:sub:`i`</em>(<em>x:sub:`1`..x:sub:`n`</em>) &lt;= 0</p>
+<p><em>L</em><sub>j</sub> &lt;= <em>x</em><sub>j</sub> &lt;= <em>U:sub:`j`</em></p>
+<p>where <em>g:sub:`0`</em> is called the objective function, <em>x:sub:`j`</em>,
+<em>j</em>=1..<em>n</em>&nbsp;are the design variables, and <em>g:sub:`i`</em>,
+<em>i</em>=1..<em>m</em> are the constraints. The definition of an optimization
+problem in AnyBody is therefore a question of appointing independent
+parameters as design variables and dependent parameters as the objective
+function and constraints. Please notice that <em>m</em> could be zero in which
+case we have a problem that is only constrained by the simple bounds on
+the variables.</p>
+<p>In an optimization terminology, the parameter study from the preceding
+lesson could be defined as:</p>
+<p>Minimize</p>
+<p><em>Metabolic energy&nbsp;consumption</em></p>
+<p>Subject to</p>
+<blockquote>
+<div><em>Saddle height within predefined limits
+Saddle horizontal position within predefined limits</em></div></blockquote>
+<p>In fact, this is precisely what we are going to do, but before we
+proceed, let us briefly look at the properties of a typical
+musculoskeletal objective function and how the optimization algorithm
+solves the problem.</p>
+<table border="1" class="docutils">
+<tbody valign="top">
+</tbody>
+</table>
+<blockquote>
+<div><a class="reference internal" href="../_images/image15.gif"><img alt="metab.gif" src="../_images/image15.gif" style="height: 1.54167in;" /></a>   | <a class="reference internal" href="../_images/image26.gif"><img alt="image1" src="../_images/image26.gif" style="height: 1.56299in;" /></a>   |</div></blockquote>
+<table border="1" class="docutils">
+<tbody valign="top">
+</tbody>
+</table>
+<p>The two pictures above both show the result of&nbsp;a parameter study. The
+picture on the right is the section indicated by the magnifying glass on
+the left amplified by 50 times. As you can see, the seemingly smooth
+objective function has a microscopic jump. In other words the function
+is non-smooth and in fact discontinuous at certain points. Not
+all&nbsp;design measures&nbsp;have such discontinuities, but some do. The figure
+also indicates that the function is smooth in between these
+discontinuities. Optimization algorithms are trying to navigate on
+multi-dimentional hyper-surfaces with such qualities and must
+consequently be robust against a certain amount of non-smoothness. The
+optimization algorithm in AnyBody is indeed capable of doing this in
+most cases. It is a special version of a so-called feasible directions
+algorithm, which seeks out the optimum in two-step loops. The two steps
+are:</p>
+<ol class="arabic simple">
+<li>Decide on a search direction.</li>
+<li>Perform a linear search to find the minimum along the chosen
+direction.</li>
+</ol>
+<p>This means that it is only necessary to perform analyses of the function
+values at the points that the algorithm actually visits and not all
+points in a predefined grid as we did in the parameter study. It also
+means that the algorithm depends on the smoothness of the surface when
+it decides on a direction to take in step 1, but once the direction has
+been chosen, the line search in step 2 can be done with methods that do
+not predispose smoothness.</p>
+<p>Now that we know what to expect, we can proceed to the actual definition
+of the optimization study. The previous definition of the parameter
+study will help us a lot because an optimization study has almost
+exactly the same structure. So the first step would be to simply copy
+the parameter study:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span> <span class="kt">AnyParamStudy</span> <span class="n">ParamStudy</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">Analysis</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="kt">AnyOperation</span> <span class="o">&amp;</span><span class="n">Operation</span> <span class="o">=</span> <span class="p">..</span><span class="n">Study</span><span class="p">.</span><span class="n">InverseDynamicAnalysis</span><span class="p">;</span>
+   <span class="p">};</span>
+   <span class="n">nStep</span> <span class="o">=</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+   <span class="kt">AnyDesVar</span> <span class="n">SaddleHeight</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">BikeParameters</span><span class="p">.</span><span class="n">SaddleHeight</span><span class="p">;</span>
+     <span class="n">Min</span> <span class="o">=</span> <span class="n">Val</span> <span class="o">-</span> <span class="mf">0.05</span><span class="p">;</span>
+     <span class="n">Max</span> <span class="o">=</span> <span class="n">Val</span> <span class="o">+</span> <span class="mf">0.03</span><span class="p">;</span>
+   <span class="p">};</span>
+   <span class="kt">AnyDesVar</span> <span class="n">SaddlePos</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">BikeParameters</span><span class="p">.</span><span class="n">SaddlePos</span><span class="p">;</span>
+     <span class="n">Min</span> <span class="o">=</span> <span class="n">Val</span> <span class="o">-</span> <span class="mf">0.07</span><span class="p">;</span>
+     <span class="n">Max</span> <span class="o">=</span> <span class="n">Val</span> <span class="o">+</span> <span class="mf">0.10</span><span class="p">;</span>
+   <span class="p">};</span>
+   <span class="kt">AnyDesMeasure</span> <span class="n">MaxAct</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="n">Val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(..</span><span class="n">Study</span><span class="p">.</span><span class="n">MaxAct</span><span class="p">());</span>
+   <span class="p">};</span>
+ <span class="p">};</span>
+
+<span class="gr">AnyParamStudy ParamStudy = {</span>
+<span class="gr">   Analysis = {</span>
+<span class="gr">     AnyOperation &amp;Operation = ..Study.InverseDynamicAnalysis;</span>
+<span class="gr">   };</span>
+<span class="gr">   nStep = {5,5};</span>
+<span class="gr">   AnyDesVar SaddleHeight = {</span>
+<span class="gr">     Val = Main.BikeParameters.SaddleHeight;</span>
+<span class="gr">     Min = Val - 0.05;</span>
+<span class="gr">     Max = Val + 0.03;</span>
+<span class="gr">   };</span>
+<span class="gr">   AnyDesVar SaddlePos = {</span>
+<span class="gr">     Val = Main.BikeParameters.SaddlePos;</span>
+<span class="gr">     Min = Val - 0.07;</span>
+<span class="gr">     Max = Val + 0.10;</span>
+<span class="gr">   };</span>
+<span class="gr">   AnyDesMeasure MaxAct = {</span>
+<span class="gr">     Val = max(..Study.MaxAct());</span>
+<span class="gr">   };</span>
+<span class="gr">   AnyDesMeasure Metab = {</span>
+<span class="gr">     Val = secint(..Study.Metabolism(),..Study.tArray);</span>
+<span class="gr">  };</span>
+<span class="gr"> };</span>
+</pre></div>
+</div>
+<p>We proceed to change a few parameters:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Any</span><span class="gr">Opt</span><span class="n">Study</span> <span class="gr">Opt</span><span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">Analysis</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="kt">AnyOperation</span> <span class="o">&amp;</span><span class="n">Operation</span> <span class="o">=</span> <span class="p">..</span><span class="n">Study</span><span class="p">.</span><span class="n">InverseDynamicAnalysis</span><span class="p">;</span>
+   <span class="p">};</span>
+   <span class="kt">AnyDesVar</span> <span class="n">SaddleHeight</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">BikeParameters</span><span class="p">.</span><span class="n">SaddleHeight</span><span class="p">;</span>
+     <span class="n">Min</span> <span class="o">=</span> <span class="n">Val</span> <span class="o">-</span> <span class="mf">0.05</span><span class="p">;</span>
+     <span class="n">Max</span> <span class="o">=</span> <span class="n">Val</span> <span class="o">+</span> <span class="mf">0.03</span><span class="p">;</span>
+   <span class="p">};</span>
+   <span class="kt">AnyDesVar</span> <span class="n">SaddlePos</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">BikeParameters</span><span class="p">.</span><span class="n">SaddlePos</span><span class="p">;</span>
+     <span class="n">Min</span> <span class="o">=</span> <span class="n">Val</span> <span class="o">-</span> <span class="mf">0.07</span><span class="p">;</span>
+     <span class="n">Max</span> <span class="o">=</span> <span class="n">Val</span> <span class="o">+</span> <span class="mf">0.10</span><span class="p">;</span>
+   <span class="p">};</span>
+   <span class="kt">AnyDesMeasure</span> <span class="n">Metab</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="n">Val</span> <span class="o">=</span> <span class="nb">secint</span><span class="p">(..</span><span class="n">Study</span><span class="p">.</span><span class="n">Metabolism</span><span class="p">(),..</span><span class="n">Study</span><span class="p">.</span><span class="n">tArray</span><span class="p">);</span>
+    <span class="gr">Type = ObjectiveFun;</span>
+  <span class="p">};</span>
+ <span class="p">};</span>
+</pre></div>
+</div>
+<p>Please notice that the AnyDesMeasure MaxAct was removed, and so was the
+entire line with the nStep specification. The optimization study does
+not use any particular step size but rather adapts its steps
+automatically to find the accurate position of the optimum. This is
+another advantage of&nbsp;optimization over a parameter study. Finally, we
+have added a type specification to the Metab object specifying that this
+is the objective function of the problem.</p>
+<p>This is&nbsp;the definition of an optimization problem that will vary the
+saddle height and horizontal position to minimize the metabolism. Let
+us&nbsp;run it and see what happens. Load the model in and please make sure
+that you have a Model View window open so that you can see the
+difference in the way the seat position is varied compared to the
+parameter study.</p>
+<p><a class="reference internal" href="../_images/image35.gif"><img alt="runopt.gif" src="../_images/image35.gif" style="height: 4.10417in;" /></a></p>
+<p>If the model loads you should get a screen picture similar to the one
+above this text. Expand the OptStudy branch in the operations tree,
+click Optimization once and then the Run button. The model starts
+cycling and after a few rounds you will notice the saddle position
+changing, but not in a systematic grid like in the parameters study.
+What you will see is gradual changes back and forth in different
+directions until the changes wear off and the position converges. Every
+time you see the step counter below the Run button changing number it is
+an indication that the optimizer has picked a new optimization direction
+to try. You should see the number increasing in slow steps up to six
+before the process stops and the system announces that it is finished.
+Please notice that the changes of saddle position in the last several
+steps is very minute, which is typical for optimization: the first steps
+bring large changes and large improvements, while the last many steps
+only improve slightly.</p>
+<p>Now we are going to study the results in more detail using the AnyChart
+window. Do you still have the AnyChart window from the previous lesson
+with the Metabolism parameter study open? It should look like this:</p>
+<p><a class="reference internal" href="../_images/image44.gif"><img alt="metab100.gif" src="../_images/image44.gif" style="height: 5.00000in;" /></a></p>
+<p>If not, please run the ParamStudy again and plot the surface. When you
+have this surface ready, please open another AnyChart window by clicking
+Window-&gt;AnyChart 2D/3D (new).&nbsp; In the new window, please expand the tree
+down to Main.Bike2D.OptStudy.Output.Metab. Then click the Val variable
+under Metab. This produces a simple 2-D graph showing the development of
+the metabolism over the&nbsp;5 iterations:</p>
+<p><a class="reference internal" href="../_images/image54.gif"><img alt="metabcon2.gif" src="../_images/image54.gif" style="height: 2.95833in;" /></a></p>
+<p>The graph confirms that the vast majority of the improvement is obtained
+in a couple of iterations and the final iteration contributes only by a
+minor, almost insignificant&nbsp;adjustment. Such iterations
+with&nbsp;insignificant improvements occur due to the convergence criterion,
+i.e., the criterion that stops the optimization process. The optimizer
+does not detect mathemtically that the objective function has an optimum
+value; it merely detects that the changes of the&nbsp;found solution are
+small from one iteration to the next. Therefore, the optimization
+process will always end with one (or more) steps with insignificant
+changes.</p>
+<p>The optimal solution in the Model View looks like this:</p>
+<p><a class="reference internal" href="../_images/image61.jpeg"><img alt="BikeOpt2.jpg" src="../_images/image61.jpeg" style="height: 3.09375in;" /></a></p>
+<p>Just above the Metab variable in the tree you can find the two
+independent variables, SaddleHeight and SaddlePos, and they can be
+graphed the same way revealing that their convergence is less monotone
+over the iterations. This is also quite usual for optimization
+processes.</p>
+<p>An interesting way to investigate the convergence is to plot it in the
+variable/objective space rather than over the iterations. This is what
+we need the window with the parameter study surface for. At the top of
+this window you will find panels listing series and data to be plotted.
+Please right-click in the series window and select “New”:</p>
+<p><a class="reference internal" href="../_images/image72.gif"><img alt="newseries.gif" src="../_images/image72.gif" style="height: 4.26042in;" /></a></p>
+<p>This will give you a blank “Series 1”. When you highlight it by clicking
+with the mouse you will see the list of Selected Objects in the
+right-hand pane is empty. We are going to fill in the SaddleHeight and
+SaddlePos variables from the OptStudy&nbsp;as Abscissa and Abscissa2,
+respectively.&nbsp; This is done by selecting Abscissa and Abscissa2 in turn
+and then expanding the OptStudy branch until the SaddleHeight.Val and
+SaddlePos.Val, respectively, can be selected:</p>
+<p><a class="reference internal" href="../_images/image81.gif"><img alt="selectheight.gif" src="../_images/image81.gif" style="height: 4.25000in;" /></a></p>
+<p>Finally, in the Value field select OptStudy.Metab.Val and look carefully
+at the plot. You will see that an additional polyline has been added. It
+originates approximately at the middle of the surface and shows the path
+the optimization process has taken through the design space to the
+minimum point. You can change the color of the line by clicking the
+leftmost button (Properties) in the toolbar directly over the graphics
+pane. This gives you access to all the settings and lets you control the
+appearance of graphs in detail. In the picture below we have selected
+RGB = {0,0,1}, i.e. blue,&nbsp;for Series1 and Thickness = 2:</p>
+<p><a class="reference internal" href="../_images/image91.gif"><img alt="optpath2.gif" src="../_images/image91.gif" style="height: 3.85417in;" /></a></p>
+<p>This plot illustrates the convergence history in the “landscape” of the
+objective function. Here we can see the reasons for the convergence
+being as it is. Actually, the optimum value lies in a relatively flat
+region and therefore the exact mathematical location of the optimum may
+be of a more academic&nbsp;importance than practical relevance&nbsp;since we can
+find many design point with almost the same objective function value.</p>
+<p>“A flat optimum”, like this, can occasionally cause problems for the
+optimization process to provide exact convergence because it is
+difficult to distinguish between insignificant changes due to flatness
+or convergence. Furthermore, one more obstacle for finding the exact
+optimum is present in the given case. The objective function is not as
+smooth as the parameter study with the relative crude grid indicates.
+Below you&nbsp;see the result of a parameter study, we have prepared for a
+small 2 by 2 mm design area in the vicinity of the end-point of the fist
+optimization step.</p>
+<p>&nbsp;&nbsp;<a class="reference internal" href="../_images/image101.gif"><img alt="metabzoom2.gif" src="../_images/image101.gif" style="height: 3.62500in;" /></a></p>
+<p>This reveals a somewhat jagged surface and a distinct (local) valley of
+the objective function. Minor changes of the input to the optimization
+process, whether it be the starting point or design variable bounds, can
+actually make the optimization process dive into this local valley and
+get stuck in there.</p>
+<p>An optimization process that gets stuck in this local minimum could have
+a convergence history like in the plots shown below</p>
+<p><a class="reference internal" href="../_images/image111.gif"><img alt="metabcon2_no_converge.gif" src="../_images/image111.gif" style="height: 3.07292in;" /></a></p>
+<p><a class="reference internal" href="../_images/image121.gif"><img alt="optpath2_no_converge.gif" src="../_images/image121.gif" style="height: 3.43750in;" /></a></p>
+<p>Notice how the final objective function value is slightly higher than
+the previous optimization result. Notice also how only the first
+iteration out of 7 provides significant improvement of the objective
+function. This step brings the design value down into to the valley. The
+remaining&nbsp;iterations zigzags in the bottom of the valley without being
+able to get up and out and without providing any visible improvement.
+Finally, the convergence criterion is fulfilled. It can be mentioned
+that the convergence criterion requires both objective and design
+changes to be small.</p>
+<p>In the beginning of this lesson, we mentioned that the optimization
+problem formulation also handles constraints. They can be used for all
+sorts of purposes. For instance we notice that the optimal solution is a
+rather low saddle position, cf. the picture above. Suppose that for some
+reason, this position is too low. We, therefore,&nbsp;want to ensure that the
+distance between the crank and the seat is not too small, for instance
+larger than 0.66 m. This can be formulated very nicely as a constraint
+like this:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyDesMeasure</span> <span class="n">Metab</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">Val</span> <span class="o">=</span> <span class="nb">secint</span><span class="p">(..</span><span class="n">Study</span><span class="p">.</span><span class="n">Metabolism</span><span class="p">(),..</span><span class="n">Study</span><span class="p">.</span><span class="n">tArray</span><span class="p">);</span>
+  <span class="n">Type</span> <span class="o">=</span> <span class="kp">ObjectiveFun</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="gr">AnyDesMeasure SeatDist = {</span>
+<span class="gr">  Val = (.SaddleHeight.Val^2+.SaddlePos.Val^2)^0.5 - 0.66;</span>
+<span class="gr">  Type = GreaterThanZero;</span>
+<span class="gr">};</span>
+</pre></div>
+</div>
+<p>Notice that constraints are defined as AnyDesMeasures of type
+LessThanZero or GreaterThanZero. In the mathematical formulation of the
+optimization problem stated in the beginning of this lesson, we have
+only less-than-or-equal-to constraints, but there is only a minus sign
+in difference&nbsp;of making a greater-than-or-equal-to into a
+less-than-or-equal-to constraint. You can put this minus sign manually
+or you can use Type = GreaterThanZero, which is equivalent. Notice that
+equality constraints&nbsp;are in principle also a possibility, but currently
+the optimization solvers in AnyBody do not handle this type of
+constraints. Moreover, it is most often possible to handle equality
+constraints by means of inequality constraints, because the objective
+function’s gradient will put pressure on the constraint from one side;
+thus, it is merely a matter of determining the proper type of inequality
+constraint.</p>
+<p>Notice also that the constraint is just an AnyDesMeasure, so anything
+you could conceivably use as an objective function can also be a
+constraint. In this case, the constraint is a simple mathematical
+combination of variables, but in general it can also be properties such
+as muscle forces, joint reactions, point locations, segment velocities,
+and any other model property that the system can compute.</p>
+<p>Enough talk; let’s try the optimization with the constraint added.
+Please load the model again, select the optimization operation, and
+click the run button. The optimization process will have the following
+convergence picture:</p>
+<p><a class="reference internal" href="../_images/image131.gif"><img alt="metabcon2_constrained.gif" src="../_images/image131.gif" style="height: 3.10417in;" /></a></p>
+<p>If you alo re-run the parameter study, you can get this picture of the
+convergence:</p>
+<p><a class="reference internal" href="../_images/image141.gif"><img alt="optpath2_constrained.gif" src="../_images/image141.gif" style="height: 3.83333in;" /></a></p>
+<p>We see that the result is indeed a compromise since the objective
+function&nbsp;value cannot be reduced as much as in the unconstrained
+case.&nbsp;The path of the design values&nbsp;bounces off the constraint and
+finally it gets stuck on the constraint even though the objective
+function still has a downwards inclination. The constraint lies like a
+wall through the design space. We can see the convergence path along the
+constraint by plot the constraint value, i.e., the SeatDist.Val. This
+looks like:</p>
+<p><a class="reference internal" href="../_images/image151.gif"><img alt="SeatDist2_constrained.gif" src="../_images/image151.gif" style="height: 2.89583in;" /></a></p>
+<p>where it is obvious how the optimizer hits the constraint, bounces off,
+hits again, etc. and finally it converges. At no point in time, the
+constraint value becomes negative, which was exactly what we prescribed
+in its definition.</p>
+<p>A final look at the result could be the picture of the model after this
+constained optimization, which shows a visible difference compared to
+the unconstrained solution: The hip position is now higher,&nbsp;i.e., longer
+from the crank and to achieve this it is further forward, see the
+picture below:</p>
+<p><a href="#id1"><span class="problematic" id="id2">|constrained|</span></a></p>
+<p>This completes the introduction to optimization studies.</p>
+<p>Optimization studies can be used for many purposes. A previous webcast
+on “How to synthesize posture and movement with inverse dynamics” is
+available for download and replay
+<a class="reference external" href="http://www.anybodytech.com/info.html?f=webcasts-on-demand">here</a>.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Parameter Studies and Optimization</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Defining a Parameter Study</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Optimization Studies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Parameter_studies_and_optimization/lesson2.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Troubleshooting_anyscript/intro.html" title="Trouble Shooting AnyScript Models"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Defining a Parameter Study"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Parameter Studies and Optimization</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

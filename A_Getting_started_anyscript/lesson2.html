@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 2: Defining Segments and Displaying Objects &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
@@ -55,7 +55,7 @@
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Getting started: AnyScript Programming</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -102,12 +102,12 @@ following text to your model (new text marked by red):</p>
 <span class="p">};</span> <span class="c1">// ArmModel</span>
 </pre></div>
 </div>
-<p>Try loading the model by clicking the&nbsp;<a class="reference internal" href="../_images/image17.png"><img alt="Load button image" src="../_images/image17.png" style="width: 0.52778in; height: 0.21817in;" /></a> icon or the
+<p>Try loading the model by clicking the&nbsp;<a class="reference internal" href="../_images/image14.png"><img alt="Load button image" src="../_images/image14.png" style="width: 0.52778in; height: 0.21817in;" /></a> icon or the
 F7 key. If you expand the ArmModel branch in the tree view, you should
 see a new, empty folder named Segs. We are now ready to add a segment to
 the model, and this would probably be a good time to introduce you to
 the <strong>Class Inserter</strong>.</p>
-<p><a class="reference internal" href="../_images/image25.png"><img alt="Classes tab" src="../_images/image25.png" style="width: 3.44167in; height: 3.00746in;" /></a></p>
+<p><a class="reference internal" href="../_images/image23.png"><img alt="Classes tab" src="../_images/image23.png" style="width: 3.44167in; height: 3.00746in;" /></a></p>
 <p>You will find a tab called Classes on the right edge of your AnyBody
 interface. Clicking on the tab shows a <strong>Class List</strong> which contains all
 the predefined classes in AnyScript.</p>
@@ -169,7 +169,7 @@ object which defines visibility:</p>
 </pre></div>
 </div>
 <p>Reload the model, and look at the Model View (you might have to press
-the <a class="reference internal" href="../_images/image34.png"><img alt="Zoom button image" src="../_images/image34.png" style="width: 0.23718in; height: 0.23139in;" /></a> zoom all button to locate your segment) . If you
+the <a class="reference internal" href="../_images/image32.png"><img alt="Zoom button image" src="../_images/image32.png" style="width: 0.23718in; height: 0.23139in;" /></a> zoom all button to locate your segment) . If you
 entered the inertia properties in the Jii specification as written
 above, then your ellipsoid should be&nbsp;ten times&nbsp;as long as it is wide.
 Try changing the “0.001” to “0.01” and reload. The ellipsoid becomes
@@ -221,7 +221,7 @@ inserter, you can copy and paste the following lines:</p>
 <span class="p">};</span> <span class="c1">// UpperArm</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="../_images/image44.png"><img alt="Model view One Segment" src="../_images/image44.png" style="width: 2.26282in; height: 2.11864in;" /></a></p>
+<p><a class="reference internal" href="../_images/image42.png"><img alt="Model view One Segment" src="../_images/image42.png" style="width: 2.26282in; height: 2.11864in;" /></a></p>
 <p>Try loading the model again and have a look at the graphical
 representation. If you zoom out enough, you should see your points
 floating around the ellipsoid connected to its center of gravity by
@@ -287,7 +287,7 @@ time.</p>
 </pre></div>
 </div>
 <p>This will clearly separate the segments in your Model View:</p>
-<p><a class="reference internal" href="../_images/image54.png"><img alt="Model view two segments" src="../_images/image54.png" style="width: 2.94231in; height: 2.57811in;" /></a></p>
+<p><a class="reference internal" href="../_images/image52.png"><img alt="Model view two segments" src="../_images/image52.png" style="width: 2.94231in; height: 2.57811in;" /></a></p>
 <p>So far so good. But it might improve the visual impression if the were
 also oriented a bit like we would expect an arm to be. This involves the
 Axes0 property, which is really a rotation matrix. Such matrices are a
@@ -315,7 +315,7 @@ matrix corresponding to a given axis and rotation angle. Therefore, we
 can specify:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">r0</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
-  <span class="gr">Axes0 = RotMat(-90\*pi/180, z);</span>
+  <span class="gr">Axes0 = RotMat(-90*pi/180, z);</span>
 </pre></div>
 </div>
 <p>When you reload again, you will see that the UpperArm is indeed rotated
@@ -328,9 +328,11 @@ factor between degrees and radians.</p>
 <p class="last">Angles in AnyBody are always in radians.</p>
 </div>
 <p>In the next section, we will look at how joints can be used to constrain
-the movement of segments and allow them to articulate the way we desire.
-So if you are up to it, let’s continue onward to <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Connecting
-segments by joints</span></a>.</p>
+the movement of segments and allow them to articulate the way we desire.</p>
+<div class="without-title admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> So if you are up to it, let’s continue onward to <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Connecting segments by joints</span></a>.</p>
+</div>
 <p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -366,13 +368,12 @@ the rigid parts of the model.</td></tr>
 <div class="sphinx-toc sphinxglobaltoc">
 <h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Front Page</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribute</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Getting started: AnyScript Programming</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 2</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting started: AnyScript Programming</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: Basic Concepts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 2: Defining Segments and Displaying Objects</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-segment">Creating a segment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#displaying-a-segment">Displaying a segment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#adding-point-nodes-to-a-segment">Adding point nodes to a segment</a></li>
@@ -380,14 +381,37 @@ the rigid parts of the model.</td></tr>
 <li class="toctree-l3"><a class="reference internal" href="#rotation-matrices-in-anybody">Rotation matrices in AnyBody</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson5.html"> Lesson 5</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson6.html"> Lesson 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Connecting Segments by Joints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Imparting movement with Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html">Lesson 5: Definition of Muscles and External Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: Adding Real Bone Geometries</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
 </ul>
 </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/A_Getting_started_anyscript/lesson2.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
         </div>
       </div>
     
@@ -428,7 +452,7 @@ the rigid parts of the model.</td></tr>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="intro.html" >Getting started: AnyScript Programming</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
     </div>
     </div>

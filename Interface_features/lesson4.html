@@ -1,0 +1,239 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 4: The Model Tree and Object Description &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 5: The Command Line Application" href="lesson5.html" />
+    <link rel="prev" title="Lesson 3: The Chart View" href="lesson3.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson5.html" title="Lesson 5: The Command Line Application"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: The Chart View"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">User interface features</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-4-the-model-tree-and-object-description">
+<h1>Lesson 4: The Model Tree and Object Description<a class="headerlink" href="#lesson-4-the-model-tree-and-object-description" title="Permalink to this headline">¶</a></h1>
+<p>The Model Tree, on left side of the AnyBody screen, provides a quick
+overview of your model.</p>
+<div class="section" id="locate-in-anyscript-and-locate-in-model-tree">
+<h2>‘Locate in AnyScript’ and ‘Locate in Model Tree’<a class="headerlink" href="#locate-in-anyscript-and-locate-in-model-tree" title="Permalink to this headline">¶</a></h2>
+<p>These functions make it easier to navigate between the three different
+modes in which the model is represented in AnyBody - the Model View,
+AnyScript, and the Model Tree.</p>
+<p>Watch the video mentioned in the <a class="reference internal" href="intro.html"><span class="doc">User Interface Introduction
+tutorial</span></a> to learn more.</p>
+</div>
+<div class="section" id="the-object-description">
+<h2>The Object Description<a class="headerlink" href="#the-object-description" title="Permalink to this headline">¶</a></h2>
+<p>The Object Description can be opened from the context menu that appears
+upon right-clicking an object in the Model Tree, or alternatively by
+double-clicking that object. The information window (G in the figure
+below)also displays the object description in a more condensed format.</p>
+<p><a class="reference internal" href="../_images/image126.png"><img alt="GUI overview" src="../_images/image126.png" style="width: 6.66667in; height: 3.91667in;" /></a></p>
+<p><a class="reference internal" href="../_images/image222.png"><img alt="Object description window" src="../_images/image222.png" style="width: 6.68958in; height: 4.04861in;" /></a></p>
+<p>The Object Description primarily contains hyperlinks to the Model Tree
+and AnyScript file where the object was constructed. In the case, you
+see an empty value for this object (Thigh = {…}) since it is a folder
+object which only serves as a container for sub-folders.</p>
+<p>Mechanical objects, operation objects, study objects, etc., provide
+additional information in the Object Description. Below is a picture of
+the Object Description of a musculoskeletal study (class AnyBodyStudy)
+containing mechanical system information of the model to be simulated:</p>
+<p><a class="reference internal" href="../_images/image319.png"><img alt="Object description on Studies" src="../_images/image319.png" style="width: 6.68958in; height: 4.04861in;" /></a></p>
+<p>The Comments section contains the so-called Documentation Comments,
+which are made in the AnyScript source; please refer to the AnyScript
+Reference Manual for more details on Documentation Comments and how to
+make them.</p>
+<p>The Object description for the study is an excellent way to get an
+overview of what is contained in a model and which joints and drivers
+are being applied.</p>
+<p><strong>Important Notes:</strong></p>
+<ul class="simple">
+<li>There isn’t always a one-to-one correspondence between an AnyScript
+object and the Model Tree. Eg: When you use #include to call the same
+AnyScript file twice, from different parts of the main model file</li>
+<li>Reference objects (appear with a <a class="reference internal" href="../_images/image417.png"><img alt="Folder link icon" src="../_images/image417.png" style="width: 0.17361in; height: 0.15625in;" /></a> in the Model
+Tree) are actually just local gateways to another object that may be
+created in a different part of your AnyScript code. For programming
+ease, you can use a locally created reference object as a substitute
+for your original.</li>
+</ul>
+<p>This concludes this lesson on browsing the model.</p>
+<div class="without-title admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: The Command Line Application</span></a>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User interface features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: The Editor Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: The Model View Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: The Chart View</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 4: The Model Tree and Object Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#locate-in-anyscript-and-locate-in-model-tree">‘Locate in AnyScript’ and ‘Locate in Model Tree’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-object-description">The Object Description</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html">Lesson 5: The Command Line Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: Modifying the Loaded Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson7.html">Lesson 7: Wrapping the Model with AnyBody Project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Interface_features/lesson4.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson5.html" title="Lesson 5: The Command Line Application"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: The Chart View"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >User interface features</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

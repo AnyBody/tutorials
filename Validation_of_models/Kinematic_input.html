@@ -1,0 +1,207 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Kinematic Input Validation &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parameter Studies and Optimization" href="../Parameter_studies_and_optimization/index.html" />
+    <link rel="prev" title="Introduction to Validation" href="intro.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Parameter_studies_and_optimization/index.html" title="Parameter Studies and Optimization"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction to Validation"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Validation of Models</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="kinematic-input-validation">
+<h1>Kinematic Input Validation<a class="headerlink" href="#kinematic-input-validation" title="Permalink to this headline">¶</a></h1>
+<p>The picture below shows the thorax position variation over time recorded
+by digitizing images from a video capture (model curtesy of the
+Technical University of Vienna) of ergometer rowing. The red curve is
+the horizontal position, and the green curve is the vertical position.
+The lateral position remains zero and is the blue curve. It looks very
+reasonable, and it does not seem to be infested with significant noise.</p>
+<p><a class="reference internal" href="../_images/image17.gif"><img alt="rowpos.gif" src="../_images/image17.gif" style="height: 2.38542in;" /></a></p>
+<p>To find velocities, the system automatically differentiates positional
+data with respect to time and we get the following:</p>
+<p><a class="reference internal" href="../_images/image28.gif"><img alt="rowvel.gif" src="../_images/image28.gif" style="height: 2.19792in;" /></a></p>
+<p>It still looks reasonable except for a suspicion that the maximum
+velocity around 12 m/s may be a bit high over such a short distance. The
+system dfferentiates&nbsp;the velocity function&nbsp;to obtain the accelerations,
+which subsequently according to the second law of Newton will generate
+forces:</p>
+<p><a class="reference internal" href="../_images/image38.gif"><img alt="rowacc.gif" src="../_images/image38.gif" style="height: 2.38542in;" /></a></p>
+<p>This graph still looks nice and smooth, but notice the values: The
+maximum acceleration is around 300 m/s^2 or 30 g. Notice that this is
+for the thorax and not a distal segment like a hand or a foot. It is not
+realistic, and it is in fact an artifact produced by the amplification
+of small errors in the&nbsp;positional signal&nbsp;through the two subsequent
+differentiations.</p>
+<p>If you work with recorded movement data, then it is very important to
+check that the accelerations are within reasonable limits. The movement
+is input in inverse dynamics, and if the accelerations are unrealistic,
+then the muscle and joint forces will be too.</p>
+<p>Too high acceerations are usually due to lack of smoothness of the
+recorded motion data. The&nbsp;solution is often to apply smoothing with a
+low pass filter to reduce the unrealistic acceleratons.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation of Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction to validation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Validating Kinematic input</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Validation_of_models/Kinematic_input.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Parameter_studies_and_optimization/index.html" title="Parameter Studies and Optimization"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction to Validation"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Validation of Models</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

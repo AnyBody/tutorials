@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 5: Definition of Muscles and External Forces &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
@@ -55,7 +55,7 @@
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Getting started: AnyScript Programming</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -89,8 +89,8 @@ scientists are still debating exactly how they work and what properties
 are important for their function. In AnyBody, you can use several
 different models for the muscles’ behavior, and some of them are quite
 sophisticated. Introducing all the features of muscle modeling is a
-subject fully worthy of <span class="xref std std-doc">its own
-tutorial</span>. Here, we shall just
+subject fully worthy of <a class="reference internal" href="../Muscle_modeling/intro.html"><span class="doc">its own
+tutorial</span></a>. Here, we shall just
 define one very simple muscle model and use it indiscriminately for all
 the muscles of the arm we are building.</p>
 <p>As always, we start by creating a folder for the muscles:</p>
@@ -157,8 +157,8 @@ by creating. Notice the two leading dots. Finally, the line</p>
 look at it. Make sure you have the Model View window open and hit F7.
 You should see a thick, red line connecting the muscle’s origin and
 insertion points. There are other ways to visualize muscles, but we
-shall save that for&nbsp;the <span class="xref std std-doc">dedicated muscle
-tutorial</span>.</p>
+shall save that for&nbsp;the <a class="reference internal" href="../Muscle_modeling/intro.html"><span class="doc">dedicated muscle
+tutorial</span></a>.</p>
 <p>Notice that the muscle’s position on the body might be a little strange
 because we have not yet positioned the segments relative to each other
 by a kinematic analysis.</p>
@@ -233,7 +233,7 @@ by a kinematic analysis.</p>
 </div>
 <p>Try adding the data and viewing the result by reloading. You should get
 a picture more or less as what you see below:</p>
-<p><a class="reference internal" href="../_images/image110.png"><img alt="image0" src="../_images/image110.png" style="width: 3.76923in; height: 3.23496in;" /></a></p>
+<p><a class="reference internal" href="../_images/image17.png"><img alt="image0" src="../_images/image17.png" style="width: 3.76923in; height: 3.23496in;" /></a></p>
 </div>
 <div class="section" id="the-initialconditions-analysis">
 <h2>The InitialConditions analysis<a class="headerlink" href="#the-initialconditions-analysis" title="Permalink to this headline">¶</a></h2>
@@ -243,7 +243,7 @@ ordered with respect to each other. It is the InitialConditions study in
 the tree at the upper left corner of the Main Frame. Try clicking it,
 then hit the start operation button, and the segments fall into position
 as shown below.</p>
-<p><a class="reference internal" href="../_images/image27.png"><img alt="image1" src="../_images/image27.png" style="width: 3.76772in; height: 3.57253in;" /></a></p>
+<p><a class="reference internal" href="../_images/image25.png"><img alt="image1" src="../_images/image25.png" style="width: 3.76772in; height: 3.57253in;" /></a></p>
 <p>We now have enough muscles in the model to start computing the muscle
 forces that can drive the motion. But there is one more detail to take
 care of, and it is both important and slightly intricate. The bottom
@@ -302,13 +302,13 @@ all the muscles appearing. Each of them can be expanded to reveal the
 data inside. Let us expand the brachialis muscle and investigate its
 force variation over the movement. You should see a node named Fm. If
 you click it, you should get a curve like the one shown below:</p>
-<p><a class="reference internal" href="../_images/image36.png"><img alt="image2" src="../_images/image36.png" style="width: 4.55128in; height: 2.36256in;" /></a></p>
+<p><a class="reference internal" href="../_images/image34.png"><img alt="image2" src="../_images/image34.png" style="width: 4.55128in; height: 2.36256in;" /></a></p>
 <p>Notice that the force in the muscle drops as the movement proceeds. This
 is quite as expected because the moment arm of the gravity about the
 elbow gets smaller as the elbow flexes, and less muscle force is
 therefore needed to carry it. If you look at the muscle force in the
 BicepsLong, you see a different pattern:</p>
-<p><a class="reference internal" href="../_images/image46.png"><img alt="image3" src="../_images/image46.png" style="width: 4.59615in; height: 2.46741in;" /></a></p>
+<p><a class="reference internal" href="../_images/image44.png"><img alt="image3" src="../_images/image44.png" style="width: 4.59615in; height: 2.46741in;" /></a></p>
 <p>This muscle grows in force during the movement. That is because it is
 influenced by the movement of two joints, namely the shoulder and the
 elbow. In addition, it collaborates both with DeltoidusA on shoulder
@@ -344,15 +344,15 @@ purpose:</p>
 to a downward force of 100 N (approximately 10 kg dumbbell weight). If
 you reload, rerun, and investigate the BicepsLong force again, you
 should see this:</p>
-<p><a class="reference internal" href="../_images/image56.png"><img alt="image4" src="../_images/image56.png" style="width: 4.66667in; height: 2.51029in;" /></a></p>
+<p><a class="reference internal" href="../_images/image54.png"><img alt="image4" src="../_images/image54.png" style="width: 4.66667in; height: 2.51029in;" /></a></p>
 <p>The muscle force is obviously much larger than before, and the
 development is also different. It now reaches a maximum during the
 movement and drops off again.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Applied forces do not have to be constant. They can change with time
-and other properties in the model.  Please refer to the <span class="xref std std-doc">tutorial on
-forces</span> for more
+and other properties in the model.  Please refer to the <a class="reference internal" href="../The_mechanical_elements/intro.html"><span class="doc">tutorial on
+forces</span></a> for more
 details.</p>
 </div>
 <p>While the model described here was anatomically simplified, it can be a
@@ -360,8 +360,10 @@ comprehensive job to define a realistic body model which is exactly why
 most users would probably start out using the body models available in
 the <a class="reference external" href="http://www.anybodytech.com/anybody.html?fwd=modelrepository">AnyBody Managed Model
 Repository</a>.</p>
-<p>Now, let’s continue to <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Adding real bone
-geometrics</span></a></p>
+<div class="without-title admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> Now, let’s continue to <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Adding real bone geometrics</span></a></p>
+</div>
 </div>
 </div>
 
@@ -387,16 +389,15 @@ geometrics</span></a></p>
 <div class="sphinx-toc sphinxglobaltoc">
 <h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Front Page</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribute</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Getting started: AnyScript Programming</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 5</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting started: AnyScript Programming</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: Basic Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Defining Segments and Displaying Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Connecting Segments by Joints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Imparting movement with Drivers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 5: Definition of Muscles and External Forces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-muscle-model">Creating a muscle model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#introducing-a-muscle-to-the-model">Introducing a muscle to the model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#adding-more-muscles">Adding more muscles</a></li>
@@ -406,11 +407,34 @@ geometrics</span></a></p>
 <li class="toctree-l3"><a class="reference internal" href="#creating-external-loads">Creating external loads</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="lesson6.html"> Lesson 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: Adding Real Bone Geometries</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
 </ul>
 </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/A_Getting_started_anyscript/lesson5.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
         </div>
       </div>
     
@@ -451,7 +475,7 @@ geometrics</span></a></p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="intro.html" >Getting started: AnyScript Programming</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
     </div>
     </div>

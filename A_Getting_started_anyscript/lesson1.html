@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 1: Basic Concepts &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
@@ -55,7 +55,7 @@
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Getting started: AnyScript Programming</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -74,12 +74,12 @@
 introductory video found in Help -&gt; AnyBody Assistant, which visually
 demonstrates several important GUI features.</p>
 </div>
-<p><a class="reference internal" href="../_images/image16.png"><img alt="AnyBody Assistent" src="../_images/image16.png" style="width: 7.14583in; height: 3.83344in;" /></a></p>
+<p><a class="reference internal" href="../_images/image13.png"><img alt="AnyBody Assistent" src="../_images/image13.png" style="width: 7.14583in; height: 3.83344in;" /></a></p>
 <p>Let us begin by creating a new AnyScript model from scratch. On the menu
 click File -&gt; New from template… this will bring up a new window in
 which you choose “Basic Main” and provide a “Target Name” (e.g.,
 <em>NewModel</em>) and click OK.</p>
-<p><a class="reference internal" href="../_images/image24.png"><img alt="Editor NewModel.main.any" src="../_images/image24.png" style="width: 6.85694in; height: 3.44742in;" /></a></p>
+<p><a class="reference internal" href="../_images/image22.png"><img alt="Editor NewModel.main.any" src="../_images/image22.png" style="width: 6.85694in; height: 3.44742in;" /></a></p>
 <p>The new file that opens up in the text editor contains a basic skeleton
 for your model, based on a built-in template.</p>
 <div class="section" id="what-are-classes">
@@ -115,8 +115,8 @@ AnyBodyStudy</strong>.</p>
 organizational folder for containing the entire model you are going to
 build. Let us change the folder name “MyModel” to “ArmModel”.</p>
 <p>The object named “MyStudy” (and of type AnyBodyStudy) is a collection of
-simulation tasks that you want to perform with your model. The <span class="xref std std-doc">*Study
-of Studies*</span> tutorial
+simulation tasks that you want to perform with your model. The <a class="reference internal" href="../A_study_of_studies/intro.html"><span class="doc">*Study
+of Studies*</span></a> tutorial
 contains much more information about these subjects. For now, let’s just
 rename “MyStudy” to “ArmModelStudy”.</p>
 <p><strong>In the forthcoming AnyScript text we’ll highlight each change by red.
@@ -162,23 +162,23 @@ the model will not work.</p>
 </div>
 <div class="section" id="loading-an-anybody-model">
 <h2>Loading an AnyBody model<a class="headerlink" href="#loading-an-anybody-model" title="Permalink to this headline">¶</a></h2>
-<p>You should be ready to load the model now by pressing the <a class="reference internal" href="../_images/image33.png"><img alt="Loadbutton image" src="../_images/image33.png" style="width: 0.50000in; height: 0.20714in;" /></a> icon in the toolbar or the F7 key.</p>
+<p>You should be ready to load the model now by pressing the <a class="reference internal" href="../_images/image31.png"><img alt="Loadbutton image" src="../_images/image31.png" style="width: 0.50000in; height: 0.20714in;" /></a> icon in the toolbar or the F7 key.</p>
 <p>This action will load whatever file is chosen in the text editor. If a
 file is already loaded, the above action will simply reload the file
 until you give another file loading priority by right-clicking its tab
 and select “Load Model”.</p>
-<p><a class="reference internal" href="../_images/image43.png"><img alt="Load model right click menu" src="../_images/image43.png" style="width: 3.54922in; height: 1.37500in;" /></a></p>
+<p><a class="reference internal" href="../_images/image41.png"><img alt="Load model right click menu" src="../_images/image41.png" style="width: 3.54922in; height: 1.37500in;" /></a></p>
 <p>You may get a similar message in the Output Window.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Loading</span> <span class="n">Main</span> <span class="p">:</span> <span class="s2">&quot;C:</span><span class="se">\\</span><span class="s2">...</span><span class="se">\\</span><span class="s2">NewModel.main.any&quot;</span>
-<span class="n">Scanning</span><span class="o">...</span>
-<span class="n">Parsing</span><span class="o">...</span>
-<span class="n">Constructing</span> <span class="n">model</span> <span class="n">tree</span><span class="o">...</span>
-<span class="n">Linking</span> <span class="n">identifiers</span><span class="o">...</span>
-<span class="n">Evaluating</span> <span class="n">constants</span><span class="o">...</span>
-<span class="n">Configuring</span> <span class="n">model</span><span class="o">...</span>
-<span class="n">Evaluating</span> <span class="n">model</span><span class="o">...</span>
-<span class="n">Loaded</span> <span class="n">successfully</span><span class="o">.</span>
-<span class="n">Elapsed</span> <span class="n">Time</span> <span class="p">:</span> <span class="mf">0.063000</span>
+<div class="highlight-none"><div class="highlight"><pre><span></span>Loading Main : &quot;C:\\...\\NewModel.main.any&quot;
+Scanning...
+Parsing...
+Constructing model tree...
+Linking identifiers...
+Evaluating constants...
+Configuring model...
+Evaluating model...
+Loaded successfully.
+Elapsed Time : 0.063000
 </pre></div>
 </div>
 </div>
@@ -188,8 +188,8 @@ and select “Load Model”.</p>
 mistake is to forget a semicolon somewhere. Try removing the last
 semicolon in the AnyScript file, and load again. You get a message
 saying something like:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">(</span><span class="n">SCR</span><span class="o">.</span><span class="n">PRS11</span><span class="p">)</span> <span class="p">:</span> <span class="n">C</span><span class="p">:</span>\\<span class="o">...</span>\\<span class="n">NewModel</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span> <span class="p">:</span> <span class="s1">&#39;EOF&#39;</span> <span class="n">unexpected</span>
-<span class="n">Model</span> <span class="n">loading</span> <span class="n">skipped</span>
+<div class="highlight-none"><div class="highlight"><pre><span></span>ERROR(SCR.PRS11) : C:\\...\\NewModel.main.any(26) : &#39;EOF&#39; unexpected
+Model loading skipped
 </pre></div>
 </div>
 <p>First, there is a message ID, then a file location and finally&nbsp;the body
@@ -201,11 +201,13 @@ that an error can sometimes be caused by something you mistyped earlier
 in the file so that you actually have to change something elsewhere in
 your model. Try clicking the error number ERROR(SCR.PRS11). This will
 give you a little pop-up window with a complete explanation:</p>
-<p><a class="reference internal" href="../_images/image53.png"><img alt="Error popup dialog" src="../_images/image53.png" style="width: 6.66042in; height: 3.58569in;" /></a></p>
+<p><a class="reference internal" href="../_images/image51.png"><img alt="Error popup dialog" src="../_images/image51.png" style="width: 6.66042in; height: 3.58569in;" /></a></p>
 <p>We now assume that you have removed the errors and have loaded the model
 successfully.</p>
-<p>If you are up to it, let’s continue onward to <a class="reference internal" href="lesson2.html"><span class="doc">*Lesson
-2:&nbsp;Segments*</span></a>.</p>
+<div class="without-title admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> If you are up to it, let’s continue onward to <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2:&nbsp;Segments</span></a>.</p>
+</div>
 </div>
 </div>
 
@@ -231,27 +233,49 @@ successfully.</p>
 <div class="sphinx-toc sphinxglobaltoc">
 <h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Front Page</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribute</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Getting started: AnyScript Programming</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 1</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting started: AnyScript Programming</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 1: Basic Concepts</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-are-classes">What are “Classes”?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#what-does-this-file-contain-so-far">What does this file contain so far?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#loading-an-anybody-model">Loading an AnyBody model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#basic-troubleshooting">Basic troubleshooting</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson3.html"> Lesson 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson4.html"> Lesson 4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson5.html"> Lesson 5</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson6.html"> Lesson 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Defining Segments and Displaying Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Connecting Segments by Joints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Imparting movement with Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html">Lesson 5: Definition of Muscles and External Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: Adding Real Bone Geometries</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
 </ul>
 </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/A_Getting_started_anyscript/lesson1.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
         </div>
       </div>
     
@@ -292,7 +316,7 @@ successfully.</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="intro.html" >Getting started: AnyScript Programming</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
     </div>
     </div>

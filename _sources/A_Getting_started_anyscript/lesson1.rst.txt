@@ -60,7 +60,7 @@ build. Let us change the folder name “MyModel” to “ArmModel”.
 
 The object named "MyStudy" (and of type AnyBodyStudy) is a collection of
 simulation tasks that you want to perform with your model. The :doc:`*Study
-of Studies* <../chap4_A_study_of_studies/intro>` tutorial
+of Studies* <../A_study_of_studies/intro>` tutorial
 contains much more information about these subjects. For now, let's just
 rename "MyStudy" to "ArmModelStudy".
 
@@ -168,8 +168,11 @@ give you a little pop-up window with a complete explanation:
 We now assume that you have removed the errors and have loaded the model
 successfully.
 
-If you are up to it, let's continue onward to :doc:`*Lesson
-2: Segments* <lesson2>`.
+
+.. rst-class:: without-title
+.. seealso::
+    **Next lesson:** If you are up to it, let's continue onward to :doc:`Lesson 2: Segments <lesson2>`.
+
 
 .. |AnyBody Assistent| image:: _static/lesson1/image1.png
    :width: 7.14583in

@@ -1,0 +1,238 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Introduction: Getting Started with Modeling &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 1: Starting with a New Model" href="lesson1.html" />
+    <link rel="prev" title="Getting Started with Modeling" href="index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: Starting with a New Model"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="Getting Started with Modeling"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Getting Started with Modeling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction-getting-started-with-modeling">
+<h1>Introduction: Getting Started with Modeling<a class="headerlink" href="#introduction-getting-started-with-modeling" title="Permalink to this headline">¶</a></h1>
+<p>The objective of this tutorial is to give an understanding of more
+complex models using a full body model. A model will be created using a
+template and will be adapted to explain the reaction of the human body
+to an environment.</p>
+<p>Developing accurate models of the human body is an enormous task, and it
+is not something each user can do from scratch. We often have to rely on
+models other people have made, and if we keep improving and exchanging
+them, we shall end up with an excellent supply of models that fit most
+purposes. <a class="reference external" href="https://www.anybodytech.com/software/model-repository-ammr/">*The AnyBody Managed Model
+Repository*</a>
+that has been described in a previous chapter is an attempt to provide
+such a library. Additionally, there are templates available that allow
+an easy start into a new model application.</p>
+<p>These are some of the tasks you will want to accomplish with predefined
+models:</p>
+<ul class="simple">
+<li>To change the model pieces to fit your own purposes - preferably
+without tampering with the interior workings of the parts you are
+using.</li>
+<li>To be able to combine existing body parts to larger models.</li>
+<li>To be able to attach the parts you can find to model bits you
+construct yourself.</li>
+</ul>
+<p>All this can be done very elegantly in the AnyScript language provided
+you keep it in mind when you construct your models. The AnyBody Model
+Repository applications and templates are built that way, and they
+contain numerous examples of the technique. In short, it uses the
+following elements of the language to make it happen:</p>
+<ol class="arabic simple">
+<li>Include files</li>
+<li>Parameters</li>
+<li>Equipping parts with their own interfaces</li>
+</ol>
+<p>While there are many different ways models could be constructed to
+obtain the modularity we are looking for, the AnyScript Model Repository
+represents&nbsp;one very well-structured solution, and AnyBody Technology
+strongly recommends following the structure of this library when new
+models are developed.</p>
+<p>When an existing application is similar enough to what you want to do to
+form the basis of the new application, then you can just copy that
+application and modify it as you want. But sometimes it will be clearer
+to users to build their own models from the bottom-up. We will consider
+the second situation and try to create a new model using templates.</p>
+<p>This tutorial is based on version 1.6 of the AnyBody Managed Model
+Repository. Please notice that the repository models are subject to
+frequent updates. The newest version of the AMMR will be packaged with
+the latest version of the AnyBody Modeling System. Also, the demo models
+provided in the AnyBody Modeling System may be updated compared to the
+version used here.</p>
+<p>With the AnyBody Modeling System, you already have a repository of
+models available, for details, please see the AnyBody Assistant
+available from the menu. This tutorial has been written using the
+AnyBody Managed Model Repository Ver. 1.6 (AMMRV1.6).</p>
+<div class="without-title admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> With that done, please proceed to Lesson 1: <a class="reference internal" href="lesson1.html"><span class="doc">Starting with a new Model</span></a> using a template.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started with Modeling</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: Starting with a New Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Adjusting the Human Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Making Ends Meet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Kinetics - Computing Forces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/A_Getting_started_modeling/intro.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: Starting with a New Model"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="Getting Started with Modeling"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Getting Started with Modeling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -4,10 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Contribute &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <title>Contributing &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -31,7 +31,7 @@
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Getting Started" href="A_Getting_started/intro.html" />
+    <link rel="next" title="Getting Started" href="A_Getting_started/index.html" />
     <link rel="prev" title="AnyBody Tutorials!" href="index.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
@@ -48,13 +48,14 @@
           <a href="contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="A_Getting_started/intro.html" title="Getting Started"
+          <a href="A_Getting_started/index.html" title="Getting Started"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="index.html" title="AnyBody Tutorials!"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
- 
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">AnyBody Tutorials!</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -65,17 +66,55 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="contribute">
-<h1>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="how-to-contribute">
-<h2>How to contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h2>
-<p>Every contribution is most welcome. See the <a class="reference external" href="https://github.com/AnyBody/anybody-tutorial">repository source files hosted
-on Github</a></p>
-<p>The tutorials are build using <a class="reference external" href="http://www.sphinx-doc.org/">sphinx</a>, a tool for software
+  <div class="section" id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
+<p>We highly appreciate any contributions to Tutorials!</p>
+<p>If you find typos, missing links or anything else wrong, don’t hesitate to fix it.</p>
+<p>It is as easy as forking <a class="reference external" href="https://github.com/AnyBody/anybody-tutorial">the repository on GitHub</a> , making your changes, and
+issuing a pull request.  If you have any questions about this process don’t
+hesitate to ask.</p>
+<div class="section" id="building-the-tutorials">
+<h2>Building the tutorials<a class="headerlink" href="#building-the-tutorials" title="Permalink to this headline">¶</a></h2>
+<p>The tutorials are created using <a class="reference external" href="http://www.sphinx-doc.org/">sphinx</a>, a tool for software
 documentation. Sphinx converts reStructuredText files into html, pdf or other
 formats. reStructuredText are simple text files with extra markup to define headers
 and formating. Having the tutorials as reStructuredText makes it easy to control
 changes to the documents and ensure consistent style.</p>
+<p>The tutorials are automatically build with sphinx when commits are
+pushed to the github repository. The process is handle by
+<a class="reference external" href="https://travis-ci.org/AnyBody/anybody-tutorial">Travis CI, here</a>.
+If the build fails, for example because of
+wrong reST syntax etc, the Pull Request can not be merged.</p>
+<p>Once the pull request is accepted on Github and the changes are merged to the master
+branch the tutorials becomes availble online.</p>
+<p>The newest released version of the tutorials are available at:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://anyscript.org/tutorials">https://anyscript.org/tutorials</a></li>
+</ul>
+<p>The newest development version (current master branch) is availble at:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://anyscript.org/tutorials/dev">https://anyscript.org/tutorials/dev</a></li>
+</ul>
+<div class="section" id="building-the-tutorials-locally">
+<h3>Building the tutorials locally<a class="headerlink" href="#building-the-tutorials-locally" title="Permalink to this headline">¶</a></h3>
+<p>Eventhought the tutorials are build automatically, it is also possible to build
+them locally to view the layout and see results before pushing changes to the
+server. It is often not necesssary when making small fixes to existing
+tutorials. But when writing major new sections it nice to view how things look.</p>
+<p>The easiest way to install needed packages tools, is to have the [Anaconda
+python distribution](<a class="reference external" href="https://www.continuum.io/downloads">https://www.continuum.io/downloads</a>).</p>
+<p>Then run the following commands to install the necesssary packages.</p>
+<div class="highlight-bat"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; conda install sphinx pandoc cloud_sptheme pygments_anyscript</span>
+c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; pip install sphinxcontrib-fulltoc</span>
+</pre></div>
+</div>
+<p>Once the packages are install run this command s to build.</p>
+<div class="highlight-bat"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; make html</span>
+</pre></div>
+</div>
+<p>Once complete open the file: <code class="docutils literal"><span class="pre">build/html/index.html</span></code> in a browser to view
+the result.</p>
+</div>
 </div>
 <div class="section" id="short-restructuredtext-guide">
 <h2>Short reStructuredText guide<a class="headerlink" href="#short-restructuredtext-guide" title="Permalink to this headline">¶</a></h2>
@@ -137,12 +176,12 @@ directive and specifing <code class="docutils literal"><span class="pre">AnyScri
 It can highlight AnyScript code even if the syntax is not correct, and any code
 fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</p>
 <p>Here is an example:</p>
-<div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">AnyScriptDoc</span>
+<div class="highlight-none"><div class="highlight"><pre><span></span>.. code-block:: AnyScriptDoc
 
-    <span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
-        <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="gr">-9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
-    <span class="p">};</span> <span class="c1">// End of study</span>
+    AnyBodyStudy Study = {
+        AnyFolder &amp;Model = .Model;
+        Gravity = {0.0, §-9.81§, 0.0};
+    }; // End of study
 </pre></div>
 </div>
 <p>Which gives the following:</p>
@@ -161,38 +200,6 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
 <li><code class="docutils literal"><span class="pre">rest</span></code> reStructuredText</li>
 <li>… and any other <a class="reference external" href="http://pygments.org/docs/lexers/">lexer alias that Pygments supports</a>.</li>
 </ul>
-</div>
-</div>
-<div class="section" id="building-the-tutorials">
-<h2>Building the tutorials<a class="headerlink" href="#building-the-tutorials" title="Permalink to this headline">¶</a></h2>
-<p>The tutorials are automatically build with sphinx when commits are
-pushed to the github repository. The process is handle by
-<a class="reference external" href="https://travis-ci.org/AnyBody/anybody-tutorial">Travis CI, here</a>.
-If the build fails, for example because of
-wrong reST syntax etc, the Pull Request can not be merged.</p>
-<p>Once the pull request is accepted on Github and the changes are merged to the master
-branch the tutorials becomes availble online.</p>
-<p>The lates version of the tutorial which has git tag in the repository is always
-available here: <a class="reference external" href="http://anyscript.org/tutorials/">http://anyscript.org/tutorials/</a> A development version (the
-master branch) can be viewed at  <a class="reference external" href="http://anyscript.org/tutorials/dev">http://anyscript.org/tutorials/dev</a></p>
-<div class="section" id="building-the-tutorials-locally">
-<h3>Building the tutorials locally<a class="headerlink" href="#building-the-tutorials-locally" title="Permalink to this headline">¶</a></h3>
-<p>It is also nice to be able to build the tutorials locally to view the layout
-before pushing to the server. It is often not necesssary when making small fixes
-to existing tutorials. But when writing major new sections it nice to view how
-things look.</p>
-<p>The easiest way to install the packages, is to have the Anaconda python distribution.</p>
-<p>Then run the following commands to install the necesssary packages.</p>
-<div class="highlight-bat"><div class="highlight"><pre><span></span>conda install sphinx pandoc cloud_sptheme pygments_anyscript
-pip install sphinxcontrib-fulltoc
-</pre></div>
-</div>
-<p>Once the packages are install run this command s to build.</p>
-<div class="highlight-bat"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\User\mel\anybody-tutorials</span><span class="c1">&gt; make html</span>
-</pre></div>
-</div>
-<p>Once complete open the file: <code class="docutils literal"><span class="pre">build/html/index.html</span></code> in a browser to view
-the result.</p>
 </div>
 </div>
 </div>
@@ -219,27 +226,50 @@ the result.</p>
 <div class="sphinx-toc sphinxglobaltoc">
 <h3><a href="contents.html">Table Of Contents</a></h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="index.html">Front Page</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Contribute</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-contribute">How to contribute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#short-restructuredtext-guide">Short reStructuredText guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#paragraphs">Paragraphs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#headers">Headers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lists-and-quote-like">Lists and Quote-like</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#highlighting-code">Highlighting code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial overview</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-tutorials">Building the tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#building-the-tutorials-locally">Building the tutorials locally</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#building-the-tutorials">Building the tutorials</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#building-the-tutorials-locally">Building the tutorials locally</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#short-restructuredtext-guide">Short reStructuredText guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#paragraphs">Paragraphs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#headers">Headers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lists-and-quote-like">Lists and Quote-like</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#highlighting-code">Highlighting code</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="A_Getting_started/intro.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
-<li class="toctree-l1"><a class="reference internal" href="A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="A_Getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A_Getting_started_anyscript/index.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Interface_features/index.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A_study_of_studies/index.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Muscle_modeling/index.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
 </ul>
 </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/contributing.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
         </div>
       </div>
     
@@ -273,13 +303,14 @@ the result.</p>
           <a href="contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="A_Getting_started/intro.html" title="Getting Started"
+          <a href="A_Getting_started/index.html" title="Getting Started"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="index.html" title="AnyBody Tutorials!"
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
- 
+
+          <li class="nav-item nav-item-1"><a href="index.html" >AnyBody Tutorials!</a> &#187;</li> 
       </ul>
     </div>
     </div>

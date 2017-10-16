@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 3: Reviewing Analysis Results &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
@@ -31,7 +31,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Getting Started: The Model Repository" href="../A_Getting_started_AMMR/intro.html" />
+    <link rel="next" title="Getting started: AnyScript Programming" href="../A_Getting_started_anyscript/index.html" />
     <link rel="prev" title="Lesson 2: Controlling the Posture" href="lesson2.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
@@ -48,14 +48,14 @@
           <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="../A_Getting_started_AMMR/intro.html" title="Getting Started: The Model Repository"
+          <a href="../A_Getting_started_anyscript/index.html" title="Getting started: AnyScript Programming"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Controlling the Posture"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Getting Started</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Getting Started</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -78,14 +78,14 @@ open Chart views manually go to View -&gt; Charts.</p>
 by AnyBody. Every element in the model generates some form of output
 from the analysis, so the tree is vast. One of the first nodes you
 encounter is the MaxMucleActivity variable:</p>
-<p><a class="reference internal" href="../_images/image13.png"><img alt="Chart view tree" src="../_images/image13.png" style="width: 1.77778in; height: 2.56944in;" /></a></p>
+<p><a class="reference internal" href="../_images/image12.png"><img alt="Chart view tree" src="../_images/image12.png" style="width: 1.77778in; height: 2.56944in;" /></a></p>
 <p>If you select MaxMucleActivity you will see the following information.
 The line is flat, because you have analyzed a static standing posture
 which does not change with time:</p>
-<p><a class="reference internal" href="../_images/image22.png"><img alt="Chart view" src="../_images/image22.png" style="width: 6.68750in; height: 3.79861in;" /></a></p>
+<p><a class="reference internal" href="../_images/image21.png"><img alt="Chart view" src="../_images/image21.png" style="width: 6.68750in; height: 3.79861in;" /></a></p>
 <p>If you want to see details of the real values on the graph, click this
-button <a class="reference internal" href="../_images/image31.png"><img alt="getting started 8" src="../_images/image31.png" style="width: 0.28472in; height: 0.26389in;" /></a>. It adds a table with values below the chart:</p>
-<p><a class="reference internal" href="../_images/image41.png"><img alt="Chart view Data button" src="../_images/image41.png" style="width: 6.68056in; height: 3.80556in;" /></a></p>
+button <a class="reference internal" href="../_images/image3.png"><img alt="getting started 8" src="../_images/image3.png" style="width: 0.28472in; height: 0.26389in;" /></a>. It adds a table with values below the chart:</p>
+<p><a class="reference internal" href="../_images/image4.png"><img alt="Chart view Data button" src="../_images/image4.png" style="width: 6.68056in; height: 3.80556in;" /></a></p>
 <p>This chart shows you that to stand upright; the model is using about 13%
 of its strength. This means that the highest muscle activation level in
 the system is about 13% of the muscles’ maximum strength.</p>
@@ -96,7 +96,7 @@ the system is about 13% of the muscles’ maximum strength.</p>
 moments (by muscles) and muscle activations. For your convenience, the
 so-called ‘SelectedOutput’ folder contains all those representative
 values. You will find the folder in the model tree here:</p>
-<p><a class="reference internal" href="../_images/image51.png"><img alt="Chartview Selected output tree" src="../_images/image51.png" style="width: 3.32639in; height: 5.25694in;" /></a></p>
+<p><a class="reference internal" href="../_images/image5.png"><img alt="Chartview Selected output tree" src="../_images/image5.png" style="width: 3.32639in; height: 5.25694in;" /></a></p>
 <p>From this folder, we will take a look at the reaction forces in the
 right hip joint. Navigate to the ‘Right.Leg.JointReactionForce’ folder
 by expanding the tree view like this:</p>
@@ -109,9 +109,9 @@ right hip joint in the proximodistal direction. If you select another
 value from the left-hand side of the model tree, the ‘Value’ property of
 Chart View will change accordingly.</p>
 <p>It is possible to select and display several properties simultaneously
-in Chart View by using the asterisk (*) character. If you double- click
+in Chart View by using the asterisk (<code class="docutils literal"><span class="pre">*</span></code>) character. If you double- click
 the ‘Value’ property of your Chart View, it becomes editable. Let us
-edit the last ‘Hip_ProximoDistalForce’ term to ‘Hip_*’.</p>
+edit the last <code class="docutils literal"><span class="pre">Hip_ProximoDistalForce</span></code> term to <code class="docutils literal"><span class="pre">Hip_*</span></code>.</p>
 <p><a class="reference internal" href="../_images/image8.png"><img alt="Chart view asterix selection" src="../_images/image8.png" style="width: 6.68750in; height: 3.65972in;" /></a></p>
 <p>Now you will see the ‘Hip_MediolateralForce’, ‘Hip_ProximoDistalForce’
 and ‘Hip_AnteroPosteriorForce’ in the same Chart View.</p>
@@ -122,19 +122,19 @@ and ‘Hip_AnteroPosteriorForce’ in the same Chart View.</p>
 model to see what happens to the hip joint reaction force.</p>
 <p>To adjust the posture of the human model, let us open your Mannequin.any
 file and change the PelvisThoraxExtension value from 0 to -60.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>AnyFolder Mannequin = {
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
 
-AnyFolder Posture = {
+    <span class="kt">AnyFolder</span> <span class="n">Posture</span> <span class="o">=</span> <span class="p">{</span>
 
-…
+        <span class="p">...</span>
 
-§AnyVar PelvisThoraxExtension=-60; §
+        <span class="gr">AnyVar PelvisThoraxExtension=-60; </span>
 
-AnyVar PelvisThoraxLateralBending=0;
+        <span class="kt">AnyVar</span> <span class="n">PelvisThoraxLateralBending</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
-AnyVar PelvisThoraxRotation=0;
+        <span class="kt">AnyVar</span> <span class="n">PelvisThoraxRotation</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
-...
+        <span class="p">...</span>
 </pre></div>
 </div>
 <p>Press the F7 button to reload the model and run the RunApplication
@@ -181,12 +181,12 @@ for topics of particular interest to you.</p>
 <div class="sphinx-toc sphinxglobaltoc">
 <h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Front Page</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribute</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Getting Started</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="lesson1.html"> Lesson 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson2.html"> Lesson 2</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#"> Lesson 3</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: Creating a Standing Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Controlling the Posture</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 3: Reviewing Analysis Results</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#introducing-chart-view">Introducing chart view</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hip-forces-standing-posture">Hip forces – Standing posture</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hip-forces-bent-posture">Hip forces - Bent posture</a></li>
@@ -194,10 +194,32 @@ for topics of particular interest to you.</p>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/intro.html">Getting Started: The Model Repository</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
 </ul>
 </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/A_Getting_started/lesson3.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
         </div>
       </div>
     
@@ -231,14 +253,14 @@ for topics of particular interest to you.</p>
           <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="../A_Getting_started_AMMR/intro.html" title="Getting Started: The Model Repository"
+          <a href="../A_Getting_started_anyscript/index.html" title="Getting started: AnyScript Programming"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Controlling the Posture"
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="intro.html" >Getting Started</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Getting Started</a> &#187;</li> 
       </ul>
     </div>
     </div>

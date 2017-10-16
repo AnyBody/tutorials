@@ -1,0 +1,438 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Introduction: A Study of Studies &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson1: Mechanical System Information" href="lesson1.html" />
+    <link rel="prev" title="A Study of Studies" href="index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson1: Mechanical System Information"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="A Study of Studies"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">A Study of Studies</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction-a-study-of-studies">
+<h1>Introduction: A Study of Studies<a class="headerlink" href="#introduction-a-study-of-studies" title="Permalink to this headline">¶</a></h1>
+<p>Studies and operations are AnyBody’s mechanisms for specifying “things
+to do to the model”. The study is the “collector“, in the sense that a
+study collects a model definition with the operations that executes the
+model and the results to investigate afterwards. Operations are the
+things you can do to the model; they can be executed from the AnyBody
+interface and while they run output is generated and stored in the study
+according to the function of the specific operation.</p>
+<p>Why does AnyBody have studies? You might expect that you could just load
+a model and then operations would simply be available in the AnyBody
+interface. But why are studies then defined as special classes? Why do
+you need to declare then manually in the model?</p>
+<p>The reason to have studies as a special class is basically that you can
+have multiple studies in the same model. Since studies become objects in
+the model, there can be as many as you need (or your computer can manage
+which is depending on the model size) and they do not need to comprise
+(operate on) the same model definition even though they share elements.</p>
+<p>A simple example of the usage of multiple studies is to perform to
+different operations on the same model, or to perform the same operation
+on almost equivalent models, and subsequently comparing the results.
+With two studies, this can be done in a single AnyBody model.</p>
+<p>Studies are derived from the base class called AnyStudy and the
+operations you find inside the studies are also defined as class; all
+derived from the base class AnyOperation.</p>
+<p>AnyBody’s family of study classes looks like this:</p>
+<ul class="simple">
+<li>AnyStudy (Base class for all studies)<ul>
+<li>AnyTimeStudy (Base class for time variation studies)<ul>
+<li>AnyMechStudyBase</li>
+<li>AnyKinStudy<ul>
+<li>AnyMechStudy</li>
+<li>AnyBodyStudy</li>
+<li>AnyBodyCalibrationStudy</li>
+</ul>
+</li>
+<li>AnyMechStudy1 (<strong>deprecated!</strong>)<ul>
+<li>AnyBodyStudy1 (<strong>deprecated!</strong>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>AnyDesStudy (design variable studies, see <em>a separate tutorial</em>)</li>
+</ul>
+</li>
+</ul>
+<p>In this tutorial, we shall focus on time varying studies and in
+particular mechanical studies that deal with the analysis of mechanical
+system. The other major branch of studies are design studies that deal
+with variations of design parameters for instance as parameter studies
+and even optimization. A special tutorial is however devoted to this
+topic typically design studies will build on top of the analyses
+performed by other studies, such as mechanical studies.</p>
+<p>The mechanical studies (derived from AnyMechStudyBase) are all very
+similar, except that they contain different sets of available
+operations. The base class is empty; AnyKinStudy extents this with
+functionality for kinematic analysis. AnyMechStudy further extents this
+with kinetic (dynamic) analysis of basic mechanical systems.</p>
+<p>AnyBodyStudy is the must frequently used study by AnyBody users, since
+this study extents the kinematic analysis functions with operations for
+kinetic (dynamic) analysis of musculoskeletal systems, i.e., the core
+functionality of the AnyBody Modeling System. AnyBodyCalibrationStudy
+contains assisting functionality in this regard.</p>
+<p>AnyMechStudy1 and AnyBodyStudy1 are deprecated versions of AnyMechStudy
+and AnyBodyStudy, respectively, and we shall not consider these any
+further in this tutorial.</p>
+<p>In this tutorial, we shall use AnyBodyStudy as starting point because of
+its very central role in the system and for most users, and because it
+contains almost collective set of the operations that are also found in
+the other mechanical studies. Notice however that a special tutorial,
+Inverse Dynamics of Muscle Systems, is devoted to topic of
+musculoskeletal simulation, so we shall not go into details with this
+here.</p>
+<div class="section" id="the-anybodystudy-and-studies-in-general">
+<h2>The AnyBodyStudy and Studies in general<a class="headerlink" href="#the-anybodystudy-and-studies-in-general" title="Permalink to this headline">¶</a></h2>
+<p>A study is really just a folder. It is a pair of braces between which
+you can place some specifications. Whatever you put between the braces
+becomes part of the study. As every object, a study has some predefined
+properties that you either can set, must set, or cannot touch.</p>
+<p>When you create a new model by means of the menus File -&gt; New Main, the
+system automatically inserts an AnyBodyStudy&nbsp;for you (please do it and
+save the file under some relevant name). It looks like this:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
+<span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
+<span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
+<span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>It contains all the things you formally need. Let’s start with the last
+line</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>The line assigns a value to the variable ‘Gravity’, which is a
+specification of the vector of gravitational acceleration affecting the
+model. The variable has no type definitions in front of it since it is a
+predefined property of the AnyBodyStudy object. The system assumes that
+you want to work with the y axis being vertical in space. If you prefer
+otherwise, simply change the direction of Gravity to reflect your
+choice. Please go ahead and load the model if you have not already done
+it by pressing F7 or the <a class="reference internal" href="../_images/image112.png"><img alt="script_to_model" src="../_images/image112.png" style="width: 0.30208in; height: 0.20833in;" /></a>&nbsp;icon.</p>
+<p>An AnyBodyStudy has many more predefined properties that you can play
+with. You can get an overview of these using the Mode Tree View, which
+is attached to the left of the Main Frame and to all AnyScript Editor
+window under the Model tab. Double-clicking any object in the Model Tree
+will show you properties of the objects in the Object Description dialog
+box. You can also use the Model Browser to get an overview of the
+parameters of the studies. The Model Browser&nbsp;is opened from the menu
+Windows -&gt; Model Browser, whereafter you can find the study in the Model
+Tree which is attached to the left of this window too.</p>
+<p>Most of the properties&nbsp;deal with solution methods, tolerances, and other
+stuff that is necessary or handy for advanced users. For a description
+of each property, please refer to the AnyScript Reference manual. A few
+of the properties, however, are necessary to know even for casual users
+and they are common for all mechanical studies:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="2%" />
+<col width="98%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">tStart</th>
+<th class="head">This is the time at which the study begins. In almost every case, this would be zero. Using a non-zero value of tStart is sometimes used to restrict the study to a subset of the time is was originally developed for or if the model is driven by measured data which does not begin at t = 0.</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>tEnd</td>
+<td>Ah, you guessed it already. This is the time at which the study ends. Contrary to tStart, this often has to be set by the user. The standard value is tEnd = 1.0, and if you want your study to span any more or less time, you have to set tEnd manually. A very common modeling mistake is to define data-based drivers such as the AnyKinEqInterPolDriver with a time span exceeding the interval from 0 to 1 and then wondering why only a small part of the movement interval gets simulated. In this case, the user must manually specify tEnd to correspond with the end of the driver time span.</td>
+</tr>
+<tr class="row-odd"><td>nStep</td>
+<td>AnyBody analyzes movement in discrete time steps, and nStep specifies how many steps the system should use to come from tStart to tEnd. The steps are equidistant, and since tStart is always the first analysis time, and tEnd the last, the interval gets divided into nStep-1 equal intervals. The default value is nStep=100, which for most purposes is a very fine resolution. If you have a large and time-consuming model, it might be a good idea to manually set nStep to a smaller number.</td>
+</tr>
+</tbody>
+</table>
+<p>The first line of the study reads</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Notice that the first word of that line is a type definition:
+“AnyFolder”. The predefined properties we have just discussed need no
+type definition because the study already knows them. They are already
+defined and merely get new values by the assignments we may specify. So
+the type definition at the beginning of this line indicates that this
+property is an addition to the study; something that was not known
+already. This is an important point to understand about studies: You can
+add almost anything to a study and the study does not need to know its
+type in advance.</p>
+<p>The significance of adding something to a study is that whatever you add
+becomes a part of what the study executes. This particular line defines
+a variable called “Model” and sets it equal to .MyModel. If you look at
+the beginning of the AnyScript file, you will see that MyModel is really
+the folder containing the entire model the system has generated for you
+(we refer to it as .MyModel with a leading dot because it is one brace
+up compared to where it is referenced from). This means that the entire
+model comes under influence of the study. Instead of this line, we could
+simply have pasted the entire contents of the braces defining the
+MyModel in at this place, and in some sense, this is precisely what we
+have done. The ampersand ‘&amp;’ in front of “Model” means that Model does
+not get replicated inside the study. Instead, the ‘&amp;’ means that the
+study merely contains a pointer to MyModel. The concept of pointers
+should be very familiar to you if you have any experience in C, C++, or
+Java programming. If not, simply think of a pointer as a handle to
+something that’s defined elsewhere. Whenever you access it, you are
+actually handling what it is pointing to.</p>
+<p>Instead of including the entire model, we could have chosen to point to
+some of the sub folders of MyModel. This would mean that the study would
+work on just a subset of the model, and it can be very relevant in some
+cases. For instance, as mentioned earlier, you may want to compare to
+almost identical models; in this case you can collect all common parts
+in one folder and the distinctive parts in each separate folder and two
+studies can easily be made with references to the common part and their
+respective distinctive part. Special studies that are used to initialize
+properties in the model, is also a case where it is indeed useful to be
+able to point to parts of the model. Muscle property calibration is such
+as case, which we shall look at in a special lesson of the Inverse
+Dynamics of Muscle Systems tutorial.</p>
+</div>
+<div class="section" id="the-elements-of-a-study">
+<h2>The elements of a study<a class="headerlink" href="#the-elements-of-a-study" title="Permalink to this headline">¶</a></h2>
+<p>When you define an AnyBodyStudy, regardless of what you include between
+the braces of the study, the result is three standard operations that
+appear in the study tree. They each represent something you can do to
+the model elements the study is pointing at:</p>
+<ul class="simple">
+<li>Operation <strong>InitialConditions</strong> reads the values of whatever drivers
+you have included in the study and puts the model in the position of
+these drivers at time tStart. This is done in a multi-step process:
+The model is initialized into the initial positions from load time,
+and the kinematics is subsequently solved in a few steps. This is
+particularly useful for inspection of the specified initial positions
+when having problems with the initial configuration of the mechanism.</li>
+<li>Operatin <strong>Kinematics</strong>. A kinematic analysis is a simulation of the
+movement of the model without calculation of any sort of forces. This
+means that you can run Kinematics as soon as you have the movement
+defined uniquely. You don’t need any muscles in the model for this
+one.</li>
+<li>Operations <strong>InverseDynamics</strong>. This is a simulation of the forces
+involved in the given movement or posture and whatever can be derived
+from them. The InverseDynamics operation uses the Kinematics
+operation as a subroutine, so this requires a correctly defined
+movement or posture as well as the muscles or motors necessary to
+drive the model.</li>
+</ul>
+<p>Each of these operations, when executed, assembles the output they
+generate in the Output section under the study’s tree.</p>
+</div>
+<div class="section" id="running-operations">
+<h2>Running operations<a class="headerlink" href="#running-operations" title="Permalink to this headline">¶</a></h2>
+<p>You execute operations through the wide, narrow control pane that’s
+usually located at the bottom of the screen. This is usually referred to
+as the Operation Window.</p>
+<p><a class="reference internal" href="../_images/image29.png"><img alt="Running Operations" src="../_images/image29.png" style="width: 2.54167in; height: 1.58333in;" /></a></p>
+<p>The lower portion of this pane is just the message window where the
+system writes various messages and dumps object properties when you
+double-click them as we did before with the entire study. The left of
+the upper fields is a filtered version of the tree you can find on the
+left side of just about any window in the AnyBody Modeling System.
+Rather than presenting all the objects of the model, this tree only
+comprises the studies. If you expand a study, you will find its
+operations, which typically are: InitialConditions, Kinematics, and
+InverseDynamics.</p>
+<p>You pick an operation by clicking it once. This highlights its name, and
+you can now execute it with the Run or Step buttons in the right hand
+field. The “Run” button starts the study and it will run until it comes
+to its end or encounters an error. Once you press the run button, it
+changes its name to “Break”, and pressing it in that state breaks the
+current analysis process.</p>
+<p>The “Step” button takes one step at a time. What a step is exactly
+depends a little on the type of operation. For Kinematics and
+InverseDynamics a step is one time step of the movement. For
+InitialConditions, a step is one of the several distinct operations
+necessary to put the model into its initial state. We shall return to
+that subject in the next lesson.</p>
+<p>The “Reset” button returns the model to its initial state after it has
+gone through a sequence of time steps. You must press “Reset” before you
+can rerun the model.</p>
+<p>In the following lessons we shall look in more detail at the different
+functionality in an AnyBodyStudy.</p>
+<ul class="simple">
+<li><a class="reference internal" href="lesson1.html"><span class="doc">Lesson 1: Mechanical System Information</span></a></li>
+<li><a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2: Initial Conditions</span></a></li>
+<li><a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Kinematics</span></a></li>
+<li><a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4: Inverse Dynamics</span></a></li>
+</ul>
+<p>We need a model with a bit more substance than the template we created
+above. If you do not already have our trusted arm model stored
+somewhere, <em>please download it here</em>, save it to your disk, and load it
+into AnyBody.</p>
+<div class="without-title admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> We are then ready to proceed to <a class="reference internal" href="lesson1.html"><span class="doc">Lesson1: Mechanical System Information</span></a>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">User interface features</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">A Study of Studies</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-anybodystudy-and-studies-in-general">The AnyBodyStudy and Studies in general</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-elements-of-a-study">The elements of a study</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-operations">Running operations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson1: Mechanical System Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson2: Initial Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Kinematic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Inverse Dynamics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/A_study_of_studies/intro.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson1: Mechanical System Information"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="A Study of Studies"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >A Study of Studies</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

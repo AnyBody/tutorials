@@ -1,0 +1,409 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 1: The Basics of Muscle Definition &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 2: Controlling Muscle Drawing" href="lesson2.html" />
+    <link rel="prev" title="Introduction to Muscle Modeling" href="intro.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Controlling Muscle Drawing"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction to Muscle Modeling"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Muscle Modeling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-1-the-basics-of-muscle-definition">
+<h1>Lesson 1: The Basics of Muscle Definition<a class="headerlink" href="#lesson-1-the-basics-of-muscle-definition" title="Permalink to this headline">¶</a></h1>
+<p>The key to understanding muscles in the AnyBody Modeling System is to
+realize that they mechanically consist of two separate computational
+models:</p>
+<ol class="arabic simple">
+<li>The kinematic model, which determines the muscle’s path from origin
+to insertion depending on the posture of the body. This also entails
+finding the length and contraction velocity of the muscle.</li>
+<li>The strength model which determines the muscle’s strength and
+possible its passive elastic force depending on the kinematic state
+of the muscle.</li>
+</ol>
+<p>&nbsp;This would be a sad excuse for a tutorial if we did not have an example
+to work on. So let us quickly construct a very simple example that will
+enable us to examine the properties of muscles. <a class="reference external" href="Downloads/MuscleDemo.Ini.any">*Here’s an extremely
+simple one-degree-of-freedom model (right-click and save to
+disk)*</a>:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// This is a very simple model for demonstration of muscle modeling</span>
+<span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+   <span class="kt">AnyFolder</span> <span class="n">MyModel</span> <span class="o">=</span> <span class="p">{</span>
+
+     <span class="c1">// Global Reference Frame</span>
+     <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+       <span class="p">};</span>
+     <span class="p">};</span>  <span class="c1">// Global reference frame</span>
+
+     <span class="c1">// Define one simple segment</span>
+     <span class="kt">AnySeg</span> <span class="n">Arm</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="n">r0</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.500000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">};</span>
+       <span class="n">Mass</span> <span class="o">=</span> <span class="mf">1.000000</span><span class="p">;</span>
+       <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.100000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">}</span><span class="o">*</span><span class="mf">0.1</span><span class="p">;</span>
+       <span class="kt">AnyRefNode</span> <span class="n">Jnt</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+       <span class="p">};</span>
+       <span class="kt">AnyDrawSeg</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{};</span>
+     <span class="p">};</span>
+
+     <span class="c1">// Attach the segment to ground by a revolute joint</span>
+     <span class="kt">AnyRevoluteJoint</span> <span class="n">Jnt</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">ref1</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">;</span>
+       <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">ref2</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">Jnt</span><span class="p">;</span>
+       <span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span><span class="p">;</span>
+     <span class="p">};</span>
+
+     <span class="c1">// Drive the revolute joint at constant velocity</span>
+     <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">Drv</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+       <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">40</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+       <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">.</span><span class="n">Jnt</span><span class="p">;</span>
+       <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+     <span class="p">};</span>
+
+   <span class="p">};</span> <span class="c1">// MyModel</span>
+
+   <span class="c1">// The study: Operations to be performed on the model</span>
+   <span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
+    <span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="n">MR</span><span class="o">*</span><span class="n">MinMaxStrict</span><span class="p">;</span>
+     <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+   <span class="p">};</span>
+ <span class="p">};</span>  <span class="c1">// Main</span>
+</pre></div>
+</div>
+<p>When you load the model, open a model view window,&nbsp;and run the
+SetInitialConditions operation, you should get the following picture:</p>
+<p><a class="reference internal" href="../_images/image15.jpeg"><img alt="simple model" src="../_images/image15.jpeg" style="width: 2.08333in; height: 2.00000in;" /></a></p>
+<p>The model has a driver, so you can run the kinematic analysis and see
+the movement. The arm flexes about the origin of the red reference
+frame. If you try to run the InverseDynamicAnalysis, you will get an
+error:</p>
+<p>ERROR: Muscle recruitment analysis failed, simplex solver reports that
+solution does not satisfy all constraints.</p>
+<p>This is because the model does not have any muscles to balance the arm
+against the downward pull of gravity. Let us define the simplest
+possible muscle to carry the load. As mentioned above, a muscle has two
+basic components: a kinematic model, and a strength model. We shall
+begin with the latter, and for the time being define the simplest
+possible version.</p>
+<p>If you pick the Classes tab in the right-hand side of the Window, then
+you will get access to the class tree. Expand the tree as shown in the
+picture until you get to the AnyMuscleModel.</p>
+<p><a class="reference internal" href="../_images/image231.png"><img alt="class tree" src="../_images/image231.png" style="width: 2.98958in; height: 3.34375in;" /></a></p>
+<p>Notice that this class has&nbsp;three derived classes. These are more
+advanced muscle models, and we shall get to those later. However for the
+time being, place the cursor in the Editor View on an empty line just
+after the end brace of the driver definition, right-click the
+AnyMuscleModel class in the tree, and select “Insert Class
+Template”.This causes an instance of the AnyMuscleModel class to be
+inserted into the model (new code marked with red):</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// Drive the revolute joint at constant velocity</span>
+<span class="kt">AnyKinEqSimpleDriver</span> <span class="n">Drv</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">40</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">.</span><span class="n">Jnt</span><span class="p">;</span>
+  <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="p">};</span>
+
+<span class="gr">AnyMuscleModel &lt;ObjectName&gt; = {</span>
+<span class="gr">  F0 = 0;</span>
+<span class="gr">};</span>
+</pre></div>
+</div>
+<p>This is the simplest type of muscle model the system provides, and it is
+simply a specification of strength corresponding to the assumed maximum
+voluntary contraction of the muscle. A muscle with this type of model
+does not have any dependency on length or contraction velocity, and it
+does not take the passive elasticity of the tissue into account. Despite
+this simplicity, it is used with considerable success for many studies
+where the movements or postures are within the normal range of the
+involved joints, and where contraction velocities are small.</p>
+<p>Let us perform the necessary modifications to make the model useful to
+us:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyMuscleModel</span> <span class="gr">SimpleModel</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">F0</span> <span class="o">=</span> <span class="gr">100</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The next step is to define a muscle that can use the model. This is
+actually the first of the two elements mentioned above: Muscle
+kinematics.</p>
+<p>Again, the AnyBody Modeling System provides a number of choices, and we
+shall start by picking the simplest one. It is instructive to once again
+use the tree to insert a template of the muscle object, because the tree
+reveals the class dependency. A muscle resolves kinematical information
+in the sense that it has a certain path from origin to insertion, and it
+also provides force. These two properties are reflected in the way the
+muscle classes are derived from a kinematic measure as well as force
+classes.</p>
+<p>The simplest type of muscle is the AnyViaPoint muscle. It spans the path
+between origin and insertion by passing through any number of via points
+on the way. The via points are fixed to segments or to the global
+reference frame. It is a simple and convenient way to define many of the
+simpler muscles of the body, primarily those in the extremities and the
+spine. You can, in fact, make a pretty decent model of the legs entirely
+with via point muscles.</p>
+<p>Place the cursor right after the end brace of the musle model,
+right-click the AnyViaPointMuscle class in the tree, and insert an
+instance of it:</p>
+<p><a class="reference internal" href="../_images/image328.png"><img alt="class tree AnyViaPointMuscle" src="../_images/image328.png" style="width: 2.90625in; height: 2.71875in;" /></a></p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyMuscleModel</span> <span class="n">SimpleModel</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">F0</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+    <span class="p">};</span>
+
+   <span class="gr"> AnyViaPointMuscle &lt;ObjectName&gt; = {</span>
+<span class="gr">      AnyMuscleModel &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">      AnyRefFrame &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">      AnyRefFrame &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">      //AnyRefFrame &amp;&lt;Insert name2&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">    };</span>
+</pre></div>
+</div>
+<p>Let us start by filling out what we can and removing what we have no use
+for:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyViaPointMuscle</span> <span class="gr">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="gr">Model</span> <span class="o">=</span> <span class="gr">.SimpleModel</span><span class="p">;</span>
+  <span class="kt">AnyRefFrame</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span> <span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="kt">AnyRefFrame</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name1</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span> <span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Notice that we have left only two points in the list of via points. This
+is obviously the minimal requirement and will create a muscle in a
+single line from origin to insertion. But before we proceed with the
+definition of the muscle we must define the necessary points on the
+model to attach the muscle to. We shall define the origin on the global
+reference frame and the insertion on the segment:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// Global Reference Frame</span>
+<span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="gr">AnyRefNode M1Origin = {</span>
+<span class="gr">    sRel = {0.0, 0.1, 0};</span>
+<span class="gr">  };</span>
+<span class="p">};</span>  <span class="c1">// Global reference frame</span>
+
+<span class="c1">// Define one simple segment</span>
+<span class="kt">AnySeg</span> <span class="n">Arm</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.500000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">};</span>
+  <span class="n">Mass</span> <span class="o">=</span> <span class="mf">1.000000</span><span class="p">;</span>
+  <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.100000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">}</span><span class="o">*</span><span class="mf">0.1</span><span class="p">;</span>
+  <span class="kt">AnyRefNode</span> <span class="n">Jnt</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="p">};</span>
+ <span class="gr"> AnyRefNode M1Insertion = {</span>
+<span class="gr">    sRel = {0.0, 0.1, 0};</span>
+<span class="gr">  };</span>
+  <span class="kt">AnyDrawSeg</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>&nbsp;With these two points, we can complete the definition of the muscle:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyViaPointMuscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
+    <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="gr">Orig = .GlobalRef.M1Origin</span><span class="p">;</span>
+    <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="gr">Ins = .Arm.M1Insertion</span><span class="p">;</span>
+    <span class="gr">AnyDrawMuscle drw = {};</span>
+  <span class="p">};</span>
+</pre></div>
+</div>
+<p>Notice that we have added an AnyDrawMuscle object to the definition.
+Like other classes in AnyScript, muscles are not drawn in the model view
+window unless you specifically ask for it. When you load the model and
+run the SetInitialConditions study you will get the following picture
+(if your model does not load, and you cannot find the error, <a class="reference download internal" href="../_downloads/MuscleDemo.1.any" download=""><code class="xref download docutils literal"><span class="pre">click</span>
+<span class="pre">here</span> <span class="pre">to</span> <span class="pre">download</span> <span class="pre">a</span> <span class="pre">model</span> <span class="pre">that</span> <span class="pre">works</span></code></a>
+(MuscleDemo.1.any)):</p>
+<p><a class="reference internal" href="../_images/image44.jpeg"><img alt="simple model with muscle" src="../_images/image44.jpeg" style="width: 2.08333in; height: 2.00000in;" /></a></p>
+<p>Notice that the muscle is now&nbsp;able to balance the gravity, and we are
+able to run the InverseDynamicAnalysis. If you try it out and
+subsequently open a chart view, you are able to plot the muscle force:</p>
+<p><a class="reference internal" href="../_images/image518.png"><img alt="http://www.anybodytech.com/fileadmin/AnyBody.3.x.x/tutorial/MuscleModeling/muscleforce1.gif" src="../_images/image518.png" style="width: 5.43750in; height: 3.68750in;" /></a></p>
+<p>The muscle force is the&nbsp;item Fm in the list of properties you can plot
+for a muscle. As you can see, lots of other properties are available,
+but if you try to plot them you will find that many of them are zero.
+This is because they are not relevant for this very simple type of
+muscle. We shall return to the significance of the different properties
+later in this tutorial.</p>
+<div class="without-title admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> For now, <a class="reference internal" href="lesson2.html"><span class="doc">let’s proceed to the next lesson</span></a>&nbsp;to learn
+how to control the way a muscle is displayed.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Muscle Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 1: The Basics of Muscle Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Controlling Muscle Drawing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Via-point muscles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Wrapping Muscles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html">Lesson 5: Muscle Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: General Muscles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson7.html">Lesson 7: Ligaments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Muscle_modeling/lesson1.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Controlling Muscle Drawing"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction to Muscle Modeling"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Muscle Modeling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

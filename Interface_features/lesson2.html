@@ -1,0 +1,366 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 2: The Model View Window &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 3: The Chart View" href="lesson3.html" />
+    <link rel="prev" title="Lesson 1: The Editor Window" href="lesson1.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: The Chart View"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: The Editor Window"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">User interface features</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-2-the-model-view-window">
+<h1>Lesson 2: The Model View Window<a class="headerlink" href="#lesson-2-the-model-view-window" title="Permalink to this headline">¶</a></h1>
+<p>The Model View is a graphical representation of your AnyBody model. You
+can open up to four Model Views open at the time, and you can enable
+these additional windows from View-&gt;Model Views.</p>
+<p><a class="reference internal" href="../_images/image124.png"><img alt="Open model view windows" src="../_images/image124.png" style="width: 6.68958in; height: 3.96111in;" /></a></p>
+<p>The&nbsp;Model View only displays a particular type of model elements called
+“Draw Objects” which are inserted into AnyScript definitions of
+segments, muscles, nodes, surfaces, etc. For example, see the AnyDrawSeg
+object used to visualize a segment in this tutorial<strong>.</strong></p>
+<div class="section" id="introduction-to-model-view">
+<h2>Introduction to Model View<a class="headerlink" href="#introduction-to-model-view" title="Permalink to this headline">¶</a></h2>
+<p>The Model View displays and updates the model as the simulation
+operation proceeds. These updates can involve movements, shapes or
+colors, etc. that reflect changes such as muscle force fluctuations.</p>
+<p>Once the operation has been completed, the <strong>replay slider bar</strong> at the
+top lets you freely navigate to any time instant, where both the Model
+View and values in the Model Tree will be instantly updated.</p>
+<p>The Model View allows you to save individual image frames which can
+subsequently be used to make a video animation playing a speed of your
+choice.</p>
+</div>
+<div class="section" id="running-a-simulation">
+<h2>Running a Simulation<a class="headerlink" href="#running-a-simulation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Switch to the Operations tab. Select the RunApplication in the tree
+click the <strong>Start operation icon</strong>.</p>
+<p><a class="reference internal" href="../_images/image220.png"><img alt="Model tree toolbar, start operation" src="../_images/image220.png" style="width: 4.49515in; height: 2.94077in;" /></a></p>
+</li>
+<li><p class="first">Once completed, merely click on InverseDynamics in the Operations
+tree. You will notice that the replay toolbar slider shifts from gray
+to blue.</p>
+</li>
+<li><p class="first">Now try to drag the slider forwards and backward and notice how the
+Model View changes<a class="reference internal" href="../_images/image317.png"><img alt="Replay slider toolbarb" src="../_images/image317.png" style="width: 6.69306in; height: 1.91262in;" /></a></p>
+</li>
+</ol>
+<p>If you have run several operations, you can replay them individually by
+changing the selected operation in the tree.</p>
+<div class="section" id="the-toolbar">
+<h3>The Toolbar<a class="headerlink" href="#the-toolbar" title="Permalink to this headline">¶</a></h3>
+<p>The Model View has its own toolbar with the following buttons:</p>
+<p><a class="reference internal" href="../_images/image415.png"><img alt="Model view toolbar" src="../_images/image415.png" style="width: 5.91667in; height: 1.75000in;" /></a></p>
+<ul class="simple">
+<li><strong>On/Off:</strong> When switched off, the other buttons are disabled, and
+the model is no longer updated. However switching it off may speed up
+your simulations.</li>
+<li><strong>Properties</strong> <strong>:</strong> Opens the properties window.</li>
+<li><strong>Pan tool:</strong> Dragging the cursor with the left mouse button down
+moves the model image.</li>
+<li><strong>Zoom tool:</strong> Hold the left mouse button down, and drag up/down for
+zooming in/out.</li>
+<li><strong>Spin tool:</strong> 3D rotation of the model when left mouse button is
+held down.</li>
+<li><strong>Zoom all:</strong> Refits the view to show all drawing elements.</li>
+<li><strong>Default views:</strong> Predefined views on planes: xy plane (standard),
+yz or xz plane.</li>
+<li><strong>Rotate 90:</strong> Rotates the view 90 degrees</li>
+<li><strong>Rotate 180:</strong> Rotates the view 180 degrees</li>
+<li><strong>Record start/stop:</strong> Starts/stops the video frame capturing.
+Explained in more detail below.</li>
+<li><strong>Frame count:</strong> Displays the number of captured frames during a
+recording.</li>
+<li><strong>Snapshot:</strong> Takes a single snapshot of the model.</li>
+</ul>
+</div>
+<div class="section" id="model-view-properties">
+<h3>Model View Properties<a class="headerlink" href="#model-view-properties" title="Permalink to this headline">¶</a></h3>
+<p>The Model View properties contain four groups and should be displayed as
+a tree in a separate tab. To learn, click on any of the properties with
+the <a class="reference internal" href="../_images/image513.png"><img alt="Folder icon" src="../_images/image513.png" style="width: 0.20000in; height: 0.19097in;" /></a> symbol and hit the F1 key. This should open the
+AnyScript Reference Manual where sub-properties are defined.</p>
+</div>
+<div class="section" id="recording-video">
+<h3>Recording video<a class="headerlink" href="#recording-video" title="Permalink to this headline">¶</a></h3>
+<p>The allows you to save individual image frames of a motion for
+subsequent processing into a video animation.</p>
+<p>The function works much like a video tape recorder, in the sense that
+you can <a class="reference internal" href="../_images/image66.png"><img alt="Record buttons" src="../_images/image66.png" style="width: 1.64583in; height: 0.41667in;" /></a>push the red record button any time you like,
+and what happens in the window is subsequently saved for further
+processing.</p>
+<p>Let us see how it works.</p>
+<ol class="arabic simple">
+<li>Try clicking the record button.</li>
+<li>A file manager will pop up and request you to select a location and
+file. We recommend the Jpeg file format due to the lesser memory
+demand.</li>
+<li>The frame counter will light up, the “Rec” letters flashes and the
+stop button becomes active indicating that you can push it. Any
+activity that takes place in the window will now be recorded.</li>
+<li>Try manually spinning the model <strong>a little</strong> with the mouse and
+notice how the frame counter adds up. The system only grabs frames
+when the picture actually changes, for example when you replay your
+simulation results.</li>
+<li>Push “Stop recording” when you have saved 100 frames. The system will
+ask you if you want to save the images, say yes. The saved images
+should look like this: {image_000.jpeg, image_001.jpeg, …,
+image_099.jpeg]</li>
+</ol>
+<p>The AnyBody Modeling System does not provide a video editing facility to
+process these files into an AVI, MPEG or similar video file format, but
+many third-party utilities are available for this purpose. For more
+details, please see
+<a class="reference external" href="https://anyscript.org/tips-n-tricks/creating-videos-from-your-simulations/">https://anyscript.org/tips-n-tricks/creating-videos-from-your-simulations/</a></p>
+</div>
+<div class="section" id="working-with-the-model-view-contents">
+<h3>Working with the Model View contents<a class="headerlink" href="#working-with-the-model-view-contents" title="Permalink to this headline">¶</a></h3>
+<p>We have already mentioned that Model View shows draw objects in the
+model and that there are two types of these objects:</p>
+<ul class="simple">
+<li>Auto-generated draw objects</li>
+<li>Model-defined draw objects</li>
+</ul>
+<p>Auto-generated objects are crude representations that are useful during
+the development, while model-defined objects serve to make the most
+pleasing views that suit your presentation needs.</p>
+<p>All draw objects can appear in the following states:</p>
+<ul class="simple">
+<li>Visible or invisible</li>
+<li>Transparent</li>
+<li>Selected</li>
+</ul>
+<p>These states you can control while the model is loaded, either directly
+from Model View or from the Model Tree. We shall return to this in a
+moment.</p>
+</div>
+<div class="section" id="model-view-state-actions">
+<h3>Model View State Actions<a class="headerlink" href="#model-view-state-actions" title="Permalink to this headline">¶</a></h3>
+<p>Let us take a look at how you can interact with the states of Model View
+draw objects. Right-clicking an object in Model View will bring up its
+context menu.</p>
+<p><a class="reference internal" href="../_images/image74.png"><img alt="Model view right click" src="../_images/image74.png" style="width: 6.69306in; height: 5.57361in;" /></a></p>
+<p>From here you can show, hide, make transparent, etc. Reset means to
+bring the object back to its original state (at loading time), which can
+be either visible or invisible depending on the object. The more
+“complex looking” options at the bottom of the menu help you navigate to
+the relevant portions of the Model Tree. Try them out, they are quite
+intuitive to understand and may help you further on!</p>
+</div>
+<div class="section" id="selections-in-the-model-view">
+<h3>Selections in the Model View<a class="headerlink" href="#selections-in-the-model-view" title="Permalink to this headline">¶</a></h3>
+<p>Graphical objects in the Model View can be selected by single-clicking
+them with the left mouse button. Doing so will visually mark the object
+as selected by turning it into a reddish color. Multiple objects can be
+selected by left-clicking the objects sequentially. Left-clicking a
+selected object again will remove it from the current selection. The
+currently selected objects can be deselected by either left-clicking
+somewhere in the background, or by using the “Deselect all” option in
+the right-click context menu.</p>
+</div>
+<div class="section" id="setting-the-model-view-from-the-model-tree">
+<h3>Setting the Model View from the Model Tree<a class="headerlink" href="#setting-the-model-view-from-the-model-tree" title="Permalink to this headline">¶</a></h3>
+<p>The context menu options for setting Model View state action for draw
+objects is also available from the Model Tree. The context menu in the
+Model Tree has a Model View item, which includes exactly the same
+sub-menu we looked at above, please see the image below.</p>
+<p><a class="reference internal" href="../_images/image83.png"><img alt="Model tree right click menu" src="../_images/image83.png" style="width: 6.69306in; height: 3.42500in;" /></a></p>
+</div>
+<div class="section" id="draw-groups">
+<h3>Draw groups<a class="headerlink" href="#draw-groups" title="Permalink to this headline">¶</a></h3>
+<p>You can change the state of a group of drawing objects simultaneously by
+using “draw groups” that can be created by the class AnyDrawGroup.
+Please refer to <a class="reference internal" href="lesson7.html"><span class="doc">Lesson 7</span></a> for an example of their
+usage.</p>
+<div class="without-title admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: The Chart View</span></a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User interface features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: The Editor Window</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 2: The Model View Window</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction-to-model-view">Introduction to Model View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-a-simulation">Running a Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-toolbar">The Toolbar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model-view-properties">Model View Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recording-video">Recording video</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#working-with-the-model-view-contents">Working with the Model View contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model-view-state-actions">Model View State Actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#selections-in-the-model-view">Selections in the Model View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setting-the-model-view-from-the-model-tree">Setting the Model View from the Model Tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#draw-groups">Draw groups</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: The Chart View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: The Model Tree and Object Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html">Lesson 5: The Command Line Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: Modifying the Loaded Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson7.html">Lesson 7: Wrapping the Model with AnyBody Project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Interface_features/lesson2.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: The Chart View"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: The Editor Window"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >User interface features</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

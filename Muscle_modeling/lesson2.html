@@ -1,0 +1,361 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 2: Controlling Muscle Drawing &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 3: Via-point muscles" href="lesson3.html" />
+    <link rel="prev" title="Lesson 1: The Basics of Muscle Definition" href="lesson1.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: Via-point muscles"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: The Basics of Muscle Definition"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Muscle Modeling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-2-controlling-muscle-drawing">
+<h1>Lesson 2: Controlling Muscle Drawing<a class="headerlink" href="#lesson-2-controlling-muscle-drawing" title="Permalink to this headline">¶</a></h1>
+<p>Muscles can be displayed in a variety of fashions depending on the
+specifications in the AnyDrawMuscle object. Let us take a look at its
+definition again:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyDrawMuscle</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{};</span>
+</pre></div>
+</div>
+<p>It obviously does not contain much, so every setting is at its default
+value leading to the following display of the muscle:</p>
+<p><a class="reference internal" href="../_images/image16.jpeg"><img alt="simple model with muscle" src="../_images/image16.jpeg" style="width: 2.08333in; height: 2.00000in;" /></a></p>
+<p>Let us play around with the settings a bit. An easy way to display all
+the settings is to discard our manually defined AnyDrawMuscle object and
+insert a template from the class tree instead:</p>
+<p><a class="reference internal" href="../_images/image22.gif"><img alt="class tree AnyDrawMuscle" src="../_images/image22.gif" style="width: 3.56250in; height: 4.38542in;" /></a></p>
+<p>Erase the previous AnyDrawMuscle, right-click the AnyDrawMuscle in the
+tree view, an insert an instance:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyViaPointMuscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
+  <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M1Origin</span><span class="p">;</span>
+  <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Ins</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">M1Insertion</span><span class="p">;</span>
+  <span class="gr">AnyDrawMuscle drw = {</span>
+<span class="gr">    //RGB = {0.554688, 0.101563, 0.117188};</span>
+<span class="gr">    //Opacity = 1.000000;</span>
+<span class="gr">    //DrawOnOff = 1.000000;</span>
+<span class="gr">    //Bulging = 0.000000;</span>
+<span class="gr">    //ColorScale = 0.000000;</span>
+<span class="gr">    //RGBColorScale = {0.957031, 0.785156, 0.785156};</span>
+<span class="gr">    //MaxStress = 250000.000000;</span>
+<span class="gr">  };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Notice that the &lt;ObjectName&gt; must be manually changed to drw (or any
+other sensible name). The commented lines (with // in front) are the
+optional settings. Un-commenting them will not change much because the
+values they have listed are the default settings. So we need to change
+some of the values.</p>
+<p>The first thing we shall try is to make the muscle bulge. We do this by
+setting the value of the Bulge variable to 1. What this transates to is
+to make the muscle bulging proportional to the force in the muscle:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyDrawMuscle</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">//RGB = {0.554688, 0.101563, 0.117188};</span>
+  <span class="c1">//Opacity = 1.000000;</span>
+  <span class="c1">//DrawOnOff = 1.000000;</span>
+  <span class="gr">Bulging = 1;</span>
+  <span class="c1">//ColorScale = 0.000000;</span>
+  <span class="c1">//RGBColorScale = {0.957031, 0.785156, 0.785156};</span>
+  <span class="c1">//MaxStress = 250000.000000;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>When you try this, you will find that the muscle has become thinner, but
+you really cannot see it bulge much. The problem is that the thickness
+of the muscle is scaled by another factor in addition to the force. This
+enables the system to create nice visualizations for&nbsp;intensive and light
+exercises&nbsp;alike. The additional factor is the variable MaxStress. The
+following will increase the muscle thickness:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyDrawMuscle</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">//RGB = {0.554688, 0.101563, 0.117188};</span>
+  <span class="c1">//Opacity = 1.000000;</span>
+  <span class="c1">//DrawOnOff = 1.000000;</span>
+  <span class="n">Bulging</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="c1">//ColorScale = 0.000000;</span>
+  <span class="c1">//RGBColorScale = {0.957031, 0.785156, 0.785156};</span>
+  <span class="gr">MaxStress = 2500;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Why does a smaller value of MaxStress lead to a thicker muscle? Well,
+you can think of the force in a muscle as being the product of a tissue
+stress and the cross sectional area. So, the smaller the tissue stress,
+the larger the cross sectional area for a given force. Thus, reducing
+the value of MaxStress increases the muscle thickness. If you reload and
+run the inverse dynamic analysis you will see that the muscle now has a
+significant thickness. Its thickness does not change much over the
+movement, though. This is because the muscle force is nearly constant
+over time for the problem we have defined. If we let the joint flex a
+bit more, then the moment arm of the muscle will become progressively
+smaller, and we will get a larger muscle force. The easy way to
+accomplish this is to increase the angular velocity of the joint driver:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// Drive the revolute joint at constant velocity</span>
+<span class="kt">AnyKinEqSimpleDriver</span> <span class="n">Drv</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="gr">80</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">.</span><span class="n">Jnt</span><span class="p">;</span>
+  <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Reload the&nbsp;model and run the InverseDynamicAnalysis operation again. You
+will see that the arm now flexes up to an almost vertical position. If
+you plot the muscle force, Fm, again in a chart view, then you can see
+how the muscle force goes up drastically with the reduced moment arm:</p>
+<p>Consequently the muscle now bulges more towards the end of the movement
+than it does in the beginning:</p>
+<p><a class="reference internal" href="../_images/image32.gif"><img alt="Chart view Muscle1.Fm" src="../_images/image32.gif" style="width: 5.62500in; height: 4.88542in;" /></a></p>
+<p>The muscle thickness does not have to reflect force. Choosing other
+values for the Bulging property will give other results:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="17%" />
+<col width="64%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Bulging value</strong></th>
+<th class="head"><strong>Effect</strong></th>
+<th class="head"><strong>Comment</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>No bulging</td>
+<td>This is the default value</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>Muscle force</td>
+<td>Thickness is proportional to force</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>Muscle strength</td>
+<td>Constant in this case (but relevant for more advanced muscle models)</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>Muscle activity</td>
+<td>The ratio between muscle force and muscle strength</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>Constant volume</td>
+<td>The muscle gets thicker when it contracts</td>
+</tr>
+</tbody>
+</table>
+<p>Muscle state can also be visualized with color. This allows for using
+bulging to visualize the force, while, for instance, muscle activity can
+be visualized with color. Try the following:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyDrawMuscle</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">//RGB = {0.554688, 0.101563, 0.117188};</span>
+  <span class="c1">//Opacity = 1.000000;</span>
+  <span class="c1">//DrawOnOff = 1.000000;</span>
+  <span class="n">Bulging</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="gr">ColorScale = 1;</span>
+  <span class="c1">//RGBColorScale = {0.957031, 0.785156, 0.785156};</span>
+  <span class="n">MaxStress</span> <span class="o">=</span> <span class="mi">2500</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>When you reload and run the InverseDynamicAnalysis, you will notice that
+the red shade of the muscle changes as its activity grows:</p>
+<p><a class="reference internal" href="../_images/image45.jpeg"><img alt="Simple model two positions" src="../_images/image45.jpeg" style="width: 4.16667in; height: 2.05208in;" /></a></p>
+<p>When the activity is zero, the color defaults to a rather pale red. You
+can control this “initial” value of the scaled color through the
+property RGBColorscale. As the activity grows towards 1, the color
+approaches the default value of the muscle given in the RGB property.
+For instance, if you want the color interpolated from a cold blue to a
+warm red as the muscle activity increases, you can use the following
+settings:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyDrawMuscle</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="gr">RGB = {1, 0, 0};  //Red</span>
+  <span class="c1">//Opacity = 1.000000;</span>
+  <span class="c1">//DrawOnOff = 1.000000;</span>
+  <span class="n">Bulging</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">ColorScale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="gr">RGBColorScale = {0, 0, 1}; //Blue</span>
+  <span class="n">MaxStress</span> <span class="o">=</span> <span class="mi">2500</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Finally, the muscle drawing object has a couple of properties in common
+with other drawing objects: You can control the transparency of the
+object through the property of that name. Opacity = 1 means opaque, and
+with Opacity = 0, the object becomes completely invisible. All values in
+between causes the object to be semi-transparent. You can also turn of
+the display of the object entirely off by&nbsp;setting DrawOnOff = 0;</p>
+<div class="without-title admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Via-point muscles</span></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Muscle Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: The Basics of Muscle Definition</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 2: Controlling Muscle Drawing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Via-point muscles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Wrapping Muscles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html">Lesson 5: Muscle Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: General Muscles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson7.html">Lesson 7: Ligaments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Muscle_modeling/lesson2.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: Via-point muscles"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: The Basics of Muscle Definition"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Muscle Modeling</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

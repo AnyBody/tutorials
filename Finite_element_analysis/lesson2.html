@@ -1,0 +1,389 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lesson 2: ANSYS Interface &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 3: Abaqus Interface" href="lesson3.html" />
+    <link rel="prev" title="Lesson 1: Export of data for FEA" href="lesson1.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: Abaqus Interface"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: Export of data for FEA"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Finite Element Analysis Interfacing</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-2-ansys-interface">
+<h1>Lesson 2: ANSYS Interface<a class="headerlink" href="#lesson-2-ansys-interface" title="Permalink to this headline">¶</a></h1>
+<p>This chapter shows how to use AnyBody features to apply boundary
+conditions to a Finite Element Model generated in ANSYS. This is current
+work in progress; we assume the workflow will be even smoother in the
+future. You need an additional add-on to the AnyBody Modeling System to
+run this tutorial. This is needed to convert the AnyBody output to ANSYS
+APDL code. Please get it from
+<a class="reference external" href="http://www.anybodytech.com/download.html?did=FEtools.overview">http://www.anybodytech.com/download.html?did=FEtools.overview</a>.</p>
+<p>The model we will have a look at is a clavicle midshaft fracture. We
+will analyze the muscle forces acting on the clavicle during lifting his
+arm and analyze the stress in the implant. The standard Standing model
+taken from the AMMRV1.1 will be used. The basic general workflow is
+shown the figure below.</p>
+<p><a class="reference internal" href="../_images/image117.png"><img alt="FEA tutorial flow chart" src="../_images/image117.png" style="width: 3.82822in; height: 4.23393in;" /></a></p>
+<p>Here we will focus on the link between AnyBody and ANSYS. So we assume
+we have a “ready to go” Finite Element model which basically only lacks
+its boundary conditions. <em>(This model could be e.g. generated from
+medical image data. The AnyBody model has to be scaled to fit to the
+actual case (it can be beneficial to import the .stl file of the bone in
+question into the AMS to scale the model accordingly. Please note, the
+bone will not actually change the musculoskeletal system if you don’t
+change the model definition). Please refer to scaling tutorial for
+details on this matter.)</em></p>
+<p>In this tutorial we will use a bone derived from a standard scaled
+AnyBody model, so no scaling has to be applied here.</p>
+<p>Let’s start with the AnyBody part. We have to make sure the two models
+in the two systems are aligned. The idea is to include local reference
+frames in both systems which will be used for all further data transfer.
+Open the Standing model from the AMMRV1.1, or better make a copy of the
+whole model folder and use this one. For convenience we will reduce the
+model detail by excluding the left arm and switching off the muscles in
+all body parts, except the right arm. This is done in the
+BodyPartsSetup.any file. Next we define the local ref frame on the
+clavicle. All forces will be later exported with respect to this
+coordinate system. You can either use a pre-defined reference system in
+the AMS or create a new one. The following lines create a new node
+located in the Sternoclavicular joint:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="o">&amp;</span><span class="n">RiArm</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">ShoulderArm</span><span class="p">.</span><span class="n">Seg</span><span class="p">.</span><span class="n">Clavicula</span><span class="p">;</span>
+<span class="n">RiArm</span> <span class="o">=</span><span class="p">{</span>
+    <span class="kt">AnyRefNode</span> <span class="n">localrefframe</span><span class="o">=</span><span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+    <span class="c1">// ARel = RotMat(0.5*pi,x);</span>
+    <span class="kt">AnyDrawRefFrame</span> <span class="n">drws</span> <span class="o">=</span> <span class="p">{</span><span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span><span class="o">*</span><span class="mf">0.3</span><span class="p">;</span><span class="n">RGB</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">};};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Include them e.g. in the Environment file. After reload of the model the
+reference frame is shown</p>
+<p><a class="reference internal" href="../_images/image215.png"><img alt="Clavicular ref frame" src="../_images/image215.png" style="width: 3.16785in; height: 2.95158in;" /></a></p>
+<p>Next, we have to define the same local coordinate system in the ANSYS
+model. Download the prepared ANSYS file
+<a class="reference download internal" href="../_downloads/clavicular_base.zip" download=""><code class="xref download docutils literal"><span class="pre">here</span></code></a> and save it in your working
+directory. In the Mechanical APDL (ANSYS) environment (ANSYS Classic), a
+simple way to do so is to modify the location of the work plane. Once
+the work plane is in place create a local coordinate system at the
+workplane origin and give it the number 1000. (In fact you can give it
+any number, but we have to refer to the coordinate system later, so we
+have to know its name). Load the <code class="docutils literal"><span class="pre">clavicular_base.db</span></code> in the Mechanical
+APDL (ANSYS) environment and have a look.</p>
+<p><a class="reference internal" href="../_images/image312.png"><img alt="ANSYS nodes" src="../_images/image312.png" style="width: 6.49387in; height: 3.84508in;" /></a></p>
+<p>This shows the clavicle model, which contains a midshaft fracture,
+modeled with a reduced stiffness and treated with a plate fixation.</p>
+<p>Next we want to analyze the forces in the AMS. Change the Mannequin file
+to create the desired motion. We want to analyze a simple lifting case,
+so all we specify is flexion in the shoulder joint. Open the Mannequin
+file and look for the PostureVel folder. Change the Glenohumeral flexion
+value to 150/Main.Study.tEnd, this determines the joint velocity
+necessary to reach 150 degree flexion taking into account the simulation
+time.</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//Arm</span>
+
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularProtraction</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularAxialRotation</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">GlenohumeralFlexion</span> <span class="o">=</span><span class="mi">150</span><span class="o">/</span><span class="n">Main</span><span class="p">.</span><span class="n">Study</span><span class="p">.</span><span class="n">tEnd</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>We also want to alter the initial starting position for the motion,
+enter the Posture position folder and make the changes indicated below.</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//Arm</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularProtraction</span><span class="o">=-</span><span class="mi">23</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mf">11.5</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularAxialRotation</span><span class="o">=-</span><span class="mi">20</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">GlenohumeralFlexion</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">GlenohumeralAbduction</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">GlenohumeralExternalRotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">ElbowFlexion</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">ElbowPronation</span> <span class="o">=</span> <span class="o">-</span><span class="mf">60.0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>We want this motion to be done in 10 seconds and analyze 5 time steps.
+This can be set in the main file. Search the Study folder and change the
+end time of the study to 10 seconds and the number of time steps to 5.</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
+    <span class="n">tEnd</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
+    <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+    <span class="n">nStep</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now we have to specify which forces we want to export to the FE model.
+For this we make use of the Class inserter. Place you cursor in the
+Study folder in the main file, below the code shown above and select the
+Classes tab on the left side of the main file window. Search for the
+class named AnyMechOutputFileForceExport right click on it and choose
+<em>Insert class template.</em> This will insert the class necessary for force
+export.</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyMechOutputFileForceExport</span> <span class="o">&lt;</span><span class="n">ObjectName</span><span class="o">&gt;</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+    <span class="cm">/*NumberFormat =</span>
+<span class="cm">    {</span>
+<span class="cm">        Digits = 15;</span>
+<span class="cm">        Width = 22;</span>
+<span class="cm">        Style = ScientificNumber;</span>
+<span class="cm">        FormatStr = &quot;&quot;;</span>
+<span class="cm">    };*/</span>
+    <span class="c1">//UseRefFrameOnOff = Off;</span>
+    <span class="c1">//AllSegmentsInStudyOnOff = Off;</span>
+    <span class="c1">//XMLformatOnOff = Off;</span>
+    <span class="c1">//AnyRefFrame &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
+    <span class="c1">//AnySeg &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Create a folder in your Standing model folder named <code class="docutils literal"><span class="pre">files_in</span></code> and one
+called <code class="docutils literal"><span class="pre">files_out</span></code>. This will be used to store the FE files. Change the
+class as shown below. These definitions specify that all forces acting
+on the segment Clavicula will be written in the xml file clavload. The
+UseRefFrameOnOff option allows giving a reference frame in which all
+forces are reported. Switch the option on and name the ref frame (the
+one we created before). You can find the path to the ref frame by
+browsing the model tree on the left side of the main file window to the
+right clavicle and right click <em>Insert object name.</em></p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyMechOutputFileForceExport</span> <span class="n">FE_out</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;files_in/clavload.xml&quot;</span><span class="p">;</span>
+    <span class="n">UseRefFrameOnOff</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
+    <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">ref1</span> <span class="o">=</span>
+    <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">ShoulderArm</span><span class="p">.</span><span class="n">Seg</span><span class="p">.</span><span class="n">Clavicula</span><span class="p">.</span><span class="n">localrefframe</span><span class="p">;</span>
+    <span class="n">AllSegmentsInStudyOnOff</span> <span class="o">=</span> <span class="kp">Off</span><span class="p">;</span>
+    <span class="n">XMLformatOnOff</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
+    <span class="c1">//AllSegmentsInStudyOnOff = Off;</span>
+    <span class="kt">AnySeg</span> <span class="o">&amp;</span><span class="n">clav</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">ShoulderArm</span><span class="p">.</span><span class="n">Seg</span><span class="p">.</span><span class="n">Clavicula</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This class will write all the muscle and joint forces for all time steps
+in one xml file. Please create a folder names <code class="docutils literal"><span class="pre">files_in</span></code> in your
+Application folder. We need one more step to convert the xml file to
+ANSYS APDL language. An additional add-on to the AnyBody Modeling System
+is necessary to do so. This tool is available at
+<a class="reference external" href="http://www.anybodytech.com/download.html?did=FEtools.overview">http://www.anybodytech.com/download.html?did=FEtools.overview</a>. Save the
+files in your model folder. In these files, an executable is included
+that will translate the xml code to APDL and a template for the APDL
+specification. You can call this code either by a shell prompt or from
+inside AnyBody. You can use the class AnyOperationShellExec for this.
+The names for the executable, its working directory and the options for
+the call of the exe file have to be given. The options specify the input
+file (<code class="docutils literal"><span class="pre">-i</span></code>) and the output file folder (<code class="docutils literal"><span class="pre">-o</span></code>). The <code class="docutils literal"><span class="pre">–t</span></code> option gives a
+template for the APDL conversion. Please adjust the path corresponding
+to your setup and insert this code below the study folder:</p>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyOperationShellExec</span> <span class="n">ConvertToAPDL</span><span class="o">=</span><span class="p">{</span>
+    <span class="n">Show</span><span class="o">=</span><span class="kp">On</span><span class="p">;</span>
+    <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;AnyFE2APDL.exe&quot;</span><span class="p">;</span>
+    <span class="n">Arguments</span> <span class="o">=</span> <span class="s">&quot;-i ..</span><span class="se">\f</span><span class="s">iles_in\clavload.xml -o ..</span><span class="se">\f</span><span class="s">iles_out -t ..\APDLTemplate.txt&quot;</span><span class="p">;</span>
+    <span class="n">WorkDir</span><span class="o">=</span><span class="s">&quot;C:\Users\sd.ANYBODY\TEMP\AMMRV1.2\AMMRV1.2\Application\Examples\StandingModel\Converter&quot;</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The basic procedure of the conversion is:</p>
+<ul class="simple">
+<li>Create local coordinate systems for each muscle insertion and joint
+point</li>
+<li>Apply forces to the points</li>
+<li>Create beam connections between the force application points and the
+bone surface</li>
+</ul>
+<p>Let’s have a closer look at the APDL template. Open the APDLTemplate.txt
+file in a text editor. It is structured in three sections, a head
+string, a tail string and a final string. The first string contains
+basic definitions, the second applies the forces and creates the beam
+connections for each force point, the third gives some solution options
+and a solve command. The file is created in a way that it assumes the
+local coordinate name in which all forces are given is named 1000, and
+the material numbers of implant and fracture are between 50 and 60. The
+template can be altered to fit to your actual problem. One thing you
+have to change right now is the path to your FE model.:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>RESUME,&#39;clav_base&#39;,&#39;db&#39;,&#39;C:\Users\sd.ANYBODY\TEMP\Clavicle_paper\FE\&#39;,0,0
+</pre></div>
+</div>
+<p>Please include the path to your model.</p>
+<p>Now we are ready to run the analysis and convert the data. Reload the
+model in the AMS. Select RunApplication in the Operations tree. This
+will automatically run the Calibration and InverseDynamics studies. Next
+select ConvertToAPDL and run it. This will create 5 files in the
+<code class="docutils literal"><span class="pre">files_out</span></code> folder written in APDL language.</p>
+<p>Open ANSYS Mechanical Utility and read the input of each individual file
+with File-Read input from. This will load the model, apply the boundary
+conditions and start to solve. Once finished post-process the results.</p>
+<p><a class="reference internal" href="../_images/image411.png"><img alt="Ansys stresses" src="../_images/image411.png" style="width: 5.84709in; height: 3.93396in;" /></a></p>
+<p>Alternatively you can run all models in one go by reading in the
+outputfileList file. Each loadstep will be written in a new result file.
+You can look at the results by loading them one on one in the
+post-processor.</p>
+<div class="without-title admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="#"><span class="doc">Lesson 2: ANSYS Interface</span></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Finite Element Analysis Interfacing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: Export of data for FEA</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 2: ANSYS Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Abaqus Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Finite_element_analysis/lesson2.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: Abaqus Interface"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: Export of data for FEA"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Finite Element Analysis Interfacing</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, AnyBody Technology.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
