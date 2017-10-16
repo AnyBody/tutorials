@@ -2243,15 +2243,15 @@ table.indextable td > dl > dd > dl
 
         div.bodywrapper
         {
-                margin: 0 0 0 3.8in;
+                margin: 0 0 0 6in;
             
         }
     
 
-        div.sphinxsidebar { width: 3.8in; }
+        div.sphinxsidebar { width: 6in; }
     
 
-            .sidebar-toggle-group { width: 3.8in; }
+            .sidebar-toggle-group { width: 6in; }
         
 
             button.sidebar-toggle#sidebar-show
