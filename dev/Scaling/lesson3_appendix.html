@@ -31,8 +31,8 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lesson 4: Including a Custom Scaling Law" href="lesson4.html" />
-    <link rel="prev" title="Lesson 3: Scaling individual segments based on subject-specific data from medical images" href="lesson3.html" /> 
+    <link rel="next" title="Lesson 2: Including a Custom Scaling Law" href="lesson4.html" />
+    <link rel="prev" title="Lesson 1: Scaling individual segments based on subject-specific data from medical images" href="lesson3.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
@@ -48,15 +48,15 @@
           <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson4.html" title="Lesson 4: Including a Custom Scaling Law"
+          <a href="lesson4.html" title="Lesson 2: Including a Custom Scaling Law"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson3.html" title="Lesson 3: Scaling individual segments based on subject-specific data from medical images"
+          <a href="lesson3.html" title="Lesson 1: Scaling individual segments based on subject-specific data from medical images"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" >Scaling</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="lesson3.html" accesskey="U">Lesson 3: Scaling individual segments based on subject-specific data from medical images</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Subject Specific Scaling</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="lesson3.html" accesskey="U">Lesson 1: Scaling individual segments based on subject-specific data from medical images</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -69,7 +69,7 @@
             
   <div class="section" id="appendix-scaling-based-on-patient-specific-landmarks">
 <h1>Appendix: Scaling based on Patient-Specific Landmarks<a class="headerlink" href="#appendix-scaling-based-on-patient-specific-landmarks" title="Permalink to this headline">¶</a></h1>
-<p>This tutorial is an appendix to the <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3</span></a>, where
+<p>This tutorial is an appendix to the <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 1</span></a>, where
 a construction of advanced scaling laws is introduced.</p>
 <p>This lesson is a brief introduction to the usage of the transforms
 based on the non-linear Radial Basis Functions (RBF) which is used as
@@ -417,7 +417,7 @@ both source and target sets – will it increase the accuracy?</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="../_images/image613.png"><img alt="image5" src="../_images/image613.png" style="width: 6.68750in; height: 2.17708in;" /></a></p>
+<p><a class="reference internal" href="../_images/image612.png"><img alt="image5" src="../_images/image612.png" style="width: 6.68750in; height: 2.17708in;" /></a></p>
 <blockquote>
 <div><dl class="docutils">
 <dt>Now we see that the scaling does not work at all. The problem here is</dt>
@@ -435,7 +435,7 @@ The solution here is to switch RBFDef.Type to <code class="docutils literal"><sp
 <span class="p">...</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="../_images/image79.png"><img alt="image6" src="../_images/image79.png" style="width: 6.67708in; height: 3.54167in;" /></a></p>
+<p><a class="reference internal" href="../_images/image78.png"><img alt="image6" src="../_images/image78.png" style="width: 6.67708in; height: 3.54167in;" /></a></p>
 <p>This modification fixes the problem for the bony surfaces and their
 vicinities – now they look alike. Thus, it is recommended to use
 <code class="docutils literal"><span class="pre">RBF_Gaussian</span></code> type only with low number of landmarks. <code class="docutils literal"><span class="pre">RBF_ThinPlate</span></code> is
@@ -452,7 +452,7 @@ notice that at this point we are still not utilizing the polynomial
 term. Let us try to switch it on and set the polynomial degree to 1,
 which is recommended by the reference manual. Now our approximation
 looks smoother and probably more reasonable:</p>
-<p><a class="reference internal" href="../_images/image87.png"><img alt="image7" src="../_images/image87.png" style="width: 6.68750in; height: 5.80208in;" /></a></p>
+<p><a class="reference internal" href="../_images/image86.png"><img alt="image7" src="../_images/image86.png" style="width: 6.68750in; height: 5.80208in;" /></a></p>
 <p>However, one may still think that the extrapolated points are lying too
 far out. There is one more modification that may affect this solution.
 We can define the behavior of the extrapolation by suggesting the
@@ -478,7 +478,7 @@ the bounding box corners and face points to be included as landmarks:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="../_images/image96.png"><img alt="image8" src="../_images/image96.png" style="width: 6.68750in; height: 4.40625in;" /></a></p>
+<p><a class="reference internal" href="../_images/image95.png"><img alt="image8" src="../_images/image95.png" style="width: 6.68750in; height: 4.40625in;" /></a></p>
 <p>You can notice that the face and corner points on the bounding box,
 which was increased by a factor of 2, also improved extrapolation and
 suggested that the extrapolated points will now lie within similar
@@ -630,11 +630,8 @@ which have corresponding vertices and connectivity matrixces.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scaling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: Joint to Joint Scaling Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Scaling based on External Body Measurements</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="lesson3.html">Lesson 3: Scaling individual segments based on subject-specific data from medical images</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Subject Specific Scaling</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lesson3.html">Lesson 1: Scaling from from medical images</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="lesson3.html#linear-point-based-scaling">Linear point-based scaling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="lesson3.html#incorporating-a-landmark-based-non-linearity-into-the-scaling-law">Incorporating a landmark-based non-linearity into the scaling law</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="lesson3.html#incorporating-a-surface-based-non-linearity-into-the-scaling-law">Incorporating a surface based non-linearity into the scaling law</a><ul class="current">
@@ -649,7 +646,7 @@ which have corresponding vertices and connectivity matrixces.</p>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Including a Custom Scaling Law</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 2: Including a Custom Scaling Law</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
@@ -698,15 +695,15 @@ which have corresponding vertices and connectivity matrixces.</p>
           <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson4.html" title="Lesson 4: Including a Custom Scaling Law"
+          <a href="lesson4.html" title="Lesson 2: Including a Custom Scaling Law"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson3.html" title="Lesson 3: Scaling individual segments based on subject-specific data from medical images"
+          <a href="lesson3.html" title="Lesson 1: Scaling individual segments based on subject-specific data from medical images"
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" >Scaling</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="lesson3.html" >Lesson 3: Scaling individual segments based on subject-specific data from medical images</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Subject Specific Scaling</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="lesson3.html" >Lesson 1: Scaling individual segments based on subject-specific data from medical images</a> &#187;</li> 
       </ul>
     </div>
     </div>

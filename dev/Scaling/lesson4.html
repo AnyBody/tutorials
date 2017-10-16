@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 4: Including a Custom Scaling Law &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <title>Lesson 2: Including a Custom Scaling Law &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -55,7 +55,7 @@
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Scaling</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Subject Specific Scaling</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -66,15 +66,18 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-4-including-a-custom-scaling-law">
-<h1>Lesson 4: Including a Custom Scaling Law<a class="headerlink" href="#lesson-4-including-a-custom-scaling-law" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="lesson-2-including-a-custom-scaling-law">
+<h1>Lesson 2: Including a Custom Scaling Law<a class="headerlink" href="#lesson-2-including-a-custom-scaling-law" title="Permalink to this headline">¶</a></h1>
 <p>This lesson explains how we can utilize our own custom scaling function
-which we designed in Lesson 3 and combine it with other scaling laws,
-e.g. the scaling laws introduced in Lesson 1 and Lesson 2.</p>
-<div class="section" id="preparing-the-model-for-introduction-of-subject-specific-scaling">
-<h2>Preparing the model for introduction of subject-specific scaling<a class="headerlink" href="#preparing-the-model-for-introduction-of-subject-specific-scaling" title="Permalink to this headline">¶</a></h2>
+which we designed in Lesson 3 and combine it with other scaling laws.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">The section on scaling in the AMMR documentation.</p>
+</div>
+<div class="section" id="preparing-for-subject-specific-scaling">
+<h2>Preparing for subject-specific scaling<a class="headerlink" href="#preparing-for-subject-specific-scaling" title="Permalink to this headline">¶</a></h2>
 <p>When creating a musculoskeletal model, we have to decide on the
-dimensions of the model components. Lessons 1 and 2 described how
+dimensions of the model components. The Scaling section in the AMMR documentation described how
 anthropometric regression equations and body measurements can be used to
 define these dimensions. However, the most precise models include
 subject-specific geometries of the bones. To explain how we can include
@@ -84,37 +87,35 @@ dynamics analysis. Additionally, we have the geometry from a CT-scan of
 one of his femur bones. To increase the accuracy of our model, let us
 improve it using a subject-specific scaling for the femur.</p>
 <p>First of all, let us prepare a model matching the standard size man to
-be the basis for further subject-specific improvements. Therefore, we
-look back into <a class="reference internal" href="lesson1.html"><span class="doc">Lesson 1</span></a> and use the model from the
+be the basis for further subject-specific improvements. Therefore we use the model from the
 first section <strong>ScalingStandard,</strong> StandingModelScalingDisplay from the
 AnyBody Managed Model Repository (AMMR). This is well suited to show how
 to use subject-specific geometry in a model.</p>
 </div>
 <div class="section" id="including-custom-scaling-for-a-single-bone">
 <h2>Including custom scaling for a single bone<a class="headerlink" href="#including-custom-scaling-for-a-single-bone" title="Permalink to this headline">¶</a></h2>
-<p>Let us configure this example to use ScalingStandard. Just like in
-lesson 1, we need to define <code class="docutils literal"><span class="pre">BM_SCALING</span></code> as <code class="docutils literal"><span class="pre">CONST_SCALING_STANDARD</span></code>
-and out-comment all other parts of the scaling configuration block.
-With this setting, the model is now scaled to the generic size. We can
-now include individual scaling laws for each segment, which will be
-done in a special file <em>CustomScaling.any</em>, where all the
-modifications related to individual segment morphing are supposed to
-be done. This file is already present in the example and you can
-include it as shown below:</p>
+<p>Let us configure this example to use ScalingStandard. We need to define
+<code class="docutils literal"><span class="pre">BM_SCALING</span></code> as <code class="docutils literal"><span class="pre">_SCALING_STANDARD_</span></code> and out-comment all other parts of
+the scaling configuration block. With this setting, the model is now scaled to
+the generic size. We can now include individual scaling laws for each segment,
+which will be done in a special file <em>CustomScaling.any</em>, where all the
+modifications related to individual segment morphing are supposed to be done.
+This file is already present in the example and you can include it as shown
+below:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cm">/*------------- SCALING CONFIGURATION SECTION --------------------*/</span>
 <span class="c1">// Actual scaling law</span>
-<span class="gr"> #define BM_SCALING CONST_SCALING_STANDARD</span>
+<span class="gr"> #define BM_SCALING _SCALING_STANDARD_</span>
 
 <span class="c1">// Scaling laws using joint to joint measures</span>
-<span class="c1">//  #define BM_SCALING CONST_SCALING_UNIFORM</span>
-<span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASS</span>
-<span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASSFAT</span>
+<span class="c1">//  #define BM_SCALING _SCALING_UNIFORM_</span>
+<span class="c1">//  #define BM_SCALING _SCALING_LENGTHMASS_</span>
+<span class="c1">//  #define BM_SCALING _SCALING_LENGTHMASS_FAT_</span>
 
 
 <span class="c1">// Scaling laws using external measures</span>
-<span class="c1">//  #define BM_SCALING CONST_SCALING_UNIFORM_EXTMEASUREMENTS</span>
-<span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASS_EXTMEASUREMENTS</span>
-<span class="c1">//  #define BM_SCALING CONST_SCALING_LENGTHMASSFAT_EXTMEASUREMENTS</span>
+<span class="c1">//  #define BM_SCALING _SCALING_UNIFORM_EXTMEASUREMENTS_</span>
+<span class="c1">//  #define BM_SCALING _SCALING_LENGTHMASS_EXTMEASUREMENTS_</span>
+<span class="c1">//  #define BM_SCALING _SCALING_LENGTHMASS_FAT_EXTMEASUREMENTS_</span>
 
 <span class="c1">// Anthropometric data file (unchanged files can be found in AAUHuman\Scaling\AnyFamily)</span>
 <span class="c1">//  #path BM_SCALING_ANTHRO_FILE &quot;Model\AnyFamily\AnyMan.any&quot;</span>
@@ -141,11 +142,11 @@ used to specify individual scaling laws.</p>
 </pre></div>
 </div>
 <p>So let us introduce a custom scaling law for the left femur from
-:download:<a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3</span></a>. We prepared a single file
-<cite>MyScalingLaw.any &lt;Downloads/MyScalingLaw.any&gt;</cite> holding the scaling
+<a class="reference internal" href="lesson3.html"><span class="doc">Lesson 1</span></a>. We prepared a single file
+<a class="reference download internal" href="../_downloads/MyScalingLaw.any" download=""><code class="xref download docutils literal"><span class="pre">MyScalingLaw.any</span></code></a> holding the scaling
 transforms from the previous lesson. We also need to download the
 <a class="reference download internal" href="../_downloads/SourceFemur.stl" download=""><code class="xref download docutils literal"><span class="pre">source</span></code></a> (native to AMMR) and
-<cite>target &lt;Downloads/TargetFemur.stl&gt;</cite> (courtesy of Prof. Sebastian
+<a class="reference download internal" href="../_downloads/TargetFemur.stl" download=""><code class="xref download docutils literal"><span class="pre">target</span></code></a> (courtesy of Prof. Sebastian
 Dendorfer, University of Regensburg, Germany) femur surface
 geometries, and copy them to the <em>Model</em> folder of the
 StandingModelScalingDisplay example. Now, we need to make several
@@ -251,8 +252,8 @@ CustomScaling.any:</p>
 notifies the model assembling block that the anthropometric scaling
 for the left thigh segment is not being used. To process other body
 parts you will need to add a similar definition, but utilize actual
-bone segment, e.g. #define CUSTOM_SCALING_&lt;Side&gt;_&lt;SegmentName&gt; for
-different sides or CUSTOM_SCALING_&lt;SegmentName&gt; for parts of the
+bone segment, e.g. <code class="docutils literal"><span class="pre">#define</span> <span class="pre">CUSTOM_SCALING_&lt;Side&gt;_&lt;SegmentName&gt;</span></code> for
+different sides or <code class="docutils literal"><span class="pre">CUSTOM_SCALING_&lt;SegmentName&gt;</span></code> for parts of the
 body that do not have sides. You can find a list of segments by
 browsing the scaling law in the Model tab:</p>
 <p><a class="reference internal" href="../_images/image144.png"><img alt="Model tree" src="../_images/image144.png" style="width: 2.62778in; height: 6.43056in;" /></a></p>
@@ -278,11 +279,11 @@ transformation.</p>
 <div class="section" id="introducing-a-mirrored-pair-of-a-custom-scaling">
 <h2>Introducing a mirrored pair of a custom scaling<a class="headerlink" href="#introducing-a-mirrored-pair-of-a-custom-scaling" title="Permalink to this headline">¶</a></h2>
 <p>We start by making a copy of MyScalingLaw.any that will be used to
-construct the mirrored transform and call it MyScalingLaw_Mirrored.any.
+construct the mirrored transform and call it <code class="docutils literal"><span class="pre">MyScalingLaw_Mirrored.any</span></code>.
 What we have to do is to define a symmetry plane and reflect relevant
 entities accordingly. In this example such plane corresponds to the
 global XY plane. To perform the reflection, we need to multiply all
-relevant landmark points contained in the MyScalingLaw_Mirrored.any
+relevant landmark points contained in the <code class="docutils literal"><span class="pre">MyScalingLaw_Mirrored.any</span></code>
 file by a mirroring matrix:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyScalingLaw</span><span class="gr">_Mirrored</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">AnyMatrix AMirroring = { // XY plane symmetry</span>
@@ -367,7 +368,7 @@ the custom scaling one (right):</p>
 <p><a class="reference internal" href="../_images/image333.png"><img alt="Model view scaling comparison" src="../_images/image333.png" style="width: 6.69792in; height: 4.18750in;" /></a></p>
 <p>This concludes the subject-specific scaling tutorial. The modifications
 utilized for the mirrored transformed model can be downloaded from here:
-MyScalingLaw_Mirrored.final.any</p>
+<a class="reference download internal" href="../_downloads/MyScalingLaw_Mirrored.final.any" download=""><code class="xref download docutils literal"><span class="pre">Downloads/MyScalingLaw_Mirrored.final.any</span></code></a></p>
 </div>
 </div>
 
@@ -407,13 +408,10 @@ MyScalingLaw_Mirrored.final.any</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scaling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: Joint to Joint Scaling Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Scaling based on External Body Measurements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Scaling individual segments based on subject-specific data from medical images</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 4: Including a Custom Scaling Law</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#preparing-the-model-for-introduction-of-subject-specific-scaling">Preparing the model for introduction of subject-specific scaling</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Subject Specific Scaling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 1: Scaling from from medical images</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 2: Including a Custom Scaling Law</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preparing-for-subject-specific-scaling">Preparing for subject-specific scaling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#including-custom-scaling-for-a-single-bone">Including custom scaling for a single bone</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#introducing-a-mirrored-pair-of-a-custom-scaling">Introducing a mirrored pair of a custom scaling</a></li>
 </ul>
@@ -473,7 +471,7 @@ MyScalingLaw_Mirrored.final.any</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" >Scaling</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Subject Specific Scaling</a> &#187;</li> 
       </ul>
     </div>
     </div>

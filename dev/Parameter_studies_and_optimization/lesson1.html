@@ -217,35 +217,28 @@ general tidying up:</p>
 <p>&nbsp;Here’s a brief explanation of the different components of a parameter
 study:</p>
 <table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="96%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Parameter</strong></th>
+<th class="head"><strong>Function</strong></th>
+</tr>
+</thead>
 <tbody valign="top">
-</tbody>
-</table>
-<blockquote>
-<div><strong>Parameter</strong>   | <strong>Function</strong>                                                                                                                                                                                                                                                                                                                                                                                |</div></blockquote>
-<dl class="docutils">
-<dt>+=================+=============================================================================================================================================================================================================================================================================================================================================================================================+</dt>
-<dd>Analysis        | This is a specification of the operation(s) to perform to provide the data we are studying in the parameter study. This will typically be an InverseDynamicAnalysis operation, but it could also be simply an evaluation of some mathematical expression, or it could be a combination of multiple operations, for instance various calibrations followed by an inverse dynamic analysis.   |</dd>
-</dl>
-<table border="1" class="docutils">
-<tbody valign="top">
-</tbody>
-</table>
-<blockquote>
-<div>nStep           | This is a specification of how many steps to evaluate in the parameter study for each parameter.                                                                                                                                                                                                                                                                                            |</div></blockquote>
-<table border="1" class="docutils">
-<tbody valign="top">
-</tbody>
-</table>
-<blockquote>
-<div>AnyDesVar       | The study must declare at least one of these. It is the parameter(s) that are varied in the study and for combinations of which the model is analyzed. You can define as many as you like, but please beware that the number of analyses in the parameter study is the product of steps for each AnyDesVar, so the time consumption grows&nbsp;exponentially with the number of AnyDesVars.      |</div></blockquote>
-<table border="1" class="docutils">
-<tbody valign="top">
-</tbody>
-</table>
-<blockquote>
-<div>AnyDesMeasure   | Each of these objects specifies a property that is the result of the analysis and which must be collected for further inspection as the study proceeds. You can define as many of these as you like.                                                                                                                                                                                        |</div></blockquote>
-<table border="1" class="docutils">
-<tbody valign="top">
+<tr class="row-even"><td>Analysis</td>
+<td>This is a specification of the operation(s) to perform to provide the data we are studying in the parameter study. This will typically be an InverseDynamicAnalysis operation, but it could also be simply an evaluation of some mathematical expression, or it could be a combination of multiple operations, for instance various calibrations followed by an inverse dynamic analysis.</td>
+</tr>
+<tr class="row-odd"><td>nStep</td>
+<td>This is a specification of how many steps to evaluate in the parameter study for each parameter.</td>
+</tr>
+<tr class="row-even"><td>AnyDesVar</td>
+<td>The study must declare at least one of these. It is the parameter(s) that are varied in the study and for combinations of which the model is analyzed. You can define as many as you like, but please beware that the number of analyses in the parameter study is the product of steps for each AnyDesVar, so the time consumption grows&nbsp;exponentially with the number of AnyDesVars.</td>
+</tr>
+<tr class="row-odd"><td>AnyDesMeasure</td>
+<td>Each of these objects specifies a property that is the result of the analysis and which must be collected for further inspection as the study proceeds. You can define as many of these as you like.</td>
+</tr>
 </tbody>
 </table>
 <p>Let us insert the necessary specifications to perform a parameter study
@@ -621,7 +614,7 @@ definition of optimization studies.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Parameter Studies and Optimization</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>

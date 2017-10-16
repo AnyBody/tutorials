@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 3: Scaling individual segments based on subject-specific data from medical images &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <title>Lesson 1: Scaling individual segments based on subject-specific data from medical images &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -32,7 +32,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Appendix: Scaling based on Patient-Specific Landmarks" href="lesson3_appendix.html" />
-    <link rel="prev" title="Lesson 2: Scaling based on External Body Measurements" href="lesson2.html" /> 
+    <link rel="prev" title="Subject Specific Scaling" href="index.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
@@ -51,11 +51,11 @@
           <a href="lesson3_appendix.html" title="Appendix: Scaling based on Patient-Specific Landmarks"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson2.html" title="Lesson 2: Scaling based on External Body Measurements"
+          <a href="index.html" title="Subject Specific Scaling"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Scaling</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Subject Specific Scaling</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -66,20 +66,16 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-3-scaling-individual-segments-based-on-subject-specific-data-from-medical-images">
-<h1>Lesson 3: Scaling individual segments based on subject-specific data from medical images<a class="headerlink" href="#lesson-3-scaling-individual-segments-based-on-subject-specific-data-from-medical-images" title="Permalink to this headline">¶</a></h1>
-<p>This tutorial presumes that you have completed <a class="reference internal" href="lesson1.html"><span class="doc">Scaling tutorial Lesson
-1: Joint to joint scaling methods</span></a> and <a class="reference internal" href="lesson2.html"><span class="doc">Scaling
-tutorial Lesson 2: Scaling based on external body
-measurements</span></a>.</p>
-<p>This lesson introduces an advanced approach to scaling based on a
-sequence of affine and non-affine transformations. Each of these
-transforms is constructed based either on subject-specific geometry or
-on a set of landmarks selected on the bone surface. As opposed to
-Lessons 1 and 2, this lesson is rather methodological than conceptual
-and provides a good overview of how to pipeline and combine different 3D
-transforms to obtain subject-specific morphing and registration between
-frames of reference.</p>
+  <div class="section" id="lesson-1-scaling-individual-segments-based-on-subject-specific-data-from-medical-images">
+<h1>Lesson 1: Scaling individual segments based on subject-specific data from medical images<a class="headerlink" href="#lesson-1-scaling-individual-segments-based-on-subject-specific-data-from-medical-images" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial presumes that you have read the AMMR documentation</p>
+<p>This lesson introduces an advanced approach to scaling based on a sequence of
+affine and non-affine transformations. Each of these transforms is constructed
+based either on subject-specific geometry or on a set of landmarks selected on
+the bone surface. As opposed to the simple scaling laws explained in the AMMR
+documentation, this lesson is rather methodological than conceptual and provides
+a good overview of how to pipeline and combine different 3D transforms to obtain
+subject-specific morphing and registration between frames of reference.</p>
 <div class="section" id="linear-point-based-scaling">
 <h2>Linear point-based scaling<a class="headerlink" href="#linear-point-based-scaling" title="Permalink to this headline">¶</a></h2>
 <p>Previously described scaling schemes are based on anthropometric
@@ -447,7 +443,7 @@ tutorial was included as a pre-transform. Reloading the model, we can
 now see all steps of scaling in one place and try to switch them on and
 off. For example, let us try to hide affine and RBF scaled femurs to see
 the final results:</p>
-<p><a class="reference internal" href="../_images/image612.png"><img alt="Model view Femur AnyFunTransform3DRBF final" src="../_images/image612.png" style="width: 6.68750in; height: 1.92708in;" /></a></p>
+<p><a class="reference internal" href="../_images/image611.png"><img alt="Model view Femur AnyFunTransform3DRBF final" src="../_images/image611.png" style="width: 6.68750in; height: 1.92708in;" /></a></p>
 <p>If we just look at the green target surface and the blue STL-transformed
 surface, we can see that the surfaces now match each other very well. That means
 that now the subject-specificity will be taken into account in the inverse
@@ -455,11 +451,11 @@ dynamics simulation. The final model can be downloaded <a class="reference downl
 <div class="toctree-wrapper compound">
 </div>
 <p>Finally, the only thing left is to include this scaling law into an
-actual model. <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4</span></a> describes how this can be
+actual model. <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 2</span></a> describes how this can be
 done.</p>
 <div class="without-title admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4: Including a Custom Scaling Law</span></a>.</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 2: Including a Custom Scaling Law</span></a>.</p>
 </div>
 </div>
 </div>
@@ -500,11 +496,8 @@ done.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scaling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: Joint to Joint Scaling Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Scaling based on External Body Measurements</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 3: Scaling individual segments based on subject-specific data from medical images</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Subject Specific Scaling</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 1: Scaling from from medical images</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#linear-point-based-scaling">Linear point-based scaling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#incorporating-a-landmark-based-non-linearity-into-the-scaling-law">Incorporating a landmark-based non-linearity into the scaling law</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#incorporating-a-surface-based-non-linearity-into-the-scaling-law">Incorporating a surface based non-linearity into the scaling law</a><ul>
@@ -513,7 +506,7 @@ done.</p>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Including a Custom Scaling Law</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 2: Including a Custom Scaling Law</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
@@ -565,11 +558,11 @@ done.</p>
           <a href="lesson3_appendix.html" title="Appendix: Scaling based on Patient-Specific Landmarks"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson2.html" title="Lesson 2: Scaling based on External Body Measurements"
+          <a href="index.html" title="Subject Specific Scaling"
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" >Scaling</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Subject Specific Scaling</a> &#187;</li> 
       </ul>
     </div>
     </div>
