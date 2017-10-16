@@ -68,18 +68,25 @@
             
   <div class="section" id="contributing">
 <h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
-<p>We highly encourage contributions to Tutorials! If you find typos, missing links or anything else wrong, don’t hesite to fix it.
-It is as easy as forking <a class="reference external" href="https://github.com/AnyBody/anybody-tutorial">the repository on GitHub</a> , making your changes, and issuing a pull request.</p>
-<p>If you have any questions about this process don’t hesitate to ask.</p>
+<p>We highly appreciate any contributions to Tutorials!</p>
+<p>If you find typos, missing links or anything else wrong, don’t hesitate to fix it.</p>
+<p>It is as easy as forking <a class="reference external" href="https://github.com/AnyBody/anybody-tutorial">the repository on GitHub</a> , making your changes, and
+issuing a pull request.  If you have any questions about this process don’t
+hesitate to ask.</p>
 <div class="section" id="building-the-tutorials">
 <h2>Building the tutorials<a class="headerlink" href="#building-the-tutorials" title="Permalink to this headline">¶</a></h2>
-<p>The tutorials are build using <a class="reference external" href="http://www.sphinx-doc.org/">sphinx</a>, a tool for software
+<p>The tutorials are created using <a class="reference external" href="http://www.sphinx-doc.org/">sphinx</a>, a tool for software
 documentation. Sphinx converts reStructuredText files into html, pdf or other
 formats. reStructuredText are simple text files with extra markup to define headers
 and formating. Having the tutorials as reStructuredText makes it easy to control
 changes to the documents and ensure consistent style.</p>
-<p>The tutorials are build automatically as soon as changes are accepted and merged in
-the repository. The system also deploys the html files to the anyscript.org home page.</p>
+<p>The tutorials are automatically build with sphinx when commits are
+pushed to the github repository. The process is handle by
+<a class="reference external" href="https://travis-ci.org/AnyBody/anybody-tutorial">Travis CI, here</a>.
+If the build fails, for example because of
+wrong reST syntax etc, the Pull Request can not be merged.</p>
+<p>Once the pull request is accepted on Github and the changes are merged to the master
+branch the tutorials becomes availble online.</p>
 <p>The newest released version of the tutorials are available at:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://anyscript.org/tutorials">https://anyscript.org/tutorials</a></li>
@@ -195,19 +202,6 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
 </ul>
 </div>
 </div>
-<div class="section" id="id1">
-<h2>Building the tutorials<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>The tutorials are automatically build with sphinx when commits are
-pushed to the github repository. The process is handle by
-<a class="reference external" href="https://travis-ci.org/AnyBody/anybody-tutorial">Travis CI, here</a>.
-If the build fails, for example because of
-wrong reST syntax etc, the Pull Request can not be merged.</p>
-<p>Once the pull request is accepted on Github and the changes are merged to the master
-branch the tutorials becomes availble online.</p>
-<p>The lates version of the tutorial which has git tag in the repository is always
-available here: <a class="reference external" href="http://anyscript.org/tutorials/">http://anyscript.org/tutorials/</a> A development version (the
-master branch) can be viewed at  <a class="reference external" href="http://anyscript.org/tutorials/dev">http://anyscript.org/tutorials/dev</a></p>
-</div>
 </div>
 
 
@@ -245,7 +239,6 @@ master branch) can be viewed at  <a class="reference external" href="http://anys
 <li class="toctree-l4"><a class="reference internal" href="#highlighting-code">Highlighting code</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Building the tutorials</a></li>
 </ul>
 </li>
 </ul>
@@ -264,6 +257,10 @@ master branch) can be viewed at  <a class="reference external" href="http://anys
 <li class="toctree-l1"><a class="reference internal" href="Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">

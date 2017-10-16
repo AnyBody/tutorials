@@ -31,6 +31,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Validation of Models" href="../Validation_of_models/index.html" />
     <link rel="prev" title="Appendix: Scaling based on Patient-Specific Landmarks" href="lesson3_appendix.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
@@ -46,6 +47,9 @@
         <li class="right" >
           <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Validation_of_models/index.html" title="Validation of Models"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson3_appendix.html" title="Appendix: Scaling based on Patient-Specific Landmarks"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
@@ -251,14 +255,14 @@ bone segment, e.g. #define CUSTOM_SCALING_&lt;Side&gt;_&lt;SegmentName&gt; for
 different sides or CUSTOM_SCALING_&lt;SegmentName&gt; for parts of the
 body that do not have sides. You can find a list of segments by
 browsing the scaling law in the Model tab:</p>
-<p><a class="reference internal" href="../_images/image143.png"><img alt="Model tree" src="../_images/image143.png" style="width: 2.62778in; height: 6.43056in;" /></a></p>
+<p><a class="reference internal" href="../_images/image144.png"><img alt="Model tree" src="../_images/image144.png" style="width: 2.62778in; height: 6.43056in;" /></a></p>
 <p>The other change was to assign the new custom scaling function to be
 used in the segment of the left thigh instead of the excluded one. If
 we now comment in DrawExternalMeasures.any and look in the Model View,
 we can see that the left femur is now shorter and a little thinner
 than with the standard scaling. So we have now successfully introduced
 our custom scaling law into the model.</p>
-<p><a class="reference internal" href="../_images/image236.png"><img alt="Model view Lower body custom femur" src="../_images/image236.png" style="width: 3.37089in; height: 4.48958in;" /></a></p>
+<p><a class="reference internal" href="../_images/image237.png"><img alt="Model view Lower body custom femur" src="../_images/image237.png" style="width: 3.37089in; height: 4.48958in;" /></a></p>
 <p>If we would have used a bone that does not have a mirrored pair, e.g.
 vertebrae, skull, etc., or we just want to scale a single side with a
 patient-specific scaling law, we would be finished now and could
@@ -416,6 +420,10 @@ MyScalingLaw_Mirrored.final.any</p>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
@@ -457,6 +465,9 @@ MyScalingLaw_Mirrored.final.any</p>
         <li class="right" >
           <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Validation_of_models/index.html" title="Validation of Models"
+             >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson3_appendix.html" title="Appendix: Scaling based on Patient-Specific Landmarks"
              >previous</a> &nbsp; &nbsp;</li>
