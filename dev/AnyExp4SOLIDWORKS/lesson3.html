@@ -88,7 +88,7 @@ can see that we have a standing full human body model.</p>
 <p>To keep things simple, start by switching of the muscles by setting the
 BM statement for the muscle definitions of arms, legs and trunk in our
 new created file ‘FitnessMachine_With_Human.main.any’ to
-<code class="docutils literal"><span class="pre">CONST_MUSCLES_NONE</span></code>:</p>
+<code class="docutils literal"><span class="pre">_MUSCLES_NONE_</span></code>:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;../libdef.any&quot;</span>
 
 <span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
@@ -99,9 +99,9 @@ new created file ‘FitnessMachine_With_Human.main.any’ to
   <span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
 
   <span class="c1">// Switch off all muscles of the body model</span>
-  <span class="gr">#define BM_LEG_MUSCLES_BOTH CONST_MUSCLES_NONE</span>
-<span class="gr">  #define BM_TRUNK_MUSCLES CONST_MUSCLES_NONE</span>
-<span class="gr">  #define BM_ARM_MUSCLES_BOTH CONST_MUSCLES_NONE</span>
+  <span class="gr">#define BM_LEG_MUSCLES_BOTH _MUSCLES_NONE_</span>
+<span class="gr">  #define BM_TRUNK_MUSCLES _MUSCLES_NONE_</span>
+<span class="gr">  #define BM_ARM_MUSCLES_BOTH _MUSCLES_NONE_</span>
 
   <span class="c1">// Include default human model</span>
   <span class="cp">#include</span> <span class="s">&quot;&lt;ANYBODY_PATH_BODY&gt;\HumanModel.any&quot;</span>
@@ -273,9 +273,9 @@ setting a BM statement in the Main folder:</p>
   <span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
 
   <span class="c1">// Switch off all muscles of the body model</span>
-  <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_MUSCLES_BOTH</span> <span class="x x-Options">CONST_MUSCLES_NONE</span>
-  <span class="cp">#define</span> <span class="x x-Statements">BM_TRUNK_MUSCLES</span> <span class="x x-Options">CONST_MUSCLES_NONE</span>
-  <span class="cp">#define</span> <span class="x x-Statements">BM_ARM_MUSCLES_BOTH</span> <span class="x x-Options">CONST_MUSCLES_NONE</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_MUSCLES_BOTH</span> <span class="n">_MUSCLES_NONE_</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_TRUNK_MUSCLES</span> <span class="n">_MUSCLES_NONE_</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_ARM_MUSCLES_BOTH</span> <span class="n">_MUSCLES_NONE_</span>
   <span class="c1">// Switch of the default drivers</span>
   <span class="gr">#define BM_MANNEQUIN_DRIVER_DEFAULT OFF</span>
 
@@ -391,9 +391,9 @@ beginning of this lesson.</p>
   <span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
 
   <span class="c1">// Switch off all muscles of the body model</span>
-  <span class="gr"> //#define BM_LEG_MUSCLES_BOTH CONST_MUSCLES_NONE</span>
-<span class="gr">  //#define BM_TRUNK_MUSCLES CONST_MUSCLES_NONE</span>
-<span class="gr">  //#define BM_ARM_MUSCLES_BOTH CONST_MUSCLES_NONE</span>
+  <span class="gr"> //#define BM_LEG_MUSCLES_BOTH _MUSCLES_NONE_</span>
+<span class="gr">  //#define BM_TRUNK_MUSCLES _MUSCLES_NONE_</span>
+<span class="gr">  //#define BM_ARM_MUSCLES_BOTH _MUSCLES_NONE_</span>
   <span class="c1">// Switch of the default drivers</span>
   <span class="cp">#define</span> <span class="x x-Statements">BM_MANNEQUIN_DRIVER_DEFAULT</span> <span class="x x-Options">OFF</span>
 
