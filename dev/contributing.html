@@ -76,9 +76,9 @@ hesitate to ask.</p>
 <div class="section" id="building-the-tutorials">
 <h2>Building the tutorials<a class="headerlink" href="#building-the-tutorials" title="Permalink to this headline">¶</a></h2>
 <p>The tutorials are created using <a class="reference external" href="http://www.sphinx-doc.org/">sphinx</a>, a tool for software
-documentation. Sphinx converts reStructuredText files into html, pdf or other
-formats. reStructuredText are simple text files with extra markup to define headers
-and formating. Having the tutorials as reStructuredText makes it easy to control
+documentation. Sphinx converts ReStructuredText(.rst) files into html, pdf or other
+formats. ReStructuredTexts are simple text files with extra markup to define headers
+and formating. Having the tutorials as ReStructuredText makes it easy to control
 changes to the documents and ensure consistent style.</p>
 <p>The tutorials are automatically build with sphinx when commits are
 pushed to the github repository. The process is handle by
@@ -97,18 +97,17 @@ master branch the tutorials becomes availble online.</p>
 </ul>
 <div class="section" id="building-the-tutorials-locally">
 <h3>Building the tutorials locally<a class="headerlink" href="#building-the-tutorials-locally" title="Permalink to this headline">¶</a></h3>
-<p>Eventhought the tutorials are build automatically, it is also possible to build
+<p>Even though the tutorials are build automatically, it is also possible to build
 them locally to view the layout and see results before pushing changes to the
 server. It is often not necesssary when making small fixes to existing
 tutorials. But when writing major new sections it nice to view how things look.</p>
-<p>The easiest way to install needed packages tools, is to have the [Anaconda
-python distribution](<a class="reference external" href="https://www.continuum.io/downloads">https://www.continuum.io/downloads</a>).</p>
+<p>The easiest way to install needed packages tools, is to have the <a class="reference external" href="https://www.continuum.io/downloads">Anaconda Python distribution</a>.</p>
 <p>Then run the following commands to install the necesssary packages.</p>
-<div class="highlight-bat"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; conda install sphinx pandoc cloud_sptheme pygments_anyscript</span>
+<div class="highlight-bat"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; conda install -c conda-forge sphinx pandoc cloud_sptheme pygments_anyscript</span>
 c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; pip install sphinxcontrib-fulltoc</span>
 </pre></div>
 </div>
-<p>Once the packages are install run this command s to build.</p>
+<p>Once the packages are install run this command to build the tutorial files.</p>
 <div class="highlight-bat"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; make html</span>
 </pre></div>
 </div>
@@ -117,9 +116,9 @@ the result.</p>
 </div>
 </div>
 <div class="section" id="short-restructuredtext-guide">
-<h2>Short reStructuredText guide<a class="headerlink" href="#short-restructuredtext-guide" title="Permalink to this headline">¶</a></h2>
-<p>There are plenty of guides on reStructuredText available on Google. So here is just a
-quick primer for the reST concepts which are important for the tutorials.</p>
+<h2>Short ReStructuredText guide<a class="headerlink" href="#short-restructuredtext-guide" title="Permalink to this headline">¶</a></h2>
+<p>There are plenty of guides on ReStructuredText available on Google. So here is just a
+quick run through over some of the reST concepts which are important for the tutorials.</p>
 <div class="section" id="paragraphs">
 <h3>Paragraphs<a class="headerlink" href="#paragraphs" title="Permalink to this headline">¶</a></h3>
 <p>Any block of text is a paragraph. Paragraphs must be separated by one
@@ -130,8 +129,8 @@ paragraph must be left aligned to the same indentation.</p>
 <li>two asterisks: <code class="docutils literal"><span class="pre">**text**</span></code> for strong emphasis (boldface), and</li>
 <li>backquotes: <code class="docutils literal"><span class="pre">``text``</span></code> for code samples.</li>
 </ul>
-<p>There is also options for <sub>subssscript</sub>
-<sup>superscript</sup> and more. See the</p>
+<p>There are also options for <sub>subscript</sub> (<code class="docutils literal"><span class="pre">:subscript:`text`</span></code>)
+<sup>superscript</sup> (<code class="docutils literal"><span class="pre">:superscript:`text`</span></code>) and more.</p>
 </div>
 <div class="section" id="headers">
 <h3>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h3>
@@ -197,7 +196,7 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
 <li><code class="docutils literal"><span class="pre">AnyScript</span></code>: AnyScript (Syntax must be valid)</li>
 <li><code class="docutils literal"><span class="pre">AnyBodyDoc</span></code> AnyScript (Allows invalid syntax)</li>
 <li><code class="docutils literal"><span class="pre">python/c++/ruby</span></code> Different known programming languages</li>
-<li><code class="docutils literal"><span class="pre">rest</span></code> reStructuredText</li>
+<li><code class="docutils literal"><span class="pre">rest</span></code> ReStructuredText</li>
 <li>… and any other <a class="reference external" href="http://pygments.org/docs/lexers/">lexer alias that Pygments supports</a>.</li>
 </ul>
 </div>
@@ -232,7 +231,7 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
 <li class="toctree-l4"><a class="reference internal" href="#building-the-tutorials-locally">Building the tutorials locally</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#short-restructuredtext-guide">Short reStructuredText guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#short-restructuredtext-guide">Short ReStructuredText guide</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#paragraphs">Paragraphs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#headers">Headers</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#lists-and-quote-like">Lists and Quote-like</a></li>
