@@ -71,7 +71,7 @@
 <p>Start by downloading the <code class="xref download docutils literal"><span class="pre">example</span> <span class="pre">SOLIDWORKS</span> <span class="pre">CAD</span> <span class="pre">assembly</span></code></p>
 <p>After having downloaded and opened this model in your SOLIDWORKS
 environment, you will see the following image.</p>
-<p><a class="reference internal" href="AnyExp4SOLIDWORKS/_static/lesson1/_image1.PNG"><img alt="SolidWorks fitnessmachine" src="AnyExp4SOLIDWORKS/_static/lesson1/_image1.PNG" style="width: 6.69306in; height: 3.63889in;" /></a></p>
+<p><a class="reference internal" href="../_images/_image1.PNG"><img alt="SolidWorks fitnessmachine" src="../_images/_image1.PNG" style="width: 6.69306in; height: 3.63889in;" /></a></p>
 <p>As you can see, this SOLIDWORKS assembly contains several parts and
 mates. The assembly has three different configurations, each managing
 different sets of mates. We will discuss the purpose of these different
@@ -84,10 +84,10 @@ DOF (degrees-of-freedom) of this model should be one.</p>
 If you have registered the AnyBody Exporter™ for SOLIDWORKS®
 (AnyExp4SOLIDWORKS™) add-in successfully, then you will see the menu of
 the AnyExp4SOLIDWORKS add-in on the SOLIDWORKS menu like this:</p>
-<p><a class="reference internal" href="AnyExp4SOLIDWORKS/_static/lesson1/_image2.png"><img alt="AnyExp4SOLIDWORKS menu" src="AnyExp4SOLIDWORKS/_static/lesson1/_image2.png" style="width: 1.53000in; height: 1.22000in;" /></a></p>
+<p><a class="reference internal" href="../_images/_image2.png"><img alt="AnyExp4SOLIDWORKS menu" src="../_images/_image2.png" style="width: 1.53000in; height: 1.22000in;" /></a></p>
 <p>Start the translation process by selecting the ‘Export to AnyScript’
 menu item. Doing this will display the following dialog.</p>
-<p><a class="reference internal" href="AnyExp4SOLIDWORKS/_static/lesson1/_image3.PNG"><img alt="AnyExp4SOLIDWORKS dialog" src="AnyExp4SOLIDWORKS/_static/lesson1/_image3.PNG" style="width: 4.00000in; height: 2.70000in;" /></a></p>
+<p><a class="reference internal" href="../_images/_image3.PNG"><img alt="AnyExp4SOLIDWORKS dialog" src="../_images/_image3.PNG" style="width: 4.00000in; height: 2.70000in;" /></a></p>
 <p>In this dialog you can choose various options for the translation
 process such as indentation method, constraint type for mates, STL file
 type and so on. If you press the OK button after having decided the
@@ -95,7 +95,7 @@ options you want to use, you will see a file dialog asking you to choose
 where your files will be saved. For this tutorial we shall use the
 default options settings. You can change the location and the file name
 to be what you want for this example.</p>
-<p><a class="reference internal" href="AnyExp4SOLIDWORKS/_static/lesson1/_image4.PNG"><img alt="Save as dialog" src="AnyExp4SOLIDWORKS/_static/lesson1/_image4.PNG" style="width: 5.96000in; height: 3.72000in;" /></a></p>
+<p><a class="reference internal" href="../_images/_image4.PNG"><img alt="Save as dialog" src="../_images/_image4.PNG" style="width: 5.96000in; height: 3.72000in;" /></a></p>
 <p>If you look at the folder where you saved your own files, then you will
 see that there are two AnyScript files (FitnessMachine.any and
 FitnessMachine.main.any) and several STL files.</p>
@@ -114,7 +114,7 @@ Modeling System. It should look like this:</p>
 <p>This ‘FitnessMachine.main.any’ file just includes the
 ‘FitnessMachine.any’ file. When you load it, you will see that several
 ANYSURF3 files are created from the STL files.</p>
-<p><a class="reference internal" href="AnyExp4SOLIDWORKS/_static/lesson1/_image5.png"><img alt="Model View Fitness machine" src="AnyExp4SOLIDWORKS/_static/lesson1/_image5.png" style="width: 4.06000in; height: 3.62000in;" /></a></p>
+<p><a class="reference internal" href="../_images/_image5.png"><img alt="Model View Fitness machine" src="../_images/_image5.png" style="width: 4.06000in; height: 3.62000in;" /></a></p>
 <p>After loading this file, we should check which properties of the
 SOLIDWORKS assembly could be translated into AnyScript. These properties
 are:</p>
@@ -127,7 +127,7 @@ file, color)</li>
 <div class="section" id="solidworks-assembly-model-structure">
 <h2>SOLIDWORKS assembly model structure<a class="headerlink" href="#solidworks-assembly-model-structure" title="Permalink to this headline">¶</a></h2>
 <p>Let us compare the SOLIDWORKS Feature Tree and the AnyBody Model Tree.</p>
-<p><a class="reference internal" href="AnyExp4SOLIDWORKS/_static/lesson1/_image6.PNG"><img alt="SOLIDWORKS properties" src="AnyExp4SOLIDWORKS/_static/lesson1/_image6.PNG" style="width: 3.20427in; height: 7.50000in;" /></a><a class="reference internal" href="AnyExp4SOLIDWORKS/_static/lesson1/_image7.PNG"><img alt="ANYBODY model tree" src="AnyExp4SOLIDWORKS/_static/lesson1/_image7.PNG" style="width: 2.47000in; height: 7.50000in;" /></a></p>
+<p><a class="reference internal" href="../_images/_image6.PNG"><img alt="SOLIDWORKS properties" src="../_images/_image6.PNG" style="width: 3.20427in; height: 7.50000in;" /></a><a class="reference internal" href="../_images/_image7.PNG"><img alt="ANYBODY model tree" src="../_images/_image7.PNG" style="width: 2.47000in; height: 7.50000in;" /></a></p>
 <p>First, the top assembly ‘FitnessMachine’ is converted into a
 corresponding AnyFolder object, which has the same name. All individual
 parts are converted into corresponding AnySeg objects. Some reference
@@ -182,7 +182,7 @@ as AnyKinEq, AnyKinEqSimpleDriver or some standard joint types like
 AnyRevoluteJoint, AnySphericalJoint..</p>
 <p>Let us select one mate in the assembly and look at it in detail inside
 SOLIDWORKS.</p>
-<p><a class="reference internal" href="AnyExp4SOLIDWORKS/_static/lesson1/_image8.PNG"><img alt="SolidWorks assembly" src="AnyExp4SOLIDWORKS/_static/lesson1/_image8.PNG" style="width: 6.69306in; height: 3.99236in;" /></a></p>
+<p><a class="reference internal" href="../_images/_image8.PNG"><img alt="SolidWorks assembly" src="../_images/_image8.PNG" style="width: 6.69306in; height: 3.99236in;" /></a></p>
 <p>The ‘Concentric11’ mate was established between MainCylinder-1 and
 BeamType1-2 components. In the above picture, the selected violet
 cylinder and a point are included in the MainCylinder-1 component, and
@@ -211,7 +211,7 @@ AnyScript model.</p>
 <p>Where we notice that the ‘MeasureOrganizer’ selects two of the three
 translational measurement defined by the AnyKinLinear object. The
 following picture shows the relationship between these two components.</p>
-<p><a class="reference internal" href="AnyExp4SOLIDWORKS/_static/lesson1/_image9.png"><img alt="SolidWorks Two components" src="AnyExp4SOLIDWORKS/_static/lesson1/_image9.png" style="width: 4.67000in; height: 4.23000in;" /></a></p>
+<p><a class="reference internal" href="../_images/_image9.png"><img alt="SolidWorks Two components" src="../_images/_image9.png" style="width: 4.67000in; height: 4.23000in;" /></a></p>
 <p>Here you can see that the AnyKinLinear kinematic measure, which is
 defined between the ‘FitnessMachine_Concentric11’ AnyRefNode object of
 the ‘BeamType1___2’ AnySeg object (dark orange color) and the
