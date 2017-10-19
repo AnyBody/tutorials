@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson1: Simple drivers &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <title>Lesson1: Simple drivers &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="intro.html" title="Making things move"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Making things move</a> &#187;</li> 
       </ul>
@@ -74,11 +74,11 @@ In the case of the pendulum, we might get the idea that the natural DoF
 is its rotational angle away from its resting vertical position. And we
 can very easily drive the pendulum using this DoF.</p>
 <p>The simplest mechanism of motion drivers in AnyBody is called
-AnyKinMotion. With Pendulum.any open in an editor and the model loaded,
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> . With Pendulum.any open in an editor and the model loaded,
 please place the cursor in the editor window just below then ending
-brace of the AnySeg Pendulum definition. Then click the Classes tab on
-the left hand side of the editor window. Unfold the class list and
-scroll down to find AnyKinMotion. Right-click and insert an instance at
+brace of the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnySeg</span> <span class="n">Pendulum</span></code> definition. Then click the Classes tab on
+the left-hand side of the editor window. Unfold the class list and
+scroll down to find <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> . Right-click and insert an instance at
 the cursor position:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Pendulum</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">Mass</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -100,7 +100,7 @@ the cursor position:</p>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<p>The prototype of the AnyKinMotion class is set up to allow several
+<p>The prototype of the <code class="code docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> class is set up to allow several
 different options. But the simplest of these is to directly specify
 something to drive and a function to drive it with. So we start out by
 giving the object a name and removing all of its content.</p>
@@ -148,7 +148,7 @@ the left hand side of the main frame, select kinematics and click “Run”.
 If you have a model view open, you should see the pendulum starting to
 move and accelerate as it rotates a little more than one round before
 the end of the analysis at <em>t</em> = 1 second.</p>
-<p>The use of AnyKinMotion objects to drive a model is in principle always
+<p>The use of <code class="code docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> objects to drive a model is in principle always
 like this, but you can select any Kinematic Measure to drive, i.e. not
 just a simple joint angle, and you can use any function derived from the
 abstract AnyParamFun class to drive it with.</p>
@@ -258,7 +258,7 @@ allows you to drive the pendulum by motion capture data.</p>
         <li class="right" >
           <a href="intro.html" title="Making things move"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Making things move</a> &#187;</li> 
       </ul>

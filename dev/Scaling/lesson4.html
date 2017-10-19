@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 2: Including a Custom Scaling Law &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <title>Lesson 2: Including a Custom Scaling Law &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="lesson3_appendix.html" title="Appendix: Scaling based on Patient-Specific Landmarks"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Subject Specific Scaling</a> &#187;</li> 
       </ul>
@@ -95,7 +95,7 @@ to use subject-specific geometry in a model.</p>
 <div class="section" id="including-custom-scaling-for-a-single-bone">
 <h2>Including custom scaling for a single bone<a class="headerlink" href="#including-custom-scaling-for-a-single-bone" title="Permalink to this headline">¶</a></h2>
 <p>Let us configure this example to use ScalingStandard. We need to define
-<code class="docutils literal"><span class="pre">BM_SCALING</span></code> as <code class="docutils literal"><span class="pre">_SCALING_STANDARD_</span></code> and out-comment all other parts of
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="x x-Statements">BM_SCALING</span></code> as <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">_SCALING_STANDARD_</span></code> and out-comment all other parts of
 the scaling configuration block. With this setting, the model is now scaled to
 the generic size. We can now include individual scaling laws for each segment,
 which will be done in a special file <em>CustomScaling.any</em>, where all the
@@ -252,8 +252,8 @@ CustomScaling.any:</p>
 notifies the model assembling block that the anthropometric scaling
 for the left thigh segment is not being used. To process other body
 parts you will need to add a similar definition, but utilize actual
-bone segment, e.g. <code class="docutils literal"><span class="pre">#define</span> <span class="pre">CUSTOM_SCALING_&lt;Side&gt;_&lt;SegmentName&gt;</span></code> for
-different sides or <code class="docutils literal"><span class="pre">CUSTOM_SCALING_&lt;SegmentName&gt;</span></code> for parts of the
+bone segment, e.g. <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="cp">#define</span> <span class="n">CUSTOM_SCALING_</span><span class="o">&lt;</span><span class="n">Side</span><span class="o">&gt;</span><span class="n">_</span><span class="o">&lt;</span><span class="n">SegmentName</span><span class="o">&gt;</span></code> for
+different sides or <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">CUSTOM_SCALING_</span><span class="o">&lt;</span><span class="n">SegmentName</span><span class="o">&gt;</span></code> for parts of the
 body that do not have sides. You can find a list of segments by
 browsing the scaling law in the Model tab:</p>
 <p><a class="reference internal" href="../_images/image144.png"><img alt="Model tree" src="../_images/image144.png" style="width: 2.62778in; height: 6.43056in;" /></a></p>
@@ -279,11 +279,11 @@ transformation.</p>
 <div class="section" id="introducing-a-mirrored-pair-of-a-custom-scaling">
 <h2>Introducing a mirrored pair of a custom scaling<a class="headerlink" href="#introducing-a-mirrored-pair-of-a-custom-scaling" title="Permalink to this headline">¶</a></h2>
 <p>We start by making a copy of MyScalingLaw.any that will be used to
-construct the mirrored transform and call it <code class="docutils literal"><span class="pre">MyScalingLaw_Mirrored.any</span></code>.
+construct the mirrored transform and call it <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MyScalingLaw_Mirrored</span><span class="p">.</span><span class="n">any</span></code>.
 What we have to do is to define a symmetry plane and reflect relevant
 entities accordingly. In this example such plane corresponds to the
 global XY plane. To perform the reflection, we need to multiply all
-relevant landmark points contained in the <code class="docutils literal"><span class="pre">MyScalingLaw_Mirrored.any</span></code>
+relevant landmark points contained in the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MyScalingLaw_Mirrored</span><span class="p">.</span><span class="n">any</span></code>
 file by a mirroring matrix:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyScalingLaw</span><span class="gr">_Mirrored</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">AnyMatrix AMirroring = { // XY plane symmetry</span>
@@ -469,7 +469,7 @@ utilized for the mirrored transformed model can be downloaded from here:
         <li class="right" >
           <a href="lesson3_appendix.html" title="Appendix: Scaling based on Patient-Specific Landmarks"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Subject Specific Scaling</a> &#187;</li> 
       </ul>

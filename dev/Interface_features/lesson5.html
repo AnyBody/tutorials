@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 5: The Command Line Application &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <title>Lesson 5: The Command Line Application &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: The Model Tree and Object Description"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">User interface features</a> &#187;</li> 
       </ul>
@@ -88,8 +88,7 @@ macro file containing commands.</p>
 <ol class="arabic simple">
 <li>Launch the command prompt, change directory to where you have saved
 Demo.outputfile.any</li>
-<li>Run the .exe file using its full path, e.g. <strong>“C:\Program
-Files\AnyBody Technology\AnyBody.7.0\AnyBodyCon.exe”</strong>.</li>
+<li>Run the .exe file using its full path, e.g. <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="s">&quot;C:\Program Files\AnyBody Technology\AnyBody.7.0\AnyBodyCon.exe&quot;</span></code>.</li>
 </ol>
 </div>
 <div class="section" id="console-commands">
@@ -104,7 +103,7 @@ AnyBody console.</p>
 <col width="80%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head"><a href="#id1"><span class="problematic" id="id2">**</span></a>Command name&nbsp;**</th>
+<tr class="row-odd"><th class="head"><strong>Command name</strong></th>
 <th class="head"><strong>Functionality</strong></th>
 </tr>
 </thead>
@@ -160,7 +159,7 @@ AnyBody console.</p>
 <div class="section" id="using-the-console-application">
 <h2>Using the console application<a class="headerlink" href="#using-the-console-application" title="Permalink to this headline">¶</a></h2>
 <p>Start AnyBodyCon.exe from the command prompt and issue the command
-sequence:</p>
+sequence</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
 operation Main.ArmStudy.InverseDynamics
 run
@@ -222,7 +221,7 @@ corresponds to the variables defined in the AnyOutputFile command.</p>
 <p>You can also save the output when using the GUI version by
 right-clicking on the Output subfolder of the Study folder in the Model
 Tree and choosing “Save Data”. We can replicate this in the console as
-follows:</p>
+follows</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
 operation Main.ArmStudy.InverseDynamics
 run
@@ -261,11 +260,11 @@ change the number of time steps in our operation.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>If we now exchange:</p>
+<p>If we now exchange</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
 </pre></div>
 </div>
-<p>from our operation sequence with:</p>
+<p>from our operation sequence with</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot; –def NOSTEPS=50
 </pre></div>
 </div>
@@ -327,7 +326,7 @@ first need to modify the AnyScript file with an OUTPUTFILE argument:</p>
 </pre></div>
 </div>
 <p>Further we create an .anymcr file which we can call ‘runarm.anymcr’. It
-contains the following operations:</p>
+contains the following operations</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
 operation RunApplication
 run
@@ -335,7 +334,7 @@ exit
 </pre></div>
 </div>
 <p>We can now execute the macro file by calling</p>
-<div class="highlight-bat"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\\Program</span><span class="c1"> Files\\AnyBody Technology\\AnyBody.7.0AnyBodyCon.exe&quot; /m “runarm.anymcr”</span>
+<div class="highlight-bat"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.0AnyBodyCon.exe&quot; /m “runarm.anymcr”</span>
 </pre></div>
 </div>
 <p>from the folder where we saved our model and the macro
@@ -343,10 +342,10 @@ file. It will create an output file called ‘armoutput.anydata.h5’ which
 we specified in the .any file.</p>
 <p>To change the name of the output file, we can call the macro again with
 a #define statement for the file name</p>
-<div class="highlight-bat"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\\Program</span><span class="c1"> Files\\AnyBody Technology\\AnyBody.7.0\\AnyBodyCon.exe&quot; /m runarm.anymcr /def OUTPUTFILE=---&quot;\\&quot;myoutput.anydata.h5\\&quot;&quot;</span>
+<div class="highlight-bat"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.0\AnyBodyCon.exe&quot; /m runarm.anymcr /def OUTPUTFILE=---&quot;\&quot;myoutput.anydata.h5\&quot;&quot;</span>
 </pre></div>
 </div>
-<p>What the construction <code class="docutils literal"><span class="pre">—“\\”</span> <span class="pre">…</span> <span class="pre">\\””</span></code> is doing, in this case,
+<p>What the construction <code class="docutils literal"><span class="pre">—“” … ””</span></code> is doing, in this case,
 is that it will define a quoted string for the #define statement similar
 to the definition in the .any file. As a result we see that the output
 is written to the file ‘myoutput.anydata.h5’.</p>
@@ -359,12 +358,12 @@ system for biomechanical data processing of your own design.</p>
 environmental variable for your command prompt to ease the call to
 AnyBodyCon.exe from anywhere. This you can do from the command prompt
 with a statement such as:</p>
-<div class="highlight-bat"><div class="highlight"><pre><span></span><span class="k">path</span> <span class="nv">%path%</span>;C:\\Program Files\\AnyBody Technology\\AnyBody.7.0;
+<div class="highlight-bat"><div class="highlight"><pre><span></span><span class="k">path</span> <span class="nv">%path%</span>;C:\Program Files\AnyBody Technology\AnyBody.7.0;
 </pre></div>
 </div>
 <p>It will add AnyBodyCon.exe’s path to the existing path
-definition.&nbsp;Notice that there cannot be any space between <code class="docutils literal"><span class="pre">;`</span></code> and the
-following path <code class="docutils literal"><span class="pre">c:\\...</span></code> and that you can see the resulting path by
+definition.&nbsp;Notice that there cannot be any space between <code class="docutils literal"><span class="pre">;</span></code> and the
+following path <code class="docutils literal"><span class="pre">c:...</span></code> and that you can see the resulting path by
 simply calling the internal path command again without arguments.</p>
 <p>These statements will only take effect until the current command prompt
 is closed, but you can also add the path of AnyBodyCon.exe permanently
@@ -504,7 +503,7 @@ files.</li>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: The Model Tree and Object Description"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >User interface features</a> &#187;</li> 
       </ul>

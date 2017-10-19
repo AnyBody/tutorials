@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson3: Noise and filters &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <title>Lesson3: Noise and filters &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Using motion capture data"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Making things move</a> &#187;</li> 
       </ul>
@@ -77,12 +77,12 @@ respectively of the center of mass of the pendulum. We see the expected
 sinusoidal curves for x and y and a z location that is constantly zero.
 It all looks fine and dandy, but closer investigation will reveal that
 it is not.</p>
-<p>If we plot the velocity, <code class="docutils literal"><span class="pre">rDot</span></code>, rather than the position, we begin to see
+<p>If we plot the velocity, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">rDot</span></code>, rather than the position, we begin to see
 the problem:</p>
 <p><a class="reference internal" href="../_images/image223.png"><img alt="pendulum.rdot" src="../_images/image223.png" style="width: 3.55208in; height: 2.46875in;" /></a></p>
 <p>It is obvious that the motion is not as smooth as we would expect from
 the first set of graphs, and it gets even worse if we plot the
-accelerations, <code class="docutils literal"><span class="pre">rDDot</span></code>:</p>
+accelerations, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">rDDot</span></code>:</p>
 <p><a class="reference internal" href="../_images/image321.png"><img alt="pendulum.rddot" src="../_images/image321.png" style="width: 3.55208in; height: 2.46875in;" /></a></p>
 <p>Since forces in a mechanical system stem from accelerations, an analysis
 of the force in this system would lead to a completely different result
@@ -98,7 +98,7 @@ a second-order, zero-phase Butterworth filter with a cutoff frequency of
 going to get. In this case, it is obviously not sufficient, so let’s
 play a bit with the settings and see whether we can get better results.</p>
 <p>The filter section of the AnyInputC3D section is currently inactive.
-Please remove the <code class="docutils literal"><span class="pre">/*</span> <span class="pre">*/</span></code> surrounding the object, and you will have the
+Please remove the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="cm">/* */</span></code> surrounding the object, and you will have the
 following:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Filter</span> <span class="o">=</span> <span class="p">{</span>
 <span class="n">z0</span> <span class="o">=</span> <span class="p">;</span>
@@ -287,7 +287,7 @@ be used to our advantage for other purposes too, as we shall see in
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Using motion capture data"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Making things move</a> &#187;</li> 
       </ul>

@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 3: Abaqus Interface &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <title>Lesson 3: Abaqus Interface &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: ANSYS Interface"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Finite Element Analysis Interfacing</a> &#187;</li> 
       </ul>
@@ -233,7 +233,7 @@ which is an executable called AnyFE2Abq.exe. It can convert the xml code
 to Abaqus keyword sequence and combine it with the FE model.</p>
 <p>The AnyFE converter is a command line tool with options controlled by
 program arguments. Running the program with the <code class="docutils literal"><span class="pre">–h</span></code>, i.e.
-<code class="docutils literal"><span class="pre">AnyFE2Abq.exe</span> <span class="pre">–h</span></code>. We shall briefly go through the important options
+<code class="docutils literal"><span class="pre">AnyFE2Abq.exe –h</span></code>. We shall briefly go through the important options
 here.</p>
 <p>The <code class="docutils literal"><span class="pre">–i</span></code> and <code class="docutils literal"><span class="pre">–o</span></code> options specify the input AnyFE xml file
 (<code class="docutils literal"><span class="pre">-i</span></code>) and the output file (<code class="docutils literal"><span class="pre">-o</span></code>), respectively. The <code class="docutils literal"><span class="pre">–m</span></code>
@@ -279,14 +279,14 @@ file. In the above, we have therefore considered ‘localrefframe’ to be
 the coordinate system of the FE model, which is also the CT/MRI scan
 system. Notice that in the given case, the segment reference and the
 output reference are aligned since the FE mesh was based on the original
-bone geometry from the AnyBody model, i.e. <code class="docutils literal"><span class="pre">sRel=</span> <span class="pre">{0,</span> <span class="pre">0,</span> <span class="pre">0}</span></code>.</p>
+bone geometry from the AnyBody model, i.e. <code class="docutils literal"><span class="pre">sRel= {0, 0, 0}</span></code>.</p>
 <p>As an alternatively, you can export the AnyFE XML file in another
 reference frame, even the global system in AnyBody
 (UseRefFrameOnOff=Off) for that matter. This implies that the data of
 the AnyFE XML file may or may not contain motion of the bone and it will
 probably.not be aligned with the FE mesh/CT/MRI scan system. If you
 chose this an option, the AnyFE Converter can remove the rigid body
-motion by using the <code class="docutils literal"><span class="pre">–r</span></code> option equal to ‘segment’::</p>
+motion by using the <code class="docutils literal"><span class="pre">–r</span></code> option equal to ‘segment’:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp –r segment
 </pre></div>
 </div>
@@ -297,7 +297,7 @@ applied to the FE model and outputted.</p>
 FE mesh, one can apply a constant transformation to all data
 accommodating for this misalignment. The <code class="docutils literal"><span class="pre">–t</span></code> option allows you to
 enter the transformation as a string containing space separated numbers.
-The command line will look like::</p>
+The command line will look like:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp –r segment –t &quot;a11 a12 a13 a21 a22 a23 a31 a32 a33 dx dy dz&quot;
 </pre></div>
 </div>
@@ -337,7 +337,7 @@ of the surface of the bone</li>
 </ul>
 </li>
 <li>The mesh in included</li>
-<li>Adds inertia relief loads (<code class="docutils literal"><span class="pre">*INERTIA</span> <span class="pre">RELIEF</span></code>)</li>
+<li>Adds inertia relief loads (<code class="docutils literal"><span class="pre">*INERTIA RELIEF</span></code>)</li>
 </ul>
 <p>Please note that the inertia relief loads will automatically be added to
 the model in order to provide a full set of boundary conditions.
@@ -477,7 +477,7 @@ see significant changes due to the modification in the overall picture.</p>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: ANSYS Interface"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Finite Element Analysis Interfacing</a> &#187;</li> 
       </ul>

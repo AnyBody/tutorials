@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 2: Using motion capture data &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <title>Lesson 2: Using motion capture data &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="lesson1.html" title="Lesson1: Simple drivers"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Making things move</a> &#187;</li> 
       </ul>
@@ -130,12 +130,13 @@ give a name to the object:</p>
   <span class="gr">ConstructChartOnOff = Off;</span>
 </pre></div>
 </div>
-<p>ConstructChartOnOff instructs the C3D object to not draw 3D
+<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ConstructChartOnOff</span></code> instructs the C3D object to not draw 3D
 trajectories.</p>
 <p>Now, try loading the model again. You may get the following error
 message:</p>
-<blockquote>
-<div>Time, ‘t’, has an invalid value for this interpolation</div></blockquote>
+<div class="highlight-none"><div class="highlight"><pre><span></span>Time, &#39;t&#39;, has an invalid value for this interpolation
+</pre></div>
+</div>
 <p>C3D files contain marker trajectories covering a certain time span and
 what goes on outside that interval is undefined. Furthermore, the very
 beginning and very end of that time span may not be useful for the
@@ -200,7 +201,7 @@ automatically adapt to the C3D file. Try this instead:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Notice that we start the simulation <code class="docutils literal"><span class="pre">2*Kinematics.ApproxVelAccPerturb</span></code>
+<p>Notice that we start the simulation <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="mi">2</span><span class="o">*</span><span class="n">Kinematics</span><span class="p">.</span><span class="n">ApproxVelAccPerturb</span></code>
 after the beginning of the recorded motion and we end it similarly
 before the end of the recording. The variable
 Kinematics.ApproxVelAccPerturb contains information about the
@@ -310,7 +311,7 @@ should get this:</p>
 </pre></div>
 </div>
 <p>Now load the model and run the kinematic analysis. You will get the
-following error message::</p>
+following error message:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>Model is kinematically over-constrained : Position analysis failed : 2 unsolvable constraint(s) found
 </pre></div>
 </div>
@@ -591,7 +592,7 @@ the measured data.</p>
         <li class="right" >
           <a href="lesson1.html" title="Lesson1: Simple drivers"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Making things move</a> &#187;</li> 
       </ul>

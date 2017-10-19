@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Contributing &#8212; AnyBody Tutorials v7.0.1.dev Documentation</title>
+    <title>Contributing &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="index.html" title="AnyBody Tutorials!"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">AnyBody Tutorials!</a> &#187;</li> 
       </ul>
@@ -111,7 +111,7 @@ c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span
 <div class="highlight-bat"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; make html</span>
 </pre></div>
 </div>
-<p>Once complete open the file: <code class="docutils literal"><span class="pre">build/html/index.html</span></code> in a browser to view
+<p>Once complete open the file: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">build</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">html</span></code> in a browser to view
 the result.</p>
 </div>
 </div>
@@ -127,10 +127,10 @@ paragraph must be left aligned to the same indentation.</p>
 <ul class="simple">
 <li>one asterisk: <code class="docutils literal"><span class="pre">*text*</span></code> for emphasis (italics),</li>
 <li>two asterisks: <code class="docutils literal"><span class="pre">**text**</span></code> for strong emphasis (boldface), and</li>
-<li>backquotes: <code class="docutils literal"><span class="pre">``text``</span></code> for code samples.</li>
+<li>backquotes: :literal:` <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">text</span></code> ` for code samples.</li>
 </ul>
-<p>There are also options for <sub>subscript</sub> (<code class="docutils literal"><span class="pre">:subscript:`text`</span></code>)
-<sup>superscript</sup> (<code class="docutils literal"><span class="pre">:superscript:`text`</span></code>) and more.</p>
+<p>There are also options for <sub>subscript</sub> (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span>:subscript:`text`</code>)
+<sup>superscript</sup> (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span>:superscript:`text`</code>) and more.</p>
 </div>
 <div class="section" id="headers">
 <h3>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h3>
@@ -167,14 +167,14 @@ paragraph must be left aligned to the same indentation.</p>
 </div>
 <div class="section" id="highlighting-code">
 <h3>Highlighting code<a class="headerlink" href="#highlighting-code" title="Permalink to this headline">¶</a></h3>
-<p>Highlighting AnyScript code snippets is also supported, using the <code class="docutils literal"><span class="pre">pygments_anyscript</span></code>
+<p>Highlighting AnyScript code snippets is also supported, using the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">pygments_anyscript</span></code>
 extension to pygments.</p>
-<p>AnyScript highlighting is started using the <code class="docutils literal"><span class="pre">code-block</span></code>
-directive and specifing <code class="docutils literal"><span class="pre">AnyScriptDoc</span></code> as the highlighting language.</p>
-<style> .red {color:red} </style><p>The <code class="docutils literal"><span class="pre">AnyScriptDoc</span></code> is highlighter specifically for the documentation in sphinx.
+<p>AnyScript highlighting is started using the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">code</span><span class="o">-</span><span class="n">block</span></code>
+directive and specifing <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyScriptDoc</span></code> as the highlighting language.</p>
+<style> .red {color:red} </style><p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyScriptDoc</span></code> is highlighter specifically for the documentation in sphinx.
 It can highlight AnyScript code even if the syntax is not correct, and any code
 fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</p>
-<p>Here is an example:</p>
+<p>Here is an example</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>.. code-block:: AnyScriptDoc
 
     AnyBodyStudy Study = {
@@ -192,11 +192,11 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
 </div>
 <p>Valid values for the highlighting languages are:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">none</span></code>: no highlighting</li>
-<li><code class="docutils literal"><span class="pre">AnyScript</span></code>: AnyScript (Syntax must be valid)</li>
-<li><code class="docutils literal"><span class="pre">AnyBodyDoc</span></code> AnyScript (Allows invalid syntax)</li>
-<li><code class="docutils literal"><span class="pre">python/c++/ruby</span></code> Different known programming languages</li>
-<li><code class="docutils literal"><span class="pre">rest</span></code> ReStructuredText</li>
+<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">none</span></code>: no highlighting</li>
+<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyScript</span></code>: AnyScript (Syntax must be valid)</li>
+<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyBodyDoc</span></code> AnyScript (Allows invalid syntax)</li>
+<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">python</span><span class="o">/</span><span class="n">c</span><span class="o">++/</span><span class="n">ruby</span></code> Different known programming languages</li>
+<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">rest</span></code> ReStructuredText</li>
 <li>… and any other <a class="reference external" href="http://pygments.org/docs/lexers/">lexer alias that Pygments supports</a>.</li>
 </ul>
 </div>
@@ -307,7 +307,7 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
         <li class="right" >
           <a href="index.html" title="AnyBody Tutorials!"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">AnyBody Tutorials v7.0.1.dev Documentation</a> &#187;</li>
+    <li><a href="index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >AnyBody Tutorials!</a> &#187;</li> 
       </ul>
