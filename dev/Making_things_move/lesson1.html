@@ -74,7 +74,7 @@ In the case of the pendulum, we might get the idea that the natural DoF
 is its rotational angle away from its resting vertical position. And we
 can very easily drive the pendulum using this DoF.</p>
 <p>The simplest mechanism of motion drivers in AnyBody is called
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> . With Pendulum.any open in an editor and the model loaded,
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code>. With Pendulum.any open in an editor and the model loaded,
 please place the cursor in the editor window just below then ending
 brace of the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnySeg</span> <span class="n">Pendulum</span></code> definition. Then click the Classes tab on
 the left-hand side of the editor window. Unfold the class list and
@@ -93,23 +93,33 @@ the cursor position:</p>
 <span class="p">};</span>
 <span class="gr">AnyKinMotion &lt;ObjectName&gt; =</span>
 <span class="gr">{</span>
-<span class="gr">    //MeasureOrganizer = ;</span>
-<span class="gr">    //CType = ;</span>
-<span class="gr">    //AnyKinMeasure &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
-<span class="gr">    AnyParamFun &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">  //RefFrames = ;</span>
+<span class="gr">  //Surfaces = ;</span>
+<span class="gr">  //KinMeasureArr = ;</span>
+<span class="gr">  //KinMeasureIndexArr = ;</span>
+<span class="gr">  //MeasureOrganizer = ;</span>
+<span class="gr">  //CType = ;</span>
+<span class="gr">  //WeightFun = ;</span>
+<span class="gr">  //DriverPos0 = ;</span>
+<span class="gr">  //DriverVel0 = ;</span>
+<span class="gr">  //DriverAcc0 = ;</span>
+<span class="gr">  //AnyKinMeasure &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
+<span class="gr">  //AnyParamFun &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<p>The prototype of the <code class="code docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> class is set up to allow several
+<p>The prototype of the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> class is set up to allow several
 different options. But the simplest of these is to directly specify
 something to drive and a function to drive it with. So we start out by
 giving the object a name and removing all of its content.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="gr">JointDriver</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="gr">JointDriver</span> <span class="o">=</span>
+<span class="p">{</span>
 <span class="p">};</span>
 </pre></div>
 </div>
 <p>Then we specify what to drive by making reference to the pendulum joint:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="gr">JointDriver</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="n">JointDriver</span> <span class="o">=</span>
+<span class="p">{</span>
     <span class="gr">AnyRevoluteJoint &amp;Jnt = .Joint;</span>
 <span class="p">};</span>
 </pre></div>
@@ -123,32 +133,35 @@ motion either in a very standardized way, for instance with constant
 velocity or constant acceleration, or to drive a motion by data to which
 a polynomial has been fitted.</p>
 <p>Try inserting the red part of the code below:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="n">JointDriver</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="n">JointDriver</span> <span class="o">=</span>
+<span class="p">{</span>
     <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">.</span><span class="n">Joint</span><span class="p">;</span>
     <span class="gr">AnyFunPolynomial DriverFun = {</span>
-<span class="gr">        PolyCoef = {{0, 3, 5}};</span>
+<span class="gr">        PolyCoef = {{0, 5, -0.4}}</span>
 <span class="gr">    };</span>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>In the matrix PolyCoef, each row contains the coefficients for a time
+<p>In the matrix <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">PolyCoef</span></code>, each row contains the coefficients for a time
 function driving one degree of freedom. The revolute joint we are
 driving only has one degree of freedom, so the matrix only has one row,
 but it still has to be defined as a matrix rather than a vector, i.e.
 with double braces at each end. The polynomial coefficients then come in
 increasing order and define the following driver function:</p>
 <div class="math">
-\[\textrm{Joint angle} = 0 + 3t + 5t^2 \textrm{[rad]}\]</div>
+\[\textrm{Joint angle} = 0 + 5t - 0.4t^2 \textrm{[rad]}\]</div>
 <p>To get higher polynomial orders, simply add more terms to the vector.</p>
 <p>Now try loading the model. If you have followed the instructions, you
 should no longer get the warning that that model is kinematically
 indeterminate. It now has the same number of drivers as degrees of
-freedom, and we can expand the MyStudy branch in the Operation tree on
-the left hand side of the main frame, select kinematics and click “Run”.
-If you have a model view open, you should see the pendulum starting to
+freedom.</p>
+<p>Next, run the model. Select <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">MyStudy</span><span class="p">.</span><span class="n">Kinematics</span></code> from the Operations
+dropdown menu in the toolbar, and click the “Run” button:</p>
+<img alt="../_images/run_operation.png" src="../_images/run_operation.png" />
+<p>If you have a model view open, you should see the pendulum starting to
 move and accelerate as it rotates a little more than one round before
 the end of the analysis at <em>t</em> = 1 second.</p>
-<p>The use of <code class="code docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> objects to drive a model is in principle always
+<p>The use of <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> objects to drive a model is in principle always
 like this, but you can select any Kinematic Measure to drive, i.e. not
 just a simple joint angle, and you can use any function derived from the
 abstract AnyParamFun class to drive it with.</p>
