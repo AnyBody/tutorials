@@ -126,7 +126,7 @@ two files, the MainFile and the SetValueFile.</p>
 
     <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
 
-     <span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
 
         <span class="n">Files</span> <span class="o">=</span> <span class="p">{</span>
 
@@ -177,33 +177,33 @@ model, we shall, therefore, define some drawing groups:</p>
 
 <span class="p">...</span>
 
-<span class="kt">AnyFolder</span> <span class="n">DrawGroups</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyFolder</span> <span class="n">DrawGroups</span> <span class="o">=</span> <span class="p">{</span>
 
-    <span class="kt">AnyDrawGroup</span> <span class="n">AllSegments</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="kt">AnyDrawGroup</span> <span class="n">AllSegments</span> <span class="o">=</span> <span class="p">{</span>
 
-    <span class="n">Objects</span> <span class="o">=</span> <span class="nb">ObjSearch</span><span class="p">(</span><span class="s">&quot;Main.ArmModel.Segs.*&quot;</span><span class="p">);</span>
+        <span class="n">Objects</span> <span class="o">=</span> <span class="nb">ObjSearch</span><span class="p">(</span><span class="s">&quot;Main.ArmModel.Segs.*&quot;</span><span class="p">);</span>
+
+        <span class="p">};</span>
+
+        <span class="kt">AnyDrawGroup</span> <span class="n">AllMuscles</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="n">Objects</span> <span class="o">=</span> <span class="nb">ObjSearch</span><span class="p">(</span><span class="s">&quot;Main.ArmModel.Muscles.*&quot;</span><span class="p">);</span>
+
+        <span class="p">};</span>
+
+        <span class="kt">AnyDrawGroup</span> <span class="n">AllDeltoidMuscles</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="n">Objects</span> <span class="o">=</span> <span class="nb">ObjSearch</span><span class="p">(</span><span class="s">&quot;Main.ArmModel.Muscles.Del*.DrwMus&quot;</span><span class="p">);</span>
+
+        <span class="p">};</span>
+
+        <span class="kt">AnyDrawGroup</span> <span class="n">All</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="n">Objects</span> <span class="o">=</span> <span class="nb">ObjSearchRecursive</span><span class="p">(</span><span class="s">&quot;Main.ArmModel&quot;</span><span class="p">,</span><span class="s">&quot;*&quot;</span><span class="p">);</span>
+
+        <span class="p">};</span>
 
     <span class="p">};</span>
-
-    <span class="kt">AnyDrawGroup</span> <span class="n">AllMuscles</span> <span class="o">=</span> <span class="p">{</span>
-
-    <span class="n">Objects</span> <span class="o">=</span> <span class="nb">ObjSearch</span><span class="p">(</span><span class="s">&quot;Main.ArmModel.Muscles.*&quot;</span><span class="p">);</span>
-
-    <span class="p">};</span>
-
-    <span class="kt">AnyDrawGroup</span> <span class="n">AllDeltoidMuscles</span> <span class="o">=</span> <span class="p">{</span>
-
-    <span class="n">Objects</span> <span class="o">=</span> <span class="nb">ObjSearch</span><span class="p">(</span><span class="s">&quot;Main.ArmModel.Muscles.Del*.DrwMus&quot;</span><span class="p">);</span>
-
-    <span class="p">};</span>
-
-    <span class="kt">AnyDrawGroup</span> <span class="n">All</span> <span class="o">=</span> <span class="p">{</span>
-
-    <span class="n">Objects</span> <span class="o">=</span> <span class="nb">ObjSearchRecursive</span><span class="p">(</span><span class="s">&quot;Main.ArmModel&quot;</span><span class="p">,</span><span class="s">&quot;*&quot;</span><span class="p">);</span>
-
-    <span class="p">};</span>
-
-<span class="p">};</span>
 
 <span class="p">...</span>
 
@@ -214,21 +214,21 @@ model, we shall, therefore, define some drawing groups:</p>
 <a class="reference download internal" href="../_downloads/DrawGroups.any" download=""><code class="xref download docutils literal"><span class="pre">DrawGroups.any</span></code></a>, so we now have</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
-<span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
+    <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
 
-<span class="cp">#include</span> <span class="s">&quot;DrawGroups.any&quot;</span>
+    <span class="cp">#include</span> <span class="s">&quot;DrawGroups.any&quot;</span>
 
-<span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
 
-    <span class="n">Files</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Files</span> <span class="o">=</span> <span class="p">{</span>
 
-    <span class="n">MainFile</span> <span class="o">=</span> <span class="s">&quot;AnyProject.any&quot;</span><span class="p">;</span>
+        <span class="n">MainFile</span> <span class="o">=</span> <span class="s">&quot;AnyProject.any&quot;</span><span class="p">;</span>
 
-    <span class="n">SetValueFile</span> <span class="o">=</span> <span class="s">&quot;values.anyset&quot;</span><span class="p">;</span>
+        <span class="n">SetValueFile</span> <span class="o">=</span> <span class="s">&quot;values.anyset&quot;</span><span class="p">;</span>
+
+        <span class="p">};</span>
 
     <span class="p">};</span>
-
-<span class="p">};</span>
 
 <span class="p">};</span> <span class="c1">// Main</span>
 </pre></div>
@@ -284,38 +284,38 @@ defining two AnyProjectTaskOperation objects that point to the
 particular operations in ArmModelStudy.</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
-<span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
+    <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
 
-<span class="cp">#include</span> <span class="s">&quot;DrawGroups.any&quot;</span>
+    <span class="cp">#include</span> <span class="s">&quot;DrawGroups.any&quot;</span>
 
-<span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
 
-    <span class="n">Tasks</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Tasks</span> <span class="o">=</span> <span class="p">{</span>
 
-    <span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_Initial_Conditions</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_Initial_Conditions</span> <span class="o">=</span> <span class="p">{</span>
 
-        <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">Title</span> <span class="o">=</span> <span class="s">&quot;Initial Conditions of Arm Model&quot;</span><span class="p">;</span>
-            <span class="n">BodyText</span> <span class="o">=</span> <span class="s">&quot;This task sets the initial conditions.&quot;</span><span class="p">;</span>
-            <span class="n">Tooltip</span> <span class="o">=</span> <span class="s">&quot;Sets Initial Conditions&quot;</span><span class="p">;</span>
-            <span class="n">Files</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;dumbbell.stl&quot;</span><span class="p">,</span><span class="s">&quot;values.anyset&quot;</span><span class="p">};</span>
+            <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">Title</span> <span class="o">=</span> <span class="s">&quot;Initial Conditions of Arm Model&quot;</span><span class="p">;</span>
+                <span class="n">BodyText</span> <span class="o">=</span> <span class="s">&quot;This task sets the initial conditions.&quot;</span><span class="p">;</span>
+                <span class="n">Tooltip</span> <span class="o">=</span> <span class="s">&quot;Sets Initial Conditions&quot;</span><span class="p">;</span>
+                <span class="n">Files</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;dumbbell.stl&quot;</span><span class="p">,</span><span class="s">&quot;values.anyset&quot;</span><span class="p">};</span>
+            <span class="p">};</span>
+
+            <span class="n">Operation</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Main</span><span class="p">.</span><span class="n">ArmModelStudy</span><span class="p">.</span><span class="n">InitialConditions</span><span class="p">;</span>
+
         <span class="p">};</span>
 
-        <span class="n">Operation</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Main</span><span class="p">.</span><span class="n">ArmModelStudy</span><span class="p">.</span><span class="n">InitialConditions</span><span class="p">;</span>
+        <span class="kt">AnyProjectTaskOperation</span> <span class="n">Run_Inverse_Dynamics</span> <span class="o">=</span> <span class="p">{</span>
 
-    <span class="p">};</span>
+            <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">Title</span> <span class="o">=</span> <span class="s">&quot;Inverse Dynamcis of Arm Model&quot;</span><span class="p">;</span>
+                <span class="n">BodyText</span> <span class="o">=</span> <span class="s">&quot;This task executes the inverse dynamics analysis of the arm model.&quot;</span><span class="p">;</span>
+                <span class="n">Tooltip</span> <span class="o">=</span> <span class="s">&quot;Inverse Dynamics Simulation&quot;</span><span class="p">;</span>
+            <span class="p">};</span>
 
-    <span class="kt">AnyProjectTaskOperation</span> <span class="n">Run_Inverse_Dynamics</span> <span class="o">=</span> <span class="p">{</span>
-
-        <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">Title</span> <span class="o">=</span> <span class="s">&quot;Inverse Dynamcis of Arm Model&quot;</span><span class="p">;</span>
-            <span class="n">BodyText</span> <span class="o">=</span> <span class="s">&quot;This task executes the inverse dynamics analysis of the arm model.&quot;</span><span class="p">;</span>
-            <span class="n">Tooltip</span> <span class="o">=</span> <span class="s">&quot;Inverse Dynamics Simulation&quot;</span><span class="p">;</span>
+            <span class="n">Operation</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Main</span><span class="p">.</span><span class="n">ArmModelStudy</span><span class="p">.</span><span class="n">InverseDynamics</span><span class="p">;</span>
         <span class="p">};</span>
-
-        <span class="n">Operation</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Main</span><span class="p">.</span><span class="n">ArmModelStudy</span><span class="p">.</span><span class="n">InverseDynamics</span><span class="p">;</span>
     <span class="p">};</span>
-<span class="p">};</span>
 <span class="p">...</span>
 </pre></div>
 </div>
@@ -344,56 +344,56 @@ following code:</p>
 
     <span class="p">...</span>
 
-    <span class="kt">AnyProjectTaskOperation</span> <span class="n">Save_Output_Data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="kt">AnyProjectTaskOperation</span> <span class="n">Save_Output_Data</span> <span class="o">=</span> <span class="p">{</span>
 
-        <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">Title</span> <span class="o">=</span> <span class="s">&quot;Saving output data from the simulation&quot;</span><span class="p">;</span>
-        <span class="n">BodyText</span> <span class="o">=</span> <span class="s">&quot;This task saves the output for the simulation, e.g. executed by task &quot;</span>
-                    <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span> <span class="nb">AnyBodyLinkOf</span><span class="p">(</span><span class="o">&amp;</span><span class="p">..</span><span class="n">Run_Inverse_Dynamics</span><span class="p">)</span> <span class="p">)</span>
-                    <span class="o">+</span> <span class="s">&quot; to file &quot;</span>
-                    <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span> <span class="nb">strlink</span><span class="p">(.</span><span class="n">filename</span><span class="p">)</span> <span class="p">);</span>
-        <span class="n">Tooltip</span> <span class="o">=</span> <span class="s">&quot;Saving output data&quot;</span><span class="p">;</span>
-        <span class="n">Files</span> <span class="o">=</span> <span class="p">.</span><span class="n">filename</span><span class="p">;</span>
+            <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">Title</span> <span class="o">=</span> <span class="s">&quot;Saving output data from the simulation&quot;</span><span class="p">;</span>
+                <span class="n">BodyText</span> <span class="o">=</span> <span class="s">&quot;This task saves the output for the simulation, e.g. executed by task &quot;</span>
+                            <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span> <span class="nb">AnyBodyLinkOf</span><span class="p">(</span><span class="o">&amp;</span><span class="p">..</span><span class="n">Run_Inverse_Dynamics</span><span class="p">)</span> <span class="p">)</span>
+                            <span class="o">+</span> <span class="s">&quot; to file &quot;</span>
+                            <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span> <span class="nb">strlink</span><span class="p">(.</span><span class="n">filename</span><span class="p">)</span> <span class="p">);</span>
+                <span class="n">Tooltip</span> <span class="o">=</span> <span class="s">&quot;Saving output data&quot;</span><span class="p">;</span>
+                <span class="n">Files</span> <span class="o">=</span> <span class="p">.</span><span class="n">filename</span><span class="p">;</span>
+            <span class="p">};</span>
+
+            <span class="n">Operation</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Opr</span><span class="p">;</span>
+
+            <span class="kt">AnyFileVar</span> <span class="n">filename</span> <span class="o">=</span> <span class="nb">FileNameOf</span><span class="p">(..</span><span class="n">Files</span><span class="p">.</span><span class="n">MainFile</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.anydata.h5&quot;</span><span class="p">;</span>
+
+            <span class="kt">AnyOperationMacro</span> <span class="n">Opr</span> <span class="o">=</span> <span class="p">{</span>
+
+                <span class="n">MacroStr</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="p">(</span><span class="s">&quot;classoperation Main.ArmStudy1.Output&quot;</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="s">&quot;Save data&quot;</span><span class="p">)</span>
+                    <span class="o">+</span> <span class="s">&quot; --file=&quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="nb">FilePathCompleteOf</span><span class="p">(.</span><span class="n">filename</span><span class="p">))</span> <span class="o">+</span> <span class="s">&quot; --type=Deep&quot;</span><span class="p">)</span>
+                <span class="p">};</span>
+            <span class="p">};</span>
         <span class="p">};</span>
 
-        <span class="n">Operation</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Opr</span><span class="p">;</span>
+        <span class="kt">AnyProjectTaskOperation</span> <span class="n">Load_Output_Data</span> <span class="o">=</span> <span class="p">{</span>
 
-        <span class="kt">AnyFileVar</span> <span class="n">filename</span> <span class="o">=</span> <span class="nb">FileNameOf</span><span class="p">(..</span><span class="n">Files</span><span class="p">.</span><span class="n">MainFile</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.anydata.h5&quot;</span><span class="p">;</span>
+            <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">Title</span> <span class="o">=</span> <span class="s">&quot;Loading output data from a previous simulation&quot;</span><span class="p">;</span>
+            <span class="n">BodyText</span> <span class="o">=</span> <span class="s">&quot;This task load output saved by the task &quot;</span>
+                        <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span> <span class="nb">AnyBodyLinkOf</span><span class="p">(</span><span class="o">&amp;</span><span class="p">..</span><span class="n">Save_Output_Data</span><span class="p">)</span> <span class="p">)</span>
+                        <span class="o">+</span> <span class="s">&quot; from file &quot;</span>
+                        <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span> <span class="nb">strlink</span><span class="p">(.</span><span class="n">filename</span><span class="p">)</span> <span class="p">);</span>
+            <span class="n">Tooltip</span> <span class="o">=</span> <span class="s">&quot;Loading output data&quot;</span><span class="p">;</span>
+            <span class="c1">//Files = .filename;</span>
+            <span class="p">};</span>
 
-        <span class="kt">AnyOperationMacro</span> <span class="n">Opr</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">Operation</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Opr</span><span class="p">;</span>
 
-        <span class="n">MacroStr</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="p">(</span><span class="s">&quot;classoperation Main.ArmStudy1.Output&quot;</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="s">&quot;Save data&quot;</span><span class="p">)</span>
-            <span class="o">+</span> <span class="s">&quot; --file=&quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="nb">FilePathCompleteOf</span><span class="p">(.</span><span class="n">filename</span><span class="p">))</span> <span class="o">+</span> <span class="s">&quot; --type=Deep&quot;</span><span class="p">)</span>
+            <span class="kt">AnyFileVar</span> <span class="n">filename</span> <span class="o">=</span> <span class="p">.</span><span class="n">Save_Output_Data</span><span class="p">.</span><span class="n">filename</span><span class="p">;</span>
+
+            <span class="kt">AnyOperationMacro</span> <span class="n">Opr</span> <span class="o">=</span> <span class="p">{</span>
+
+                <span class="n">MacroStr</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s">&quot;classoperation Main.ArmStudy1.Output&quot;</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="s">&quot;Load data&quot;</span><span class="p">)</span>
+                    <span class="o">+</span> <span class="s">&quot; --file=&quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="nb">FilePathCompleteOf</span><span class="p">(.</span><span class="n">filename</span><span class="p">))</span>
+                <span class="p">};</span>
+            <span class="p">};</span>
+
         <span class="p">};</span>
-        <span class="p">};</span>
-    <span class="p">};</span>
-
-    <span class="kt">AnyProjectTaskOperation</span> <span class="n">Load_Output_Data</span> <span class="o">=</span> <span class="p">{</span>
-
-        <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">Title</span> <span class="o">=</span> <span class="s">&quot;Loading output data from a previous simulation&quot;</span><span class="p">;</span>
-        <span class="n">BodyText</span> <span class="o">=</span> <span class="s">&quot;This task load output saved by the task &quot;</span>
-                    <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span> <span class="nb">AnyBodyLinkOf</span><span class="p">(</span><span class="o">&amp;</span><span class="p">..</span><span class="n">Save_Output_Data</span><span class="p">)</span> <span class="p">)</span>
-                    <span class="o">+</span> <span class="s">&quot; from file &quot;</span>
-                    <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span> <span class="nb">strlink</span><span class="p">(.</span><span class="n">filename</span><span class="p">)</span> <span class="p">);</span>
-        <span class="n">Tooltip</span> <span class="o">=</span> <span class="s">&quot;Loading output data&quot;</span><span class="p">;</span>
-        <span class="c1">//Files = .filename;</span>
-        <span class="p">};</span>
-
-        <span class="n">Operation</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Opr</span><span class="p">;</span>
-
-        <span class="kt">AnyFileVar</span> <span class="n">filename</span> <span class="o">=</span> <span class="p">.</span><span class="n">Save_Output_Data</span><span class="p">.</span><span class="n">filename</span><span class="p">;</span>
-
-        <span class="kt">AnyOperationMacro</span> <span class="n">Opr</span> <span class="o">=</span> <span class="p">{</span>
-
-        <span class="n">MacroStr</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s">&quot;classoperation Main.ArmStudy1.Output&quot;</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="s">&quot;Load data&quot;</span><span class="p">)</span>
-            <span class="o">+</span> <span class="s">&quot; --file=&quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="nb">FilePathCompleteOf</span><span class="p">(.</span><span class="n">filename</span><span class="p">))</span>
-        <span class="p">};</span>
-        <span class="p">};</span>
-
-    <span class="p">};</span>
 
     <span class="p">...</span>
 
@@ -409,21 +409,21 @@ create an AnyProjectTaskLoadModel that loads the Demo.arm2d.any, but
 without the AnyProject.any master file.</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
-<span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
+    <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
 
-<span class="cp">#include</span> <span class="s">&quot;DrawGroups.any&quot;</span>
+    <span class="cp">#include</span> <span class="s">&quot;DrawGroups.any&quot;</span>
 
-<span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
 
-    <span class="n">Tasks</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Tasks</span> <span class="o">=</span> <span class="p">{</span>
 
-    <span class="p">...</span>
+            <span class="p">...</span>
 
-    <span class="kt">AnyProjectTaskLoadModel</span> <span class="n">Load_the_model_without_project</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">MainFile</span> <span class="o">=</span> <span class="s">&quot;Demo.arm2d.any&quot;</span><span class="p">;</span>
-    <span class="p">};</span>
+            <span class="kt">AnyProjectTaskLoadModel</span> <span class="n">Load_the_model_without_project</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">MainFile</span> <span class="o">=</span> <span class="s">&quot;Demo.arm2d.any&quot;</span><span class="p">;</span>
+            <span class="p">};</span>
 
-    <span class="p">};</span>
+        <span class="p">};</span>
 
 <span class="p">...</span>
 </pre></div>
@@ -487,11 +487,11 @@ which we can pass commands to the AnyBody Modeling System.</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_value_example</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">BodyHTML</span> <span class="o">=</span> <span class="s">&quot;&lt;b&gt;Setting values in the model through AnyProject&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;&quot;</span>
-                <span class="o">+</span><span class="s">&quot;This task demonstrates how we can use special AHTML links in HTML text to interact with a model in AnyBody.&lt;br/&gt;&lt;br/&gt;&quot;</span>
-                <span class="o">+</span><span class="s">&quot;This link opens the &lt;a href=&quot;</span><span class="o">+</span><span class="nb">strquote</span><span class="p">()</span>
-                <span class="o">+</span><span class="s">&quot;Anybody -ob Main.ArmModel.Segs.LowerArm.HandNode&quot;</span>
-                <span class="o">+</span><span class="nb">strquote</span><span class="p">()</span><span class="o">+</span><span class="s">&quot;&gt;HandNode&lt;/a&gt; in the modeltree.&lt;br/&gt;&quot;</span><span class="p">;</span>
+        <span class="n">BodyHTML</span> <span class="o">=</span> <span class="s">&quot;&lt;b&gt;Setting values in the model through AnyProject&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;&quot;</span>
+                    <span class="o">+</span><span class="s">&quot;This task demonstrates how we can use special AHTML links in HTML text to interact with a model in AnyBody.&lt;br/&gt;&lt;br/&gt;&quot;</span>
+                    <span class="o">+</span><span class="s">&quot;This link opens the &lt;a href=&quot;</span><span class="o">+</span><span class="nb">strquote</span><span class="p">()</span>
+                    <span class="o">+</span><span class="s">&quot;Anybody -ob Main.ArmModel.Segs.LowerArm.HandNode&quot;</span>
+                    <span class="o">+</span><span class="nb">strquote</span><span class="p">()</span><span class="o">+</span><span class="s">&quot;&gt;HandNode&lt;/a&gt; in the modeltree.&lt;br/&gt;&quot;</span><span class="p">;</span>
     <span class="p">};</span>
 <span class="p">};</span>
 </pre></div>
@@ -522,8 +522,8 @@ code. We start by creating a new macro command.</p>
 
     <span class="kt">AnyFolder</span> <span class="n">Macros</span> <span class="o">=</span> <span class="p">{</span>
 
-    <span class="kt">AnyStringVar</span> <span class="n">SetValueSRel</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;classoperation Main.ArmModel.Segs.LowerArm.HandNode.sRel&quot;</span>
-                                 <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="s">&quot;Set Value&quot;</span><span class="p">));</span>
+        <span class="kt">AnyStringVar</span> <span class="n">SetValueSRel</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;classoperation Main.ArmModel.Segs.LowerArm.HandNode.sRel&quot;</span>
+                                    <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="s">&quot;Set Value&quot;</span><span class="p">));</span>
 
     <span class="p">};</span>
     <span class="p">...</span>
@@ -748,7 +748,7 @@ for <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>
