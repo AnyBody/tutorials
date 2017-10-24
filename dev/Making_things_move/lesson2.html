@@ -1,8 +1,7 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -80,9 +79,9 @@ such as force platform measurements or EMG.</p>
 <p>AnyBody can read the data from a C3D file directly. Please download and save the
 file <a class="reference download internal" href="../_downloads/pendulum.c3d" download=""><code class="xref download docutils literal"><span class="pre">pendulum.c3d</span></code></a> in the directory where
 you saved the <code class="file docutils literal"><span class="pre">Pendulum.any</span></code> file.</p>
-<p>Next, place the cursor in the editor window just before the <code class="code docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code>
+<p>Next, place the cursor in the editor window just before the <code class="code docutils literal"><span class="pre">AnyKinMotion</span></code>
 object, click the Classes tab (on the right side of the screen), unfold the class list, and locate the
-<code class="code docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyInputC3D</span></code> class. Right-click the class and choose “Insert Class
+<code class="code docutils literal"><span class="pre">AnyInputC3D</span></code> class. Right-click the class and choose “Insert Class
 Template”.</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyInputC3D</span> <span class="o">&lt;</span><span class="n">ObjectName</span><span class="o">&gt;</span> <span class="o">=</span>
 <span class="p">{</span>
@@ -138,7 +137,7 @@ give a name to the object:</p>
   <span class="gr">ConstructChartOnOff = Off;</span>
 </pre></div>
 </div>
-<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ConstructChartOnOff</span></code> instructs the C3D object to not draw 3D
+<p><code class="docutils literal"><span class="pre">ConstructChartOnOff</span></code> instructs the C3D object to not draw 3D
 trajectories.</p>
 <p>Now, try loading the model again. You may get the following error
 message:</p>
@@ -209,10 +208,10 @@ automatically adapt to the C3D file. Try this instead:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Notice that we start the simulation <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="mi">2</span><span class="o">*</span><span class="n">Kinematics</span><span class="p">.</span><span class="n">ApproxVelAccPerturb</span></code>
+<p>Notice that we start the simulation <code class="docutils literal"><span class="pre">2*Kinematics.ApproxVelAccPerturb</span></code>
 after the beginning of the recorded motion and we end it similarly
 before the end of the recording. The variable
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Kinematics</span><span class="p">.</span><span class="n">ApproxVelAccPerturb</span></code> contains information about the
+<code class="docutils literal"><span class="pre">Kinematics.ApproxVelAccPerturb</span></code> contains information about the
 algorithm’s necessary elbow room on each side of the analyzed interval.
 This eliminates possible numerical trouble with end points.</p>
 <p>Now the model should load and the Model View window will display a small, grey
@@ -221,21 +220,21 @@ dot to the right of the pendulum end.</p>
 <p>The small dot is in fact the single marker contained in <code class="file docutils literal"><span class="pre">Pendulum.c3d</span></code>. A
 typical file from a real motion capture experiment can contain dozens of
 markers, but in the interest of simplicity we have just included a single one
-here. The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyInputC3D</span></code> object automatically creates the small dots and the
+here. The <code class="docutils literal"><span class="pre">AnyInputC3D</span></code> object automatically creates the small dots and the
 drivers necessary to move them around as they were recorded. If you run the
 Kinematics operation, you will see the pendulum move as before, while the marker
 performs an oscillating motion back and forth</p>
 <p>So how do we get the marker to drive the pendulum? This can be done
 quite easily with the AnyKinDriverMarker object. The steps are:</p>
 <ol class="arabic simple">
-<li>Remove the existing driver that makes the pendulum rotate.</li>
-<li>Drive the marker point, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">P1</span></code>, on the pendulum to follow the data
-recorded in the C3D file.</li>
+<li><p>Remove the existing driver that makes the pendulum rotate.</p></li>
+<li><p>Drive the marker point, <code class="docutils literal"><span class="pre">P1</span></code>, on the pendulum to follow the data
+recorded in the C3D file.</p></li>
 </ol>
-<p>Start by selecting the existing <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> driver and comment it out
+<p>Start by selecting the existing <code class="docutils literal"><span class="pre">AnyKinMotion</span></code> driver and comment it out
 of the model. That takes care of step 1.</p>
 <p>Then click the Classes tab on the right side of the screen,
-insert a new <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinDriverMarker</span></code> template, and give it a name:</p>
+insert a new <code class="docutils literal"><span class="pre">AnyKinDriverMarker</span></code> template, and give it a name:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">AnyKinDriverMarker &lt;ObjectName&gt; =</span>
 <span class="gr">{</span>
 <span class="gr">  //RefFrames = ;</span>
@@ -254,9 +253,9 @@ insert a new <code class="docutils literal highlight highlight-AnyScriptDoc"><sp
 <span class="gr">};</span>
 </pre></div>
 </div>
-<p>Just as before, the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinDriverMarker</span></code> object needs to know what to
+<p>Just as before, the <code class="docutils literal"><span class="pre">AnyKinDriverMarker</span></code> object needs to know what to
 drive and what to drive it with. The “what to drive” part is the
-position of <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">P1</span></code> on the pendulum. This is specified with the first
+position of <code class="docutils literal"><span class="pre">P1</span></code> on the pendulum. This is specified with the first
 reference frame in the object:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinDriverMarker</span> <span class="gr">C3DMotion</span> <span class="o">=</span>
 <span class="p">{</span>
@@ -278,11 +277,11 @@ reference frame in the object:</p>
 </div>
 <p>The marker coordinates in the C3D file are recorded in the laboratory
 coordinate system, which we chall assume is our global reference frame.
-Driving from <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">GlobalRef</span></code> is default in linear measures, so we need not
-mention <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">GlobalRef</span></code> explicitly in the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinDriverMarker</span></code> object.</p>
+Driving from <code class="docutils literal"><span class="pre">GlobalRef</span></code> is default in linear measures, so we need not
+mention <code class="docutils literal"><span class="pre">GlobalRef</span></code> explicitly in the <code class="docutils literal"><span class="pre">AnyKinDriverMarker</span></code> object.</p>
 <p>We are going to drive the point directly by means of the interpolation
 function specifying the marker trajectory in the C3D object. First, give
-a reasonable name to the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyParamFun</span></code> and remove the stuff after the
+a reasonable name to the <code class="docutils literal"><span class="pre">AnyParamFun</span></code> and remove the stuff after the
 equality sign:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinDriverMarker</span> <span class="n">C3DMotion</span> <span class="o">=</span>
 <span class="p">{</span>
@@ -303,12 +302,12 @@ equality sign:</p>
 </pre></div>
 </div>
 <p>Then click the Model tab in the tree view on the left hand side of the editor
-window, unfold the MyModel branch and subsequently the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">C3D</span></code> object -&gt;
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Points</span></code> -&gt; <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Markers</span></code> -&gt; <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">L000</span></code> and arrive at <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">PosInterpol</span></code> as shown
+window, unfold the MyModel branch and subsequently the <code class="docutils literal"><span class="pre">C3D</span></code> object -&gt;
+<code class="docutils literal"><span class="pre">Points</span></code> -&gt; <code class="docutils literal"><span class="pre">Markers</span></code> -&gt; <code class="docutils literal"><span class="pre">L000</span></code> and arrive at <code class="docutils literal"><span class="pre">PosInterpol</span></code> as shown
 below.</p>
 <p><img alt="Model tree 2" src="../_images/image320.png" /></p>
 <p>This is the actual interpolation function of the marker in question.
-Place the cursor after the equality sign of the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyParamFun</span></code> line,
+Place the cursor after the equality sign of the <code class="docutils literal"><span class="pre">AnyParamFun</span></code> line,
 right-click the PosInterpol object, and choose “Insert object name”. You
 should get this:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinDriverMarker</span> <span class="n">C3DMotion</span> <span class="o">=</span>
@@ -337,7 +336,7 @@ following error message:</p>
 <p>It is time to think back to the concept of degrees-of-freedom, DoF. In the
 beginning of the tutorial, we established that the free pendulum has one DoF.
 But the marker trajectory has three coordinates and therefore wants to drive
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">P1</span></code> of the pendulum in <span class="math">\(x\)</span>, <span class="math">\(y\)</span> and <span class="math">\(z\)</span>, i.e. two DoFs more
+<code class="docutils literal"><span class="pre">P1</span></code> of the pendulum in <span class="math">\(x\)</span>, <span class="math">\(y\)</span> and <span class="math">\(z\)</span>, i.e. two DoFs more
 than we have available.</p>
 <p>There are two possible solutions to this problem. Either we pick only one of the
 directions given by the marker and let the revolute joint decide the rest, or we
@@ -377,8 +376,8 @@ kinematics solver that can handle it. This is done in the study section:</p>
 InitialConditions and Kinematics operations that will accept more
 kinematic constraints than the system has DoFs.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">See <a class="reference external" href="http://www.tandfonline.com/doi/abs/10.1080/10255840802459412">Andersen MS, Damsgaard M, and Rasmussen J. 2007</a>
+<p class="admonition-title">Note</p>
+<p>See <a class="reference external" href="http://www.tandfonline.com/doi/abs/10.1080/10255840802459412">Andersen MS, Damsgaard M, and Rasmussen J. 2007</a>
 for detailed information about the algorithm behind the overdeterminate kinematic analysis.</p>
 </div>
 <p>Now you can reload and run the kinematic analysis and you should see the
@@ -411,7 +410,7 @@ to simultaneously draw both the point on the pendulum and the marker
 from the C3D file. To do this, start by placing the cursor inside the
 AnyKinDriverMarker object.</p>
 <p>Then click the Classes tab on the right side of screen, insert a new
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyDrawKinMeasure</span></code> template, remove the properties we will not need and give
+<code class="docutils literal"><span class="pre">AnyDrawKinMeasure</span></code> template, remove the properties we will not need and give
 it a name:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinDriverMarker</span> <span class="n">C3Dmotion</span> <span class="o">=</span>
 <span class="p">{</span>
@@ -441,10 +440,10 @@ it a name:</p>
 is drawn to illustrate the difference between the point on the segment
 and the measured point. Please notice that there is a small ball hidden
 inside yellow sphere from the drawing of the segment. The plot also
-shows a label “KDM”, which indicates that it is an <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinDriverMarker</span></code>
+shows a label “KDM”, which indicates that it is an <code class="docutils literal"><span class="pre">AnyKinDriverMarker</span></code>
 that is drawn.</p>
 <p>The line between the two points and the label can be removed by changing
-the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Label</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Line</span></code> settings to Off. Let us also change the size of the
+the <code class="docutils literal"><span class="pre">Label</span></code> and <code class="docutils literal"><span class="pre">Line</span></code> settings to Off. Let us also change the size of the
 dots such that we can see both the point on the segment as well as the
 measured point.</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyDrawKinMeasure</span> <span class="n">drw</span> <span class="o">=</span>
@@ -459,32 +458,32 @@ measured point.</p>
 <p><img alt="Model view DrawKinMeasure" src="../_images/image52.jpeg" /></p>
 <p>Let us briefly investigate the kinematic constraints of our model. Click
 the Model tab in the tree view on the left hand side of the screen and
-unfold the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Joint</span></code> branch. Inside you find <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Constraints</span></code>, and after
-unfolding that branch you find the property <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">CType</span></code>. If you double-click
+unfold the <code class="docutils literal"><span class="pre">Joint</span></code> branch. Inside you find <code class="docutils literal"><span class="pre">Constraints</span></code>, and after
+unfolding that branch you find the property <code class="docutils literal"><span class="pre">CType</span></code>. If you double-click
 it, the popup window shows the following:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">CType</span> <span class="o">=</span> <span class="p">{</span><span class="kp">Hard</span><span class="p">,</span> <span class="kp">Hard</span><span class="p">,</span> <span class="kp">Hard</span><span class="p">,</span> <span class="kp">Hard</span><span class="p">,</span> <span class="kp">Hard</span><span class="p">}</span>
 </pre></div>
 </div>
-<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">CType</span></code> appears to be a vector with five components, owing to the fact
+<p><code class="docutils literal"><span class="pre">CType</span></code> appears to be a vector with five components, owing to the fact
 that a revolute joint has five constraints, and CType specifies that all
-of these are <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">Hard</span></code>. This means that the kinematic solver is not allowed
+of these are <code class="docutils literal"><span class="pre">Hard</span></code>. This means that the kinematic solver is not allowed
 to violate any of them.</p>
-<p>If you similarly locate and unfold the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">C3DMotion</span></code> object you again find a
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">CType</span></code>, and double-clicking it reveals</p>
+<p>If you similarly locate and unfold the <code class="docutils literal"><span class="pre">C3DMotion</span></code> object you again find a
+<code class="docutils literal"><span class="pre">CType</span></code>, and double-clicking it reveals</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">CType</span> <span class="o">=</span> <span class="p">{</span><span class="kp">Soft</span><span class="p">,</span> <span class="kp">Soft</span><span class="p">,</span> <span class="kp">Soft</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>We have implicitly specified that the joint is a hard constraint while
 the marker is a soft constraint. Joints automatically have their
-constraint types set to Hard and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinDriverMarker</span></code> objects
+constraint types set to Hard and <code class="docutils literal"><span class="pre">AnyKinDriverMarker</span></code> objects
 automatically have soft constraints, but these rules can be overridden
-by the user by explicit specification of <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">CType</span></code> in the respective
+by the user by explicit specification of <code class="docutils literal"><span class="pre">CType</span></code> in the respective
 objects.</p>
 <p>In <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3</span></a> we investigate how to filter noise out of
 the measured data.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson3: Noise and filters</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson3: Noise and filters</span></a>.</p>
 </div>
 </div>
 
@@ -595,7 +594,6 @@ the measured data.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

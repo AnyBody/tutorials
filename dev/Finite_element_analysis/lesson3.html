@@ -1,8 +1,7 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -233,7 +232,7 @@ which is an executable called AnyFE2Abq.exe. It can convert the xml code
 to Abaqus keyword sequence and combine it with the FE model.</p>
 <p>The AnyFE converter is a command line tool with options controlled by
 program arguments. Running the program with the <code class="docutils literal"><span class="pre">–h</span></code>, i.e.
-<code class="docutils literal"><span class="pre">AnyFE2Abq.exe –h</span></code>. We shall briefly go through the important options
+<code class="docutils literal"><span class="pre">AnyFE2Abq.exe</span> <span class="pre">–h</span></code>. We shall briefly go through the important options
 here.</p>
 <p>The <code class="docutils literal"><span class="pre">–i</span></code> and <code class="docutils literal"><span class="pre">–o</span></code> options specify the input AnyFE xml file
 (<code class="docutils literal"><span class="pre">-i</span></code>) and the output file (<code class="docutils literal"><span class="pre">-o</span></code>), respectively. The <code class="docutils literal"><span class="pre">–m</span></code>
@@ -279,7 +278,7 @@ file. In the above, we have therefore considered ‘localrefframe’ to be
 the coordinate system of the FE model, which is also the CT/MRI scan
 system. Notice that in the given case, the segment reference and the
 output reference are aligned since the FE mesh was based on the original
-bone geometry from the AnyBody model, i.e. <code class="docutils literal"><span class="pre">sRel= {0, 0, 0}</span></code>.</p>
+bone geometry from the AnyBody model, i.e. <code class="docutils literal"><span class="pre">sRel=</span> <span class="pre">{0,</span> <span class="pre">0,</span> <span class="pre">0}</span></code>.</p>
 <p>As an alternatively, you can export the AnyFE XML file in another
 reference frame, even the global system in AnyBody
 (UseRefFrameOnOff=Off) for that matter. This implies that the data of
@@ -322,22 +321,23 @@ implies that subsequent node sections are not read and therefore, not
 used for application of forces.</p>
 <p>The AnyFE Converter performs the following actions:</p>
 <ul class="simple">
-<li>Maps all AnyBody exported forces, i.e., joint reactions, muscle
+<li><p>Maps all AnyBody exported forces, i.e., joint reactions, muscle
 forces and applied forces to the provided FE mesh. Mass related
 forces are neglected, i.e., gravitational and acceleration equivalent
-forces.<ul>
-<li>Defines nodes in the positions from the AnyFE output file, i.e.
+forces.</p>
+<ul>
+<li><p>Defines nodes in the positions from the AnyFE output file, i.e.
 the position of all loads (this includes muscle/ligament
-attachment nodes)</li>
-<li>Defines amplitudes for each force/moment component in the AnyFE
-output file</li>
-<li>Defines concentrated loads (<code class="docutils literal"><span class="pre">*CLOAD</span></code>) in each of these nodes</li>
-<li>Defines coupling constraints between the created nodes and a part
-of the surface of the bone</li>
+attachment nodes)</p></li>
+<li><p>Defines amplitudes for each force/moment component in the AnyFE
+output file</p></li>
+<li><p>Defines concentrated loads (<code class="docutils literal"><span class="pre">*CLOAD</span></code>) in each of these nodes</p></li>
+<li><p>Defines coupling constraints between the created nodes and a part
+of the surface of the bone</p></li>
 </ul>
 </li>
-<li>The mesh in included</li>
-<li>Adds inertia relief loads (<code class="docutils literal"><span class="pre">*INERTIA RELIEF</span></code>)</li>
+<li><p>The mesh in included</p></li>
+<li><p>Adds inertia relief loads (<code class="docutils literal"><span class="pre">*INERTIA</span> <span class="pre">RELIEF</span></code>)</p></li>
 </ul>
 <p>Please note that the inertia relief loads will automatically be added to
 the model in order to provide a full set of boundary conditions.
@@ -486,7 +486,6 @@ see significant changes due to the modification in the overall picture.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

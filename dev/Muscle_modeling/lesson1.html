@@ -1,8 +1,7 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -72,14 +71,14 @@
 realize that they mechanically consist of two separate computational
 models:</p>
 <ol class="arabic simple">
-<li>The kinematic model, which determines the muscle’s path from origin
+<li><p>The kinematic model, which determines the muscle’s path from origin
 to insertion depending on the posture of the body. This also entails
-finding the length and contraction velocity of the muscle.</li>
-<li>The strength model which determines the muscle’s strength and
+finding the length and contraction velocity of the muscle.</p></li>
+<li><p>The strength model which determines the muscle’s strength and
 possible its passive elastic force depending on the kinematic state
-of the muscle.</li>
+of the muscle.</p></li>
 </ol>
-<p>&nbsp;This would be a sad excuse for a tutorial if we did not have an example
+<p> This would be a sad excuse for a tutorial if we did not have an example
 to work on. So let us quickly construct a very simple example that will
 enable us to examine the properties of muscles. <a class="reference external" href="Downloads/MuscleDemo.Ini.any">*Here’s an extremely
 simple one-degree-of-freedom model (right-click and save to
@@ -133,7 +132,7 @@ disk)*</a>:</p>
  <span class="p">};</span>  <span class="c1">// Main</span>
 </pre></div>
 </div>
-<p>When you load the model, open a model view window,&nbsp;and run the
+<p>When you load the model, open a model view window, and run the
 SetInitialConditions operation, you should get the following picture:</p>
 <p><a class="reference internal" href="../_images/image14.jpeg"><img alt="simple model" src="../_images/image14.jpeg" style="width: 2.08333in; height: 2.00000in;" /></a></p>
 <p>The model has a driver, so you can run the kinematic analysis and see
@@ -152,7 +151,7 @@ possible version.</p>
 you will get access to the class tree. Expand the tree as shown in the
 picture until you get to the AnyMuscleModel.</p>
 <p><a class="reference internal" href="../_images/image230.png"><img alt="class tree" src="../_images/image230.png" style="width: 2.98958in; height: 3.34375in;" /></a></p>
-<p>Notice that this class has&nbsp;three derived classes. These are more
+<p>Notice that this class has three derived classes. These are more
 advanced muscle models, and we shall get to those later. However for the
 time being, place the cursor in the Editor View on an empty line just
 after the end brace of the driver definition, right-click the
@@ -261,7 +260,7 @@ reference frame and the insertion on the segment:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>&nbsp;With these two points, we can complete the definition of the muscle:</p>
+<p> With these two points, we can complete the definition of the muscle:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyViaPointMuscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
     <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
     <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="gr">Orig = .GlobalRef.M1Origin</span><span class="p">;</span>
@@ -274,23 +273,23 @@ reference frame and the insertion on the segment:</p>
 Like other classes in AnyScript, muscles are not drawn in the model view
 window unless you specifically ask for it. When you load the model and
 run the SetInitialConditions study you will get the following picture
-(if your model does not load, and you cannot find the error, <a class="reference download internal" href="../_downloads/MuscleDemo.1.any" download=""><code class="xref download docutils literal"><span class="pre">click
-here to download a model that works</span></code></a>
+(if your model does not load, and you cannot find the error, <a class="reference download internal" href="../_downloads/MuscleDemo.1.any" download=""><code class="xref download docutils literal"><span class="pre">click</span>
+<span class="pre">here</span> <span class="pre">to</span> <span class="pre">download</span> <span class="pre">a</span> <span class="pre">model</span> <span class="pre">that</span> <span class="pre">works</span></code></a>
 (MuscleDemo.1.any)):</p>
 <p><a class="reference internal" href="../_images/image44.jpeg"><img alt="simple model with muscle" src="../_images/image44.jpeg" style="width: 2.08333in; height: 2.00000in;" /></a></p>
-<p>Notice that the muscle is now&nbsp;able to balance the gravity, and we are
+<p>Notice that the muscle is now able to balance the gravity, and we are
 able to run the InverseDynamicAnalysis. If you try it out and
 subsequently open a chart view, you are able to plot the muscle force:</p>
 <p><a class="reference internal" href="../_images/image516.png"><img alt="http://www.anybodytech.com/fileadmin/AnyBody.3.x.x/tutorial/MuscleModeling/muscleforce1.gif" src="../_images/image516.png" style="width: 5.43750in; height: 3.68750in;" /></a></p>
-<p>The muscle force is the&nbsp;item Fm in the list of properties you can plot
+<p>The muscle force is the item Fm in the list of properties you can plot
 for a muscle. As you can see, lots of other properties are available,
 but if you try to plot them you will find that many of them are zero.
 This is because they are not relevant for this very simple type of
 muscle. We shall return to the significance of the different properties
 later in this tutorial.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> For now, <a class="reference internal" href="lesson2.html"><span class="doc">let’s proceed to the next lesson</span></a>&nbsp;to learn
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> For now, <a class="reference internal" href="lesson2.html"><span class="doc">let’s proceed to the next lesson</span></a> to learn
 how to control the way a muscle is displayed.</p>
 </div>
 </div>
@@ -402,7 +401,6 @@ how to control the way a muscle is displayed.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

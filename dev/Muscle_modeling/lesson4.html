@@ -1,8 +1,7 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -77,22 +76,22 @@ muscles are not capable of modeling this type of situation, so the
 AnyBody Modeling System has a special muscle object for this purpose.</p>
 <p>A wrapping muscle is presumed to have an origin and an insertion just
 like the via point muscle. However, instead of interior via points is
-passes a set of surfaces. If the surfaces&nbsp;are blocking the way then the
+passes a set of surfaces. If the surfaces are blocking the way then the
 muscles finds the shortest geodetic path around the surface. Hence the
 name of the class: AnyShortestPathMuscle. The fact that the muscle
 always uses the shortest path means that it slides effortlessly on the
-surfaces, and hence there is&nbsp;no friction between the muscle and the
+surfaces, and hence there is no friction between the muscle and the
 surface.</p>
 <p>Enough talk! Let us prepare for addition of a wrapping muscle to our
 model. If for some reason you do not have a working model from the
-previous lessons, <a class="reference download internal" href="../_downloads/MuscleDemo.4.any" download=""><code class="xref download docutils literal"><span class="pre">you can download one
-here</span></code></a>.</p>
+previous lessons, <a class="reference download internal" href="../_downloads/MuscleDemo.4.any" download=""><code class="xref download docutils literal"><span class="pre">you</span> <span class="pre">can</span> <span class="pre">download</span> <span class="pre">one</span>
+<span class="pre">here</span></code></a>.</p>
 <p>A wrapping muscle needs one or several surfaces to wrap on, so the frst
 thing to do is to define a surface. For convenience we shall attach the
 surface to the global reference frame, but such wrapping surfaces can be
 attached to any reference frame in the system, including segments. To be
 able to play around with the position of the surface, we initially
-define a point&nbsp;on GlobalRef&nbsp;for the purpose:</p>
+define a point on GlobalRef for the purpose:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// Global Reference Frame</span>
 <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
@@ -119,8 +118,8 @@ surface, which disturbs the analysis result. The parametric surfaces
 currently available are cylinders and ellipsoids. Let us try our luck
 with a cylinder. Go to the class tree, locate the class AnySurfCylinder,
 and insert an instance into the newly defined node on GlobalRef.
-Then&nbsp;define the name of the cylinder, add an AnyDrawParamSurf
-statement,&nbsp;and change the cylinder parameters as shown below:</p>
+Then define the name of the cylinder, add an AnyDrawParamSurf
+statement, and change the cylinder parameters as shown below:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="kt">AnyRefNode</span> <span class="n">CylCenter</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">};</span>
 
@@ -144,7 +143,7 @@ to be inserted symmetrically about the xy plane as illustrated below:</p>
 object that the cylinder is inserted into. So, if the cylinder does not
 have the orientation you want, then the key to rotate it correctly is to
 control the direction of the AnyRefNode that it is inserted into. In
-fact, let us&nbsp;rotate it just a little bit to make things a bit more
+fact, let us rotate it just a little bit to make things a bit more
 interesting:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="n">CylCenter</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">};</span>
@@ -159,7 +158,7 @@ interesting:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>&nbsp;Which causes the cylinder to rotate 20 degrees about the y axis.</p>
+<p> Which causes the cylinder to rotate 20 degrees about the y axis.</p>
 <p><a class="reference internal" href="../_images/image26.jpeg"><img alt="wrap cylinder rotated" src="../_images/image26.jpeg" style="width: 3.12500in; height: 2.41667in;" /></a></p>
 <p>There are a couple of things to notice about the cylinder: First of all
 the graphics looks like the cylinder is faceted. This is not really the
@@ -169,7 +168,7 @@ the muscle it is a perfect cylinder. The second thing to notice is that
 the ends are capped in such a way that the edges are rounded. You can
 control the curvature of this cap by means of the CapRatio variable that
 is currently commented out in the cylinder object definition. If you
-play a bit&nbsp;around with different values of the cap ratio then you will
+play a bit around with different values of the cap ratio then you will
 quickly get a feel for the effect of the variable. The caps allow you to
 let the muscle wrap over the edge of the cylinder if necessary.</p>
 <p>The next step is to define a wrapping muscle. We shall create one point
@@ -280,7 +279,7 @@ InverseDynamicAnalysis (and have done everything right), you will see
 the model moving through a sequence of positions like this:</p>
 <p><a class="reference internal" href="../_images/image33.jpeg"><img alt="wrap cylinder with via point sequence" src="../_images/image33.jpeg" style="width: 6.25000in; height: 2.03125in;" /></a></p>
 <p>As mentioned above, wrapping muscles can also have via points. In fact,
-we can easily change the via point muscle, Muscle1, &nbsp;to wrap over the
+we can easily change the via point muscle, Muscle1,  to wrap over the
 cylinder even though it also has a via point:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Any</span><span class="gr">ShortestPath</span><span class="n">Muscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
@@ -329,7 +328,7 @@ quite right. The reason why both muscle pass over the cylinder rather
 than under is that this is the side that is the closest to the muscles’
 paths before the wrapping is resolved. This means that we can make a
 muscle wrap on another side of a wrapping surface by making sure that
-its initial position is closer to the side we want it to wrap on.&nbsp; The
+its initial position is closer to the side we want it to wrap on.  The
 way to do this is to specify one or more so-called initial wrapping
 vectors. These are really points that the muscle initially should pass
 through. You can specify as many of these points as you like. In the
@@ -369,8 +368,8 @@ wraps on the other side of the cylinder.</p>
 another important and interesting topic, <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Muscle
 models</span></a>.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Muscle Models</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Muscle Models</span></a>.</p>
 </div>
 </div>
 
@@ -481,7 +480,6 @@ models</span></a>.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

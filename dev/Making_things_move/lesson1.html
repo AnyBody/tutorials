@@ -1,8 +1,7 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -74,11 +73,11 @@ In the case of the pendulum, we might get the idea that the natural DoF
 is its rotational angle away from its resting vertical position. And we
 can very easily drive the pendulum using this DoF.</p>
 <p>The simplest mechanism of motion drivers in AnyBody is called
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code>. With Pendulum.any open in an editor and the model loaded,
+<code class="docutils literal"><span class="pre">AnyKinMotion</span></code>. With Pendulum.any open in an editor and the model loaded,
 please place the cursor in the editor window just below then ending
-brace of the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnySeg</span> <span class="n">Pendulum</span></code> definition. Then click the Classes tab on
+brace of the <code class="docutils literal"><span class="pre">AnySeg</span> <span class="pre">Pendulum</span></code> definition. Then click the Classes tab on
 the left-hand side of the editor window. Unfold the class list and
-scroll down to find <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> . Right-click and insert an instance at
+scroll down to find <code class="docutils literal"><span class="pre">AnyKinMotion</span></code> . Right-click and insert an instance at
 the cursor position:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Pendulum</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">Mass</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -108,7 +107,7 @@ the cursor position:</p>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<p>The prototype of the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> class is set up to allow several
+<p>The prototype of the <code class="docutils literal"><span class="pre">AnyKinMotion</span></code> class is set up to allow several
 different options. But the simplest of these is to directly specify
 something to drive and a function to drive it with. So we start out by
 giving the object a name and removing all of its content.</p>
@@ -142,7 +141,7 @@ a polynomial has been fitted.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>In the matrix <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">PolyCoef</span></code>, each row contains the coefficients for a time
+<p>In the matrix <code class="docutils literal"><span class="pre">PolyCoef</span></code>, each row contains the coefficients for a time
 function driving one degree of freedom. The revolute joint we are
 driving only has one degree of freedom, so the matrix only has one row,
 but it still has to be defined as a matrix rather than a vector, i.e.
@@ -155,21 +154,21 @@ increasing order and define the following driver function:</p>
 should no longer get the warning that that model is kinematically
 indeterminate. It now has the same number of drivers as degrees of
 freedom.</p>
-<p>Next, run the model. Select <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">MyStudy</span><span class="p">.</span><span class="n">Kinematics</span></code> from the Operations
+<p>Next, run the model. Select <code class="docutils literal"><span class="pre">Main.MyStudy.Kinematics</span></code> from the Operations
 dropdown menu in the toolbar, and click the “Run” button:</p>
 <img alt="../_images/run_operation.png" src="../_images/run_operation.png" />
 <p>If you have a model view open, you should see the pendulum starting to
 move and accelerate as it rotates a little more than one round before
 the end of the analysis at <em>t</em> = 1 second.</p>
-<p>The use of <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> objects to drive a model is in principle always
+<p>The use of <code class="docutils literal"><span class="pre">AnyKinMotion</span></code> objects to drive a model is in principle always
 like this, but you can select any Kinematic Measure to drive, i.e. not
 just a simple joint angle, and you can use any function derived from the
 abstract AnyParamFun class to drive it with.</p>
 <p>In <a class="reference internal" href="lesson2.html"><span class="doc">lesson 2</span></a> we shall see how this same mechanism
 allows you to drive the pendulum by motion capture data.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2: Using motion capture data</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2: Using motion capture data</span></a>.</p>
 </div>
 </div>
 
@@ -280,7 +279,6 @@ allows you to drive the pendulum by motion capture data.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

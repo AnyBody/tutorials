@@ -1,8 +1,7 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -81,17 +80,17 @@ work with a model for processing data, but who does not have to develop
 it or understand it’s every detail.</p>
 <p>The AnyProject functions can be summarized by</p>
 <ul class="simple">
-<li>Model View Definitions that provide features for defining particular
-views of the model and user interface for activating the views.</li>
-<li>Task definitions that wrap the important operations of the model with
+<li><p>Model View Definitions that provide features for defining particular
+views of the model and user interface for activating the views.</p></li>
+<li><p>Task definitions that wrap the important operations of the model with
 a user interface for execution. A Model View Definition can be
-associated with a given task.</li>
-<li>All project objects are equipped with descriptions that can be used
-for explaining the task or view to new users.</li>
-<li>Project file information is automatically found by the system and can
-be supplemented by the user.</li>
-<li>“Send to” function for exporting the model and all of its resources
-to a new location</li>
+associated with a given task.</p></li>
+<li><p>All project objects are equipped with descriptions that can be used
+for explaining the task or view to new users.</p></li>
+<li><p>Project file information is automatically found by the system and can
+be supplemented by the user.</p></li>
+<li><p>“Send to” function for exporting the model and all of its resources
+to a new location</p></li>
 </ul>
 <p>An AnyBody project is defined in the model, in principle as any other
 objects of the model using the AnyProject class. The main difference to
@@ -459,7 +458,7 @@ by adding a new AnyProject task, which contains an AnyDescription with
 some simple HTML. For this, we use the BodyHTML member, which is a
 string-value object that is one option of entering the body text of the
 description view.</p>
-<p>Please add the following AnyProject task to the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Tasks</span></code> folder in the
+<p>Please add the following AnyProject task to the <code class="docutils literal"><span class="pre">Tasks</span></code> folder in the
 example:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_value_example</span> <span class="o">=</span> <span class="p">{</span>
 
@@ -474,16 +473,16 @@ example:</p>
 </pre></div>
 </div>
 <p>After reloading the model and viewing the new AnyProject Task, we see
-that the content of <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">BodyHTML</span></code> is now being used for displaying the
-description of the task. When <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">BodyHTML</span></code> is defined in the script, it
-will take precedence over any defined <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Title</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">BodyText</span></code> in the
+that the content of <code class="docutils literal"><span class="pre">BodyHTML</span></code> is now being used for displaying the
+description of the task. When <code class="docutils literal"><span class="pre">BodyHTML</span></code> is defined in the script, it
+will take precedence over any defined <code class="docutils literal"><span class="pre">Title</span></code> and <code class="docutils literal"><span class="pre">BodyText</span></code> in the
 AnyDescription.</p>
 <p>Please note that this AnyProject Task doesn’t actually have any
 operation defined, and because of this, there is no “execute task”
 button shown for it. In order to actually interact with the model from
 this AnyProject task, we will be using some special HTML links, through
 which we can pass commands to the AnyBody Modeling System.</p>
-<p>Modify the newly created <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Set_value_example</span></code> task to look like this:</p>
+<p>Modify the newly created <code class="docutils literal"><span class="pre">Set_value_example</span></code> task to look like this:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_value_example</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
@@ -496,16 +495,16 @@ which we can pass commands to the AnyBody Modeling System.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>The new HTML link defined in the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">BodyHTML</span></code> is formatted like this:</p>
+<p>The new HTML link defined in the <code class="docutils literal"><span class="pre">BodyHTML</span></code> is formatted like this:</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;about:anybody -command argument&quot;</span><span class="p">&gt;</span>linktext<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">about</span><span class="o">:</span><span class="n">anybody</span></code> (or just <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">anybody</span></code>) beginning of the href-value
+<p>The <code class="docutils literal"><span class="pre">about:anybody</span></code> (or just <code class="docutils literal"><span class="pre">anybody</span></code>) beginning of the href-value
 indicates to AnyBody that the link is an internal link and the <em>command
 argument</em> tells what to do. In this case, we make a link to an object,
 i.e., a link that takes us to the Model Tree of AMS.</p>
-<p>Please note that in order to make the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">BodyHTML</span></code> contain the quote
-characters, we have to use the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="nb">strquote</span><span class="p">()</span></code> function to add “ to the
+<p>Please note that in order to make the <code class="docutils literal"><span class="pre">BodyHTML</span></code> contain the quote
+characters, we have to use the <code class="docutils literal"><span class="pre">strquote()</span></code> function to add “ to the
 text string we create; we cannot enter quote characters directly, since
 the AnyScript parser will see any second quote as the end of the entire
 string leading to a syntax error for the rest of the string.</p>
@@ -529,10 +528,10 @@ code. We start by creating a new macro command.</p>
     <span class="p">...</span>
 </pre></div>
 </div>
-<p>This adds a new <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Macros</span></code> AnyFolder, which currently contains a single
+<p>This adds a new <code class="docutils literal"><span class="pre">Macros</span></code> AnyFolder, which currently contains a single
 string, defining a macro which calls the “Set Value” Class Operation on
-the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">HandNode</span></code> of the model. We now have to use this new string in our
-AnyDescription <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">BodyHTML</span></code>. We do this by adding a new HTML link to the
+the <code class="docutils literal"><span class="pre">HandNode</span></code> of the model. We now have to use this new string in our
+AnyDescription <code class="docutils literal"><span class="pre">BodyHTML</span></code>. We do this by adding a new HTML link to the
 BodyHTML, where we use a special command argument that interprets and
 executes this string as a macro.</p>
 <p>Please modify the AnyProject Task from earlier to look like this:</p>
@@ -559,14 +558,14 @@ HTML-based Descriptions).</p>
 <div class="section" id="using-external-html-files">
 <h2>Using external HTML files<a class="headerlink" href="#using-external-html-files" title="Permalink to this headline">¶</a></h2>
 <p>We have seen that HTML content can be written directly in an
-AnyDescription’s <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">BodyHTML</span></code> member, but for larger HTML pages this can
+AnyDescription’s <code class="docutils literal"><span class="pre">BodyHTML</span></code> member, but for larger HTML pages this can
 become very cumbersome. It is therefore also possible to use external
 HTML files as AnyDescription HTML sources. This is done by setting the
-AnyDescription’s <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">HTMLURL</span></code> member to the address of an external HTML
+AnyDescription’s <code class="docutils literal"><span class="pre">HTMLURL</span></code> member to the address of an external HTML
 resource. This URL can point to a file in the local file system as well
 as to a location on the Internet.</p>
 <p>In this example, we will use an external HTML file to display a table
-showing the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">r</span></code> value of the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Handnode</span></code> and having the information
+showing the <code class="docutils literal"><span class="pre">r</span></code> value of the <code class="docutils literal"><span class="pre">Handnode</span></code> and having the information
 updated while an operation is being run on the model. We do this by
 transferring the dynamic data to the external HTML file along with the
 URL and then using JavaScript in the HTML file for inserting the data in
@@ -597,16 +596,16 @@ of the external HTML file.</p>
 <p>Please also note that we use a local AnyFile variable to specify the
 HTML file path without defining its absolute location in the script. The
 AnyFile variable resolves the path of the AnyScript file, and we can get
-the absolute file location through the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="nb">FilePathCompleteOf</span></code> function.
-This is necessary because the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">HTMLURL</span></code> has to be a complete absolute
+the absolute file location through the <code class="docutils literal"><span class="pre">FilePathCompleteOf</span></code> function.
+This is necessary because the <code class="docutils literal"><span class="pre">HTMLURL</span></code> has to be a complete absolute
 URL and not a relative URL.</p>
 <p>If we try loading the model now, we will see the HTML page, but it is
 not being updated when we run the, for instance, InverseDynamics
 operation in the model. This is because the AnyDescription containing
-the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">HTMLURL</span></code> is not part of the study, and therefore, the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">HTMLURL</span></code>
+the <code class="docutils literal"><span class="pre">HTMLURL</span></code> is not part of the study, and therefore, the <code class="docutils literal"><span class="pre">HTMLURL</span></code>
 expression is not re-evaluated.</p>
 <p>In order to enable this, we add the AnyDescription for this new task to
-the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ArmModelStudy</span></code> by modifying the beginning of the AnyProject file to
+the <code class="docutils literal"><span class="pre">ArmModelStudy</span></code> by modifying the beginning of the AnyProject file to
 look like this:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
@@ -627,9 +626,9 @@ look like this:</p>
     <span class="p">...</span>
 </pre></div>
 </div>
-<p>If we reload the model and run the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">InverseDynamics</span></code> operation now while
+<p>If we reload the model and run the <code class="docutils literal"><span class="pre">InverseDynamics</span></code> operation now while
 viewing the new AnyProject task, we will see that the displayed value
-for <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">r</span></code> is being updated dynamically as the values change in the model.</p>
+for <code class="docutils literal"><span class="pre">r</span></code> is being updated dynamically as the values change in the model.</p>
 </div>
 </div>
 
@@ -748,7 +747,6 @@ for <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

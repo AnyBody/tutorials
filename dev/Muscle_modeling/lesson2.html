@@ -1,8 +1,7 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -121,8 +120,8 @@ to make the muscle bulging proportional to the force in the muscle:</p>
 <p>When you try this, you will find that the muscle has become thinner, but
 you really cannot see it bulge much. The problem is that the thickness
 of the muscle is scaled by another factor in addition to the force. This
-enables the system to create nice visualizations for&nbsp;intensive and light
-exercises&nbsp;alike. The additional factor is the variable MaxStress. The
+enables the system to create nice visualizations for intensive and light
+exercises alike. The additional factor is the variable MaxStress. The
 following will increase the muscle thickness:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyDrawMuscle</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">//RGB = {0.554688, 0.101563, 0.117188};</span>
@@ -156,7 +155,7 @@ accomplish this is to increase the angular velocity of the joint driver:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Reload the&nbsp;model and run the InverseDynamicAnalysis operation again. You
+<p>Reload the model and run the InverseDynamicAnalysis operation again. You
 will see that the arm now flexes up to an almost vertical position. If
 you plot the muscle force, Fm, again in a chart view, then you can see
 how the muscle force goes up drastically with the reduced moment arm:</p>
@@ -165,38 +164,38 @@ than it does in the beginning:</p>
 <p><a class="reference internal" href="../_images/image32.gif"><img alt="Chart view Muscle1.Fm" src="../_images/image32.gif" style="width: 5.62500in; height: 4.88542in;" /></a></p>
 <p>The muscle thickness does not have to reflect force. Choosing other
 values for the Bulging property will give other results:</p>
-<table border="1" class="docutils">
+<table class="docutils">
 <colgroup>
-<col width="19%" />
-<col width="17%" />
-<col width="64%" />
+<col style="width: 19%" />
+<col style="width: 17%" />
+<col style="width: 64%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head"><strong>Bulging value</strong></th>
-<th class="head"><strong>Effect</strong></th>
-<th class="head"><strong>Comment</strong></th>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Bulging value</strong></p></th>
+<th class="head"><p><strong>Effect</strong></p></th>
+<th class="head"><p><strong>Comment</strong></p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>0</td>
-<td>No bulging</td>
-<td>This is the default value</td>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>No bulging</p></td>
+<td><p>This is the default value</p></td>
 </tr>
-<tr class="row-odd"><td>1</td>
-<td>Muscle force</td>
-<td>Thickness is proportional to force</td>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Muscle force</p></td>
+<td><p>Thickness is proportional to force</p></td>
 </tr>
-<tr class="row-even"><td>2</td>
-<td>Muscle strength</td>
-<td>Constant in this case (but relevant for more advanced muscle models)</td>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Muscle strength</p></td>
+<td><p>Constant in this case (but relevant for more advanced muscle models)</p></td>
 </tr>
-<tr class="row-odd"><td>3</td>
-<td>Muscle activity</td>
-<td>The ratio between muscle force and muscle strength</td>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Muscle activity</p></td>
+<td><p>The ratio between muscle force and muscle strength</p></td>
 </tr>
-<tr class="row-even"><td>4</td>
-<td>Constant volume</td>
-<td>The muscle gets thicker when it contracts</td>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Constant volume</p></td>
+<td><p>The muscle gets thicker when it contracts</p></td>
 </tr>
 </tbody>
 </table>
@@ -240,10 +239,10 @@ with other drawing objects: You can control the transparency of the
 object through the property of that name. Opacity = 1 means opaque, and
 with Opacity = 0, the object becomes completely invisible. All values in
 between causes the object to be semi-transparent. You can also turn of
-the display of the object entirely off by&nbsp;setting DrawOnOff = 0;</p>
+the display of the object entirely off by setting DrawOnOff = 0;</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Via-point muscles</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Via-point muscles</span></a>.</p>
 </div>
 </div>
 
@@ -354,7 +353,6 @@ the display of the object entirely off by&nbsp;setting DrawOnOff = 0;</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

@@ -1,8 +1,7 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -77,12 +76,12 @@ respectively of the center of mass of the pendulum. We see the expected
 sinusoidal curves for x and y and a z location that is constantly zero.
 It all looks fine and dandy, but closer investigation will reveal that
 it is not.</p>
-<p>If we plot the velocity, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">rDot</span></code>, rather than the position, we begin to see
+<p>If we plot the velocity, <code class="docutils literal"><span class="pre">rDot</span></code>, rather than the position, we begin to see
 the problem:</p>
 <p><img alt="pendulum.rdot" src="../_images/image223.png" /></p>
 <p>It is obvious that the motion is not as smooth as we would expect from
 the first set of graphs, and it gets even worse if we plot the
-accelerations, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">rDDot</span></code>:</p>
+accelerations, <code class="docutils literal"><span class="pre">rDDot</span></code>:</p>
 <p><img alt="pendulum.rddot" src="../_images/image321.png" /></p>
 <p>Since forces in a mechanical system stem from accelerations, an analysis
 of the force in this system would lead to a completely different result
@@ -91,14 +90,14 @@ and noise is always present in several different forms. Although it can
 be minimized by careful experimental procedures and good equipment, it
 can never be completely removed. Therefore, it is always necessary to
 filter motion capture data before use.</p>
-<p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyInputC3D</span></code> class has a default filter built in. It is a special
+<p>The <code class="docutils literal"><span class="pre">AnyInputC3D</span></code> class has a default filter built in. It is a special
 case of a more general filter class in AnyBody, and the special case is
 a second-order, zero-phase Butterworth filter with a cutoff frequency of
 10 Hz. If you do not specify anything else, then this is what you are
 going to get. In this case, it is obviously not sufficient, so let’s
 play a bit with the settings and see whether we can get better results.</p>
-<p>The filter section of the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyInputC3D</span></code> section is currently inactive.
-Please remove the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="cm">/* */</span></code> surrounding the object, and you will have the
+<p>The filter section of the <code class="docutils literal"><span class="pre">AnyInputC3D</span></code> section is currently inactive.
+Please remove the <code class="docutils literal"><span class="pre">/*</span> <span class="pre">*/</span></code> surrounding the object, and you will have the
 following:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Filter</span> <span class="o">=</span>
 <span class="p">{</span>
@@ -113,13 +112,13 @@ following:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>The first two lines pertain to the filter’s initial condition, and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">z0</span></code>
-cannot be set when <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AutomaticInitialConditionOnOff</span></code> is set to <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">On</span></code>, meaning
+<p>The first two lines pertain to the filter’s initial condition, and <code class="docutils literal"><span class="pre">z0</span></code>
+cannot be set when <code class="docutils literal"><span class="pre">AutomaticInitialConditionOnOff</span></code> is set to <code class="docutils literal"><span class="pre">On</span></code>, meaning
 that the initial condition of the filter gets computed automatically.</p>
 <p>The automatic computation is an attempt to minimize initial transients
 in the signal, but it may not always be good enough, and in this case it
 can be relevant to set the initial conditions. For now, let us keep the
-automatic setting and therefore remove the incomplete line with <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">z0</span></code>:</p>
+automatic setting and therefore remove the incomplete line with <code class="docutils literal"><span class="pre">z0</span></code>:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Filter</span> <span class="o">=</span> <span class="p">{</span>
     <span class="gr">// z0 = ;</span>
     <span class="n">AutomaticInitialConditionOnOff</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
@@ -132,22 +131,22 @@ automatic setting and therefore remove the incomplete line with <code class="doc
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>The third line, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">FilterForwardBackwardOnOff</span></code>, is mostly included for the
-sake of completeness. When it is set to <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">On</span></code>, zero phase shift in the
+<p>The third line, <code class="docutils literal"><span class="pre">FilterForwardBackwardOnOff</span></code>, is mostly included for the
+sake of completeness. When it is set to <code class="docutils literal"><span class="pre">On</span></code>, zero phase shift in the
 filter is obtained by filtering twice, i.e. first forward and then
 backward in the signal, which is the standard approach. Please leave it
 as it is unless you really know what you are doing.</p>
-<p>The property <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">N</span></code> is simply the order of the filter. The default value is 2
+<p>The property <code class="docutils literal"><span class="pre">N</span></code> is simply the order of the filter. The default value is 2
 and higher values lead to sharper cuts at the specified cutoff
 frequency.</p>
-<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">W</span></code> is the normalized cutoff frequency. Allowed values are between zero
+<p><code class="docutils literal"><span class="pre">W</span></code> is the normalized cutoff frequency. Allowed values are between zero
 and one with one corresponding to half of the sampling frequency.
-However, it is not allowed to specify <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">W</span></code> when filtering data from a C3D
+However, it is not allowed to specify <code class="docutils literal"><span class="pre">W</span></code> when filtering data from a C3D
 file because the file already contains information about the sampling
 frequency, so you can safely delete this line.</p>
-<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Fs</span></code> is the sampling frequency, and like <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">W</span></code>, we cannot specify it when
+<p><code class="docutils literal"><span class="pre">Fs</span></code> is the sampling frequency, and like <code class="docutils literal"><span class="pre">W</span></code>, we cannot specify it when
 reading from a C3D file, so please remove this line.</p>
-<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Fc</span></code> is the cutoff frequency and is set to 10 Hz by default. The dilemma
+<p><code class="docutils literal"><span class="pre">Fc</span></code> is the cutoff frequency and is set to 10 Hz by default. The dilemma
 with filters is always that they can reduce noise and other undesirable
 elements of the signal, but in the process they also may remove
 desirable parts of the signal or even introduce artifacts. 10 Hz is a
@@ -158,10 +157,10 @@ other phenomena with higher frequency content.</p>
 which is the relevant value for a signal like this, where the noise is
 high frequency, but the filters in AnyBody also allow for other types.
 Please refer to the reference manual for a complete description.</p>
-<p>In the graph of <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Pendulum</span><span class="p">.</span><span class="n">r</span></code> above, the red curve seems to have a
+<p>In the graph of <code class="docutils literal"><span class="pre">Pendulum.r</span></code> above, the red curve seems to have a
 frequency of about 0.2 Hz and the green curve about 0.4 Hz. This is
 safely below our present 10 Hz cutoff frequency, so there seems to be
-room to eliminate more noise by using a lower value of <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Fc</span></code>. If we change</p>
+room to eliminate more noise by using a lower value of <code class="docutils literal"><span class="pre">Fc</span></code>. If we change</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Filter</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1">// z0 = ;</span>
     <span class="n">AutomaticInitialConditionOnOff</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
@@ -185,8 +184,8 @@ of freedom. The additional information in the redundant constraints can
 be used to our advantage for other purposes too, as we shall see in
 <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4</span></a>.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4: Parameter identification</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4: Parameter identification</span></a>.</p>
 </div>
 </div>
 
@@ -297,7 +296,6 @@ be used to our advantage for other purposes too, as we shall see in
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

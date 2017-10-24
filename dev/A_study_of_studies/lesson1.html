@@ -1,8 +1,7 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -127,10 +126,10 @@ neither any of the predefined joint types nor driver functions. Such
 constraints are very frequent in more complex models because the
 AnyScript language allows for user-defined joints and other constraints
 to mimic complex behaviors movement patterns between different
-joints.&nbsp;This, however, is an advanced topic that&nbsp;we shall postpone for
+joints. This, however, is an advanced topic that we shall postpone for
 now.</p>
 <p>The final section 3) lists the reaction forces. The fact that
-the&nbsp;reaction and driver forces add up to the same number as the joints
+the reaction and driver forces add up to the same number as the joints
 and kinemaic constraints is no coincidence. In a straightforward model
 like this one, joints usually provide the same number of reactions as
 kinematic constraints. This is also how it is in real life in most
@@ -152,16 +151,16 @@ Mechanical System Information in Object Description is helpful in this
 respect.</p>
 <p>A few special cases are:</p>
 <ol class="arabic simple">
-<li>The number of reaction and driver forces is less than the number of
+<li><p>The number of reaction and driver forces is less than the number of
 rigid body degrees of freedom in the model as it is the case here.
 This leaves some reactions to be provided by other elements, and
-these elements are usually the muscles in the model.</li>
-<li>If the number of reaction and driver forces is equal to the number of
+these elements are usually the muscles in the model.</p></li>
+<li><p>If the number of reaction and driver forces is equal to the number of
 rigid body degrees of freedom, then the model is (usually) capable of
 balancing itself, and there is no use for muscles. In fact, if you
 add muscles to such a mechanism, the muscles will end up doing
-nothing.</li>
-<li>If the model has more reaction and driver forces than rigid body
+nothing.</p></li>
+<li><p>If the model has more reaction and driver forces than rigid body
 degrees of freedom then it is statically indeterminate. This usually
 means that there is something wrong with the model. Mechanically it
 is equivalent to the model having multiple different ways of
@@ -169,7 +168,7 @@ balancing itself and having no way of determining which the correct
 one is. Even though AnyBody is capable of computing the forces in
 such a model you will often find the solutions oscillating between
 the infinitely many possibilities between time steps. Models like
-these should in general be avoided.</li>
+these should in general be avoided.</p></li>
 </ol>
 <p>Let us investigate what happens if we make some changes in the model.
 Let us initially remove one of the drivers in the model leaving it
@@ -224,7 +223,7 @@ shift the missing driver back in:</p>
 <span class="p">};</span> <span class="c1">// Elbow driver</span>
 </pre></div>
 </div>
-<p>…&nbsp;and try something else:</p>
+<p>… and try something else:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">//---------------------------------</span>
 <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ShoulderMotion</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
@@ -260,8 +259,8 @@ corresponding to the 12 rigid body degrees of freedom.</p>
 the Object Description of the study, let us proceed to Initial
 Conditions in the <a class="reference internal" href="lesson2.html"><span class="doc">next lesson</span></a>.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson2.html"><span class="doc">Lesson2: Initial Conditions</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson2.html"><span class="doc">Lesson2: Initial Conditions</span></a>.</p>
 </div>
 </div>
 
@@ -369,7 +368,6 @@ Conditions in the <a class="reference internal" href="lesson2.html"><span class=
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

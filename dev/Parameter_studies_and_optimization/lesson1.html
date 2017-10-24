@@ -1,8 +1,7 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -76,12 +75,12 @@ prosthesis depend on the implanted position. Or you may be interested in
 finding the standing posture by which you can hold a heavy box as easily
 as possible between your hands. Or how the position of a handle
 influences the muscular effort of operating it.</p>
-<p>Or you may be interested in knowing how the seat height and&nbsp;horizontal
-position&nbsp;influence the muscle effort and metabolism of the rider. This
+<p>Or you may be interested in knowing how the seat height and horizontal
+position influence the muscle effort and metabolism of the rider. This
 is precisely what we shall do in this tutorial. To make life a bit
 easier for you, we have prepared a bicycle model you can download and
-play around with. <a class="reference download internal" href="../_downloads/OptimBike.zip" download=""><code class="xref download docutils literal"><span class="pre">Please click here to download the zip file
-OptimBike.zip</span></code></a> and unpack it to some
+play around with. <a class="reference download internal" href="../_downloads/OptimBike.zip" download=""><code class="xref download docutils literal"><span class="pre">Please</span> <span class="pre">click</span> <span class="pre">here</span> <span class="pre">to</span> <span class="pre">download</span> <span class="pre">the</span> <span class="pre">zip</span> <span class="pre">file</span>
+<span class="pre">OptimBike.zip</span></code></a> and unpack it to some
 pertinent place on your hard disk.</p>
 <p>The bicycle model is pretty much the 2DBike that you may know from the
 <a class="reference external" href="https://www.anybodytech.com/anybody.html?fwd=modelrepository">*AnyBody Managed Model
@@ -93,7 +92,7 @@ bicycle. You will find the main file, OptTutorial.main.any, in
 OptimBike\ARep\Aalborg\OptTutorial (Notice the file
 OptTutorial.final.main.any in the same location; this is a file that
 contains most of the additions we make in the lessons of this tutorial).
-Please open The AnyBody Modeling System&nbsp;and load the main file. Opening
+Please open The AnyBody Modeling System and load the main file. Opening
 a model view window should give you this picture:</p>
 <p><a class="reference internal" href="../_images/image19.jpeg"><img alt="bike2d.jpg" src="../_images/image19.jpeg" style="width: 4.16667in; height: 2.75000in;" /></a></p>
 <p>As you can see the model is very simple. It has two legs and a pelvis
@@ -101,8 +100,8 @@ that is rigidly fixed to the seat. The feet are attached to the crank
 mechanism, and the crank is loaded by a sinusoidal torque and constant
 angular velocity producing a mean mechanical output of 165 W. It has a
 total of 18 muscles - nine on each leg. You can control the
-design&nbsp;parameters of the bicycle and the way the rider propels the
-pedals by means of the&nbsp;variables at the top of the main file. It might
+design parameters of the bicycle and the way the rider propels the
+pedals by means of the variables at the top of the main file. It might
 be a good idea to play a bit around with the variables and run some
 analyses. Try, for instance, to raise and lower the seat. Notice that if
 you raise the seat more than a few centimeters, the model has trouble
@@ -112,7 +111,7 @@ further, makes the kinematical analysis break down because the feet lose
 the contact with the pedals.</p>
 <p>The crank torque profile of a bicycle rider changes when the set is
 moved horizontally because the location of the cycle’s dead center
-changes.&nbsp;To account for this, a special feature has been set up in this
+changes. To account for this, a special feature has been set up in this
 model to adjust the phase shift of the crank torque profile to the seat
 position such that the minimum crank torque occurs when the pedals point
 towards the hip joint regardless of where the saddle is positioned.</p>
@@ -122,10 +121,10 @@ towards the hip joint regardless of where the saddle is positioned.</p>
 useful to introduce the terminology used by AnyBody for parameter and
 optimization studies:</p>
 <ul class="simple">
-<li>A design variable is an independent parameter controlling some aspect
+<li><p>A design variable is an independent parameter controlling some aspect
 of the model, for instance the seat height, the pedal length, the
 pelvic angle, the crank torque variation, the cadence, the strength
-of a muscle, and so on. In short, just about any property you can&nbsp;set
+of a muscle, and so on. In short, just about any property you can set
 in the AnyScript model. A design variable is always a single number
 and it must be associated with upper and lower variation limits, but
 it is allowed to construct the model such that many properties depend
@@ -134,13 +133,13 @@ controlling the soleus muscle strength and then let the soleus muscle
 in both legs depend on it. In this way you can distinguish between
 dependent and independent parameters, and only independent parameters
 can be used as design variables. The AnyScript class defining a
-design&nbsp;variable is called AnyDesVar.</li>
-<li>A design measure is a dependent parameter that results from an
+design variable is called AnyDesVar.</p></li>
+<li><p>A design measure is a dependent parameter that results from an
 analysis with given values of design variables. Typical examples
 would be the maximum muscle activity, the metabolism, the mechanical
 work, the mechanical power generated by a specific muscle, or the
 force in a joint. The AnyScript class for definition of design
-measures is the AnyDesMeasure.</li>
+measures is the AnyDesMeasure.</p></li>
 </ul>
 <p>These two classes are common to parameter studies and optimization
 studies, so the two types obviously share several concepts. Let us
@@ -159,7 +158,7 @@ defined.</p>
 <h2>Definition of a Parameter Study<a class="headerlink" href="#definition-of-a-parameter-study" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="../_images/image25.gif"><img alt="parinsert.gif" src="../_images/image25.gif" style="width: 3.39583in; height: 4.58333in;" /></a></p>
 <p>A parameter study is as the name indicates a study. Therefore its
-natural position in the model is&nbsp;below the existing AnyBodyStudy. We can
+natural position in the model is below the existing AnyBodyStudy. We can
 insert a new parameter study by means of the object inserter mechanism
 from the class tree. Place the cursor below the definition of the
 AnyBodyStudy Study, click the Classes tab in the tree view, locate the
@@ -195,7 +194,7 @@ should get the following result:</p>
 <span class="gr">    };</span>
 </pre></div>
 </div>
-<p>&nbsp;As you can see, this requires a bit of additional specifications and
+<p> As you can see, this requires a bit of additional specifications and
 general tidying up:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="kt">AnyParamStudy</span> <span class="gr">ParamStudy</span> <span class="o">=</span> <span class="p">{</span>
      <span class="n">Analysis</span> <span class="o">=</span> <span class="p">{</span>
@@ -214,30 +213,30 @@ general tidying up:</p>
    <span class="p">};</span>
 </pre></div>
 </div>
-<p>&nbsp;Here’s a brief explanation of the different components of a parameter
+<p> Here’s a brief explanation of the different components of a parameter
 study:</p>
-<table border="1" class="docutils">
+<table class="docutils">
 <colgroup>
-<col width="4%" />
-<col width="96%" />
+<col style="width: 4%" />
+<col style="width: 96%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head"><strong>Parameter</strong></th>
-<th class="head"><strong>Function</strong></th>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parameter</strong></p></th>
+<th class="head"><p><strong>Function</strong></p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>Analysis</td>
-<td>This is a specification of the operation(s) to perform to provide the data we are studying in the parameter study. This will typically be an InverseDynamicAnalysis operation, but it could also be simply an evaluation of some mathematical expression, or it could be a combination of multiple operations, for instance various calibrations followed by an inverse dynamic analysis.</td>
+<tbody>
+<tr class="row-even"><td><p>Analysis</p></td>
+<td><p>This is a specification of the operation(s) to perform to provide the data we are studying in the parameter study. This will typically be an InverseDynamicAnalysis operation, but it could also be simply an evaluation of some mathematical expression, or it could be a combination of multiple operations, for instance various calibrations followed by an inverse dynamic analysis.</p></td>
 </tr>
-<tr class="row-odd"><td>nStep</td>
-<td>This is a specification of how many steps to evaluate in the parameter study for each parameter.</td>
+<tr class="row-odd"><td><p>nStep</p></td>
+<td><p>This is a specification of how many steps to evaluate in the parameter study for each parameter.</p></td>
 </tr>
-<tr class="row-even"><td>AnyDesVar</td>
-<td>The study must declare at least one of these. It is the parameter(s) that are varied in the study and for combinations of which the model is analyzed. You can define as many as you like, but please beware that the number of analyses in the parameter study is the product of steps for each AnyDesVar, so the time consumption grows&nbsp;exponentially with the number of AnyDesVars.</td>
+<tr class="row-even"><td><p>AnyDesVar</p></td>
+<td><p>The study must declare at least one of these. It is the parameter(s) that are varied in the study and for combinations of which the model is analyzed. You can define as many as you like, but please beware that the number of analyses in the parameter study is the product of steps for each AnyDesVar, so the time consumption grows exponentially with the number of AnyDesVars.</p></td>
 </tr>
-<tr class="row-odd"><td>AnyDesMeasure</td>
-<td>Each of these objects specifies a property that is the result of the analysis and which must be collected for further inspection as the study proceeds. You can define as many of these as you like.</td>
+<tr class="row-odd"><td><p>AnyDesMeasure</p></td>
+<td><p>Each of these objects specifies a property that is the result of the analysis and which must be collected for further inspection as the study proceeds. You can define as many of these as you like.</p></td>
 </tr>
 </tbody>
 </table>
@@ -289,7 +288,7 @@ also goes the other way: It lets the parameter study control the value
 of what is on the right hand side of the equality sign, in this case the
 SaddleHeight parameter. We have similarly defined a second parameter,
 SaddlePos, which allows the parameter study to vary the
-horizontal&nbsp;saddle position. This two-way linkage between Val and another
+horizontal saddle position. This two-way linkage between Val and another
 variable in the model implies certain restrictions on what assignments
 AnyScript allows for this particular case. The referred variable must be
 a scalar quantity, i.e. either a scalar or an element of a larger
@@ -303,7 +302,7 @@ latter use is a somewhat restricted exploitation of AnyDesVar and is
 typically not practical when studies of existing models are to be
 carried out.</p>
 <p>The next step is to define the properties we wish to study, i.e. the
-dependent parameters or “design measures”&nbsp;of the model. As you know,
+dependent parameters or “design measures” of the model. As you know,
 after running an operation from a study the results are available in the
 Output branch of the tree view of the operation and they can be plotted,
 dumped and copied to the clipboard and so on. Now we are defining a
@@ -314,7 +313,7 @@ and so on. To do this we must refer to the result we wish to store for
 further processing. There is just one semantic problem: The results do
 not exist until we have performed the analysis, but we must refer to
 them already when we author (and load) the model.</p>
-<p>To solve this problem we must go back to the AnyBodyStudy&nbsp;Study, from
+<p>To solve this problem we must go back to the AnyBodyStudy Study, from
 where we want to lift the results, and declare an object that will allow
 us to refer to computational results before they are actually made. The
 object is of class AnyOutputFun, and we shall add it to the existing
@@ -360,7 +359,7 @@ AnyDesMeasure:</p>
 <p>Notice the definition. The MaxAct function for each
 InverseDynamicAnalysis operation returns a vector of maximum muscle
 activities in the model. The vector has as many components as the study
-has time steps, i.e. 50 in the present case. In the&nbsp;definition of the
+has time steps, i.e. 50 in the present case. In the definition of the
 AnyDesMeasure we want to save only the largest value of each of the
 vector, so we wrap the call of the MaxAct function in another max
 function. AnyScript gives you a number of such data processing functions
@@ -371,7 +370,7 @@ specify how many steps we want the parameter study to perform for each
 parameter. As in AnyBodyStudies this is done by the nStep variable, but
 where nStep in an AnyBodyStudy is an integer variable, it is a vector
 with one component for each AnyDesVar in an AnyParamStudy. We shall be
-modest at first and choose only&nbsp;five steps in each direction. And so,
+modest at first and choose only five steps in each direction. And so,
 the final AnyParamStudy looks like this:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span> <span class="kt">AnyParamStudy</span> <span class="n">ParamStudy</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">Analysis</span> <span class="o">=</span> <span class="p">{</span>
@@ -439,22 +438,22 @@ then? It is very simply to do:</p>
 <p>When you re-run the parameter study, things will go well in the
 beginning, but towards the end of the 25 combinations you may notice
 muscles beginning to bulge more and momentarily attain the color
-of&nbsp;magenta. This is the system’s way of demonstrating that the muscles
+of magenta. This is the system’s way of demonstrating that the muscles
 have been loaded above 100% of their strength. The reason why this
-happens is that, as the seat rises,&nbsp;the model gets into positions where
+happens is that, as the seat rises, the model gets into positions where
 it is difficult for the feet to reach the pedals. Just before the feet
 cannot reach the pedals the knee movements are accelerated causing large
 inertia forces in the system. All this happens a bit more drastically in
 an ideal rigid body model than it would in real life where joints have a
 bit of slack, segments are slightly elastic, and the prescribed
-kinematics may be compromised. You can see&nbsp;very clearly what happens&nbsp;if
+kinematics may be compromised. You can see very clearly what happens if
 you go back to the AnyChart View and study the new surface:</p>
 <p><a class="reference internal" href="../_images/image62.gif"><img alt="anychart3.gif" src="../_images/image62.gif" style="width: 5.62500in; height: 4.88542in;" /></a></p>
 <p>The surface is now completely dominated by the one combination, which is
 difficult for the model to do. You can still see the surface shape if
 you change the scale of the value axis. This and all other settings are
 available if you click
-the&nbsp;<a class="reference internal" href="../_images/image71.gif"><img alt="chartsettings.gif" src="../_images/image71.gif" style="width: 0.32292in; height: 0.31250in;" /></a>
+the <a class="reference internal" href="../_images/image71.gif"><img alt="chartsettings.gif" src="../_images/image71.gif" style="width: 0.32292in; height: 0.31250in;" /></a>
 button in the toolbar. Doing so will produce a window with a tree view
 in which you can select ValueAxis-&gt;Max. Try setting Max to 0.2 and you
 should obtain the following:</p>
@@ -572,8 +571,8 @@ can be plotted:</p>
 the <a class="reference internal" href="lesson2.html"><span class="doc">next lesson</span></a>, which deals with the
 definition of optimization studies.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson2.html"><span class="doc">Optimization Studies</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson2.html"><span class="doc">Optimization Studies</span></a>.</p>
 </div>
 </div>
 </div>
@@ -684,7 +683,6 @@ definition of optimization studies.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

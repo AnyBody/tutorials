@@ -1,8 +1,7 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -83,26 +82,26 @@ everything and is, therefore, floating around in space. Furthermore, it
 has a number of internal degrees of freedom that must be controlled:
 Three rotations between the pelvis and the thorax segments, three
 rotations in the hip, one rotation in the knee, and two rotations in the
-ankle. With the 9&nbsp;DOFs of the entire body model in space and the single
+ankle. With the 9 DOFs of the entire body model in space and the single
 DOF of the pedal, this adds up to 16 DOFs. In other words, we need 16
 constraints before the model is kinematically determinate.</p>
 <p>This is what we plan to do:</p>
 <ol class="arabic simple">
-<li>The pelvis will be fixed completely at a point corresponding to the
+<li><p>The pelvis will be fixed completely at a point corresponding to the
 contact to a seat. This will do away with 6 DOFs leaving us with 10
-more to specify.</li>
-<li>The 3 rotations between the trunk and the thorax segments will be
+more to specify.</p></li>
+<li><p>The 3 rotations between the trunk and the thorax segments will be
 specified by a driver to a constant position. This leaves us with 7
-more constraints to specify.</li>
-<li>The foot will be connected to the pedal by a spherical joint having 3
-constraints. This leaves us with 4 more constraints to specify.</li>
-<li>The ankle angle will be presumed fixed by two constraints. This
-leaves 2 DOFs to be constrained.</li>
-<li>The lateral position of the knee will be specified by a driver. This
-leaves a single degree of freedom in the system.</li>
-<li>Finally, we are going to drive the pedal angle. With the
+more constraints to specify.</p></li>
+<li><p>The foot will be connected to the pedal by a spherical joint having 3
+constraints. This leaves us with 4 more constraints to specify.</p></li>
+<li><p>The ankle angle will be presumed fixed by two constraints. This
+leaves 2 DOFs to be constrained.</p></li>
+<li><p>The lateral position of the knee will be specified by a driver. This
+leaves a single degree of freedom in the system.</p></li>
+<li><p>Finally, we are going to drive the pedal angle. With the
 aforementioned constraints, this will allow us to specify the posture
-of the entire system by this single driver.</li>
+of the entire system by this single driver.</p></li>
 </ol>
 <p>At the moment you don’t need to worry about this process of making
 constraints too much. From AMMR V1.6, this human model includes
@@ -164,9 +163,9 @@ to. The best way of locating the necessary points is to use the object
 tree at the left-hand side of the editor window. Place your cursor in
 the editor window on the &amp;Seat line just before the final semicolon.
 Then expand the three in the left-hand side of the window through Model,
-Environment,&nbsp;GlobalRef to find the&nbsp;Hpoint that we defined previously.
-Right-click&nbsp;Hpoint and choose ‘Insert Object Name’. The full name of
-the&nbsp;Hpoint is inserted at the position of the cursor.</p>
+Environment, GlobalRef to find the Hpoint that we defined previously.
+Right-click Hpoint and choose ‘Insert Object Name’. The full name of
+the Hpoint is inserted at the position of the cursor.</p>
 <p>We must repeat the procedure for the Pelvis. Place the cursor on the
 &amp;Pelvis line just before the semicolon and subsequently expand the
 object tree through HumanModel, BodyModel, Trunk, SegmentsLumbar. Inside
@@ -290,7 +289,7 @@ folder below the Joints folder:</p>
 </div>
 <p>Most of this came about the same way as we have done previously: The
 definition of the AnyKinEqSimpleDriver (and indeed its complex name)
-came from the Object Inserter&nbsp;in the Class Tree at the left-hand&nbsp;side of
+came from the Object Inserter in the Class Tree at the left-hand side of
 the editor window. The complete name of the thorax and neck rotations
 was inserted from the object tree. The joints are going to be static,
 and in their neutral position, so the DriverVel and DriverPos are simply
@@ -316,10 +315,10 @@ defined inside the JointsAndDrivers.any file in the following way:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>We have cheated just a little.&nbsp;It is possible to define new nodes on the
+<p>We have cheated just a little. It is possible to define new nodes on the
 foot for attachment to a specific place, but we have taken the
 cheap-and-dirty solution of picking an existing point close to where we
-presume the contact with the pedal will be. The MetatarsalJoint2Node&nbsp;is
+presume the contact with the pedal will be. The MetatarsalJoint2Node is
 a good approximation.</p>
 </div>
 <div class="section" id="setting-the-ankle-angle">
@@ -521,8 +520,8 @@ open the Object Description dialog of “Study” object in the Model Tree.</p>
 and this is exactly as same as the total number of DOFs. Of course, you
 can still run the kinematics of your model.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> Now that the kinematics is in order let us move on to the <a class="reference internal" href="lesson4.html"><span class="doc">kinetic
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> Now that the kinematics is in order let us move on to the <a class="reference internal" href="lesson4.html"><span class="doc">kinetic
 analysis in Lesson 4 and see what the model is good
 for.</span></a></p>
 </div>
@@ -644,7 +643,6 @@ for.</span></a></p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>
