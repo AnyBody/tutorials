@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 1: Export of data for FEA &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <title>Lesson 1: Export of data for FEA &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '7.0.1',
+        VERSION:     '7.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="index.html" title="Finite Element Analysis Interfacing"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Finite Element Analysis Interfacing</a> &#187;</li> 
       </ul>
@@ -80,8 +80,8 @@ Repository Ver. 1.6 (AMMRV1.6) if you see differences between the
 tutorial text and your own results please download AMMRV1.6 from
 <a class="reference external" href="http://www.anybodytech.com/anybody.html?fwd=modelrepository">www.anybodytech.com/anybody.html?fwd=modelrepository</a></p>
 <p>The starting point for this tutorial is the model:</p>
-<p><code class="docutils literal"><span class="pre">Applications/Examples/StandingLift/StandingLiftFEA.main.any</span></code></p>
-<p>However, this model internally reuses the code of <code class="docutils literal"><span class="pre">StandingLift.main.any</span></code>. Please
+<p><code class="file docutils literal"><span class="pre">Applications/Examples/StandingLift/StandingLiftFEA.main.any</span></code></p>
+<p>However, this model internally reuses the code of <code class="file docutils literal"><span class="pre">StandingLift.main.any</span></code>. Please
 find the model and load it by pushing F7 and open a Model View. You
 should see something similar to the picture to the right. The vertebral
 body we want to analyze is marked with a circle on the zoomed-in
@@ -99,9 +99,9 @@ later.</p>
 generating muscles; this will keep the force output files small.</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#ifdef</span> <span class="n">FEA_OUTPUT</span>
 <span class="c1">// switch the muscles off for simplicity</span>
-<span class="cp">#define</span> <span class="x x-Statements">BM_LEG_MUSCLES_BOTH</span> <span class="x x-Options">CONST_MUSCLES_NONE</span>
-<span class="cp">#define</span> <span class="x x-Statements">BM_ARM_MUSCLES_BOTH</span> <span class="x x-Options">CONST_MUSCLES_NONE</span>
-<span class="cp">#define</span> <span class="x x-Statements">BM_TRUNK_MUSCLES</span> <span class="x x-Options">CONST_MUSCLES_NONE</span>
+<span class="cp">#define</span> <span class="x x-Statements">BM_LEG_MUSCLES_BOTH</span> <span class="n">_MUSCLES_NONE_</span>
+<span class="cp">#define</span> <span class="x x-Statements">BM_ARM_MUSCLES_BOTH</span> <span class="n">_MUSCLES_NONE_</span>
+<span class="cp">#define</span> <span class="x x-Statements">BM_TRUNK_MUSCLES</span> <span class="n">_MUSCLES_NONE_</span>
 <span class="cp">#endif</span>
 </pre></div>
 </div>
@@ -147,7 +147,7 @@ Press the “Run” button. The model will analyze one timestep and write
 the FEAoutput.txt file which we have specified before. Let’s have a
 closer look on the Output file. It is located inside your Application
 folder in the Output subfolder. You can open it either directly in
-AnyBody or in any text editor of your choice.:</p>
+AnyBody or in any text editor of your choice.</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>Environment:
 ReferenceFrame=Global Model Frame;
 Gravity=0.000000000000000e+000;-9.810000000000001e+000;0.000000000000000e+000;
@@ -216,7 +216,7 @@ coordinate system for all of the exported data; this system is often (by
 default) the global coordinate system or it can be a local coordinate
 system.</p>
 <p>Let us have a look at the following entry which basically gives the
-joint constraints in the L5-Sacrum joint::</p>
+joint constraints in the L5-Sacrum joint:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>Force[12]:
 Name=Main.HumanModel.BodyModel.Trunk.JointsLumbar.L5SacrumJnt.Constraints.Reaction;
 Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnySphericalJoint.AnyKinEq.AnyReacForce;
@@ -246,7 +246,7 @@ has not been reloaded since the force export otherwise run the
 InverseDynamicAnalysis again to bring it to right position. Of course
 it also involves all scaling which has been applied to the bones.
 Browse through the model tree to the L5Seg
-(<code class="docutils literal"><span class="pre">Main\HumanModel\BodyModel\Trunk\SegmentsLumbar\L5Seg</span></code>) in order
+<code class="docutils literal"><span class="pre">Main/HumanModel/BodyModel/Trunk.SegmentsLumbar/L5Seg</span></code> in order
 to export the L5 segment. Inside this folder you find the DrawSTL
 folder. Right-click the folder and choose “Export Surface”. Choose a
 convenient place to store the file and give it the name “L5.stl”. A
@@ -361,7 +361,7 @@ forces is essential to apply the force in the right way.)</p>
 provide the boundary conditions. For this we need our force export
 file. Please open the file (it should be located in your
 StandingLiftFEA application folder) in an editor and scroll down to
-Force[12]. This force is the joint reaction on the L5-Sacrum joint.:</p>
+Force[12]. This force is the joint reaction on the L5-Sacrum joint.</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>Force[12]:
 Name=Main.HumanModel.BodyModel.Trunk.JointsLumbar.L5SacrumJnt.Constraints.Reaction;
 Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnySphericalJoint.AnyKinEq.AnyReacForce;
@@ -396,7 +396,7 @@ save.</p>
 <p>There is one more thing that has to be defined preliminary to the FEA
 - the desired output. Please open a text editor and load the L5FEA.inp
 file. In this file the whole analysis is defined, using a reference to
-the node and elements file.:</p>
+the node and elements file.</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>**=========================================================================
 **                          HISTORY DATA                                 **
 **=========================================================================
@@ -441,13 +441,13 @@ cancellous bone structure (E = 200 MPa) have been assigned.</p>
 <p>If you want to use this model instead of your own build, please change
 the following comments involving”L5FEA” to “L5FEABackup”.)</p>
 <p>Open up the Calculix command shell and browse to the directory where
-you placed the L5FEA.inp file. Now type:</p>
+you placed the L5FEA.inp file. Now type</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>ccx L5FEA
 </pre></div>
 </div>
 <p>and press return. This will push the model forward to the solver and
 start the analysis. Within a few seconds a nice JOB FINISHED should
-appear. Now, let’s have look at the results: Therefore, type:</p>
+appear. Now, let’s have look at the results: Therefore, type</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>cgx L5FEA.frd
 </pre></div>
 </div>
@@ -527,7 +527,7 @@ selected commercial FE packages using small interface tools</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -579,7 +579,7 @@ selected commercial FE packages using small interface tools</p>
         <li class="right" >
           <a href="index.html" title="Finite Element Analysis Interfacing"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Finite Element Analysis Interfacing</a> &#187;</li> 
       </ul>

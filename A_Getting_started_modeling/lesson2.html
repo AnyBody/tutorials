@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 2: Adjusting the Human Model &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <title>Lesson 2: Adjusting the Human Model &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '7.0.1',
+        VERSION:     '7.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: Starting with a New Model"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Getting Started with Modeling</a> &#187;</li> 
       </ul>
@@ -75,8 +75,8 @@ body parts: legs, arms, and trunk.</p>
 <p class="first admonition-title">Todo</p>
 <p class="last">Add a intersphinx link to AMMMR documentation on BM statments</p>
 </div>
-<p>As we could learn from the chapter <code class="docutils literal"><span class="pre">Getting</span> <span class="pre">started:</span> <span class="pre">The</span> <span class="pre">Model</span>
-<span class="pre">Repository</span> <span class="pre">(AMMR)</span> <span class="pre">&lt;../A_Getting_started_AMMR/intro</span></code>, you can
+<p>As we could learn from the chapter <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Getting</span> <span class="n">started</span><span class="o">:</span> <span class="n">The</span> <span class="n">Model</span>
+<span class="n">Repository</span> <span class="p">(</span><span class="n">AMMR</span><span class="p">)</span> <span class="o">&lt;</span><span class="p">..</span><span class="o">/</span><span class="n">A_Getting_started_AMMR</span><span class="o">/</span><span class="n">intro</span></code>, you can
 now use various kinds of BM (Body Model) statements which can control
 the configuration of your human model. All that you should know is to
 find the proper
@@ -100,24 +100,24 @@ including the “HumanModel.any” file.</p>
 
   <span class="c1">//--&gt;BM statements</span>
   <span class="c1">// Excluding the muscles in the trunk segments</span>
-  <span class="gr">#define BM_TRUNK_MUSCLES CONST_MUSCLES_NONE</span>
+  <span class="gr">#define BM_TRUNK_MUSCLES _MUSCLES_NONE_</span>
   <span class="c1">// Excluding the left arm segments</span>
   <span class="gr">#define BM_ARM_LEFT OFF</span>
   <span class="c1">// Excluding the right arm segments</span>
   <span class="gr">#define BM_ARM_RIGHT OFF</span>
   <span class="c1">// Excluding the left leg segments</span>
-  <span class="gr">#define BM_LEG_LEFT CONST_LEG_MODEL_OFF</span>
+  <span class="gr">#define BM_LEG_LEFT OFF</span>
   <span class="c1">// Using the right leg as &#39;TLEM&#39; model</span>
-  <span class="gr">#define BM_LEG_RIGHT CONST_LEG_MODEL_TLEM</span>
+  <span class="gr">#define BM_LEG_RIGHT _LEG_MODEL_TLEM1_</span>
   <span class="c1">// Excluding the muscles in the right leg segments</span>
-  <span class="gr">#define BM_LEG_MUSCLES_RIGHT CONST_MUSCLES_NONE</span>
+  <span class="gr">#define BM_LEG_MUSCLES_RIGHT _MUSCLES_NONE_</span>
   <span class="c1">//&lt;--</span>
 
   <span class="c1">// Include default human model</span>
   <span class="cp">#include</span> <span class="s">&quot;&lt;ANYBODY_PATH_BODY&gt;\HumanModel.any&quot;</span>
 </pre></div>
 </div>
-<p>Try loading the model again. F7 should produce the encouraging message::</p>
+<p>Try loading the model again. F7 should produce the encouraging message:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>Model Warning: Study &#39;Main.Study&#39; contains too few kinematic constraints to be kinematically determinate.
 Evaluating model...
 Loaded successfully.
@@ -180,7 +180,7 @@ Meet</span></a>.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -232,7 +232,7 @@ Meet</span></a>.</p>
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: Starting with a New Model"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Getting Started with Modeling</a> &#187;</li> 
       </ul>

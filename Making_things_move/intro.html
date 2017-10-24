@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Making things move &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <title>Making things move &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '7.0.1',
+        VERSION:     '7.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="index.html" title="Making things move"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Making things move</a> &#187;</li> 
       </ul>
@@ -73,9 +73,11 @@ getting the model to move in the desired way is at the core of
 musculoskeletal modeling. The AnyBody Modeling System offers many and
 rather advanced methods to make this happen. This tutorial explains the
 basics and some of the more common approaches.</p>
-<p><a class="reference internal" href="../_images/image12.jpeg"><img alt="limbo" src="../_images/image12.jpeg" style="width: 2.42708in; height: 4.01042in;" /></a></p>
-<p>The figure above is actually a sequence of superimposed images
-illustrating a movement. In the AnyBody Model View window, this will of
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/cutting.jpg"><img alt="../_images/cutting.jpg" src="../_images/cutting.jpg" style="width: 50%;" /></a>
+</div>
+<p>The figure above is a sequence of superimposed images
+illustrating a cutting movement. In the AnyBody Model View window, this will of
 course be an animation. The point of the figure, however, is that the
 movement is derived from a combination of joint articulations, and this
 introduces the concept of degrees-of-freedom, which we shall abbreviate
@@ -95,7 +97,7 @@ independent possibilities, so the concept of DoF is rather general, and
 we shall explore it in a little more detail in the following on a very
 simple model.</p>
 <p>Please download and save the file
-<a class="reference download internal" href="../_downloads/pendulum.any" download=""><code class="xref download docutils literal"><span class="pre">*pendulum.any*</span></code></a> in a working directory. Load
+<a class="reference download internal" href="../_downloads/pendulum.any" download=""><code class="xref download docutils literal"><span class="pre">pendulum.any</span></code></a> in a working directory. Load
 the model into AnyBody and open a new model view. You should see a
 vertical segment with a point at each end. It is, in fact, a pendulum
 model linked to the global reference frame by a revolute joint at its
@@ -105,8 +107,8 @@ remote similarity with a human limb.</p>
 one DoF. If you unfold the list of operations under MyStudy in the
 Operation window on the left side of the screen, you can select
 Kinematics and click the run-button as shown below:</p>
-<p><a class="reference internal" href="../_images/image223.png"><img alt="run pendulum" src="../_images/image223.png" style="width: 6.68750in; height: 1.71528in;" /></a></p>
-<p>Instead of a moving pendulum you are rewarded with an error message::</p>
+<img alt="../_images/image222.png" src="../_images/image222.png" />
+<p>Instead of a moving pendulum you are rewarded with an error message:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>Model is kinematically indeterminate : Position analysis failed : 6 independent constraints and 7 unknowns
 </pre></div>
 </div>
@@ -120,7 +122,7 @@ to drive a model. For simplicity, we’ll stick with the simple pendulum,
 but exactly the same principles apply to much more complex models.</p>
 <div class="without-title admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> Let’s initially review simple drivers in <a class="reference internal" href="lesson1.html"><span class="doc">Lesson 1</span></a>.</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson1.html"><span class="doc">Let’s initially review simple drivers in Lesson 1</span></a>.</p>
 </div>
 </div>
 
@@ -170,7 +172,7 @@ but exactly the same principles apply to much more complex models.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -222,7 +224,7 @@ but exactly the same principles apply to much more complex models.</p>
         <li class="right" >
           <a href="index.html" title="Making things move"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Making things move</a> &#187;</li> 
       </ul>

@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 3: Making Ends Meet &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <title>Lesson 3: Making Ends Meet &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '7.0.1',
+        VERSION:     '7.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Adjusting the Human Model"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Getting Started with Modeling</a> &#187;</li> 
       </ul>
@@ -498,17 +498,17 @@ your model. You can just add one more BM statement in the main file to
 control the default drivers of the human model like this:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">//--&gt;BM statements</span>
   <span class="c1">// Excluding the muscles in the trunk segments</span>
-  <span class="cp">#define</span> <span class="x x-Statements">BM_TRUNK_MUSCLES</span> <span class="x x-Options">CONST_MUSCLES_NONE</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_TRUNK_MUSCLES</span> <span class="n">_MUSCLES_NONE_</span>
   <span class="c1">// Excluding the left arm segments</span>
   <span class="cp">#define</span> <span class="x x-Statements">BM_ARM_LEFT</span> <span class="x x-Options">OFF</span>
   <span class="c1">// Excluding the right arm segments</span>
   <span class="cp">#define</span> <span class="x x-Statements">BM_ARM_RIGHT</span> <span class="x x-Options">OFF</span>
   <span class="c1">// Excluding the left leg segments</span>
-  <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_LEFT</span> <span class="x x-Options">CONST_LEG_MODEL_OFF</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_LEFT</span> <span class="x x-Options">OFF</span>
   <span class="c1">// Using the right leg as &#39;TLEM&#39; model</span>
-  <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_RIGHT</span> <span class="x x-Options">CONST_LEG_MODEL_TLEM</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_RIGHT</span> <span class="n">_LEG_MODEL_TLEM1_</span>
   <span class="c1">// Excluding the muscles in the right leg segments</span>
-  <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_MUSCLES_RIGHT</span> <span class="x x-Options">CONST_MUSCLES_NONE</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_MUSCLES_RIGHT</span> <span class="n">_MUSCLES_NONE_</span>
   <span class="c1">// Excluding the default drivers for the human model</span>
   <span class="gr">#define BM_MANNEQUIN_DRIVER_DEFAULT OFF</span>
   <span class="c1">//&lt;--</span>
@@ -583,7 +583,7 @@ for.</span></a></p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -635,7 +635,7 @@ for.</span></a></p>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Adjusting the Human Model"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Getting Started with Modeling</a> &#187;</li> 
       </ul>

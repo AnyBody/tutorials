@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 7: Troubleshooting C3D files &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <title>Lesson 7: Troubleshooting C3D files &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '7.0.1',
+        VERSION:     '7.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="lesson6.html" title="Lesson 6: Weight functions"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Making things move</a> &#187;</li> 
       </ul>
@@ -143,19 +143,19 @@ experiment. There are two possible reasons for this:</p>
 <p>The first reason is that AnyScript is a programming language and has
 rules about allowed characters in names. So if the marker names in the
 C3D file contain characters that have a special meaning, for instance
-<code class="docutils literal"><span class="pre">*</span></code> or <code class="docutils literal"><span class="pre">+</span></code>, then they are automatically replaced by a text string of
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">*</span></code> or <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">+</span></code>, then they are automatically replaced by a text string of
 the decimal ASCII code of the sign surrounded by underscores, for
-instance <code class="docutils literal"><span class="pre">_42_</span></code> instead of <code class="docutils literal"><span class="pre">*</span></code>.</p>
+instance <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">_42_</span></code> instead of <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">*</span></code>.</p>
 <p>The second possible reason is more subtle. The C3D standard has a
 liberal length constraint (128 characters) on names of markers, but the
 experimental community often uses strings of just four characters to
 name markers, and this implicit convention has influenced some types of
 software to truncate marker labels to four characters. So, if you have
-named your markers <code class="docutils literal"><span class="pre">MARKERRKNEE</span></code>, <code class="docutils literal"><span class="pre">MARKERLKNEE</span></code>, <code class="docutils literal"><span class="pre">MARKERSTERNUM</span></code> and so
+named your markers <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MARKERRKNEE</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MARKERLKNEE</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MARKERSTERNUM</span></code> and so
 on, and your C3D file somewhere in the pipeline from experiment to
 AnyBody passes through a piece of software that truncates the names,
 then AnyBody will be given a C3D file where all the marker names are
-truncated to just <code class="docutils literal"><span class="pre">MARK</span></code>. AnyBody will not accept non-unique marker
+truncated to just <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MARK</span></code>. AnyBody will not accept non-unique marker
 names and therefore renames them automatically.</p>
 </div>
 
@@ -205,7 +205,7 @@ names and therefore renames them automatically.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -257,7 +257,7 @@ names and therefore renames them automatically.</p>
         <li class="right" >
           <a href="lesson6.html" title="Lesson 6: Weight functions"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Making things move</a> &#187;</li> 
       </ul>

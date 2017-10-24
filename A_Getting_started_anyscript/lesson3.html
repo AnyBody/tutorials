@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 3: Connecting Segments by Joints &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <title>Lesson 3: Connecting Segments by Joints &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '7.0.1',
+        VERSION:     '7.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Defining Segments and Displaying Objects"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
@@ -141,22 +141,22 @@ upper arm to the global reference frame through a “shoulder” joint.
 While a real shoulder is a very complex mechanism with several joints,
 this is a planar 2-D model, where we will define it as a simple hinge.
 We create a new folder to contain the joints and define the shoulder:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>   <span class="p">};</span> <span class="c1">// LowerArm</span>
- <span class="p">};</span> <span class="c1">// Segs folder</span>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>    <span class="p">};</span> <span class="c1">// LowerArm</span>
+  <span class="p">};</span> <span class="c1">// Segs folder</span>
 
 <span class="gr">AnyFolder Jnts = {</span>
 
-<span class="gr">   //---------------------------------</span>
-<span class="gr">   AnyRevoluteJoint Shoulder = {</span>
+<span class="gr">    //---------------------------------</span>
+<span class="gr">    AnyRevoluteJoint Shoulder = {</span>
 
-<span class="gr">     AnyRefNode &amp;GroundNode = ..GlobalRef.Shoulder;</span>
-<span class="gr">     AnyRefNode &amp;UpperArmNode = ..Segs.UpperArm.ShoulderNode;</span>
+<span class="gr">      AnyRefNode &amp;GroundNode = ..GlobalRef.Shoulder;</span>
+<span class="gr">      AnyRefNode &amp;UpperArmNode = ..Segs.UpperArm.ShoulderNode;</span>
 
-<span class="gr">Axis = z;</span>
+<span class="gr">      Axis = z;</span>
 
-<span class="gr">  }; // Shoulder joint</span>
+<span class="gr">    }; // Shoulder joint</span>
 
-<span class="gr"> }; // Jnts folder</span>
+<span class="gr">}; // Jnts folder</span>
 </pre></div>
 </div>
 </div>
@@ -216,7 +216,7 @@ to rotate about some skewed axis.</p>
 <div class="admonition caution">
 <p class="first admonition-title">Caution</p>
 <p class="last">The first of the two
-nodes declared in the joint (in this case <code class="docutils literal"><span class="pre">GroundNode</span></code>) becomes the
+nodes declared in the joint (in this case <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">GroundNode</span></code>) becomes the
 default reference frame for the joint. When directly accessing the
 post-simulation values of constraint reaction forces etc., you must
 remember to interpret them in the joint’s default reference frame.</p>
@@ -230,18 +230,18 @@ of the handy tools to define the references. The skeleton of the elbow
 joint is as follows:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Jnts</span> <span class="o">=</span> <span class="p">{</span>
        <span class="c1">//---------------------------------</span>
-       <span class="kt">AnyRevoluteJoint</span> <span class="n">Shoulder</span> <span class="o">=</span> <span class="p">{</span>
-         <span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span><span class="p">;</span>
-         <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">GroundNode</span> <span class="o">=</span> <span class="p">..</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
-         <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">UpperArmNode</span> <span class="o">=</span> <span class="p">..</span><span class="n">Segs</span><span class="p">.</span><span class="n">UpperArm</span><span class="p">.</span><span class="n">ShoulderNode</span><span class="p">;</span>
-       <span class="p">};</span> <span class="c1">// Shoulder joint</span>
+    <span class="kt">AnyRevoluteJoint</span> <span class="n">Shoulder</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span><span class="p">;</span>
+        <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">GroundNode</span> <span class="o">=</span> <span class="p">..</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
+        <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">UpperArmNode</span> <span class="o">=</span> <span class="p">..</span><span class="n">Segs</span><span class="p">.</span><span class="n">UpperArm</span><span class="p">.</span><span class="n">ShoulderNode</span><span class="p">;</span>
+    <span class="p">};</span> <span class="c1">// Shoulder joint</span>
 
-       <span class="gr">AnyRevoluteJoint Elbow = {</span>
-<span class="gr">         Axis = z;</span>
-<span class="gr">         AnyRefNode &amp;UpperArmNode = ;</span>
-<span class="gr">         AnyRefNode &amp;ForeArmNode = ;</span>
-<span class="gr">       }; // Elbow joint</span>
-    <span class="p">};</span> <span class="c1">// Jnts folder</span>
+    <span class="gr">AnyRevoluteJoint Elbow = {</span>
+<span class="gr">        Axis = z;</span>
+<span class="gr">        AnyRefNode &amp;UpperArmNode = ;</span>
+<span class="gr">        AnyRefNode &amp;ForeArmNode = ;</span>
+<span class="gr">    }; // Elbow joint</span>
+<span class="p">};</span> <span class="c1">// Jnts folder</span>
 </pre></div>
 </div>
 <p>As you can clearly see, the nodes in the Elbow joint are not pointing at
@@ -258,7 +258,7 @@ model components can be found in this tree including the two nodes we
 are going to connect in the elbow. Click to place the cursor just before
 the semicolon in the &amp;UpperArmNode definition in the Elbow joint. Then
 expand the tree as shown below.</p>
-<p><a class="reference internal" href="../_images/image15.png"><img alt="Model tree ElbowNode" src="../_images/image15.png" style="width: 2.47807in; height: 7.27500in;" /></a></p>
+<p><a class="reference internal" href="../_images/image15.png"><img alt="Model tree ElbowNode" src="../_images/image15.png" style="width: 200.2px; height: 588.6999999999999px;" /></a></p>
 <p>When you right-click the ElbowNode, you can select <strong>“Insert object
 name”</strong> from the context menu. This writes the full path of the node
 into the Elbow joint definition where you placed the cursor. Notice that
@@ -273,7 +273,7 @@ line below to obtain this:</p>
 </pre></div>
 </div>
 <p>It seems like everything is connected now. So why do we still get the
-annoying error message when we reload the model?:</p>
+annoying error message when we reload the model?</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>Model Warning: Study &#39;Main.ArmStudy&#39; contains too few kinematic
 constraints to be kinematically determinate.
 </pre></div>
@@ -345,7 +345,7 @@ position. This is taken care of by kinematic drivers.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -397,7 +397,7 @@ position. This is taken care of by kinematic drivers.</p>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Defining Segments and Displaying Objects"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>

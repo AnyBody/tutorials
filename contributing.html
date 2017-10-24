@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Contributing &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <title>Contributing &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '7.0.1',
+        VERSION:     '7.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="index.html" title="AnyBody Tutorials!"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">AnyBody Tutorials!</a> &#187;</li> 
       </ul>
@@ -76,17 +76,17 @@ hesitate to ask.</p>
 <div class="section" id="building-the-tutorials">
 <h2>Building the tutorials<a class="headerlink" href="#building-the-tutorials" title="Permalink to this headline">¶</a></h2>
 <p>The tutorials are created using <a class="reference external" href="http://www.sphinx-doc.org/">sphinx</a>, a tool for software
-documentation. Sphinx converts reStructuredText files into html, pdf or other
-formats. reStructuredText are simple text files with extra markup to define headers
-and formating. Having the tutorials as reStructuredText makes it easy to control
+documentation. Sphinx converts ReStructuredText(.rst) files into html, pdf or other
+formats. ReStructuredTexts are simple text files with extra markup to define headers
+and formating. Having the tutorials as ReStructuredText makes it easy to control
 changes to the documents and ensure consistent style.</p>
 <p>The tutorials are automatically build with sphinx when commits are
 pushed to the github repository. The process is handle by
 <a class="reference external" href="https://travis-ci.org/AnyBody/anybody-tutorial">Travis CI, here</a>.
 If the build fails, for example because of
 wrong reST syntax etc, the Pull Request can not be merged.</p>
-<p>Once the pull request is accepted on Github and the changes are merged to the master
-branch the tutorials becomes availble online.</p>
+<p>Once the pull request is accepted on Github and the changes are merged to the
+master branch the tutorials becomes availble online.</p>
 <p>The newest released version of the tutorials are available at:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://anyscript.org/tutorials">https://anyscript.org/tutorials</a></li>
@@ -97,29 +97,28 @@ branch the tutorials becomes availble online.</p>
 </ul>
 <div class="section" id="building-the-tutorials-locally">
 <h3>Building the tutorials locally<a class="headerlink" href="#building-the-tutorials-locally" title="Permalink to this headline">¶</a></h3>
-<p>Eventhought the tutorials are build automatically, it is also possible to build
+<p>Even though the tutorials are build automatically, it is also possible to build
 them locally to view the layout and see results before pushing changes to the
 server. It is often not necesssary when making small fixes to existing
 tutorials. But when writing major new sections it nice to view how things look.</p>
-<p>The easiest way to install needed packages tools, is to have the [Anaconda
-python distribution](<a class="reference external" href="https://www.continuum.io/downloads">https://www.continuum.io/downloads</a>).</p>
+<p>The easiest way to install needed packages tools, is to have the <a class="reference external" href="https://www.continuum.io/downloads">Anaconda Python distribution</a>.</p>
 <p>Then run the following commands to install the necesssary packages.</p>
-<div class="highlight-bat"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; conda install sphinx pandoc cloud_sptheme pygments_anyscript</span>
+<div class="highlight-bat"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; conda install -c conda-forge sphinx pandoc cloud_sptheme pygments_anyscript</span>
 c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; pip install sphinxcontrib-fulltoc</span>
 </pre></div>
 </div>
-<p>Once the packages are install run this command s to build.</p>
+<p>Once the packages are install run this command to build the tutorial files.</p>
 <div class="highlight-bat"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; make html</span>
 </pre></div>
 </div>
-<p>Once complete open the file: <code class="docutils literal"><span class="pre">build/html/index.html</span></code> in a browser to view
+<p>Once complete open the file: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">build</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">html</span></code> in a browser to view
 the result.</p>
 </div>
 </div>
 <div class="section" id="short-restructuredtext-guide">
-<h2>Short reStructuredText guide<a class="headerlink" href="#short-restructuredtext-guide" title="Permalink to this headline">¶</a></h2>
-<p>There are plenty of guides on reStructuredText available on Google. So here is just a
-quick primer for the reST concepts which are important for the tutorials.</p>
+<h2>Short ReStructuredText guide<a class="headerlink" href="#short-restructuredtext-guide" title="Permalink to this headline">¶</a></h2>
+<p>There are plenty of guides on ReStructuredText available on Google. So here is just a
+quick run through over some of the reST concepts which are important for the tutorials.</p>
 <div class="section" id="paragraphs">
 <h3>Paragraphs<a class="headerlink" href="#paragraphs" title="Permalink to this headline">¶</a></h3>
 <p>Any block of text is a paragraph. Paragraphs must be separated by one
@@ -128,10 +127,12 @@ paragraph must be left aligned to the same indentation.</p>
 <ul class="simple">
 <li>one asterisk: <code class="docutils literal"><span class="pre">*text*</span></code> for emphasis (italics),</li>
 <li>two asterisks: <code class="docutils literal"><span class="pre">**text**</span></code> for strong emphasis (boldface), and</li>
-<li>backquotes: <code class="docutils literal"><span class="pre">``text``</span></code> for code samples.</li>
+<li>backquotes: :literal:` <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">text</span></code> ` for code samples.</li>
 </ul>
-<p>There is also options for <sub>subssscript</sub>
-<sup>superscript</sup> and more. See the</p>
+<p>There are also options for <sub>subscript</sub> and <sup>superscript</sup> plus more:</p>
+<div class="highlight-rest"><div class="highlight"><pre><span></span><span class="na">:subscript:</span><span class="nv">`subscript`</span> and <span class="na">:superscript:</span><span class="nv">`superscript`</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="headers">
 <h3>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h3>
@@ -168,14 +169,14 @@ paragraph must be left aligned to the same indentation.</p>
 </div>
 <div class="section" id="highlighting-code">
 <h3>Highlighting code<a class="headerlink" href="#highlighting-code" title="Permalink to this headline">¶</a></h3>
-<p>Highlighting AnyScript code snippets is also supported, using the <code class="docutils literal"><span class="pre">pygments_anyscript</span></code>
+<p>Highlighting AnyScript code snippets is also supported, using the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">pygments_anyscript</span></code>
 extension to pygments.</p>
-<p>AnyScript highlighting is started using the <code class="docutils literal"><span class="pre">code-block</span></code>
-directive and specifing <code class="docutils literal"><span class="pre">AnyScriptDoc</span></code> as the highlighting language.</p>
-<style> .red {color:red} </style><p>The <code class="docutils literal"><span class="pre">AnyScriptDoc</span></code> is highlighter specifically for the documentation in sphinx.
+<p>AnyScript highlighting is started using the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">code</span><span class="o">-</span><span class="n">block</span></code>
+directive and specifing <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyScriptDoc</span></code> as the highlighting language.</p>
+<style> .red {color:red} </style><p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyScriptDoc</span></code> is highlighter specifically for the documentation in sphinx.
 It can highlight AnyScript code even if the syntax is not correct, and any code
 fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</p>
-<p>Here is an example:</p>
+<p>Here is an example</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>.. code-block:: AnyScriptDoc
 
     AnyBodyStudy Study = {
@@ -193,11 +194,11 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
 </div>
 <p>Valid values for the highlighting languages are:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">none</span></code>: no highlighting</li>
-<li><code class="docutils literal"><span class="pre">AnyScript</span></code>: AnyScript (Syntax must be valid)</li>
-<li><code class="docutils literal"><span class="pre">AnyBodyDoc</span></code> AnyScript (Allows invalid syntax)</li>
-<li><code class="docutils literal"><span class="pre">python/c++/ruby</span></code> Different known programming languages</li>
-<li><code class="docutils literal"><span class="pre">rest</span></code> reStructuredText</li>
+<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">none</span></code>: no highlighting</li>
+<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyScript</span></code>: AnyScript (Syntax must be valid)</li>
+<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyBodyDoc</span></code> AnyScript (Allows invalid syntax)</li>
+<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">python</span><span class="o">/</span><span class="n">c</span><span class="o">++/</span><span class="n">ruby</span></code> Different known programming languages</li>
+<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">rest</span></code> ReStructuredText</li>
 <li>… and any other <a class="reference external" href="http://pygments.org/docs/lexers/">lexer alias that Pygments supports</a>.</li>
 </ul>
 </div>
@@ -232,7 +233,7 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
 <li class="toctree-l4"><a class="reference internal" href="#building-the-tutorials-locally">Building the tutorials locally</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#short-restructuredtext-guide">Short reStructuredText guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#short-restructuredtext-guide">Short ReStructuredText guide</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#paragraphs">Paragraphs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#headers">Headers</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#lists-and-quote-like">Lists and Quote-like</a></li>
@@ -256,7 +257,7 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
 <li class="toctree-l1"><a class="reference internal" href="Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Scaling/index.html">Subject Specific Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -308,7 +309,7 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
         <li class="right" >
           <a href="index.html" title="AnyBody Tutorials!"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >AnyBody Tutorials!</a> &#187;</li> 
       </ul>

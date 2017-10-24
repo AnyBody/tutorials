@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 6: Adding Real Bone Geometries &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <title>Lesson 6: Adding Real Bone Geometries &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '7.0.1',
+        VERSION:     '7.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="lesson5.html" title="Lesson 5: Definition of Muscles and External Forces"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
@@ -79,7 +79,7 @@ bones and other geometries that will be visually more pleasing. Apart
 from mere aesthetics, real bone geometries give you instant visual
 feedback on where the muscle is located in the organism as illustrated
 by the two pictures below.</p>
-<p><a class="reference internal" href="../_images/image1.jpeg"><img alt="oldleg1" src="../_images/image1.jpeg" style="width: 2.57292in; height: 2.63542in;" /></a> <a class="reference internal" href="../_images/image2.jpeg"><img alt="oldleg2" src="../_images/image2.jpeg" style="width: 2.61094in; height: 2.63208in;" /></a></p>
+<p><a class="reference internal" href="../_images/image1.jpeg"><img alt="oldleg1" src="../_images/image1.jpeg" style="width: 247.0px; height: 253.0px;" /></a> <a class="reference internal" href="../_images/image2.jpeg"><img alt="oldleg2" src="../_images/image2.jpeg" style="width: 247.0px; height: 249.0px;" /></a></p>
 <div class="section" id="visualization-object-file-formats">
 <h2>Visualization object File formats<a class="headerlink" href="#visualization-object-file-formats" title="Permalink to this headline">¶</a></h2>
 <p>Adding geometric models such as bones is fortunately very simple. All
@@ -98,8 +98,8 @@ option if you create your own STL files in a CAD system.</p>
 <p>The bone models you see in the pictures above are a bit elaborate for a
 short tutorial, so we shall start with something a little simpler. What
 we want to do now is to add a dumbbell geometry to the arm model we have
-just created. You can find an STL file to use <a class="reference download internal" href="../_downloads/dumbbell.stl" download=""><code class="xref download docutils literal"><span class="pre">here</span>
-<span class="pre">(dumbell.stl)</span></code></a>.</p>
+just created. You can find an STL file to use <a class="reference download internal" href="../_downloads/dumbbell.stl" download=""><code class="xref download docutils literal"><span class="pre">here
+(dumbell.stl)</span></code></a>.</p>
 <p>The dumbbell should be added to the forearm, so the first thing to do it
 to add a reference to the STL file we just saved to the definition of
 the forearm:</p>
@@ -128,7 +128,7 @@ way:</p>
 you see below. The dumbbell is visible now and has the right size, but
 it is sitting at the center of gravity of the lower arm rather than at
 the hand, and it is not oriented correctly.</p>
-<p><a class="reference internal" href="../_images/image3.jpeg"><img alt="ModelView dumbbell1" src="../_images/image3.jpeg" style="width: 3.12500in; height: 3.52083in;" /></a></p>
+<p><a class="reference internal" href="../_images/image3.jpeg"><img alt="ModelView dumbbell1" src="../_images/image3.jpeg" style="width: 240.0px; height: 270.40000000000003px;" /></a></p>
 </div>
 <div class="section" id="re-orienting-your-stl-object">
 <h2>Re-orienting your STL object<a class="headerlink" href="#re-orienting-your-stl-object" title="Permalink to this headline">¶</a></h2>
@@ -153,7 +153,7 @@ re-insert it under the PalmNode like this:</p>
 </div>
 <p>On reload, this produces a new picture with the dumbbell attached at the
 right location, but it is still not oriented correctly.</p>
-<p><a class="reference internal" href="../_images/image4.jpeg"><img alt="ModelView dumbbell2" src="../_images/image4.jpeg" style="width: 3.12500in; height: 3.44792in;" /></a></p>
+<p><a class="reference internal" href="../_images/image4.jpeg"><img alt="ModelView dumbbell2" src="../_images/image4.jpeg" style="width: 240.0px; height: 264.8px;" /></a></p>
 <p>We want to rotate the dumbbell 90 degrees about the y-axis. We could do
 that by going back to the CAD system and modifying the dumbbell STL
 file, but an easier option is to rotate it directly inside AnyScript.</p>
@@ -189,10 +189,10 @@ reference:</p>
 <p>The RGB property specifies the blend of colors Red, Green, and Blue in
 that order for displaying the STL geometry. The combination above
 produces a dull blue shade.</p>
-<p><a class="reference internal" href="../_images/image5.jpeg"><img alt="ModelView dumbbell3" src="../_images/image5.jpeg" style="width: 3.12500in; height: 3.11458in;" /></a></p>
+<p><a class="reference internal" href="../_images/image5.jpeg"><img alt="ModelView dumbbell3" src="../_images/image5.jpeg" style="width: 240.0px; height: 239.20000000000002px;" /></a></p>
 <p>This completes the Getting Started with AnyScript tutorial. The final
 result of the efforts is in
-<em>:download:`demo.arm2d.any &lt;Downloads/demo.arm2d.any&gt;`</em>.</p>
+<a class="reference download internal" href="../_downloads/demo.arm2d.any" download=""><code class="xref download docutils literal"><span class="pre">*demo.arm2d.any</span></code></a>.</p>
 </div>
 </div>
 
@@ -246,7 +246,7 @@ result of the efforts is in
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -298,7 +298,7 @@ result of the efforts is in
         <li class="right" >
           <a href="lesson5.html" title="Lesson 5: Definition of Muscles and External Forces"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>

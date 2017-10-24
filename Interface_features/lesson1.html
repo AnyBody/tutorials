@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 1: The Editor Window &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <title>Lesson 1: The Editor Window &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '7.0.1',
+        VERSION:     '7.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -32,7 +32,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lesson 2: The Model View Window" href="lesson2.html" />
-    <link rel="prev" title="User interface features" href="intro.html" /> 
+    <link rel="prev" title="Using the AnyBody Modeling System" href="intro.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
@@ -51,9 +51,9 @@
           <a href="lesson2.html" title="Lesson 2: The Model View Window"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="intro.html" title="User interface features"
+          <a href="intro.html" title="Using the AnyBody Modeling System"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">User interface features</a> &#187;</li> 
       </ul>
@@ -69,7 +69,7 @@
   <div class="section" id="lesson-1-the-editor-window">
 <h1>Lesson 1: The Editor Window<a class="headerlink" href="#lesson-1-the-editor-window" title="Permalink to this headline">¶</a></h1>
 <p>Let us have a closer look at the Editor Window.</p>
-<p><a class="reference internal" href="../_images/image123.png"><img alt="GUI overview" src="../_images/image123.png" style="width: 6.66667in; height: 4.66667in;" /></a></p>
+<p><a class="reference internal" href="../_images/image123.png"><img alt="GUI overview" src="../_images/image123.png" style="width: 816.9px; height: 567.6999999999999px;" /></a></p>
 <div class="section" id="syntax-highlighting">
 <h2>Syntax Highlighting<a class="headerlink" href="#syntax-highlighting" title="Permalink to this headline">¶</a></h2>
 <p>Upon finishing the final character in a class name (e.g., AnySeg), the
@@ -85,13 +85,13 @@ will ignore the line when loading the model:</p>
 </pre></div>
 </div>
 <p>You can turn entire blocks of code into a comment by encapsulating it in
-a pair of <code class="docutils literal"><span class="pre">/*</span> <span class="pre">*/</span></code> delimiters. You can also comment and un-comment
+a pair of <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="cm">/* */</span></code> delimiters. You can also comment and un-comment
 several lines by highlighting the block of lines and using the two
-buttons <a class="reference internal" href="../_images/image219.png"><img alt="Comment and uncomment" src="../_images/image219.png" style="width: 0.44792in; height: 0.23958in;" /></a>&nbsp;in the toolbar. This automatically
+buttons <img alt="Comment and uncomment" src="../_images/image218.png" />&nbsp;in the toolbar. This automatically
 places or removes double slashes in front of each line in the block.</p>
 <p>Please also notice the so-called Documentation Comments. These are
-comments using the following syntactical forms:  <code class="docutils literal"><span class="pre">///</span> <span class="pre">...</span></code> ,
-<code class="docutils literal"><span class="pre">/**</span> <span class="pre">...</span> <span class="pre">*/</span></code> , <code class="docutils literal"><span class="pre">///&lt;</span> <span class="pre">...</span></code> , and <code class="docutils literal"><span class="pre">/**&lt;</span> <span class="pre">...</span> <span class="pre">*/</span></code>.
+comments using the following syntactical forms:  <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="c1">/// ...</span></code> ,
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="cm">/** ... */</span></code> , <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="c1">///&lt; ...</span></code> , and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="cm">/**&lt; ... */</span></code>.
 The Documentation Comments are related to
 a given object in the model, and these comments are treated specially so
 the information can be accessed more conveniently after loading the
@@ -106,7 +106,7 @@ to read. In AnyScript it also makes it simpler to maintain an overview
 of start and end braces for a section.</p>
 <p>You can auto-indent a block of code in one simple step by highlighting
 the block and pressing Alt+F8. This can also be done through the
-pull-down menu Edit-&gt;Format Indentation or by the <a class="reference internal" href="../_images/image316.png"><img alt="image2" src="../_images/image316.png" style="width: 0.16667in; height: 0.16667in;" /></a> button in the
+pull-down menu Edit-&gt;Format Indentation or by the <img alt="image2" src="../_images/image316.png" /> button in the
 toolbar.</p>
 <p>If you are ever in a situation where the model will not load, and you
 suspect that you have forgotten a brace somewhere, simply highlight the
@@ -117,7 +117,7 @@ error soon.</p>
 <h2>Tree Views<a class="headerlink" href="#tree-views" title="Permalink to this headline">¶</a></h2>
 <p>The structure of an AnyScript model is hierarchical, which allows
 AnyBody to represent the loaded model as a tree.</p>
-<p><a class="reference internal" href="../_images/image414.png"><img alt="Model Tree" src="../_images/image414.png" style="width: 6.68542in; height: 3.91667in;" /></a></p>
+<p><a class="reference internal" href="../_images/image414.png"><img alt="Model Tree" src="../_images/image414.png" style="width: 829.8px; height: 486.59999999999997px;" /></a></p>
 <p>What you see here is the Model Tree (D), which shows all objects in the
 loaded model, in the same organizational structure that is defined by
 the AnyScript code.</p>
@@ -138,13 +138,13 @@ tree.</p>
 <p>The information window (G) provides a condensed version of the Object
 Description. Please refer to the introductory video found here for more
 Model Tree navigation features.</p>
-<p><a class="reference internal" href="../_images/image512.png"><img alt="Object info window" src="../_images/image512.png" style="width: 6.69444in; height: 4.65764in;" /></a></p>
+<p><a class="reference internal" href="../_images/image510.png"><img alt="Object info window" src="../_images/image510.png" style="width: 813.4px; height: 565.5999999999999px;" /></a></p>
 <p>The Files tab (in the same window as the Model Tree) gives an overview
 of the ‘.any’ files used to define the current model. Double-click on
 file names to navigate to the #include AnyScript statements that link
 them to the parent file. Below you see the File Tree from the
 CrossTrainer model:</p>
-<p><a class="reference internal" href="../_images/image65.png"><img alt="Function, globals and classes" src="../_images/image65.png" style="width: 6.69306in; height: 4.65625in;" /></a></p>
+<p><a class="reference internal" href="../_images/image65.png"><img alt="Function, globals and classes" src="../_images/image65.png" style="width: 840.0px; height: 584.4px;" /></a></p>
 <p>One the right side of AnyBody there are three tabs, Functions, Globals
 and Classes. These tools speed up your AnyScript experience. For
 example, Classes gives you access to a list of the predefined classes in
@@ -156,7 +156,7 @@ Then right click on a class name from the list and select “Insert Class
 Template” (see image below). Remember to replace any placeholder text in
 the inserted template as required. Read more from <a class="reference internal" href="../A_Getting_started_anyscript/intro.html"><span class="doc">Getting Started:
 AnyScript Programming tutorial</span></a>.</p>
-<p><a class="reference internal" href="../_images/image73.png"><img alt="Class tree" src="../_images/image73.png" style="width: 6.66667in; height: 3.66667in;" /></a></p>
+<p><a class="reference internal" href="../_images/image73.png"><img alt="Class tree" src="../_images/image73.png" style="width: 951.5px; height: 516.5px;" /></a></p>
 <p>Similarly, the Functions tab gives you a list of inbuilt functions and
 the arguments that they accept. You can learn more about each class or
 function by clicking on its name in the list and pressing the F1 key,
@@ -167,7 +167,7 @@ which takes you to the AnyScript reference manual (see image below).</p>
 reference manual you will typical find small example models which show
 the usage of that class or function.</p>
 </div>
-<p><a class="reference internal" href="../_images/image82.png"><img alt="Help from class tree" src="../_images/image82.png" style="width: 6.68958in; height: 3.59236in;" /></a></p>
+<p><a class="reference internal" href="../_images/image82.png"><img alt="Help from class tree" src="../_images/image82.png" style="width: 955.0px; height: 513.0px;" /></a></p>
 </div>
 <div class="section" id="find-and-replace">
 <h2>Find and Replace<a class="headerlink" href="#find-and-replace" title="Permalink to this headline">¶</a></h2>
@@ -245,7 +245,7 @@ format. Please refer to the Wiki at
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -295,9 +295,9 @@ format. Please refer to the Wiki at
           <a href="lesson2.html" title="Lesson 2: The Model View Window"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="intro.html" title="User interface features"
+          <a href="intro.html" title="Using the AnyBody Modeling System"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >User interface features</a> &#187;</li> 
       </ul>

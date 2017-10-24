@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 5: Muscle Models &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <title>Lesson 5: Muscle Models &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '7.0.1',
+        VERSION:     '7.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Wrapping Muscles"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Muscle Modeling</a> &#187;</li> 
       </ul>
@@ -240,7 +240,7 @@ properties Lm and Lmdot affecting the strength of the model. You can
 plot several properties simultaneously in the Chart View by use of an
 asterix in the variable specification field at the top of the window
 like this:</p>
-<p><a class="reference internal" href="../_images/image232.png"><img alt="chart view: muscle1.L" src="../_images/image232.png" style="width: 5.62500in; height: 4.87500in;" /></a></p>
+<p><a class="reference internal" href="../_images/image231.png"><img alt="chart view: muscle1.L" src="../_images/image231.png" style="width: 5.62500in; height: 4.87500in;" /></a></p>
 <p>Now we can compare the variation of Lm and Lmdot to our settings of
 Lfbar and V0. Lm seems to vary between approximately 0.31 and 0.15. With
 an Lfbar of 0.3 (= 2x0.15) this means that the muscle must come close to
@@ -321,7 +321,7 @@ and thereby make the muscle more sensitive to contraction velocity:</p>
 in the beginning of the simulation. This, this decreases the strength of
 the muscle significantly as we can see by reloading, rerunning and
 plotting the Strength variable again:</p>
-<p><a class="reference internal" href="../_images/image519.png"><img alt="muscle strength plot, v0=-0.3" src="../_images/image519.png" style="width: 3.12500in; height: 2.89583in;" /></a></p>
+<p><a class="reference internal" href="../_images/image517.png"><img alt="muscle strength plot, v0=-0.3" src="../_images/image517.png" style="width: 3.12500in; height: 2.89583in;" /></a></p>
 <p>Instead of being monotonically decreasing, the muscle strength now
 improves slightly in the initial part of the simulation, but it is all
 through the simulation significantly weaker than before. The initial
@@ -452,7 +452,7 @@ tendon.</li>
 <li>A parallel-elastic element (PE) representing the passive stiffness of
 the muscle fibers.</li>
 </ol>
-<p><a class="reference internal" href="../_images/image93.png"><img alt="muscle model" src="../_images/image93.png" style="width: 3.12500in; height: 1.92708in;" /></a></p>
+<p><a class="reference internal" href="../_images/image92.png"><img alt="muscle model" src="../_images/image92.png" style="width: 3.12500in; height: 1.92708in;" /></a></p>
 <p>The figure above is a schematic representation of the muscle model. We
 can get a complete impression of the parameters of the model if we pick
 the model from the Class List as we have done before and insert a
@@ -725,7 +725,7 @@ to do some work. Let us systematically investigate the output:</p>
 </tr>
 <tr class="row-odd"><td class="left-align nowrap">Ft0Grad</td>
 <td class="left-align">The gradient of Ft0 with respect to the muscle activity. For mathematical reasons&nbsp;this is&nbsp;equal to the Strength, and the two graphs are identical. The reason why this property is included under to different names is that the simple muscle model, from which this model is derived, does not have Ft0Grad and hence needs a Strength property.</td>
-<td class="center-align nowrap"><a class="reference internal" href="../_images/image233.png"><img alt="Small Ft0Grad plot" src="../_images/image233.png" style="width: 1.56250in; height: 1.34375in;" /></a></td>
+<td class="center-align nowrap"><a class="reference internal" href="../_images/image232.png"><img alt="Small Ft0Grad plot" src="../_images/image232.png" style="width: 1.56250in; height: 1.34375in;" /></a></td>
 </tr>
 <tr class="row-even"><td class="left-align nowrap">Pennation-Angle</td>
 <td class="left-align">The pennation angle is the angle between the muscle fiber direction and the muscle line of action. This angle changes when the muscle contracts and elongates, and the model takes this effect into account.</td>
@@ -811,8 +811,7 @@ this way, allow you to run its operation called TendonLenghtAdjustment.
 If you run it, you will see the model moving as it does when running the
 InverseDynamics operation of the original AnyBodyStudy. But when the
 analysis is done, the following message appears in the message window:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>The tendon length of muscle Main.MyModel.Muscle2 was calibrated. The
-muscle properties have been updated.
+<div class="highlight-none"><div class="highlight"><pre><span></span>The tendon length of muscle Main.MyModel.Muscle2 was calibrated. The muscle properties have been updated.
 </pre></div>
 </div>
 <p>Try running the InverseDynamics again and plot the Activity of Muscle2.
@@ -934,7 +933,7 @@ Biomedical Engineering, 17, 359-410, 1989.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -986,7 +985,7 @@ Biomedical Engineering, 17, 359-410, 1989.</p>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Wrapping Muscles"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Muscle Modeling</a> &#187;</li> 
       </ul>

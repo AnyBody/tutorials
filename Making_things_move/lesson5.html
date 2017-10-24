@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 5: Using real data &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <title>Lesson 5: Using real data &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '7.0.1',
+        VERSION:     '7.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Parameter identification"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Making things move</a> &#187;</li> 
       </ul>
@@ -77,16 +77,16 @@ which comes with the installation of AnyBody, contains two pre-cooked
 models that are very easy to drive with your own data and which contain
 some really neat features for data processing.</p>
 <ol class="arabic simple">
-<li>Go to the <code class="docutils literal"><span class="pre">Application\Examples</span></code> folder to find a folder called
+<li>Go to the <code class="file docutils literal"><span class="pre">ApplicationExamples</span></code> folder to find a folder called
 MoCapModel.</li>
 <li>Take a copy of the entire folder and call it something else, for
 instance MyMoCapModel. You may even want to place it in a new
-directory parallel to Application\Examples, for instance
-Application\MyModels, to avoid polluting the original examples.
+directory parallel to <code class="file docutils literal"><span class="pre">ApplicationExamples</span></code>, for instance
+<code class="file docutils literal"><span class="pre">ApplicationMyModels</span></code>, to avoid polluting the original examples.
 Please note that you have to put a copy of the libdef.any file into
 the new directory in that case.</li>
 <li>Browse into the MyMoCapModel folder.</li>
-<li>Open the file <code class="docutils literal"><span class="pre">MoCap_LowerBody.main.any</span></code> in the AnyBody Modeling
+<li>Open the file <code class="file docutils literal"><span class="pre">MoCap_LowerBody.main.any</span></code> in the AnyBody Modeling
 System.</li>
 </ol>
 <p>As the name indicates, this is a gait model comprising only the lower
@@ -133,7 +133,7 @@ the following skeleton without arms:</p>
 <p>If you look closely, you can see that the skeleton is equipped with
 markers and if you zoom in a little, you can also see that the markers
 carry small coordinate systems with red and green arrows.</p>
-<p><a class="reference internal" href="../_images/image225.png"><img alt="Model view leg closeup" src="../_images/image225.png" style="width: 6.00000in; height: 4.85417in;" /></a></p>
+<p><a class="reference internal" href="../_images/image224.png"><img alt="Model view leg closeup" src="../_images/image224.png" style="width: 6.00000in; height: 4.85417in;" /></a></p>
 <p>These are the marker points defined on the human body, and the red and
 green arrows designate directions in which the marker position is fixed
 versus free to be optimized. A free marker position is one that is not
@@ -231,7 +231,7 @@ to the very high amount of detail of the model, requiring the computer
 to continuously calculate forces in more than 300 muscles. When the
 analysis is finished, you can open up a Chart view and investigate the
 results, for instance the hip joint reaction forces:</p>
-<p><a class="reference internal" href="../_images/image516.png"><img alt="Chartivew hip reactions" src="../_images/image516.png" style="width: 6.25000in; height: 4.43750in;" /></a></p>
+<p><a class="reference internal" href="../_images/image514.png"><img alt="Chartivew hip reactions" src="../_images/image514.png" style="width: 6.25000in; height: 4.43750in;" /></a></p>
 <div class="section" id="importing-new-motion-data">
 <h2>Importing new motion data<a class="headerlink" href="#importing-new-motion-data" title="Permalink to this headline">¶</a></h2>
 <p>So we have seen the model optimize its parameters and we have seen it
@@ -275,7 +275,7 @@ posture indicates that this is a person in a hurry.</p>
 <p>Now is the time to run the MotionAndParameterOptimizationSequence. It
 takes a bit of time, and again you can speed up the process by switching
 off the update of the Model View window. Eventually, the process comes
-to an end and you get the message::</p>
+to an end and you get the message:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>Optimization converged
 ********************************************************************
 #### Macro command &gt; runmacro &quot;SaveMacroOperation-Save.anymcr&quot;
@@ -330,7 +330,7 @@ MotionAndParameterOptimizationModel is the active operation:</p>
 </div>
 <p>Please load the model and open a Model View if you do not already have
 one. You will see the model as before, but now with the arms included.</p>
-<p><a class="reference internal" href="../_images/image92.png"><img alt="Model view Fullbody initial load" src="../_images/image92.png" style="width: 5.04167in; height: 4.27083in;" /></a></p>
+<p><a class="reference internal" href="../_images/image91.png"><img alt="Model view Fullbody initial load" src="../_images/image91.png" style="width: 5.04167in; height: 4.27083in;" /></a></p>
 <p>Select and run the RunMotionAndParameterOptimizationSequence in the
 Operations tree:</p>
 <p><a class="reference internal" href="../_images/image101.png"><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image101.png" style="width: 4.16667in; height: 3.26042in;" /></a></p>
@@ -420,7 +420,7 @@ in motion capture experiments and you can read all about in <a class="reference 
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -472,7 +472,7 @@ in motion capture experiments and you can read all about in <a class="reference 
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Parameter identification"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Making things move</a> &#187;</li> 
       </ul>

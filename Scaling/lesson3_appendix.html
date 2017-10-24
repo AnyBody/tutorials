@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Appendix: Scaling based on Patient-Specific Landmarks &#8212; AnyBody Tutorials v7.0.1 Documentation</title>
+    <title>Appendix: Scaling based on Patient-Specific Landmarks &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '7.0.1',
+        VERSION:     '7.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -31,8 +31,8 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lesson 4: Including a Custom Scaling Law" href="lesson4.html" />
-    <link rel="prev" title="Lesson 3: Scaling individual segments based on subject-specific data from medical images" href="lesson3.html" /> 
+    <link rel="next" title="Lesson 2: Including a Custom Scaling Law" href="lesson4.html" />
+    <link rel="prev" title="Lesson 1: Scaling individual segments based on subject-specific data from medical images" href="lesson3.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
@@ -48,15 +48,15 @@
           <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson4.html" title="Lesson 4: Including a Custom Scaling Law"
+          <a href="lesson4.html" title="Lesson 2: Including a Custom Scaling Law"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson3.html" title="Lesson 3: Scaling individual segments based on subject-specific data from medical images"
+          <a href="lesson3.html" title="Lesson 1: Scaling individual segments based on subject-specific data from medical images"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" >Scaling</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="lesson3.html" accesskey="U">Lesson 3: Scaling individual segments based on subject-specific data from medical images</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Subject Specific Scaling</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="lesson3.html" accesskey="U">Lesson 1: Scaling individual segments based on subject-specific data from medical images</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -69,7 +69,7 @@
             
   <div class="section" id="appendix-scaling-based-on-patient-specific-landmarks">
 <h1>Appendix: Scaling based on Patient-Specific Landmarks<a class="headerlink" href="#appendix-scaling-based-on-patient-specific-landmarks" title="Permalink to this headline">¶</a></h1>
-<p>This tutorial is an appendix to the <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3</span></a>, where
+<p>This tutorial is an appendix to the <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 1</span></a>, where
 a construction of advanced scaling laws is introduced.</p>
 <p>This lesson is a brief introduction to the usage of the transforms
 based on the non-linear Radial Basis Functions (RBF) which is used as
@@ -138,9 +138,9 @@ alone define a 3D RBF transform.</p>
 polynomial term of the aforementioned approximation. Recommended degree
 is 1, i.e. a linear component. This kind of approximation gives good
 results in our empirical observations.</p>
-<p><code class="docutils literal"><span class="pre">RBFDef.Type</span></code> defines a type of the RBF function. Possible options are
-<code class="docutils literal"><span class="pre">RBF_Gaussian</span></code> (default), <code class="docutils literal"><span class="pre">RBF_ThinPlate</span></code>, <code class="docutils literal"><span class="pre">RBF_Biharmonic</span></code>,
-<code class="docutils literal"><span class="pre">RBF_Triharmonic</span></code>, <code class="docutils literal"><span class="pre">RBF_MultiQuadratic</span></code>, and <code class="docutils literal"><span class="pre">RBF_InverseMultiQuadratic</span></code> as
+<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">RBFDef</span><span class="p">.</span><span class="n">Type</span></code> defines a type of the RBF function. Possible options are
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_Gaussian</span></code> (default), <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_ThinPlate</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_Biharmonic</span></code>,
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_Triharmonic</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_MultiQuadratic</span></code>, and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_InverseMultiQuadratic</span></code> as
 can be found in the reference manual. This type of specification is an
 important parameter as it defines the interpolation/extrapolation
 behavior of the RBF transform. Further, we will demonstrate the
@@ -171,8 +171,8 @@ AnyFunTransform3DLin2 or others.</p>
 <p>There are two ways to compute an auxiliary bounding box – the first way
 is to compute it in the Cartesian coordinate system, the other way is to
 look at the principal axes. This can be changed by modifying the
-BoundingBox.Type parameter to be either <code class="docutils literal"><span class="pre">BB_Cartesian</span></code> or
-<code class="docutils literal"><span class="pre">BB_PrincipalAxes</span></code>.</p>
+BoundingBox.Type parameter to be either <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">BB_Cartesian</span></code> or
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">BB_PrincipalAxes</span></code>.</p>
 <p>The parameter BoundingBox.ScaleXYZ defines a vector of scaling factors
 that will be applied to the bounding box dimensions, which will expand
 or shrink the field of the extrapolation improvements.</p>
@@ -224,31 +224,31 @@ AnyFunTransform3DSTL, was developed for this purpose:</dd>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Similarly to the <code class="code anyscript AnyScriptDoc docutils literal"><span class="keyword type"><span class="pre">AnyFunTransform3DRBF</span></span></code>, the pre-transforms will be
+<p>Similarly to the <a href="#id1"><span class="problematic" id="id2">:anyscript:`AnyFunTransform3DRBF`</span></a>, the pre-transforms will be
 included into the transformation that is being constructed. As well as
 that auxiliary bounding box points will be added to the transform
-exactly like in <code class="code anyscript AnyScriptDoc docutils literal"><span class="keyword type"><span class="pre">AnyFunTransform3DRBF</span></span></code>.</p>
-<p><code class="docutils literal"><span class="pre">FileName0</span></code> and <code class="docutils literal"><span class="pre">FileName1</span></code> specify surface files that will be used for the
+exactly like in <a href="#id3"><span class="problematic" id="id4">:anyscript:`AnyFunTransform3DRBF`</span></a>.</p>
+<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">FileName0</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">FileName1</span></code> specify surface files that will be used for the
 construction of the transform. The underlying method is exactly the same
-as in the <code class="code anyscript AnyScriptDoc docutils literal"><span class="keyword type"><span class="pre">AnyFunTransform3DRBF</span></span></code>, except that source and landmarks now
+as in the <a href="#id5"><span class="problematic" id="id6">:anyscript:`AnyFunTransform3DRBF`</span></a>, except that source and landmarks now
 will be found automatically.</p>
-<p><code class="docutils literal"><span class="pre">ScaleXYZ0</span></code> and <code class="docutils literal"><span class="pre">ScaleXYZ1</span></code> members are scaling vectors that can be used to
+<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ScaleXYZ0</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ScaleXYZ1</span></code> members are scaling vectors that can be used to
 scale or mirror the surfaces. For example, unit change from millimeters
 to meters can be done by multiplying the components of the vectors with
 0.001.</p>
-<p>However, it is best to use <code class="docutils literal"><span class="pre">SurfaceObjects0</span></code> and <code class="docutils literal"><span class="pre">SurfaceObjects1</span></code> to define
+<p>However, it is best to use <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">SurfaceObjects0</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">SurfaceObjects1</span></code> to define
 the input, since these objects can also be pretransformed using various
 linear and nonlinear transformations, i.e. registration from the
 coordinate system of the CT scanner to the anatomical frame.
-<code class="docutils literal"><span class="pre">SurfaceObjects0</span></code> and SurfaceObjects expect references to the AnySurfSTL
-objects, that already contain <code class="docutils literal"><span class="pre">ScaleXYZ</span></code>, and, thus, will not use
-<code class="docutils literal"><span class="pre">ScaleXYZ0</span></code>/<code class="docutils literal"><span class="pre">ScaleXYZ1</span></code>.</p>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">SurfaceObjects0</span></code> and SurfaceObjects expect references to the AnySurfSTL
+objects, that already contain <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ScaleXYZ</span></code>, and, thus, will not use
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ScaleXYZ0</span></code>/<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ScaleXYZ1</span></code>.</p>
 <p>The NumPoints parameter specifies how many landmarks we would like to
 use. This number of source landmarks is seeded on the vertices of the
 source STL surface. To find matching pairs the closest points are found
 on the target surface. Please note that it is assumed that the
-geometries are well aligned using <code class="docutils literal"><span class="pre">AnyFunTransform3DLin2</span></code> or
-<code class="docutils literal"><span class="pre">AnyFunTransform3DRBF</span></code>, and therefore, the error of the closest point
+geometries are well aligned using <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFunTransform3DLin2</span></code> or
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFunTransform3DRBF</span></code>, and therefore, the error of the closest point
 algorithm is negligible.</p>
 </div>
 <div class="section" id="rbf-point-based-scaling-example">
@@ -303,13 +303,13 @@ try to set it to A: 0.2, B: 2, C: 20, and D: 200.</p>
 <col width="50%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">A <a class="reference internal" href="../_images/image236.png"><img alt="image1" src="../_images/image236.png" style="width: 2.97494in; height: 4.06250in;" /></a></th>
+<tr class="row-odd"><th class="head">A <a class="reference internal" href="../_images/image235.png"><img alt="image1" src="../_images/image235.png" style="width: 2.97494in; height: 4.06250in;" /></a></th>
 <th class="head">B <a class="reference internal" href="../_images/image332.png"><img alt="image2" src="../_images/image332.png" style="width: 2.97494in; height: 4.06250in;" /></a></th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>C <a class="reference internal" href="../_images/image423.png"><img alt="image3" src="../_images/image423.png" style="width: 2.98958in; height: 4.08250in;" /></a></td>
-<td>D <a class="reference internal" href="../_images/image521.png"><img alt="image4" src="../_images/image521.png" style="width: 2.99020in; height: 4.08333in;" /></a></td>
+<td>D <a class="reference internal" href="../_images/image519.png"><img alt="image4" src="../_images/image519.png" style="width: 2.99020in; height: 4.08333in;" /></a></td>
 </tr>
 </tbody>
 </table>
@@ -417,13 +417,13 @@ both source and target sets – will it increase the accuracy?</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="../_images/image613.png"><img alt="image5" src="../_images/image613.png" style="width: 6.68750in; height: 2.17708in;" /></a></p>
+<p><a class="reference internal" href="../_images/image612.png"><img alt="image5" src="../_images/image612.png" style="width: 6.68750in; height: 2.17708in;" /></a></p>
 <blockquote>
 <div><dl class="docutils">
 <dt>Now we see that the scaling does not work at all. The problem here is</dt>
 <dd>that the Gaussian type of the RBF transform is sensitive to the number
 of landmarks, and does not work well with a too large number of them.
-The solution here is to switch RBFDef.Type to <code class="docutils literal"><span class="pre">RBF_ThinPlate</span></code>:</dd>
+The solution here is to switch RBFDef.Type to <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_ThinPlate</span></code>:</dd>
 </dl>
 </div></blockquote>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DRBF</span> <span class="n">RBFTransform</span> <span class="o">=</span> <span class="p">{</span>
@@ -435,12 +435,12 @@ The solution here is to switch RBFDef.Type to <code class="docutils literal"><sp
 <span class="p">...</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="../_images/image79.png"><img alt="image6" src="../_images/image79.png" style="width: 6.67708in; height: 3.54167in;" /></a></p>
+<p><a class="reference internal" href="../_images/image78.png"><img alt="image6" src="../_images/image78.png" style="width: 6.67708in; height: 3.54167in;" /></a></p>
 <p>This modification fixes the problem for the bony surfaces and their
 vicinities – now they look alike. Thus, it is recommended to use
-<code class="docutils literal"><span class="pre">RBF_Gaussian</span></code> type only with low number of landmarks. <code class="docutils literal"><span class="pre">RBF_ThinPlate</span></code> is
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_Gaussian</span></code> type only with low number of landmarks. <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_ThinPlate</span></code> is
 recommended for larger numbers. However, you may also choose between
-<code class="docutils literal"><span class="pre">RBF_ThinPlate</span></code> and <code class="docutils literal"><span class="pre">RBF_Gaussian</span></code> based on their performance.</p>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_ThinPlate</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_Gaussian</span></code> based on their performance.</p>
 <p>Now we can morph the bone surface itself and some points that are close
 to the surface. But what about the extrapolation problem, which is
 supposed to handle all muscle/ligament attachments and other points? It
@@ -452,7 +452,7 @@ notice that at this point we are still not utilizing the polynomial
 term. Let us try to switch it on and set the polynomial degree to 1,
 which is recommended by the reference manual. Now our approximation
 looks smoother and probably more reasonable:</p>
-<p><a class="reference internal" href="../_images/image87.png"><img alt="image7" src="../_images/image87.png" style="width: 6.68750in; height: 5.80208in;" /></a></p>
+<p><a class="reference internal" href="../_images/image86.png"><img alt="image7" src="../_images/image86.png" style="width: 6.68750in; height: 5.80208in;" /></a></p>
 <p>However, one may still think that the extrapolated points are lying too
 far out. There is one more modification that may affect this solution.
 We can define the behavior of the extrapolation by suggesting the
@@ -478,7 +478,7 @@ the bounding box corners and face points to be included as landmarks:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="../_images/image96.png"><img alt="image8" src="../_images/image96.png" style="width: 6.68750in; height: 4.40625in;" /></a></p>
+<p><a class="reference internal" href="../_images/image94.png"><img alt="image8" src="../_images/image94.png" style="width: 6.68750in; height: 4.40625in;" /></a></p>
 <p>You can notice that the face and corner points on the bounding box,
 which was increased by a factor of 2, also improved extrapolation and
 suggested that the extrapolated points will now lie within similar
@@ -630,15 +630,12 @@ which have corresponding vertices and connectivity matrixces.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scaling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: Joint to Joint Scaling Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Scaling based on External Body Measurements</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="lesson3.html">Lesson 3: Scaling individual segments based on subject-specific data from medical images</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Subject Specific Scaling</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lesson3.html">Lesson 1: Scaling from from medical images</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="lesson3.html#linear-point-based-scaling">Linear point-based scaling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="lesson3.html#incorporating-a-landmark-based-non-linearity-into-the-scaling-law">Incorporating a landmark-based non-linearity into the scaling law</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="lesson3.html#incorporating-a-surface-based-non-linearity-into-the-scaling-law">Incorporating a surface based non-linearity into the scaling law</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#"> Lesson 3 appendix</a><ul>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"> Lesson 1 appendix</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#non-linear-point-based-scaling-transformation">Non-linear point based scaling transformation</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#non-linear-surface-based-scaling-transform">Non-linear surface based scaling transform</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#rbf-point-based-scaling-example">RBF point-based scaling example</a></li>
@@ -649,7 +646,7 @@ which have corresponding vertices and connectivity matrixces.</p>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Including a Custom Scaling Law</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 2: Including a Custom Scaling Law</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
@@ -698,15 +695,15 @@ which have corresponding vertices and connectivity matrixces.</p>
           <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson4.html" title="Lesson 4: Including a Custom Scaling Law"
+          <a href="lesson4.html" title="Lesson 2: Including a Custom Scaling Law"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson3.html" title="Lesson 3: Scaling individual segments based on subject-specific data from medical images"
+          <a href="lesson3.html" title="Lesson 1: Scaling individual segments based on subject-specific data from medical images"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.0.1 Documentation</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" >Scaling</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="lesson3.html" >Lesson 3: Scaling individual segments based on subject-specific data from medical images</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Subject Specific Scaling</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="lesson3.html" >Lesson 1: Scaling individual segments based on subject-specific data from medical images</a> &#187;</li> 
       </ul>
     </div>
     </div>
