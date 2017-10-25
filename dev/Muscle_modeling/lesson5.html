@@ -188,7 +188,7 @@ following:</p>
 </table>
 <p>We can study the significance of the parameters in more detail, if we
 formulate the strength mathematically:</p>
-<p><img alt="http://www.anybodytech.com/fileadmin/AnyBody.3.x.x/tutorial/MuscleModeling/twoparstrength.gif" src="../_images/image136.png" /></p>
+<p><a class="reference internal" href="../_images/image136.png"><img alt="http://www.anybodytech.com/fileadmin/AnyBody.3.x.x/tutorial/MuscleModeling/twoparstrength.gif" src="../_images/image136.png" style="width: 2.08333in; height: 0.63542in;" /></a></p>
 <p>You can probably recognize the variable names in the table above from
 the symbols in the equation. As you can see, this is really a bilinear
 model, where the variables are Lm and Lmdot. The strength of the muscle
@@ -239,7 +239,7 @@ properties Lm and Lmdot affecting the strength of the model. You can
 plot several properties simultaneously in the Chart View by use of an
 asterix in the variable specification field at the top of the window
 like this:</p>
-<p><img alt="chart view: muscle1.L" src="../_images/image231.png" /></p>
+<p><a class="reference internal" href="../_images/image231.png"><img alt="chart view: muscle1.L" src="../_images/image231.png" style="width: 5.62500in; height: 4.87500in;" /></a></p>
 <p>Now we can compare the variation of Lm and Lmdot to our settings of
 Lfbar and V0. Lm seems to vary between approximately 0.31 and 0.15. With
 an Lfbar of 0.3 (= 2x0.15) this means that the muscle must come close to
@@ -249,12 +249,12 @@ from its speed limit V0 = -8, so the contraction speed is not expected
 to have much effect. We can investigate the effect very easily simply by
 clicking the Strength property of the muscle and obtain the following
 graph:</p>
-<p><img alt="muscle strength plot" src="../_images/image329.png" /></p>
+<p><a class="reference internal" href="../_images/image329.png"><img alt="muscle strength plot" src="../_images/image329.png" style="width: 3.12500in; height: 2.73958in;" /></a></p>
 <p>The strength does indeed decrease drastically from around 200 N to
 almost nothing as we expected when the muscle contracts.</p>
 <p>Now that we have muscle data available, let us briefly review the
 parameters presented in the Chart View:</p>
-<p><img alt="Muscle parameters" src="../_images/image421.png" /></p>
+<p><a class="reference internal" href="../_images/image421.png"><img alt="Muscle parameters" src="../_images/image421.png" style="width: 2.53125in; height: 4.58333in;" /></a></p>
 <ul class="simple">
 <li><p><strong>Fin</strong> is a force, but it has not physiological significance for a
 muscle except for internal purposes. The reason why it is included in
@@ -320,7 +320,7 @@ and thereby make the muscle more sensitive to contraction velocity:</p>
 in the beginning of the simulation. This, this decreases the strength of
 the muscle significantly as we can see by reloading, rerunning and
 plotting the Strength variable again:</p>
-<p><img alt="muscle strength plot, v0=-0.3" src="../_images/image517.png" /></p>
+<p><a class="reference internal" href="../_images/image517.png"><img alt="muscle strength plot, v0=-0.3" src="../_images/image517.png" style="width: 3.12500in; height: 2.89583in;" /></a></p>
 <p>Instead of being monotonically decreasing, the muscle strength now
 improves slightly in the initial part of the simulation, but it is all
 through the simulation significantly weaker than before. The initial
@@ -354,7 +354,7 @@ length of the muscle. Let us investigate this effect by reducing Lt0:</p>
 significant compared to the nominal muscle fiber length of Lfbar = 0.3
 m. Reducing the length of the tendon increases the length and thereby
 the strength of the muscle:</p>
-<p><img alt="muscle strength plot, Lt0= 0.3" src="../_images/image69.png" /></p>
+<p><a class="reference internal" href="../_images/image69.png"><img alt="muscle strength plot, Lt0= 0.3" src="../_images/image69.png" style="width: 3.12500in; height: 2.89583in;" /></a></p>
 <p>The interdependency between the stretch of the tendon, the length of the
 muscle, and the strength of the muscle is the origin of another
 approximation in the model: The system computes the changed length of
@@ -365,7 +365,7 @@ influences the muscle. We shall define an external load on the arm,
 which causes the tendon to stretch. But before we change anything, let
 us just notice that the variation of muscle length, Lm, over the
 movement in the absence of an external load is as shown below:</p>
-<p><img alt="Lm plot, no external load" src="../_images/image76.png" /></p>
+<p><a class="reference internal" href="../_images/image76.png"><img alt="Lm plot, no external load" src="../_images/image76.png" style="width: 3.12500in; height: 2.89583in;" /></a></p>
 <p>Definition of an external force requires two new elements in the model:
 The force itself and a new node on the arm, which we shall call hand, to
 which the load can be applied:</p>
@@ -401,7 +401,7 @@ which the load can be applied:</p>
 changes its moment arm from positive to negative a shortly after the
 midpoint of the analysis. This causes the muscle length to vary in the
 following fashion:</p>
-<p><img alt="Muscle length plot" src="../_images/image84.png" /></p>
+<p><a class="reference internal" href="../_images/image84.png"><img alt="Muscle length plot" src="../_images/image84.png" style="width: 3.12500in; height: 2.89583in;" /></a></p>
 <p>The interesting point here is that with the long tendon and the high
 load, the muscle no longer contracts uniformly. In fact, the muscle
 extends for much of the movement due to the decreasing load which causes
@@ -418,7 +418,7 @@ Hill-type model, which does not have these shortcomings.</p>
 and left Muscle2 with the simple muscle model. Let us briefly study what
 Muscle2 is actually doing (if you need an updated working model, you can
 download it here:
-<a class="reference download internal" href="../_downloads/MuscleDemo.5-2.any" download=""><code class="xref download docutils literal"><span class="pre">*MuscleDemo.5-2.any*</span></code></a>. Muscle2 wraps
+<a class="reference download internal" href="../_downloads/MuscleDemo.5-2.any" download=""><code class="xref download docutils literal"><span class="pre">*MuscleDemo.5-2.any*</span></code></a>). Muscle2 wraps
 about the cylinder and obviously extends significantly as the arm turns
 upward. If you run the analysis and plot the length of Muscle2, you will
 see that it increases 0.7 to 1 meter. For a normal muscle (actually a
@@ -451,7 +451,7 @@ tendon.</p></li>
 <li><p>A parallel-elastic element (PE) representing the passive stiffness of
 the muscle fibers.</p></li>
 </ol>
-<p><img alt="muscle model" src="../_images/image92.png" /></p>
+<p><a class="reference internal" href="../_images/image92.png"><img alt="muscle model" src="../_images/image92.png" style="width: 3.12500in; height: 1.92708in;" /></a></p>
 <p>The figure above is a schematic representation of the muscle model. We
 can get a complete impression of the parameters of the model if we pick
 the model from the Class List as we have done before and insert a
@@ -579,7 +579,7 @@ does not contribute to carrying the load, and hence the system does not
 activate it. But the muscle is not without force. The property Fp, which
 is the force in the parallel-elastic element of the muscle has the
 following behavior:</p>
-<p><img alt="Force parallel elastic element" src="../_images/image102.png" /></p>
+<p><a class="reference internal" href="../_images/image102.png"><img alt="Force parallel elastic element" src="../_images/image102.png" style="width: 3.12500in; height: 2.36458in;" /></a></p>
 <p>In the initial phase of the movement, the parallel-elastic element is
 slack and adds no force to the muscle. But as the muscle gets extended,
 the passive muscle force sets in, and it continues to rise as the
@@ -588,7 +588,7 @@ movement and hence requires Muscle1 to work that much more. But the
 passive force has another interesting effect, which we can see if we
 chart the property Lt, i.e. the length of the tendon (Notice that we
 have changed the scale of the ordinate axis):</p>
-<p><img alt="Tendon length plot" src="../_images/image1111.png" /></p>
+<p><a class="reference internal" href="../_images/image1111.png"><img alt="Tendon length plot" src="../_images/image1111.png" style="width: 3.12500in; height: 2.62500in;" /></a></p>
 <p>From the time the passive force sets in, the tendon starts to elongate a
 little bit.</p>
 <p>The total origin-insertion length of the muscle-tendon unit is the
@@ -676,71 +676,71 @@ to do some work. Let us systematically investigate the output:</p>
 </tr>
 <tr class="row-odd"><td class="left-align nowrap"><p>Lmt</p></td>
 <td class="left-align"><p>The length of the muscle-tendon unit. If you plot this property you will see that it rises almost linearly as the muscle is extended. Closer investigation, however, will reveal that it is offset slightly by the nonlinearity caused by the elongation of the tendon due to the varying force.</p></td>
-<td class="center-align nowrap"><p><img alt="Small Lmt plot" src="../_images/image1211.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image1211.png"><img alt="Small Lmt plot" src="../_images/image1211.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-even"><td class="left-align nowrap"><p>Lm</p></td>
 <td class="left-align"><p>The length of the contractile element.</p></td>
-<td class="center-align nowrap"><p><img alt="small Lm plot" src="../_images/image137.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image137.png"><img alt="small Lm plot" src="../_images/image137.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-odd"><td class="left-align nowrap"><p>Lt</p></td>
 <td class="left-align"><p>The length of the tendon. This appears to be constant, but the tendon length actually changes slightly over the movement with the changes of muscle force as described above.</p></td>
-<td class="center-align nowrap"><p><img alt="Small Lt plot" src="../_images/image141.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image141.png"><img alt="Small Lt plot" src="../_images/image141.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-even"><td class="left-align nowrap"><p>LmtDot</p></td>
 <td class="left-align"><p>The contraction velocity of the muscle-tendon unit. The value is positive because the muscle is getting longer.</p></td>
-<td class="center-align nowrap"><p><img alt="Small LmtDot plot" src="../_images/image151.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image151.png"><img alt="Small LmtDot plot" src="../_images/image151.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-odd"><td class="left-align nowrap"><p>LmDot</p></td>
 <td class="left-align"><p>The contraction velocity of the contractile element of the muscle. The value is positive because the muscle is getting longer.</p></td>
-<td class="center-align nowrap"><p><img alt="Small LmDot plot" src="../_images/image151.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image151.png"><img alt="Small LmDot plot" src="../_images/image151.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-even"><td class="left-align nowrap"><p>Activity</p></td>
 <td class="left-align"><p>This is the muscle activity before correction for the change in muscle length caused by the elastic elongation of the muscle. The complicated variation is caused by the interplay between change of moment arm of the applied force, the passive force in the muscle and the change of muscle strength with the contraction.</p></td>
-<td class="center-align nowrap"><p><img alt="Small activity plot" src="../_images/image161.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image161.png"><img alt="Small activity plot" src="../_images/image161.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-odd"><td class="left-align nowrap"><p>Corrected-Activity</p></td>
 <td class="left-align"><p>This is the muscle activity after correction for the tendon elongation. The difference between this graph and the one above is that the activity toward the end is higher after correction. This can be difficult to understand and illustrates the complexity of muscle modeling. The reason is the following: The force in the muscle reduces towards the end of the movement. When the force is reduced, the tendon contracts, and this means that the muscle must elongate even more. Since the muscle length is already in the interval where further elongation will cause decreased strength, the tendon contraction has the effect of increasing the muscle activity.</p></td>
-<td class="center-align nowrap"><p><img alt="Small c-activity plot" src="../_images/image171.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image171.png"><img alt="Small c-activity plot" src="../_images/image171.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-even"><td class="left-align nowrap"><p>Fm</p></td>
 <td class="left-align"><p>The force in the contractile element is decreasing throughout the movement because the moment arm of the external force is reducing and also because the passive force in the muscle is contributing more and more to balancing the load.</p></td>
-<td class="center-align nowrap"><p><img alt="Small Fm plot" src="../_images/image181.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image181.png"><img alt="Small Fm plot" src="../_images/image181.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-odd"><td class="left-align nowrap"><p>Ft</p></td>
 <td class="left-align"><p>The tendon force shows the reduction of the mucle action by virtue of the reduced external force’s moment arm alone. A simplified explanation is that Ft = Fm + Fp, but this is not entirely true because we also have to account for the pennation angle.</p></td>
-<td class="center-align nowrap"><p><img alt="Small Ft plot" src="../_images/image191.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image191.png"><img alt="Small Ft plot" src="../_images/image191.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-even"><td class="left-align nowrap"><p>Fp</p></td>
 <td class="left-align"><p>The passive force in the muscle increases as the muscle is stretched.</p></td>
-<td class="center-align nowrap"><p><img alt="Small Fp plot" src="../_images/image20.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image20.png"><img alt="Small Fp plot" src="../_images/image20.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-odd"><td class="left-align nowrap"><p>Strength</p></td>
 <td class="left-align"><p>This is the strength of the muscle. It is not corrected for the tendon elongation.</p></td>
-<td class="center-align nowrap"><p><img alt="Small strength plot" src="../_images/image2110.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image2110.png"><img alt="Small strength plot" src="../_images/image2110.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-even"><td class="left-align nowrap"><p>Ft0</p></td>
 <td class="left-align"><p>The hypothetical force that the tendon would have if the activity of the muscle were zero. The reason why this is slightly different from Fp is that Ft0 acts directly along the action line of the muscle while Fp is diverted by the pennation angle. This property is mostly interesting to scientists involved in detailed modeling of single muscles.</p></td>
-<td class="center-align nowrap"><p><img alt="Small Ft0 plot" src="../_images/image2210.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image2210.png"><img alt="Small Ft0 plot" src="../_images/image2210.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-odd"><td class="left-align nowrap"><p>Ft0Grad</p></td>
 <td class="left-align"><p>The gradient of Ft0 with respect to the muscle activity. For mathematical reasons this is equal to the Strength, and the two graphs are identical. The reason why this property is included under to different names is that the simple muscle model, from which this model is derived, does not have Ft0Grad and hence needs a Strength property.</p></td>
-<td class="center-align nowrap"><p><img alt="Small Ft0Grad plot" src="../_images/image232.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image232.png"><img alt="Small Ft0Grad plot" src="../_images/image232.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-even"><td class="left-align nowrap"><p>Pennation-Angle</p></td>
 <td class="left-align"><p>The pennation angle is the angle between the muscle fiber direction and the muscle line of action. This angle changes when the muscle contracts and elongates, and the model takes this effect into account.</p></td>
-<td class="center-align nowrap"><p><img alt="Small pennation angle plot" src="../_images/image241.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image241.png"><img alt="Small pennation angle plot" src="../_images/image241.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-odd"><td class="left-align nowrap"><p>EPOTt</p></td>
 <td class="left-align"><p>The elastic potential energy stored in the tendon.</p></td>
-<td class="center-align nowrap"><p><img alt="Small EPOTt plot" src="../_images/image251.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image251.png"><img alt="Small EPOTt plot" src="../_images/image251.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-even"><td class="left-align nowrap"><p>EPOTp</p></td>
 <td class="left-align"><p>The elastic potential energy stored in the parallel-elastic element of the muscle.</p></td>
-<td class="center-align nowrap"><p><img alt="Small EPOTp plot" src="../_images/image261.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image261.png"><img alt="Small EPOTp plot" src="../_images/image261.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-odd"><td class="left-align nowrap"><p>EPOTmt</p></td>
 <td class="left-align"><p>The elastic potential energy stored in the entire muscle-tendon unit. This can have some practical significance for investigation of movement economy and sports activities in general.</p></td>
-<td class="center-align nowrap"><p><img alt="Small EPOTmt plot" src="../_images/image271.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image271.png"><img alt="Small EPOTmt plot" src="../_images/image271.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-even"><td class="left-align nowrap"><p>Pt</p></td>
 <td class="left-align"><p>The rate of change of elastic potential energy in the tendon.</p></td>
@@ -748,15 +748,15 @@ to do some work. Let us systematically investigate the output:</p>
 </tr>
 <tr class="row-odd"><td class="left-align nowrap"><p>Pm</p></td>
 <td class="left-align"><p>The mechanical power of the contractile element.</p></td>
-<td class="center-align nowrap"><p><img alt="Small Pm plot" src="../_images/image281.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image281.png"><img alt="Small Pm plot" src="../_images/image281.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-even"><td class="left-align nowrap"><p>Pmt</p></td>
 <td class="left-align"><p>The mechanical power of the entire muscle-tendon unit, i.e. the rate of work performed on the skeleton. Notice that the power is negative because the muscle is extending against the force. Muscles behaving like this in the human body are often termed antagonistic muscles.</p></td>
-<td class="center-align nowrap"><p><img alt="Small Pmt plot" src="../_images/image291.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image291.png"><img alt="Small Pmt plot" src="../_images/image291.png" style="width: 1.56250in; height: 1.34375in;" /></a></p></td>
 </tr>
 <tr class="row-odd"><td class="left-align nowrap"><p>Pmet</p></td>
 <td class="left-align"><p>A crude estimate of the metabolism in the muscle. The estimate is based on presumed efficiencies of the contractile element of 25% for concentric work and -120% for eccentric work. The model does not take the metabolism of isometric force into account.</p></td>
-<td class="center-align nowrap"><p><img alt="Small Pmet" src="../_images/image30.png" /></p></td>
+<td class="center-align nowrap"><p><a class="reference internal" href="../_images/image30.png"><img alt="Small Pmet" src="../_images/image30.png" style="width: 1.56250in; height: 1.23958in;" /></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -768,12 +768,12 @@ in complex musculoskeletal systems is the dependency on defined tendon
 length, Lt0. A brief experiment with our model can reveal where the
 difficulty lies. In the model we have just investigated, the activity of
 Muscle2 has the following development over the movement:</p>
-<p><img alt="Calibration. Lt0 plot" src="../_images/image3110.png" /></p>
+<p><a class="reference internal" href="../_images/image3110.png"><img alt="Calibration. Lt0 plot" src="../_images/image3110.png" style="width: 3.12500in; height: 2.64583in;" /></a></p>
 <p>But what would happen if our guess of tendon length, Lt0, in the muscle
 model definition was just slightly off the correct value? Well if we
 change the current value from 0.5 m to 0.45 m, i.e. a reduction of 10%,
 we get the following activity:</p>
-<p><img alt="Calibration Activity plot" src="../_images/image3210.png" /></p>
+<p><a class="reference internal" href="../_images/image3210.png"><img alt="Calibration Activity plot" src="../_images/image3210.png" style="width: 3.12500in; height: 2.64583in;" /></a></p>
 <p>Not only is the shape of the graph different; the maximum activity is
 also significantly higher. An error of 10% in an anthropometric
 data value is not uncommon considering the accuracy of measurement
@@ -815,10 +815,10 @@ analysis is done, the following message appears in the message window:</p>
 </div>
 <p>Try running the InverseDynamics again and plot the Activity of Muscle2.
 You should see the following:</p>
-<p><img alt="Cheap n dirty calibration, Activity plot" src="../_images/image331.png" /></p>
+<p><a class="reference internal" href="../_images/image331.png"><img alt="Cheap n dirty calibration, Activity plot" src="../_images/image331.png" style="width: 3.12500in; height: 2.69792in;" /></a></p>
 <p>As you can see, this is again very different from what we have seen
 before. Plotting the strength will reveal what has happened:</p>
-<p><img alt="Cheap n dirty calibration, activity plot" src="../_images/image341.png" /></p>
+<p><a class="reference internal" href="../_images/image341.png"><img alt="Cheap n dirty calibration, activity plot" src="../_images/image341.png" style="width: 3.12500in; height: 2.69792in;" /></a></p>
 <p>What the MuscleCalibrationAnalysis does is to run through the specified
 movement and compute the variation of the origin-insertion length of the
 muscle. It subsequently changes the user-defined value of Lt0 such that
