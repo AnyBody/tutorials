@@ -114,8 +114,8 @@ Saddle horizontal position within predefined limits</em></div></blockquote>
 proceed, let us briefly look at the properties of a typical
 musculoskeletal objective function and how the optimization algorithm
 solves the problem.</p>
-<a class="reference internal image-reference" href="../_images/image15.gif"><img alt="../_images/image15.gif" src="../_images/image15.gif" style="width: 40%;" /></a>
-<a class="reference internal image-reference" href="../_images/image26.gif"><img alt="../_images/image26.gif" src="../_images/image26.gif" style="width: 40%;" /></a>
+<img alt="../_images/image15.gif" src="../_images/image15.gif" />
+<img alt="../_images/image26.gif" src="../_images/image26.gif" />
 <p>The two pictures above both show the result of&nbsp;a parameter study. The
 picture on the right is the section indicated by the magnifying glass on
 the left amplified by 50 times. As you can see, the seemingly smooth
@@ -226,7 +226,7 @@ us&nbsp;run it and see what happens. Load the model in and please make sure
 that you have a Model View window open so that you can see the
 difference in the way the seat position is varied compared to the
 parameter study.</p>
-<p><a class="reference internal" href="../_images/image35.gif"><img alt="runopt.gif" src="../_images/image35.gif" style="height: 4.10417in;" /></a></p>
+<p><img alt="runopt.gif" src="../_images/image35.gif" /></p>
 <p>If the model loads you should get a screen picture similar to the one
 above this text. Expand the OptStudy branch in the operations tree,
 click Optimization once and then the Run button. The model starts
@@ -245,14 +245,14 @@ only improve slightly.</p>
 <p>Now we are going to study the results in more detail using the AnyChart
 window. Do you still have the AnyChart window from the previous lesson
 with the Metabolism parameter study open? It should look like this:</p>
-<p><a class="reference internal" href="../_images/image44.gif"><img alt="metab100.gif" src="../_images/image44.gif" style="height: 5.00000in;" /></a></p>
+<p><img alt="metab100.gif" src="../_images/image44.gif" /></p>
 <p>If not, please run the ParamStudy again and plot the surface. When you
 have this surface ready, please open another AnyChart window by clicking
 Window-&gt;AnyChart 2D/3D (new).&nbsp; In the new window, please expand the tree
 down to Main.Bike2D.OptStudy.Output.Metab. Then click the Val variable
 under Metab. This produces a simple 2-D graph showing the development of
 the metabolism over the&nbsp;5 iterations:</p>
-<p><a class="reference internal" href="../_images/image54.gif"><img alt="metabcon2.gif" src="../_images/image54.gif" style="height: 2.95833in;" /></a></p>
+<p><img alt="metabcon2.gif" src="../_images/image54.gif" /></p>
 <p>The graph confirms that the vast majority of the improvement is obtained
 in a couple of iterations and the final iteration contributes only by a
 minor, almost insignificant&nbsp;adjustment. Such iterations
@@ -264,7 +264,7 @@ small from one iteration to the next. Therefore, the optimization
 process will always end with one (or more) steps with insignificant
 changes.</p>
 <p>The optimal solution in the Model View looks like this:</p>
-<p><a class="reference internal" href="../_images/image61.jpeg"><img alt="BikeOpt2.jpg" src="../_images/image61.jpeg" style="height: 3.09375in;" /></a></p>
+<p><img alt="BikeOpt2.jpg" src="../_images/image61.jpeg" /></p>
 <p>Just above the Metab variable in the tree you can find the two
 independent variables, SaddleHeight and SaddlePos, and they can be
 graphed the same way revealing that their convergence is less monotone
@@ -275,7 +275,7 @@ variable/objective space rather than over the iterations. This is what
 we need the window with the parameter study surface for. At the top of
 this window you will find panels listing series and data to be plotted.
 Please right-click in the series window and select “New”:</p>
-<p><a class="reference internal" href="../_images/image72.gif"><img alt="newseries.gif" src="../_images/image72.gif" style="height: 4.26042in;" /></a></p>
+<p><img alt="newseries.gif" src="../_images/image72.gif" /></p>
 <p>This will give you a blank “Series 1”. When you highlight it by clicking
 with the mouse you will see the list of Selected Objects in the
 right-hand pane is empty. We are going to fill in the SaddleHeight and
@@ -283,7 +283,7 @@ SaddlePos variables from the OptStudy&nbsp;as Abscissa and Abscissa2,
 respectively.&nbsp; This is done by selecting Abscissa and Abscissa2 in turn
 and then expanding the OptStudy branch until the SaddleHeight.Val and
 SaddlePos.Val, respectively, can be selected:</p>
-<p><a class="reference internal" href="../_images/image81.gif"><img alt="selectheight.gif" src="../_images/image81.gif" style="height: 4.25000in;" /></a></p>
+<p><img alt="selectheight.gif" src="../_images/image81.gif" /></p>
 <p>Finally, in the Value field select OptStudy.Metab.Val and look carefully
 at the plot. You will see that an additional polyline has been added. It
 originates approximately at the middle of the surface and shows the path
@@ -293,7 +293,7 @@ leftmost button (Properties) in the toolbar directly over the graphics
 pane. This gives you access to all the settings and lets you control the
 appearance of graphs in detail. In the picture below we have selected
 RGB = {0,0,1}, i.e. blue,&nbsp;for Series1 and Thickness = 2:</p>
-<p><a class="reference internal" href="../_images/image91.gif"><img alt="optpath2.gif" src="../_images/image91.gif" style="height: 3.85417in;" /></a></p>
+<p><img alt="optpath2.gif" src="../_images/image91.gif" /></p>
 <p>This plot illustrates the convergence history in the “landscape” of the
 objective function. Here we can see the reasons for the convergence
 being as it is. Actually, the optimum value lies in a relatively flat
@@ -309,7 +309,7 @@ smooth as the parameter study with the relative crude grid indicates.
 Below you&nbsp;see the result of a parameter study, we have prepared for a
 small 2 by 2 mm design area in the vicinity of the end-point of the fist
 optimization step.</p>
-<p>&nbsp;&nbsp;<a class="reference internal" href="../_images/image101.gif"><img alt="metabzoom2.gif" src="../_images/image101.gif" style="height: 3.62500in;" /></a></p>
+<p>&nbsp;&nbsp;<img alt="metabzoom2.gif" src="../_images/image101.gif" /></p>
 <p>This reveals a somewhat jagged surface and a distinct (local) valley of
 the objective function. Minor changes of the input to the optimization
 process, whether it be the starting point or design variable bounds, can
@@ -317,8 +317,8 @@ actually make the optimization process dive into this local valley and
 get stuck in there.</p>
 <p>An optimization process that gets stuck in this local minimum could have
 a convergence history like in the plots shown below</p>
-<p><a class="reference internal" href="../_images/image111.gif"><img alt="metabcon2_no_converge.gif" src="../_images/image111.gif" style="height: 3.07292in;" /></a></p>
-<p><a class="reference internal" href="../_images/image121.gif"><img alt="optpath2_no_converge.gif" src="../_images/image121.gif" style="height: 3.43750in;" /></a></p>
+<p><img alt="metabcon2_no_converge.gif" src="../_images/image111.gif" /></p>
+<p><img alt="optpath2_no_converge.gif" src="../_images/image121.gif" /></p>
 <p>Notice how the final objective function value is slightly higher than
 the previous optimization result. Notice also how only the first
 iteration out of 7 provides significant improvement of the objective
@@ -371,10 +371,10 @@ and any other model property that the system can compute.</p>
 Please load the model again, select the optimization operation, and
 click the run button. The optimization process will have the following
 convergence picture:</p>
-<p><a class="reference internal" href="../_images/image131.gif"><img alt="metabcon2_constrained.gif" src="../_images/image131.gif" style="height: 3.10417in;" /></a></p>
+<p><img alt="metabcon2_constrained.gif" src="../_images/image131.gif" /></p>
 <p>If you alo re-run the parameter study, you can get this picture of the
 convergence:</p>
-<p><a class="reference internal" href="../_images/image141.gif"><img alt="optpath2_constrained.gif" src="../_images/image141.gif" style="height: 3.83333in;" /></a></p>
+<p><img alt="optpath2_constrained.gif" src="../_images/image141.gif" /></p>
 <p>We see that the result is indeed a compromise since the objective
 function&nbsp;value cannot be reduced as much as in the unconstrained
 case.&nbsp;The path of the design values&nbsp;bounces off the constraint and
@@ -383,7 +383,7 @@ function still has a downwards inclination. The constraint lies like a
 wall through the design space. We can see the convergence path along the
 constraint by plot the constraint value, i.e., the SeatDist.Val. This
 looks like:</p>
-<p><a class="reference internal" href="../_images/image151.gif"><img alt="SeatDist2_constrained.gif" src="../_images/image151.gif" style="height: 2.89583in;" /></a></p>
+<p><img alt="SeatDist2_constrained.gif" src="../_images/image151.gif" /></p>
 <p>where it is obvious how the optimizer hits the constraint, bounces off,
 hits again, etc. and finally it converges. At no point in time, the
 constraint value becomes negative, which was exactly what we prescribed
@@ -393,7 +393,7 @@ constained optimization, which shows a visible difference compared to
 the unconstrained solution: The hip position is now higher,&nbsp;i.e., longer
 from the crank and to achieve this it is further forward, see the
 picture below:</p>
-<p><a class="reference internal" href="../_images/image161.jpeg"><img alt="BikeOpt2_constrained.jpg" src="../_images/image161.jpeg" style="height: 3.20833in;" /></a></p>
+<p><img alt="BikeOpt2_constrained.jpg" src="../_images/image161.jpeg" /></p>
 <p>This completes the introduction to optimization studies.</p>
 <p>Optimization studies can be used for many purposes. A previous webcast
 on “How to synthesize posture and movement with inverse dynamics” is

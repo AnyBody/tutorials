@@ -95,7 +95,7 @@ OptTutorial.final.main.any in the same location; this is a file that
 contains most of the additions we make in the lessons of this tutorial).
 Please open The AnyBody Modeling System&nbsp;and load the main file. Opening
 a model view window should give you this picture:</p>
-<p><a class="reference internal" href="../_images/image19.jpeg"><img alt="bike2d.jpg" src="../_images/image19.jpeg" style="width: 4.16667in; height: 2.75000in;" /></a></p>
+<p><img alt="bike2d.jpg" src="../_images/image19.jpeg" /></p>
 <p>As you can see the model is very simple. It has two legs and a pelvis
 that is rigidly fixed to the seat. The feet are attached to the crank
 mechanism, and the crank is loaded by a sinusoidal torque and constant
@@ -157,7 +157,7 @@ defined.</p>
 </div>
 <div class="section" id="definition-of-a-parameter-study">
 <h2>Definition of a Parameter Study<a class="headerlink" href="#definition-of-a-parameter-study" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="../_images/image25.gif"><img alt="parinsert.gif" src="../_images/image25.gif" style="width: 3.39583in; height: 4.58333in;" /></a></p>
+<p><img alt="parinsert.gif" src="../_images/image25.gif" /></p>
 <p>A parameter study is as the name indicates a study. Therefore its
 natural position in the model is&nbsp;below the existing AnyBodyStudy. We can
 insert a new parameter study by means of the object inserter mechanism
@@ -397,7 +397,7 @@ the final AnyParamStudy looks like this:</p>
 <p>It is finally time try it out. If you have typed everything correctly,
 then you should be able to load the model and expand the Operations Tree
 in the left hand side of the Main Frame to this:</p>
-<p><a class="reference internal" href="../_images/image34.gif"><img alt="parstudytree.gif" src="../_images/image34.gif" style="width: 1.71875in; height: 1.07292in;" /></a></p>
+<p><img alt="parstudytree.gif" src="../_images/image34.gif" /></p>
 <p>Make sure you have a Model View window open. Select ParameterStudy as
 indicated and hit the “Run” button. You should see the model starting to
 cycle, and if you watch the vicinity of the saddle carefully, you will
@@ -409,7 +409,7 @@ completed your first parameter study. Let us investigate the result.</p>
 is as a 3-D surface. AnyBody has a window to make that type of plots.
 Please click Window -&gt; AnyChart 2D/3D (new). A new window containing a
 coordinate system and the usual model tree appears:</p>
-<p><a class="reference internal" href="../_images/image43.gif"><img alt="anychart1.gif" src="../_images/image43.gif" style="width: 5.62500in; height: 4.87500in;" /></a></p>
+<p><img alt="anychart1.gif" src="../_images/image43.gif" /></p>
 <p>The toolbar of this window indicates a kinship with the Model View
 window. Indeed, if you select the rotation button in the toolbar and
 drag the mouse with the left button down inside the coordinate system
@@ -418,7 +418,7 @@ View. Now, expand the Bike2D node in the tree until you can click the
 ParamStudy-&gt;Output-&gt;MaxAct-&gt;Val property. The coordinate system
 automatically attains a second abscissa axis and you can see a nice
 surface like this:</p>
-<p><a class="reference internal" href="../_images/image53.gif"><img alt="anychart2.gif" src="../_images/image53.gif" style="width: 5.62500in; height: 4.90625in;" /></a></p>
+<p><img alt="anychart2.gif" src="../_images/image53.gif" /></p>
 <p>The surface shows the maximum muscle activity over the cycle for each of
 the 25 combinations of parameters and provides a very nice overview of
 the behavior of the model. The surface reveals that the highest and most
@@ -449,16 +449,16 @@ an ideal rigid body model than it would in real life where joints have a
 bit of slack, segments are slightly elastic, and the prescribed
 kinematics may be compromised. You can see&nbsp;very clearly what happens&nbsp;if
 you go back to the AnyChart View and study the new surface:</p>
-<p><a class="reference internal" href="../_images/image62.gif"><img alt="anychart3.gif" src="../_images/image62.gif" style="width: 5.62500in; height: 4.88542in;" /></a></p>
+<p><img alt="anychart3.gif" src="../_images/image62.gif" /></p>
 <p>The surface is now completely dominated by the one combination, which is
 difficult for the model to do. You can still see the surface shape if
 you change the scale of the value axis. This and all other settings are
 available if you click
-the&nbsp;<a class="reference internal" href="../_images/image71.gif"><img alt="chartsettings.gif" src="../_images/image71.gif" style="width: 0.32292in; height: 0.31250in;" /></a>
+the&nbsp;<img alt="chartsettings.gif" src="../_images/image71.gif" />
 button in the toolbar. Doing so will produce a window with a tree view
 in which you can select ValueAxis-&gt;Max. Try setting Max to 0.2 and you
 should obtain the following:</p>
-<p><a class="reference internal" href="../_images/image8.gif"><img alt="anychart4.gif" src="../_images/image8.gif" style="width: 5.62500in; height: 4.91667in;" /></a></p>
+<p><img alt="anychart4.gif" src="../_images/image8.gif" /></p>
 <p>What this study reveals is that in terms of muscle activity to drive the
 bicycle a high seat is advantageous, but there seems to be a very sharp
 limit where the leg gets close to not being able to reach the pedals,
@@ -505,7 +505,7 @@ simple to add up the muscle metabolisms in the AnyBody study:</p>
 limit the size of the expressions. If you run the InverseDynamicAnalysis
 (go on and try!) you will find the new variable mentioned in the list of
 output, and you can chart it in a ChartFX View:</p>
-<p><a class="reference internal" href="../_images/image9.gif"><img alt="metabcurve.gif" src="../_images/image9.gif" style="width: 5.62500in; height: 4.89583in;" /></a></p>
+<p><img alt="metabcurve.gif" src="../_images/image9.gif" /></p>
 <p>The area under this curve is the total metabolism combusted over a crank
 revolution. To compute this we must introduce two more elements. The
 first one is an AnyOutputFun as we have seen it before. The purpose if
@@ -567,7 +567,7 @@ adventurous and have specified 10 variable steps in each direction. It
 is time to run the parameter study again. The new Metab variable is now
 available in the list under the ParamStudy in the AnyChart window and
 can be plotted:</p>
-<p><a class="reference internal" href="../_images/image10.gif"><img alt="metab100.gif" src="../_images/image10.gif" style="width: 5.62500in; height: 5.00000in;" /></a></p>
+<p><img alt="metab100.gif" src="../_images/image10.gif" /></p>
 <p>We shall return to the capabilities of the AnyChart in more detail in
 the <a class="reference internal" href="lesson2.html"><span class="doc">next lesson</span></a>, which deals with the
 definition of optimization studies.</p>
