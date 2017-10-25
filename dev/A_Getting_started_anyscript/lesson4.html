@@ -1,7 +1,8 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -68,8 +69,8 @@
   <div class="section" id="lesson-4-imparting-movement-with-drivers">
 <h1>Lesson 4: Imparting movement with Drivers<a class="headerlink" href="#lesson-4-imparting-movement-with-drivers" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here’s an AnyScript file to start on if you have not completed the
+<p class="first admonition-title">Note</p>
+<p class="last">Here’s an AnyScript file to start on if you have not completed the
 previous lesson: <a class="reference download internal" href="../_downloads/demo.lesson4.any" download=""><code class="xref download docutils literal"><span class="pre">*demo.lesson4.any*</span></code></a>.</p>
 </div>
 <p><img alt="ModelView Arm2D initial load" src="../_images/image16.png" /></p>
@@ -90,7 +91,7 @@ directly, and this is in fact what we shall do. But we could also choose
 any other two measures as long as they uniquely determine the position
 of all the segments in the mechanism. If you were building this model
 for some ergonomic investigation, you might want to drive the end point
-of the forearm where the wrist should be located in x and y coordinates
+of the forearm where the wrist should be located in x and&nbsp;y coordinates
 to simulate the operation of some handles or controls. And this would be
 just as valid a model because the end point position uniquely determines
 the elbow and shoulder rotations.</p>
@@ -142,11 +143,11 @@ Notice also the use of the reference operator ‘&amp;’ that causes the local
 variable to be a pointer to the global one rather than a copy. It means
 that if some property of the globally defined joint changes, then the
 local version changes with it.</p>
-<p>The specifications of DriverPos and DriverVel are the starting value of
+<p>The specifications of DriverPos and DriverVel are&nbsp;the starting value of
 the driver and the constant velocity, respectively.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Since these drivers drive angles, the units are radians and
+<p class="first admonition-title">Note</p>
+<p class="last">Since these drivers drive angles, the units are radians and
 radians/sec.</p>
 </div>
 <p>Try loading the model again by hitting F7. If you did not mistype
@@ -161,7 +162,7 @@ labelled “Operations”. This is the place where the AnyBody system places
 your studies, and from this window, you can execute them, i.e., start
 analyses and calculations.</p>
 <p><img alt="Operations ArmStudy" src="../_images/image24.png" /></p>
-<p>Try expanding the ArmStudy root. You will get a list of the study types
+<p>Try expanding the ArmStudy root. You will get&nbsp;a list of the study types
 that the system can perform. “Study” is a common name for operations you
 can perform on a model. Try clicking the KinematicAnalysis study. With
 the buttons in the Operations window, you can now execute various types
@@ -169,13 +170,13 @@ of analysis.</p>
 <p>The Execute toolbar above the operations tree contains three buttons
 <img alt="Model tree toolbar Execute buttons" src="../_images/image33.png" />:</p>
 <ul class="simple">
-<li><p><strong>Run operation</strong>: Starts or pauses the chosen operation. Shortcut
-F5.</p></li>
-<li><p><strong>Step operation</strong>: Advances to next step of operation, typically a
-time step. Shortcut F6.</p></li>
-<li><p><strong>Stop operation</strong>: Sets the operation back to its initial position.
+<li><strong>Run operation</strong>: Starts or pauses the chosen operation. Shortcut
+F5.</li>
+<li><strong>Step operation</strong>: Advances to next step of operation, typically a
+time step. Shortcut F6.</li>
+<li><strong>Stop operation</strong>: Sets the operation back to its initial position.
 You must reset before you start a new analysis that was previously
-aborted. Shortcut F4</p></li>
+aborted. Shortcut F4</li>
 </ul>
 </div>
 <div class="section" id="replaying-a-simulation">
@@ -245,8 +246,8 @@ computed in AnyBody can be visualized this way.</p>
 <p>So far, we have only the kinematic data to look at. Before we can start
 the real biomechanics, we must add some muscles to the model.</p>
 <div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> This is the subject of <a class="reference internal" href="lesson5.html"><span class="doc">*Lesson 5: Definition of muscles and external forces*</span></a>.</p>
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> This is the subject of <a class="reference internal" href="lesson5.html"><span class="doc">*Lesson 5: Definition of muscles and external forces*</span></a>.</p>
 </div>
 </div>
 </div>

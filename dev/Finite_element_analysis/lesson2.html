@@ -1,7 +1,8 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -240,11 +241,11 @@ to your setup and insert this code below the study folder:</p>
 </div>
 <p>The basic procedure of the conversion is:</p>
 <ul class="simple">
-<li><p>Create local coordinate systems for each muscle insertion and joint
-point</p></li>
-<li><p>Apply forces to the points</p></li>
-<li><p>Create beam connections between the force application points and the
-bone surface</p></li>
+<li>Create local coordinate systems for each muscle insertion and joint
+point</li>
+<li>Apply forces to the points</li>
+<li>Create beam connections between the force application points and the
+bone surface</li>
 </ul>
 <p>Let’s have a closer look at the APDL template. Open the APDLTemplate.txt
 file in a text editor. It is structured in three sections, a head
@@ -258,8 +259,7 @@ template can be altered to fit to your actual problem. One thing you
 have to change right now is the path to your FE model.</p>
 <p>:: console</p>
 <blockquote>
-<div><p>RESUME,’clav_base’,’db’,’C:Userssd.ANYBODYTEMPClavicle_paperFE’,0,0</p>
-</div></blockquote>
+<div>RESUME,’clav_base’,’db’,’C:Userssd.ANYBODYTEMPClavicle_paperFE’,0,0</div></blockquote>
 <p>Please include the path to your model.</p>
 <p>Now we are ready to run the analysis and convert the data. Reload the
 model in the AMS. Select RunApplication in the Operations tree. This
@@ -275,8 +275,8 @@ outputfileList file. Each loadstep will be written in a new result file.
 You can look at the results by loading them one on one in the
 post-processor.</p>
 <div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> <a class="reference internal" href="#"><span class="doc">Lesson 2: ANSYS Interface</span></a>.</p>
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="#"><span class="doc">Lesson 2: ANSYS Interface</span></a>.</p>
 </div>
 </div>
 

@@ -1,7 +1,8 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -75,7 +76,7 @@ can use. Please right-click here and save to your local disk
 (Demo.Forces.1.any). When you have saved the file, please open it up in
 AnyBody.</p>
 <p>At the end of the ArmModel folder you will find that we have added an
-empty folder named Loads:</p>
+empty&nbsp;folder named Loads:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>   <span class="gr">AnyFolder Loads = {</span>
 
 <span class="gr">      };  // Loads folder</span>
@@ -130,7 +131,7 @@ prepare for inserting the name of the node:</p>
 </div>
 <p>Now, please place the cursor just before the semicolon at the end of the
 PointOfAttack line, select the Model tab in the tree view on the left
-hand side of the editor window, unfold the ArmModel.Segs.ForeArm branch,
+hand side of the editor window,&nbsp;unfold the ArmModel.Segs.ForeArm branch,
 locate the PalmNode, right-click it and select Insert Object Name. You
 should get the following result:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span> <span class="kt">AnyFolder</span> <span class="n">Loads</span> <span class="o">=</span> <span class="p">{</span>
@@ -275,7 +276,7 @@ since there are bi-articular muscles crossing the shoulder as well as
 the elbow this is likely to disturb the muscle recruitment pattern
 significantly. So, what to do?</p>
 <p>Well, what we really want is something that just affects the elbow and
-is balanced perfectly from the point-of-view of the rest of the model.
+is balanced perfectly&nbsp;from the point-of-view of the rest of the model.
 We could come up with an applied force that goes from the upper arm to
 the forearm, and should this force then be perpendicular to the forearm
 or to the upper arm? Obviously it cannot be both.</p>
@@ -284,7 +285,7 @@ option, and this is what the AnyForce class is. It allows us to apply a
 generalized force to any kinematic measure we can possibly define. The
 AnyForce takes the form of the kinematic measure, so a linear measure
 results in a force and a rotational measure results in a moment.
-Moreover, because kinematic measures are such a general concept there
+Moreover, because kinematic measures&nbsp;are such a general concept there
 are very few limits to the kinds of forces that they can be used to
 specify. So, the elbow moment might simply be applied as an AnyForce
 applied to some rotational measure of the elbow angle, and as the
@@ -378,10 +379,10 @@ been set to zero strength.</p>
 <p>The following two examples illustrate more of the features of forces in
 AnyBody.</p>
 <ol class="arabic simple">
-<li><p><a class="reference download internal" href="../_downloads/Demo.Forces.any" download=""><code class="xref download docutils literal"><span class="pre">*Demo.Forces.any*</span></code></a></p></li>
-<li><p><a class="reference download internal" href="../_downloads/Demo.AnyForce.any" download=""><code class="xref download docutils literal"><span class="pre">*Demo.AnyForce.any*</span></code></a></p></li>
+<li><a class="reference download internal" href="../_downloads/Demo.Forces.any" download=""><code class="xref download docutils literal"><span class="pre">*Demo.Forces.any*</span></code></a></li>
+<li><a class="reference download internal" href="../_downloads/Demo.AnyForce.any" download=""><code class="xref download docutils literal"><span class="pre">*Demo.AnyForce.any*</span></code></a></li>
 </ol>
-<p>The first example is a rather basic application of time-varying forces
+<p>The first example is&nbsp;a rather basic application of time-varying forces
 to the aimple arm model. In addition to the subjects covered in the
 sections above it shows forces defined directly as interpolated values a
 set of measured data points, for instance from a force platform.</p>

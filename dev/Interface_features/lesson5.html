@@ -1,7 +1,8 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -85,71 +86,71 @@ macro file containing commands.</p>
 <em>Demo.outputfile.any</em> in a working directory.</p>
 <p><strong>Important:</strong> To start the console application:</p>
 <ol class="arabic simple">
-<li><p>Launch the command prompt, change directory to where you have saved
-Demo.outputfile.any</p></li>
-<li><p>Run the .exe file using its full path, e.g. <code class="docutils literal"><span class="pre">&quot;C:\Program</span> <span class="pre">Files\AnyBody</span> <span class="pre">Technology\AnyBody.7.0\AnyBodyCon.exe&quot;</span></code>.</p></li>
+<li>Launch the command prompt, change directory to where you have saved
+Demo.outputfile.any</li>
+<li>Run the .exe file using its full path, e.g. <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="s">&quot;C:\Program Files\AnyBody Technology\AnyBody.7.0\AnyBodyCon.exe&quot;</span></code>.</li>
 </ol>
 </div>
 <div class="section" id="console-commands">
 <h2>Console commands<a class="headerlink" href="#console-commands" title="Permalink to this headline">¶</a></h2>
-<p>It only understands eight different commands. You can always get help by
+<p>It only understands&nbsp;eight different commands. You can always get help by
 using the ‘help’ command or by calling AnyBodyCon with an /? argument.
 The table below contains a description of the commands accepted by the
 AnyBody console.</p>
-<table class="docutils">
+<table border="1" class="docutils">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col width="20%" />
+<col width="80%" />
 </colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Command name</strong></p></th>
-<th class="head"><p><strong>Functionality</strong></p></th>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Command name</strong></th>
+<th class="head"><strong>Functionality</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>load “filename.any”</p></td>
-<td><p>Example: load “demo.outputfile.any”</p>
-<p>Loads an AnyScript model into the system and compiles it.</p>
+<tbody valign="top">
+<tr class="row-even"><td>load “filename.any”</td>
+<td><p class="first">Example: load “demo.outputfile.any”</p>
+<p class="last">Loads an AnyScript model into the system and compiles it.</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>operation &lt;op.name&gt;</p></td>
-<td><p>Example: operation Main.ArmStudy.InverseDynamics</p>
-<p>This command sets the active operation. This must be the first thing you do after loading.</p>
+<tr class="row-odd"><td>operation &lt;op.name&gt;</td>
+<td><p class="first">Example: operation Main.ArmStudy.InverseDynamics</p>
+<p class="last">This command sets the active operation. This must be the first thing you do after loading.</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>Run</p></td>
-<td><p>Example: run</p>
-<p>Runs the active operation.</p>
+<tr class="row-even"><td>Run</td>
+<td><p class="first">Example: run</p>
+<p class="last">Runs the active operation.</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>Runmacro</p></td>
-<td><p>Example runmacro “filename.anymcr”</p>
-<p>This command loads and executes an anymcr file.</p>
+<tr class="row-odd"><td>Runmacro</td>
+<td><p class="first">Example runmacro “filename.anymcr”</p>
+<p class="last">This command loads and executes an anymcr file.</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>Step</p></td>
-<td><p>Example: step</p>
-<p>Solves a single time step of the active operation.</p>
+<tr class="row-even"><td>Step</td>
+<td><p class="first">Example: step</p>
+<p class="last">Solves a single time step of the active operation.</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>Reset</p></td>
-<td><p>Example: reset</p>
-<p>Resets the active operation.</p>
+<tr class="row-odd"><td>Reset</td>
+<td><p class="first">Example: reset</p>
+<p class="last">Resets the active operation.</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>print &lt;object&gt;</p></td>
-<td><p>Example: print Main.ArmModel.Jnts.Shoulder.Pos</p>
-<p>Prints the value of a single object.</p>
+<tr class="row-even"><td>print &lt;object&gt;</td>
+<td><p class="first">Example: print Main.ArmModel.Jnts.Shoulder.Pos</p>
+<p class="last">Prints the value of a single object.</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>printdown &lt;object&gt;</p></td>
-<td><p>Example: printdown Main.ArmModel.Jnts</p>
-<p>Recursively prints the values of all elements in an object folder.</p>
+<tr class="row-odd"><td>printdown &lt;object&gt;</td>
+<td><p class="first">Example: printdown Main.ArmModel.Jnts</p>
+<p class="last">Recursively prints the values of all elements in an object folder.</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>exit</p></td>
-<td><p>Example: Exit</p>
-<p>Exits and returns to the command prompt.</p>
+<tr class="row-even"><td>exit</td>
+<td><p class="first">Example: Exit</p>
+<p class="last">Exits and returns to the command prompt.</p>
 </td>
 </tr>
 </tbody>
@@ -344,7 +345,7 @@ a #define statement for the file name</p>
 <div class="highlight-bat"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.0\AnyBodyCon.exe&quot; /m runarm.anymcr /def OUTPUTFILE=---&quot;\&quot;myoutput.anydata.h5\&quot;&quot;</span>
 </pre></div>
 </div>
-<p>What the construction <code class="docutils literal"><span class="pre">—“”</span> <span class="pre">…</span> <span class="pre">””</span></code> is doing, in this case,
+<p>What the construction <code class="docutils literal"><span class="pre">—“” … ””</span></code> is doing, in this case,
 is that it will define a quoted string for the #define statement similar
 to the definition in the .any file. As a result we see that the output
 is written to the file ‘myoutput.anydata.h5’.</p>
@@ -361,7 +362,7 @@ with a statement such as:</p>
 </pre></div>
 </div>
 <p>It will add AnyBodyCon.exe’s path to the existing path
-definition. Notice that there cannot be any space between <code class="docutils literal"><span class="pre">;</span></code> and the
+definition.&nbsp;Notice that there cannot be any space between <code class="docutils literal"><span class="pre">;</span></code> and the
 following path <code class="docutils literal"><span class="pre">c:...</span></code> and that you can see the resulting path by
 simply calling the internal path command again without arguments.</p>
 <p>These statements will only take effect until the current command prompt
@@ -377,19 +378,19 @@ which version you are actually using if you need several of them.</p>
 <p>To be in full control of multiple AnyBody installations, you can define
 aliases by the following procedure:</p>
 <ol class="arabic simple">
-<li><p>Make a directory with .bat files or shortcuts to the AnyBodyCon.exe
+<li>Make a directory with .bat files or shortcuts to the AnyBodyCon.exe
 version you will need. Name the bat-files so you can recognize the
 different versions, e.g. AnyBodyCon61.bat and AnyBodyCon70.bat. The
 bat files contain a single statement, the call of AnyBodyCon.exe with
-its full path.</p></li>
-<li><p>Add this directory to the permanent path of the command prompt.</p></li>
-<li><p>You can now call the different versions of AnyBodyCon via the bat
-files, so the bat file names are working as aliases for the real .exe
-files.</p></li>
+its full path.</li>
+<li>Add this directory to the permanent path of the command prompt.</li>
+<li>You can now call the different versions of AnyBodyCon via the bat
+files, so&nbsp;the bat file names are working as aliases for the real .exe
+files.</li>
 </ol>
 <div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Modifying the Loaded Model</span></a>.</p>
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Modifying the Loaded Model</span></a>.</p>
 </div>
 </div>
 </div>

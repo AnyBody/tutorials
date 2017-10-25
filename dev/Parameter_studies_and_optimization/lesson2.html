@@ -1,7 +1,8 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -67,7 +68,7 @@
             
   <div class="section" id="optimization-studies">
 <h1>Optimization Studies<a class="headerlink" href="#optimization-studies" title="Permalink to this headline">¶</a></h1>
-<p>The parameter study introduced in the preceding lesson provides a
+<p>The parameter study introduced in the preceding lesson&nbsp;provides a
 complete overview of the design space, but the study is only feasible
 when the problem has few independent parameters, preferably one or two.
 In the previous lesson we considered a problem with two parameters and 5
@@ -81,7 +82,7 @@ more than very few independent parameters. So what to do?</p>
 carefully and only has to evaluate a few of them. One class of such
 methods is optimization. An optimization algorithm systematically
 searches through the design space for the combination of parameters that
-minimizes the value of a function of the parameters, the so-called
+minimizes the value of a function&nbsp;of the parameters, the so-called
 objective function. Some algorithms also allow the definition of
 constraint functions, which are dependent parameters that must be
 maintained below a certain upper limit.</p>
@@ -94,7 +95,7 @@ follows:</p>
 <p><em>g:sub:`i`</em>(<em>x:sub:`1`..x:sub:`n`</em>) &lt;= 0</p>
 <p><em>L</em><sub>j</sub> &lt;= <em>x</em><sub>j</sub> &lt;= <em>U:sub:`j`</em></p>
 <p>where <em>g:sub:`0`</em> is called the objective function, <em>x:sub:`j`</em>,
-<em>j</em>=1..<em>n</em> are the design variables, and <em>g:sub:`i`</em>,
+<em>j</em>=1..<em>n</em>&nbsp;are the design variables, and <em>g:sub:`i`</em>,
 <em>i</em>=1..<em>m</em> are the constraints. The definition of an optimization
 problem in AnyBody is therefore a question of appointing independent
 parameters as design variables and dependent parameters as the objective
@@ -104,24 +105,23 @@ the variables.</p>
 <p>In an optimization terminology, the parameter study from the preceding
 lesson could be defined as:</p>
 <p>Minimize</p>
-<p><em>Metabolic energy consumption</em></p>
+<p><em>Metabolic energy&nbsp;consumption</em></p>
 <p>Subject to</p>
 <blockquote>
-<div><p><em>Saddle height within predefined limits
-Saddle horizontal position within predefined limits</em></p>
-</div></blockquote>
+<div><em>Saddle height within predefined limits
+Saddle horizontal position within predefined limits</em></div></blockquote>
 <p>In fact, this is precisely what we are going to do, but before we
 proceed, let us briefly look at the properties of a typical
 musculoskeletal objective function and how the optimization algorithm
 solves the problem.</p>
 <a class="reference internal image-reference" href="../_images/image15.gif"><img alt="../_images/image15.gif" src="../_images/image15.gif" style="width: 40%;" /></a>
 <a class="reference internal image-reference" href="../_images/image26.gif"><img alt="../_images/image26.gif" src="../_images/image26.gif" style="width: 40%;" /></a>
-<p>The two pictures above both show the result of a parameter study. The
+<p>The two pictures above both show the result of&nbsp;a parameter study. The
 picture on the right is the section indicated by the magnifying glass on
 the left amplified by 50 times. As you can see, the seemingly smooth
 objective function has a microscopic jump. In other words the function
 is non-smooth and in fact discontinuous at certain points. Not
-all design measures have such discontinuities, but some do. The figure
+all&nbsp;design measures&nbsp;have such discontinuities, but some do. The figure
 also indicates that the function is smooth in between these
 discontinuities. Optimization algorithms are trying to navigate on
 multi-dimentional hyper-surfaces with such qualities and must
@@ -131,9 +131,9 @@ most cases. It is a special version of a so-called feasible directions
 algorithm, which seeks out the optimum in two-step loops. The two steps
 are:</p>
 <ol class="arabic simple">
-<li><p>Decide on a search direction.</p></li>
-<li><p>Perform a linear search to find the minimum along the chosen
-direction.</p></li>
+<li>Decide on a search direction.</li>
+<li>Perform a linear search to find the minimum along the chosen
+direction.</li>
 </ol>
 <p>This means that it is only necessary to perform analyses of the function
 values at the points that the algorithm actually visits and not all
@@ -217,12 +217,12 @@ the parameter study:</p>
 entire line with the nStep specification. The optimization study does
 not use any particular step size but rather adapts its steps
 automatically to find the accurate position of the optimum. This is
-another advantage of optimization over a parameter study. Finally, we
+another advantage of&nbsp;optimization over a parameter study. Finally, we
 have added a type specification to the Metab object specifying that this
 is the objective function of the problem.</p>
-<p>This is the definition of an optimization problem that will vary the
+<p>This is&nbsp;the definition of an optimization problem that will vary the
 saddle height and horizontal position to minimize the metabolism. Let
-us run it and see what happens. Load the model in and please make sure
+us&nbsp;run it and see what happens. Load the model in and please make sure
 that you have a Model View window open so that you can see the
 difference in the way the seat position is varied compared to the
 parameter study.</p>
@@ -248,18 +248,18 @@ with the Metabolism parameter study open? It should look like this:</p>
 <p><a class="reference internal" href="../_images/image44.gif"><img alt="metab100.gif" src="../_images/image44.gif" style="height: 5.00000in;" /></a></p>
 <p>If not, please run the ParamStudy again and plot the surface. When you
 have this surface ready, please open another AnyChart window by clicking
-Window-&gt;AnyChart 2D/3D (new).  In the new window, please expand the tree
+Window-&gt;AnyChart 2D/3D (new).&nbsp; In the new window, please expand the tree
 down to Main.Bike2D.OptStudy.Output.Metab. Then click the Val variable
 under Metab. This produces a simple 2-D graph showing the development of
-the metabolism over the 5 iterations:</p>
+the metabolism over the&nbsp;5 iterations:</p>
 <p><a class="reference internal" href="../_images/image54.gif"><img alt="metabcon2.gif" src="../_images/image54.gif" style="height: 2.95833in;" /></a></p>
 <p>The graph confirms that the vast majority of the improvement is obtained
 in a couple of iterations and the final iteration contributes only by a
-minor, almost insignificant adjustment. Such iterations
-with insignificant improvements occur due to the convergence criterion,
+minor, almost insignificant&nbsp;adjustment. Such iterations
+with&nbsp;insignificant improvements occur due to the convergence criterion,
 i.e., the criterion that stops the optimization process. The optimizer
 does not detect mathemtically that the objective function has an optimum
-value; it merely detects that the changes of the found solution are
+value; it merely detects that the changes of the&nbsp;found solution are
 small from one iteration to the next. Therefore, the optimization
 process will always end with one (or more) steps with insignificant
 changes.</p>
@@ -279,8 +279,8 @@ Please right-click in the series window and select “New”:</p>
 <p>This will give you a blank “Series 1”. When you highlight it by clicking
 with the mouse you will see the list of Selected Objects in the
 right-hand pane is empty. We are going to fill in the SaddleHeight and
-SaddlePos variables from the OptStudy as Abscissa and Abscissa2,
-respectively.  This is done by selecting Abscissa and Abscissa2 in turn
+SaddlePos variables from the OptStudy&nbsp;as Abscissa and Abscissa2,
+respectively.&nbsp; This is done by selecting Abscissa and Abscissa2 in turn
 and then expanding the OptStudy branch until the SaddleHeight.Val and
 SaddlePos.Val, respectively, can be selected:</p>
 <p><a class="reference internal" href="../_images/image81.gif"><img alt="selectheight.gif" src="../_images/image81.gif" style="height: 4.25000in;" /></a></p>
@@ -292,13 +292,13 @@ minimum point. You can change the color of the line by clicking the
 leftmost button (Properties) in the toolbar directly over the graphics
 pane. This gives you access to all the settings and lets you control the
 appearance of graphs in detail. In the picture below we have selected
-RGB = {0,0,1}, i.e. blue, for Series1 and Thickness = 2:</p>
+RGB = {0,0,1}, i.e. blue,&nbsp;for Series1 and Thickness = 2:</p>
 <p><a class="reference internal" href="../_images/image91.gif"><img alt="optpath2.gif" src="../_images/image91.gif" style="height: 3.85417in;" /></a></p>
 <p>This plot illustrates the convergence history in the “landscape” of the
 objective function. Here we can see the reasons for the convergence
 being as it is. Actually, the optimum value lies in a relatively flat
 region and therefore the exact mathematical location of the optimum may
-be of a more academic importance than practical relevance since we can
+be of a more academic&nbsp;importance than practical relevance&nbsp;since we can
 find many design point with almost the same objective function value.</p>
 <p>“A flat optimum”, like this, can occasionally cause problems for the
 optimization process to provide exact convergence because it is
@@ -306,10 +306,10 @@ difficult to distinguish between insignificant changes due to flatness
 or convergence. Furthermore, one more obstacle for finding the exact
 optimum is present in the given case. The objective function is not as
 smooth as the parameter study with the relative crude grid indicates.
-Below you see the result of a parameter study, we have prepared for a
+Below you&nbsp;see the result of a parameter study, we have prepared for a
 small 2 by 2 mm design area in the vicinity of the end-point of the fist
 optimization step.</p>
-<p>  <a class="reference internal" href="../_images/image101.gif"><img alt="metabzoom2.gif" src="../_images/image101.gif" style="height: 3.62500in;" /></a></p>
+<p>&nbsp;&nbsp;<a class="reference internal" href="../_images/image101.gif"><img alt="metabzoom2.gif" src="../_images/image101.gif" style="height: 3.62500in;" /></a></p>
 <p>This reveals a somewhat jagged surface and a distinct (local) valley of
 the objective function. Minor changes of the input to the optimization
 process, whether it be the starting point or design variable bounds, can
@@ -323,7 +323,7 @@ a convergence history like in the plots shown below</p>
 the previous optimization result. Notice also how only the first
 iteration out of 7 provides significant improvement of the objective
 function. This step brings the design value down into to the valley. The
-remaining iterations zigzags in the bottom of the valley without being
+remaining&nbsp;iterations zigzags in the bottom of the valley without being
 able to get up and out and without providing any visible improvement.
 Finally, the convergence criterion is fulfilled. It can be mentioned
 that the convergence criterion requires both objective and design
@@ -332,7 +332,7 @@ changes to be small.</p>
 problem formulation also handles constraints. They can be used for all
 sorts of purposes. For instance we notice that the optimal solution is a
 rather low saddle position, cf. the picture above. Suppose that for some
-reason, this position is too low. We, therefore, want to ensure that the
+reason, this position is too low. We, therefore,&nbsp;want to ensure that the
 distance between the crank and the seat is not too small, for instance
 larger than 0.66 m. This can be formulated very nicely as a constraint
 like this:</p>
@@ -351,10 +351,10 @@ like this:</p>
 LessThanZero or GreaterThanZero. In the mathematical formulation of the
 optimization problem stated in the beginning of this lesson, we have
 only less-than-or-equal-to constraints, but there is only a minus sign
-in difference of making a greater-than-or-equal-to into a
+in difference&nbsp;of making a greater-than-or-equal-to into a
 less-than-or-equal-to constraint. You can put this minus sign manually
 or you can use Type = GreaterThanZero, which is equivalent. Notice that
-equality constraints are in principle also a possibility, but currently
+equality constraints&nbsp;are in principle also a possibility, but currently
 the optimization solvers in AnyBody do not handle this type of
 constraints. Moreover, it is most often possible to handle equality
 constraints by means of inequality constraints, because the objective
@@ -376,8 +376,8 @@ convergence picture:</p>
 convergence:</p>
 <p><a class="reference internal" href="../_images/image141.gif"><img alt="optpath2_constrained.gif" src="../_images/image141.gif" style="height: 3.83333in;" /></a></p>
 <p>We see that the result is indeed a compromise since the objective
-function value cannot be reduced as much as in the unconstrained
-case. The path of the design values bounces off the constraint and
+function&nbsp;value cannot be reduced as much as in the unconstrained
+case.&nbsp;The path of the design values&nbsp;bounces off the constraint and
 finally it gets stuck on the constraint even though the objective
 function still has a downwards inclination. The constraint lies like a
 wall through the design space. We can see the convergence path along the
@@ -390,7 +390,7 @@ constraint value becomes negative, which was exactly what we prescribed
 in its definition.</p>
 <p>A final look at the result could be the picture of the model after this
 constained optimization, which shows a visible difference compared to
-the unconstrained solution: The hip position is now higher, i.e., longer
+the unconstrained solution: The hip position is now higher,&nbsp;i.e., longer
 from the crank and to achieve this it is further forward, see the
 picture below:</p>
 <p><a class="reference internal" href="../_images/image161.jpeg"><img alt="BikeOpt2_constrained.jpg" src="../_images/image161.jpeg" style="height: 3.20833in;" /></a></p>

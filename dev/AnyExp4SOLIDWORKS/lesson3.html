@@ -1,7 +1,8 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -87,7 +88,7 @@ can see that we have a standing full human body model.</p>
 <p>To keep things simple, start by switching of the muscles by setting the
 BM statement for the muscle definitions of arms, legs and trunk in our
 new created file ‘FitnessMachine_With_Human.main.any’ to
-<code class="docutils literal"><span class="pre">_MUSCLES_NONE_</span></code>:</p>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">_MUSCLES_NONE_</span></code>:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;../libdef.any&quot;</span>
 
 <span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
@@ -284,10 +285,9 @@ setting a BM statement in the Main folder:</p>
 </pre></div>
 </div>
 <p>When you load this model, you will see the following warning message:</p>
-<dl class="simple">
+<dl class="docutils">
 <dt>::</dt>
-<dd><p>Model Warning: Study ‘Main.Study’ contains too few kinematic constraints to be kinematically determinate.</p>
-</dd>
+<dd>Model Warning: Study ‘Main.Study’ contains too few kinematic constraints to be kinematically determinate.</dd>
 </dl>
 <p>If you look at the Object Description of your AnyBodyStudy object, you
 can find the information about the number of DOFs and constraints of the
@@ -340,17 +340,17 @@ JointAndDrivers.any. And put it into the Model subfolder of your model
 folder to overwrite. Starting from the bottom of the human (the top of
 the file) the constraints applied are as follows:</p>
 <ul class="simple">
-<li><p>Feet are fixed to the pedals, though with a unilateral force normal
-to the pedal, since the feet are not “glued” to the pedal.</p></li>
-<li><p>Pelvis connected to the machine with a vertical cylindrical joint
-that allows the pelvis to rotate vertically and move up and down.</p></li>
-<li><p>Hands are fixed to the handles.</p></li>
-<li><p>Hip abduction is fixed at its initial condition value.</p></li>
-<li><p>The human CoM is kept at the symmetry plane of the machine.</p></li>
-<li><p>The sterno-clavicular joint angles are fixed at their initial
+<li>Feet are fixed to the pedals, though with a unilateral force normal
+to the pedal, since the feet are not “glued” to the pedal.</li>
+<li>Pelvis connected to the machine with a vertical cylindrical joint
+that allows the pelvis to rotate vertically and move up and down.</li>
+<li>Hands are fixed to the handles.</li>
+<li>Hip abduction is fixed at its initial condition value.</li>
+<li>The human CoM is kept at the symmetry plane of the machine.</li>
+<li>The sterno-clavicular joint angles are fixed at their initial
 condition values (however, if the shoulder rhythm is used, this
-driver is excluded).</p></li>
-<li><p>The glenohumeral abduction is fixed at its initial condition value.</p></li>
+driver is excluded).</li>
+<li>The glenohumeral abduction is fixed at its initial condition value.</li>
 </ul>
 <p>In this JointAndDrivers.any file, you will see that only the connections
 at the hands and feet have reaction types set to ‘On’. The other

@@ -1,7 +1,8 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -90,9 +91,8 @@ in AnyBody is designed to cope with most of the common deviations from
 the standard, but occasionally you may run into a problem. Here are some
 of the common problems and solutions:</p>
 <blockquote>
-<div><p>I know my C3D file contains data, but I cannot see any markers
-moving anywhere in the Model View.</p>
-</div></blockquote>
+<div>I know my C3D file contains data, but I cannot see any markers
+moving anywhere in the Model View.</div></blockquote>
 <p>There are two usual causes for this problem. The first one is a scaling
 issue. Data in C3D files is often in millimeters while standard settings
 in AnyBody such as coordinate system sizes, marker sizes and such are
@@ -116,8 +116,7 @@ leaving you with nothing in your model.</p>
 <p>which instructs AnyBody to read data from both the raw and the processed
 data sections.</p>
 <blockquote>
-<div><p>I get an error message when I load the model.</p>
-</div></blockquote>
+<div>I get an error message when I load the model.</div></blockquote>
 <p>Many things can go wrong when loading a C3D file, simply because the
 format of the file is relatively complex. The aim has been to make
 AnyBody tolerant of some of the more usual deviations from the standard,
@@ -133,9 +132,8 @@ file, for instance that a required section or header is missing. This
 can mean that AnyBody does not have the necessary information to process
 the file and has to give up.</p>
 <blockquote>
-<div><p>The markers I get in my loaded model have different names from what
-I expected.</p>
-</div></blockquote>
+<div>The markers I get in my loaded model have different names from what
+I expected.</div></blockquote>
 <p>When you have loaded a C3D file into an AnyBody model, the object can
 subsequently be browsed in the Model Tree in the left hand side of the
 screen. Markers in C3D files have user-defined names for easier
@@ -145,19 +143,19 @@ experiment. There are two possible reasons for this:</p>
 <p>The first reason is that AnyScript is a programming language and has
 rules about allowed characters in names. So if the marker names in the
 C3D file contain characters that have a special meaning, for instance
-<code class="docutils literal"><span class="pre">*</span></code> or <code class="docutils literal"><span class="pre">+</span></code>, then they are automatically replaced by a text string of
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">*</span></code> or <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">+</span></code>, then they are automatically replaced by a text string of
 the decimal ASCII code of the sign surrounded by underscores, for
-instance <code class="docutils literal"><span class="pre">_42_</span></code> instead of <code class="docutils literal"><span class="pre">*</span></code>.</p>
+instance <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">_42_</span></code> instead of <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">*</span></code>.</p>
 <p>The second possible reason is more subtle. The C3D standard has a
 liberal length constraint (128 characters) on names of markers, but the
 experimental community often uses strings of just four characters to
 name markers, and this implicit convention has influenced some types of
 software to truncate marker labels to four characters. So, if you have
-named your markers <code class="docutils literal"><span class="pre">MARKERRKNEE</span></code>, <code class="docutils literal"><span class="pre">MARKERLKNEE</span></code>, <code class="docutils literal"><span class="pre">MARKERSTERNUM</span></code> and so
+named your markers <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MARKERRKNEE</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MARKERLKNEE</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MARKERSTERNUM</span></code> and so
 on, and your C3D file somewhere in the pipeline from experiment to
 AnyBody passes through a piece of software that truncates the names,
 then AnyBody will be given a C3D file where all the marker names are
-truncated to just <code class="docutils literal"><span class="pre">MARK</span></code>. AnyBody will not accept non-unique marker
+truncated to just <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MARK</span></code>. AnyBody will not accept non-unique marker
 names and therefore renames them automatically.</p>
 </div>
 

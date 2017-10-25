@@ -1,7 +1,8 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -260,7 +261,7 @@ of the body it may appear that some bone are simply to coarse for a
 detailed analysis. But of course you are free to import your own .stl
 file into the AnyBody Modeling System to substitute existing bones.
 You will have to tweak your CAD file a bit in order to make it fit.
-<a class="reference external" href="mailto:anybody&#37;&#52;&#48;anybodytech&#46;com">Donation of better quality CAD files of bones to the models is most
+<a class="reference external" href="mailto:anybody&#37;&#52;&#48;anybodytech&#46;com">Donation of better quality CAD files of bones to the models&nbsp;is most
 welcome<span>&#46;</span></a></p>
 <p>Based on the exported forces and <code class="docutils literal"><span class="pre">.stl</span></code> file we can now build and analyze
 a FE model. Below we shall build an FE model applying the loads and
@@ -280,11 +281,11 @@ body.</p>
 <p>With a stress level of approx. 0.5 MPa in the cancellous bone we are
 pretty far away from the yield strength, so we can conclude that it
 appears to be ok for aquarium owners to lift their pets in an
-aquarium of this size. But of course we did some generous shortcuts to achieve this goal and
+aquarium&nbsp;of this size. But of course we did some generous shortcuts to achieve this goal and
 neglected a lot of detail which is provided by the AnyBody Modeling
 System.</p>
 <div class="section" id="building-the-fe-model">
-<h2> Building the FE-model<a class="headerlink" href="#building-the-fe-model" title="Permalink to this headline">¶</a></h2>
+<h2>&nbsp;Building the FE-model<a class="headerlink" href="#building-the-fe-model" title="Permalink to this headline">¶</a></h2>
 <p>In this section a short description of how to build a Finite Element
 model using AnyBody data is given. If you are an experienced FE user
 you may want to skip this section.</p>
@@ -310,16 +311,15 @@ programs if you want to do some hands-on FEA.</p>
 <h3>Building the model - preprocessing<a class="headerlink" href="#building-the-model-preprocessing" title="Permalink to this headline">¶</a></h3>
 <p>A file with the finished model is provided below, in case you do not
 want to go through the entire model building process.</p>
-<dl class="simple">
+<dl class="docutils">
 <dt>Open IA-FEMesh and press the “Surface” tab to load your (earlier</dt>
-<dd><p>exported) <code class="docutils literal"><span class="pre">.stl</span></code> file. After successful loading we have to define a
+<dd>exported) <code class="docutils literal"><span class="pre">.stl</span></code> file. After successful loading we have to define a
 building block. The building block is a prerequisite to the mesh
 generation and its surfaces will be meshed and further projected on
 the bone. For reasons of simplicity it has been prepared. Please press
 the “Block” tab and chose “Load”. Browse to the folder “FEA” which is
 inside the “StandingLiftFE” application folder. Choose the file
-<code class="docutils literal"><span class="pre">L5_block.vtk</span></code>. Some boxes around the vertebral body will appear.</p>
-</dd>
+<code class="docutils literal"><span class="pre">L5_block.vtk</span></code>. Some boxes around the vertebral body will appear.</dd>
 </dl>
 <p><a class="reference internal" href="../_images/image41.jpeg"><img alt="FEA tutorial Mesh" src="../_images/image41.jpeg" style="width: 4.16806in; height: 4.47222in;" /></a></p>
 <p>In the next step, we will have a look at the local mesh density and
@@ -462,19 +462,18 @@ look at the Calculix help file for more information on this). Here are
 two examples for the von-Mises stresses in the middle of the cross
 section of the vertebral body:</p>
 <blockquote>
-<div><p><a class="reference internal" href="../_images/image31.jpeg"><img alt="FEA tutorial von-Mises 2" src="../_images/image31.jpeg" style="width: 5.14375in; height: 2.29583in;" /></a></p>
-</div></blockquote>
+<div><a class="reference internal" href="../_images/image31.jpeg"><img alt="FEA tutorial von-Mises 2" src="../_images/image31.jpeg" style="width: 5.14375in; height: 2.29583in;" /></a></div></blockquote>
 <p>This completes Lesson 1.</p>
 <p>In the following lessons, we show somewhat more automatic interfaces to
 selected commercial FE packages using small interface tools</p>
 <p>Click here to continue to</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2: ANSYS interface</span></a>.</p></li>
-<li><p><a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: ABAQUS interface</span></a></p></li>
+<li><a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2: ANSYS interface</span></a>.</li>
+<li><a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: ABAQUS interface</span></a></li>
 </ul>
 <div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> <a class="reference internal" href="#"><span class="doc">Lesson 1: Export of data for FEA</span></a>.</p>
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="#"><span class="doc">Lesson 1: Export of data for FEA</span></a>.</p>
 </div>
 </div>
 </div>
@@ -516,7 +515,7 @@ selected commercial FE packages using small interface tools</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Finite Element Analysis Interfacing</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 1: Export of data for FEA</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#building-the-fe-model"> Building the FE-model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-fe-model">&nbsp;Building the FE-model</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#building-the-model-preprocessing">Building the model - preprocessing</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#solve-and-postprocessing">Solve and postprocessing</a></li>
 </ul>

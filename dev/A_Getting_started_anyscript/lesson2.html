@@ -1,7 +1,8 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -74,7 +75,7 @@ previous lesson:
 are the rigid elements that represent your model. When modeling a human,
 they usually correspond to the bones of the body. However, they can also
 be used to model machines, exoskeletons and other non-human model
-components. Hence the more general term “segment” <a class="footnote-reference brackets" href="#f1" id="id1">1</a>.</p>
+components. Hence the more general term “segment” <a class="footnote-reference" href="#f1" id="id1">[1]</a>.</p>
 <p>A segment is just a coordinate system that can move around in space and
 change its orientation. It has an origin where its center of mass is
 assumed to be located, and it has axes coinciding with its principal
@@ -101,7 +102,7 @@ following text to your model (new text marked by red):</p>
 <span class="p">};</span> <span class="c1">// ArmModel</span>
 </pre></div>
 </div>
-<p>Try loading the model by clicking the <img alt="Load button image" src="../_images/image14.png" /> icon or the
+<p>Try loading the model by clicking the&nbsp;<img alt="Load button image" src="../_images/image14.png" /> icon or the
 F7 key. If you expand the ArmModel branch in the tree view, you should
 see a new, empty folder named Segs. We are now ready to add a segment to
 the model, and this would probably be a good time to introduce you to
@@ -137,8 +138,8 @@ optional. You can delete any unnecessary optinal properties. For AnySeg,
 Mass and Jii are mandatory properties. The former is the mass of the
 segment object while the latter is the diagonal elements of its inertia
 tensor.</p>
-<p>Let us give the new segment the name UpperArm and set its Mass = 2 and
-also assign reasonable values for Jii:</p>
+<p>Let us give the&nbsp;new segment the name UpperArm and set its Mass = 2 and
+also assign reasonable values for&nbsp;Jii:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="gr">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">//r0 = {0, 0, 0};</span>
   <span class="c1">//Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};</span>
@@ -170,7 +171,7 @@ object which defines visibility:</p>
 <p>Reload the model, and look at the Model View (you might have to press
 the <img alt="Zoom button image" src="../_images/image32.png" /> zoom all button to locate your segment) . If you
 entered the inertia properties in the Jii specification as written
-above, then your ellipsoid should be ten times as long as it is wide.
+above, then your ellipsoid should be&nbsp;ten times&nbsp;as long as it is wide.
 Try changing the “0.001” to “0.01” and reload. The ellipsoid becomes
 spherical. The dimensions of the ellipsoid are scaled this way to fit
 the mass properties of the segment you are defining. Now change Jii back
@@ -304,8 +305,8 @@ UpperArm segment looks like this:</p>
 vectors for the coordinate system orientation you want and insert them
 into the Axes0 specification instead of the existing ones.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Note that matrices in AnyBody are arranged row-wise, so {1, 0, 0} in Axes0 is the
+<p class="first admonition-title">Note</p>
+<p class="last">Note that matrices in AnyBody are arranged row-wise, so {1, 0, 0} in Axes0 is the
 first row of a 3x3 matrix.</p>
 </div>
 <p>There is an easier solution for generating the rotation matrix:
@@ -323,24 +324,25 @@ the multiplication of the angle by pi/180. AnyBody identifies the word
 “pi” as 3.14159… and dividing this with 180 gives the conversion
 factor between degrees and radians.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Angles in AnyBody are always in radians.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">Angles in AnyBody are always in radians.</p>
 </div>
 <p>In the next section, we will look at how joints can be used to constrain
 the movement of segments and allow them to articulate the way we desire.</p>
 <div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> So if you are up to it, let’s continue onward to <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Connecting segments by joints</span></a>.</p>
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> So if you are up to it, let’s continue onward to <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Connecting segments by joints</span></a>.</p>
 </div>
 <p class="rubric">Footnotes</p>
-<dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>In rigid body dynamics terminology, a “segment” would be called a
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In rigid body dynamics terminology, a “segment” would be called a
 “rigid body”, but to avoid unnecessary confusion between the rigid
 bodies and the total body model, we have chosen to use “segments” for
-the rigid parts of the model.</p>
-</dd>
-</dl>
+the rigid parts of the model.</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 

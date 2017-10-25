@@ -1,7 +1,8 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
@@ -190,13 +191,13 @@ one additional, physiological requirement that we have not touched upon,
 and on the MinMaxAux criterion fails on that. To understand it, let us
 make a thought experiment:</p>
 <ol class="arabic simple">
-<li><p>We create a model of a person lifting a box. The mass of the box is
+<li>We create a model of a person lifting a box. The mass of the box is
 10 kg. The muscle recruitment algorithm will return some distribution
-of load between the muscles in the system.</p></li>
-<li><p>Then we change the mass of the box to 5 kg and run the model again.
+of load between the muscles in the system.</li>
+<li>Then we change the mass of the box to 5 kg and run the model again.
 This gives us a different muscle recruitment pattern. Probably the
-muscles would now be somewhat less loaded than before.</p></li>
-<li><p>Now we create a model with two people in it. This is entirely
+muscles would now be somewhat less loaded than before.</li>
+<li>Now we create a model with two people in it. This is entirely
 possible to do in AnyBody. The two human models are exactly the same
 as before and one is lifting a 10 kg box, and the other is lifting a
 5 kg box. Since the two body models are completely independent from
@@ -206,14 +207,14 @@ they are inside a single model to be exactly the same as we got for
 the two single-body models we had before. And this would be the case
 with the polynomial criteria of any degree and with the MinMaxStrict
 criterion, but it would not be the case with the MinMaxAux criterion,
-and this does not seem to be right.</p></li>
+and this does not seem to be right.</li>
 </ol>
 <p>So the conclusion is that the MinMaxAux criterion, despite its
 attractive features, should be used with care in models where there is a
 chance that some model parts are independent of each other.</p>
 <div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> Let us carry on with <a class="reference internal" href="lesson_calibration.html"><span class="doc">Lesson 7: Calibration</span></a></p>
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> Let us carry on with <a class="reference internal" href="lesson_calibration.html"><span class="doc">Lesson 7: Calibration</span></a></p>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
