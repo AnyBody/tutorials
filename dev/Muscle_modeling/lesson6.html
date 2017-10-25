@@ -123,10 +123,10 @@ downwards at the hand.</p>
 <p>The lack of muscles means that the model cannot currently do an inverse
 dynamics analysis. If you try to run the&nbsp;InverseDynamicAnalysis
 operation, you will get the following error message:</p>
-<p><em>ERROR&nbsp; :&nbsp;&nbsp; C:\Documents and Settings\jr\My
-Documents\AnyScripts\demo\MuscleDemo\MuscleDemo.6.any(103)&nbsp; :
-ArmStudy&nbsp;&nbsp; :&nbsp;&nbsp; Muscle recruitment analysis failed, simplex solver found
-that problem was unbounded.</em></p>
+<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span>ERROR: C:\\Documents and Settings\\jr\\My
+Documents\\AnyScripts\\demo\\MuscleDemo\\MuscleDemo.6.any(103):</code>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ArmStudy</span><span class="o">:</span> <span class="n">Muscle</span> <span class="n">recruitment</span> <span class="n">analysis</span> <span class="n">failed</span><span class="p">,</span> <span class="n">simplex</span> <span class="n">solver</span> <span class="n">found</span>
+<span class="n">that</span> <span class="n">problem</span> <span class="n">was</span> <span class="n">unbounded</span><span class="p">.</span></code></p>
 <p>which is a mathematical way of stating that the model cannot be balanced
 in the absence of muscles. In this case we are not going to add real
 muscles. Instead we shall add general muscles to the revolute joints.
@@ -161,17 +161,15 @@ AnyGeneralMuscle in the class tree, and insert a template:</p>
 </div>
 <p>Just as normal muscles, general muscles must be associated with a muscle
 model. Let us insert a simple one:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="gr">AnyMuscleModel &lt;ObjectName&gt; = {</span>
-<span class="gr">     F0 = 0;</span>
-<span class="gr">   };</span>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">AnyMuscleModel &lt;ObjectName&gt; = {</span>
+<span class="gr">   F0 = 0;</span>
+<span class="gr"> };</span>
 
-  <span class="kt">AnyGeneralMuscle</span> <span class="o">&lt;</span><span class="n">ObjectName</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">{</span>
-     <span class="c1">//ForceDirection = -1.000000;</span>
-     <span class="kt">AnyKinMeasure</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span>
-<span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
-     <span class="kt">AnyMuscleModel</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span>
-<span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
-   <span class="p">};</span>
+<span class="kt">AnyGeneralMuscle</span> <span class="o">&lt;</span><span class="n">ObjectName</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="c1">//ForceDirection = -1.000000;</span>
+   <span class="kt">AnyKinMeasure</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span> <span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+   <span class="kt">AnyMuscleModel</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span> <span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+ <span class="p">};</span>
 </pre></div>
 </div>
 <p>The empty fields in the muscle model must be filled in:</p>
@@ -324,18 +322,18 @@ the hand move vertically, so we drive the hand directly instead.</p>
  <span class="gr"> /*</span>
    <span class="c1">//---------------------------------</span>
    <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ShoulderMotion</span> <span class="o">=</span> <span class="p">{</span>
-   <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
-   <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">1.7</span><span class="p">};</span>
-   <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.4</span><span class="p">};</span>
-   <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+      <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
+      <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">1.7</span><span class="p">};</span>
+      <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.4</span><span class="p">};</span>
+      <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
    <span class="p">};</span> <span class="c1">// Shoulder driver</span>
 
    <span class="c1">//---------------------------------</span>
    <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ElbowMotion</span> <span class="o">=</span> <span class="p">{</span>
-   <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Elbow</span><span class="p">;</span>
-   <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.5</span><span class="p">};</span>
-   <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.7</span><span class="p">};</span>
-   <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+      <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Elbow</span><span class="p">;</span>
+      <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.5</span><span class="p">};</span>
+      <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.7</span><span class="p">};</span>
+      <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
    <span class="p">};</span> <span class="c1">// Elbow driver</span>
 
  <span class="gr">*/</span>
