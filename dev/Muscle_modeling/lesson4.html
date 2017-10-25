@@ -138,7 +138,7 @@ statement, and change the cylinder parameters as shown below:</p>
 insertion point of the cylinder is at {0, 0, 0.2} corresponding exactly
 to half of the length of the cylinder of 0.4. This causes the cylinder
 to be inserted symmetrically about the xy plane as illustrated below:</p>
-<p><a class="reference internal" href="../_images/image17.jpeg"><img alt="wrapcylinder" src="../_images/image17.jpeg" style="width: 3.12500in; height: 2.23958in;" /></a></p>
+<p><img alt="wrapcylinder" src="../_images/image17.jpeg" /></p>
 <p>The cylinder direction is always z in the coordinate direction of the
 object that the cylinder is inserted into. So, if the cylinder does not
 have the orientation you want, then the key to rotate it correctly is to
@@ -159,7 +159,7 @@ interesting:</p>
 </pre></div>
 </div>
 <p> Which causes the cylinder to rotate 20 degrees about the y axis.</p>
-<p><a class="reference internal" href="../_images/image26.jpeg"><img alt="wrap cylinder rotated" src="../_images/image26.jpeg" style="width: 3.12500in; height: 2.41667in;" /></a></p>
+<p><img alt="wrap cylinder rotated" src="../_images/image26.jpeg" /></p>
 <p>There are a couple of things to notice about the cylinder: First of all
 the graphics looks like the cylinder is faceted. This is not really the
 case. Graphically it is displayed with facets out of consideration of
@@ -277,7 +277,7 @@ that case the solution is to increase the number of points.</p>
 <p>It is time to see what we have done. If you load the model and run the
 InverseDynamicAnalysis (and have done everything right), you will see
 the model moving through a sequence of positions like this:</p>
-<p><a class="reference internal" href="../_images/image33.jpeg"><img alt="wrap cylinder with via point sequence" src="../_images/image33.jpeg" style="width: 6.25000in; height: 2.03125in;" /></a></p>
+<p><img alt="wrap cylinder with via point sequence" src="../_images/image33.jpeg" /></p>
 <p>As mentioned above, wrapping muscles can also have via points. In fact,
 we can easily change the via point muscle, Muscle1,  to wrap over the
 cylinder even though it also has a via point:</p>
@@ -300,7 +300,7 @@ cylinder even though it also has a via point:</p>
 to change the type from AnyViaPointMuscle to AnyShortestPathMuscle and
 insert the wrapping surface and the StringMesh specification. This gives
 us the following result:</p>
-<p><a class="reference internal" href="../_images/image46.jpeg"><img alt="wrap cylinder two muscles" src="../_images/image46.jpeg" style="width: 3.12500in; height: 2.31250in;" /></a></p>
+<p><img alt="wrap cylinder two muscles" src="../_images/image46.jpeg" /></p>
 <p>As you can see, both muscles are now wrapping over the cylinder, and we
 can run the InverseDynamicAnalysis. It seems to work, but the system
 provides the following warning:</p>
@@ -361,7 +361,7 @@ definition of springs or rubber bands.</p>
 Step button rather than the run button. This will show you how the
 system uses the InitWrapVectors to pull the muscle to the other side of
 the cylinder:</p>
-<p><a class="reference internal" href="../_images/image53.jpeg"><img alt="wrap cylinder Init wrap vectors" src="../_images/image53.jpeg" style="width: 3.12500in; height: 1.81250in;" /></a></p>
+<p><img alt="wrap cylinder Init wrap vectors" src="../_images/image53.jpeg" /></p>
 <p>If you keep pressing the step button you will see how the muscle now
 wraps on the other side of the cylinder.</p>
 <p>With the kinematics of muscles well under control, we can proceed to

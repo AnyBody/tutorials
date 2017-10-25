@@ -77,7 +77,7 @@ extending and the muscle bulging just like you saw with the baseline
 model. However, inside the joint, much more is now going on. We can
 investigate this in detail if we open a ChartFX window and browse down
 to the linear measure inside the joint:</p>
-<p><a class="reference internal" href="../_images/image121.png"><img alt="Chart view Linear pos" src="../_images/image121.png" style="width: 4.54286in; height: 2.96800in;" /></a></p>
+<p><img alt="Chart view Linear pos" src="../_images/image121.png" /></p>
 <p>The red curve is the deformation of the joint in the <em>x</em> direction, i.e.
 parallel with the tibial plateau. Despite the stiffness being smaller in
 this direction, the deformation is rather small. This is of course due
@@ -89,7 +89,7 @@ precisely to get some large deformations to look at. If you right-click
 the blue condyle, select ‘Hide” from the context menu and zoom in on the
 joint, you can see the deformation very clearly as a penetration of the
 shank part of the joint into the thigh part:</p>
-<p><a class="reference internal" href="../_images/image216.png"><img alt="Model view Knee close up" src="../_images/image216.png" style="width: 4.54286in; height: 2.40718in;" /></a></p>
+<p><img alt="Model view Knee close up" src="../_images/image216.png" /></p>
 <p>Now let us try something that will create a larger shear deformation in
 the joint: we relocate the position of the insertion node of the
 quadriceps muscle on the tibia:</p>
@@ -112,15 +112,15 @@ quadriceps muscle on the tibia:</p>
 </div>
 <p>This moves the insertion point of the node from the surface of the tibia
 to centerline of the tibia as shown below:</p>
-<p><a class="reference internal" href="../_images/image314.png"><img alt="Model view Knee wrapping sureface" src="../_images/image314.png" style="width: 3.25000in; height: 2.09176in;" /></a></p>
+<p><img alt="Model view Knee wrapping sureface" src="../_images/image314.png" /></p>
 <p>Obviously, this causes the muscle to pull much more anteriorly on the
 shank. Please reload and re-run the analysis and investigate the
 deformations once again in the ChartFX window.</p>
-<p><a class="reference internal" href="../_images/image413.png"><img alt="Chart view Linear pos 2" src="../_images/image413.png" style="width: 4.33571in; height: 2.81099in;" /></a></p>
+<p><img alt="Chart view Linear pos 2" src="../_images/image413.png" /></p>
 <p>The shear deformation, symbolized by the green curve, is now comparable
 with the normal deformation depicted by the red curve, and once again it
 is easily visible if we remove the blue condyle from the Model View:</p>
-<p><a class="reference internal" href="../_images/image59.png"><img alt="Model view Knee close up 2" src="../_images/image59.png" style="width: 2.72857in; height: 1.75615in;" /></a></p>
+<p><img alt="Model view Knee close up 2" src="../_images/image59.png" /></p>
 <p>At this point, we can reflect a bit on what the FDK solver within the
 InverseDynamics analysis actually does. Basically, it finds equilibrium
 for the degrees of freedom that you have specified as ‘ForceDep’. It is
@@ -142,7 +142,7 @@ therefore it will leave a small residual. You can monitor this residual
 in the output data; in the figure below you see the curve for the
 error/residual (Main.Study.InverseDynamics.ForceDepKin.ForceError) for
 the example at hand</p>
-<p><a class="reference internal" href="../_images/image64.png"><img alt="Chart view ForceDepKin.ForceError" src="../_images/image64.png" style="width: 4.31429in; height: 3.43051in;" /></a></p>
+<p><img alt="Chart view ForceDepKin.ForceError" src="../_images/image64.png" /></p>
 <p>In this example, the error is completely insignificant and within the
 specified error tolerance
 (Main.Study.InverseDynamics.ForceDepKin.ForceTol). It can, however,

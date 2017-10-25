@@ -126,7 +126,7 @@ disk)*</a>:</p>
    <span class="c1">// The study: Operations to be performed on the model</span>
    <span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
      <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
-    <span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="n">MR</span><span class="o">*</span><span class="n">MinMaxStrict</span><span class="p">;</span>
+     <span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="n">MR</span><span class="o">*</span><span class="n">MinMaxStrict</span><span class="p">;</span>
      <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
    <span class="p">};</span>
  <span class="p">};</span>  <span class="c1">// Main</span>
@@ -134,7 +134,7 @@ disk)*</a>:</p>
 </div>
 <p>When you load the model, open a model view window, and run the
 SetInitialConditions operation, you should get the following picture:</p>
-<p><a class="reference internal" href="../_images/image14.jpeg"><img alt="simple model" src="../_images/image14.jpeg" style="width: 2.08333in; height: 2.00000in;" /></a></p>
+<p><img alt="simple model" src="../_images/image14.jpeg" /></p>
 <p>The model has a driver, so you can run the kinematic analysis and see
 the movement. The arm flexes about the origin of the red reference
 frame. If you try to run the InverseDynamicAnalysis, you will get an
@@ -150,7 +150,7 @@ possible version.</p>
 <p>If you pick the Classes tab in the right-hand side of the Window, then
 you will get access to the class tree. Expand the tree as shown in the
 picture until you get to the AnyMuscleModel.</p>
-<p><a class="reference internal" href="../_images/image230.png"><img alt="class tree" src="../_images/image230.png" style="width: 2.98958in; height: 3.34375in;" /></a></p>
+<p><img alt="class tree" src="../_images/image230.png" /></p>
 <p>Notice that this class has three derived classes. These are more
 advanced muscle models, and we shall get to those later. However for the
 time being, place the cursor in the Editor View on an empty line just
@@ -207,10 +207,10 @@ with via point muscles.</p>
 <p>Place the cursor right after the end brace of the musle model,
 right-click the AnyViaPointMuscle class in the tree, and insert an
 instance of it:</p>
-<p><a class="reference internal" href="../_images/image328.png"><img alt="class tree AnyViaPointMuscle" src="../_images/image328.png" style="width: 2.90625in; height: 2.71875in;" /></a></p>
+<p><img alt="class tree AnyViaPointMuscle" src="../_images/image328.png" /></p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyMuscleModel</span> <span class="n">SimpleModel</span> <span class="o">=</span> <span class="p">{</span>
       <span class="n">F0</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-    <span class="p">};</span>
+   <span class="p">};</span>
 
    <span class="gr"> AnyViaPointMuscle &lt;ObjectName&gt; = {</span>
 <span class="gr">      AnyMuscleModel &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
@@ -276,11 +276,11 @@ run the SetInitialConditions study you will get the following picture
 (if your model does not load, and you cannot find the error, <a class="reference download internal" href="../_downloads/MuscleDemo.1.any" download=""><code class="xref download docutils literal"><span class="pre">click</span>
 <span class="pre">here</span> <span class="pre">to</span> <span class="pre">download</span> <span class="pre">a</span> <span class="pre">model</span> <span class="pre">that</span> <span class="pre">works</span></code></a>
 (MuscleDemo.1.any)):</p>
-<p><a class="reference internal" href="../_images/image44.jpeg"><img alt="simple model with muscle" src="../_images/image44.jpeg" style="width: 2.08333in; height: 2.00000in;" /></a></p>
+<p><img alt="simple model with muscle" src="../_images/image44.jpeg" /></p>
 <p>Notice that the muscle is now able to balance the gravity, and we are
 able to run the InverseDynamicAnalysis. If you try it out and
 subsequently open a chart view, you are able to plot the muscle force:</p>
-<p><a class="reference internal" href="../_images/image516.png"><img alt="http://www.anybodytech.com/fileadmin/AnyBody.3.x.x/tutorial/MuscleModeling/muscleforce1.gif" src="../_images/image516.png" style="width: 5.43750in; height: 3.68750in;" /></a></p>
+<p><img alt="http://www.anybodytech.com/fileadmin/AnyBody.3.x.x/tutorial/MuscleModeling/muscleforce1.gif" src="../_images/image516.png" /></p>
 <p>The muscle force is the item Fm in the list of properties you can plot
 for a muscle. As you can see, lots of other properties are available,
 but if you try to plot them you will find that many of them are zero.

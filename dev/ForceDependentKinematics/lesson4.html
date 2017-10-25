@@ -81,7 +81,7 @@ To do this, we add some STL surfaces for theses implants to the model
 and use them to calculate a contact force, which changes the joint
 kinematics by making the implant surfaces slide along each other in the
 simulated motion.</p>
-<p><a class="reference internal" href="../_images/image1.jpg"><img alt="Model view Implant surfaces" src="../_images/image1.jpg" style="width: 4.02716in; height: 3.11484in;" /></a></p>
+<p><img alt="Model view Implant surfaces" src="../_images/image1.jpg" /></p>
 <p>Due to the Force Dependent Kinematics (FDK), the joint axis for the knee
 moves as a function of external forces and muscle forces. In this lesson
 we want to have a closer look at this migration. We start by adding an
@@ -232,7 +232,7 @@ position and define the AnySurfSTL inside this node:</p>
 center, we can see that the surfaces penetrate each other quite a lot,
 so just putting in the geometries into the model does not change
 anything except that the locations of the two implants are now visible.</p>
-<p><a class="reference internal" href="../_images/image2.jpg"><img alt="Model view knee closeup" src="../_images/image2.jpg" style="width: 4.02716in; height: 3.11484in;" /></a></p>
+<p><img alt="Model view knee closeup" src="../_images/image2.jpg" /></p>
 <p>Now, we want to make the surfaces slide along each other. Therefore, we
 define a contact force that pushes the surfaces apart as soon as they
 are in contact. We define an AnyForceSurfaceContact and place it just
@@ -257,7 +257,7 @@ just become zero.</p>
 <p>Running the simulation now shows that the tibial plateau slides along
 the femoral condyle and the reference frames defined in the knee centers
 stay close to each other.</p>
-<p><a class="reference internal" href="../_images/image3.jpg"><img alt="Model view knee closeup 2" src="../_images/image3.jpg" style="width: 4.02716in; height: 3.11484in;" /></a></p>
+<p><img alt="Model view knee closeup 2" src="../_images/image3.jpg" /></p>
 <p>While running the analysis, we can see that in many steps the system
 cannot be solved with the requested error tolerance. The reason for this
 problem is that small changes in the position can result in big changes

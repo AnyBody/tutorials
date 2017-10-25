@@ -118,7 +118,7 @@ AnyScript</em> tutorial, where the muscles have been removed. The model has
 two segments, an upper arm and a forearm, and is attached to the global
 reference frame at the shoulder. It has a 100 N vertical load acting
 downwards at the hand.</p>
-<p><a class="reference internal" href="../_images/image18.jpeg"><img alt="Arm 2D" src="../_images/image18.jpeg" style="width: 3.12500in; height: 2.86458in;" /></a></p>
+<p><img alt="Arm 2D" src="../_images/image18.jpeg" /></p>
 <p>The lack of muscles means that the model cannot currently do an inverse
 dynamics analysis. If you try to run the InverseDynamicAnalysis
 operation, you will get the following error message:</p>
@@ -132,32 +132,30 @@ muscles. Instead we shall add general muscles to the revolute joints.
 The best way to introduce a general muscle is to insert it from the
 class tree. Place the cursor after the Drivers folder, locate the
 AnyGeneralMuscle in the class tree, and insert a template:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>    <span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span> <span class="p">{</span>
 
-     <span class="c1">//---------------------------------</span>
-     <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ShoulderMotion</span> <span class="o">=</span> <span class="p">{</span>
-       <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
-       <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">1.7</span><span class="p">};</span>
-       <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.4</span><span class="p">};</span>
-       <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-     <span class="p">};</span> <span class="c1">// Shoulder driver</span>
+   <span class="c1">//---------------------------------</span>
+   <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ShoulderMotion</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
+     <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">1.7</span><span class="p">};</span>
+     <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.4</span><span class="p">};</span>
+     <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+   <span class="p">};</span> <span class="c1">// Shoulder driver</span>
 
-     <span class="c1">//---------------------------------</span>
-     <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ElbowMotion</span> <span class="o">=</span> <span class="p">{</span>
-       <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Elbow</span><span class="p">;</span>
-       <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.5</span><span class="p">};</span>
-       <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.7</span><span class="p">};</span>
-       <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-     <span class="p">};</span> <span class="c1">// Elbow driver</span>
-   <span class="p">};</span> <span class="c1">// Driver folder</span>
+   <span class="c1">//---------------------------------</span>
+   <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ElbowMotion</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Elbow</span><span class="p">;</span>
+     <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.5</span><span class="p">};</span>
+     <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.7</span><span class="p">};</span>
+     <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+   <span class="p">};</span> <span class="c1">// Elbow driver</span>
+ <span class="p">};</span> <span class="c1">// Driver folder</span>
 
-  <span class="gr">AnyGeneralMuscle &lt;ObjectName&gt; = {</span>
-<span class="gr">     //ForceDirection = -1;</span>
-<span class="gr">     AnyKinMeasure &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or</span>
-<span class="gr">full object definition)&gt;;</span>
-<span class="gr">     AnyMuscleModel &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or</span>
-<span class="gr">full object definition)&gt;;</span>
-<span class="gr">   };</span>
+<span class="gr">AnyGeneralMuscle &lt;ObjectName&gt; = {</span>
+<span class="gr">   //ForceDirection = -1;</span>
+<span class="gr">   AnyKinMeasure &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">   AnyMuscleModel &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr"> };</span>
 </pre></div>
 </div>
 <p>Just as normal muscles, general muscles must be associated with a muscle
@@ -236,7 +234,7 @@ direction:</p>
 open a new Chart View and look up the two joint torques as the Fm
 property of the general muscles. We can plot both of them simultaneously
 using an asterix as shown below:</p>
-<p><a class="reference internal" href="../_images/image23.gif"><img alt="Chart view, Torques" src="../_images/image23.gif" style="width: 5.62500in; height: 4.88542in;" /></a></p>
+<p><img alt="Chart view, Torques" src="../_images/image23.gif" /></p>
 <p>Notice that in this case we have used the same strength (muscle model)
 for both joints. However, the maximum joint torque in physiological
 joints varies a lot. The knee extension strength, for instance is
@@ -284,7 +282,7 @@ no reaction available in tension. Mathematically and mechanically this
 is very much how muscles work, and the conditions therefore affect the
 mechanics of the entire system much like muscles do and can be mimicked
 by means of general muscles.</p>
-<p><a class="reference internal" href="../_images/image34.jpeg"><img alt="Simple arm wall" src="../_images/image34.jpeg" style="width: 3.12500in; height: 2.89583in;" /></a></p>
+<p><img alt="Simple arm wall" src="../_images/image34.jpeg" /></p>
 <p>We are going to make a couple of changes to the simple arm model to
 investigate contact in more detail. We shall imagine that the hand of
 the model has a vertical wall to support against. We have to change the
@@ -354,7 +352,7 @@ line</p>
 </div>
 <p>This means that the wall presently provides no reaction forces to the
 arm. Plotting the MaxMuscleActivity provides the following result:</p>
-<p><a class="reference internal" href="../_images/image41.gif"><img alt="no reaction MaxMuscleActivity plot" src="../_images/image41.gif" style="width: 3.12500in; height: 2.43750in;" /></a></p>
+<p><img alt="no reaction MaxMuscleActivity plot" src="../_images/image41.gif" /></p>
 <p>The muscle activity is rather constant which is the natural consequence
 of the moment arms being rather constant. The gravity as well as the
 applied load of 100 N are vertical, so one might be tempted to think
@@ -367,7 +365,7 @@ driver:</p>
 <p>This produces immediate proof that mechanics is usually more complicated
 than expected; even this very simple mechanical system behaves
 differently from what we might expect:</p>
-<p><a class="reference internal" href="../_images/image51.gif"><img alt="Full reaction MaxMuscleActivity plot" src="../_images/image51.gif" style="width: 3.12500in; height: 2.43750in;" /></a></p>
+<p><img alt="Full reaction MaxMuscleActivity plot" src="../_images/image51.gif" /></p>
 <p>Notice that the muscle activity is much smaller in the beginning of the
 movement with the reaction switched on and much the same towards the end
 of the movement. It seems like the muscles are able to use the
@@ -412,7 +410,7 @@ wall would do.</p></li>
 torques provides the following graph (notice they can be plotted
 simultaneously with the specification line
 <code class="docutils literal"><span class="pre">Main.ArmStudy.Output.Model.*Torque.Fm</span></code>):</p>
-<p><a class="reference internal" href="../_images/image61.gif"><img alt="Joint torques plot" src="../_images/image61.gif" style="width: 3.12500in; height: 2.45833in;" /></a></p>
+<p><img alt="Joint torques plot" src="../_images/image61.gif" /></p>
 <p>The red curve is the shoulder joint torque, and the green curve is the
 elbow torque. Notice that the envelope of these two curves is in fact
 identical to the MaxMuscleActivity curve we plotted above for the case
@@ -435,7 +433,7 @@ the wall:</p>
 </pre></div>
 </div>
 <p>If you run the model again and plot the same graphs, you will see this:</p>
-<p><a class="reference internal" href="../_images/image7.gif"><img alt="Joint torques plot 2" src="../_images/image7.gif" style="width: 3.12500in; height: 2.45833in;" /></a></p>
+<p><img alt="Joint torques plot 2" src="../_images/image7.gif" /></p>
 <p>The wall is obviously useful in the initial stages of the movement where
 the torque generated by the reaction force is in the beneficial
 direction for both the joints. In the later stages of the movement the
