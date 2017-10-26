@@ -123,10 +123,9 @@ downwards at the hand.</p>
 <p>The lack of muscles means that the model cannot currently do an inverse
 dynamics analysis. If you try to run the&nbsp;InverseDynamicAnalysis
 operation, you will get the following error message:</p>
-<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span>ERROR: C:\\Documents and Settings\\jr\\My
-Documents\\AnyScripts\\demo\\MuscleDemo\\MuscleDemo.6.any(103):</code>
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ArmStudy</span><span class="o">:</span> <span class="n">Muscle</span> <span class="n">recruitment</span> <span class="n">analysis</span> <span class="n">failed</span><span class="p">,</span> <span class="n">simplex</span> <span class="n">solver</span> <span class="n">found</span>
-<span class="n">that</span> <span class="n">problem</span> <span class="n">was</span> <span class="n">unbounded</span><span class="p">.</span></code></p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>ERROR: MuscleDemo.6.any(103): ArmStudy: Muscle recruitment analysis failed, simplex solver found that problem was unbounded.
+</pre></div>
+</div>
 <p>which is a mathematical way of stating that the model cannot be balanced
 in the absence of muscles. In this case we are not going to add real
 muscles. Instead we shall add general muscles to the revolute joints.
