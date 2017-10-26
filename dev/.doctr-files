@@ -60,7 +60,6 @@ dev/Making_things_move/lesson3.html
 dev/Making_things_move/lesson4.html
 dev/Making_things_move/lesson5.html
 dev/Making_things_move/lesson6.html
-dev/Making_things_move/lesson7.html
 dev/MuscleRecruitment/Inverse_dynamics.html
 dev/MuscleRecruitment/index.html
 dev/MuscleRecruitment/lesson1.html
@@ -160,11 +159,11 @@ dev/_downloads/lesson3b.Main.any
 dev/_downloads/lesson3c.Main.any
 dev/_downloads/lesson3d.Main.any
 dev/_downloads/multiple.c3d
-dev/_downloads/multiple_with_dropout.c3d
 dev/_downloads/pendulum.any
 dev/_downloads/pendulum.c3d
 dev/_downloads/simplefemoral.stl
 dev/_downloads/simpletibial.stl
+dev/_images/Main.RunAnalysis.png
 dev/_images/_image1.PNG
 dev/_images/_image11.PNG
 dev/_images/_image2.PNG
@@ -183,8 +182,10 @@ dev/_images/_image8.PNG
 dev/_images/_image81.PNG
 dev/_images/_image9.PNG
 dev/_images/_image9.png
+dev/_images/charview_higher_hip_forces.png
 dev/_images/cutting.jpg
-dev/_images/image1.emf
+dev/_images/disable_modelview.png
+dev/_images/flow.png
 dev/_images/image1.gif
 dev/_images/image1.jpeg
 dev/_images/image1.jpg
@@ -195,7 +196,6 @@ dev/_images/image101.gif
 dev/_images/image101.png
 dev/_images/image102.png
 dev/_images/image103.png
-dev/_images/image104.png
 dev/_images/image11.gif
 dev/_images/image11.jpeg
 dev/_images/image11.png
@@ -321,7 +321,6 @@ dev/_images/image233.png
 dev/_images/image234.png
 dev/_images/image235.png
 dev/_images/image236.png
-dev/_images/image237.png
 dev/_images/image24.gif
 dev/_images/image24.jpeg
 dev/_images/image24.png
@@ -335,7 +334,6 @@ dev/_images/image26.jpeg
 dev/_images/image26.png
 dev/_images/image261.png
 dev/_images/image27.gif
-dev/_images/image27.jpeg
 dev/_images/image27.png
 dev/_images/image271.png
 dev/_images/image28.gif
@@ -343,7 +341,6 @@ dev/_images/image28.png
 dev/_images/image281.png
 dev/_images/image29.png
 dev/_images/image291.png
-dev/_images/image3.emf
 dev/_images/image3.gif
 dev/_images/image3.jpeg
 dev/_images/image3.jpg
@@ -398,7 +395,6 @@ dev/_images/image37.png
 dev/_images/image38.gif
 dev/_images/image38.png
 dev/_images/image39.png
-dev/_images/image4.emf
 dev/_images/image4.gif
 dev/_images/image4.jpeg
 dev/_images/image4.png
@@ -436,7 +432,6 @@ dev/_images/image46.png
 dev/_images/image47.png
 dev/_images/image48.png
 dev/_images/image49.png
-dev/_images/image5.emf
 dev/_images/image5.gif
 dev/_images/image5.jpeg
 dev/_images/image5.png
@@ -466,7 +461,6 @@ dev/_images/image56.png
 dev/_images/image57.png
 dev/_images/image58.png
 dev/_images/image59.png
-dev/_images/image6.emf
 dev/_images/image6.gif
 dev/_images/image6.jpeg
 dev/_images/image6.png
@@ -485,7 +479,6 @@ dev/_images/image66.png
 dev/_images/image67.png
 dev/_images/image68.png
 dev/_images/image69.png
-dev/_images/image7.emf
 dev/_images/image7.gif
 dev/_images/image7.jpeg
 dev/_images/image7.png
@@ -499,7 +492,6 @@ dev/_images/image75.png
 dev/_images/image76.png
 dev/_images/image77.png
 dev/_images/image78.png
-dev/_images/image8.emf
 dev/_images/image8.gif
 dev/_images/image8.png
 dev/_images/image81.gif
@@ -585,7 +577,6 @@ dev/_sources/Making_things_move/lesson3.rst.txt
 dev/_sources/Making_things_move/lesson4.rst.txt
 dev/_sources/Making_things_move/lesson5.rst.txt
 dev/_sources/Making_things_move/lesson6.rst.txt
-dev/_sources/Making_things_move/lesson7.rst.txt
 dev/_sources/MuscleRecruitment/Inverse_dynamics.rst.txt
 dev/_sources/MuscleRecruitment/index.rst.txt
 dev/_sources/MuscleRecruitment/lesson1.rst.txt
