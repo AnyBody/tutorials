@@ -1,6 +1,6 @@
 /* This file defines a subject-specific morphing law for the Lesson 4 of Scaling tutorial*/
 
-AnyFolder MyScalingLaw = {
+AnyFolder MyScalingFunction = {
   
   AnyFunTransform3DLin Transform = {
     ScaleMat = {{1,0,0},{0,1,0},{0,0,1}};
@@ -128,5 +128,5 @@ AnyFolder MyScalingLaw = {
     BoundingBoxOnOff = On;
   };
 
-};  // MyScalingLaw
+};  // MyScalingFunction
 

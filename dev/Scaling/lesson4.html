@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Lesson 2: Including a Custom Scaling Law &#8212; AnyBody Tutorials v7.0.1.dev</title>
+    <title>Lesson 2: Including a custom scaling function into your model &#8212; AnyBody Tutorials v7.0.1.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -32,7 +32,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Validation of Models" href="../Validation_of_models/index.html" />
-    <link rel="prev" title="Appendix: Scaling based on Patient-Specific Landmarks" href="lesson3_appendix.html" /> 
+    <link rel="prev" title="Appendix: Morphing based on landmarks" href="lesson3_appendix.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
@@ -51,11 +51,11 @@
           <a href="../Validation_of_models/index.html" title="Validation of Models"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson3_appendix.html" title="Appendix: Scaling based on Patient-Specific Landmarks"
+          <a href="lesson3_appendix.html" title="Appendix: Morphing based on landmarks"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Subject Specific Scaling</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Personalizing Your Model</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -66,10 +66,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-2-including-a-custom-scaling-law">
-<h1>Lesson 2: Including a Custom Scaling Law<a class="headerlink" href="#lesson-2-including-a-custom-scaling-law" title="Permalink to this headline">¶</a></h1>
-<p>This lesson explains how we can utilize our own custom scaling function
-which we designed in Lesson 3 and combine it with other scaling laws.</p>
+  <div class="section" id="lesson-2-including-a-custom-scaling-function-into-your-model">
+<h1>Lesson 2: Including a custom scaling function into your model<a class="headerlink" href="#lesson-2-including-a-custom-scaling-function-into-your-model" title="Permalink to this headline">¶</a></h1>
+<p>This lesson explains how we can use our own custom scaling function,
+which we designed in Lesson 3 and combine it with the overall human body scaling laws.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last">The section on scaling in the AMMR documentation.</p>
@@ -77,29 +77,30 @@ which we designed in Lesson 3 and combine it with other scaling laws.</p>
 <div class="section" id="preparing-for-subject-specific-scaling">
 <h2>Preparing for subject-specific scaling<a class="headerlink" href="#preparing-for-subject-specific-scaling" title="Permalink to this headline">¶</a></h2>
 <p>When creating a musculoskeletal model, we have to decide on the
-dimensions of the model components. The Scaling section in the AMMR documentation described how
-anthropometric regression equations and body measurements can be used to
-define these dimensions. However, the most precise models include
-subject-specific geometries of the bones. To explain how we can include
-these, let us consider a simple scenario: We have a model of a person
-who matches the standard size man and we want to perform an inverse
-dynamics analysis. Additionally, we have the geometry from a CT-scan of
-one of his femur bones. To increase the accuracy of our model, let us
-improve it using a subject-specific scaling for the femur.</p>
+dimensions of the body parts. The Scaling section in the AMMR
+documentation describes how anthropometric regression equations
+and body measurements can be used to define these dimensions.
+However, the most precise models include subject-specific geometries
+of the bones or morph the underlying template model to take these shapes.
+To explain how we can include these, let us consider a simple scenario:
+We have a model of a person who matches the standard size man and we want
+to perform an inverse dynamics analysis. Additionally, we have the geometry
+from a CT-scan of one of his left femur. To increase the accuracy of our model,
+let us improve it using a subject-specific scaling for the femur.</p>
 <p>First of all, let us prepare a model matching the standard size man to
 be the basis for further subject-specific improvements. Therefore we use the model from the
 first section <strong>ScalingStandard,</strong> StandingModelScalingDisplay from the
 AnyBody Managed Model Repository (AMMR). This is well suited to show how
 to use subject-specific geometry in a model.</p>
 </div>
-<div class="section" id="including-custom-scaling-for-a-single-bone">
-<h2>Including custom scaling for a single bone<a class="headerlink" href="#including-custom-scaling-for-a-single-bone" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="including-custom-scaling-for-a-single-segment">
+<h2>Including custom scaling for a single segment<a class="headerlink" href="#including-custom-scaling-for-a-single-segment" title="Permalink to this headline">¶</a></h2>
 <p>Let us configure this example to use ScalingStandard. We need to define
 <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="x x-Statements">BM_SCALING</span></code> as <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">_SCALING_STANDARD_</span></code> and out-comment all other parts of
 the scaling configuration block. With this setting, the model is now scaled to
-the generic size. We can now include individual scaling laws for each segment,
+the generic size. We can now include individual scaling functions for each segment,
 which will be done in a special file <em>CustomScaling.any</em>, where all the
-modifications related to individual segment morphing are supposed to be done.
+modifications related to individual segment morphing are recommended to be done.
 This file is already present in the example and you can include it as shown
 below:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cm">/*------------- SCALING CONFIGURATION SECTION --------------------*/</span>
@@ -132,6 +133,8 @@ below:</p>
 <span class="cp">#include</span> <span class="s">&quot;&lt;ANYBODY_PATH_BODY&gt;/HumanModel.any&quot;</span>
 </pre></div>
 </div>
+<p>In case you want to personalize your own model - just copy CustomScaling.any
+file into the Model folder and follow the instructions from this tutorial.</p>
 <p>If we open this file by a double click, we can see that a common place
 to make modifications has already been prepared. Further, we can find
 an access point to the geometrical scaling law folder, which will be
@@ -141,38 +144,36 @@ used to specify individual scaling laws.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>So let us introduce a custom scaling law for the left femur from
+<p>So let us introduce a custom scaling function for the left femur from
 <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 1</span></a>. We prepared a single file
-<a class="reference download internal" href="../_downloads/MyScalingLaw.any" download=""><code class="xref download docutils literal"><span class="pre">MyScalingLaw.any</span></code></a> holding the scaling
+<a class="reference download internal" href="../_downloads/MyScalingFunction.any" download=""><code class="xref download docutils literal"><span class="pre">MyScalingFunction.any</span></code></a> holding the scaling
 transforms from the previous lesson. We also need to download the
 <a class="reference download internal" href="../_downloads/SourceFemur.stl" download=""><code class="xref download docutils literal"><span class="pre">source</span></code></a> (native to AMMR) and
-<a class="reference download internal" href="../_downloads/TargetFemur.stl" download=""><code class="xref download docutils literal"><span class="pre">target</span></code></a> (courtesy of Prof. Sebastian
-Dendorfer, University of Regensburg, Germany) femur surface
+<a class="reference download internal" href="../_downloads/TargetFemur.stl" download=""><code class="xref download docutils literal"><span class="pre">target</span></code></a> (courtesy of Prof.
+Sebastian Dendorfer, OTH Regensburg, Germany) femur surface
 geometries, and copy them to the <em>Model</em> folder of the
 StandingModelScalingDisplay example. Now, we need to make several
 small adjustments to the scaling law for smooth incorporation into the
 model structure.</p>
-<p>Starting from the AMMR v1.6.2, individual segment scaling is
+<p>Starting from the AMMR v1.6.2, individual segment scaling function is
 implemented in the anatomical reference frame. We will call this frame
 a scaling reference frame, since there might be several definitions of
 anatomical reference frames. In general, the segmental frame can be
 different from the scaling reference frame. The human body model
 internally handles relevant reference frame changes without needing
 users to do anything. However, this leads to small modifications
-needed for the subject-specific scaling inclusion into the full-body
-model.</p>
-<p>In order to perform the scaling in another reference frame – all source
+needed for the subject-specific scaling function inclusion into
+the full-body model.</p>
+<p>In order to perform the scaling or moprhing in another reference frame – all source
 entities need to be moved into that reference frame. This can be done
-using a rigid body transformation to preserve sizes of the modelling
-objects. In our scaling law (MyScalingLaw.any) the source entities are</p>
+using a rigid body transformation to preserve sizes of all objects.
+In our scaling law (MyScalingFunction.any) the source entities are</p>
 <ul class="simple">
-<li>MyScalingLaw.AffineTransform.Points0,</li>
-<li>MyScalingLaw.RBFTransform.Points0,</li>
-<li>MyScalingLaw.STLTransform.Input.SourceSrf.</li>
+<li>MyScalingFunction.AffineTransform.Points0,</li>
+<li>MyScalingFunction.RBFTransform.Points0,</li>
+<li>MyScalingFunction.STLTransform.Input.SourceSrf.</li>
 </ul>
-<p>We just need to get the rigid body transformation that we do not know
-yet.</p>
-<p>In the version 1.6.2 such transformations will be segment dependent and
+<p>In the AMMR version 1.6.2 such transformations will be segment dependent and
 will only be needed for right and left shank and femur as well as for
 the pelvis. For all other segments this transform can be defined as an
 identity transformation or does not have to be applied to the source
@@ -186,10 +187,10 @@ the name that will be used further:</p>
 transform, TSeg2ScaleFrame, is already defined and can be found in the
 subfolder of HumanModel.Scaling.GeometricalScaling, which corresponds to
 the morphed segment and has a similar name. This transform can be easily
-accessed as demonstrated below.</p>
+accessed as demonstrated below and no extra actions are needed.</p>
 <p>Let us subject the source entities of the scaling law to the rigid body
 transformation, TSeg2ScaleFrame. We will need to make the following 3
-changes. Please note how we look up out of the <em>MyScalingLaw</em> folder
+changes. Please note how we look up out of the <em>MyScalingFunction</em> folder
 using double and quadruple dots:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="kt">AnyFunTransform3DLin2</span> <span class="n">AffineTransform</span> <span class="o">=</span>
   <span class="p">{</span>
@@ -231,7 +232,7 @@ using double and quadruple dots:</p>
 </pre></div>
 </div>
 <p>As you will see from the following changes the modification simply links
-the transformations to the folder containing our MyScalingLaw.any file.
+the transformations to the folder containing our MyScalingFunction.any file.
 In our case, this folder is
 HumanModel.Scaling.GeometricalScaling.Left.Thigh, which corresponds to
 the name of the segment, we are trying to morph, and contains our
@@ -242,8 +243,8 @@ CustomScaling.any:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">HumanModel</span><span class="p">.</span><span class="n">Scaling</span><span class="p">.</span><span class="n">GeometricalScaling</span> <span class="o">=</span> <span class="p">{</span>
 <span class="gr">#define CUSTOM_SCALING_Left_Thigh</span>
 <span class="gr">Left.Thigh = {</span>
-<span class="gr">  #include &quot;MyScalingLaw.any&quot;</span>
-<span class="gr">  AnyFunTransform3D &amp;ScaleFunction = MyScalingLaw.Transform;</span>
+<span class="gr">  #include &quot;MyScalingFunction.any&quot;</span>
+<span class="gr">  AnyFunTransform3D &amp;ScaleFunction = MyScalingFunction.Transform;</span>
 <span class="gr">};</span>
 <span class="p">};</span>
 </pre></div>
@@ -256,36 +257,36 @@ bone segment, e.g. <code class="docutils literal highlight highlight-AnyScriptDo
 different sides or <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">CUSTOM_SCALING_</span><span class="o">&lt;</span><span class="n">SegmentName</span><span class="o">&gt;</span></code> for parts of the
 body that do not have sides. You can find a list of segments by
 browsing the scaling law in the Model tab:</p>
-<p><a class="reference internal" href="../_images/image144.png"><img alt="Model tree" src="../_images/image144.png" style="width: 2.62778in; height: 6.43056in;" /></a></p>
+<a class="reference internal image-reference" href="../_images/image144.png"><img alt="../_images/image144.png" src="../_images/image144.png" style="width: 50%;" /></a>
 <p>The other change was to assign the new custom scaling function to be
 used in the segment of the left thigh instead of the excluded one. If
 we now comment in DrawExternalMeasures.any and look in the Model View,
 we can see that the left femur is now shorter and a little thinner
 than with the standard scaling. So we have now successfully introduced
 our custom scaling law into the model.</p>
-<p><a class="reference internal" href="../_images/image235.png"><img alt="Model view Lower body custom femur" src="../_images/image235.png" style="width: 3.37089in; height: 4.48958in;" /></a></p>
-<p>If we would have used a bone that does not have a mirrored pair, e.g.
-vertebrae, skull, etc., or we just want to scale a single side with a
-patient-specific scaling law, we would be finished now and could
-continue with running the inverse dynamics. But here, we want to
-continue and scale the other side as well. Normally we would use the
-patient-specific bones of the other side. In case that only one side
-is available, we can assume that the body is symmetric, which is
-typically true up to a certain accuracy. Thus, we will include a
-similar scaling for the corresponding mirrored pair. In the next
-section we will describe how to make mirroring modifications to our
+<a class="reference internal image-reference" href="../_images/image235.png"><img alt="../_images/image235.png" src="../_images/image235.png" style="width: 60%;" /></a>
+<p>If we worked with a bone that does not have a pair, e.g.
+vertebrae, skull, etc., or we just wanted to scale a single side with a
+patient-specific scaling function, we would be finished now and could
+continue with running the inverse dynamics. But as an exercise, we want to
+continue and scale the other side as well to ensure symmetry of the model.
+Normally we would use the patient-specific bones of the other side and
+copy the code. But in our case only one side is available. We will assume
+that the body is symmetric, which is typically true up to a certain extent.
+Thus, we will include a similar scaling for the corresponding mirrored pair.
+In the next section we will describe how to introduce mirroring to our
 transformation.</p>
 </div>
-<div class="section" id="introducing-a-mirrored-pair-of-a-custom-scaling">
-<h2>Introducing a mirrored pair of a custom scaling<a class="headerlink" href="#introducing-a-mirrored-pair-of-a-custom-scaling" title="Permalink to this headline">¶</a></h2>
-<p>We start by making a copy of MyScalingLaw.any that will be used to
-construct the mirrored transform and call it <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MyScalingLaw_Mirrored</span><span class="p">.</span><span class="n">any</span></code>.
+<div class="section" id="introducing-a-mirrored-custom-scaling-function">
+<h2>Introducing a mirrored custom scaling function<a class="headerlink" href="#introducing-a-mirrored-custom-scaling-function" title="Permalink to this headline">¶</a></h2>
+<p>We start by making a copy of MyScalingFunction.any that will be used to
+construct the mirrored transform and call it <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MyScalingFunction_Mirrored</span><span class="p">.</span><span class="n">any</span></code>.
 What we have to do is to define a symmetry plane and reflect relevant
 entities accordingly. In this example such plane corresponds to the
 global XY plane. To perform the reflection, we need to multiply all
-relevant landmark points contained in the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MyScalingLaw_Mirrored</span><span class="p">.</span><span class="n">any</span></code>
+relevant landmark points contained in the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MyScalingFunction_Mirrored</span><span class="p">.</span><span class="n">any</span></code>
 file by a mirroring matrix:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyScalingLaw</span><span class="gr">_Mirrored</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyScalingFunction</span><span class="gr">_Mirrored</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">AnyMatrix AMirroring = { // XY plane symmetry</span>
 <span class="gr">    {1,0,0},</span>
 <span class="gr">    {0,1,0},</span>
@@ -306,7 +307,7 @@ file by a mirroring matrix:</p>
     <span class="n">Points1</span> <span class="o">=</span> <span class="p">{...}</span> <span class="gr">* .AMirroring</span><span class="p">;</span>
     <span class="p">...</span>
   <span class="p">};</span>
-<span class="p">};</span>  <span class="c1">// MyScalingLaw§_Mirrored§</span>
+<span class="p">};</span>  <span class="c1">// MyScalingFunction§_Mirrored§</span>
 </pre></div>
 </div>
 <p>After mirroring the landmarks, we have to think about the surfaces
@@ -314,7 +315,7 @@ which were also used in the construction of this transform. So we have
 to reflect them too. This can be done easily by just changing the
 ScaleXYZ members of the input surfaces of the AnyFunTransform3DSTL
 class:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyScalingLaw_Mirrored</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyScalingFunction_Mirrored</span> <span class="o">=</span> <span class="p">{</span>
   <span class="p">...</span>
   <span class="kt">AnyFunTransform3DSTL</span> <span class="n">STLTransform</span> <span class="o">=</span>
   <span class="p">{</span>
@@ -342,7 +343,7 @@ class:</p>
     <span class="n">BoundingBoxOnOff</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
   <span class="p">};</span>
   <span class="p">...</span>
-<span class="p">};</span>  <span class="c1">// MyScalingLaw_Mirrored</span>
+<span class="p">};</span>  <span class="c1">// MyScalingFunction_Mirrored</span>
 </pre></div>
 </div>
 <p>Finally, we have to include the mirrored scaling into the model exactly
@@ -350,25 +351,24 @@ the same way the left thigh scaling was included:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#define</span> <span class="n">CUSTOM_SCALING_Left_Thigh</span>
 <span class="gr">#define CUSTOM_SCALING_Right_Thigh</span>
 <span class="n">Left</span><span class="p">.</span><span class="n">Thigh</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="cp">#include</span> <span class="s">&quot;MyScalingLaw.any&quot;</span>
-  <span class="kt">AnyFunTransform3D</span> <span class="o">&amp;</span><span class="n">ScaleFunction</span> <span class="o">=</span> <span class="n">MyScalingLaw</span><span class="p">.</span><span class="n">Transform</span><span class="p">;</span>
+  <span class="cp">#include</span> <span class="s">&quot;MyScalingFunction.any&quot;</span>
+  <span class="kt">AnyFunTransform3D</span> <span class="o">&amp;</span><span class="n">ScaleFunction</span> <span class="o">=</span> <span class="n">MyScalingFunction</span><span class="p">.</span><span class="n">Transform</span><span class="p">;</span>
 <span class="p">};</span>
 <span class="gr"> Right.Thigh = {</span>
-<span class="gr">  #include &quot;MyScalingLaw_Mirrored.any&quot;</span>
-<span class="gr">  AnyFunTransform3D &amp;ScaleFunction = MyScalingLaw_Mirrored.Transform;</span>
+<span class="gr">  #include &quot;MyScalingFunction_Mirrored.any&quot;</span>
+<span class="gr">  AnyFunTransform3D &amp;ScaleFunction = MyScalingFunction_Mirrored.Transform;</span>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<p>Now the right and left thigh are morphed according to the custom scaling
-law. When we load the model and look at our Model View, we can see that
-the model looks symmetric again and, compared to the standard scaling
-model, the bones look smaller. We can also see this in the following
-image where the model changed from the standard scaling case (left) to
-the custom scaling one (right):</p>
-<p><a class="reference internal" href="../_images/image333.png"><img alt="Model view scaling comparison" src="../_images/image333.png" style="width: 6.69792in; height: 4.18750in;" /></a></p>
+<p>Now the right and left thigh are morphed using the custom scaling functions.
+When we load the model and look at our Model View, we can see that the model
+looks symmetric again and, compared to the standard scaling model, the bones
+look smaller. We can also see this in the following image where the model
+changed from the standard scaling case (left) to the custom scaling one (right):</p>
+<a class="reference internal image-reference" href="../_images/image333.png"><img alt="../_images/image333.png" src="../_images/image333.png" style="width: 100%;" /></a>
 <p>This concludes the subject-specific scaling tutorial. The modifications
 utilized for the mirrored transformed model can be downloaded from here:
-<a class="reference download internal" href="../_downloads/MyScalingLaw_Mirrored.final.any" download=""><code class="xref download docutils literal"><span class="pre">Downloads/MyScalingLaw_Mirrored.final.any</span></code></a></p>
+<a class="reference download internal" href="../_downloads/MyScalingFunction_Mirrored.final.any" download=""><code class="xref download docutils literal"><span class="pre">Downloads/MyScalingFunction_Mirrored.final.any</span></code></a></p>
 </div>
 </div>
 
@@ -408,12 +408,12 @@ utilized for the mirrored transformed model can be downloaded from here:
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Subject Specific Scaling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 1: Scaling from from medical images</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 2: Including a Custom Scaling Law</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Personalizing Your Model</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 1: Scaling based on medical images</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 2: Including a custom scaling function into your model</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#preparing-for-subject-specific-scaling">Preparing for subject-specific scaling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#including-custom-scaling-for-a-single-bone">Including custom scaling for a single bone</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#introducing-a-mirrored-pair-of-a-custom-scaling">Introducing a mirrored pair of a custom scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#including-custom-scaling-for-a-single-segment">Including custom scaling for a single segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#introducing-a-mirrored-custom-scaling-function">Introducing a mirrored custom scaling function</a></li>
 </ul>
 </li>
 </ul>
@@ -467,11 +467,11 @@ utilized for the mirrored transformed model can be downloaded from here:
           <a href="../Validation_of_models/index.html" title="Validation of Models"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson3_appendix.html" title="Appendix: Scaling based on Patient-Specific Landmarks"
+          <a href="lesson3_appendix.html" title="Appendix: Morphing based on landmarks"
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.0.1.dev</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" >Subject Specific Scaling</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Personalizing Your Model</a> &#187;</li> 
       </ul>
     </div>
     </div>
