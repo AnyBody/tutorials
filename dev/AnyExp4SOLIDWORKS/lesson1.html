@@ -71,7 +71,7 @@
 <p>Start by downloading the <code class="xref download docutils literal"><span class="pre">example SOLIDWORKS CAD assembly</span></code></p>
 <p>After having downloaded and opened this model in your SOLIDWORKS
 environment, you will see the following image.</p>
-<p><img alt="SolidWorks fitnessmachine" src="../_images/_image1.PNG" /></p>
+<p><img alt="SolidWorks fitnessmachine" src="AnyExp4SOLIDWORKS/_static/lesson1/lesson1_image1.PNG" /></p>
 <p>As you can see, this SOLIDWORKS assembly contains several parts and
 mates. The assembly has three different configurations, each managing
 different sets of mates. We will discuss the purpose of these different
@@ -84,10 +84,10 @@ DOF (degrees-of-freedom) of this model should be one.</p>
 If you have registered the AnyBody Exporter™ for SOLIDWORKS®
 (AnyExp4SOLIDWORKS™) add-in successfully, then you will see the menu of
 the AnyExp4SOLIDWORKS add-in on the SOLIDWORKS menu like this:</p>
-<p><img alt="AnyExp4SOLIDWORKS menu" src="../_images/_image2.png" /></p>
+<p><img alt="AnyExp4SOLIDWORKS menu" src="../_images/lesson1_image2.png" /></p>
 <p>Start the translation process by selecting the ‘Export to AnyScript’
 menu item. Doing this will display the following dialog.</p>
-<p><img alt="AnyExp4SOLIDWORKS dialog" src="../_images/_image3.PNG" /></p>
+<p><img alt="AnyExp4SOLIDWORKS dialog" src="AnyExp4SOLIDWORKS/_static/lesson1/lesson1_image3.PNG" /></p>
 <p>In this dialog you can choose various options for the translation
 process such as indentation method, constraint type for mates, STL file
 type and so on. If you press the OK button after having decided the
@@ -95,7 +95,7 @@ options you want to use, you will see a file dialog asking you to choose
 where your files will be saved. For this tutorial we shall use the
 default options settings. You can change the location and the file name
 to be what you want for this example.</p>
-<p><img alt="Save as dialog" src="../_images/_image4.PNG" /></p>
+<p><img alt="Save as dialog" src="../_images/lesson1_image4.PNG" /></p>
 <p>If you look at the folder where you saved your own files, then you will
 see that there are two AnyScript files (FitnessMachine.any and
 FitnessMachine.main.any) and several STL files.</p>
@@ -114,7 +114,7 @@ Modeling System. It should look like this:</p>
 <p>This ‘FitnessMachine.main.any’ file just includes the
 ‘FitnessMachine.any’ file. When you load it, you will see that several
 ANYSURF3 files are created from the STL files.</p>
-<p><img alt="Model View Fitness machine" src="../_images/_image5.png" /></p>
+<p><img alt="Model View Fitness machine" src="../_images/lesson1_image5.png" /></p>
 <p>After loading this file, we should check which properties of the
 SOLIDWORKS assembly could be translated into AnyScript. These properties
 are:</p>
@@ -127,7 +127,7 @@ file, color)</li>
 <div class="section" id="solidworks-assembly-model-structure">
 <h2>SOLIDWORKS assembly model structure<a class="headerlink" href="#solidworks-assembly-model-structure" title="Permalink to this headline">¶</a></h2>
 <p>Let us compare the SOLIDWORKS Feature Tree and the AnyBody Model Tree.</p>
-<p><img alt="SOLIDWORKS properties" src="../_images/_image6.PNG" /><img alt="ANYBODY model tree" src="../_images/_image7.PNG" /></p>
+<p><img alt="SOLIDWORKS properties" src="AnyExp4SOLIDWORKS/_static/lesson1/lesson1_image6.PNG" /><img alt="ANYBODY model tree" src="../_images/lesson1_image7.PNG" /></p>
 <p>First, the top assembly ‘FitnessMachine’ is converted into a
 corresponding AnyFolder object, which has the same name. All individual
 parts are converted into corresponding AnySeg objects. Some reference
@@ -154,7 +154,7 @@ following piece of code.</p>
   <span class="p">{</span>
     <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;FitnessMachine.MainCylinder_cfg0_9c1185a5c5e9fc546128.stl&quot;</span><span class="p">;</span>
     <span class="n">Opacity</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+    <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.9098039216</span><span class="p">,</span> <span class="mf">0.4431372549</span><span class="p">,</span> <span class="mf">0.03137254902</span><span class="p">};</span>
     <span class="kt">AnyStyleDrawMaterial1</span> <span class="n">style</span> <span class="o">=</span>
     <span class="p">{</span>
       <span class="n">EnableCreasing</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
@@ -182,13 +182,13 @@ as AnyKinEq, AnyKinEqSimpleDriver or some standard joint types like
 AnyRevoluteJoint, AnySphericalJoint..</p>
 <p>Let us select one mate in the assembly and look at it in detail inside
 SOLIDWORKS.</p>
-<p><img alt="SolidWorks assembly" src="../_images/_image8.PNG" /></p>
+<p><img alt="SolidWorks assembly" src="AnyExp4SOLIDWORKS/_static/lesson1/lesson1_image8.PNG" /></p>
 <p>The ‘Concentric11’ mate was established between MainCylinder-1 and
 BeamType1-2 components. In the above picture, the selected violet
-cylinder and a point are included in the MainCylinder-1 component, and
-the selected white point is included in the BeamType1-2 component. So
+cylinder is included in the MainCylinder-1 component, and
+the selected orange point is included in the BeamType1-2 component. So
 this mate is the concentric mate between a point and a cylinder. This
-means that the white point (on BeamType1&lt;2&gt; component) can translate and
+means that the orange point (on BeamType1&lt;2&gt; component) can translate and
 rotate on the axis of this violet cylinder (on MainCylinder&lt;1&gt;). So this
 mate can be translated into two linear constraints in the corresponding
 AnyScript model.</p>
@@ -211,7 +211,7 @@ AnyScript model.</p>
 <p>Where we notice that the ‘MeasureOrganizer’ selects two of the three
 translational measurement defined by the AnyKinLinear object. The
 following picture shows the relationship between these two components.</p>
-<p><img alt="SolidWorks Two components" src="../_images/_image9.png" /></p>
+<p><img alt="SolidWorks Two components" src="../_images/lesson1_image9.png" /></p>
 <p>Here you can see that the AnyKinLinear kinematic measure, which is
 defined between the ‘FitnessMachine_Concentric11’ AnyRefNode object of
 the ‘BeamType1___2’ AnySeg object (dark orange color) and the

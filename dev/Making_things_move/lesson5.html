@@ -131,7 +131,7 @@ file to drive the model with.</p>
 on line 13 we include the <em>AnyMocap</em> framework or base model.</p>
 <p>Now please load the model and open up a new Model View. You should see
 the following model:</p>
-<a class="reference internal image-reference" href="../_images/image131.png"><img alt="../_images/image131.png" src="../_images/image131.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../_images/image130.png"><img alt="../_images/image130.png" src="../_images/image130.png" style="width: 80%;" /></a>
 <p>The model consist of number of operations which must be executed in the correct
 order. The flow of the model is illustrated in the following figure.</p>
 <div class="figure" id="id2">
@@ -146,7 +146,7 @@ for a detailed dicussion on different approches to MoCap analysis.</span></p>
 <p>If you look closely at the model view you can see that the skeleton is equipped with
 markers and if you zoom in a little, you can also see that the markers
 carry small coordinate systems with red and green arrows.</p>
-<a class="reference internal image-reference" href="../_images/image223.png"><img alt="../_images/image223.png" src="../_images/image223.png" style="width: 50%;" /></a>
+<a class="reference internal image-reference" href="../_images/image222.png"><img alt="../_images/image222.png" src="../_images/image222.png" style="width: 50%;" /></a>
 <style> .red {color:red} .green {color:green}</style><p>These are the marker points defined on the human body, and the <span class="red">red</span> and
 <span class="green">green</span> arrows designate directions in which the marker position is fixed
 versus free to be optimized. A free marker position is one that is not
@@ -186,7 +186,7 @@ lengths of adjacent segments from the marker data.</p>
 <h3>Running Parameter identification<a class="headerlink" href="#running-parameter-identification" title="Permalink to this headline">¶</a></h3>
 <p>Without further ado, let us perform the optimization:</p>
 <p>Find the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">RunParameterOptimzation</span></code> in the operations dropdown, and run it.</p>
-<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image323.png" /></p>
+<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image322.png" /></p>
 <p>You will see the model walking repeatedly over the force platforms,
 sometimes slowly and sometimes a bit faster depending on the speed of
 your computer and the progress of the computation.</p>
@@ -253,7 +253,7 @@ the very high amount of detail of the model, requiring the computer to
 continuously calculate forces in more than 300 muscles. When the analysis is
 finished, you can open up a Chart view and investigate the results, for instance
 the hip joint reaction forces:</p>
-<img alt="../_images/image514.png" src="../_images/image514.png" />
+<img alt="../_images/image513.png" src="../_images/image513.png" />
 </div>
 <div class="section" id="importing-new-motion-data">
 <h2>Importing new motion data<a class="headerlink" href="#importing-new-motion-data" title="Permalink to this headline">¶</a></h2>
@@ -319,7 +319,7 @@ one. You will see the model as before, but now with the arms included.</p>
 <p><a class="reference internal" href="../_images/image91.png"><img alt="Model view Fullbody initial load" src="../_images/image91.png" style="width: 60%;" /></a></p>
 <p>Select and run the RunMotionAndParameterOptimizationSequence in the
 Operations tree:</p>
-<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image323.png" /></p>
+<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image322.png" /></p>
 <p>The model starts walking repeatedly over the force platforms including
 the arm motions while it tries to optimize segment lengths and marker
 positions. It takes 7 iterations and more time than before

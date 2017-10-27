@@ -89,7 +89,7 @@ AnyBodyStudy object to make this model work for kinematic and inverse
 dynamic analyses.</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span>
 <span class="p">{</span>
-<span class="cp">#include</span> <span class="s">&quot;FitnessMachine.any&quot;</span>
+  <span class="cp">#include</span> <span class="s">&quot;FitnessMachine.any&quot;</span>
 
   <span class="gr">AnyBodyStudy Study =</span>
 <span class="gr">  {</span>
@@ -110,7 +110,7 @@ mechanism. The logical and simple choice is to drive the angle of the
 flywheel. As we saw before, the imported model in AnyBody is almost
 completely equivalent in structure to the SOLIDWORKS model, so we can
 use the latter to look for a place to attach the driver.</p>
-<p><img alt="SolidWorks components" src="../_images/_image11.PNG" /></p>
+<p><img alt="SolidWorks components" src="../_images/lesson2_image1.PNG" /></p>
 <p>The ‘Concentric01’ mate is a relationship between two cylindrical faces
 of the ‘MainBase&lt;1&gt;’ and ‘MainCylinder&lt;1&gt;’ components. This mate
 contains two linear and two rotational constraints between two different
@@ -153,30 +153,30 @@ by a driver. We add this to the FitnessMachine AnyFolder from the Main
 file.</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span>
 <span class="p">{</span>
-    <span class="cp">#include</span> <span class="s">&quot;FitnessMachine.any&quot;</span>
+  <span class="cp">#include</span> <span class="s">&quot;FitnessMachine.any&quot;</span>
 
-    <span class="gr"> FitnessMachine =</span>
+  <span class="gr">FitnessMachine =</span>
+<span class="gr">  {</span>
+<span class="gr">    AnyFolder Drivers =</span>
 <span class="gr">    {</span>
-<span class="gr">        AnyFolder Drivers =</span>
-<span class="gr">        {</span>
-<span class="gr">        AnyKinEqSimpleDriver rot_drv =</span>
-<span class="gr">        {</span>
-<span class="gr">            AnyKinRotational&amp; rot = ..Mates.Concentric01.rot;</span>
-<span class="gr">            MeasureOrganizer = {0};</span>
-<span class="gr">            DriverPos = pi/180*{0};</span>
-<span class="gr">            DriverVel = pi/180*{180};</span>
-<span class="gr">        };</span>
-<span class="gr">        };</span>
+<span class="gr">      AnyKinEqSimpleDriver rot_drv =</span>
+<span class="gr">      {</span>
+<span class="gr">        AnyKinRotational&amp; rot = ..Mates.Concentric01.rot;</span>
+<span class="gr">        MeasureOrganizer = {0};</span>
+<span class="gr">        DriverPos = pi/180*{0};</span>
+<span class="gr">        DriverVel = pi/180*{180};</span>
+<span class="gr">      };</span>
 <span class="gr">    };</span>
+<span class="gr">  };</span>
 
-    <span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span>
-    <span class="p">{</span>
-        <span class="kt">AnyFolder</span><span class="o">&amp;</span> <span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">FitnessMachine</span><span class="p">;</span>
-        <span class="n">tStart</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="n">tEnd</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">nStep</span> <span class="o">=</span> <span class="mi">101</span><span class="p">;</span>
-        <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
-    <span class="p">};</span>
+  <span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="kt">AnyFolder</span><span class="o">&amp;</span> <span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">FitnessMachine</span><span class="p">;</span>
+    <span class="n">tStart</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">tEnd</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">nStep</span> <span class="o">=</span> <span class="mi">101</span><span class="p">;</span>
+    <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="p">};</span>
 <span class="p">};</span>
 </pre></div>
 </div>
@@ -266,8 +266,8 @@ file again in SOLIDWORKS, then you can create a new configuration and
 start changing its mate definitions. We have in this model file already
 created two new configurations with the results of the modification we
 suggest to remove kinematic redundancy.</p>
-<p><img alt="AnyExp2Solidworks Configuration" src="../_images/_image2.PNG" /></p>
-<p><img alt="SolidWorks Tree view" src="../_images/_image31.PNG" /></p>
+<p><img alt="AnyExp2Solidworks Configuration" src="../_images/lesson2_image2.PNG" /></p>
+<p><img alt="SolidWorks Tree view" src="../_images/lesson2_image3.PNG" /></p>
 <p>We can find the main reason of mate redundancy in SOLIDWORKS by
 examining several mates, which are used between two different parts in
 the assembly.</p>
@@ -297,7 +297,7 @@ us find the mates, which are defined between the ‘MainBase&lt;1&gt;’ and
 <td>Coincident12</td>
 <td>MainBase&lt;1&gt;</td>
 <td>Plane</td>
-<td><img alt="Matetype 1" src="../_images/_image41.PNG" /></td>
+<td><img alt="Matetype 1" src="../_images/lesson2_image4.PNG" /></td>
 </tr>
 <tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
@@ -309,7 +309,7 @@ us find the mates, which are defined between the ‘MainBase&lt;1&gt;’ and
 <td>Concentric12</td>
 <td>MainBase&lt;1&gt;</td>
 <td>Cylinder</td>
-<td><img alt="Matetype 2" src="../_images/_image51.png" /></td>
+<td><img alt="Matetype 2" src="../_images/lesson2_image5.png" /></td>
 </tr>
 <tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
@@ -353,7 +353,7 @@ setting.</p>
 <td>Coincident_V_Beam_Back_Left</td>
 <td>MainBase&lt;1&gt;</td>
 <td>Plane</td>
-<td><img alt="Matetype 3" src="../_images/_image61.PNG" /></td>
+<td><img alt="Matetype 3" src="../_images/lesson2_image6.PNG" /></td>
 </tr>
 <tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
@@ -365,7 +365,7 @@ setting.</p>
 <td>Concentric_V_Beam_Back_Left</td>
 <td>MainBase&lt;1&gt;</td>
 <td>Cylinder</td>
-<td><img alt="Matetype 4" src="../_images/_image51.png" /></td>
+<td><img alt="Matetype 4" src="../_images/lesson2_image5.png" /></td>
 </tr>
 <tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
@@ -423,8 +423,8 @@ entered topologically the same joint configuration as in
 have named the mates according to the joint type we want to realize. The
 trans-spherical joint type does not exist in SOLIDWORKS, so this has
 been created with standard mates as in ‘Mate_Config2’.</p>
-<p><img alt="AnyExp2Solidworks Config 2" src="../_images/_image71.PNG" /></p>
-<p><img alt="Solidworks tree 2" src="../_images/_image81.PNG" /></p>
+<p><img alt="AnyExp2Solidworks Config 2" src="../_images/lesson2_image7.PNG" /></p>
+<p><img alt="Solidworks tree 2" src="../_images/lesson2_image8.PNG" /></p>
 <p>As you can see in ‘Mate_Config3’, the usage of Hinge mates reduces the
 total number of mates because a hinge mate requires four mate entities
 when it is defined with standard mates. The trans-spherical constraint
@@ -470,7 +470,8 @@ generated ‘FitnessMachine.main.any’, so you load a file like this:</p>
 message:</p>
 <p><em>Model Warning: Study ‘Main.Study’ contains too few kinematic
 constraints to be kinematically determinate.</em></p>
-<p>Let us see the object description of the AnyBodyStudy object.<img alt="AnyBody Study object description" src="../_images/_image9.PNG" /></p>
+<p>Let us see the object description of the AnyBodyStudy object.</p>
+<p><img alt="AnyBody Study object description" src="../_images/lesson2_image9.PNG" /></p>
 <p>This assembly contains 16 components, i.e. segments. So this assembly
 has a total 96 degrees of freedom when disregarding the constraints. But
 then a total number of constraints from the mates of 95 is removed,
