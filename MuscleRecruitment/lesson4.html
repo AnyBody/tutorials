@@ -110,7 +110,7 @@ quadratic criterion from before. When we ran the quadratic criterion
 with 500 W mechanical output, two of the muscle activities became
 constrained by the upper of 1. If we reload and rerun the model now, we
 get the following result:</p>
-<p><a class="reference internal" href="../_images/image13.gif"><img alt="Chart view Muscle activity" src="../_images/image13.gif" style="width: 6.25000in; height: 4.07292in;" /></a></p>
+<p><img alt="Chart view Muscle activity" src="../_images/image13.gif" /></p>
 <p>The muscle activations are nice and smooth and the upper limit on the
 muscle activity is not active. It is hard to say which criterion is the
 right one, but it appears that for this load the third order polynomial
@@ -128,7 +128,7 @@ bit more to 650 W:</p>
 </div>
 <p>…then we once again will have muscles limited by the upper bound on
 muscle recruitment:</p>
-<p><a class="reference internal" href="../_images/image21.gif"><img alt="Chart view Muscle activity 650 W" src="../_images/image21.gif" style="width: 6.25000in; height: 4.42708in;" /></a></p>
+<p><img alt="Chart view Muscle activity 650 W" src="../_images/image21.gif" /></p>
 <p>The polynomial criterion allows us to select a higher order if we like.
 It can be done like this:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span> <span class="o">=</span> <span class="p">{</span>
@@ -139,7 +139,7 @@ It can be done like this:</p>
 </div>
 <p>which sets the order of the polynomial sum to 5. Reloading and rerunning
 the model produces this result:</p>
-<p><a class="reference internal" href="../_images/image31.gif"><img alt="Chart view Muscle activity Poly 5" src="../_images/image31.gif" style="width: 6.25000in; height: 4.45833in;" /></a></p>
+<p><img alt="Chart view Muscle activity Poly 5" src="../_images/image31.gif" /></p>
 <p>So it would appear that increasing the power of the criterion get the
 muscles to work more and more together and allow the organism to carry
 larger loads without overloading any individual muscle. Of course, at
@@ -224,7 +224,7 @@ relevance, so it is the topic of…</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Personalizing Your Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -285,7 +285,6 @@ relevance, so it is the topic of…</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

@@ -31,7 +31,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Subject Specific Scaling" href="../Scaling/index.html" />
+    <link rel="next" title="Personalizing Your Model" href="../Scaling/index.html" />
     <link rel="prev" title="Making the translated AnyScript model move" href="lesson2.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
@@ -48,7 +48,7 @@
           <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="../Scaling/index.html" title="Subject Specific Scaling"
+          <a href="../Scaling/index.html" title="Personalizing Your Model"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Making the translated AnyScript model move"
@@ -79,12 +79,12 @@ and then connect the human body to the fitness machine.</p>
 <p>First, let us start a new human model from a template which we will call
 ‘FitnessMachine_With_Human’ using the main file template menu from the
 AnyBody GUI.</p>
-<p><a class="reference internal" href="../_images/image116.png"><img alt="Human template dialog" src="../_images/image116.png" style="width: 4.69167in; height: 4.49376in;" /></a></p>
+<p><img alt="Human template dialog" src="../_images/image116.png" /></p>
 <p>After we create the model, we should make sure that the definitions in
 the libdef.any files are set to use the right body model as explained in
 the tutorial ‘Getting Started with AMMR’. When we load this model, we
 can see that we have a standing full human body model.</p>
-<p><a class="reference internal" href="../_images/image213.png"><img alt="Model view Full body" src="../_images/image213.png" style="width: 4.51000in; height: 4.00000in;" /></a></p>
+<p><img alt="Model view Full body" src="../_images/image213.png" /></p>
 <p>To keep things simple, start by switching of the muscles by setting the
 BM statement for the muscle definitions of arms, legs and trunk in our
 new created file ‘FitnessMachine_With_Human.main.any’ to
@@ -138,7 +138,7 @@ files like this:</p>
 </div>
 <p>If you reload the model, then you will see the dummy CoM segment and
 some AnyRefNode objects like this:</p>
-<p><a class="reference internal" href="../_images/image311.png"><img alt="Model view Rear Fullbody without muscles" src="../_images/image311.png" style="width: 4.51000in; height: 4.00000in;" /></a></p>
+<p><img alt="Model view Rear Fullbody without muscles" src="../_images/image311.png" /></p>
 </div>
 <div class="section" id="insert-the-fitness-machine-into-the-model">
 <h2>Insert the fitness machine into the model<a class="headerlink" href="#insert-the-fitness-machine-into-the-model" title="Permalink to this headline">¶</a></h2>
@@ -285,10 +285,9 @@ setting a BM statement in the Main folder:</p>
 </pre></div>
 </div>
 <p>When you load this model, you will see the following warning message:</p>
-<dl class="docutils">
-<dt>::</dt>
-<dd>Model Warning: Study ‘Main.Study’ contains too few kinematic constraints to be kinematically determinate.</dd>
-</dl>
+<div class="highlight-none"><div class="highlight"><pre><span></span>Model Warning: Study &#39;Main.Study&#39; contains too few kinematic constraints to be kinematically determinate.
+</pre></div>
+</div>
 <p>If you look at the Object Description of your AnyBodyStudy object, you
 can find the information about the number of DOFs and constraints of the
 model.</p>
@@ -377,7 +376,7 @@ and moments at hands and feet. You can simply just comment out the
 the “Kinematics” operation of the AnyBodyStudy object, you will see that
 all drivers and constraints are ready for analysis and that the motion
 appears reasonable.</p>
-<p><a class="reference internal" href="../_images/image410.png"><img alt="Model view Full Body on Fitnessmachine" src="../_images/image410.png" style="width: 6.50000in; height: 5.73750in;" /></a></p>
+<p><img alt="Model view Full Body on Fitnessmachine" src="../_images/image410.png" /></p>
 <p>The final task is to switch on the muscles of the human body again by
 commenting out the body model statements that we introduced in the
 beginning of this lesson.</p>
@@ -404,7 +403,7 @@ beginning of this lesson.</p>
 </div>
 <p>Now you are ready to run the “InverseDynamics” operation, which should
 now run successfully.</p>
-<p><a class="reference internal" href="../_images/image57.png"><img alt="Model view Full Body on Fitnessmachine with muscles" src="../_images/image57.png" style="width: 6.50000in; height: 5.73750in;" /></a></p>
+<p><img alt="Model view Full Body on Fitnessmachine with muscles" src="../_images/image57.png" /></p>
 <p>The final version of this model file can be downloaded here:
 <a class="reference download internal" href="../_downloads/FitnessMachine_With_Human.zip" download=""><code class="xref download docutils literal"><span class="pre">‘FitnessMachine_With_Human.zip’</span></code></a>.</p>
 </div>
@@ -456,7 +455,7 @@ now run successfully.</p>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Personalizing Your Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -503,7 +502,7 @@ now run successfully.</p>
           <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="../Scaling/index.html" title="Subject Specific Scaling"
+          <a href="../Scaling/index.html" title="Personalizing Your Model"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Making the translated AnyScript model move"
@@ -517,7 +516,6 @@ now run successfully.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

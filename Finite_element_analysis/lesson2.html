@@ -80,7 +80,7 @@ will analyze the muscle forces acting on the clavicle during lifting his
 arm and analyze the stress in the implant. The standard Standing model
 taken from the AMMRV1.1 will be used. The basic general workflow is
 shown the figure below.</p>
-<p><a class="reference internal" href="../_images/image117.png"><img alt="FEA tutorial flow chart" src="../_images/image117.png" style="width: 3.82822in; height: 4.23393in;" /></a></p>
+<p><img alt="FEA tutorial flow chart" src="../_images/image117.png" /></p>
 <p>Here we will focus on the link between AnyBody and ANSYS. So we assume
 we have a “ready to go” Finite Element model which basically only lacks
 its boundary conditions. <em>(This model could be e.g. generated from
@@ -115,7 +115,7 @@ located in the Sternoclavicular joint:</p>
 </div>
 <p>Include them e.g. in the Environment file. After reload of the model the
 reference frame is shown</p>
-<p><a class="reference internal" href="../_images/image214.png"><img alt="Clavicular ref frame" src="../_images/image214.png" style="width: 3.16785in; height: 2.95158in;" /></a></p>
+<p><img alt="Clavicular ref frame" src="../_images/image214.png" /></p>
 <p>Next, we have to define the same local coordinate system in the ANSYS
 model. Download the prepared ANSYS file
 <a class="reference download internal" href="../_downloads/clavicular_base.zip" download=""><code class="xref download docutils literal"><span class="pre">here</span></code></a> and save it in your working
@@ -126,7 +126,7 @@ workplane origin and give it the number 1000. (In fact you can give it
 any number, but we have to refer to the coordinate system later, so we
 have to know its name). Load the <code class="docutils literal"><span class="pre">clavicular_base.db</span></code> in the Mechanical
 APDL (ANSYS) environment and have a look.</p>
-<p><a class="reference internal" href="../_images/image312.png"><img alt="ANSYS nodes" src="../_images/image312.png" style="width: 6.49387in; height: 3.84508in;" /></a></p>
+<p><img alt="ANSYS nodes" src="../_images/image312.png" /></p>
 <p>This shows the clavicle model, which contains a midshaft fracture,
 modeled with a reduced stiffness and treated with a plate fixation.</p>
 <p>Next we want to analyze the forces in the AMS. Change the Mannequin file
@@ -257,9 +257,9 @@ local coordinate name in which all forces are given is named 1000, and
 the material numbers of implant and fracture are between 50 and 60. The
 template can be altered to fit to your actual problem. One thing you
 have to change right now is the path to your FE model.</p>
-<p>:: console</p>
-<blockquote>
-<div>RESUME,’clav_base’,’db’,’C:Userssd.ANYBODYTEMPClavicle_paperFE’,0,0</div></blockquote>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">RESUME,&#39;clav_base&#39;,&#39;db&#39;,&#39;C:\Users\sd.ANYBODY\TEMP\Clavicle_paper\FE\&#39;,0,0</span>
+</pre></div>
+</div>
 <p>Please include the path to your model.</p>
 <p>Now we are ready to run the analysis and convert the data. Reload the
 model in the AMS. Select RunApplication in the Operations tree. This
@@ -269,14 +269,14 @@ select ConvertToAPDL and run it. This will create 5 files in the
 <p>Open ANSYS Mechanical Utility and read the input of each individual file
 with File-Read input from. This will load the model, apply the boundary
 conditions and start to solve. Once finished post-process the results.</p>
-<p><a class="reference internal" href="../_images/image411.png"><img alt="Ansys stresses" src="../_images/image411.png" style="width: 5.84709in; height: 3.93396in;" /></a></p>
+<p><img alt="Ansys stresses" src="../_images/image411.png" /></p>
 <p>Alternatively you can run all models in one go by reading in the
 outputfileList file. Each loadstep will be written in a new result file.
 You can look at the results by loading them one on one in the
 post-processor.</p>
 <div class="without-title admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="#"><span class="doc">Lesson 2: ANSYS Interface</span></a>.</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Abaqus Interface</span></a>.</p>
 </div>
 </div>
 
@@ -321,7 +321,7 @@ post-processor.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Personalizing Your Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -382,7 +382,6 @@ post-processor.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

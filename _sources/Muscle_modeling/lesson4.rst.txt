@@ -279,9 +279,10 @@ As you can see, both muscles are now wrapping over the cylinder, and we
 can run the InverseDynamicAnalysis. It seems to work, but the system
 provides the following warning:
 
-WARNING - Via-point 'Main.MyModel.GlobalRef.M1Origin' on
-'Main.MyModel.Muscle1.SPLine' is located below the wrapping surface
-'Main.MyModel.GlobalRef.CylCenter.WrapSurf'.
+``WARNING - Via-point 'Main.MyModel.GlobalRef.M1Origin' on
+'Main.MyModel.Muscle1.SPLine'``
+``is located below the wrapping surface
+'Main.MyModel.GlobalRef.CylCenter.WrapSurf'.``
 
 This is a warning that you will see rather frequently when working with
 complex models with wrapping. The warning comes when one of the end
@@ -361,17 +362,7 @@ models <lesson5>`.
 
 
 .. |wrapcylinder| image:: _static/lesson4/image1.jpeg
-   :width: 3.12500in
-   :height: 2.23958in
 .. |wrap cylinder rotated| image:: _static/lesson4/image2.jpeg
-   :width: 3.12500in
-   :height: 2.41667in
 .. |wrap cylinder with via point sequence| image:: _static/lesson4/image3.jpeg
-   :width: 6.25000in
-   :height: 2.03125in
 .. |wrap cylinder two muscles| image:: _static/lesson4/image4.jpeg
-   :width: 3.12500in
-   :height: 2.31250in
 .. |wrap cylinder Init wrap vectors| image:: _static/lesson4/image5.jpeg
-   :width: 3.12500in
-   :height: 1.81250in

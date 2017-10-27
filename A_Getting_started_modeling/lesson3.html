@@ -240,7 +240,7 @@ desired position. Notice that this is only to bring the body close to
 where it will eventually be. It is not necessary to align the model
 exactly with the pedal. The kinematic constraints will take care of this
 once they are properly defined.</p>
-<p><a class="reference internal" href="../_images/image110.png"><img alt="Posture Adjustment1" src="../_images/image110.png" style="width: 2.71667in; height: 3.76389in;" /></a></p>
+<p><img alt="Posture Adjustment1" src="../_images/image110.png" /></p>
 </div>
 <div class="section" id="fix-the-trunk-position">
 <h2>Fix the trunk position<a class="headerlink" href="#fix-the-trunk-position" title="Permalink to this headline">¶</a></h2>
@@ -446,10 +446,10 @@ longer complains about the model being kinematically indeterminate.</p>
 <h2>Running kinematics<a class="headerlink" href="#running-kinematics" title="Permalink to this headline">¶</a></h2>
 <p>Select the ‘Main.Study.Kinematics’ and run this operation to see how
 your model works kinematically.</p>
-<p><a class="reference internal" href="../_images/image27.png"><img alt="Operations tree Kinematics" src="../_images/image27.png" style="width: 2.19792in; height: 2.35833in;" /></a></p>
+<p><img alt="Operations tree Kinematics" src="../_images/image27.png" /></p>
 <p>Doing so will show you the movement of the entire system as the pedal is
 rotating.</p>
-<p><a class="reference internal" href="../_images/image36.png"><img alt="Operation Result Kinematics" src="../_images/image36.png" style="width: 2.96250in; height: 3.47153in;" /></a></p>
+<p><img alt="Operation Result Kinematics" src="../_images/image36.png" /></p>
 </div>
 <div class="section" id="check-if-model-is-kinematic-determined">
 <h2>Check if model is kinematic determined?<a class="headerlink" href="#check-if-model-is-kinematic-determined" title="Permalink to this headline">¶</a></h2>
@@ -457,15 +457,15 @@ rotating.</p>
 constraints from the “Object Description” of the AnyBodyStudy object.
 You can find the “Object Description” of your AnyBodyStudy class object
 in the Model Tree of your model like this:</p>
-<p><a class="reference internal" href="../_images/image46.png"><img alt="Operations tree object description" src="../_images/image46.png" style="width: 3.51875in; height: 2.99028in;" /></a></p>
+<p><img alt="Operations tree object description" src="../_images/image46.png" /></p>
 <p>Then you see the Object Description dialog will open.</p>
-<p><a class="reference internal" href="../_images/image56.png"><img alt="ObjectDescription DOFs" src="../_images/image56.png" style="width: 4.84931in; height: 5.32986in;" /></a></p>
+<p><img alt="ObjectDescription DOFs" src="../_images/image56.png" /></p>
 <p>This indicates that the total number of DOFs(degrees of freedom) in your
 model is 90. It makes sense because there are 15 segments in your model
 and each segment has 6 DOFs.</p>
 <p>If you scroll down this dialog a little bit more, then you can see the
 following section:</p>
-<p><a class="reference internal" href="../_images/image62.png"><img alt="ObjectDescription Constraints1" src="../_images/image62.png" style="width: 6.68889in; height: 5.16042in;" /></a></p>
+<p><img alt="ObjectDescription Constraints1" src="../_images/image62.png" /></p>
 <p>The last message in the above screenshot lets us know that there are 106
 constraints from the joints and the drivers in the model.</p>
 <p>In general, the total number of DOFs in the model should be exactly as
@@ -481,7 +481,7 @@ situation. In the “HumanModel” folder there is a subfolder of which name
 is ‘DefaultMannequinDrivers’. In that folder, there are some default
 drivers which can control the posture of the human model based on the
 values in the Mannequin.any file.</p>
-<p><a class="reference internal" href="../_images/image71.png"><img alt="Model tree Default manequin drivers" src="../_images/image71.png" style="width: 2.95278in; height: 7.76389in;" /></a></p>
+<p><img alt="Model tree Default manequin drivers" src="../_images/image71.png" /></p>
 <p>The reason why these default drivers exist is that sometimes the user
 may have some difficulties in finding which human joints should be
 driven or what kinds of constraints should be defined for the human
@@ -516,7 +516,7 @@ control the default drivers of the human model like this:</p>
 </div>
 <p>Save the main file and press F7 button to reload the model. And try to
 open the Object Description dialog of “Study” object in the Model Tree.</p>
-<p><a class="reference internal" href="../_images/image81.png"><img alt="ObjectDescription Constraints2" src="../_images/image81.png" style="width: 6.68889in; height: 3.06597in;" /></a></p>
+<p><img alt="ObjectDescription Constraints2" src="../_images/image81.png" /></p>
 <p>You see that now the total number of constraints has been changed to 90
 and this is exactly as same as the total number of DOFs. Of course, you
 can still run the kinematics of your model.</p>
@@ -583,7 +583,7 @@ for.</span></a></p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Personalizing Your Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -644,7 +644,6 @@ for.</span></a></p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

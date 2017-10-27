@@ -110,7 +110,7 @@ require upper limits on the muscle activation:</p>
 <p>Loading and running this version will produce the exact same result as
 the standard quadratic criterion because the weight on the linear term
 is set to zero. The result looks like this:</p>
-<p><a class="reference internal" href="../_images/image134.png"><img alt="Chart view Muscle activty" src="../_images/image134.png" style="width: 6.25556in; height: 4.10486in;" /></a></p>
+<p><img alt="Chart view Muscle activty" src="../_images/image134.png" /></p>
 <p>However, if we add a bit of weight to the linear term:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">Type</span> <span class="o">=</span> <span class="kp">MR_QuadraticAux</span><span class="p">;</span>
@@ -120,7 +120,7 @@ is set to zero. The result looks like this:</p>
 </div>
 <p>…we can influence the resulting recruitment and get the following
 result:</p>
-<p><a class="reference internal" href="../_images/image228.png"><img alt="Chart view Muscle activty linear weight" src="../_images/image228.png" style="width: 6.25556in; height: 4.10486in;" /></a></p>
+<p><img alt="Chart view Muscle activty linear weight" src="../_images/image227.png" /></p>
 <p>The muscle synergy is slightly reduced by the linear term in the
 objective function, and the maximum muscle activation is consequently
 slightly higher. Is this better than the pure quadratic recruitment?
@@ -169,14 +169,14 @@ term.</p>
 <p>We can do this in AnyBody by choosing the auxiliary form of the min/max
 recruitment criterion:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
-<span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span> <span class="o">=</span> <span class="p">{</span>
-<span class="n">Type</span> <span class="o">=</span> <span class="gr">MR\_MinMaxAux;</span>
-<span class="gr">AuxQuadraticTerm.Weight = 1</span><span class="p">;</span>
-<span class="p">};</span>
+    <span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Type</span> <span class="o">=</span> <span class="gr">MR\_MinMaxAux;</span>
+        <span class="gr">AuxQuadraticTerm.Weight = 1</span><span class="p">;</span>
+    <span class="p">};</span>
 </pre></div>
 </div>
 <p>Reloading and rerunning produces the following rather attractive result:</p>
-<p><a class="reference internal" href="../_images/image326.png"><img alt="Chart view Muscle activity MinMaxAux" src="../_images/image326.png" style="width: 5.20903in; height: 3.75556in;" /></a></p>
+<p><img alt="Chart view Muscle activity MinMaxAux" src="../_images/image326.png" /></p>
 <p>This appears to produce a combination of soft onset and offset of
 muscles together with a clearly defined envelope on which several
 muscles cooperate evenly to carry the load. Please notice, however, that
@@ -277,7 +277,7 @@ oxygen consumption. Journal of Biomechanics, 39, 758–765.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Personalizing Your Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -338,7 +338,6 @@ oxygen consumption. Journal of Biomechanics, 39, 758–765.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

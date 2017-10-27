@@ -139,7 +139,7 @@ statement,&nbsp;and change the cylinder parameters as shown below:</p>
 insertion point of the cylinder is at {0, 0, 0.2} corresponding exactly
 to half of the length of the cylinder of 0.4. This causes the cylinder
 to be inserted symmetrically about the xy plane as illustrated below:</p>
-<p><a class="reference internal" href="../_images/image17.jpeg"><img alt="wrapcylinder" src="../_images/image17.jpeg" style="width: 3.12500in; height: 2.23958in;" /></a></p>
+<p><img alt="wrapcylinder" src="../_images/image17.jpeg" /></p>
 <p>The cylinder direction is always z in the coordinate direction of the
 object that the cylinder is inserted into. So, if the cylinder does not
 have the orientation you want, then the key to rotate it correctly is to
@@ -160,7 +160,7 @@ interesting:</p>
 </pre></div>
 </div>
 <p>&nbsp;Which causes the cylinder to rotate 20 degrees about the y axis.</p>
-<p><a class="reference internal" href="../_images/image26.jpeg"><img alt="wrap cylinder rotated" src="../_images/image26.jpeg" style="width: 3.12500in; height: 2.41667in;" /></a></p>
+<p><img alt="wrap cylinder rotated" src="../_images/image25.jpeg" /></p>
 <p>There are a couple of things to notice about the cylinder: First of all
 the graphics looks like the cylinder is faceted. This is not really the
 case. Graphically it is displayed with facets out of consideration of
@@ -278,7 +278,7 @@ that case the solution is to increase the number of points.</p>
 <p>It is time to see what we have done. If you load the model and run the
 InverseDynamicAnalysis (and have done everything right), you will see
 the model moving through a sequence of positions like this:</p>
-<p><a class="reference internal" href="../_images/image33.jpeg"><img alt="wrap cylinder with via point sequence" src="../_images/image33.jpeg" style="width: 6.25000in; height: 2.03125in;" /></a></p>
+<p><img alt="wrap cylinder with via point sequence" src="../_images/image33.jpeg" /></p>
 <p>As mentioned above, wrapping muscles can also have via points. In fact,
 we can easily change the via point muscle, Muscle1, &nbsp;to wrap over the
 cylinder even though it also has a via point:</p>
@@ -301,13 +301,14 @@ cylinder even though it also has a via point:</p>
 to change the type from AnyViaPointMuscle to AnyShortestPathMuscle and
 insert the wrapping surface and the StringMesh specification. This gives
 us the following result:</p>
-<p><a class="reference internal" href="../_images/image46.jpeg"><img alt="wrap cylinder two muscles" src="../_images/image46.jpeg" style="width: 3.12500in; height: 2.31250in;" /></a></p>
+<p><img alt="wrap cylinder two muscles" src="../_images/image46.jpeg" /></p>
 <p>As you can see, both muscles are now wrapping over the cylinder, and we
 can run the InverseDynamicAnalysis. It seems to work, but the system
 provides the following warning:</p>
-<p>WARNING - Via-point ‘Main.MyModel.GlobalRef.M1Origin’ on
-‘Main.MyModel.Muscle1.SPLine’ is located below the wrapping surface
-‘Main.MyModel.GlobalRef.CylCenter.WrapSurf’.</p>
+<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">WARNING</span> <span class="o">-</span> <span class="n">Via</span><span class="o">-</span><span class="n">point</span> <span class="o">&#39;</span><span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M1Origin</span><span class="o">&#39;</span> <span class="n">on</span>
+<span class="o">&#39;</span><span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">Muscle1</span><span class="p">.</span><span class="n">SPLine</span><span class="o">&#39;</span></code>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">is</span> <span class="n">located</span> <span class="n">below</span> <span class="n">the</span> <span class="n">wrapping</span> <span class="n">surface</span>
+<span class="o">&#39;</span><span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">CylCenter</span><span class="p">.</span><span class="n">WrapSurf</span><span class="o">&#39;</span><span class="p">.</span></code></p>
 <p>This is a warning that you will see rather frequently when working with
 complex models with wrapping. The warning comes when one of the end
 points or a via point is located below the surface over which the muscle
@@ -362,7 +363,7 @@ definition of springs or rubber bands.</p>
 Step button rather than the run button. This will show you how the
 system uses the InitWrapVectors to pull the muscle to the other side of
 the cylinder:</p>
-<p><a class="reference internal" href="../_images/image53.jpeg"><img alt="wrap cylinder Init wrap vectors" src="../_images/image53.jpeg" style="width: 3.12500in; height: 1.81250in;" /></a></p>
+<p><img alt="wrap cylinder Init wrap vectors" src="../_images/image53.jpeg" /></p>
 <p>If you keep pressing the step button you will see how the muscle now
 wraps on the other side of the cylinder.</p>
 <p>With the kinematics of muscles well under control, we can proceed to
@@ -420,7 +421,7 @@ models</span></a>.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Personalizing Your Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -481,7 +482,6 @@ models</span></a>.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

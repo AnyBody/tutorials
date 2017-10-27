@@ -82,7 +82,7 @@ To do this, we add some STL surfaces for theses implants to the model
 and use them to calculate a contact force, which changes the joint
 kinematics by making the implant surfaces slide along each other in the
 simulated motion.</p>
-<p><a class="reference internal" href="../_images/image1.jpg"><img alt="Model view Implant surfaces" src="../_images/image1.jpg" style="width: 4.02716in; height: 3.11484in;" /></a></p>
+<p><img alt="Model view Implant surfaces" src="../_images/image1.jpg" /></p>
 <p>Due to the Force Dependent Kinematics (FDK), the joint axis for the knee
 moves as a function of external forces and muscle forces. In this lesson
 we want to have a closer look at this migration. We start by adding an
@@ -233,7 +233,7 @@ position and define the AnySurfSTL inside this node:</p>
 center, we can see that the surfaces penetrate each other quite a lot,
 so just putting in the geometries into the model does not change
 anything except that the locations of the two implants are now visible.</p>
-<p><a class="reference internal" href="../_images/image2.jpg"><img alt="Model view knee closeup" src="../_images/image2.jpg" style="width: 4.02716in; height: 3.11484in;" /></a></p>
+<p><img alt="Model view knee closeup" src="../_images/image2.jpg" /></p>
 <p>Now, we want to make the surfaces slide along each other. Therefore, we
 define a contact force that pushes the surfaces apart as soon as they
 are in contact. We define an AnyForceSurfaceContact and place it just
@@ -258,7 +258,7 @@ just become zero.</p>
 <p>Running the simulation now shows that the tibial plateau slides along
 the femoral condyle and the reference frames defined in the knee centers
 stay close to each other.</p>
-<p><a class="reference internal" href="../_images/image3.jpg"><img alt="Model view knee closeup 2" src="../_images/image3.jpg" style="width: 4.02716in; height: 3.11484in;" /></a></p>
+<p><img alt="Model view knee closeup 2" src="../_images/image3.jpg" /></p>
 <p>While running the analysis, we can see that in many steps the system
 cannot be solved with the requested error tolerance. The reason for this
 problem is that small changes in the position can result in big changes
@@ -315,7 +315,7 @@ included into an existing model based on an AMMR body model.</p>
 <li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Results of FDK</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 4: Using Surfaces to Define the Knee Joint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson5.html">Lesson 5: Using Contact Forces to Replace a Joint in a Human Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fdkappendix.html">FDK appendiks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fdkappendix.html">FDK appendix</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a></li>
@@ -323,7 +323,7 @@ included into an existing model based on an AMMR body model.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Subject Specific Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Personalizing Your Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
@@ -384,7 +384,6 @@ included into an existing model based on an AMMR body model.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, AnyBody Technology.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>
