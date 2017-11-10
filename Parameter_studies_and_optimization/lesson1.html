@@ -68,6 +68,11 @@
             
   <div class="section" id="defining-a-parameter-study">
 <h1>Defining a Parameter Study<a class="headerlink" href="#defining-a-parameter-study" title="Permalink to this headline">¶</a></h1>
+<div class="without-title admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last"><strong>Old tutorial:</strong>
+This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
+</div>
 <p>A parameter study is a systematic way to vary a number of model
 parameters and have the system automatically run one or several analyses
 for each combination of parameters.</p>
@@ -178,40 +183,30 @@ should get the following result:</p>
 <span class="gr">AnyParamStudy &lt;ObjectName&gt; =</span>
 <span class="gr">    {</span>
 <span class="gr">      //LogFile = &quot;&quot;;</span>
-<span class="gr">      /\*Analysis =</span>
+<span class="gr">      \*Analysis =</span>
 <span class="gr">      {</span>
-<span class="gr">      //AnyOperation &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or</span>
-<span class="gr"> full object definition)&gt;;</span>
-<span class="gr">      };\*/</span>
+<span class="gr">      //AnyOperation &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">      };*/</span>
 <span class="gr">      nStep = ;</span>
-<span class="gr">      AnyDesVar &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full</span>
-<span class="gr"> object definition)&gt;;</span>
-<span class="gr">      //AnyDesVar &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or full</span>
-<span class="gr"> object definition)&gt;;</span>
-<span class="gr">      AnyDesMeasure &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or</span>
-<span class="gr"> full object definition)&gt;;</span>
-<span class="gr">      //AnyDesMeasure &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or</span>
-<span class="gr"> full object definition)&gt;;</span>
+<span class="gr">      AnyDesVar &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">      //AnyDesVar &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">      AnyDesMeasure &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">      //AnyDesMeasure &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
 <span class="gr">    };</span>
 </pre></div>
 </div>
 <p>&nbsp;As you can see, this requires a bit of additional specifications and
 general tidying up:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="kt">AnyParamStudy</span> <span class="gr">ParamStudy</span> <span class="o">=</span> <span class="p">{</span>
-     <span class="n">Analysis</span> <span class="o">=</span> <span class="p">{</span>
-     <span class="c1">//AnyOperation &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or</span>
-<span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
-     <span class="p">};</span>
-     <span class="n">nStep</span> <span class="o">=</span> <span class="p">;</span>
-     <span class="kt">AnyDesVar</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span> <span class="n">full</span>
-<span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
-     <span class="c1">//AnyDesVar &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or full</span>
-<span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
-     <span class="kt">AnyDesMeasure</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span>
-<span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
-     <span class="c1">//AnyDesMeasure &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or</span>
-<span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyParamStudy</span> <span class="gr">ParamStudy</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">Analysis</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="c1">//AnyOperation &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
    <span class="p">};</span>
+   <span class="n">nStep</span> <span class="o">=</span> <span class="p">;</span>
+   <span class="kt">AnyDesVar</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span> <span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+   <span class="c1">//AnyDesVar &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+   <span class="kt">AnyDesMeasure</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span> <span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+   <span class="c1">//AnyDesMeasure &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+ <span class="p">};</span>
 </pre></div>
 </div>
 <p>&nbsp;Here’s a brief explanation of the different components of a parameter
@@ -256,29 +251,27 @@ parameter study, we must execute the analysis of the bicycle. This may
 seem obvious in a simple model like this one, but many AnyScript models
 contain multiple studies and each study contains multiple operations.</p>
 <p>The next specification deals with the parameters to vary:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>     <span class="n">nStep</span> <span class="o">=</span> <span class="p">;</span>
-     <span class="kt">AnyDesVar</span> <span class="gr">SaddleHeight = {</span>
-<span class="gr">       Val = Main.BikeParameters.SaddleHeight;</span>
-<span class="gr">       Min = Val - 0.05;</span>
-<span class="gr">       Max = Val + 0.03;</span>
-<span class="gr">     };</span>
-     <span class="kt">AnyDesVar</span> <span class="gr">SaddlePos = {</span>
-<span class="gr">       Val = Main.BikeParameters.SaddlePos;</span>
-<span class="gr">       Min = Val - 0.07;</span>
-<span class="gr">       Max = Val + 0.10;</span>
-<span class="gr">     };</span>
-     <span class="kt">AnyDesMeasure</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span>
-<span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
-     <span class="c1">//AnyDesMeasure &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or</span>
-<span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
-   <span class="p">};</span>
+<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="n">nStep</span> <span class="o">=</span> <span class="p">;</span>
+  <span class="kt">AnyDesVar</span> <span class="gr">SaddleHeight = {</span>
+<span class="gr">    Val = Main.BikeParameters.SaddleHeight;</span>
+<span class="gr">    Min = Val - 0.05;</span>
+<span class="gr">    Max = Val + 0.03;</span>
+<span class="gr">  };</span>
+  <span class="kt">AnyDesVar</span> <span class="gr">SaddlePos = {</span>
+<span class="gr">    Val = Main.BikeParameters.SaddlePos;</span>
+<span class="gr">    Min = Val - 0.07;</span>
+<span class="gr">    Max = Val + 0.10;</span>
+<span class="gr">  };</span>
+  <span class="kt">AnyDesMeasure</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span> <span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="c1">//AnyDesMeasure &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>Please notice here that we have removed the ‘&amp;’s that were inserted in
 the template in front of the variable names. Instead of pointing at
 AnyDesVars defined elsewhere we include the entire definition right here
-in the study, and this is actually the usual way to do it. Each
-AnyDesVar gets three properties set. The first one is called ‘Val’ and
+in the study, and this is actually the usual way to do it.</p>
+<p>Each AnyDesVar gets three properties set. The first one is called ‘Val’ and
 is simply set equal to an existing parameter in the model. The best way
 to understand this statement is to think of Val as a reference variable
 that is equalized in the first case with the SaddleHeight, which is a
@@ -321,18 +314,13 @@ object is of class AnyOutputFun, and we shall add it to the existing
 AnyBodyStudy:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
 <span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
-
   <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
-
   <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
-
   <span class="n">tEnd</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">BikeParameters</span><span class="p">.</span><span class="n">T</span><span class="p">;</span>
   <span class="n">nStep</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
-
 <span class="gr">AnyOutputFun MaxAct = {</span>
 <span class="gr">    Val = .MaxMuscleActivity;</span>
 <span class="gr">  };</span>
-
 <span class="p">};</span>
 </pre></div>
 </div>
@@ -476,9 +464,7 @@ the total metabolism involved in the bicycling process. It is fairly
 simple to add up the muscle metabolisms in the AnyBody study:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>    <span class="c1">// The study: Operations to be performed on the model</span>
     <span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
-
       <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
-
       <span class="n">RecruitmentSolver</span> <span class="o">=</span> <span class="kp">MinMaxOOSolSimplex</span><span class="p">;</span>
       <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
 
@@ -488,17 +474,13 @@ simple to add up the muscle metabolisms in the AnyBody study:</p>
 <span class="gr">      // Useful variables for the optimization</span>
 <span class="gr">      AnyFolder &amp;r = Main.Bike2D.Model.Leg2D.Right.Mus;</span>
 <span class="gr">      AnyFolder &amp;l = Main.Bike2D.Model.Leg2D.Left.Mus;</span>
-<span class="gr">      AnyVar Pmet =</span>
-<span class="gr"> r.Ham.Pmet+r.BiFemSh.Pmet+r.GlutMax.Pmet+r.RectFem.Pmet+</span>
-<span class="gr">r.Vasti.Pmet+r.Gas.Pmet+r.Sol.Pmet+r.TibAnt.Pmet+</span>
-<span class="gr">l.Ham.Pmet+l.BiFemSh.Pmet+l.GlutMax.Pmet+l.RectFem.Pmet+</span>
-<span class="gr">l.Vasti.Pmet+l.Gas.Pmet+l.Sol.Pmet+l.TibAnt.Pmet;</span>
+<span class="gr">      AnyVar Pmet = r.Ham.Pmet+r.BiFemSh.Pmet+r.GlutMax.Pmet+r.RectFem.Pmet+r.Vasti.Pmet+r.Gas.Pmet+r.Sol.Pmet+r.TibAnt.Pmet+l.Ham.Pmet+l.BiFemSh.Pmet+l.GlutMax.Pmet+l.RectFem.Pmet+l.Vasti.Pmet+l.Gas.Pmet+l.Sol.Pmet+l.TibAnt.Pmet;</span>
 
       <span class="kt">AnyOutputFun</span> <span class="n">MaxAct</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">Val</span> <span class="o">=</span> <span class="p">.</span><span class="n">MaxMuscleActivity</span><span class="p">;</span>
       <span class="p">};</span>
 
-<span class="p">};</span><span class="o">&lt;/</span><span class="n">ANYSCRIPT</span><span class="o">&gt;</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>Notice that we have defined the r and l variables for convenience to
@@ -514,11 +496,7 @@ of the Pmet variable before is has actually been computed:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>      <span class="c1">// Useful variables for the optimization</span>
       <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">Bike2D</span><span class="p">.</span><span class="n">Model</span><span class="p">.</span><span class="n">Leg2D</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">Mus</span><span class="p">;</span>
       <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">l</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">Bike2D</span><span class="p">.</span><span class="n">Model</span><span class="p">.</span><span class="n">Leg2D</span><span class="p">.</span><span class="n">Left</span><span class="p">.</span><span class="n">Mus</span><span class="p">;</span>
-      <span class="kt">AnyVar</span> <span class="n">Pmet</span> <span class="o">=</span>
- <span class="n">r</span><span class="p">.</span><span class="n">Ham</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">r</span><span class="p">.</span><span class="n">BiFemSh</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">r</span><span class="p">.</span><span class="n">GlutMax</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">r</span><span class="p">.</span><span class="n">RectFem</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span>
-<span class="n">r</span><span class="p">.</span><span class="n">Vasti</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">r</span><span class="p">.</span><span class="n">Gas</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">r</span><span class="p">.</span><span class="n">Sol</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">r</span><span class="p">.</span><span class="n">TibAnt</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span>
-<span class="n">l</span><span class="p">.</span><span class="n">Ham</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">BiFemSh</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">GlutMax</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">RectFem</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span>
-<span class="n">l</span><span class="p">.</span><span class="n">Vasti</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">Gas</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">Sol</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">TibAnt</span><span class="p">.</span><span class="n">Pmet</span><span class="p">;</span>
+      <span class="kt">AnyVar</span> <span class="n">Pmet</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="n">Ham</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">r</span><span class="p">.</span><span class="n">BiFemSh</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">r</span><span class="p">.</span><span class="n">GlutMax</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">r</span><span class="p">.</span><span class="n">RectFem</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">r</span><span class="p">.</span><span class="n">Vasti</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">r</span><span class="p">.</span><span class="n">Gas</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">r</span><span class="p">.</span><span class="n">Sol</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">r</span><span class="p">.</span><span class="n">TibAnt</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">Ham</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">BiFemSh</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">GlutMax</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">RectFem</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">Vasti</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">Gas</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">Sol</span><span class="p">.</span><span class="n">Pmet</span><span class="o">+</span><span class="n">l</span><span class="p">.</span><span class="n">TibAnt</span><span class="p">.</span><span class="n">Pmet</span><span class="p">;</span>
       <span class="kt">AnyOutputFun</span> <span class="n">MaxAct</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">Val</span> <span class="o">=</span> <span class="p">.</span><span class="n">MaxMuscleActivity</span><span class="p">;</span>
       <span class="p">};</span>
@@ -618,11 +596,7 @@ definition of optimization studies.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Parameter Studies and Optimization</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Defining a Parameter Study</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#some-general-terminology">Some General Terminology</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#definition-of-a-parameter-study">Definition of a Parameter Study</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Defining a Parameter Study</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson2.html">Optimization Studies</a></li>
 </ul>
 </li>

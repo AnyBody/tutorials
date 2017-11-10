@@ -96,7 +96,7 @@ to use subject-specific geometry in a model.</p>
 <div class="section" id="including-custom-scaling-for-a-single-segment">
 <h2>Including custom scaling for a single segment<a class="headerlink" href="#including-custom-scaling-for-a-single-segment" title="Permalink to this headline">¶</a></h2>
 <p>Let us configure this example to use ScalingStandard. We need to define
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="x x-Statements">BM_SCALING</span></code> as <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">_SCALING_STANDARD_</span></code> and out-comment all other parts of
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="x x-Statements">BM_SCALING</span></code> as <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="x x-Options">_SCALING_STANDARD_</span></code> and out-comment all other parts of
 the scaling configuration block. With this setting, the model is now scaled to
 the generic size. We can now include individual scaling functions for each segment,
 which will be done in a special file <em>CustomScaling.any</em>, where all the
@@ -257,14 +257,14 @@ bone segment, e.g. <code class="docutils literal highlight highlight-AnyScriptDo
 different sides or <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">CUSTOM_SCALING_</span><span class="o">&lt;</span><span class="n">SegmentName</span><span class="o">&gt;</span></code> for parts of the
 body that do not have sides. You can find a list of segments by
 browsing the scaling law in the Model tab:</p>
-<a class="reference internal image-reference" href="../_images/image144.png"><img alt="../_images/image144.png" src="../_images/image144.png" style="width: 50%;" /></a>
+<a class="reference internal image-reference" href="../_images/image143.png"><img alt="../_images/image143.png" src="../_images/image143.png" style="width: 50%;" /></a>
 <p>The other change was to assign the new custom scaling function to be
 used in the segment of the left thigh instead of the excluded one. If
 we now comment in DrawExternalMeasures.any and look in the Model View,
 we can see that the left femur is now shorter and a little thinner
 than with the standard scaling. So we have now successfully introduced
 our custom scaling law into the model.</p>
-<a class="reference internal image-reference" href="../_images/image235.png"><img alt="../_images/image235.png" src="../_images/image235.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image234.png"><img alt="../_images/image234.png" src="../_images/image234.png" style="width: 60%;" /></a>
 <p>If we worked with a bone that does not have a pair, e.g.
 vertebrae, skull, etc., or we just wanted to scale a single side with a
 patient-specific scaling function, we would be finished now and could
@@ -410,12 +410,7 @@ utilized for the mirrored transformed model can be downloaded from here:
 <li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Personalizing Your Model</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 1: Scaling based on medical images</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 2: Including a custom scaling function into your model</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#preparing-for-subject-specific-scaling">Preparing for subject-specific scaling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#including-custom-scaling-for-a-single-segment">Including custom scaling for a single segment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#introducing-a-mirrored-custom-scaling-function">Introducing a mirrored custom scaling function</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 2: Including a custom scaling function into your model</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>

@@ -68,6 +68,11 @@
             
   <div class="section" id="lesson-7-calibration">
 <h1>Lesson 7: Calibration<a class="headerlink" href="#lesson-7-calibration" title="Permalink to this headline">¶</a></h1>
+<div class="without-title admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last"><strong>Old tutorial:</strong>
+This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
+</div>
 <p>One of the challenges in body modeling is that models must be able to
 change size to reflect individuals of different statures. Even if you
 are working on a model of a particular individual, you will almost
@@ -176,7 +181,7 @@ InverseDynamics of overloaded models:</p>
 <p>Let’s have a look at the consequences. Press the M&lt;-S button or F7 and
 subsequently run the InverseDynamics. Then, open a new ChartFX window to
 investigate the results.</p>
-<p><img alt="Chart view BicepsLong.Ft" src="../_images/image135.png" /></p>
+<p><img alt="Chart view BicepsLong.Ft" src="../_images/image134.png" /></p>
 <p>This graph shows the muscle force or more precisely the force in the
 tendon. The force in this more complex muscle model is composed of two
 elements: The active part coming from the contractile element of the
@@ -185,7 +190,7 @@ parallel-elastic part of the muscle. The two parts come together in the
 tendon force, Ft. The parallel-elastic part of the muscle is represented
 by Fp in the result tree. If you pick this property, you should get the
 following graph:</p>
-<p><img alt="Chart view BicepsLong.Fp" src="../_images/image228.png" /></p>
+<p><img alt="Chart view BicepsLong.Fp" src="../_images/image227.png" /></p>
 <p>The parallel-elastic force sets in when the muscle is stretched beyond
 its optimal fiber length. In the movement of this example, the elbow
 starts at 90 degrees flexion, and as the graph shows, this gives rise to
@@ -236,7 +241,7 @@ study. Its basic definition is very simple:</p>
 </pre></div>
 </div>
 <p>If you load the model in you can study the structure of the new study:</p>
-<p><img alt="Operations Main.InverseDynamics" src="../_images/image327.png" /></p>
+<p><img alt="Operations Main.InverseDynamics" src="../_images/image326.png" /></p>
 <p>You can see that it has multiple operations. The interesting ones are
 the two latter: TendonLengthAdjustment and LigamentLengthAdjustment. As
 the names indicate they are for tendon and ligament calibration

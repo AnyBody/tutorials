@@ -67,7 +67,7 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-5-using-real-data">
-<h1>Lesson 5: Using real data<a class="headerlink" href="#lesson-5-using-real-data" title="Permalink to this headline">¶</a></h1>
+<span id="making-things-move-move-real-mocap"></span><h1>Lesson 5: Using real data<a class="headerlink" href="#lesson-5-using-real-data" title="Permalink to this headline">¶</a></h1>
 <p>Without further ado, let us import a real C3D file and drive a complete model.</p>
 <p>The AnyBody Modeling System offers you virtually unlimited ways of doing
 things, and probably more than the average user can comprehend, so we
@@ -78,10 +78,10 @@ for data processing.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Make sure you have installed a your own copy of the AnyBody Model repository (AMMR).
-See the <a class="reference external" href="https://anyscript.org/ammr-doc/dev/Installation.html" title="(in AMMR v2.0)"><span class="xref std std-doc">AMMR documentation</span></a>.</p>
+See the <a class="reference external" href="https://anyscript.org/ammr-doc/dev/Using_the_AMMR.html#installing-ammr" title="(in AMMR v2.0)"><span class="xref std std-ref">AMMR documentation</span></a>.</p>
 </div>
 <ol class="arabic simple">
-<li>Go to the folder <code class="file docutils literal"><span class="pre">ApplicationMocapExamplesPlug-in-gait_Simple</span></code>.</li>
+<li>Go to the folder <code class="file docutils literal"><span class="pre">Application/MocapExamples/Plug-in-gait_Simple</span></code>.</li>
 </ol>
 <ol class="arabic simple" start="3">
 <li>Open <code class="file docutils literal"><span class="pre">LowerExtremity.main.any</span></code> in the AnyBody Modeling System</li>
@@ -90,10 +90,7 @@ See the <a class="reference external" href="https://anyscript.org/ammr-doc/dev/I
 part of the upper body for attachment of muscles. The model is based on a C3D
 file with “Plug In gait” marker protocol, and three force platforms. You can
 easily modify this to any other movement, simply by importing a different C3D
-file to drive the model with</p>
-<p>In the top of the file you find a brief description of the procedure.
-Don’t worry about that for now, but browse a little further down to find
-this:</p>
+file to drive the model with.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-number">Code example 1: </span><span class="caption-text"><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">LowerExtremity</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">any</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-AnyScriptDoc"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -134,7 +131,7 @@ this:</p>
 on line 13 we include the <em>AnyMocap</em> framework or base model.</p>
 <p>Now please load the model and open up a new Model View. You should see
 the following model:</p>
-<a class="reference internal image-reference" href="../_images/image131.png"><img alt="../_images/image131.png" src="../_images/image131.png" style="width: 80%;" /></a>
+<img alt="../_images/image130.png" src="../_images/image130.png" />
 <p>The model consist of number of operations which must be executed in the correct
 order. The flow of the model is illustrated in the following figure.</p>
 <div class="figure" id="id2">
@@ -149,7 +146,7 @@ for a detailed dicussion on different approches to MoCap analysis.</span></p>
 <p>If you look closely at the model view you can see that the skeleton is equipped with
 markers and if you zoom in a little, you can also see that the markers
 carry small coordinate systems with red and green arrows.</p>
-<a class="reference internal image-reference" href="../_images/image223.png"><img alt="../_images/image223.png" src="../_images/image223.png" style="width: 50%;" /></a>
+<img alt="../_images/image222.png" src="../_images/image222.png" />
 <style> .red {color:red} .green {color:green}</style><p>These are the marker points defined on the human body, and the <span class="red">red</span> and
 <span class="green">green</span> arrows designate directions in which the marker position is fixed
 versus free to be optimized. A free marker position is one that is not
@@ -189,7 +186,7 @@ lengths of adjacent segments from the marker data.</p>
 <h3>Running Parameter identification<a class="headerlink" href="#running-parameter-identification" title="Permalink to this headline">¶</a></h3>
 <p>Without further ado, let us perform the optimization:</p>
 <p>Find the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">RunParameterOptimzation</span></code> in the operations dropdown, and run it.</p>
-<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image323.png" /></p>
+<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image322.png" /></p>
 <p>You will see the model walking repeatedly over the force platforms,
 sometimes slowly and sometimes a bit faster depending on the speed of
 your computer and the progress of the computation.</p>
@@ -256,7 +253,7 @@ the very high amount of detail of the model, requiring the computer to
 continuously calculate forces in more than 300 muscles. When the analysis is
 finished, you can open up a Chart view and investigate the results, for instance
 the hip joint reaction forces:</p>
-<img alt="../_images/charview_higher_hip_forces.png" src="../_images/charview_higher_hip_forces.png" />
+<img alt="../_images/image513.png" src="../_images/image513.png" />
 </div>
 <div class="section" id="importing-new-motion-data">
 <h2>Importing new motion data<a class="headerlink" href="#importing-new-motion-data" title="Permalink to this headline">¶</a></h2>
@@ -319,10 +316,10 @@ data in the C3D file we just imported than we saw in lower extremity model.</p>
 <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">ParameterIdentification</span></code></p>
 <p>Please load the model and open a Model View if you do not already have
 one. You will see the model as before, but now with the arms included.</p>
-<p><a class="reference internal" href="../_images/image91.png"><img alt="Model view Fullbody initial load" src="../_images/image91.png" style="width: 60%;" /></a></p>
+<p><img alt="Model view Fullbody initial load" src="../_images/image91.png" /></p>
 <p>Select and run the RunMotionAndParameterOptimizationSequence in the
 Operations tree:</p>
-<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image323.png" /></p>
+<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image322.png" /></p>
 <p>The model starts walking repeatedly over the force platforms including
 the arm motions while it tries to optimize segment lengths and marker
 positions. It takes 7 iterations and more time than before
@@ -381,16 +378,7 @@ C3D files.</p>
 <li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Using motion capture data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson3: Noise and filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Parameter identification</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 5: Using real data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#parameter-identification">Parameter identification</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#running-parameter-identification">Running Parameter identification</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#marker-tracking-and-inverse-dynamics">Marker tracking and Inverse dynamics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#importing-new-motion-data">Importing new motion data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#using-full-body-models">Using full-body models</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 5: Using real data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: Troubleshooting C3D files</a></li>
 </ul>
 </li>

@@ -68,6 +68,11 @@
             
   <div class="section" id="lesson-6-composite-recruitment-criteria">
 <h1>Lesson 6: Composite Recruitment Criteria<a class="headerlink" href="#lesson-6-composite-recruitment-criteria" title="Permalink to this headline">¶</a></h1>
+<div class="without-title admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last"><strong>Old tutorial:</strong>
+This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
+</div>
 <p>So far we have investigated recruitment criteria in the form of
 polynomial sums with degrees ranging from 1 (linear recruitment) to
 infinity (min/max recruitment). It is not given, however, that any
@@ -110,7 +115,7 @@ require upper limits on the muscle activation:</p>
 <p>Loading and running this version will produce the exact same result as
 the standard quadratic criterion because the weight on the linear term
 is set to zero. The result looks like this:</p>
-<p><img alt="Chart view Muscle activty" src="../_images/image134.png" /></p>
+<p><img alt="Chart view Muscle activty" src="../_images/image133.png" /></p>
 <p>However, if we add a bit of weight to the linear term:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">Type</span> <span class="o">=</span> <span class="kp">MR_QuadraticAux</span><span class="p">;</span>
@@ -120,7 +125,7 @@ is set to zero. The result looks like this:</p>
 </div>
 <p>…we can influence the resulting recruitment and get the following
 result:</p>
-<p><img alt="Chart view Muscle activty linear weight" src="../_images/image227.png" /></p>
+<p><img alt="Chart view Muscle activty linear weight" src="../_images/image226.png" /></p>
 <p>The muscle synergy is slightly reduced by the linear term in the
 objective function, and the maximum muscle activation is consequently
 slightly higher. Is this better than the pure quadratic recruitment?
@@ -176,7 +181,7 @@ recruitment criterion:</p>
 </pre></div>
 </div>
 <p>Reloading and rerunning produces the following rather attractive result:</p>
-<p><img alt="Chart view Muscle activity MinMaxAux" src="../_images/image326.png" /></p>
+<p><img alt="Chart view Muscle activity MinMaxAux" src="../_images/image325.png" /></p>
 <p>This appears to produce a combination of soft onset and offset of
 muscles together with a clearly defined envelope on which several
 muscles cooperate evenly to carry the load. Please notice, however, that
@@ -264,10 +269,7 @@ oxygen consumption. Journal of Biomechanics, 39, 758–765.</p>
 <li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson5.html">Lesson 5</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 6</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson_calibration.html">Lesson 7</a></li>
 </ul>
 </li>

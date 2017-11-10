@@ -68,6 +68,11 @@
             
   <div class="section" id="lesson-1-the-basics-of-muscle-definition">
 <h1>Lesson 1: The Basics of Muscle Definition<a class="headerlink" href="#lesson-1-the-basics-of-muscle-definition" title="Permalink to this headline">¶</a></h1>
+<div class="without-title admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last"><strong>Old tutorial:</strong>
+This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
+</div>
 <p>The key to understanding muscles in the AnyBody Modeling System is to
 realize that they mechanically consist of two separate computational
 models:</p>
@@ -150,7 +155,7 @@ possible version.</p>
 <p>If you pick the Classes tab in the right-hand side of the Window, then
 you will get access to the class tree. Expand the tree as shown in the
 picture until you get to the AnyMuscleModel.</p>
-<p><img alt="class tree" src="../_images/image229.png" /></p>
+<p><img alt="class tree" src="../_images/image228.png" /></p>
 <p>Notice that this class has&nbsp;three derived classes. These are more
 advanced muscle models, and we shall get to those later. However for the
 time being, place the cursor in the Editor View on an empty line just
@@ -207,7 +212,7 @@ with via point muscles.</p>
 <p>Place the cursor right after the end brace of the musle model,
 right-click the AnyViaPointMuscle class in the tree, and insert an
 instance of it:</p>
-<p><img alt="class tree AnyViaPointMuscle" src="../_images/image328.png" /></p>
+<p><img alt="class tree AnyViaPointMuscle" src="../_images/image327.png" /></p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyMuscleModel</span> <span class="n">SimpleModel</span> <span class="o">=</span> <span class="p">{</span>
       <span class="n">F0</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
    <span class="p">};</span>
@@ -279,7 +284,7 @@ here to download a model that works</span></code></a>):</p>
 <p>Notice that the muscle is now&nbsp;able to balance the gravity, and we are
 able to run the InverseDynamicAnalysis. If you try it out and
 subsequently open a chart view, you are able to plot the muscle force:</p>
-<p><img alt="http://www.anybodytech.com/fileadmin/AnyBody.3.x.x/tutorial/MuscleModeling/muscleforce1.gif" src="../_images/image516.png" /></p>
+<p><img alt="http://www.anybodytech.com/fileadmin/AnyBody.3.x.x/tutorial/MuscleModeling/muscleforce1.gif" src="../_images/image515.png" /></p>
 <p>The muscle force is the&nbsp;item Fm in the list of properties you can plot
 for a muscle. As you can see, lots of other properties are available,
 but if you try to plot them you will find that many of them are zero.

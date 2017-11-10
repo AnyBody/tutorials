@@ -68,6 +68,11 @@
             
   <div class="section" id="lesson-1-the-basics-of-muscle-recruitment">
 <h1>Lesson 1: The Basics of Muscle Recruitment<a class="headerlink" href="#lesson-1-the-basics-of-muscle-recruitment" title="Permalink to this headline">¶</a></h1>
+<div class="without-title admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last"><strong>Old tutorial:</strong>
+This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
+</div>
 <p>Muscle recruitment in inverse dynamics is the process of determining
 which set of muscle forces will balance a given external load. If we
 take the trouble of setting up the system of equilibrium equations for a
@@ -132,7 +137,7 @@ working area of your hard disk:
 <p>Open the model in the AnyBody Modeling System, load it into memory, open
 a Model View window, select the InverseDynamics operation, and click the
 Run button. You should see something like this:</p>
-<p><img alt="Model view simple model" src="../_images/image324.png" /></p>
+<p><img alt="Model view simple model" src="../_images/image323.png" /></p>
 <p>The thick blue rod is an arm hinged at its left end to the origin of the
 global reference frame. A muscle is attached at the other end and the
 muscle elevates the arm against gravity.</p>
@@ -141,7 +146,7 @@ of results. You can expand the tree on the left hand side of that window
 and find the muscle force, Fm, somewhere inside the properties of the M1
 muscle. When you click it you get a graphical representation of the
 muscle force:</p>
-<p><img alt="Chart view M1.fm" src="../_images/image420.png" /></p>
+<p><img alt="Chart view M1.fm" src="../_images/image419.png" /></p>
 <p>Obviously, AnyBody has solved the equilibrium equations and has
 determined what the muscle force is at every instant of the simulation
 time. But which objective function, <span class="math">\(G\)</span>, has the system used?</p>
@@ -208,7 +213,7 @@ the model, plot the muscle force of M1 as you did before, and then
 manually place an asterisk in place of the muscle name in the
 specification line in the Chart window, you should get something like
 this:</p>
-<p><img alt="Chart view star.Fm" src="../_images/image515.png" /></p>
+<p><img alt="Chart view star.Fm" src="../_images/image514.png" /></p>
 <p>We can observe that both muscles are working and that M1, which has the
 higher strength and better moment arm, is exerting more force than the
 weaker M2. This seems immediately reasonable from a physiological

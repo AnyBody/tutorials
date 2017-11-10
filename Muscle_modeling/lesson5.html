@@ -68,6 +68,11 @@
             
   <div class="section" id="lesson-5-muscle-models">
 <h1>Lesson 5: Muscle Models<a class="headerlink" href="#lesson-5-muscle-models" title="Permalink to this headline">¶</a></h1>
+<div class="without-title admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last"><strong>Old tutorial:</strong>
+This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
+</div>
 <p>Muscle model is a description of how a muscle behaves under different
 operating conditions. There are two schools of thought within this area.</p>
 <ul class="simple">
@@ -189,7 +194,7 @@ following:</p>
 </table>
 <p>We can study the significance of the parameters in more detail, if we
 formulate the strength mathematically:</p>
-<p><img alt="http://www.anybodytech.com/fileadmin/AnyBody.3.x.x/tutorial/MuscleModeling/twoparstrength.gif" src="../_images/image136.png" /></p>
+<p><img alt="http://www.anybodytech.com/fileadmin/AnyBody.3.x.x/tutorial/MuscleModeling/twoparstrength.gif" src="../_images/image135.png" /></p>
 <p>You can probably recognize the variable names in the table above from
 the symbols in the equation. As you can see, this is really a bilinear
 model, where the variables are Lm and Lmdot. The strength of the muscle
@@ -240,7 +245,7 @@ properties Lm and Lmdot affecting the strength of the model. You can
 plot several properties simultaneously in the Chart View by use of an
 asterix in the variable specification field at the top of the window
 like this:</p>
-<p><img alt="chart view: muscle1.L" src="../_images/image230.png" /></p>
+<p><img alt="chart view: muscle1.L" src="../_images/image229.png" /></p>
 <p>Now we can compare the variation of Lm and Lmdot to our settings of
 Lfbar and V0. Lm seems to vary between approximately 0.31 and 0.15. With
 an Lfbar of 0.3 (= 2x0.15) this means that the muscle must come close to
@@ -250,12 +255,12 @@ from its speed limit&nbsp;V0 =&nbsp;-8, so the contraction speed is not expected
 to have much effect. We can investigate the effect very easily simply by
 clicking the Strength property of the muscle and obtain the following
 graph:</p>
-<p><img alt="muscle strength plot" src="../_images/image329.png" /></p>
+<p><img alt="muscle strength plot" src="../_images/image328.png" /></p>
 <p>The strength does indeed decrease&nbsp;drastically from around 200 N to
 almost nothing as we expected when the muscle contracts.</p>
 <p>Now that we have muscle data available, let us briefly review the
 parameters presented in the Chart View:</p>
-<p><img alt="Muscle parameters" src="../_images/image421.png" /></p>
+<p><img alt="Muscle parameters" src="../_images/image420.png" /></p>
 <ul class="simple">
 <li><strong>Fin</strong>&nbsp;is a force, but it has not physiological significance for a
 muscle except for internal purposes. The reason why it is included in
@@ -321,7 +326,7 @@ and thereby make the muscle more sensitive to contraction velocity:</p>
 in the beginning of the simulation. This, this decreases the strength of
 the muscle significantly as we can see by reloading, rerunning and
 plotting the Strength variable again:</p>
-<p><img alt="muscle strength plot, v0=-0.3" src="../_images/image517.png" /></p>
+<p><img alt="muscle strength plot, v0=-0.3" src="../_images/image516.png" /></p>
 <p>Instead of being monotonically decreasing, the muscle strength now
 improves slightly in the initial part of the simulation, but it is all
 through the simulation significantly weaker than before. The initial
@@ -681,7 +686,7 @@ to do some work. Let us systematically investigate the output:</p>
 </tr>
 <tr class="row-even"><td class="left-align nowrap">Lm</td>
 <td class="left-align">The length of the contractile element.</td>
-<td class="center-align nowrap"><img alt="small Lm plot" src="../_images/image137.png" /></td>
+<td class="center-align nowrap"><img alt="small Lm plot" src="../_images/image136.png" /></td>
 </tr>
 <tr class="row-odd"><td class="left-align nowrap">Lt</td>
 <td class="left-align">The length of the tendon. This appears to be constant, but the tendon length actually changes slightly over the movement with the changes of muscle force as described above.</td>
@@ -774,7 +779,7 @@ Muscle2 has the following development over the movement:</p>
 model definition&nbsp;was just slightly off the correct value? Well if we
 change the current value from 0.5 m to 0.45 m, i.e. a reduction of 10%,
 we get the following activity:</p>
-<p><img alt="Calibration Activity plot" src="../_images/image3210.png" /></p>
+<p><img alt="Calibration Activity plot" src="../_images/image329.png" /></p>
 <p>Not only is the shape of the graph different; the maximum activity is
 also significantly higher. An error of 10% in&nbsp;an anthropometric
 data&nbsp;value is not uncommon considering the accuracy of measurement
@@ -915,17 +920,7 @@ Biomedical Engineering, 17, 359-410, 1989.</p>
 <li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Controlling Muscle Drawing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Via-point muscles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Wrapping Muscles</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 5: Muscle Models</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#anymusclemodel2elin">AnyMuscleModel2ELin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#anymusclemodel3e">AnyMuscleModel3E</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#calibration">Calibration</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#cheap-and-dirty">Cheap and dirty</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#detailed-calibration">Detailed calibration</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 5: Muscle Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: General Muscles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson7.html">Lesson 7: Ligaments</a></li>
 </ul>
