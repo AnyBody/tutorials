@@ -95,14 +95,16 @@ maintained below a certain upper limit.</p>
 problems. The mathematical definition of the problem it solves is as
 follows:</p>
 <p>Minimize</p>
-<p><span class="math">\(g_0(x_1..x_n)\)</span></p>
+<p><em>g:sub:`0`</em>(<em>x:sub:`1`..x:sub:`n`</em>)</p>
 <p>Subject to</p>
-<p><span class="math">\(g_i(x_1..x_n) \leq 0 \\ \text{and} \\L_j \leq x_j \leq U_j\)</span></p>
-<p>where <span class="math">\(g_0\)</span> is called the objective function, <span class="math">\(x_j\)</span>, <span class="math">\(j=1..n\)</span>&nbsp;are the design variables, and <span class="math">\(g_i\)</span>,
-<span class="math">\(i=1..m\)</span> are the constraints. The definition of an optimization
+<p><em>g:sub:`i`</em>(<em>x:sub:`1`..x:sub:`n`</em>) &lt;= 0</p>
+<p><em>L</em><sub>j</sub> &lt;= <em>x</em><sub>j</sub> &lt;= <em>U:sub:`j`</em></p>
+<p>where <em>g:sub:`0`</em> is called the objective function, <em>x:sub:`j`</em>,
+<em>j</em>=1..<em>n</em>&nbsp;are the design variables, and <em>g:sub:`i`</em>,
+<em>i</em>=1..<em>m</em> are the constraints. The definition of an optimization
 problem in AnyBody is therefore a question of appointing independent
 parameters as design variables and dependent parameters as the objective
-function and constraints. Please notice that <span class="math">\(m\)</span> could be zero in which
+function and constraints. Please notice that <em>m</em> could be zero in which
 case we have a problem that is only constrained by the simple bounds on
 the variables.</p>
 <p>In an optimization terminology, the parameter study from the preceding
