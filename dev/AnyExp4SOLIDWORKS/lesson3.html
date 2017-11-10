@@ -87,7 +87,7 @@ can see that we have a standing full human body model.</p>
 <p>To keep things simple, start by switching of the muscles by setting the
 BM statement for the muscle definitions of arms, legs and trunk in our
 new created file ‘FitnessMachine_With_Human.main.any’ to
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">_MUSCLES_NONE_</span></code>:</p>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="x x-Options">_MUSCLES_NONE_</span></code>:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;../libdef.any&quot;</span>
 
 <span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
@@ -272,9 +272,9 @@ setting a BM statement in the Main folder:</p>
   <span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
 
   <span class="c1">// Switch off all muscles of the body model</span>
-  <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_MUSCLES_BOTH</span> <span class="n">_MUSCLES_NONE_</span>
-  <span class="cp">#define</span> <span class="x x-Statements">BM_TRUNK_MUSCLES</span> <span class="n">_MUSCLES_NONE_</span>
-  <span class="cp">#define</span> <span class="x x-Statements">BM_ARM_MUSCLES_BOTH</span> <span class="n">_MUSCLES_NONE_</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_MUSCLES_BOTH</span> <span class="x x-Options">_MUSCLES_NONE_</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_TRUNK_MUSCLES</span> <span class="x x-Options">_MUSCLES_NONE_</span>
+  <span class="cp">#define</span> <span class="x x-Statements">BM_ARM_MUSCLES_BOTH</span> <span class="x x-Options">_MUSCLES_NONE_</span>
   <span class="c1">// Switch of the default drivers</span>
   <span class="gr">#define BM_MANNEQUIN_DRIVER_DEFAULT OFF</span>
 
@@ -441,12 +441,7 @@ now run successfully.</p>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Making Models using SOLIDWORKS</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="lesson1.html">Translating a SOLIDWORKS CAD model to AnyBody</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson2.html">Making the translated AnyScript model move</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Creating human-machine integrated analysis model</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#create-a-human-model-from-a-main-file-template">Create a human model from a main file template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#insert-the-fitness-machine-into-the-model">Insert the fitness machine into the model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#connecting-human-model-and-fitness-machine">Connecting human model and fitness machine</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Creating human-machine integrated analysis model</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Personalizing Your Model</a></li>
