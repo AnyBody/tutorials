@@ -55,7 +55,7 @@
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Making things move</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">6. Making things move</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -78,7 +78,7 @@ for data processing.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Make sure you have installed a your own copy of the AnyBody Model repository (AMMR).
-See the <span class="xref std std-ref">AMMR documentation</span>.</p>
+See the <a class="reference external" href="https://anyscript.org/ammr-doc/dev/AMMR_Installation.html#installing-ammr" title="(in AMMR v2.0)"><span class="xref std std-ref">AMMR documentation</span></a>.</p>
 </div>
 <ol class="arabic simple">
 <li>Go to the folder <code class="file docutils literal"><span class="pre">Application/MocapExamples/Plug-in-gait_Simple</span></code>.</li>
@@ -92,7 +92,7 @@ file with “Plug In gait” marker protocol, and three force platforms. You can
 easily modify this to any other movement, simply by importing a different C3D
 file to drive the model with.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Code example 1: </span><span class="caption-text"><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">LowerExtremity</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">any</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Code example 6.1: </span><span class="caption-text"><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">LowerExtremity</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">any</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-AnyScriptDoc"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -136,7 +136,7 @@ the following model:</p>
 order. The flow of the model is illustrated in the following figure.</p>
 <div class="figure" id="id2">
 <span id="model-flow-chart"></span><img alt="../_images/flow.png" src="../_images/flow.png" />
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Illustration of the three processes for the Mocap models. Parameter
+<p class="caption"><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Illustration of the three processes for the Mocap models. Parameter
 identification, Marker tracking, and Inverse Dynamic analysis. See
 <a class="reference external" href="http://www.tandfonline.com/doi/full/10.1080/23335432.2014.993706">Lund et al. 2015</a>
 for a detailed dicussion on different approches to MoCap analysis.</span></p>
@@ -231,11 +231,11 @@ excess in information that the optical markers provide. The over-determinate
 solver in AMS works great, but it will calculate velocities and accelerations
 numerically. That has some performance issues when running inverse dynamics
 analysis. To overcome the problem, the MOCAP analysis is split into a two-step
-producedure, as illustrated on  figure <a class="reference internal" href="#model-flow-chart"><span class="std std-numref">Fig. 4</span></a>, separating
+producedure, as illustrated on  figure <a class="reference internal" href="#model-flow-chart"><span class="std std-numref">Fig. 6.1</span></a>, separating
 the Marker tracking from the Inverse dynamic analysis.</p>
 <p>The overdeterminate kinematic analysis solves the model for positions, and
 stores the joint angles as function of time. This step is the “Marker tracking”
-step in figure <a class="reference internal" href="#model-flow-chart"><span class="std std-numref">Fig. 4</span></a>. These joint angles are then used in the
+step in figure <a class="reference internal" href="#model-flow-chart"><span class="std std-numref">Fig. 6.1</span></a>. These joint angles are then used in the
 second step with the determinate kinematic solver in the inverse dynamic
 analysis.</p>
 <p>In the Model the <em>Marker tracking</em> and <em>Inverse Dynamics</em> are combined into
@@ -365,14 +365,16 @@ C3D files.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
 <h3><a href="../contents.html">Table Of Contents</a></h3>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">Getting started: AnyScript Programming</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Getting Started with Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">User interface features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Making things move</a><ul class="current">
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">4. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">5. A Study of Studies</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Making things move</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson1: Simple drivers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Using motion capture data</a></li>
@@ -382,18 +384,21 @@ C3D files.</p>
 <li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: Troubleshooting C3D files</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">Personalizing Your Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">7. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">8. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">9. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">10. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">11. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">12. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">13. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">14. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">15. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">16. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">17. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">18. Posture and Movement Prediction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
@@ -443,7 +448,7 @@ C3D files.</p>
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" >Making things move</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >6. Making things move</a> &#187;</li> 
       </ul>
     </div>
     </div>
