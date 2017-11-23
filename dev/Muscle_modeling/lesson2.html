@@ -87,20 +87,36 @@ the settings is to discard our manually defined AnyDrawMuscle object and
 insert a template from the class tree instead:</p>
 <p><img alt="class tree AnyDrawMuscle" src="../_images/image22.gif" /></p>
 <p>Erase the previous AnyDrawMuscle, right-click the AnyDrawMuscle in the
-tree view, an insert an instance:</p>
+tree view, and insert an instance:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyViaPointMuscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M1Origin</span><span class="p">;</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Ins</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">M1Insertion</span><span class="p">;</span>
-  <span class="gr">AnyDrawMuscle drw = {</span>
-<span class="gr">    //RGB = {0.554688, 0.101563, 0.117188};</span>
-<span class="gr">    //Opacity = 1.000000;</span>
-<span class="gr">    //DrawOnOff = 1.000000;</span>
-<span class="gr">    //Bulging = 0.000000;</span>
-<span class="gr">    //ColorScale = 0.000000;</span>
-<span class="gr">    //RGBColorScale = {0.957031, 0.785156, 0.785156};</span>
-<span class="gr">    //MaxStress = 250000.000000;</span>
-<span class="gr">  };</span>
+  <span class="gr">AnyDrawMuscle drw = {</span>
+<span class="gr">    //Visible = On;</span>
+<span class="gr">    //Opacity = 1.0;</span>
+<span class="gr">    //Pickable = On;</span>
+<span class="gr">    //RGB = {0.5546875, 0.1015625, 0.1171875};</span>
+<span class="gr">    //Transparency = 1.0;</span>
+<span class="gr">    //DrawOnOff = 1.0;</span>
+<span class="gr">    //Bulging = 0.0;</span>
+<span class="gr">    //ColorScale = 0.0;</span>
+<span class="gr">    //RGBColorScale = {0.95703125, 0.78515625, 0.78515625};</span>
+<span class="gr">    //MaxStress = 250000.0;</span>
+<span class="gr">    //DrawScaleOnOff = Off;</span>
+<span class="gr">    /*DrawScale =</span>
+<span class="gr">    {</span>
+<span class="gr">    EnableCreasing = Off;</span>
+<span class="gr">    CreasingAngle = 0.524;</span>
+<span class="gr">    EnableWireframe = Off;</span>
+<span class="gr">    EnableSmoothing = On;</span>
+<span class="gr">    Param = 0.0;</span>
+<span class="gr">    ParamArray = ;</span>
+<span class="gr">    RGBArray = ;</span>
+<span class="gr">    OpacityArray = ;</span>
+<span class="gr">    };*/</span>
+<span class="gr">    //AnyStyleDrawMaterial &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
+<span class="gr">  };</span>
 <span class="p">};</span>
 </pre></div>
 </div>

@@ -81,13 +81,13 @@ models:</p>
 to insertion depending on the posture of the body. This also entails
 finding the length and contraction velocity of the muscle.</li>
 <li>The strength model which determines the muscle’s strength and
-possible its passive elastic force depending on the kinematic state
+possibly its passive elastic force depending on the kinematic state
 of the muscle.</li>
 </ol>
-<p>&nbsp;This would be a sad excuse for a tutorial if we did not have an example
+<p>This would be a sad excuse for a tutorial if we did not have an example
 to work on. So let us quickly construct a very simple example that will
-enable us to examine the properties of muscles. <a class="reference download internal" href="../_downloads/MuscleDemo.Ini.any" download=""><code class="xref download docutils literal"><span class="pre">Here's an extremely
-simple one-degree-of-freedom model</span></code></a>.</p>
+enable us to examine the properties of muscles.</p>
+<p>Here’s an extremely simple <a class="reference download internal" href="../_downloads/MuscleDemo.Ini.any" download=""><code class="xref download docutils literal"><span class="pre">one-degree-of-freedom model</span></code></a>.</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// This is a very simple model for demonstration of muscle modeling</span>
 <span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
@@ -144,15 +144,16 @@ SetInitialConditions operation, you should get the following picture:</p>
 the movement. The arm flexes about the origin of the red reference
 frame. If you try to run the InverseDynamicAnalysis, you will get an
 error:</p>
-<p>ERROR: Muscle recruitment analysis failed, simplex solver reports that
-solution does not satisfy all constraints.</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>ERROR: Muscle recruitment analysis failed, simplex solver reports that solution does not satisfy all constraints.
+</pre></div>
+</div>
 <p>This is because the model does not have any muscles to balance the arm
 against the downward pull of gravity. Let us define the simplest
 possible muscle to carry the load. As mentioned above, a muscle has two
 basic components: a kinematic model, and a strength model. We shall
 begin with the latter, and for the time being define the simplest
 possible version.</p>
-<p>If you pick the Classes tab in the right-hand side of the Window, then
+<p>If you pick the Classes tab in the right-hand side of the window, then
 you will get access to the class tree. Expand the tree as shown in the
 picture until you get to the AnyMuscleModel.</p>
 <p><img alt="class tree" src="../_images/image228.png" /></p>
@@ -172,11 +173,13 @@ inserted into the model (new code marked with red):</p>
 <span class="p">};</span>
 
 <span class="gr">AnyMuscleModel &lt;ObjectName&gt; = {</span>
-<span class="gr">  F0 = 0;</span>
+<span class="gr">  F0 = 0.0;</span>
+<span class="gr">  //Lf0 = 0.0;</span>
+<span class="gr">  //Vol0 = 0.0;</span>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<p>This is the simplest type of muscle model the system provides, and it is
+<style> .red {color:red} .green {color:green}</style><p>This is the simplest type of muscle model the system provides, and it is
 simply a specification of strength corresponding to the assumed maximum
 voluntary contraction of the muscle. A muscle with this type of model
 does not have any dependency on length or contraction velocity, and it
@@ -184,10 +187,18 @@ does not take the passive elasticity of the tissue into account. Despite
 this simplicity, it is used with considerable success for many studies
 where the movements or postures are within the normal range of the
 involved joints, and where contraction velocities are small.</p>
+<p>There are two optional parameters for this model. Vol0 can be used in muscle
+recruitment to form a muscle volume weighted sum of muscle activations; see e.g.
+<a class="reference internal" href="#happee-van-der-hel-1995" id="id1">[Happee_Van_der_Hel_1995]</a>. <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Lf0</span></code> can be tuned in a calibration study; then
+using <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Vol0</span></code>, modified physiological cross sectional area (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">PCSA</span></code>) of the
+muscle can be computed by the user (e.g. as <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">PCSA</span><span class="o">=</span><span class="n">Vol0</span><span class="o">/</span><span class="n">Lf0</span></code>), which can be
+used afterwards to modify the value for <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F0</span></code>.</p>
 <p>Let us perform the necessary modifications to make the model useful to
 us:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyMuscleModel</span> <span class="gr">SimpleModel</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">F0</span> <span class="o">=</span> <span class="gr">100</span><span class="p">;</span>
+  <span class="c1">//Lf0 = 0.0;</span>
+  <span class="c1">//Vol0 = 0.0;</span>
 <span class="p">};</span>
 </pre></div>
 </div>
@@ -215,14 +226,18 @@ instance of it:</p>
 <p><img alt="class tree AnyViaPointMuscle" src="../_images/image327.png" /></p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyMuscleModel</span> <span class="n">SimpleModel</span> <span class="o">=</span> <span class="p">{</span>
       <span class="n">F0</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+      <span class="c1">//Lf0 = 0;</span>
+      <span class="c1">//Vol0 = 0;</span>
    <span class="p">};</span>
 
-   <span class="gr"> AnyViaPointMuscle &lt;ObjectName&gt; = {</span>
-<span class="gr">      AnyMuscleModel &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
-<span class="gr">      AnyRefFrame &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
-<span class="gr">      AnyRefFrame &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
-<span class="gr">      //AnyRefFrame &amp;&lt;Insert name2&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
-<span class="gr">    };</span>
+   <span class="gr"> AnyViaPointMuscle &lt;ObjectName&gt; = {</span>
+<span class="gr">      //RefFrames = ;</span>
+<span class="gr">      //Surfaces = ;</span>
+<span class="gr">      AnyMuscleModel &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">      AnyRefFrame &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">      AnyRefFrame &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">      //AnyRefFrame &amp;&lt;Insert name2&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
+<span class="gr">    };</span>
 </pre></div>
 </div>
 <p>Let us start by filling out what we can and removing what we have no use
@@ -275,7 +290,7 @@ reference frame and the insertion on the segment:</p>
 </pre></div>
 </div>
 <p>Notice that we have added an AnyDrawMuscle object to the definition.
-Like other classes in AnyScript, muscles are not drawn in the model view
+Like other classes in AnyScript, muscles are not drawn in the Model View
 window unless you specifically ask for it. When you load the model and
 run the SetInitialConditions study you will get the following picture
 (if your model does not load, and you cannot find the error, <a class="reference download internal" href="../_downloads/MuscleDemo.1.any" download=""><code class="xref download docutils literal"><span class="pre">click
@@ -291,10 +306,20 @@ but if you try to plot them you will find that many of them are zero.
 This is because they are not relevant for this very simple type of
 muscle. We shall return to the significance of the different properties
 later in this tutorial.</p>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<table class="docutils citation" frame="void" id="happee-van-der-hel-1995" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[Happee_Van_der_Hel_1995]</a></td><td>Happee, R., &amp; Van der Helm, F. C. T. (1995). The control of shoulder muscles during goal
+directed movements, an inverse dynamic analysis. Journal of biomechanics, 28(10), 1179-1191.</td></tr>
+</tbody>
+</table>
 <div class="without-title admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last"><strong>Next lesson:</strong> For now, <a class="reference internal" href="lesson2.html"><span class="doc">let’s proceed to the next lesson</span></a>&nbsp;to learn
 how to control the way a muscle is displayed.</p>
+</div>
 </div>
 </div>
 
