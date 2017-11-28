@@ -68,10 +68,10 @@
             
   <div class="section" id="translating-a-solidworks-cad-model-to-anybody">
 <h1>Translating a SOLIDWORKS CAD model to AnyBody<a class="headerlink" href="#translating-a-solidworks-cad-model-to-anybody" title="Permalink to this headline">¶</a></h1>
-<p>Start by downloading the <code class="xref download docutils literal"><span class="pre">example SOLIDWORKS CAD assembly</span></code></p>
+<p>Start by downloading the <a class="reference download internal" href="../_downloads/FitnessMachine_SolidWorks.zip" download=""><code class="xref download docutils literal"><span class="pre">example SOLIDWORKS CAD assembly</span></code></a></p>
 <p>After having downloaded and opened this model in your SOLIDWORKS
 environment, you will see the following image.</p>
-<p><img alt="SolidWorks fitnessmachine" src="AnyExp4SOLIDWORKS/_static/lesson1/lesson1_image1.PNG" /></p>
+<p><img alt="SolidWorks fitnessmachine" src="../_images/lesson1_image1.png" /></p>
 <p>As you can see, this SOLIDWORKS assembly contains several parts and
 mates. The assembly has three different configurations, each managing
 different sets of mates. We will discuss the purpose of these different
@@ -87,7 +87,7 @@ the AnyExp4SOLIDWORKS add-in on the SOLIDWORKS menu like this:</p>
 <p><img alt="AnyExp4SOLIDWORKS menu" src="../_images/lesson1_image2.png" /></p>
 <p>Start the translation process by selecting the ‘Export to AnyScript’
 menu item. Doing this will display the following dialog.</p>
-<p><img alt="AnyExp4SOLIDWORKS dialog" src="AnyExp4SOLIDWORKS/_static/lesson1/lesson1_image3.PNG" /></p>
+<p><img alt="AnyExp4SOLIDWORKS dialog" src="../_images/lesson1_image3.png" /></p>
 <p>In this dialog you can choose various options for the translation
 process such as indentation method, constraint type for mates, STL file
 type and so on. If you press the OK button after having decided the
@@ -127,7 +127,7 @@ file, color)</li>
 <div class="section" id="solidworks-assembly-model-structure">
 <h2>SOLIDWORKS assembly model structure<a class="headerlink" href="#solidworks-assembly-model-structure" title="Permalink to this headline">¶</a></h2>
 <p>Let us compare the SOLIDWORKS Feature Tree and the AnyBody Model Tree.</p>
-<p><img alt="SOLIDWORKS properties" src="AnyExp4SOLIDWORKS/_static/lesson1/lesson1_image6.PNG" /><img alt="ANYBODY model tree" src="../_images/lesson1_image7.PNG" /></p>
+<p><img alt="SOLIDWORKS properties" src="../_images/lesson1_image6.png" /><img alt="ANYBODY model tree" src="../_images/lesson1_image7.PNG" /></p>
 <p>First, the top assembly ‘FitnessMachine’ is converted into a
 corresponding AnyFolder object, which has the same name. All individual
 parts are converted into corresponding AnySeg objects. Some reference
@@ -182,7 +182,7 @@ as AnyKinEq, AnyKinEqSimpleDriver or some standard joint types like
 AnyRevoluteJoint, AnySphericalJoint..</p>
 <p>Let us select one mate in the assembly and look at it in detail inside
 SOLIDWORKS.</p>
-<p><img alt="SolidWorks assembly" src="AnyExp4SOLIDWORKS/_static/lesson1/lesson1_image8.PNG" /></p>
+<p><img alt="SolidWorks assembly" src="../_images/lesson1_image8.png" /></p>
 <p>The ‘Concentric11’ mate was established between MainCylinder-1 and
 BeamType1-2 components. In the above picture, the selected violet
 cylinder is included in the MainCylinder-1 component, and
