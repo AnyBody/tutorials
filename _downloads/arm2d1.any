@@ -118,26 +118,30 @@ Main = {
       
     }; // Jnts folder
     
+    AnyFolder Drivers = {
+      
+      //---------------------------------
+      AnyKinEqSimpleDriver ShoulderMotion = {
+        AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
+        DriverPos = {-100*pi/180};
+        DriverVel = {30*pi/180};
+        Reaction.Type = {Off};
+      }; // Shoulder driver
+      
+      //---------------------------------
+      AnyKinEqSimpleDriver ElbowMotion = {
+        AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
+        DriverPos = {90*pi/180};
+        DriverVel = {45*pi/180};
+        Reaction.Type = {Off};
+      }; // Elbow driver
+    }; // Driver folder
+    
     AnyFolder Muscles = {
       // Simple muscle model with constant strength = 300 Newton
       AnyMuscleModel MusMdl = {
         F0 = 600;
       };
-      
-      AnyMuscleModel3E BicepsLongModel = {
-        AnyVar PCSA = 2.66; // Physiological cross sectional area [cm^2]
-        F0 = PCSA*30; // Presuming a maximum muscle stress of 30 N/cm^2
-        Lf0 = 0.123; //Optimum fiber length [m]
-        Lt0 = 0.26; //First guess of tendon slack length [m]
-        Gamma0 = 0.3*(pi/180); //Pennation angle converted to radians
-        Epsilon0 = 0.053; //Tendon strain at F0
-        K1 = 10; //Slow twitch factor
-        K2 = 0; //Fast twitch factor(zero when no info available)
-        Fcfast = 0.4; //Percentage of fast to slow factor
-        Jt = 3.0; //Shape parameter for the tendon stiffness
-        Jpe = 3.0; //Shape parameter for the parallel stiffness
-        PEFactor = 5.0; //Parameter for influence of parallel stiffness
-      }; // End of BicepsLongModel
       
       //---------------------------------
       AnyViaPointMuscle Brachialis = {
@@ -189,7 +193,7 @@ Main = {
       
       //---------------------------------
       AnyViaPointMuscle BicepsLong = {
-        AnyMuscleModel &MusMdl = .BicepsLongModel;
+        AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..GlobalRef.BicepsLong;
         AnyRefNode &Ins = ..Segs.ForeArm.Biceps;
         AnyDrawMuscle DrwMus = {};
@@ -215,61 +219,13 @@ Main = {
     
   }; // MyModel
   
-  AnyFolder Drivers = {
-    //---------------------------------
-    AnyKinEqSimpleDriver ShoulderMotion = {
-      AnyRevoluteJoint &Jnt = Main.ArmModel.Jnts.Shoulder;  // Changed!
-      DriverPos = {-100*pi/180};
-      DriverVel = {30*pi/180};
-      Reaction.Type = {Off};
-    }; // Shoulder driver
-    
-    //---------------------------------
-    AnyKinEqSimpleDriver ElbowMotion = {
-      AnyRevoluteJoint &Jnt = Main.ArmModel.Jnts.Elbow;  // Changed!
-      DriverPos = {90*pi/180};
-      DriverVel = {45*pi/180};
-      Reaction.Type = {Off};
-    }; // Elbow driver
-  }; // Driver folder
-  
-  AnyFolder CalibrationDrivers = {
-    //---------------------------------
-    AnyKinEqSimpleDriver ShoulderMotion = {
-      AnyJoint &Jnt = Main.ArmModel.Jnts.Shoulder;
-      DriverPos = {-90*pi/180}; // Vertical upper arm
-      DriverVel = {0.0};
-      Reaction.Type = {Off};
-    };
-    //---------------------------------
-    AnyKinEqSimpleDriver ElbowMotion = {
-      AnyJoint &Jnt = Main.ArmModel.Jnts.Elbow;
-      DriverPos = {30*pi/180}; // 30 degrees elbow flexion
-      DriverVel = {0.0};
-      Reaction.Type = {Off};
-    };
-  };
-  
-  
   // The study: Operations to be performed on the model
   AnyBodyStudy ArmStudy = {
     AnyFolder &Model = .ArmModel;
-    AnyFolder &Drivers = .Drivers;
-    InverseDynamics.Criterion.Type = MR_MinMaxStrict;
     Gravity = {0.0, -9.81, 0.0};
   };
-  // A new calibration study
-  AnyBodyCalibrationStudy CalibrationStudy = {
-    AnyFolder &Model = Main.ArmModel;
-    AnyFolder &Drivers = .CalibrationDrivers;
-    nStep = 1;
-  }; // End of study
   
 };  // Main
-
-
-
-
 
 
 

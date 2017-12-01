@@ -68,11 +68,6 @@
             
   <div class="section" id="introduction-to-muscle-modeling">
 <h1>Introduction to Muscle Modeling<a class="headerlink" href="#introduction-to-muscle-modeling" title="Permalink to this headline">¶</a></h1>
-<div class="without-title admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last"><strong>Old tutorial:</strong>
-This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
-</div>
 <p><img alt="Muscles back" src="../_images/image13.jpeg" /></p>
 <p>Muscles are the actuators of living bodies. They are activated by the
 central nervous system (CNS) by a complicated electro-chemical process.
@@ -83,7 +78,7 @@ the CNS by computing backwards from the movement and load specified by
 the user to the necessary muscle forces in a process known as inverse
 dynamics. To do so, the system must know the properties of the muscles
 involved, and this is where muscle modeling comes into the picture.</p>
-<p>AnyBody contains three different muscle models ranging from simple to
+<p>AnyBody contains four different muscle models ranging from simple to
 more complicated physiological behavior. The simplest model just assumes
 a constant strength of the muscle regardless of its working conditions.
 The more complicated models take such conditions as current length,
@@ -98,6 +93,7 @@ elastic elements into account along with fiber length and contraction
 velocity</li>
 <li>AnyMuscleModel2ELin - a bilinear model taking length and contraction
 velocity into account.</li>
+<li>AnyMuscleModelUsr1 - a custom user-defined strength that can be an explicit function of muscle variables, such as length and contraction velocity.</li>
 </ol>
 <p>The muscle models can be linked to different types of muscles:</p>
 <ol class="arabic simple">
@@ -155,7 +151,7 @@ to the basics of muscle modeling in <a class="reference internal" href="lesson1.
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: The Basics of Muscle Definition</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Controlling Muscle Drawing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Via-point muscles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Via-point Muscles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Wrapping Muscles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson5.html">Lesson 5: Muscle Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: General Muscles</a></li>

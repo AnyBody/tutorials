@@ -31,7 +31,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lesson 3: Via-point muscles" href="lesson3.html" />
+    <link rel="next" title="Lesson 3: Via-point Muscles" href="lesson3.html" />
     <link rel="prev" title="Lesson 1: The Basics of Muscle Definition" href="lesson1.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
@@ -48,7 +48,7 @@
           <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson3.html" title="Lesson 3: Via-point muscles"
+          <a href="lesson3.html" title="Lesson 3: Via-point Muscles"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: The Basics of Muscle Definition"
@@ -68,11 +68,6 @@
             
   <div class="section" id="lesson-2-controlling-muscle-drawing">
 <h1>Lesson 2: Controlling Muscle Drawing<a class="headerlink" href="#lesson-2-controlling-muscle-drawing" title="Permalink to this headline">¶</a></h1>
-<div class="without-title admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last"><strong>Old tutorial:</strong>
-This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
-</div>
 <p>Muscles can be displayed in a variety of fashions depending on the
 specifications in the AnyDrawMuscle object. Let us take a look at its
 definition again:</p>
@@ -87,20 +82,36 @@ the settings is to discard our manually defined AnyDrawMuscle object and
 insert a template from the class tree instead:</p>
 <p><img alt="class tree AnyDrawMuscle" src="../_images/image22.gif" /></p>
 <p>Erase the previous AnyDrawMuscle, right-click the AnyDrawMuscle in the
-tree view, an insert an instance:</p>
+tree view, and insert an instance:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyViaPointMuscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M1Origin</span><span class="p">;</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Ins</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">M1Insertion</span><span class="p">;</span>
-  <span class="gr">AnyDrawMuscle drw = {</span>
-<span class="gr">    //RGB = {0.554688, 0.101563, 0.117188};</span>
-<span class="gr">    //Opacity = 1.000000;</span>
-<span class="gr">    //DrawOnOff = 1.000000;</span>
-<span class="gr">    //Bulging = 0.000000;</span>
-<span class="gr">    //ColorScale = 0.000000;</span>
-<span class="gr">    //RGBColorScale = {0.957031, 0.785156, 0.785156};</span>
-<span class="gr">    //MaxStress = 250000.000000;</span>
-<span class="gr">  };</span>
+  <span class="gr">AnyDrawMuscle drw = {</span>
+<span class="gr">    //Visible = On;</span>
+<span class="gr">    //Opacity = 1.0;</span>
+<span class="gr">    //Pickable = On;</span>
+<span class="gr">    //RGB = {0.5546875, 0.1015625, 0.1171875};</span>
+<span class="gr">    //Transparency = 1.0;</span>
+<span class="gr">    //DrawOnOff = 1.0;</span>
+<span class="gr">    //Bulging = 0.0;</span>
+<span class="gr">    //ColorScale = 0.0;</span>
+<span class="gr">    //RGBColorScale = {0.95703125, 0.78515625, 0.78515625};</span>
+<span class="gr">    //MaxStress = 250000.0;</span>
+<span class="gr">    //DrawScaleOnOff = Off;</span>
+<span class="gr">    /*DrawScale =</span>
+<span class="gr">    {</span>
+<span class="gr">    EnableCreasing = Off;</span>
+<span class="gr">    CreasingAngle = 0.524;</span>
+<span class="gr">    EnableWireframe = Off;</span>
+<span class="gr">    EnableSmoothing = On;</span>
+<span class="gr">    Param = 0.0;</span>
+<span class="gr">    ParamArray = ;</span>
+<span class="gr">    RGBArray = ;</span>
+<span class="gr">    OpacityArray = ;</span>
+<span class="gr">    };*/</span>
+<span class="gr">    //AnyStyleDrawMaterial &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
+<span class="gr">  };</span>
 <span class="p">};</span>
 </pre></div>
 </div>
@@ -248,7 +259,7 @@ between causes the object to be semi-transparent. You can also turn of
 the display of the object entirely off by&nbsp;setting DrawOnOff = 0;</p>
 <div class="without-title admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Via-point muscles</span></a>.</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Via-point Muscles</span></a>.</p>
 </div>
 </div>
 
@@ -289,7 +300,7 @@ the display of the object entirely off by&nbsp;setting DrawOnOff = 0;</p>
 <li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: The Basics of Muscle Definition</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 2: Controlling Muscle Drawing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Via-point muscles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Via-point Muscles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Wrapping Muscles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson5.html">Lesson 5: Muscle Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: General Muscles</a></li>
@@ -350,7 +361,7 @@ the display of the object entirely off by&nbsp;setting DrawOnOff = 0;</p>
           <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson3.html" title="Lesson 3: Via-point muscles"
+          <a href="lesson3.html" title="Lesson 3: Via-point Muscles"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: The Basics of Muscle Definition"
