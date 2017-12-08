@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Lesson 5: Using real data &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="Lesson 6: Troubleshooting C3D files" href="lesson6.html" />
     <link rel="prev" title="Lesson 4: Parameter identification" href="lesson4.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson6.html" title="Lesson 6: Troubleshooting C3D files"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Parameter identification"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">6. Making things move</a> &#187;</li> 
@@ -67,7 +69,7 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-5-using-real-data">
-<span id="making-things-move-move-real-mocap"></span><h1>Lesson 5: Using real data<a class="headerlink" href="#lesson-5-using-real-data" title="Permalink to this headline">¶</a></h1>
+<span id="making-things-move-move-real-mocap"></span><h1>Lesson 5: Using real data<a class="headerlink" href="#lesson-5-using-real-data" title="Permalink til denne overskrift">¶</a></h1>
 <p>Without further ado, let us import a real C3D file and drive a complete model.</p>
 <p>The AnyBody Modeling System offers you virtually unlimited ways of doing
 things, and probably more than the average user can comprehend, so we
@@ -76,9 +78,9 @@ are going to start with a simple and top-down procedure.</p>
 are easy to drive with your own data and which contain some really neat features
 for data processing.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Bemærk</p>
 <p class="last">Make sure you have installed your own copy of the AnyBody Model repository (AMMR).
-See the <span class="xref std std-ref">AMMR documentation</span>.</p>
+See the <a class="reference external" href="https://anyscript.org/ammr-doc/dev/ammr_installation.html#installing-ammr" title="(i AMMR v2.0)"><span class="xref std std-ref">AMMR documentation</span></a>.</p>
 </div>
 <ol class="arabic simple">
 <li>Go to the folder <code class="file docutils literal"><span class="pre">Application/MocapExamples/Plug-in-gait_Simple</span></code>.</li>
@@ -86,11 +88,11 @@ See the <span class="xref std std-ref">AMMR documentation</span>.</p>
 </ol>
 <p>This is a gait model comprising only the lower extremities and the necessary
 part of the upper body for attachment of muscles. The model is based on a C3D
-file with “Plug in Gait” marker protocol, and three force platforms. You can
+file with »Plug in Gait« marker protocol, and three force platforms. You can
 easily modify this to any other movement, simply by importing a different C3D
 file to drive the model with.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Code example 6.1: </span><span class="caption-text"><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">LowerExtremity</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">any</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Code example 6.1: </span><span class="caption-text"><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">LowerExtremity</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">any</span></code></span><a class="headerlink" href="#id1" title="Permahenvisning til denne kode">¶</a></div>
 <div class="highlight-AnyScriptDoc"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -140,7 +142,7 @@ identification, Marker tracking, and Inverse Dynamic analysis. See
 for a detailed dicussion on different approches to MoCap analysis.</span></p>
 </div>
 <div class="section" id="parameter-identification">
-<h2>Parameter identification<a class="headerlink" href="#parameter-identification" title="Permalink to this headline">¶</a></h2>
+<h2>Parameter identification<a class="headerlink" href="#parameter-identification" title="Permalink til denne overskrift">¶</a></h2>
 <p>If you look closely at the model view, you can see that the skeleton is equipped with
 markers and if you zoom in a little, you can also see that the markers
 carry small coordinate systems with red and green arrows.</p>
@@ -162,7 +164,7 @@ placements exactly as we did in <a class="reference internal" href="lesson4.html
 <p>The model is set up to do this automatically, and if you are happy with the
 choice that has been made, you need not do anymore.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Bemærk</p>
 <p class="last">If you use a different marker protocol, or customize what is optimized you
 will need to modify the marker protocol. In this example, the marker
 protocol is define in the file The <code class="file docutils literal"><span class="pre">Setup/MarkerProtocol.any</span></code>. In the
@@ -181,7 +183,7 @@ time because the mocap data only contains limited information.</p>
 possible to get information about the location of that joint or about the
 lengths of adjacent segments from the marker data.</p>
 <div class="section" id="running-parameter-identification">
-<h3>Running Parameter identification<a class="headerlink" href="#running-parameter-identification" title="Permalink to this headline">¶</a></h3>
+<h3>Running Parameter identification<a class="headerlink" href="#running-parameter-identification" title="Permalink til denne overskrift">¶</a></h3>
 <p>Without further ado, let us perform the optimization:</p>
 <p>Find the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">RunParameterOptimzation</span></code> in the operations dropdown, and run it.</p>
 <p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image322.png" /></p>
@@ -189,7 +191,7 @@ lengths of adjacent segments from the marker data.</p>
 sometimes slowly and sometimes a bit faster depending on the speed of
 your computer and the progress of the computation.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Bemærk</p>
 <p class="last">The process speeds up significantly if you switch off the Model View.</p>
 </div>
 <p>When operation is done you will see the line <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Optimization</span> <span class="n">converged</span></code> in the <em>Output</em> windows
@@ -222,7 +224,7 @@ the full optimization for each trial as we shall do later in this tutorial.</p>
 </div>
 </div>
 <div class="section" id="marker-tracking-and-inverse-dynamics">
-<h2>Marker tracking and Inverse dynamics<a class="headerlink" href="#marker-tracking-and-inverse-dynamics" title="Permalink to this headline">¶</a></h2>
+<h2>Marker tracking and Inverse dynamics<a class="headerlink" href="#marker-tracking-and-inverse-dynamics" title="Permalink til denne overskrift">¶</a></h2>
 <p>Let us proceed with the kinematic analysis. As we saw in <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2: Using motion capture data</span></a> marker
 based models usually require an over-determinate kinematic solver to handle the
 excess in information that the optical markers provide. The over-determinate
@@ -232,7 +234,7 @@ analysis. To overcome this problem, the MOCAP analysis is split into a two-step
 procedure, as illustrated on  figure <a class="reference internal" href="#model-flow-chart"><span class="std std-numref">Fig. 6.1</span></a>, separating
 the Marker tracking from the Inverse dynamic analysis.</p>
 <p>The overdeterminate kinematic analysis solves the model for positions, and
-stores the joint angles as function of time. This step is the “Marker tracking”
+stores the joint angles as function of time. This step is the »Marker tracking«
 step in figure <a class="reference internal" href="#model-flow-chart"><span class="std std-numref">Fig. 6.1</span></a>. These joint angles are then used in the
 second step with the determinate kinematic solver in the inverse dynamic
 analysis.</p>
@@ -244,7 +246,7 @@ that is necessary to run the analysis: It loads the optimized model parameters
 that were saved previously; it run the marker tracking, and if necessary
 performs calibration movements to adjust the tendon lengths to the lengths of
 the bones; and finally executes a dynamic analysis to determine forces in the
-system. Run the analysis by selecting it from the Operations dropdown, and click “Run”.</p>
+system. Run the analysis by selecting it from the Operations dropdown, and click »Run«.</p>
 <p>After the kinematic Marker tracking, the muscles are switched on, and the
 inverse dynamic analysis starts. This step will usually be the slowest, due to
 the very high amount of detail of the model, requiring the computer to
@@ -254,7 +256,7 @@ the hip joint reaction forces:</p>
 <img alt="../_images/image513.png" src="../_images/image513.png" />
 </div>
 <div class="section" id="importing-new-motion-data">
-<h2>Importing new motion data<a class="headerlink" href="#importing-new-motion-data" title="Permalink to this headline">¶</a></h2>
+<h2>Importing new motion data<a class="headerlink" href="#importing-new-motion-data" title="Permalink til denne overskrift">¶</a></h2>
 <p>So we have seen the model optimize its parameters and we have seen it
 perform a dynamic analysis on existing data that somebody else has
 defined. But here comes the real point of the application:</p>
@@ -305,7 +307,7 @@ documenting that faster gait lead to higher hip joint forces.</p>
 <img alt="../_images/charview_higher_hip_forces.png" src="../_images/charview_higher_hip_forces.png" />
 </div>
 <div class="section" id="using-full-body-models">
-<h2>Using full-body models<a class="headerlink" href="#using-full-body-models" title="Permalink to this headline">¶</a></h2>
+<h2>Using full-body models<a class="headerlink" href="#using-full-body-models" title="Permalink til denne overskrift">¶</a></h2>
 <p>Many motion experiments deal with the entire body as opposed to just the
 lower extremities. The Model Repository contains another
 pre-cooked model for this purpose, and it will reveal that there is more
@@ -336,7 +338,7 @@ function of the muscle system in gait as illustrated below.</p>
 <p>The final lesson of this tutorial is about problems that may arise with
 C3D files.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
+<p class="first admonition-title">Se også</p>
 <p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Troubleshooting C3D files</span></a>.</p>
 </div>
 </div>
@@ -352,17 +354,17 @@ C3D files.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -400,10 +402,10 @@ C3D files.</p>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/Making_things_move/lesson5.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -433,17 +435,17 @@ C3D files.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson6.html" title="Lesson 6: Troubleshooting C3D files"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Parameter identification"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >6. Making things move</a> &#187;</li> 

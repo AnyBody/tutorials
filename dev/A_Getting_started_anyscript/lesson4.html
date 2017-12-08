@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Lesson 4: Imparting movement with Drivers &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="Lesson 5: Definition of Muscles and External Forces" href="lesson5.html" />
     <link rel="prev" title="Lesson 3: Connecting Segments by Joints" href="lesson3.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson5.html" title="Lesson 5: Definition of Muscles and External Forces"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Connecting Segments by Joints"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">2. Getting started: AnyScript Programming</a> &#187;</li> 
@@ -67,9 +69,9 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-4-imparting-movement-with-drivers">
-<h1>Lesson 4: Imparting movement with Drivers<a class="headerlink" href="#lesson-4-imparting-movement-with-drivers" title="Permalink to this headline">¶</a></h1>
+<h1>Lesson 4: Imparting movement with Drivers<a class="headerlink" href="#lesson-4-imparting-movement-with-drivers" title="Permalink til denne overskrift">¶</a></h1>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Bemærk</p>
 <p class="last">Here’s an AnyScript file to start on if you have not completed the
 previous lesson: <a class="reference download internal" href="../_downloads/demo.lesson4.any" download=""><code class="xref download docutils literal"><span class="pre">*demo.lesson4.any*</span></code></a>.</p>
 </div>
@@ -83,7 +85,7 @@ forces afterward. <strong>This technique is known as inverse dynamics.</strong> 
 shall get to the muscles in the next lesson and stick to the movement in
 this one.</p>
 <div class="section" id="what-are-drivers">
-<h2>What are drivers?<a class="headerlink" href="#what-are-drivers" title="Permalink to this headline">¶</a></h2>
+<h2>What are drivers?<a class="headerlink" href="#what-are-drivers" title="Permalink til denne overskrift">¶</a></h2>
 <p>Our mechanism has two degrees of freedom because it can rotate at the
 shoulder and at the elbow. This means that we have to specify two
 drivers. The natural way is to drive the shoulder and elbow rotations
@@ -97,7 +99,7 @@ just as valid a model because the end point position uniquely determines
 the elbow and shoulder rotations.</p>
 </div>
 <div class="section" id="creating-an-anykineqsimple-driver">
-<h2>Creating an AnyKinEqSimple driver<a class="headerlink" href="#creating-an-anykineqsimple-driver" title="Permalink to this headline">¶</a></h2>
+<h2>Creating an AnyKinEqSimple driver<a class="headerlink" href="#creating-an-anykineqsimple-driver" title="Permalink til denne overskrift">¶</a></h2>
 <p>For now, let’s make a new folder and define two drivers:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="p">};</span> <span class="c1">// Jnts folder</span>
 
@@ -139,23 +141,23 @@ joints respectively. They are constructed the same way as the joint
 definition in <a class="reference internal" href="lesson3.html"><span class="doc">*Lesson 3*</span></a> in the sense that a local
 variable, Jnt, is declared and can be used instead of the longer global
 name if we need to reference the joint somewhere else inside the driver.
-Notice also the use of the reference operator ‘&amp;’ that causes the local
+Notice also the use of the reference operator ›&amp;‹ that causes the local
 variable to be a pointer to the global one rather than a copy. It means
 that if some property of the globally defined joint changes, then the
 local version changes with it.</p>
 <p>The specifications of DriverPos and DriverVel are&nbsp;the starting value of
 the driver and the constant velocity, respectively.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Bemærk</p>
 <p class="last">Since these drivers drive angles, the units are radians and
 radians/sec.</p>
 </div>
 <p>Try loading the model again by hitting F7. If you did not mistype
-anything, you should get the message “Loaded successfully” and no
+anything, you should get the message »Loaded successfully« and no
 warning messages about lacking kinematic constraints this time.</p>
 </div>
 <div class="section" id="running-simulations-making-things-move">
-<h2>Running simulations - making things move!<a class="headerlink" href="#running-simulations-making-things-move" title="Permalink to this headline">¶</a></h2>
+<h2>Running simulations - making things move!<a class="headerlink" href="#running-simulations-making-things-move" title="Permalink til denne overskrift">¶</a></h2>
 <p>This is good news because you are now actually ready to see the model
 move. If you look closer at the model tree window, it has a second tab
 labelled “Operations”. This is the place where the AnyBody system places
@@ -163,7 +165,7 @@ your studies, and from this window, you can execute them, i.e., start
 analyses and calculations.</p>
 <p><img alt="Operations ArmStudy" src="../_images/image24.png" /></p>
 <p>Try expanding the ArmStudy root. You will get&nbsp;a list of the study types
-that the system can perform. “Study” is a common name for operations you
+that the system can perform. »Study« is a common name for operations you
 can perform on a model. Try clicking the KinematicAnalysis study. With
 the buttons in the Operations window, you can now execute various types
 of analysis.</p>
@@ -180,7 +182,7 @@ aborted. Shortcut F4</li>
 </ul>
 </div>
 <div class="section" id="replaying-a-simulation">
-<h2>Replaying a simulation<a class="headerlink" href="#replaying-a-simulation" title="Permalink to this headline">¶</a></h2>
+<h2>Replaying a simulation<a class="headerlink" href="#replaying-a-simulation" title="Permalink til denne overskrift">¶</a></h2>
 <p>All these functions are also available from the main frame toolbar
 <img alt="Execute toolbar" src="../_images/image43.png" /> and the menu Operation.</p>
 <p>Now, try your luck with the <strong>KinematicAnalysis</strong> study and the Run
@@ -197,14 +199,14 @@ computed. These properties are calculated by the
 <strong>InverseDynamicAnalysis</strong>.</p>
 </div>
 <div class="section" id="fetching-simulation-results">
-<h2>Fetching simulation results<a class="headerlink" href="#fetching-simulation-results" title="Permalink to this headline">¶</a></h2>
+<h2>Fetching simulation results<a class="headerlink" href="#fetching-simulation-results" title="Permalink til denne overskrift">¶</a></h2>
 <p>The analysis has 101 time steps corresponding to a division of the total
 analysis time into 100 equal pieces. The total time span simulated in
 the analysis is 1 sec. These are default values because we did not
 specify them when we defined the ArmModelStudy in the AnyScript model.
 If you want more or fewer time steps or a longer or shorter analysis
 interval, all you have to do is to set the corresponding property in the
-ArmModelStudy definition. When you click “Run”, all the time steps are
+ArmModelStudy definition. When you click »Run«, all the time steps are
 executed in sequence, and the mechanism animates in the graphics window.</p>
 <p>So far, the model was merely a two-bar mechanism moving at constant
 joint angular velocities. However, the system has actually computed
@@ -215,17 +217,17 @@ where all computed results are stored. Notice that the Output branch
 contains the same folders we defined in the AnyScript model: GlobalRef,
 Segs, and so on. In the Segs folder you find ForeArm, and in that a
 branch for each of the nodes we defined on the arm. Try expanding the
-branch for the HandNode. It contains the field ‘r’ which is the position
+branch for the HandNode. It contains the field ›r‹ which is the position
 vector of the node. We might want to know the precise position of the
 HandNode at each time in the analysis, for instance, if we were doing an
 ergonomic study and wanted to know if the hand had collided with
 anything on its way.</p>
-<p>If you double-click the ‘r’ node, the instantaneous position vector
+<p>If you double-click the ›r‹ node, the instantaneous position vector
 (depending on where your replay slider is) of the hand node for each
 time step is dumped in the message window at the bottom of the screen.</p>
 </div>
 <div class="section" id="plotting-simulation-results">
-<h2>Plotting simulation results<a class="headerlink" href="#plotting-simulation-results" title="Permalink to this headline">¶</a></h2>
+<h2>Plotting simulation results<a class="headerlink" href="#plotting-simulation-results" title="Permalink til denne overskrift">¶</a></h2>
 <p>However, we often prefer to plot our results. With the default layout,
 this feature is located in the same window as Model View under the tab
 called “Chart 1”. You can also open it from the pull-down menus by
@@ -236,7 +238,7 @@ a tree view to the left, but with an empty field for graphing results.</p>
 except that some of the data has been filtered out so that you mainly
 see the parts of the tree that are relevant in terms of results or
 output. You can expand the tree in the chart window through ArmStudy and
-Output until you come to the HandNode. When you pick the property ‘r’,
+Output until you come to the HandNode. When you pick the property ›r‹,
 you get three curves corresponding to the movement of the three
 Cartesian coordinates of this node during the simulated time period. Try
 holding the mouse pointer over one of the curves for a moment. A small
@@ -246,7 +248,7 @@ computed in AnyBody can be visualized this way.</p>
 <p>So far, we have only the kinematic data to look at. Before we can start
 the real biomechanics, we must add some muscles to the model.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
+<p class="first admonition-title">Se også</p>
 <p class="last"><strong>Next lesson:</strong> This is the subject of <a class="reference internal" href="lesson5.html"><span class="doc">*Lesson 5: Definition of muscles and external forces*</span></a>.</p>
 </div>
 </div>
@@ -262,17 +264,17 @@ the real biomechanics, we must add some muscles to the model.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -310,10 +312,10 @@ the real biomechanics, we must add some muscles to the model.</p>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/A_Getting_started_anyscript/lesson4.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -343,17 +345,17 @@ the real biomechanics, we must add some muscles to the model.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson5.html" title="Lesson 5: Definition of Muscles and External Forces"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Connecting Segments by Joints"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >2. Getting started: AnyScript Programming</a> &#187;</li> 

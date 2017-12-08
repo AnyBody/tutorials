@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Lesson 4: Kinetics - Computing Forces &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="4. User interface features" href="../Interface_features/index.html" />
     <link rel="prev" title="Lesson 3: Making Ends Meet" href="lesson3.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../Interface_features/index.html" title="4. User interface features"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Making Ends Meet"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">3. Getting Started with Modeling</a> &#187;</li> 
@@ -67,7 +69,7 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-4-kinetics-computing-forces">
-<h1>Lesson 4: Kinetics - Computing Forces<a class="headerlink" href="#lesson-4-kinetics-computing-forces" title="Permalink to this headline">¶</a></h1>
+<h1>Lesson 4: Kinetics - Computing Forces<a class="headerlink" href="#lesson-4-kinetics-computing-forces" title="Permalink til denne overskrift">¶</a></h1>
 <p>With the kinematic analysis in place, we are ready to compute forces and
 investigate ergonomic properties of the pedal arrangement. We shall
 presume that the pedal is loaded by a spring, the force of which the leg
@@ -94,7 +96,7 @@ be, and we could find ourselves developing a series of hardware
 prototypes with different springs and perhaps conducting subjective
 investigations with test subjects.</p>
 <div class="section" id="include-pedal-spring-force">
-<h2>Include pedal spring force<a class="headerlink" href="#include-pedal-spring-force" title="Permalink to this headline">¶</a></h2>
+<h2>Include pedal spring force<a class="headerlink" href="#include-pedal-spring-force" title="Permalink til denne overskrift">¶</a></h2>
 <p>Let us do it with AnyBody instead. We shall start out by declaring an
 AnyForce to play the role of the spring. Since this is not a part of the
 body, it is logical to place it in the Environment.any file. Here’s what
@@ -123,7 +125,7 @@ when we start adding non-zero stiffness, it will signify that the spring
 force goes against the angle, i.e. pushes back onto the foot.</p>
 </div>
 <div class="section" id="turn-off-default-reaction-forces">
-<h2>Turn off default reaction forces<a class="headerlink" href="#turn-off-default-reaction-forces" title="Permalink to this headline">¶</a></h2>
+<h2>Turn off default reaction forces<a class="headerlink" href="#turn-off-default-reaction-forces" title="Permalink til denne overskrift">¶</a></h2>
 <p>There are just a couple of things we need to do before we can do the
 InverseDynamicAnalysis operation and compute the forces: All the drivers
 we added in the previous lesson have motors built into them. This means
@@ -214,7 +216,7 @@ file like this:</p>
 </div>
 </div>
 <div class="section" id="adding-muscles">
-<h2>Adding muscles<a class="headerlink" href="#adding-muscles" title="Permalink to this headline">¶</a></h2>
+<h2>Adding muscles<a class="headerlink" href="#adding-muscles" title="Permalink til denne overskrift">¶</a></h2>
 <p>There is one more thing we have to do: The human model has no muscles at
 the moment. This can be corrected by a simple change of BM statements in
 the main file:</p>
@@ -238,7 +240,7 @@ the main file:</p>
 </div>
 </div>
 <div class="section" id="investigating-results">
-<h2>Investigating results<a class="headerlink" href="#investigating-results" title="Permalink to this headline">¶</a></h2>
+<h2>Investigating results<a class="headerlink" href="#investigating-results" title="Permalink til denne overskrift">¶</a></h2>
 <p>Now, reload the model and run the RunApplication operation in the Model
 Tree. The model should look like this:</p>
 <p><img alt="InverseDynamics_End" src="../_images/image28.png" /></p>
@@ -282,17 +284,17 @@ using the predefined models of the repository.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -328,10 +330,10 @@ using the predefined models of the repository.</p>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/A_Getting_started_modeling/lesson4.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -361,17 +363,17 @@ using the predefined models of the repository.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../Interface_features/index.html" title="4. User interface features"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Making Ends Meet"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >3. Getting Started with Modeling</a> &#187;</li> 

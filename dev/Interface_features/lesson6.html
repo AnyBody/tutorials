@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Lesson 6: Modifying the Loaded Model &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="Lesson 7: Wrapping the Model with AnyBody Project" href="lesson7.html" />
     <link rel="prev" title="Lesson 5: The Command Line Application" href="lesson5.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson7.html" title="Lesson 7: Wrapping the Model with AnyBody Project"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson5.html" title="Lesson 5: The Command Line Application"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">4. User interface features</a> &#187;</li> 
@@ -67,12 +69,12 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-6-modifying-the-loaded-model">
-<h1>Lesson 6: Modifying the Loaded Model<a class="headerlink" href="#lesson-6-modifying-the-loaded-model" title="Permalink to this headline">¶</a></h1>
+<h1>Lesson 6: Modifying the Loaded Model<a class="headerlink" href="#lesson-6-modifying-the-loaded-model" title="Permalink til denne overskrift">¶</a></h1>
 <p>In this lesson, we shall take a look at the facilities that allows
 modifying the model after it had been loaded (without changing the
 AnyScript)</p>
 <div class="section" id="setting-values">
-<h2>Setting values<a class="headerlink" href="#setting-values" title="Permalink to this headline">¶</a></h2>
+<h2>Setting values<a class="headerlink" href="#setting-values" title="Permalink til denne overskrift">¶</a></h2>
 <p>If you right click on an object in the Model Tree with the
 <strong>(Editable)</strong> written in next to it, the context menu provides an
 option called “Set Value”. Selecting this displays a dialog box where
@@ -86,7 +88,7 @@ from the console application if needed, as defined in the <a class="reference in
 chapter</span></a>.</p>
 </div>
 <div class="section" id="resetting-values">
-<h2>Resetting values<a class="headerlink" href="#resetting-values" title="Permalink to this headline">¶</a></h2>
+<h2>Resetting values<a class="headerlink" href="#resetting-values" title="Permalink til denne overskrift">¶</a></h2>
 <p>To reset all values to those described in AnyScript, right-click on the
 “Main” object in the Model Tree and select “Reset Values”, which will
 reset all values in the model. This action is also available from the
@@ -97,7 +99,7 @@ chapter</span></a>.</p>
 <p><img alt="Operations menu" src="../_images/image127.png" /></p>
 </div>
 <div class="section" id="updating-dependent-values">
-<h2>Updating dependent values<a class="headerlink" href="#updating-dependent-values" title="Permalink to this headline">¶</a></h2>
+<h2>Updating dependent values<a class="headerlink" href="#updating-dependent-values" title="Permalink til denne overskrift">¶</a></h2>
 <p>As explained in the “Setting values” section above, all dependencies of
 the updated object are not automatically updated. right-click on the
 “Main” object in the Model Tree and select “Update Values”, which will
@@ -108,7 +110,7 @@ which means that it can be summoned from the console application if
 needed, as defined in the previous chapter.</p>
 </div>
 <div class="section" id="storing-modified-values-saving-and-loading-values">
-<h2>Storing Modified Values – Saving and Loading Values<a class="headerlink" href="#storing-modified-values-saving-and-loading-values" title="Permalink to this headline">¶</a></h2>
+<h2>Storing Modified Values – Saving and Loading Values<a class="headerlink" href="#storing-modified-values-saving-and-loading-values" title="Permalink til denne overskrift">¶</a></h2>
 <p>Modified values are not saved back into the AnyScript source code, and
 in the general case, this is not possible. However, the Main folder is
 equipped with two Class Operations, one for saving (“Save Values”) and
@@ -127,7 +129,7 @@ these value objects as modified. It will basically be as if you apply
 “Set Value” manually to all the value-objects in question. This means
 that no automatic updating is carried out by the loading operation.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
+<p class="first admonition-title">Se også</p>
 <p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson7.html"><span class="doc">Lesson 7: Wrapping the Model with AnyBody Project</span></a>.</p>
 </div>
 </div>
@@ -143,17 +145,17 @@ that no automatic updating is carried out by the loading operation.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -192,10 +194,10 @@ that no automatic updating is carried out by the loading operation.</p>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/Interface_features/lesson6.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -225,17 +227,17 @@ that no automatic updating is carried out by the loading operation.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson7.html" title="Lesson 7: Wrapping the Model with AnyBody Project"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson5.html" title="Lesson 5: The Command Line Application"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >4. User interface features</a> &#187;</li> 

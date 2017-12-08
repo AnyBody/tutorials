@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Lesson 2: Defining Segments and Displaying Objects &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="Lesson 3: Connecting Segments by Joints" href="lesson3.html" />
     <link rel="prev" title="Lesson 1: Basic Concepts" href="lesson1.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Connecting Segments by Joints"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: Basic Concepts"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">2. Getting started: AnyScript Programming</a> &#187;</li> 
@@ -67,7 +69,7 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-2-defining-segments-and-displaying-objects">
-<h1>Lesson 2: Defining Segments and Displaying Objects<a class="headerlink" href="#lesson-2-defining-segments-and-displaying-objects" title="Permalink to this headline">¶</a></h1>
+<h1>Lesson 2: Defining Segments and Displaying Objects<a class="headerlink" href="#lesson-2-defining-segments-and-displaying-objects" title="Permalink til denne overskrift">¶</a></h1>
 <p>Here’s an AnyScript file to start on if you have not completed the
 previous lesson:
 <a class="reference download internal" href="../_downloads/demo.lesson2.any" download=""><code class="xref download docutils literal"><span class="pre">*demo.lesson2.any*</span></code></a></p>
@@ -75,13 +77,13 @@ previous lesson:
 are the rigid elements that represent your model. When modeling a human,
 they usually correspond to the bones of the body. However, they can also
 be used to model machines, exoskeletons and other non-human model
-components. Hence the more general term “segment” <a class="footnote-reference" href="#f1" id="id1">[1]</a>.</p>
+components. Hence the more general term »segment« <a class="footnote-reference" href="#f1" id="id1">[1]</a>.</p>
 <p>A segment is just a coordinate system that can move around in space and
 change its orientation. It has an origin where its center of mass is
 assumed to be located, and it has axes coinciding with its principal
 inertia axes.</p>
 <div class="section" id="creating-a-segment">
-<h2>Creating a segment<a class="headerlink" href="#creating-a-segment" title="Permalink to this headline">¶</a></h2>
+<h2>Creating a segment<a class="headerlink" href="#creating-a-segment" title="Permalink til denne overskrift">¶</a></h2>
 <p>We shall start by defining a folder for the segments. Please add the
 following text to your model (new text marked by red):</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// The actual body model goes in this folder</span>
@@ -149,13 +151,13 @@ also assign reasonable values for&nbsp;Jii:</p>
 </pre></div>
 </div>
 <p>Load the model again and notice the warning you get Among the messages:</p>
-<p><em>Model Warning: Study ‘Main.ArmStudy’ contains too few kinematic
+<p><em>Model Warning: Study ›Main.ArmStudy‹ contains too few kinematic
 constraints to be kinematically determinate.</em></p>
 <p>This tells you that your model has more degrees of freedom than
 constraints. We will take care of this in the next lesson</p>
 </div>
 <div class="section" id="displaying-a-segment">
-<h2>Displaying a segment<a class="headerlink" href="#displaying-a-segment" title="Permalink to this headline">¶</a></h2>
+<h2>Displaying a segment<a class="headerlink" href="#displaying-a-segment" title="Permalink til denne overskrift">¶</a></h2>
 <p>Now that we have a physical object in the model let’s see what it looks
 like. To make something visible in AnyBody, you have to add a drawing
 object which defines visibility:</p>
@@ -172,13 +174,13 @@ object which defines visibility:</p>
 the <img alt="Zoom button image" src="../_images/image32.png" /> zoom all button to locate your segment) . If you
 entered the inertia properties in the Jii specification as written
 above, then your ellipsoid should be&nbsp;ten times&nbsp;as long as it is wide.
-Try changing the “0.001” to “0.01” and reload. The ellipsoid becomes
+Try changing the »0.001« to »0.01« and reload. The ellipsoid becomes
 spherical. The dimensions of the ellipsoid are scaled this way to fit
 the mass properties of the segment you are defining. Now change Jii back
 to {0.001,0.01,0.01} again.</p>
 </div>
 <div class="section" id="adding-point-nodes-to-a-segment">
-<h2>Adding point nodes to a segment<a class="headerlink" href="#adding-point-nodes-to-a-segment" title="Permalink to this headline">¶</a></h2>
+<h2>Adding point nodes to a segment<a class="headerlink" href="#adding-point-nodes-to-a-segment" title="Permalink til denne overskrift">¶</a></h2>
 <p>We will eventually attach things like muscles, joints, forces etc. to
 our segments. We hence need attachment points. They are defined in the
 local coordinate system of the segment. Figuring out these points for
@@ -257,7 +259,7 @@ as well. In the segs folder, add these lines:</p>
 </div>
 </div>
 <div class="section" id="creating-a-second-segment">
-<h2>Creating a second segment<a class="headerlink" href="#creating-a-second-segment" title="Permalink to this headline">¶</a></h2>
+<h2>Creating a second segment<a class="headerlink" href="#creating-a-second-segment" title="Permalink til denne overskrift">¶</a></h2>
 <p>When you reload the model, you may not see the forearm immediately
 because it looks exactly the same (Similar mass properties and point
 locations) and is placed exactly on top of the upper arm.</p>
@@ -300,12 +302,12 @@ UpperArm segment looks like this:</p>
 </div>
 </div>
 <div class="section" id="rotation-matrices-in-anybody">
-<h2>Rotation matrices in AnyBody<a class="headerlink" href="#rotation-matrices-in-anybody" title="Permalink to this headline">¶</a></h2>
+<h2>Rotation matrices in AnyBody<a class="headerlink" href="#rotation-matrices-in-anybody" title="Permalink til denne overskrift">¶</a></h2>
 <p>If your spatial thinking is good, you can start figuring out unit
 vectors for the coordinate system orientation you want and insert them
 into the Axes0 specification instead of the existing ones.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Bemærk</p>
 <p class="last">Note that matrices in AnyBody are arranged row-wise, so {1, 0, 0} in Axes0 is the
 first row of a 3x3 matrix.</p>
 </div>
@@ -321,25 +323,25 @@ can specify:</p>
 <p>When you reload again, you will see that the UpperArm is indeed rotated
 -90 degrees about the z axis as the function arguments indicate. Notice
 the multiplication of the angle by pi/180. AnyBody identifies the word
-“pi” as 3.14159… and dividing this with 180 gives the conversion
+»pi« as 3.14159… and dividing this with 180 gives the conversion
 factor between degrees and radians.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Bemærk</p>
 <p class="last">Angles in AnyBody are always in radians.</p>
 </div>
 <p>In the next section, we will look at how joints can be used to constrain
 the movement of segments and allow them to articulate the way we desire.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
+<p class="first admonition-title">Se også</p>
 <p class="last"><strong>Next lesson:</strong> So if you are up to it, let’s continue onward to <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Connecting segments by joints</span></a>.</p>
 </div>
 <p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In rigid body dynamics terminology, a “segment” would be called a
-“rigid body”, but to avoid unnecessary confusion between the rigid
-bodies and the total body model, we have chosen to use “segments” for
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In rigid body dynamics terminology, a »segment« would be called a
+»rigid body«, but to avoid unnecessary confusion between the rigid
+bodies and the total body model, we have chosen to use »segments« for
 the rigid parts of the model.</td></tr>
 </tbody>
 </table>
@@ -356,17 +358,17 @@ the rigid parts of the model.</td></tr>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -404,10 +406,10 @@ the rigid parts of the model.</td></tr>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/A_Getting_started_anyscript/lesson2.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -437,17 +439,17 @@ the rigid parts of the model.</td></tr>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Connecting Segments by Joints"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: Basic Concepts"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >2. Getting started: AnyScript Programming</a> &#187;</li> 

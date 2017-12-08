@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Optimization Studies &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="17. Trouble Shooting AnyScript Models" href="../Troubleshooting_anyscript/intro.html" />
     <link rel="prev" title="Defining a Parameter Study" href="lesson1.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../Troubleshooting_anyscript/intro.html" title="17. Trouble Shooting AnyScript Models"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson1.html" title="Defining a Parameter Study"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">16. Parameter Studies and Optimization</a> &#187;</li> 
@@ -67,9 +69,9 @@
           <div class="body" role="main">
             
   <div class="section" id="optimization-studies">
-<h1>Optimization Studies<a class="headerlink" href="#optimization-studies" title="Permalink to this headline">¶</a></h1>
+<h1>Optimization Studies<a class="headerlink" href="#optimization-studies" title="Permalink til denne overskrift">¶</a></h1>
 <div class="without-title admonition caution">
-<p class="first admonition-title">Caution</p>
+<p class="first admonition-title">Forsigtig</p>
 <p class="last"><strong>Old tutorial:</strong>
 This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
 </div>
@@ -277,9 +279,9 @@ processes.</p>
 variable/objective space rather than over the iterations. This is what
 we need the window with the parameter study surface for. At the top of
 this window you will find panels listing series and data to be plotted.
-Please right-click in the series window and select “New”:</p>
+Please right-click in the series window and select »New«:</p>
 <p><img alt="newseries.gif" src="../_images/image72.gif" /></p>
-<p>This will give you a blank “Series 1”. When you highlight it by clicking
+<p>This will give you a blank »Series 1«. When you highlight it by clicking
 with the mouse you will see the list of Selected Objects in the
 right-hand pane is empty. We are going to fill in the SaddleHeight and
 SaddlePos variables from the OptStudy&nbsp;as Abscissa and Abscissa2,
@@ -297,13 +299,13 @@ pane. This gives you access to all the settings and lets you control the
 appearance of graphs in detail. In the picture below we have selected
 RGB = {0,0,1}, i.e. blue,&nbsp;for Series1 and Thickness = 2:</p>
 <p><img alt="optpath2.gif" src="../_images/image91.gif" /></p>
-<p>This plot illustrates the convergence history in the “landscape” of the
+<p>This plot illustrates the convergence history in the »landscape« of the
 objective function. Here we can see the reasons for the convergence
 being as it is. Actually, the optimum value lies in a relatively flat
 region and therefore the exact mathematical location of the optimum may
 be of a more academic&nbsp;importance than practical relevance&nbsp;since we can
 find many design point with almost the same objective function value.</p>
-<p>“A flat optimum”, like this, can occasionally cause problems for the
+<p>»A flat optimum«, like this, can occasionally cause problems for the
 optimization process to provide exact convergence because it is
 difficult to distinguish between insignificant changes due to flatness
 or convergence. Furthermore, one more obstacle for finding the exact
@@ -414,17 +416,17 @@ available for download and replay
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -458,10 +460,10 @@ available for download and replay
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/Parameter_studies_and_optimization/lesson2.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -491,17 +493,17 @@ available for download and replay
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../Troubleshooting_anyscript/intro.html" title="17. Trouble Shooting AnyScript Models"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson1.html" title="Defining a Parameter Study"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >16. Parameter Studies and Optimization</a> &#187;</li> 

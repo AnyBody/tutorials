@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Lesson 3: Abaqus Interface &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="13. Making Models using SOLIDWORKS" href="../AnyExp4SOLIDWORKS/index.html" />
     <link rel="prev" title="Lesson 2: ANSYS Interface" href="lesson2.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../AnyExp4SOLIDWORKS/index.html" title="13. Making Models using SOLIDWORKS"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: ANSYS Interface"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">12. Finite Element Analysis Interfacing</a> &#187;</li> 
@@ -67,7 +69,7 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-3-abaqus-interface">
-<h1>Lesson 3: Abaqus Interface<a class="headerlink" href="#lesson-3-abaqus-interface" title="Permalink to this headline">¶</a></h1>
+<h1>Lesson 3: Abaqus Interface<a class="headerlink" href="#lesson-3-abaqus-interface" title="Permalink til denne overskrift">¶</a></h1>
 <p>This chapter shows how forces calculated in AnyBody can be applied as
 boundary conditions to a FE Models generated for Abaqus.</p>
 <p>Below you see the flowchart from the introduction of this tutorial
@@ -117,7 +119,7 @@ reference frame is shown</p>
 save it in your working directory. Please note that this FE model of
 clavicle was created in the same reference frame as the clavicle model
 in the AnyBody model, since we have actually used the STL exported from
-AMMR for this bone. Therefore, ‘localrefframe’ does not have to be
+AMMR for this bone. Therefore, ›localrefframe‹ does not have to be
 displaced in order to match with the coordinate system of the FE mesh,
 but had the FE mesh been generated based on scanned data, the
 registration between AnyBody model’s clavicle and the FE mesh can be
@@ -263,7 +265,7 @@ below the study folder:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>This will enter an operation called ‘ ConvertToAbq’ into the model and
+<p>This will enter an operation called › ConvertToAbq‹ into the model and
 running this will execute the AnyFE converter. From the shell prompt you
 write the following to get the same result:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp
@@ -272,10 +274,10 @@ write the following to get the same result:</p>
 <p>At this point, let us return to the issue of the coordinate systems that
 we have used so far and an alternative option. In the example we have
 exported all the positions and forces with reference to a given manually
-defined system attached to the clavicle, i.e. the ‘localrefframe’. The
+defined system attached to the clavicle, i.e. the ›localrefframe‹. The
 AnyFE converter will by default will transfer all positions and forces
 directly, i.e., in the same coordinate system as exported the AnyFE XML
-file. In the above, we have therefore considered ‘localrefframe’ to be
+file. In the above, we have therefore considered ›localrefframe‹ to be
 the coordinate system of the FE model, which is also the CT/MRI scan
 system. Notice that in the given case, the segment reference and the
 output reference are aligned since the FE mesh was based on the original
@@ -286,7 +288,7 @@ reference frame, even the global system in AnyBody
 the AnyFE XML file may or may not contain motion of the bone and it will
 probably.not be aligned with the FE mesh/CT/MRI scan system. If you
 chose this an option, the AnyFE Converter can remove the rigid body
-motion by using the <code class="docutils literal"><span class="pre">–r</span></code> option equal to ‘segment’:</p>
+motion by using the <code class="docutils literal"><span class="pre">–r</span></code> option equal to ›segment‹:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp –r segment
 </pre></div>
 </div>
@@ -394,17 +396,17 @@ see significant changes due to the modification in the overall picture.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -438,10 +440,10 @@ see significant changes due to the modification in the overall picture.</p>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/Finite_element_analysis/lesson3.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -471,17 +473,17 @@ see significant changes due to the modification in the overall picture.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../AnyExp4SOLIDWORKS/index.html" title="13. Making Models using SOLIDWORKS"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: ANSYS Interface"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >12. Finite Element Analysis Interfacing</a> &#187;</li> 

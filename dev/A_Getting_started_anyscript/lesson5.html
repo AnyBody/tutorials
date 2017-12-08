@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Lesson 5: Definition of Muscles and External Forces &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="Lesson 6: Adding Real Bone Geometries" href="lesson6.html" />
     <link rel="prev" title="Lesson 4: Imparting movement with Drivers" href="lesson4.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson6.html" title="Lesson 6: Adding Real Bone Geometries"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Imparting movement with Drivers"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">2. Getting started: AnyScript Programming</a> &#187;</li> 
@@ -67,9 +69,9 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-5-definition-of-muscles-and-external-forces">
-<h1>Lesson 5: Definition of Muscles and External Forces<a class="headerlink" href="#lesson-5-definition-of-muscles-and-external-forces" title="Permalink to this headline">¶</a></h1>
+<h1>Lesson 5: Definition of Muscles and External Forces<a class="headerlink" href="#lesson-5-definition-of-muscles-and-external-forces" title="Permalink til denne overskrift">¶</a></h1>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Bemærk</p>
 <p class="last">Here’s an AnyScript file to start on if you have not completed the
 previous lesson: <a class="reference download internal" href="../_downloads/demo.lesson5.any" download=""><code class="xref download docutils literal"><span class="pre">demo.lesson5.any</span></code></a>.</p>
 </div>
@@ -82,12 +84,12 @@ our central nervous system. One of the main features of AnyBody is that
 the system is able to predict realistic activation patterns for the
 muscles based on movement and external load.</p>
 <div class="section" id="creating-a-muscle-model">
-<h2>Creating a muscle model<a class="headerlink" href="#creating-a-muscle-model" title="Permalink to this headline">¶</a></h2>
+<h2>Creating a muscle model<a class="headerlink" href="#creating-a-muscle-model" title="Permalink til denne overskrift">¶</a></h2>
 <p>The behavior of real muscles depends on their operating conditions,
 tissue composition, oxygen supply, and many other properties, and
 scientists are still debating exactly how they work and what properties
 are important for their function. In AnyBody, you can use several
-different models for the muscles’ behavior, and some of them are quite
+different models for the muscles‹ behavior, and some of them are quite
 sophisticated. Introducing all the features of muscle modeling is a
 subject fully worthy of <a class="reference internal" href="../Muscle_modeling/intro.html"><span class="doc">its own
 tutorial</span></a>. Here, we shall just
@@ -110,7 +112,7 @@ properties of all the muscles.</p>
 </div>
 </div>
 <div class="section" id="introducing-a-muscle-to-the-model">
-<h2>Introducing a muscle to the model<a class="headerlink" href="#introducing-a-muscle-to-the-model" title="Permalink to this headline">¶</a></h2>
+<h2>Introducing a muscle to the model<a class="headerlink" href="#introducing-a-muscle-to-the-model" title="Permalink til denne overskrift">¶</a></h2>
 <p>Now we can start adding muscles. Remember that muscles cannot push, so
 to allow a joint to move in both directions you have to define one
 muscle on each side of the joint in two dimensions. If you work in three
@@ -164,7 +166,7 @@ because we have not yet positioned the segments relative to each other
 by a kinematic analysis.</p>
 </div>
 <div class="section" id="adding-more-muscles">
-<h2>Adding more muscles<a class="headerlink" href="#adding-more-muscles" title="Permalink to this headline">¶</a></h2>
+<h2>Adding more muscles<a class="headerlink" href="#adding-more-muscles" title="Permalink til denne overskrift">¶</a></h2>
 <p>All the other muscles are defined in the same way:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">//---------------------------------</span>
 <span class="kt">AnyViaPointMuscle</span> <span class="n">Brachialis</span> <span class="o">=</span> <span class="p">{</span>
@@ -236,7 +238,7 @@ a picture more or less as what you see below:</p>
 <p><img alt="image0" src="../_images/image17.png" /></p>
 </div>
 <div class="section" id="the-initialconditions-analysis">
-<h2>The InitialConditions analysis<a class="headerlink" href="#the-initialconditions-analysis" title="Permalink to this headline">¶</a></h2>
+<h2>The InitialConditions analysis<a class="headerlink" href="#the-initialconditions-analysis" title="Permalink til denne overskrift">¶</a></h2>
 <p>The model does not seem to be correctly connected at the elbow. The
 ArmStudy actually contains a default operation for getting the elements
 ordered with respect to each other. It is the InitialConditions study in
@@ -256,7 +258,7 @@ global y direction. This means that gravity actually provides the
 external force the analysis needs to make any sense.</p>
 </div>
 <div class="section" id="switching-off-driver-forces-when-muscles-do-the-job-important">
-<h2>Switching off driver forces when muscles do the job (Important!)<a class="headerlink" href="#switching-off-driver-forces-when-muscles-do-the-job-important" title="Permalink to this headline">¶</a></h2>
+<h2>Switching off driver forces when muscles do the job (Important!)<a class="headerlink" href="#switching-off-driver-forces-when-muscles-do-the-job-important" title="Permalink til denne overskrift">¶</a></h2>
 <p>What is the problem then? Well, unless you specify otherwise, drivers,
 like the ones we added to the elbow and shoulder joints, act like
 motors. This means that they provide whatever moment or force might be
@@ -288,7 +290,7 @@ reasons this applies even when the driver only controls one degree of
 freedom as it does here.</p>
 </div>
 <div class="section" id="the-inversedynamicanalysis-and-plotting-muscle-forces">
-<h2>The InverseDynamicAnalysis and plotting muscle forces<a class="headerlink" href="#the-inversedynamicanalysis-and-plotting-muscle-forces" title="Permalink to this headline">¶</a></h2>
+<h2>The InverseDynamicAnalysis and plotting muscle forces<a class="headerlink" href="#the-inversedynamicanalysis-and-plotting-muscle-forces" title="Permalink til denne overskrift">¶</a></h2>
 <p>Add a similar line to the definition of the elbow driver, and we are
 ready to compute muscle forces.&nbsp;Click the <strong>InverseDynamicAnalysis</strong> in
 the study tree, then the start operation button, and watch the model
@@ -316,7 +318,7 @@ flexion, and with the other elbow flexors, and these muscles all have to
 level their work in relation to each other.</p>
 </div>
 <div class="section" id="creating-external-loads">
-<h2>Creating external loads<a class="headerlink" href="#creating-external-loads" title="Permalink to this headline">¶</a></h2>
+<h2>Creating external loads<a class="headerlink" href="#creating-external-loads" title="Permalink til denne overskrift">¶</a></h2>
 <p>Now that we have the analysis going, we might want to investigate the
 model’s behavior in different situations. A typical example could be to
 see how it carries an external load in addition to gravity. Let us
@@ -349,7 +351,7 @@ should see this:</p>
 development is also different. It now reaches a maximum during the
 movement and drops off again.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Bemærk</p>
 <p class="last">Applied forces do not have to be constant. They can change with time
 and other properties in the model.  Please refer to the <a class="reference internal" href="../The_mechanical_elements/intro.html"><span class="doc">tutorial on
 forces</span></a> for more
@@ -361,7 +363,7 @@ most users would probably start out using the body models available in
 the <a class="reference external" href="http://www.anybodytech.com/anybody.html?fwd=modelrepository">AnyBody Managed Model
 Repository</a>.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
+<p class="first admonition-title">Se også</p>
 <p class="last"><strong>Next lesson:</strong> Now, let’s continue to <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Adding real bone geometrics</span></a></p>
 </div>
 </div>
@@ -377,17 +379,17 @@ Repository</a>.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -425,10 +427,10 @@ Repository</a>.</p>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/A_Getting_started_anyscript/lesson5.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -458,17 +460,17 @@ Repository</a>.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson6.html" title="Lesson 6: Adding Real Bone Geometries"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Imparting movement with Drivers"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >2. Getting started: AnyScript Programming</a> &#187;</li> 

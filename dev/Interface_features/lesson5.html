@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Lesson 5: The Command Line Application &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="Lesson 6: Modifying the Loaded Model" href="lesson6.html" />
     <link rel="prev" title="Lesson 4: The Model Tree and Object Description" href="lesson4.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson6.html" title="Lesson 6: Modifying the Loaded Model"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: The Model Tree and Object Description"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">4. User interface features</a> &#187;</li> 
@@ -67,7 +69,7 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-5-the-command-line-application">
-<h1>Lesson 5: The Command Line Application<a class="headerlink" href="#lesson-5-the-command-line-application" title="Permalink to this headline">¶</a></h1>
+<h1>Lesson 5: The Command Line Application<a class="headerlink" href="#lesson-5-the-command-line-application" title="Permalink til denne overskrift">¶</a></h1>
 <p>The AnyBody Modeling System comes with a command line application named
 AnyBodyCon.exe; sometimes referred to as the AnyBody Console
 Application. You will find this .exe file in the AnyBody installation
@@ -81,7 +83,7 @@ gives faster performance running operations on existing model. The
 console application can be used manually, or it can take input from a
 macro file containing commands.</p>
 <div class="section" id="interactive-mode">
-<h2>Interactive mode<a class="headerlink" href="#interactive-mode" title="Permalink to this headline">¶</a></h2>
+<h2>Interactive mode<a class="headerlink" href="#interactive-mode" title="Permalink til denne overskrift">¶</a></h2>
 <p>We need a model to work on, so please download and save
 <em>Demo.outputfile.any</em> in a working directory.</p>
 <p><strong>Important:</strong> To start the console application:</p>
@@ -92,9 +94,9 @@ Demo.outputfile.any</li>
 </ol>
 </div>
 <div class="section" id="console-commands">
-<h2>Console commands<a class="headerlink" href="#console-commands" title="Permalink to this headline">¶</a></h2>
+<h2>Console commands<a class="headerlink" href="#console-commands" title="Permalink til denne overskrift">¶</a></h2>
 <p>It only understands&nbsp;eight different commands. You can always get help by
-using the ‘help’ command or by calling AnyBodyCon with an /? argument.
+using the ›help‹ command or by calling AnyBodyCon with an /? argument.
 The table below contains a description of the commands accepted by the
 AnyBody console.</p>
 <table border="1" class="docutils">
@@ -108,8 +110,8 @@ AnyBody console.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>load “filename.any”</td>
-<td><p class="first">Example: load “demo.outputfile.any”</p>
+<tr class="row-even"><td>load »filename.any«</td>
+<td><p class="first">Example: load »demo.outputfile.any«</p>
 <p class="last">Loads an AnyScript model into the system and compiles it.</p>
 </td>
 </tr>
@@ -157,7 +159,7 @@ AnyBody console.</p>
 </table>
 </div>
 <div class="section" id="using-the-console-application">
-<h2>Using the console application<a class="headerlink" href="#using-the-console-application" title="Permalink to this headline">¶</a></h2>
+<h2>Using the console application<a class="headerlink" href="#using-the-console-application" title="Permalink til denne overskrift">¶</a></h2>
 <p>Start AnyBodyCon.exe from the command prompt and issue the command
 sequence</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
@@ -235,7 +237,7 @@ These results can either be read into MATLAB or Python or be re-loaded
 into AnyBody GUI (Right click the output sub-folder of the study, and
 select “Load Data”) for review.</p>
 <div class="section" id="using-define-and-path-statements-for-loading-a-model">
-<h3>Using define and path statements for loading a model<a class="headerlink" href="#using-define-and-path-statements-for-loading-a-model" title="Permalink to this headline">¶</a></h3>
+<h3>Using define and path statements for loading a model<a class="headerlink" href="#using-define-and-path-statements-for-loading-a-model" title="Permalink til denne overskrift">¶</a></h3>
 <p>If you are firstly unfamiliar with these statements, you can find an
 introduction in the tutorial Getting started: AnyScript Programming.
 They give us some limited control over modifying the model from the
@@ -272,11 +274,11 @@ change the number of time steps in our operation.</p>
 </div>
 </div>
 <div class="section" id="non-interactive-mode">
-<h2>Non-interactive Mode<a class="headerlink" href="#non-interactive-mode" title="Permalink to this headline">¶</a></h2>
+<h2>Non-interactive Mode<a class="headerlink" href="#non-interactive-mode" title="Permalink til denne overskrift">¶</a></h2>
 <p>One of the main strengths of the console application is that it can be
 executed by other software such as Matlab, Visual Basic or Python. You
 can store the commands for such executions of the console in a macro
-file having the extension “.anymcr”.</p>
+file having the extension ».anymcr«.</p>
 <p>As with the interactive mode, we can use #define- and #path statements
 for purposes like changing the output file name, which may need to be
 different each time the console application is called. For this, we
@@ -353,7 +355,7 @@ is written to the file ‘myoutput.anydata.h5’.</p>
 system for biomechanical data processing of your own design.</p>
 </div>
 <div class="section" id="path-specification">
-<h2>Path specification<a class="headerlink" href="#path-specification" title="Permalink to this headline">¶</a></h2>
+<h2>Path specification<a class="headerlink" href="#path-specification" title="Permalink til denne overskrift">¶</a></h2>
 <p>As mentioned earlier, you can add the path of AnyBodyCon.exe to the PATH
 environmental variable for your command prompt to ease the call to
 AnyBodyCon.exe from anywhere. This you can do from the command prompt
@@ -389,7 +391,7 @@ files, so&nbsp;the bat file names are working as aliases for the real .exe
 files.</li>
 </ol>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
+<p class="first admonition-title">Se også</p>
 <p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Modifying the Loaded Model</span></a>.</p>
 </div>
 </div>
@@ -405,17 +407,17 @@ files.</li>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -454,10 +456,10 @@ files.</li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/Interface_features/lesson5.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -487,17 +489,17 @@ files.</li>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson6.html" title="Lesson 6: Modifying the Loaded Model"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: The Model Tree and Object Description"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >4. User interface features</a> &#187;</li> 

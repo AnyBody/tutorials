@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Lesson 1: Basic Concepts &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="Lesson 2: Defining Segments and Displaying Objects" href="lesson2.html" />
     <link rel="prev" title="Getting started: AnyScript Programming" href="intro.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Defining Segments and Displaying Objects"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="intro.html" title="Getting started: AnyScript Programming"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">2. Getting started: AnyScript Programming</a> &#187;</li> 
@@ -67,9 +69,9 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-1-basic-concepts">
-<h1>Lesson 1: Basic Concepts<a class="headerlink" href="#lesson-1-basic-concepts" title="Permalink to this headline">¶</a></h1>
+<h1>Lesson 1: Basic Concepts<a class="headerlink" href="#lesson-1-basic-concepts" title="Permalink til denne overskrift">¶</a></h1>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Bemærk</p>
 <p class="last">To follow this tutorial it is recommended first to watch the
 introductory video found in Help -&gt; AnyBody Assistant, which visually
 demonstrates several important GUI features.</p>
@@ -83,7 +85,7 @@ which you choose “Basic Main” and provide a “Target Name” (e.g.,
 <p>The new file that opens up in the text editor contains a basic skeleton
 for your model, based on a built-in template.</p>
 <div class="section" id="what-are-classes">
-<h2>What are “Classes”?<a class="headerlink" href="#what-are-classes" title="Permalink to this headline">¶</a></h2>
+<h2>What are “Classes”?<a class="headerlink" href="#what-are-classes" title="Permalink til denne overskrift">¶</a></h2>
 <p>Let’s have a look at what the system has generated for you. If we forget
 about most of the text and comments, the overall structure of the model
 looks like this:</p>
@@ -99,32 +101,32 @@ looks like this:</p>
 </pre></div>
 </div>
 <p>What you see is a hierarchy of braces - just like in a C, C++, or Java
-computer program. The outermost pair of braces is named “Main”.
+computer program. The outermost pair of braces is named »Main«.
 Everything else in the model goes between these braces. The name
 assigned to a pair of braces in the script will show up as a
 folder/directory in the Model Tree.</p>
 <p>Right now, there are two other sections inside the Main braces: The
-“AnyFolder MyModel” and the “AnyBodyStudy MyStudy”. These are usually
+»AnyFolder MyModel« and the »AnyBodyStudy MyStudy«. These are usually
 the two core components of most AnyBody models.</p>
 <p>The code creates two objects - MyModel &amp; MyStudy - which perform very
 specific actions. The software developers have already pre-built these
 actions into templates that you can use to create these objects. <strong>These
 inbuilt object templates are also known as CLASSES - eg., AnyFolder,
 AnyBodyStudy</strong>.</p>
-<p>The object named “MyModel” (and of type AnyFolder) is simply an
+<p>The object named »MyModel« (and of type AnyFolder) is simply an
 organizational folder for containing the entire model you are going to
 build. Let us change the folder name “MyModel” to “ArmModel”.</p>
-<p>The object named “MyStudy” (and of type AnyBodyStudy) is a collection of
+<p>The object named »MyStudy« (and of type AnyBodyStudy) is a collection of
 simulation tasks that you want to perform with your model. The <a class="reference internal" href="../A_study_of_studies/intro.html"><span class="doc">*Study
 of Studies*</span></a> tutorial
 contains much more information about these subjects. For now, let’s just
-rename “MyStudy” to “ArmModelStudy”.</p>
+rename »MyStudy« to »ArmModelStudy«.</p>
 <p><strong>In the forthcoming AnyScript text we’ll highlight each change by red.
 Just make the changes in the file, and *don’t forget to also change
 other occurrences of “MyModel” to “ArmModel”* later in the file.</strong></p>
 </div>
 <div class="section" id="what-does-this-file-contain-so-far">
-<h2>What does this file contain so far?<a class="headerlink" href="#what-does-this-file-contain-so-far" title="Permalink to this headline">¶</a></h2>
+<h2>What does this file contain so far?<a class="headerlink" href="#what-does-this-file-contain-so-far" title="Permalink til denne overskrift">¶</a></h2>
 <p>Let’s look a little closer at the contents of what is now the ArmModel
 folder:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span> <span class="c1">// The actual body model goes in this folder</span>
@@ -145,13 +147,13 @@ folder:</p>
 </pre></div>
 </div>
 <p>The only actual model element in the ArmModel is the declaration of the
-“AnyFixedRefFrame GlobalRef”. All models need a reference frame - a
+»AnyFixedRefFrame GlobalRef«. All models need a reference frame - a
 coordinate system - to work in, so the system has created one for you.</p>
 <p>An AnyFixedRefFrame is a predefined data type you can use when you need
 it. What you have here is the definition of an object of that type. The
-object gets the name “GlobalRef”, and we can subsequently refer to it
+object gets the name »GlobalRef«, and we can subsequently refer to it
 anywhere in the ArmModel by that name.</p>
-<p>You will notice that there is a “to do” comment inside the braces of
+<p>You will notice that there is a »to do« comment inside the braces of
 this reference frame suggesting that you add points for grounding the
 model. Don’t do it just yet. We will return to this task later.</p>
 <p>But here’s an important notice: Everything you define in this tutorial
@@ -161,7 +163,7 @@ have been inside, then the necessary references between the elements of
 the model will not work.</p>
 </div>
 <div class="section" id="loading-an-anybody-model">
-<h2>Loading an AnyBody model<a class="headerlink" href="#loading-an-anybody-model" title="Permalink to this headline">¶</a></h2>
+<h2>Loading an AnyBody model<a class="headerlink" href="#loading-an-anybody-model" title="Permalink til denne overskrift">¶</a></h2>
 <p>You should be ready to load the model now by pressing the <img alt="Loadbutton image" src="../_images/image31.png" /> icon in the toolbar or the F7 key.</p>
 <p>This action will load whatever file is chosen in the text editor. If a
 file is already loaded, the above action will simply reload the file
@@ -183,7 +185,7 @@ Elapsed Time : 0.063000
 </div>
 </div>
 <div class="section" id="basic-troubleshooting">
-<h2>Basic troubleshooting<a class="headerlink" href="#basic-troubleshooting" title="Permalink to this headline">¶</a></h2>
+<h2>Basic troubleshooting<a class="headerlink" href="#basic-troubleshooting" title="Permalink til denne overskrift">¶</a></h2>
 <p>If you mistype something, you will get an error message. A common
 mistake is to forget a semicolon somewhere. Try removing the last
 semicolon in the AnyScript file, and load again. You get a message
@@ -204,7 +206,7 @@ give you a little pop-up window with a complete explanation:</p>
 <p>We now assume that you have removed the errors and have loaded the model
 successfully.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
+<p class="first admonition-title">Se også</p>
 <p class="last"><strong>Next lesson:</strong> If you are up to it, let’s continue onward to <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2:&nbsp;Segments</span></a>.</p>
 </div>
 </div>
@@ -220,17 +222,17 @@ successfully.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -268,10 +270,10 @@ successfully.</p>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/A_Getting_started_anyscript/lesson1.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -301,17 +303,17 @@ successfully.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Defining Segments and Displaying Objects"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="intro.html" title="Getting started: AnyScript Programming"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >2. Getting started: AnyScript Programming</a> &#187;</li> 

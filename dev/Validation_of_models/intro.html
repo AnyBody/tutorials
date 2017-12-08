@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Introduction to Validation &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="Kinematic Input Validation" href="Kinematic_input.html" />
     <link rel="prev" title="15. Validation of Models" href="index.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="Kinematic_input.html" title="Kinematic Input Validation"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="index.html" title="15. Validation of Models"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">15. Validation of Models</a> &#187;</li> 
@@ -67,18 +69,18 @@
           <div class="body" role="main">
             
   <div class="section" id="introduction-to-validation">
-<h1>Introduction to Validation<a class="headerlink" href="#introduction-to-validation" title="Permalink to this headline">¶</a></h1>
+<h1>Introduction to Validation<a class="headerlink" href="#introduction-to-validation" title="Permalink til denne overskrift">¶</a></h1>
 <p>Somewhere on the way to the decision of using a biomechanical model you
 have probably asked yourself the question: Will I be able to trust the
 results I get?</p>
 <p>This is a very relevant question indeed. Computer models are just that:
 a model of reality, and there will always be some amount of
 approximation involved. The good news is that with careful modeling and
-the ‘right model for the right problem’ you can get very close to
+the ›right model for the right problem‹ you can get very close to
 reality with the AnyBody Modeling System because it is&nbsp;tailor-made
 for&nbsp;the complexity of musculoskeletal systems.</p>
 <p>Investigation of the accuracy of the model goes under the term
-‘validation’, and this is what we will be dealing with in this tutorial.
+›validation‹, and this is what we will be dealing with in this tutorial.
 More precisely, you can expect to find the following in this tutorial:</p>
 <ol class="arabic simple">
 <li>Clever ideas for validation methods.</li>
@@ -89,7 +91,7 @@ webcasts</a> have
 presented validation studies and results, the most recent one was
 “Seated Human Model Validation”.</p>
 <div class="section" id="what-can-go-wrong">
-<h2>What Can Go Wrong?<a class="headerlink" href="#what-can-go-wrong" title="Permalink to this headline">¶</a></h2>
+<h2>What Can Go Wrong?<a class="headerlink" href="#what-can-go-wrong" title="Permalink til denne overskrift">¶</a></h2>
 <p>Well, lots, actually. But it is helpful to try to categorize the matter
 into a few sources of error.</p>
 <ul class="simple">
@@ -99,12 +101,12 @@ into a few sources of error.</p>
 </ul>
 </div>
 <div class="section" id="errors-sources-in-the-model">
-<h2>Errors Sources in the Model<a class="headerlink" href="#errors-sources-in-the-model" title="Permalink to this headline">¶</a></h2>
+<h2>Errors Sources in the Model<a class="headerlink" href="#errors-sources-in-the-model" title="Permalink til denne overskrift">¶</a></h2>
 <p>An AnyScript model contains a lot of data, and they are all infested
 with some degree of inaccuracy: Geometry and mass properties of
 segments, assumptions about the kinematics and reactions of joints,
 properties and attachment points of muscles, and much more.</p>
-<p>It has been said about biomechanics that there is a ‘right’ model for
+<p>It has been said about biomechanics that there is a ›right‹ model for
 each case. For instance, there is little point in using a complex muscle
 model if you have little information about the muscle properties, for
 instance fiber lengths and pennation angles. Another consideration is
@@ -112,7 +114,7 @@ the level of subject-specific accuracy. Is the purpose of the model to
 simulate a particular individual, or should it reflect a cross section
 of the population?</p>
 <div class="section" id="model-data-uncertainties">
-<h3>Model Data Uncertainties<a class="headerlink" href="#model-data-uncertainties" title="Permalink to this headline">¶</a></h3>
+<h3>Model Data Uncertainties<a class="headerlink" href="#model-data-uncertainties" title="Permalink til denne overskrift">¶</a></h3>
 <p>In general, the models in the <a class="reference external" href="http://www.anybodytech.com/anybody.html?fwd=modelrepository">*AnyScript Managed Model
 Repository*</a>
 are based on data reported in the literature. They often come from
@@ -151,7 +153,7 @@ in-depth information about these issues.</li>
 </ul>
 </div>
 <div class="section" id="boundary-conditions">
-<h3>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">¶</a></h3>
+<h3>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink til denne overskrift">¶</a></h3>
 <p>Input to inverse dynamics is movement and boundary conditions, and these
 can have more influence on the result than most inexperienced modelers
 would expect. In fact, they&nbsp;are the principal source of error in many
@@ -167,7 +169,7 @@ reality offers an effortless connection between the hand and the handle,
 then the model is likely to exploit this as we shall see later.</p>
 </div>
 <div class="section" id="movement-data">
-<h3>Movement Data<a class="headerlink" href="#movement-data" title="Permalink to this headline">¶</a></h3>
+<h3>Movement Data<a class="headerlink" href="#movement-data" title="Permalink til denne overskrift">¶</a></h3>
 <p>Recorded movement input such as motion capture data is usually in the
 form of positions over time. But inertia forces in the model are derived
 from accelerations, and to obtain accelerations, the positional data
@@ -177,7 +179,7 @@ tutorial, starting at the bottom of this page.</p>
 </div>
 </div>
 <div class="section" id="errors-sources-in-the-basic-assumptions">
-<h2>Errors Sources in the Basic Assumptions<a class="headerlink" href="#errors-sources-in-the-basic-assumptions" title="Permalink to this headline">¶</a></h2>
+<h2>Errors Sources in the Basic Assumptions<a class="headerlink" href="#errors-sources-in-the-basic-assumptions" title="Permalink til denne overskrift">¶</a></h2>
 <p>As mentioned a couple of times already, the AnyBody Modeling System is
 based on inverse dynamics. This means that - for a given point in time -
 the system solves the equilibrium equations and resolves the interior
@@ -213,7 +215,7 @@ faster than the electro-chemical process of muscle contraction can
 accommodate.</p>
 </div>
 <div class="section" id="errors-in-the-software">
-<h2>Errors in the Software<a class="headerlink" href="#errors-in-the-software" title="Permalink to this headline">¶</a></h2>
+<h2>Errors in the Software<a class="headerlink" href="#errors-in-the-software" title="Permalink til denne overskrift">¶</a></h2>
 <p>All software has bugs, and very probably this is also the case for the
 AnyBody Modeling System. However, in terms of muscle recruitment, the
 validity of the software was validated independently in 2004 in a Ph.D.
@@ -233,8 +235,8 @@ recruitment assumptions, errors in the software are much less likely to
 disturb the result of the computation significantly.</p>
 </div>
 <div class="section" id="methods-of-validation">
-<h2>Methods of Validation<a class="headerlink" href="#methods-of-validation" title="Permalink to this headline">¶</a></h2>
-<p>The expression ‘garbage in - garbage out’ is very much valid for
+<h2>Methods of Validation<a class="headerlink" href="#methods-of-validation" title="Permalink til denne overskrift">¶</a></h2>
+<p>The expression ›garbage in - garbage out‹ is very much valid for
 biomechanical simulation. The quality of the output can never be better
 than the input. This means that the first step of any validation is to
 check the quality of the input. Input comes in the form of movements and
@@ -250,7 +252,7 @@ accelerations oscillate or attain unrealistic values, then the input
 positional information definitely needs careful reviewing and probably
 smoothing with a low-pass filter.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
+<p class="first admonition-title">Se også</p>
 <p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="Kinematic_input.html"><span class="doc">Kinematic input validation</span></a>.</p>
 </div>
 </div>
@@ -266,17 +268,17 @@ smoothing with a low-pass filter.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -309,10 +311,10 @@ smoothing with a low-pass filter.</p>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/Validation_of_models/intro.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -342,17 +344,17 @@ smoothing with a low-pass filter.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="Kinematic_input.html" title="Kinematic Input Validation"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="index.html" title="15. Validation of Models"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >15. Validation of Models</a> &#187;</li> 

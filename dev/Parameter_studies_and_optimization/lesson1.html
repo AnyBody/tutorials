@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Defining a Parameter Study &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="Optimization Studies" href="lesson2.html" />
     <link rel="prev" title="Parameter Studies and Optimization" href="intro.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Optimization Studies"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="intro.html" title="Parameter Studies and Optimization"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">16. Parameter Studies and Optimization</a> &#187;</li> 
@@ -67,9 +69,9 @@
           <div class="body" role="main">
             
   <div class="section" id="defining-a-parameter-study">
-<h1>Defining a Parameter Study<a class="headerlink" href="#defining-a-parameter-study" title="Permalink to this headline">¶</a></h1>
+<h1>Defining a Parameter Study<a class="headerlink" href="#defining-a-parameter-study" title="Permalink til denne overskrift">¶</a></h1>
 <div class="without-title admonition caution">
-<p class="first admonition-title">Caution</p>
+<p class="first admonition-title">Forsigtig</p>
 <p class="last"><strong>Old tutorial:</strong>
 This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
 </div>
@@ -122,7 +124,7 @@ model to adjust the phase shift of the crank torque profile to the seat
 position such that the minimum crank torque occurs when the pedals point
 towards the hip joint regardless of where the saddle is positioned.</p>
 <div class="section" id="some-general-terminology">
-<h2>Some General Terminology<a class="headerlink" href="#some-general-terminology" title="Permalink to this headline">¶</a></h2>
+<h2>Some General Terminology<a class="headerlink" href="#some-general-terminology" title="Permalink til denne overskrift">¶</a></h2>
 <p>Before we proceed with the definition of a parameter study it might be
 useful to introduce the terminology used by AnyBody for parameter and
 optimization studies:</p>
@@ -152,16 +154,16 @@ studies, so the two types obviously share several concepts. Let us
 proceed with the definition of a parameter study. Actually, both these
 studies come from the same family of classes having the AnyDesStudy as
 common parent; we commonly refer to these studies as design studies.
-Within this kinship, they also share the definition of the “analysis” to
+Within this kinship, they also share the definition of the »analysis« to
 be performed when evaluating the design measures for a certain set of
-design variables. The “analysis” is in fact an AnyScript operation
+design variables. The »analysis« is in fact an AnyScript operation
 (AnyOperation), called Analysis, which is a member of all design
 studies. To state an optimization or a parameter study properly, the
 design variables, the design measures, and the analysis must all be
 defined.</p>
 </div>
 <div class="section" id="definition-of-a-parameter-study">
-<h2>Definition of a Parameter Study<a class="headerlink" href="#definition-of-a-parameter-study" title="Permalink to this headline">¶</a></h2>
+<h2>Definition of a Parameter Study<a class="headerlink" href="#definition-of-a-parameter-study" title="Permalink til denne overskrift">¶</a></h2>
 <p><img alt="parinsert.gif" src="../_images/image25.gif" /></p>
 <p>A parameter study is as the name indicates a study. Therefore its
 natural position in the model is&nbsp;below the existing AnyBodyStudy. We can
@@ -267,11 +269,11 @@ contain multiple studies and each study contains multiple operations.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Please notice here that we have removed the ‘&amp;’s that were inserted in
+<p>Please notice here that we have removed the ›&amp;‹s that were inserted in
 the template in front of the variable names. Instead of pointing at
 AnyDesVars defined elsewhere we include the entire definition right here
 in the study, and this is actually the usual way to do it.</p>
-<p>Each AnyDesVar gets three properties set. The first one is called ‘Val’ and
+<p>Each AnyDesVar gets three properties set. The first one is called ›Val‹ and
 is simply set equal to an existing parameter in the model. The best way
 to understand this statement is to think of Val as a reference variable
 that is equalized in the first case with the SaddleHeight, which is a
@@ -296,7 +298,7 @@ latter use is a somewhat restricted exploitation of AnyDesVar and is
 typically not practical when studies of existing models are to be
 carried out.</p>
 <p>The next step is to define the properties we wish to study, i.e. the
-dependent parameters or “design measures”&nbsp;of the model. As you know,
+dependent parameters or »design measures«&nbsp;of the model. As you know,
 after running an operation from a study the results are available in the
 Output branch of the tree view of the operation and they can be plotted,
 dumped and copied to the clipboard and so on. Now we are defining a
@@ -387,7 +389,7 @@ then you should be able to load the model and expand the Operations Tree
 in the left hand side of the Main Frame to this:</p>
 <p><img alt="parstudytree.gif" src="../_images/image34.gif" /></p>
 <p>Make sure you have a Model View window open. Select ParameterStudy as
-indicated and hit the “Run” button. You should see the model starting to
+indicated and hit the »Run« button. You should see the model starting to
 cycle, and if you watch the vicinity of the saddle carefully, you will
 see that the hip joint is changing its position on a 5 x 5 grid. With a
 reasonably fast computer it should take a minute or less to do the 25
@@ -550,7 +552,7 @@ can be plotted:</p>
 the <a class="reference internal" href="lesson2.html"><span class="doc">next lesson</span></a>, which deals with the
 definition of optimization studies.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
+<p class="first admonition-title">Se også</p>
 <p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson2.html"><span class="doc">Optimization Studies</span></a>.</p>
 </div>
 </div>
@@ -566,17 +568,17 @@ definition of optimization studies.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -610,10 +612,10 @@ definition of optimization studies.</p>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/Parameter_studies_and_optimization/lesson1.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -643,17 +645,17 @@ definition of optimization studies.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Optimization Studies"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="intro.html" title="Parameter Studies and Optimization"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >16. Parameter Studies and Optimization</a> &#187;</li> 

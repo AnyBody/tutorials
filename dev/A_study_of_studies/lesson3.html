@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Lesson 3: Kinematic Analysis &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="Lesson 4: Inverse Dynamics" href="lesson4.html" />
     <link rel="prev" title="Lesson2: Initial Conditions" href="lesson2.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Inverse Dynamics"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Lesson2: Initial Conditions"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">5. A Study of Studies</a> &#187;</li> 
@@ -67,7 +69,7 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-3-kinematic-analysis">
-<h1>Lesson 3: Kinematic Analysis<a class="headerlink" href="#lesson-3-kinematic-analysis" title="Permalink to this headline">¶</a></h1>
+<h1>Lesson 3: Kinematic Analysis<a class="headerlink" href="#lesson-3-kinematic-analysis" title="Permalink til denne overskrift">¶</a></h1>
 <p>The Kinematics operation has a short and a very long explanation. The
 short explanation is that it makes the model perform whichever movement
 you have imposed on it by the drivers you have defined in the model. And
@@ -78,16 +80,16 @@ kinematically determinate, but that concept is definitely a part of the
 longer explanation.</p>
 <p>So, brace yourself, and let’s venture on to…</p>
 <div class="html-toggle section" id="the-long-explanation">
-<h2>The long explanation<a class="headerlink" href="#the-long-explanation" title="Permalink to this headline">¶</a></h2>
+<h2>The long explanation<a class="headerlink" href="#the-long-explanation" title="Permalink til denne overskrift">¶</a></h2>
 <p>An AnyBody model is really a collection of rigid segments. You can think
 of them as a&nbsp;bunch of potatoes&nbsp;floating around in space. Technically,
-each potato is called a “rigid body”, but the term “body” can be
+each potato is called a »rigid body«, but the term »body« can be
 misinterpreted in the context of a body modeling system like AnyBody, so
-we call them “segments”.</p>
+we call them »segments«.</p>
 <p>When a segment flows around in space, it can move in six different
 directions. We call them degrees of freedom and usually think of them as
 movement along the three coordinate axes and rotation about the same
-axes. We call these movement directions “degrees of freedom” and an
+axes. We call these movement directions »degrees of freedom« and an
 unconstrained segment in space has six degrees of freedom. If we have n
 segments in the model, the model will have a total of 6n degrees of
 freedom unless some of them are constrained somehow. The purpose of the
@@ -121,7 +123,7 @@ equations.</p>
 <p>When the model is set up in such a way that it has 6n equations and
 these equations can be solved, then it is said to be kinematically
 determinate. Usually this is necessary to perform the kinematic
-analysis. We say “usually” because there are a few exceptions where the
+analysis. We say »usually« because there are a few exceptions where the
 system can be solved even when the number of equations is different from
 6n. There are also some cases where the system cannot be solved even
 though there are 6n equations available. Both cases are connected with
@@ -152,7 +154,7 @@ world will have them too, and just like the real world it can sometimes
 be difficult to find out what the problem is.</p>
 </div>
 <div class="section" id="running-kinematic-analysis">
-<h2>Running kinematic analysis<a class="headerlink" href="#running-kinematic-analysis" title="Permalink to this headline">¶</a></h2>
+<h2>Running kinematic analysis<a class="headerlink" href="#running-kinematic-analysis" title="Permalink til denne overskrift">¶</a></h2>
 <p>Now that you know the basics of kinematic analysis, let us look at how
 it is performed. We need an example to work on, and this one will serve
 the purpose:
@@ -174,10 +176,10 @@ the Slider segment, and you can chart its acceleration by choosing the
 rDDot property.</p>
 <p><img alt="Chart view Acceleration" src="../_images/image212.png" /></p>
 <p>Notice the naming of the positional properties: r is position, rDot is
-velocity, and rDDot is acceleration. “Dot” or “DDot” are reflections of
+velocity, and rDDot is acceleration. »Dot« or »DDot« are reflections of
 the mathematical custom of designating differentiation with respect to
-time by a dot over the symbol. So velocity would be ‘r’ with a dot over,
-and acceleration would be ‘r’ with two dots. Try browsing around the
+time by a dot over the symbol. So velocity would be ›r‹ with a dot over,
+and acceleration would be ›r‹ with two dots. Try browsing around the
 tree and look up the various available data.</p>
 <p>You may encounter some strange looking results like this one:</p>
 <p><img alt="Shaft acceleration" src="../_images/image310.png" /></p>
@@ -192,7 +194,7 @@ What you see here is really zero augmented by numerical round-off
 errors.</p>
 </div>
 <div class="section" id="final-remarks">
-<h2>Final remarks<a class="headerlink" href="#final-remarks" title="Permalink to this headline">¶</a></h2>
+<h2>Final remarks<a class="headerlink" href="#final-remarks" title="Permalink til denne overskrift">¶</a></h2>
 <p>Notice that kinematic analysis determines velocities and accelerations
 in addition to positions. The position analysis is by far the more
 challenging because the equations are nonlinear, whereas solution for
@@ -206,7 +208,7 @@ model grabs something with both hands.</p>
 purposes, it is also the first step of the InverseDynamics operation,
 the subject of <a class="reference internal" href="lesson4.html"><span class="doc">*the next lesson*</span></a>.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
+<p class="first admonition-title">Se også</p>
 <p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4: Inverse Dynamics</span></a>.</p>
 </div>
 </div>
@@ -222,17 +224,17 @@ the subject of <a class="reference internal" href="lesson4.html"><span class="do
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -268,10 +270,10 @@ the subject of <a class="reference internal" href="lesson4.html"><span class="do
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/A_study_of_studies/lesson3.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -301,17 +303,17 @@ the subject of <a class="reference internal" href="lesson4.html"><span class="do
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Inverse Dynamics"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Lesson2: Initial Conditions"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >5. A Study of Studies</a> &#187;</li> 

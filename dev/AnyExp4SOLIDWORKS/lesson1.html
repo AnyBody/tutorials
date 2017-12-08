@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Translating a SOLIDWORKS CAD model to AnyBody &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,13 +25,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Søg" href="../search.html" />
     <link rel="next" title="Making the translated AnyScript model move" href="lesson2.html" />
     <link rel="prev" title="13. Making Models using SOLIDWORKS" href="index.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,17 +44,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             accesskey="I">indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Making the translated AnyScript model move"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
+             accesskey="N">næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="index.html" title="13. Making Models using SOLIDWORKS"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">13. Making Models using SOLIDWORKS</a> &#187;</li> 
@@ -67,7 +69,7 @@
           <div class="body" role="main">
             
   <div class="section" id="translating-a-solidworks-cad-model-to-anybody">
-<h1>Translating a SOLIDWORKS CAD model to AnyBody<a class="headerlink" href="#translating-a-solidworks-cad-model-to-anybody" title="Permalink to this headline">¶</a></h1>
+<h1>Translating a SOLIDWORKS CAD model to AnyBody<a class="headerlink" href="#translating-a-solidworks-cad-model-to-anybody" title="Permalink til denne overskrift">¶</a></h1>
 <p>Start by downloading the <a class="reference download internal" href="../_downloads/FitnessMachine_SolidWorks.zip" download=""><code class="xref download docutils literal"><span class="pre">example SOLIDWORKS CAD assembly</span></code></a></p>
 <p>After having downloaded and opened this model in your SOLIDWORKS
 environment, you will see the following image.</p>
@@ -125,7 +127,7 @@ file, color)</li>
 <li>Mate information between the different parts in the assemblies</li>
 </ul>
 <div class="section" id="solidworks-assembly-model-structure">
-<h2>SOLIDWORKS assembly model structure<a class="headerlink" href="#solidworks-assembly-model-structure" title="Permalink to this headline">¶</a></h2>
+<h2>SOLIDWORKS assembly model structure<a class="headerlink" href="#solidworks-assembly-model-structure" title="Permalink til denne overskrift">¶</a></h2>
 <p>Let us compare the SOLIDWORKS Feature Tree and the AnyBody Model Tree.</p>
 <p><img alt="SOLIDWORKS properties" src="../_images/lesson1_image6.png" /><img alt="ANYBODY model tree" src="../_images/lesson1_image7.PNG" /></p>
 <p>First, the top assembly ‘FitnessMachine’ is converted into a
@@ -137,7 +139,7 @@ movable parts. Finally, there is an AnyFolder object named ‘Mates’,
 which contains all converted mate information.</p>
 </div>
 <div class="section" id="part-information-mass-property-initial-position-and-stl-geometry-file">
-<h2>Part information (mass property, initial position and STL geometry file)<a class="headerlink" href="#part-information-mass-property-initial-position-and-stl-geometry-file" title="Permalink to this headline">¶</a></h2>
+<h2>Part information (mass property, initial position and STL geometry file)<a class="headerlink" href="#part-information-mass-property-initial-position-and-stl-geometry-file" title="Permalink til denne overskrift">¶</a></h2>
 <p>If you look at the information about the
 ‘Main.FitnessMachine.MainBase___1’ AnySeg object, you will see the
 following piece of code.</p>
@@ -173,7 +175,7 @@ following piece of code.</p>
 geometry information (STL file) were translated into AnyScript.</p>
 </div>
 <div class="section" id="mate-information">
-<h2>Mate information<a class="headerlink" href="#mate-information" title="Permalink to this headline">¶</a></h2>
+<h2>Mate information<a class="headerlink" href="#mate-information" title="Permalink til denne overskrift">¶</a></h2>
 <p>Generally, all mate information in a CAD assembly model can be regarded
 as kinematic constraints. Based on these constraints, you can move the
 assembly models inside the CAD system. All these mate objects are
@@ -208,7 +210,7 @@ AnyScript model.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Where we notice that the ‘MeasureOrganizer’ selects two of the three
+<p>Where we notice that the ›MeasureOrganizer‹ selects two of the three
 translational measurement defined by the AnyKinLinear object. The
 following picture shows the relationship between these two components.</p>
 <p><img alt="SolidWorks Two components" src="../_images/lesson1_image9.png" /></p>
@@ -224,14 +226,14 @@ purpose of creating these constraints.</p>
 <p>Finally notice that the ‘Reaction.Type’ of these constraints is ‘On’ as
 default, since it has not been set by the translator. This implies that
 reaction forces associated with the constraints are indeed active. Also
-notice the constraint type (‘CType’), which is set to parametric value,
-‘_ANY_CTYPE_’, defined by the translator. The parameter,
-‘_ANY_CTYPE_’, can later be modified in the AnyScript model, or by a
+notice the constraint type (›CType‹), which is set to parametric value,
+›_ANY_CTYPE_‹, defined by the translator. The parameter,
+›_ANY_CTYPE_‹, can later be modified in the AnyScript model, or by a
 new translation of the model.</p>
 <p>With this we will conclude our brief review of the translated model and
 now let us go to the next <a class="reference internal" href="lesson2.html"><span class="doc">Lesson2.</span></a></p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
+<p class="first admonition-title">Se også</p>
 <p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson2.html"><span class="doc">Making the translated AnyScript model move</span></a>.</p>
 </div>
 </div>
@@ -247,17 +249,17 @@ now let us go to the next <a class="reference internal" href="lesson2.html"><spa
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>Hurtig søgning</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="Søg" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -291,10 +293,10 @@ now let us go to the next <a class="reference internal" href="lesson2.html"><spa
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>Denne side</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/AnyExp4SOLIDWORKS/lesson1.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">Vis kilde</a></li>
     </ul>
    </div>
         </div>
@@ -324,17 +326,17 @@ now let us go to the next <a class="reference internal" href="lesson2.html"><spa
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
+          <a href="../genindex.html" title="Generelt indeks"
+             >indeks</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
+          <a href="../contents.html" title="Indholdsfortegnelse"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Making the translated AnyScript model move"
-             >next</a> &nbsp; &nbsp;</li>
+             >næste</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="index.html" title="13. Making Models using SOLIDWORKS"
-             >previous</a> &nbsp; &nbsp;</li>
+             >forrige</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >13. Making Models using SOLIDWORKS</a> &#187;</li> 
