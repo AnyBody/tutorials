@@ -81,36 +81,18 @@ is the AMMR, a collection of human body models that are based on the
 latest research studies.</p>
 <p><strong>Most importantly, it comes with a set of demo models</strong> (eg: MoCap
 based walking model, cycling etc.) that can serve as a useful learning
-tool, or even as the foundations for own modeling studies. As a new
-user, you are likely to find yourself in one of the following scenarios.</p>
-<ul class="simple">
-<li>Loading a model from AMMR and changing simple parameters like the
-applied load or the posture.</li>
-<li>Modifying one of the existing motion capture models from the
-repository to your own lab/experimental setup.</li>
-<li>Modifying a model from the repository with some similarity to what
-you want. For instance, a normal bicycle model could be changed into
-a recumbent bike.</li>
-<li>Constructing a body model and its environment bottom-up, like when
-you’re modeling an animal or making a new detailed joint model. Such
-bottom-up modeling is described in the tutorial
-»<a class="reference internal" href="../A_Getting_started_anyscript/intro.html"><span class="doc">Getting Started AnyScript Programming</span></a>«.</li>
-</ul>
-<p>These various levels of model building complexity are covered in
-»<a class="reference internal" href="../A_Getting_started_modeling/intro.html"><span class="doc">Getting Started:
-Modeling</span></a>« in the »<a class="reference internal" href="../Making_things_move/intro.html"><span class="doc">Making
-Things Move</span></a>« tutorial.</p>
-<p class="rubric">Goal for this tutorial</p>
-<p>We will take the top-down approach in this tutorial and use the model
-repository to accomplish the following:</p>
+tool, or even as the foundations for own modeling studies.</p>
+<p>Building models from the bottom-up is described further in »<a class="reference internal" href="../A_Getting_started_anyscript/intro.html"><span class="doc">Getting Started AnyScript Programming</span></a>«.</p>
+<p>Modifying the postures and motion of an existing model is introduced in »<a class="reference internal" href="../A_Getting_started_modeling/intro.html"><span class="doc">Getting Started:
+Modeling</span></a>« and the »<a class="reference internal" href="../Making_things_move/intro.html"><span class="doc">Making
+Things Move</span></a>« tutorials.</p>
+<p class="rubric">Goals for this tutorial</p>
+<p>This tutorial takes the top-down approach and aims to accomplish the following:</p>
 <ol class="arabic simple">
-<li>Create a new standing model using the Human Standing template model,
-load it in a given posture, and practice how to use the Model View
-functions.</li>
-<li>Learn how to change the posture of the human model.</li>
+<li>Create a new standing model using the Human Standing template model</li>
+<li>Learn how to load &amp; change the posture of the human model, and use the Model View window</li>
 <li>Run the inverse dynamics analysis of the model and review the
-analysis results. Change the posture of the human model and see how
-it will give us a different result.</li>
+analysis results.</li>
 </ol>
 <p>This entire tutorial relies heavily on using the AMMR described above.</p>
 <p class="rubric">Setup the AMMR</p>
@@ -122,25 +104,24 @@ AnyBody assistant dialog box.</p>
 default. It is good practice to create a second local copy of the AMMR
 so that you do not overwrite the existing AMMR folder by accident.</p>
 <p class="rubric">AMMR structure</p>
-<p>With the repository unpacked, let us take a brief look at its structure.
-Please open a file manager and navigate to the place you unpacked the
+<p>Open a file manager and navigate to the directory where you unpacked the
 repository. You should see a folder structure that includes the
 following subfolders:</p>
-<p>“Application” includes the models that can be loaded into AnyBody and
-actually simulate some biomechanical situation, such as cycling, lifting
-a box or propelling a wheelchair. “Body” contains models of body parts
-and collections of body parts which are used by the applications. For
-instance, Body includes a lumbar spine model, which is used by all the
-applications needing an upper body.</p>
-<p>A closer inspection of the Application branch reveals that it has three
-subfolders:</p>
-<p>The “Beta” folder contains models that are unfinished, but they may
-still be useful. The “Examples” folder contains many models doing
-different activities of daily living, and it is very likely that you
-will be able to find a model doing something similar to what you want.
-The “Validation” folder contains models that have been used for
-validation purposes, typically by comparison of the model predictions
-with experimental measurements.</p>
+<ul class="simple">
+<li><strong>Application</strong> includes simulations of biomechanical situations, such as cycling, lifting
+a box or propelling a wheelchair.</li>
+<li><strong>Body</strong> contains models of body parts and collections of body parts which are used by the applications,
+such as the lumbar spine model, leg models etc.</li>
+</ul>
+<p>A closer inspection of the Application branch reveals that it has three subfolders:</p>
+<ul class="simple">
+<li>The <strong>Beta</strong> folder contains models that are unfinished, but they may
+still be useful.</li>
+<li>The <strong>Examples</strong> folder contains many models doing different activities of daily living, and it is very likely that you
+will be able to find a model doing something similar to what you want.</li>
+<li>The <strong>Validation</strong> folder contains models that have been used for validation purposes, typically by comparison of the model predictions
+with experimental measurements.</li>
+</ul>
 <div class="without-title admonition seealso">
 <p class="first admonition-title">Se også</p>
 <p class="last">With that knowledge, you are all set to go, and you can proceed with
@@ -256,7 +237,7 @@ template.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, AnyBody Technology.
+        &#169; Copyright 2018, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>
