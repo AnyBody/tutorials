@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
@@ -25,14 +25,13 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Indeks" href="../genindex.html" />
-    <link rel="search" title="Søg" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Creating human-machine integrated analysis model" href="lesson3.html" />
     <link rel="prev" title="Translating a SOLIDWORKS CAD model to AnyBody" href="lesson1.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,17 +43,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             accesskey="I">indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson3.html" title="Creating human-machine integrated analysis model"
-             accesskey="N">næste</a> &nbsp; &nbsp;</li>
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson1.html" title="Translating a SOLIDWORKS CAD model to AnyBody"
-             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">13. Making Models using SOLIDWORKS</a> &#187;</li> 
@@ -69,12 +68,12 @@
           <div class="body" role="main">
             
   <div class="section" id="making-the-translated-anyscript-model-move">
-<h1>Making the translated AnyScript model move<a class="headerlink" href="#making-the-translated-anyscript-model-move" title="Permalink til denne overskrift">¶</a></h1>
+<h1>Making the translated AnyScript model move<a class="headerlink" href="#making-the-translated-anyscript-model-move" title="Permalink to this headline">¶</a></h1>
 <p>If you did not finish the previous lesson, you can download the finished
 AnyScript model file here:
 <a class="reference download internal" href="../_downloads/FitnessMachine_Mate_Config1.zip" download=""><code class="xref download docutils literal"><span class="pre">FitnessMachine_Mate_Config1.zip</span></code></a></p>
 <div class="section" id="add-an-anybodystudy-object-and-a-kinematic-motion-driver">
-<h2>Add an AnyBodyStudy object and a kinematic motion driver<a class="headerlink" href="#add-an-anybodystudy-object-and-a-kinematic-motion-driver" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Add an AnyBodyStudy object and a kinematic motion driver<a class="headerlink" href="#add-an-anybodystudy-object-and-a-kinematic-motion-driver" title="Permalink to this headline">¶</a></h2>
 <p>As previously mentioned, the exported model comes out of SOLIDWORKS and
 into AnyBody with one degree-of-freedom. In this lesson, we add a driver
 to this degree-of-freedom and thereby make the exercise machine move
@@ -104,8 +103,8 @@ dynamic analyses.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Notice how the ›FitnessMachine‹ folder is added by a reference so that
-the study object »knows the model« that it must study.</p>
+<p>Notice how the ‘FitnessMachine’ folder is added by a reference so that
+the study object “knows the model” that it must study.</p>
 <p>The next step is to add a motion driver to determine the position of the
 single degree-of-freedom at every time step and thereby the entire
 mechanism. The logical and simple choice is to drive the angle of the
@@ -146,11 +145,11 @@ this ‘Concentric01’ mate inside AnyScript.</p>
 <p>We can see that there is one AnyKinLinear and one AnyKinRotational
 kinematic measure for this mate. The rotation is obviously related to
 the AnyKinRotational object so let us use this to define a kinematic
-driver. We can do this because the rotational measure ›rot‹ is already
-measuring the angle; the ›PlanarAngles‹ type gives us one real angle and
+driver. We can do this because the rotational measure ‘rot’ is already
+measuring the angle; the ‘PlanarAngles’ type gives us one real angle and
 two special out-of-plane measurements, which are already constrained to
 be zero, i.e. in-plane, by the translated code. The remaining real
-angle, i.e. the first component of the ›rot‹ measure, can be constrained
+angle, i.e. the first component of the ‘rot’ measure, can be constrained
 by a driver. We add this to the FitnessMachine AnyFolder from the Main
 file.</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span>
@@ -183,7 +182,7 @@ file.</p>
 </pre></div>
 </div>
 <p>If you load this modified model, you will see the following warnings.</p>
-<p>“Model Warning: Study ›Main.Study‹ contains more reaction forces than
+<p>“Model Warning: Study ‘Main.Study’ contains more reaction forces than
 rigid-body degrees of freedom of the segments. The model may be
 statically indeterminate. There are 122 reactions and only 96 rigid body
 degrees of freedom.”</p>
@@ -220,7 +219,7 @@ constraints created from mates in the SOLIDWORKS model.</p>
 <p>The significance of these new specifications is to switch to a kinematic
 solver algorithm that allows violation of kinematic constraints if these
 are considered soft, and therefore we define all of the constraints
-indiscriminately as ›Soft‹.</p>
+indiscriminately as ‘Soft’.</p>
 <p>After reloading the model, you may be able to run Kinematics or
 InverseDynamics analysis. But this modification of solver and
 constraints types ‘does not’ guarantee the successful performance of
@@ -232,7 +231,7 @@ kinematic constraints and reaction forces are connected one-to-one. In
 this case, there may not be a unique solution for those unknown reaction
 terms to be found by the InverseDynamics analysis.</p>
 <p>Having too many reactions in a rigid-body dynamics model is similar to
-what is called »statically indeterminacy« in structural mechanics. To
+what is called “statically indeterminacy” in structural mechanics. To
 solve such problems, you need to know about the structural deformations
 to establish the reaction forces and this involves the stiffness of the
 structures, which we do not have or use in the rigid-body dynamic
@@ -254,7 +253,7 @@ directly or editing your mate definitions in SOLIDWORKS and re-exporting
 it. We shall here adopt the latter approach.</p>
 </div>
 <div class="section" id="removing-redundant-mates-in-solidworks-before-doing-the-translation">
-<h2>Removing redundant mates in SOLIDWORKS before doing the translation<a class="headerlink" href="#removing-redundant-mates-in-solidworks-before-doing-the-translation" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Removing redundant mates in SOLIDWORKS before doing the translation<a class="headerlink" href="#removing-redundant-mates-in-solidworks-before-doing-the-translation" title="Permalink to this headline">¶</a></h2>
 <p>If your SOLIDWORKS CAD model has a very complex structure, then it may
 be difficult to modify the AnyScript model to remove the redundant
 constraints. Furthermore, in an interactive design process, you may wish
@@ -401,7 +400,7 @@ not enough to remove redundancy. What is still missing is that we have
 closed loops, and making a closed loop with only hinges only works here
 because all hinges are parallel. In other words, we have a planar
 mechanism, but if the hinges were not parallel the mechanism would be
-locked or maybe not even possible to assemble. Some of the »hinges« have
+locked or maybe not even possible to assemble. Some of the “hinges” have
 here been further reduced so they match what in AnyBody is called a
 trans-spherical joint (AnyTransSphericalJoint), i.e., a spherical joint
 which also allows one translation, here along the hinge axis. These
@@ -409,13 +408,13 @@ joint have only two translational constraints, which implies that they
 do not carry moments or an axial force.</p>
 <p>The selection of these reduced joints, has been made based on the actual
 joints in the machine, or the assumed actual joints, since this is
-constructed case. So the »strong« hinge with good hinge bearings are
-made as real hinges, while »less strong« joints with clearances and
+constructed case. So the “strong” hinge with good hinge bearings are
+made as real hinges, while “less strong” joints with clearances and
 simpler bearings are made as trans-spherical joints.</p>
 <p>In the SolidWork assembly, ‘Mate_Config2’, you can see our choices. We
-have tried to make it visible by making the »real hinges« with a real
-cylindrical part fitting a cylindrical hole, whereas the »reduced
-hinges« have a reduced graphical representation like empty holes or
+have tried to make it visible by making the “real hinges” with a real
+cylindrical part fitting a cylindrical hole, whereas the “reduced
+hinges” have a reduced graphical representation like empty holes or
 nothing.</p>
 <p>There is a slightly alternative way to reduce mate redundancy. You can
 use some of the mechanical mate types of SOLIDWORKS. Let us change the
@@ -440,16 +439,16 @@ to concepts we normally use with AnyBody, but ‘Mate_Config2’ and
 ‘Mate_Config3’ are mechanically equivalent.</p>
 </div>
 <div class="section" id="translate-a-solidworks-assembly-which-doesnt-have-any-redundant-mates">
-<h2>Translate a SOLIDWORKS assembly which doesn’t have any redundant mates<a class="headerlink" href="#translate-a-solidworks-assembly-which-doesnt-have-any-redundant-mates" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Translate a SOLIDWORKS assembly which doesn’t have any redundant mates<a class="headerlink" href="#translate-a-solidworks-assembly-which-doesnt-have-any-redundant-mates" title="Permalink to this headline">¶</a></h2>
 <p>Let us translate the assembly under the ‘Mate_Config3’ configuration
 into an AnyScript model by using AnyExp4SOLIDWORKS like you did in
 Lesson 1. You can now open the model with the newly generated
 ‘FitnessMachine.main.any’ file, where you will see the model or you can
 open your own version ‘My.FitnessMachine.main.any’ file where you added
 the study object and the rotation driver. The latter model will now
-work, i.e., you can run the ›Kinematics‹ operation in the ›Study‹, and
+work, i.e., you can run the ‘Kinematics’ operation in the ‘Study’, and
 it will do one revolution of the machine. You can also run the
-›InverseDynamics‹ without any complaints.</p>
+‘InverseDynamics’ without any complaints.</p>
 <p>In order to do a simple review of the degrees of freedom of the
 translated model try removing the driver, or just add the study to the
 generated ‘FitnessMachine.main.any’, so you load a file like this:</p>
@@ -470,7 +469,7 @@ generated ‘FitnessMachine.main.any’, so you load a file like this:</p>
 </div>
 <p>When you load this model, then you will see the following warning
 message:</p>
-<p><em>Model Warning: Study ›Main.Study‹ contains too few kinematic
+<p><em>Model Warning: Study ‘Main.Study’ contains too few kinematic
 constraints to be kinematically determinate.</em></p>
 <p>Let us see the object description of the AnyBodyStudy object.</p>
 <p><img alt="AnyBody Study object description" src="../_images/lesson2_image9.PNG" /></p>
@@ -480,11 +479,11 @@ then a total number of constraints from the mates of 95 is removed,
 which means that only 1 degree of freedom is left. This is as expected
 for the mechanism and this is the degree of freedom driven by the
 driver, we have previously added.</p>
-<p>You can successfully run the ›Kinematics‹ and ›InverseDynamics‹
+<p>You can successfully run the ‘Kinematics’ and ‘InverseDynamics’
 operations of the AnyBodyStudy object and we are now ready to adding the
 human to the model in the final <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3</span></a>.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">Se også</p>
+<p class="first admonition-title">See also</p>
 <p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Creating human-machine integrated analysis model</span></a>.</p>
 </div>
 </div>
@@ -500,17 +499,17 @@ human to the model in the final <a class="reference internal" href="lesson3.html
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Hurtig søgning</h3>
+  <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Søg" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
+<h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -544,10 +543,10 @@ human to the model in the final <a class="reference internal" href="lesson3.html
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>Denne side</h3>
+    <h3>This Page</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/AnyExp4SOLIDWORKS/lesson2.rst.txt"
-            rel="nofollow">Vis kilde</a></li>
+            rel="nofollow">Show Source</a></li>
     </ul>
    </div>
         </div>
@@ -577,17 +576,17 @@ human to the model in the final <a class="reference internal" href="lesson3.html
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             >indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson3.html" title="Creating human-machine integrated analysis model"
-             >næste</a> &nbsp; &nbsp;</li>
+             >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson1.html" title="Translating a SOLIDWORKS CAD model to AnyBody"
-             >forrige</a> &nbsp; &nbsp;</li>
+             >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >13. Making Models using SOLIDWORKS</a> &#187;</li> 

@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
@@ -25,14 +25,13 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Indeks" href="../genindex.html" />
-    <link rel="search" title="Søg" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="14. Personalizing Your Model" href="../Scaling/index.html" />
     <link rel="prev" title="Making the translated AnyScript model move" href="lesson2.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,17 +43,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             accesskey="I">indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../Scaling/index.html" title="14. Personalizing Your Model"
-             accesskey="N">næste</a> &nbsp; &nbsp;</li>
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Making the translated AnyScript model move"
-             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">13. Making Models using SOLIDWORKS</a> &#187;</li> 
@@ -69,14 +68,14 @@
           <div class="body" role="main">
             
   <div class="section" id="creating-human-machine-integrated-analysis-model">
-<h1>Creating human-machine integrated analysis model<a class="headerlink" href="#creating-human-machine-integrated-analysis-model" title="Permalink til denne overskrift">¶</a></h1>
+<h1>Creating human-machine integrated analysis model<a class="headerlink" href="#creating-human-machine-integrated-analysis-model" title="Permalink to this headline">¶</a></h1>
 <p>If you did not finish the previous lesson, please download the
 <a class="reference download internal" href="../_downloads/FitnessMachine_Mate_Config3.zip" download=""><code class="xref download docutils literal"><span class="pre">FitnessMachine_Mate_Config3.zip</span></code></a> file in order to get the correct set of files for starting this lesson.</p>
 <p>In this lesson, we will create a model with a human body using a
 template; we will add the fitness machine created in the previous lesson
 and then connect the human body to the fitness machine.</p>
 <div class="section" id="create-a-human-model-from-a-main-file-template">
-<h2>Create a human model from a main file template<a class="headerlink" href="#create-a-human-model-from-a-main-file-template" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Create a human model from a main file template<a class="headerlink" href="#create-a-human-model-from-a-main-file-template" title="Permalink to this headline">¶</a></h2>
 <p>First, let us start a new human model from a template which we will call
 ‘FitnessMachine_With_Human’ using the main file template menu from the
 AnyBody GUI.</p>
@@ -142,7 +141,7 @@ some AnyRefNode objects like this:</p>
 <p><img alt="Model view Rear Fullbody without muscles" src="../_images/lesson3_image3.png" /></p>
 </div>
 <div class="section" id="insert-the-fitness-machine-into-the-model">
-<h2>Insert the fitness machine into the model<a class="headerlink" href="#insert-the-fitness-machine-into-the-model" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Insert the fitness machine into the model<a class="headerlink" href="#insert-the-fitness-machine-into-the-model" title="Permalink to this headline">¶</a></h2>
 <p>We are now ready to include the fitness machine. The first step is to
 copy the fitness machine we created in the previous lesson to the Model
 subfolder of our model. Next, we will add the fitness machine to the
@@ -245,8 +244,8 @@ into our model.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Notice that the drivers have been placed in a separate folder called ›
-ModelEnvironmentConnection‹. This is a typical setup used in most
+<p>Notice that the drivers have been placed in a separate folder called ‘
+ModelEnvironmentConnection’. This is a typical setup used in most
 models.</p>
 <p>When we now load the model, we will see that our human is sitting on the
 machine, but because he was not designed to sit on the machine, we need
@@ -260,7 +259,7 @@ human is located on the fitness machine and the machine is moving. Now,
 the only thing missing is to connect our body model to the machine.</p>
 </div>
 <div class="section" id="connecting-human-model-and-fitness-machine">
-<h2>Connecting human model and fitness machine<a class="headerlink" href="#connecting-human-model-and-fitness-machine" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Connecting human model and fitness machine<a class="headerlink" href="#connecting-human-model-and-fitness-machine" title="Permalink to this headline">¶</a></h2>
 <p>The first thing we have to do to connect our human with the machine is
 to undefine the default drivers of the human model. We do this by
 setting a BM statement in the Main folder:</p>
@@ -415,17 +414,17 @@ now run successfully.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Hurtig søgning</h3>
+  <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Søg" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
+<h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -459,10 +458,10 @@ now run successfully.</p>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>Denne side</h3>
+    <h3>This Page</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/AnyExp4SOLIDWORKS/lesson3.rst.txt"
-            rel="nofollow">Vis kilde</a></li>
+            rel="nofollow">Show Source</a></li>
     </ul>
    </div>
         </div>
@@ -492,17 +491,17 @@ now run successfully.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             >indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../Scaling/index.html" title="14. Personalizing Your Model"
-             >næste</a> &nbsp; &nbsp;</li>
+             >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Making the translated AnyScript model move"
-             >forrige</a> &nbsp; &nbsp;</li>
+             >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >13. Making Models using SOLIDWORKS</a> &#187;</li> 

@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
@@ -25,14 +25,13 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Indeks" href="../genindex.html" />
-    <link rel="search" title="Søg" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="18. Posture and Movement Prediction" href="../Posture_and_movement/intro.html" />
     <link rel="prev" title="Optimization Studies" href="../Parameter_studies_and_optimization/lesson2.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,17 +43,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             accesskey="I">indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../Posture_and_movement/intro.html" title="18. Posture and Movement Prediction"
-             accesskey="N">næste</a> &nbsp; &nbsp;</li>
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../Parameter_studies_and_optimization/lesson2.html" title="Optimization Studies"
-             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
  
       </ul>
@@ -68,7 +67,7 @@
           <div class="body" role="main">
             
   <div class="section" id="trouble-shooting-anyscript-models">
-<h1>17. Trouble Shooting AnyScript Models<a class="headerlink" href="#trouble-shooting-anyscript-models" title="Permalink til denne overskrift">¶</a></h1>
+<h1>17. Trouble Shooting AnyScript Models<a class="headerlink" href="#trouble-shooting-anyscript-models" title="Permalink to this headline">¶</a></h1>
 <p>If you think mechanics is simple, it’s probably just because you haven’t
 worked with three-dimensional space yet. The laws of mechanics are
 pretty easy to comprehend as long as stuff is moving on a
@@ -94,7 +93,7 @@ erroneous</li>
 analyzed.</li>
 </ul>
 <div class="section" id="load-time-errors">
-<h2>Load-time errors<a class="headerlink" href="#load-time-errors" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Load-time errors<a class="headerlink" href="#load-time-errors" title="Permalink to this headline">¶</a></h2>
 <p>A load-time error occurs when you load a model by pressing F7 or the
 M&lt;-S icon on top of each window. This causes the system to attempt a
 compilation of the model you have in the window, and any errors
@@ -151,7 +150,7 @@ The compiler will report en error in WrongFile.any, but the real error
 is in the file that included WrongFile.any.</p>
 <p>Here are some typical errors and their consequences:</p>
 <div class="section" id="forgotten-semicolon">
-<h3>Forgotten semicolon<a class="headerlink" href="#forgotten-semicolon" title="Permalink til denne overskrift">¶</a></h3>
+<h3>Forgotten semicolon<a class="headerlink" href="#forgotten-semicolon" title="Permalink to this headline">¶</a></h3>
 <p>Every statement in AnyScript must be terminated by a semicolon, and it is easy
 to forget. The consequence is that the compiler will proceed to the next line
 and probably report that it has encountered something unexpected there. By
@@ -160,7 +159,7 @@ The problem was really on the former line.</p>
 <p>Notice also that end braces must also have a semicolon after them.</p>
 </div>
 <div class="section" id="unbalanced-braces">
-<h3>Unbalanced braces<a class="headerlink" href="#unbalanced-braces" title="Permalink til denne overskrift">¶</a></h3>
+<h3>Unbalanced braces<a class="headerlink" href="#unbalanced-braces" title="Permalink to this headline">¶</a></h3>
 <p>Braces <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="p">{}</span></code> are used to group things together in AnyScript. They must be coherent
 and balanced, and if you have one too few or one too many it can completely
 change the structure of the code, and you can get strange error messages. The
@@ -172,18 +171,18 @@ this often makes it much easier to see where the problem is. Beware that the
 missing brace can be in an include file.</p>
 </div>
 <div class="section" id="mix-up-of-decimal-points-and-commas">
-<h3>Mix-up of decimal points and commas<a class="headerlink" href="#mix-up-of-decimal-points-and-commas" title="Permalink til denne overskrift">¶</a></h3>
+<h3>Mix-up of decimal points and commas<a class="headerlink" href="#mix-up-of-decimal-points-and-commas" title="Permalink to this headline">¶</a></h3>
 <p>Some nationalities use decimal commas, and some use decimal points. The AnyBody
 Modeling System consistently uses decimal points regardless of the nationality
 settings in your computer. If you type a comma in place of a decimal point, you
 will get a syntax error.</p>
 </div>
 <div class="section" id="mix-up-of-of-letters">
-<h3>Mix-up of of letters<a class="headerlink" href="#mix-up-of-of-letters" title="Permalink til denne overskrift">¶</a></h3>
-<p>Beware that there is a difference between the letter ›O‹ and the digit zero, ›0‹, and the letter ›l‹ and the digit one, ›1‹.</p>
+<h3>Mix-up of of letters<a class="headerlink" href="#mix-up-of-of-letters" title="Permalink to this headline">¶</a></h3>
+<p>Beware that there is a difference between the letter ‘O’ and the digit zero, ‘0’, and the letter ‘l’ and the digit one, ‘1’.</p>
 </div>
 <div class="section" id="inconsistent-use-of-capitals">
-<h3>Inconsistent use of capitals<a class="headerlink" href="#inconsistent-use-of-capitals" title="Permalink til denne overskrift">¶</a></h3>
+<h3>Inconsistent use of capitals<a class="headerlink" href="#inconsistent-use-of-capitals" title="Permalink to this headline">¶</a></h3>
 <p>AnyScript is case-sensitive, so these two statements refer to different variables:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">MyVariable</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="n">Myvariable</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -192,7 +191,7 @@ will get a syntax error.</p>
 <p>This also means that predefined class names such as AnyVar or AnyFolder must be written with correct capitalization.</p>
 </div>
 <div class="section" id="missing-reference-operator">
-<h3>Missing reference operator<a class="headerlink" href="#missing-reference-operator" title="Permalink til denne overskrift">¶</a></h3>
+<h3>Missing reference operator<a class="headerlink" href="#missing-reference-operator" title="Permalink to this headline">¶</a></h3>
 <p>If by mistake you assign two folders to each other:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
 </pre></div>
@@ -202,18 +201,18 @@ will get a syntax error.</p>
 </pre></div>
 </div>
 <p>What the message means is that this type of assignment is not allowed. You may
-argue that the error message is misleading because ›=‹ is indeed an assignment
+argue that the error message is misleading because ‘=’ is indeed an assignment
 operator. However, operators in AnyScript are polymorphic, and they are
 interpreted in the context of the variables they operate on, and for two folders
 no proper assignment operator exists. So, while rhetorically correct, what the
-statement really means is that you are missing an ampersand, ›&amp;‹. Assignment of
+statement really means is that you are missing an ampersand, ‘&amp;’. Assignment of
 folders to each other must be by reference like this.</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="missing-expected-members">
-<h3>Missing expected members<a class="headerlink" href="#missing-expected-members" title="Permalink til denne overskrift">¶</a></h3>
+<h3>Missing expected members<a class="headerlink" href="#missing-expected-members" title="Permalink to this headline">¶</a></h3>
 <p>Some classes in AnyScript have members that must be initialized. For instance,
 this declaration</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">arm</span> <span class="o">=</span> <span class="p">{</span>
@@ -242,11 +241,11 @@ cannot be assigned a value by the user.</p>
 </div>
 </div>
 <div class="section" id="run-time-errors">
-<h2>Run-time errors<a class="headerlink" href="#run-time-errors" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Run-time errors<a class="headerlink" href="#run-time-errors" title="Permalink to this headline">¶</a></h2>
 <p>Run-time errors occur during analysis of a successfully loaded model.
 Their nature and remedies are completely dependent on the nature of the
-study. Please refer to the tutorial »<a class="reference internal" href="../A_study_of_studies/intro.html"><span class="doc">*A study of
-studies*</span></a>« for further
+study. Please refer to the tutorial “<a class="reference internal" href="../A_study_of_studies/intro.html"><span class="doc">*A study of
+studies*</span></a>” for further
 information.</p>
 </div>
 </div>
@@ -261,17 +260,17 @@ information.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Hurtig søgning</h3>
+  <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Søg" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
+<h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -300,10 +299,10 @@ information.</p>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>Denne side</h3>
+    <h3>This Page</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/Troubleshooting_anyscript/intro.rst.txt"
-            rel="nofollow">Vis kilde</a></li>
+            rel="nofollow">Show Source</a></li>
     </ul>
    </div>
         </div>
@@ -333,17 +332,17 @@ information.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             >indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../Posture_and_movement/intro.html" title="18. Posture and Movement Prediction"
-             >næste</a> &nbsp; &nbsp;</li>
+             >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../Parameter_studies_and_optimization/lesson2.html" title="Optimization Studies"
-             >forrige</a> &nbsp; &nbsp;</li>
+             >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
  
       </ul>

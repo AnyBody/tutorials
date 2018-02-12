@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
@@ -25,14 +25,13 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Indeks" href="../genindex.html" />
-    <link rel="search" title="Søg" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lesson 6: General Muscles" href="lesson6.html" />
     <link rel="prev" title="Lesson 4: Wrapping Muscles" href="lesson4.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,17 +43,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             accesskey="I">indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson6.html" title="Lesson 6: General Muscles"
-             accesskey="N">næste</a> &nbsp; &nbsp;</li>
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Wrapping Muscles"
-             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">9. Muscle Modeling</a> &#187;</li> 
@@ -69,7 +68,7 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-5-muscle-models">
-<h1>Lesson 5: Muscle Models<a class="headerlink" href="#lesson-5-muscle-models" title="Permalink til denne overskrift">¶</a></h1>
+<h1>Lesson 5: Muscle Models<a class="headerlink" href="#lesson-5-muscle-models" title="Permalink to this headline">¶</a></h1>
 <p>Muscle model is a description of how a muscle behaves under different
 operating conditions. There are two schools of thought within this area.</p>
 <ul class="simple">
@@ -123,7 +122,7 @@ The AnyScript model from the previous lesson will suffice very nicely.
 You can download a functional version
 of the model here: <a class="reference download internal" href="../_downloads/MuscleDemo.5.any" download=""><code class="xref download docutils literal"><span class="pre">MuscleDemo.5.any</span></code></a>.</p>
 <div class="section" id="anymusclemodel2elin">
-<h2>AnyMuscleModel2ELin<a class="headerlink" href="#anymusclemodel2elin" title="Permalink til denne overskrift">¶</a></h2>
+<h2>AnyMuscleModel2ELin<a class="headerlink" href="#anymusclemodel2elin" title="Permalink to this headline">¶</a></h2>
 <p>Right-click and save the file to your local disk, and subsequently open
 the model in&nbsp;the AnyBody Modeling System. We have already seen the
 consequences of using the simple muscle model, so we shall proceed
@@ -272,7 +271,7 @@ parameters presented in the Chart View:</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Fin</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Fout</span></code></td>
-<td>are forces, but they have less physiological reference than other quatities below and they are mainly there for internal purposes. They are inherited from the AnyScript classes that the muscle class is derived from, in which they represent the force with direct reference to the associated kinematic measure of the muscle object. »Fin« means that it is the »input force« to dynamic analysis, which for the muscle implies that it holds the passive forces at a specific activity. »Fout« means that it is the »output force« from dynamic analysis, which for the muscle implies that it holds passive as well as active forces of the muscle-tendon unit.</td>
+<td>are forces, but they have less physiological reference than other quatities below and they are mainly there for internal purposes. They are inherited from the AnyScript classes that the muscle class is derived from, in which they represent the force with direct reference to the associated kinematic measure of the muscle object. “Fin” means that it is the “input force” to dynamic analysis, which for the muscle implies that it holds the passive forces at a specific activity. “Fout” means that it is the “output force” from dynamic analysis, which for the muscle implies that it holds passive as well as active forces of the muscle-tendon unit.</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Lmt</span></code></td>
 <td>The total length of the muscle-tendon unit, i.e. the
@@ -466,7 +465,7 @@ model passive elasticity. The following section presents a full-blown
 Hill-type model, which does not have these shortcomings.</p>
 </div>
 <div class="section" id="anymusclemodel3e">
-<h2>AnyMuscleModel3E<a class="headerlink" href="#anymusclemodel3e" title="Permalink til denne overskrift">¶</a></h2>
+<h2>AnyMuscleModel3E<a class="headerlink" href="#anymusclemodel3e" title="Permalink to this headline">¶</a></h2>
 <p>So far we have been focusing our attention on Muscle1 in the demo model
 and left Muscle2 with the simple muscle model. Let us briefly study what
 Muscle2 is actually doing (if you need an updated&nbsp;working model, you can
@@ -710,7 +709,7 @@ to do some work. Let us systematically investigate the output:</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Fin</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Fout</span></code></td>
-<td>are forces, but they have less physiological reference than other quatities below and they are mainly there for internal purposes. They are inherited from the AnyScript classes that the muscle class is derived from, in which they represent the force with direct reference to the associated kinematic measure of the muscle object. »Fin« means that it is the »input force« to dynamic analysis, which for the muscle implies that it holds the passive forces at a specific activity. »Fout« means that it is the »output force« from dynamic analysis, which for the muscle implies that it holds passive as well as active forces of the muscle-tendon unit.</td>
+<td>are forces, but they have less physiological reference than other quatities below and they are mainly there for internal purposes. They are inherited from the AnyScript classes that the muscle class is derived from, in which they represent the force with direct reference to the associated kinematic measure of the muscle object. “Fin” means that it is the “input force” to dynamic analysis, which for the muscle implies that it holds the passive forces at a specific activity. “Fout” means that it is the “output force” from dynamic analysis, which for the muscle implies that it holds passive as well as active forces of the muscle-tendon unit.</td>
 <td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Lmt</span></code></td>
@@ -801,7 +800,7 @@ to do some work. Let us systematically investigate the output:</p>
 </table>
 </div>
 <div class="section" id="calibration">
-<h2>Calibration<a class="headerlink" href="#calibration" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Calibration<a class="headerlink" href="#calibration" title="Permalink to this headline">¶</a></h2>
 <p><strong>Note:</strong> This section describes calibration of muscle-tendon units briefly; for more details and more examples, please refer to <a class="reference internal" href="../MuscleRecruitment/lesson_calibration.html"><span class="doc">Inverse Dyanmics of Muscle Systems: Calibration</span></a>.</p>
 <p>One of the practical challenges in working with detailed muscle models
 in complex musculoskeletal systems is the dependency on defined fiber and tendon
@@ -838,13 +837,13 @@ and the other one requires additional information.</p>
 <li>Tendon-length calibration (operation: TendonLengthAdjustment)
 adjusts the tendon length (Lt0) to obtain optimal conditions at a specific location under the assumption that the inputted fiber length is correct.</li>
 <li>Two-parameter calibration adjusts both Lt0 and Lf0 (operation: FiberAndTendonAdjustment).
-This method requires input about two specific points of the muscles‹ operation range and thereby it can match both fiber and tendon length. This method is a fairly new feature in AnyBody (version 7) and is not the default method in AMMR (e.g. version 1.x and 2.0).</li>
+This method requires input about two specific points of the muscles’ operation range and thereby it can match both fiber and tendon length. This method is a fairly new feature in AnyBody (version 7) and is not the default method in AMMR (e.g. version 1.x and 2.0).</li>
 </ul>
 <p>For details, please visit <a class="reference internal" href="../MuscleRecruitment/lesson_calibration.html"><span class="doc">Inverse Dyanmics of Muscle Systems: Calibration</span></a>.</p>
 <p>In the following, we demonstrate calibration by examples using the tendon-length calibration, i.e. calibrating Lt0.
-In the following two sections, we disucss two calibration strategies: »Cheap and dirty« and »Detailed« calibration.</p>
+In the following two sections, we disucss two calibration strategies: “Cheap and dirty” and “Detailed” calibration.</p>
 <div class="section" id="cheap-and-dirty-calibration">
-<h3>»Cheap and dirty« calibration<a class="headerlink" href="#cheap-and-dirty-calibration" title="Permalink til denne overskrift">¶</a></h3>
+<h3>“Cheap and dirty” calibration<a class="headerlink" href="#cheap-and-dirty-calibration" title="Permalink to this headline">¶</a></h3>
 <p>The <em>cheap and dirty</em> solution is of course easily available but also
 not recommended for accurate analysis.</p>
 <p>You must make an AnyBodyCalibrationStudy, which is the study type
@@ -890,7 +889,7 @@ are not altered by this method. Every time you reload the model you must
 run the FiberAndTendonAdjustment again.</p>
 </div>
 <div class="section" id="detailed-calibration">
-<h3>Detailed calibration<a class="headerlink" href="#detailed-calibration" title="Permalink til denne overskrift">¶</a></h3>
+<h3>Detailed calibration<a class="headerlink" href="#detailed-calibration" title="Permalink to this headline">¶</a></h3>
 <p>There is a more accurate and detailed way of calibrating tendons, but it
 requires additional information. More precisely it calibrates the tendon
 lengths at user-defined joint postures. So each muscle is associated
@@ -910,13 +909,13 @@ described in detail in the <a class="reference internal" href="lesson7.html"><sp
 modeling, namely General Muscles. They are the topic of the next lesson,
 <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6</span></a>.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">Se også</p>
+<p class="first admonition-title">See also</p>
 <p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: General Muscles</span></a>.</p>
 </div>
 </div>
 </div>
 <div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink til denne overskrift">¶</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <table class="docutils citation" frame="void" id="hill-1938" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -948,17 +947,17 @@ modeling, namely General Muscles. They are the topic of the next lesson,
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Hurtig søgning</h3>
+  <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Søg" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
+<h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -997,10 +996,10 @@ modeling, namely General Muscles. They are the topic of the next lesson,
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>Denne side</h3>
+    <h3>This Page</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/Muscle_modeling/lesson5.rst.txt"
-            rel="nofollow">Vis kilde</a></li>
+            rel="nofollow">Show Source</a></li>
     </ul>
    </div>
         </div>
@@ -1030,17 +1029,17 @@ modeling, namely General Muscles. They are the topic of the next lesson,
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             >indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson6.html" title="Lesson 6: General Muscles"
-             >næste</a> &nbsp; &nbsp;</li>
+             >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Wrapping Muscles"
-             >forrige</a> &nbsp; &nbsp;</li>
+             >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >9. Muscle Modeling</a> &#187;</li> 

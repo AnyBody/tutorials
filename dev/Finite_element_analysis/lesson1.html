@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
@@ -25,14 +25,13 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Indeks" href="../genindex.html" />
-    <link rel="search" title="Søg" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lesson 2: ANSYS Interface" href="lesson2.html" />
     <link rel="prev" title="12. Finite Element Analysis Interfacing" href="index.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,17 +43,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             accesskey="I">indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: ANSYS Interface"
-             accesskey="N">næste</a> &nbsp; &nbsp;</li>
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="index.html" title="12. Finite Element Analysis Interfacing"
-             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">12. Finite Element Analysis Interfacing</a> &#187;</li> 
@@ -69,7 +68,7 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-1-export-of-data-for-fea">
-<h1>Lesson 1: Export of data for FEA<a class="headerlink" href="#lesson-1-export-of-data-for-fea" title="Permalink til denne overskrift">¶</a></h1>
+<h1>Lesson 1: Export of data for FEA<a class="headerlink" href="#lesson-1-export-of-data-for-fea" title="Permalink to this headline">¶</a></h1>
 <p><img alt="FEA tutorial Fish tank" src="../_images/image11.jpeg" /></p>
 <p>In this example we want to shed some light on an important issue for all
 aquarium owners: What’s the magnitude of stress in the lumbar vertebra
@@ -287,7 +286,7 @@ aquarium&nbsp;of this size. But of course we did some generous shortcuts to achi
 neglected a lot of detail which is provided by the AnyBody Modeling
 System.</p>
 <div class="section" id="building-the-fe-model">
-<h2>&nbsp;Building the FE-model<a class="headerlink" href="#building-the-fe-model" title="Permalink til denne overskrift">¶</a></h2>
+<h2>&nbsp;Building the FE-model<a class="headerlink" href="#building-the-fe-model" title="Permalink to this headline">¶</a></h2>
 <p>In this section a short description of how to build a Finite Element
 model using AnyBody data is given. If you are an experienced FE user
 you may want to skip this section.</p>
@@ -310,7 +309,7 @@ programs is in related to AnyBody Technology.</p>
 <p>Please follow the links shown above, download and install the two
 programs if you want to do some hands-on FEA.</p>
 <div class="section" id="building-the-model-preprocessing">
-<h3>Building the model - preprocessing<a class="headerlink" href="#building-the-model-preprocessing" title="Permalink til denne overskrift">¶</a></h3>
+<h3>Building the model - preprocessing<a class="headerlink" href="#building-the-model-preprocessing" title="Permalink to this headline">¶</a></h3>
 <p>A file with the finished model is provided below, in case you do not
 want to go through the entire model building process.</p>
 <dl class="docutils">
@@ -335,7 +334,7 @@ endplates.</p>
 <p>Next is to generate the actual mesh. Open again the “Mesh” tab and
 press “Create”. Fill in “n” for node label and “e” for element label,
 make sure that the volumetric mesh is chosen and the “perform
-smoothing« option is checked. “Apply” will generate a nicely meshed
+smoothing” option is checked. “Apply” will generate a nicely meshed
 vertebral body (right)</p>
 <p>After this we have to assign material properties to the elements. Go
 to the “Materials” tab and select “User-Defined”. You can simply give
@@ -434,7 +433,7 @@ make sure we get some results to look at. Save the file and close the
 editor.</p>
 </div>
 <div class="section" id="solve-and-postprocessing">
-<h3>Solve and postprocessing<a class="headerlink" href="#solve-and-postprocessing" title="Permalink til denne overskrift">¶</a></h3>
+<h3>Solve and postprocessing<a class="headerlink" href="#solve-and-postprocessing" title="Permalink to this headline">¶</a></h3>
 <p>If you have somehow screwed up your model or simply didn’t want to go
 through the model building process, you can find a working model here:
 <code class="docutils literal"><span class="pre">StandingLift\Input\FEA\L5FEABackup.inp</span></code>. (In this model also
@@ -487,17 +486,17 @@ selected commercial FE packages using small interface tools</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Hurtig søgning</h3>
+  <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Søg" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
+<h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -531,10 +530,10 @@ selected commercial FE packages using small interface tools</p>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>Denne side</h3>
+    <h3>This Page</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/Finite_element_analysis/lesson1.rst.txt"
-            rel="nofollow">Vis kilde</a></li>
+            rel="nofollow">Show Source</a></li>
     </ul>
    </div>
         </div>
@@ -564,17 +563,17 @@ selected commercial FE packages using small interface tools</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             >indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: ANSYS Interface"
-             >næste</a> &nbsp; &nbsp;</li>
+             >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="index.html" title="12. Finite Element Analysis Interfacing"
-             >forrige</a> &nbsp; &nbsp;</li>
+             >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >12. Finite Element Analysis Interfacing</a> &#187;</li> 

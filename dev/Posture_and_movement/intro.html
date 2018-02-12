@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
@@ -25,14 +25,13 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Indeks" href="../genindex.html" />
-    <link rel="search" title="Søg" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Legal, Trademarks and Copyrights" href="../legal.html" />
     <link rel="prev" title="17. Trouble Shooting AnyScript Models" href="../Troubleshooting_anyscript/intro.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,17 +43,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             accesskey="I">indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../legal.html" title="Legal, Trademarks and Copyrights"
-             accesskey="N">næste</a> &nbsp; &nbsp;</li>
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../Troubleshooting_anyscript/intro.html" title="17. Trouble Shooting AnyScript Models"
-             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
  
       </ul>
@@ -68,9 +67,9 @@
           <div class="body" role="main">
             
   <div class="section" id="posture-and-movement-prediction">
-<h1>18. Posture and Movement Prediction<a class="headerlink" href="#posture-and-movement-prediction" title="Permalink til denne overskrift">¶</a></h1>
+<h1>18. Posture and Movement Prediction<a class="headerlink" href="#posture-and-movement-prediction" title="Permalink to this headline">¶</a></h1>
 <div class="without-title admonition caution">
-<p class="first admonition-title">Forsigtig</p>
+<p class="first admonition-title">Caution</p>
 <p class="last"><strong>Old tutorial:</strong>
 This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
 </div>
@@ -98,7 +97,7 @@ case we have two unknowns and only one equation and it seems like our
 venture into musculoskeletal analysis is destined to failure no matter
 what we do. This tutorial shows how the optimization capability in
 AnyBody can help you solve that kind of problems. They technically go
-under the name »Posture and Motion Prediction« and the idea is that
+under the name “Posture and Motion Prediction” and the idea is that
 rather than inputting a known posture or movement we want the model to
 predict how a human body is likely going to move in a given situation.
 Since this involves optimization and optimization takes time we are
@@ -108,7 +107,7 @@ much more complex models as well.</p>
 on <a class="reference internal" href="../Parameter_studies_and_optimization/intro.html"><span class="doc">*Parameter Studies and
 Optimization*</span></a>.</p>
 <div class="section" id="definition-of-the-problem">
-<h2>Definition of the Problem<a class="headerlink" href="#definition-of-the-problem" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Definition of the Problem<a class="headerlink" href="#definition-of-the-problem" title="Permalink to this headline">¶</a></h2>
 <p>As the name indicates, in posture and movement optimization we use
 optimization to compensate for the fact that we do not know the movement
 a-priori. So, instead of feeding the movement to the analysis we have to
@@ -134,7 +133,7 @@ But we really do not know. In this case, the user could try different
 objectives and decide on one that leads to a plausible movement.</p>
 </div>
 <div class="section" id="a-football-kick">
-<h2>A Football Kick<a class="headerlink" href="#a-football-kick" title="Permalink til denne overskrift">¶</a></h2>
+<h2>A Football Kick<a class="headerlink" href="#a-football-kick" title="Permalink to this headline">¶</a></h2>
 <p>So we need a simple model to play with. We are going to try to optimize
 a two-dimensional football kick. There are all sorts&nbsp;of reasons why a
 simple model of this task might be totally inadequate, but it will serve
@@ -163,8 +162,8 @@ joint torques to produce the movement are provided by the drivers. We
 are going to want&nbsp;the model to relate to realistic joint strengths as
 opposed to the infinitely strong driver reaction moments. On the other
 hand we want to keep it simple. So rather than defining a lof of muscles
-representing the real anatomy of the leg we shall just add »joint
-muscles« to the hip and knee joints representing realistic strengths. We
+representing the real anatomy of the leg we shall just add “joint
+muscles” to the hip and knee joints representing realistic strengths. We
 are going to need such joint muscles for flexion and extension
 respectively for both of the two joints. The red lines below add such
 muscles with realistic joint strengths in Newton-meter. For an
@@ -226,7 +225,7 @@ window, plot the MaxMuscleActivity and get this:</p>
 constant angular velocity while, in a realistic case, the model should
 capture the fact that it is necessary to accelerate the leg from some
 start position to the velocity it has at impact. To obtain a realistic
-and »designable« movement we have to replace the two simple drivers on
+and “designable” movement we have to replace the two simple drivers on
 the hip and knee with something more general. The interpolation driver
 is excellent for this purpose because it allows us to determine the
 position of each joint in certain time steps through the kick and
@@ -281,7 +280,7 @@ can help us. We ask the optimizer to determine the best movement by
 making these variations.</p>
 </div>
 <div class="section" id="the-optimization-problem">
-<h2>The Optimization Problem<a class="headerlink" href="#the-optimization-problem" title="Permalink til denne overskrift">¶</a></h2>
+<h2>The Optimization Problem<a class="headerlink" href="#the-optimization-problem" title="Permalink to this headline">¶</a></h2>
 <p>We already have some data now that can be used in the definition of our
 optimization problem. The first question is: What do we actually want to
 optimize? Given that the mass of the foot and football are given in
@@ -397,16 +396,16 @@ three is the fourth position) in the knee joint driver. There are five
 point in total in each driver, but we do not want to include the last
 one in the optimization because it determines the position of the foot
 at the end of the analysis and we want this to be on the ball.</p>
-<p>The variable names »slack« determines the upper and lower bound of the
+<p>The variable names “slack” determines the upper and lower bound of the
 variations of joint angle position. We have placed this in a variable
 because it makes it easy to change the bounds simultaneously for all
 design variables later.</p>
 <p>If you reload the model now you can actually already do an optimization
 with the single variable. Open the OptStudy branch of the tree on the
-left hand side of the screen, highlight »Optimization«, and click »Run.
+left hand side of the screen, highlight “Optimization”, and click “Run.
 After a few moments the process will converge to a better kick. You can
 see how much better by going to the Chart view, openeing the OptStudy
-section and plotting »Main.OptStudy.Output.KickVel.Val«. You will see
+section and plotting “Main.OptStudy.Output.KickVel.Val”. You will see
 that the optimization decreased the value from about -9 to about -12,
 indicating an improvement of the ball velocity from 9 to 12 m/s.</p>
 <p>Let us quickly add some more variables:</p>
@@ -468,17 +467,17 @@ to capture the features of the body’s function&nbsp;that we are looking for.</
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Hurtig søgning</h3>
+  <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Søg" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
+<h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -507,10 +506,10 @@ to capture the features of the body’s function&nbsp;that we are looking for.</
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>Denne side</h3>
+    <h3>This Page</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/Posture_and_movement/intro.rst.txt"
-            rel="nofollow">Vis kilde</a></li>
+            rel="nofollow">Show Source</a></li>
     </ul>
    </div>
         </div>
@@ -540,17 +539,17 @@ to capture the features of the body’s function&nbsp;that we are looking for.</
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             >indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../legal.html" title="Legal, Trademarks and Copyrights"
-             >næste</a> &nbsp; &nbsp;</li>
+             >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../Troubleshooting_anyscript/intro.html" title="17. Trouble Shooting AnyScript Models"
-             >forrige</a> &nbsp; &nbsp;</li>
+             >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
  
       </ul>

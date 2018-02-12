@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
@@ -25,14 +25,13 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Indeks" href="../genindex.html" />
-    <link rel="search" title="Søg" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Getting Started with Modeling" href="../A_Getting_started_modeling/index.html" />
     <link rel="prev" title="Lesson 5: Definition of Muscles and External Forces" href="lesson5.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,17 +43,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             accesskey="I">indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../A_Getting_started_modeling/index.html" title="3. Getting Started with Modeling"
-             accesskey="N">næste</a> &nbsp; &nbsp;</li>
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson5.html" title="Lesson 5: Definition of Muscles and External Forces"
-             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">2. Getting started: AnyScript Programming</a> &#187;</li> 
@@ -69,9 +68,9 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-6-adding-real-bone-geometries">
-<h1>Lesson 6: Adding Real Bone Geometries<a class="headerlink" href="#lesson-6-adding-real-bone-geometries" title="Permalink til denne overskrift">¶</a></h1>
+<h1>Lesson 6: Adding Real Bone Geometries<a class="headerlink" href="#lesson-6-adding-real-bone-geometries" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
-<p class="first admonition-title">Bemærk</p>
+<p class="first admonition-title">Note</p>
 <p class="last">Here’s an AnyScript file to start on if you have not completed the
 previous lesson: <a class="reference download internal" href="../_downloads/demo.lesson6.any" download=""><code class="xref download docutils literal"><span class="pre">*demo.lesson6.any*</span></code></a>.</p>
 </div>
@@ -83,7 +82,7 @@ feedback on where the muscle is located in the organism as illustrated
 by the two pictures below.</p>
 <p><img alt="oldleg1" src="../_images/image1.jpeg" /> <img alt="oldleg2" src="../_images/image2.jpeg" /></p>
 <div class="section" id="visualization-object-file-formats">
-<h2>Visualization object File formats<a class="headerlink" href="#visualization-object-file-formats" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Visualization object File formats<a class="headerlink" href="#visualization-object-file-formats" title="Permalink to this headline">¶</a></h2>
 <p>Adding geometric models such as bones is fortunately very simple. All
 you need is a file with a 3-D graphical representation of the bone or
 another component you may wish to add. The format of the file must be
@@ -96,7 +95,7 @@ binary. AnyBody needs an ASCII file, so please make sure to choose that
 option if you create your own STL files in a CAD system.</p>
 </div>
 <div class="section" id="importing-a-stl-file">
-<h2>Importing a STL file<a class="headerlink" href="#importing-a-stl-file" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Importing a STL file<a class="headerlink" href="#importing-a-stl-file" title="Permalink to this headline">¶</a></h2>
 <p>The bone models you see in the pictures above are a bit elaborate for a
 short tutorial, so we shall start with something a little simpler. What
 we want to do now is to add a dumbbell geometry to the arm model we have
@@ -133,7 +132,7 @@ the hand, and it is not oriented correctly.</p>
 <p><img alt="ModelView dumbbell1" src="../_images/image3.jpeg" /></p>
 </div>
 <div class="section" id="re-orienting-your-stl-object">
-<h2>Re-orienting your STL object<a class="headerlink" href="#re-orienting-your-stl-object" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Re-orienting your STL object<a class="headerlink" href="#re-orienting-your-stl-object" title="Permalink to this headline">¶</a></h2>
 <p>The fact is that, when you attach something to a segment, it is
 positioned at the segment’s origin which is usually the same as the
 center of mass. However, you can also attach stuff to points, so moving
@@ -208,17 +207,17 @@ result of the efforts is in
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Hurtig søgning</h3>
+  <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Søg" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
+<h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -256,10 +255,10 @@ result of the efforts is in
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>Denne side</h3>
+    <h3>This Page</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/A_Getting_started_anyscript/lesson6.rst.txt"
-            rel="nofollow">Vis kilde</a></li>
+            rel="nofollow">Show Source</a></li>
     </ul>
    </div>
         </div>
@@ -289,17 +288,17 @@ result of the efforts is in
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             >indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="../A_Getting_started_modeling/index.html" title="3. Getting Started with Modeling"
-             >næste</a> &nbsp; &nbsp;</li>
+             >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson5.html" title="Lesson 5: Definition of Muscles and External Forces"
-             >forrige</a> &nbsp; &nbsp;</li>
+             >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >2. Getting started: AnyScript Programming</a> &#187;</li> 

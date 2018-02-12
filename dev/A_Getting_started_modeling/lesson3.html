@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
@@ -25,14 +25,13 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Indeks" href="../genindex.html" />
-    <link rel="search" title="Søg" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lesson 4: Kinetics - Computing Forces" href="lesson4.html" />
     <link rel="prev" title="Lesson 2: Adjusting the Human Model" href="lesson2.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,17 +43,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             accesskey="I">indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Kinetics - Computing Forces"
-             accesskey="N">næste</a> &nbsp; &nbsp;</li>
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Adjusting the Human Model"
-             accesskey="P">forrige</a> &nbsp; &nbsp;</li>
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">3. Getting Started with Modeling</a> &#187;</li> 
@@ -69,7 +68,7 @@
           <div class="body" role="main">
             
   <div class="section" id="lesson-3-making-ends-meet">
-<h1>Lesson 3: Making Ends Meet<a class="headerlink" href="#lesson-3-making-ends-meet" title="Permalink til denne overskrift">¶</a></h1>
+<h1>Lesson 3: Making Ends Meet<a class="headerlink" href="#lesson-3-making-ends-meet" title="Permalink to this headline">¶</a></h1>
 <p>So far we have accomplished to define an environment model with a simple
 pedal and a human model containing the trunk and the right leg. What the
 application is still missing is specifications of how the different
@@ -77,7 +76,7 @@ elements are connected and how the model moves. With kinematics, it is
 usually a good idea, to begin with, an inventory of degrees of freedom
 (DOFs) in the model.</p>
 <div class="section" id="degrees-of-freedom-overview">
-<h2>Degrees of freedom overview<a class="headerlink" href="#degrees-of-freedom-overview" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Degrees of freedom overview<a class="headerlink" href="#degrees-of-freedom-overview" title="Permalink to this headline">¶</a></h2>
 <p>The pedal is simple: It is hinged to the global reference frame and
 therefore just has just one movement capability, namely a rotation about
 the hinge. The human model is more complicated. It is disconnected from
@@ -116,9 +115,9 @@ those drivers. After defining all your own drivers, you can deactivate
 the default drivers using a corresponding BM statement.</p>
 </div>
 <div class="section" id="fixing-the-pelvis-to-the-global-reference-frame">
-<h2>Fixing the pelvis to the global reference frame<a class="headerlink" href="#fixing-the-pelvis-to-the-global-reference-frame" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Fixing the pelvis to the global reference frame<a class="headerlink" href="#fixing-the-pelvis-to-the-global-reference-frame" title="Permalink to this headline">¶</a></h2>
 <p>We previously joined the pedal to the origin of the global reference
-frame. This means that the ›seat‹ to which we shall fix the pelvis must
+frame. This means that the ‘seat’ to which we shall fix the pelvis must
 be displaced a suitable distance from the origin. In the Environment.any
 file, add the following to the definition of the GlobalReferenceFrame:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
@@ -167,7 +166,7 @@ tree at the left-hand side of the editor window. Place your cursor in
 the editor window on the &amp;Seat line just before the final semicolon.
 Then expand the three in the left-hand side of the window through Model,
 Environment,&nbsp;GlobalRef to find the&nbsp;Hpoint that we defined previously.
-Right-click&nbsp;Hpoint and choose ›Insert Object Name‹. The full name of
+Right-click&nbsp;Hpoint and choose ‘Insert Object Name’. The full name of
 the&nbsp;Hpoint is inserted at the position of the cursor.</p>
 <p>We must repeat the procedure for the Pelvis. Place the cursor on the
 &amp;Pelvis line just before the semicolon and subsequently expand the
@@ -245,7 +244,7 @@ once they are properly defined.</p>
 <p><img alt="Posture Adjustment1" src="../_images/image110.png" /></p>
 </div>
 <div class="section" id="fix-the-trunk-position">
-<h2>Fix the trunk position<a class="headerlink" href="#fix-the-trunk-position" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Fix the trunk position<a class="headerlink" href="#fix-the-trunk-position" title="Permalink to this headline">¶</a></h2>
 <p>In this model, the trunk does not play any kinematic role. Its purpose
 is only to include the psoas muscles connected to the leg. So we should
 simply set it to a fix position. The trunk has three free rotations,
@@ -299,7 +298,7 @@ and in their neutral position, so the DriverVel and DriverPos are simply
 zero.</p>
 </div>
 <div class="section" id="connecting-the-foot-to-the-pedal">
-<h2>Connecting the foot to the pedal<a class="headerlink" href="#connecting-the-foot-to-the-pedal" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Connecting the foot to the pedal<a class="headerlink" href="#connecting-the-foot-to-the-pedal" title="Permalink to this headline">¶</a></h2>
 <p>The foot will be connected to the pedal by a spherical joint. This is
 defined inside the JointsAndDrivers.any file in the following way:</p>
 <div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
@@ -325,7 +324,7 @@ presume the contact with the pedal will be. The MetatarsalJoint2Node&nbsp;is
 a good approximation.</p>
 </div>
 <div class="section" id="setting-the-ankle-angle">
-<h2>Setting the ankle angle<a class="headerlink" href="#setting-the-ankle-angle" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Setting the ankle angle<a class="headerlink" href="#setting-the-ankle-angle" title="Permalink to this headline">¶</a></h2>
 <p>In the Ankle of this human model, there are 2 degrees of freedom:
 AnklePlantarFlexion and SubTarEversoin. We wish to constrain these
 degrees of freedom to predefined values as zero. This can be done by the
@@ -356,7 +355,7 @@ folder:</p>
 <p>The model should load again with no significant difference.</p>
 </div>
 <div class="section" id="fix-the-lateral-position-of-the-knee">
-<h2>Fix the lateral position of the knee<a class="headerlink" href="#fix-the-lateral-position-of-the-knee" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Fix the lateral position of the knee<a class="headerlink" href="#fix-the-lateral-position-of-the-knee" title="Permalink to this headline">¶</a></h2>
 <p>Imagine your pelvis on a seat and your foot resting on a point like the
 model is right now. You can still move your knee sideways either
 medially or laterally rotating the leg about an axis through the foot
@@ -407,7 +406,7 @@ should be able to load the model again, but there is no visible
 difference.</p>
 </div>
 <div class="section" id="drive-the-pedal">
-<h2>Drive the pedal<a class="headerlink" href="#drive-the-pedal" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Drive the pedal<a class="headerlink" href="#drive-the-pedal" title="Permalink to this headline">¶</a></h2>
 <p>The final step is to drive the movement of the pedal. It is hinged to
 the origin of the coordinate system, and we shall add a driver to the
 joint angle pretty much like we did with the ankle and the knee.</p>
@@ -445,7 +444,7 @@ second, but let’s postpone the investigation of that for later.</p>
 longer complains about the model being kinematically indeterminate.</p>
 </div>
 <div class="section" id="running-kinematics">
-<h2>Running kinematics<a class="headerlink" href="#running-kinematics" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Running kinematics<a class="headerlink" href="#running-kinematics" title="Permalink to this headline">¶</a></h2>
 <p>Select the ‘Main.Study.Kinematics’ and run this operation to see how
 your model works kinematically.</p>
 <p><img alt="Operations tree Kinematics" src="../_images/image27.png" /></p>
@@ -454,7 +453,7 @@ rotating.</p>
 <p><img alt="Operation Result Kinematics" src="../_images/image36.png" /></p>
 </div>
 <div class="section" id="check-if-model-is-kinematic-determined">
-<h2>Check if model is kinematic determined?<a class="headerlink" href="#check-if-model-is-kinematic-determined" title="Permalink til denne overskrift">¶</a></h2>
+<h2>Check if model is kinematic determined?<a class="headerlink" href="#check-if-model-is-kinematic-determined" title="Permalink to this headline">¶</a></h2>
 <p>Finally, you will check the number of DOFs and the number of kinematic
 constraints from the “Object Description” of the AnyBodyStudy object.
 You can find the “Object Description” of your AnyBodyStudy class object
@@ -523,7 +522,7 @@ open the Object Description dialog of “Study” object in the Model Tree.</p>
 and this is exactly as same as the total number of DOFs. Of course, you
 can still run the kinematics of your model.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">Se også</p>
+<p class="first admonition-title">See also</p>
 <p class="last"><strong>Next lesson:</strong> Now that the kinematics is in order let us move on to the <a class="reference internal" href="lesson4.html"><span class="doc">kinetic
 analysis in Lesson 4 and see what the model is good
 for.</span></a></p>
@@ -541,17 +540,17 @@ for.</span></a></p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Hurtig søgning</h3>
+  <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Søg" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Indholdsfortegnelse</a></h3>
+<h3><a href="../contents.html">Table Of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -587,10 +586,10 @@ for.</span></a></p>
 </ul>
 </div>
   <div role="note" aria-label="source link">
-    <h3>Denne side</h3>
+    <h3>This Page</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/A_Getting_started_modeling/lesson3.rst.txt"
-            rel="nofollow">Vis kilde</a></li>
+            rel="nofollow">Show Source</a></li>
     </ul>
    </div>
         </div>
@@ -620,17 +619,17 @@ for.</span></a></p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="Generelt indeks"
-             >indeks</a></li>
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
         <li class="right" >
-          <a href="../contents.html" title="Indholdsfortegnelse"
+          <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Kinetics - Computing Forces"
-             >næste</a> &nbsp; &nbsp;</li>
+             >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Adjusting the Human Model"
-             >forrige</a> &nbsp; &nbsp;</li>
+             >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >3. Getting Started with Modeling</a> &#187;</li> 
