@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>17. Trouble Shooting AnyScript Models &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -34,8 +26,7 @@
     <link rel="next" title="18. Posture and Movement Prediction" href="../Posture_and_movement/intro.html" />
     <link rel="prev" title="Optimization Studies" href="../Parameter_studies_and_optimization/lesson2.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -104,15 +95,15 @@ get a load-time error.</p>
 <p>Each possible error that can occur is associated with an error message,
 and the system will print the message in the message window at the
 bottom of the screen, for instance like this:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">ERROR : C:\MyDocuments\AnyScripts\Main.any(42) : AnyVar : unexpected</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ERROR : C:\MyDocuments\AnyScripts\Main.any(42) : AnyVar : unexpected</span>
 </pre></div>
 </div>
 <p>or like this:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">ERROR : C:\MyDocuments\AnyScripts\Main.any(45) : cannot open file : DrawSetting.any</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ERROR : C:\MyDocuments\AnyScripts\Main.any(45) : cannot open file : DrawSetting.any</span>
 </pre></div>
 </div>
 <p>or this:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">ERROR : C:\MyDocuments\AnyScripts\Main.any(133) : EOF : unexpected</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ERROR : C:\MyDocuments\AnyScripts\Main.any(133) : EOF : unexpected</span>
 </pre></div>
 </div>
 <p>As you can see, error messages adhere to a certain structure. The first
@@ -140,7 +131,7 @@ even grow fond of their conciseness.</p>
 <p>The second and more serious problem is that the error may occur in a
 totally different location from where it really is. Let’s take an
 example: Suppose by mistake you have included the wrong file like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;TheWrongFile.any&quot;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;TheWrongFile.any&quot;</span>
 </pre></div>
 </div>
 <p>somewhere in the model. When the compiler spawns to the wrong file it is
@@ -183,7 +174,7 @@ will get a syntax error.</p>
 <div class="section" id="inconsistent-use-of-capitals">
 <h3>Inconsistent use of capitals<a class="headerlink" href="#inconsistent-use-of-capitals" title="Permalink to this headline">¶</a></h3>
 <p>AnyScript is case-sensitive, so these two statements refer to different variables:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">MyVariable</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">MyVariable</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="n">Myvariable</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -192,11 +183,11 @@ will get a syntax error.</p>
 <div class="section" id="missing-reference-operator">
 <h3>Missing reference operator<a class="headerlink" href="#missing-reference-operator" title="Permalink to this headline">¶</a></h3>
 <p>If by mistake you assign two folders to each other:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>you will get the error message:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">Folder assignment expected for this object.</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Folder assignment expected for this object.</span>
 </pre></div>
 </div>
 <p>What the message means is that this type of assignment is not allowed. You may
@@ -206,7 +197,7 @@ interpreted in the context of the variables they operate on, and for two folders
 no proper assignment operator exists. So, while rhetorically correct, what the
 statement really means is that you are missing an ampersand, ‘&amp;’. Assignment of
 folders to each other must be by reference like this.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -214,25 +205,25 @@ folders to each other must be by reference like this.</p>
 <h3>Missing expected members<a class="headerlink" href="#missing-expected-members" title="Permalink to this headline">¶</a></h3>
 <p>Some classes in AnyScript have members that must be initialized. For instance,
 this declaration</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">arm</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">arm</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">Mass</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></div>
 </div>
 <p>will produce the error:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">Obligatory initialization of member : AnyVec3 Jii is missing.</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Obligatory initialization of member : AnyVec3 Jii is missing.</span>
 </pre></div>
 </div>
 <p>The reason is that AnySeg has a property called Jii which must be given a value
 before the definition is complete. Similarly, some objects have properties that
 are untouchable. This declaration:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">arm</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">arm</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">t</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></div>
 </div>
 <p>also causes an error:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">t : Initialization denied.</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">t : Initialization denied.</span>
 </pre></div>
 </div>
 <p>because t is a protected variable. It is set automatically by the system and
@@ -260,12 +251,14 @@ information.</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 4: Polynomial Muscle Recruitment &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -34,8 +26,7 @@
     <link rel="next" title="Lesson 5: Min/Max Muscle Recruitment" href="lesson5.html" />
     <link rel="prev" title="Lesson 3: Quadratic Muscle Recruitment" href="lesson3.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -87,13 +78,13 @@ has a recruitment algorithm that lets you select your own order of the
 problem. Let us investigate it a little.</p>
 <p>First, let us change the power output of the bicycle model back to a
 manageable but still challenging level:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// Kinematic parameters</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Kinematic parameters</span>
 <span class="kt">AnyVar</span> <span class="n">Cadence</span> <span class="o">=</span> <span class="mf">60.0</span><span class="p">;</span> <span class="c1">//Cadence in RPM</span>
 <span class="kt">AnyVar</span> <span class="n">MechOutput</span> <span class="o">=</span> <span class="gr">500</span><span class="p">;</span> <span class="c1">//Average Mechanical output over a cycle in Watt</span>
 </pre></div>
 </div>
 <p>Then we change the study section to the polynomial option:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
 <span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
   <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
@@ -107,7 +98,7 @@ manageable but still challenging level:</p>
 </div>
 <p>Now we have specified polynomial muscle recruitment, which comes down to
 the following objective function:</p>
-<div class="math">
+<div class="math notranslate">
 \[G = \sum_{i}\left( \frac{f_{i}}{N_{i}} \right)^{p}\]</div>
 <p>We have not, however, specified what the power <em>p</em> is. In the absence of
 a specification, AnyBody assumes <em>p</em> = 3, i.e. one higher than the
@@ -125,7 +116,7 @@ recruitment criteria, and this is why it is the default in AnyBody when
 the user makes no other specifications.</p>
 <p>Of course, everything has a limit, and if we raise the power output a
 bit more to 650 W:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// Kinematic parameters</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Kinematic parameters</span>
 <span class="kt">AnyVar</span> <span class="n">Cadence</span> <span class="o">=</span> <span class="mf">60.0</span><span class="p">;</span> <span class="c1">//Cadence in RPM</span>
 <span class="kt">AnyVar</span> <span class="n">MechOutput</span> <span class="o">=</span> <span class="gr">650</span><span class="p">;</span> <span class="c1">//Average Mechanical output over a cycle in</span>
 <span class="n">Watt</span>
@@ -136,7 +127,7 @@ muscle recruitment:</p>
 <p><img alt="Chart view Muscle activity 650 W" src="../_images/image21.gif" /></p>
 <p>The polynomial criterion allows us to select a higher order if we like.
 It can be done like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">Type</span> <span class="o">=</span> <span class="gr">MR_Polynomial</span><span class="p">;</span>
   <span class="gr">Power = 5;</span>
 <span class="p">};</span>
@@ -194,12 +185,14 @@ relevance, so it is the topic of…</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

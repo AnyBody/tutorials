@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 1: Basic Concepts &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -34,8 +26,7 @@
     <link rel="next" title="Lesson 2: Defining Segments and Displaying Objects" href="lesson2.html" />
     <link rel="prev" title="Getting started: AnyScript Programming" href="intro.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -87,7 +78,7 @@ for your model, based on a built-in template.</p>
 <p>Let’s have a look at what the system has generated for you. If we forget
 about most of the text and comments, the overall structure of the model
 looks like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
    <span class="kt">AnyFolder</span> <span class="n">MyModel</span> <span class="o">=</span> <span class="p">{</span>
    <span class="p">};</span> <span class="c1">// MyModel</span>
@@ -127,7 +118,7 @@ other occurrences of “MyModel” to “ArmModel”* later in the file.</strong
 <h2>What does this file contain so far?<a class="headerlink" href="#what-does-this-file-contain-so-far" title="Permalink to this headline">¶</a></h2>
 <p>Let’s look a little closer at the contents of what is now the ArmModel
 folder:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span> <span class="c1">// The actual body model goes in this folder</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span> <span class="c1">// The actual body model goes in this folder</span>
   <span class="kt">AnyFolder</span> <span class="gr">ArmModel</span> <span class="o">=</span> <span class="p">{</span>
 
  <span class="c1">// Global Reference Frame</span>
@@ -169,7 +160,7 @@ until you give another file loading priority by right-clicking its tab
 and select “Load Model”.</p>
 <p><img alt="Load model right click menu" src="../_images/image41.png" /></p>
 <p>You may get a similar message in the Output Window.</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>Loading Main : &quot;C:\\...\\NewModel.main.any&quot;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Loading Main : &quot;C:\\...\\NewModel.main.any&quot;
 Scanning...
 Parsing...
 Constructing model tree...
@@ -188,7 +179,7 @@ Elapsed Time : 0.063000
 mistake is to forget a semicolon somewhere. Try removing the last
 semicolon in the AnyScript file, and load again. You get a message
 saying something like:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>ERROR(SCR.PRS11) : C:\\...\\NewModel.main.any(26) : &#39;EOF&#39; unexpected Model loading skipped
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ERROR(SCR.PRS11) : C:\\...\\NewModel.main.any(26) : &#39;EOF&#39; unexpected Model loading skipped
 </pre></div>
 </div>
 <p>First, there is a message ID, then a file location and finally&nbsp;the body
@@ -221,12 +212,14 @@ successfully.</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

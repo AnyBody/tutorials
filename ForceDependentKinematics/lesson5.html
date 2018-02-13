@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 5: Using Contact Forces to Replace a Joint in a Human Model &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -34,8 +26,7 @@
     <link rel="next" title="Appendix: Cleaning and Preparing STL Surfaces for Contact Calculation" href="fdkappendix.html" />
     <link rel="prev" title="Lesson 4: Using Surfaces to Define the Knee Joint" href="lesson4.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -102,12 +93,12 @@ two parts of a hip implant, a cup in the pelvis and a femoral component.</p>
 contact joint can be split into three steps. The first step is to define
 and position the implants in the model. Looking in the main file, in the
 bottom, we find the lines</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;Implants.any&quot;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;Implants.any&quot;</span>
 </pre></div>
 </div>
 <p>The file Implants.any includes the definitions these two implants into
 the different segments, i.e., the pelvis and the right thigh.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">Seg</span><span class="p">.</span><span class="n">Thigh</span><span class="p">.</span><span class="n">HipJointISBCoordinateSystem</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">Seg</span><span class="p">.</span><span class="n">Thigh</span><span class="p">.</span><span class="n">HipJointISBCoordinateSystem</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyRefNode</span> <span class="n">FemImplantNode</span> <span class="o">=</span>
   <span class="p">{</span>
     <span class="n">ARel</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">0.7390397</span><span class="p">,</span> <span class="mf">0.5761477</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3491089</span><span class="p">},</span>
@@ -156,7 +147,7 @@ version. The only reason to do this is for visualization to see the
 implant better. It has no impact on the mechanics.</p>
 <p>The second step is, similar to the simple-knee model in the lessons
 before, the definition of the contact forces. This, we can find under</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;ContactForces.any&quot;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;ContactForces.any&quot;</span>
 </pre></div>
 </div>
 <p>Here, the contact force between the two implant components is defined.
@@ -165,7 +156,7 @@ force that should not produce big forces, but which is sometimes needed
 by the FDK solver to find a solution in cases where the implants are not
 in contact and ligaments and muscles are slack and do not produce
 forces.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">AnyForceSurfaceContact</span> <span class="n">FSurf</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">AnyForceSurfaceContact</span> <span class="n">FSurf</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="kt">AnySurface</span> <span class="o">&amp;</span><span class="n">sMaster</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">Seg</span><span class="p">.</span><span class="n">Thigh</span><span class="p">.</span><span class="n">HipJointISBCoordinateSystem</span><span class="p">.</span><span class="n">FemImplantNode</span><span class="p">.</span><span class="n">FemoralImplant</span><span class="p">;</span>
   <span class="kt">AnySurface</span> <span class="o">&amp;</span><span class="n">sSlave</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SegmentsLumbar</span><span class="p">.</span><span class="n">PelvisSeg</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">HipJoint</span><span class="p">.</span><span class="n">PelvisImplantNode</span><span class="p">.</span><span class="n">PelvisImplant</span><span class="p">;</span>
@@ -205,7 +196,7 @@ functions which return lists of the mechanical objects. These lists are
 gathered into a single list of object pointers (AnyObjectPtr). Finally,
 this list is excluded from the Study using the MechObjectExclude member
 of the AnyBodyStudy.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">MechObjectExclude</span> <span class="o">=</span> <span class="nb">arrcat</span><span class="p">(</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">MechObjectExclude</span> <span class="o">=</span> <span class="nb">arrcat</span><span class="p">(</span>
   <span class="nb">ObjSearch</span><span class="p">(</span><span class="s">&quot;Main.HumanModel.BodyModel.Right.Leg.Seg.Thigh.HipJoint&quot;</span><span class="p">,</span><span class="s">&quot;AnyMechObject&quot;</span><span class="p">),</span>
   <span class="nb">ObjSearchRecursive</span><span class="p">(</span><span class="s">&quot;Main.HumanModel.BodyModel.Right.Leg.Jnt.Hip&quot;</span><span class="p">,</span><span class="s">&quot;*&quot;</span><span class="p">,</span><span class="s">&quot;AnyMechObject&quot;</span><span class="p">),</span>
   <span class="nb">ObjSearchRecursive</span><span class="p">(</span><span class="s">&quot;Main.Model.ModelEnvironmentConnection.JointsAndDrivers.JntDriverRightLegTD&quot;</span><span class="p">,</span><span class="s">&quot;Hip*&quot;</span><span class="p">,</span><span class="s">&quot;AnyMechObject&quot;</span><span class="p">)</span>
@@ -257,12 +248,14 @@ this <a class="reference internal" href="fdkappendix.html"><span class="doc">app
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

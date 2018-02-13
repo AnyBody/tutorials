@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 5: The Command Line Application &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -34,8 +26,7 @@
     <link rel="next" title="Lesson 6: Modifying the Loaded Model" href="lesson6.html" />
     <link rel="prev" title="Lesson 4: The Model Tree and Object Description" href="lesson4.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -160,7 +151,7 @@ AnyBody console.</p>
 <h2>Using the console application<a class="headerlink" href="#using-the-console-application" title="Permalink to this headline">¶</a></h2>
 <p>Start AnyBodyCon.exe from the command prompt and issue the command
 sequence</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
 operation Main.ArmStudy.InverseDynamics
 run
 exit
@@ -172,7 +163,7 @@ some output files.</p>
 <p>For understanding how open demo.outputfile.any model in the GUI Windows
 version of AnyBody Modeling System. You will notice two
 <strong>AnyOutputFile</strong> objects inside the ArmStudy.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
 <span class="kt">AnyBodyStudy</span> <span class="n">ArmStudy</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">ArmModel</span><span class="p">;</span>
   <span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="kp">MR_MinMaxStrict</span><span class="p">;</span>
@@ -222,7 +213,7 @@ corresponds to the variables defined in the AnyOutputFile command.</p>
 right-clicking on the Output subfolder of the Study folder in the Model
 Tree and choosing “Save Data”. We can replicate this in the console as
 follows</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
 operation Main.ArmStudy.InverseDynamics
 run
 classoperation Main.ArmStudy.Output &quot;Save data&quot; --file=&quot;myoutput.anydata.h5&quot; --type=Deep
@@ -241,7 +232,7 @@ introduction in the tutorial Getting started: AnyScript Programming.
 They give us some limited control over modifying the model from the
 command line application. As a simple example, let us use a #define to
 change the number of time steps in our operation.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">#ifndef NOSTEPS</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">#ifndef NOSTEPS</span>
 <span class="gr">#define NOSTEPS 100</span>
 <span class="gr">#endif</span>
 
@@ -261,11 +252,11 @@ change the number of time steps in our operation.</p>
 </pre></div>
 </div>
 <p>If we now exchange</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
 </pre></div>
 </div>
 <p>from our operation sequence with</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot; –def NOSTEPS=50
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot; –def NOSTEPS=50
 </pre></div>
 </div>
 <p>we will see that our model will only to 50 timesteps now.</p>
@@ -281,7 +272,7 @@ file having the extension “.anymcr”.</p>
 for purposes like changing the output file name, which may need to be
 different each time the console application is called. For this, we
 first need to modify the AnyScript file with an OUTPUTFILE argument:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#ifndef</span> <span class="n">NOSTEPS</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef</span> <span class="n">NOSTEPS</span>
 
 <span class="cp">#define</span> <span class="n">NOSTEPS</span> <span class="mi">100</span>
 
@@ -327,14 +318,14 @@ first need to modify the AnyScript file with an OUTPUTFILE argument:</p>
 </div>
 <p>Further we create an .anymcr file which we can call ‘runarm.anymcr’. It
 contains the following operations</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
 operation RunApplication
 run
 exit
 </pre></div>
 </div>
 <p>We can now execute the macro file by calling</p>
-<div class="highlight-bat"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.0AnyBodyCon.exe&quot; /m “runarm.anymcr”</span>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.0AnyBodyCon.exe&quot; /m “runarm.anymcr”</span>
 </pre></div>
 </div>
 <p>from the folder where we saved our model and the macro
@@ -342,7 +333,7 @@ file. It will create an output file called ‘armoutput.anydata.h5’ which
 we specified in the .any file.</p>
 <p>To change the name of the output file, we can call the macro again with
 a #define statement for the file name</p>
-<div class="highlight-bat"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.0\AnyBodyCon.exe&quot; /m runarm.anymcr /def OUTPUTFILE=---&quot;\&quot;myoutput.anydata.h5\&quot;&quot;</span>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.0\AnyBodyCon.exe&quot; /m runarm.anymcr /def OUTPUTFILE=---&quot;\&quot;myoutput.anydata.h5\&quot;&quot;</span>
 </pre></div>
 </div>
 <p>What the construction <code class="docutils literal"><span class="pre">—“” … ””</span></code> is doing, in this case,
@@ -358,7 +349,7 @@ system for biomechanical data processing of your own design.</p>
 environmental variable for your command prompt to ease the call to
 AnyBodyCon.exe from anywhere. This you can do from the command prompt
 with a statement such as:</p>
-<div class="highlight-bat"><div class="highlight"><pre><span></span><span class="k">path</span> <span class="nv">%path%</span>;C:\Program Files\AnyBody Technology\AnyBody.7.0;
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">path</span> <span class="nv">%path%</span>;C:\Program Files\AnyBody Technology\AnyBody.7.0;
 </pre></div>
 </div>
 <p>It will add AnyBodyCon.exe’s path to the existing path
@@ -406,12 +397,14 @@ files.</li>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 2: Adjusting the Human Model &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -34,8 +26,7 @@
     <link rel="next" title="Lesson 3: Making Ends Meet" href="lesson3.html" />
     <link rel="prev" title="Lesson 1: Starting with a New Model" href="lesson1.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -89,7 +80,7 @@ for the BM statements.</p>
 </ul>
 <p>Then you should declare the corresponding BM statements just before
 including the “HumanModel.any” file.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">//#path BM_DRAWSETTINGS_FILE &quot;Model\DrawSettings.any&quot;</span>
 
   <span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
@@ -114,7 +105,7 @@ including the “HumanModel.any” file.</p>
 </pre></div>
 </div>
 <p>Try loading the model again. F7 should produce the encouraging message:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>Model Warning: Study &#39;Main.Study&#39; contains too few kinematic constraints to be kinematically determinate.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Model Warning: Study &#39;Main.Study&#39; contains too few kinematic constraints to be kinematically determinate.
 Evaluating model...
 Loaded successfully.
 Elapsed Time : 0.511000
@@ -144,12 +135,14 @@ Meet</span></a>.</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

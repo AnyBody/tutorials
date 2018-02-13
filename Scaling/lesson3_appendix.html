@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Appendix: Morphing based on landmarks &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -34,8 +26,7 @@
     <link rel="next" title="Lesson 2: Including a custom scaling function into your model" href="lesson4.html" />
     <link rel="prev" title="Lesson 1: Personalizing individual segments based on geometric data from medical images" href="lesson3.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -87,23 +78,23 @@ But in this lesson we will focus on the nonlinear transformation.</p>
 a set of given points (source landmarks) into a set of known subject-specific
 points (target landmarks). For this purpose the following approximation
 is constructed:</p>
-<p><span class="math">\(f\left( y \right) = \sum_{j = 1}^{n}{c_{j}\phi(\left\| y - x_{j} \right\|)} + p_{q}(y)\)</span>,</p>
-<p>where<span class="math">\(\ c_{j}\)</span> are the coefficients of the RBF functions
-<span class="math">\(\phi\)</span>, computed based on the source and target landmarks,
-<span class="math">\(p\)</span> is the polynomial of order <span class="math">\(q\)</span>, and <span class="math">\(\phi\)</span> is the
+<p><span class="math notranslate">\(f\left( y \right) = \sum_{j = 1}^{n}{c_{j}\phi(\left\| y - x_{j} \right\|)} + p_{q}(y)\)</span>,</p>
+<p>where<span class="math notranslate">\(\ c_{j}\)</span> are the coefficients of the RBF functions
+<span class="math notranslate">\(\phi\)</span>, computed based on the source and target landmarks,
+<span class="math notranslate">\(p\)</span> is the polynomial of order <span class="math notranslate">\(q\)</span>, and <span class="math notranslate">\(\phi\)</span> is the
 RBF function, which can take different forms. Here, we are just looking
 at one of the following forms:</p>
 <ul class="simple">
-<li><span class="math">\(\phi\left( r \right) = e^{- \text{ar}^{2}},\ a &gt; 0\)</span>, –
+<li><span class="math notranslate">\(\phi\left( r \right) = e^{- \text{ar}^{2}},\ a &gt; 0\)</span>, –
 Gaussian function, or</li>
-<li><span class="math">\(\phi(r) = r^{2} \bullet ln(r)\)</span> – thin plate spline, or</li>
-<li><span class="math">\(\phi\left( r \right) = \sqrt{r^{2} - a},\ \ a &lt; r^{2}\)</span>, –
+<li><span class="math notranslate">\(\phi(r) = r^{2} \bullet ln(r)\)</span> – thin plate spline, or</li>
+<li><span class="math notranslate">\(\phi\left( r \right) = \sqrt{r^{2} - a},\ \ a &lt; r^{2}\)</span>, –
 multiquadratic function.</li>
 </ul>
 <p>Other forms can be found in the reference manual.</p>
 <p>To define such a transform in AnyScript we can use a template provided
 by the AnyBody Modeling System:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DRBF</span> <span class="o">&lt;</span><span class="n">ObjectName</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DRBF</span> <span class="o">&lt;</span><span class="n">ObjectName</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">//PreTransforms = {};</span>
   <span class="cm">/*RBFDef = {</span>
 <span class="cm">  Type = RBF_Gaussian;</span>
@@ -129,11 +120,11 @@ by the AnyBody Modeling System:</p>
 part of the transform that is being constructed. The pre-transforms will
 be applied on both, source landmarks, Points0, and on the object that
 will be processed using this transform.</p>
-<p>The Points0 variable is a <span class="math">\(3\  \times \ k\)</span> matrix of the source
+<p>The Points0 variable is a <span class="math notranslate">\(3\  \times \ k\)</span> matrix of the source
 landmark coordinates, where k is the number of source points. Points1 is
 the matrix of target landmarks of the same size. These two entities
 alone define a 3D RBF transform.</p>
-<p>The PolynomDegree variable corresponds to the <span class="math">\(q\)</span> degree of the
+<p>The PolynomDegree variable corresponds to the <span class="math notranslate">\(q\)</span> degree of the
 polynomial term of the aforementioned approximation. Recommended degree
 is 1, i.e. a linear component. This kind of approximation gives good
 results in our empirical observations.</p>
@@ -144,7 +135,7 @@ can be found in the reference manual. This type of specification is an
 important parameter as it defines the interpolation/extrapolation
 behavior of the RBF transform. Further, we will demonstrate the
 difference of using different radial basis functions.</p>
-<p>RBFDef.Param corresponds to the parameter <span class="math">\(a\)</span> mentioned in the
+<p>RBFDef.Param corresponds to the parameter <span class="math notranslate">\(a\)</span> mentioned in the
 definitions of the Gaussian and the multiquadratic RBF function. By
 varying this parameter it is possible to change the behavior of a chosen
 RBF function, e.g. prescribe a local effect of the landmarks.</p>
@@ -161,7 +152,7 @@ corresponding sets of landmarks.</p>
 bounding box. This bounding box is computed on provided source landmarks
 and used to construct additional landmarks for the construction
 algorithm. It will internally increase the size of Points0 and Points1
-members to <span class="math">\((k + n) \times 3\)</span>. This is done to improve the
+members to <span class="math notranslate">\((k + n) \times 3\)</span>. This is done to improve the
 extrapolation behavior of the AnyFunTransform3DRBF object. Please note
 that it will use the same bounding box points for both, source and
 target set, and, therefore, using BoundingBoxOnOff requires the landmark sets
@@ -195,7 +186,7 @@ automated tool to assist us in this task. A surface-based RBF class,
 AnyFunTransform3DSTL, was developed for this purpose:</dd>
 </dl>
 </div></blockquote>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DSTL</span> <span class="o">&lt;</span><span class="n">ObjectName</span><span class="o">&gt;</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DSTL</span> <span class="o">&lt;</span><span class="n">ObjectName</span><span class="o">&gt;</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="c1">//PreTransforms = ;</span>
   <span class="cm">/*RBFDef =</span>
@@ -286,7 +277,7 @@ the last plane of the grid.</p>
 first, we change the RBFDef.Param and see how this internal parameter of
 radial basis function affects the behavior of the scaling law. Let us
 try to set it to A: 0.2, B: 2, C: 20, and D: 200.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DRBF</span> <span class="n">RBFTransform</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DRBF</span> <span class="n">RBFTransform</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">PreTransforms</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="n">RBFDef</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">Type</span> <span class="o">=</span> <span class="kp">RBF_Gaussian</span><span class="p">;</span>
@@ -316,7 +307,7 @@ try to set it to A: 0.2, B: 2, C: 20, and D: 200.</p>
 explain, however, you can notice that the deformed grid is approaching
 the origin of the coordinate system, when the parameter increases. Let
 us look back at the definition of the Gaussian radial basis function:
-<span class="math">\(\phi\left( r \right) = e^{- \text{ar}^{2}}\ \)</span>. We can see that
+<span class="math notranslate">\(\phi\left( r \right) = e^{- \text{ar}^{2}}\ \)</span>. We can see that
 the exponential nature will decrease the influence of the <em>r</em> component.
 However, if the parameter is too large the influence of radial distances
 will be minor and insignificant. Thus, it is necessary to keep the
@@ -328,7 +319,7 @@ know the recommendations on RBFDef.Param require it to be rather small.
 Let us fix this parameter to 0.2 and try to increase the number of
 landmarks by uncommenting all the landmarks provided in the example for
 both source and target sets – will it increase the accuracy?</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyMatrix</span> <span class="n">SourceLandmarks</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyMatrix</span> <span class="n">SourceLandmarks</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">{0.0709736, 0.0184485, -0.000127864},</span>
 <span class="gr">  {0.0648285, 0.0049608, 0.000451266},</span>
 <span class="gr">  {0.0621017, -0.00819697, 0.00140694},</span>
@@ -421,7 +412,7 @@ both source and target sets – will it increase the accuracy?</p>
 that the Gaussian type of the RBF transform is sensitive to the number
 of landmarks, and does not work well with a too large number of them.
 The solution here is to switch RBFDef.Type to <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_ThinPlate</span></code>:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DRBF</span> <span class="n">RBFTransform</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DRBF</span> <span class="n">RBFTransform</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">PreTransforms</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="n">RBFDef</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">Type</span> <span class="o">=</span> <span class="n">RBF_</span><span class="gr">ThinPlate</span><span class="p">;</span>
@@ -455,7 +446,7 @@ boundaries of the transform. The bounding box member enables us to take
 its points as both source and target landmarks making a candidate point
 for extrapolation to be transformed into itself. Let us try to switch on
 the bounding box corners and face points to be included as landmarks:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DRBF</span> <span class="n">RBFTransform</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DRBF</span> <span class="n">RBFTransform</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">PreTransforms</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="p">.</span><span class="n">AffineTransform</span><span class="p">};</span>
   <span class="n">RBFDef</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">Type</span> <span class="o">=</span> <span class="kp">RBF_ThinPlate</span><span class="p">;</span>
@@ -528,7 +519,7 @@ requested landmarks may fix this problem. Thus, it is a general
 recommendation to change the number of landmarks until the desired or an
 acceptable accuracy is reached. Let us change the number of points to
 the values of A: 20, B: 200, C: 400, and D: 1000:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DSTL</span> <span class="n">STLTransform</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DSTL</span> <span class="n">STLTransform</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="n">PreTransforms</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="p">.</span><span class="n">RBFTransform</span><span class="p">};</span>
   <span class="n">RBFDef</span> <span class="o">=</span> <span class="p">{</span>
@@ -600,12 +591,14 @@ which have corresponding vertices and connectivity matrixces.</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

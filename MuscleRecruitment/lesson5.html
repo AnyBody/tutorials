@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 5: Min/Max Muscle Recruitment &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -34,8 +26,7 @@
     <link rel="next" title="Lesson 6: Composite Recruitment Criteria" href="lesson6.html" />
     <link rel="prev" title="Lesson 4: Polynomial Muscle Recruitment" href="lesson4.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -95,7 +86,7 @@ necessary to use a dedicated algorithm for that purpose. In its pure
 form it is called MinMaxStrict, and we might as well try it out on the
 bicycle example right away. It is necessary to change just a little bit
 in the definition of the study:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
   <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
   <span class="n">tEnd</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">BikeParameters</span><span class="p">.</span><span class="n">T</span><span class="p">;</span>
@@ -139,7 +130,7 @@ SaddleHeight. As the name indicates, it determines the height of the
 saddle of the bike, or more precisely the vertical distance between the
 crank shaft and the hip joints. The current value is 0.63 m. Try raising
 the saddle by 2 cm by the following change:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyVar</span> <span class="n">SaddleHeight</span> <span class="o">=</span> <span class="mf">0.6</span><span class="gr">5</span><span class="p">;</span> <span class="c1">//Height of hip joint measured vertically from the crank</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyVar</span> <span class="n">SaddleHeight</span> <span class="o">=</span> <span class="mf">0.6</span><span class="gr">5</span><span class="p">;</span> <span class="c1">//Height of hip joint measured vertically from the crank</span>
 </pre></div>
 </div>
 <p>Then load and run the problem again and plot the MaxMuscleActivity. It
@@ -197,12 +188,14 @@ criteria we have investigated so far. This takes place in</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 3: Connecting Segments by Joints &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -34,8 +26,7 @@
     <link rel="next" title="Lesson 4: Imparting movement with Drivers" href="lesson4.html" />
     <link rel="prev" title="Lesson 2: Defining Segments and Displaying Objects" href="lesson2.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -89,7 +80,7 @@ freedom that are relinquished by the rigid body system.</p>
 <p>Not knowing where stuff is in space can be very impractical, and so the
 first thing to do is usually to ground the mechanism somewhere. Perhaps
 you remember these lines somewhere at the top of the AnyScript code:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
 
    <span class="c1">// Todo: Add points for grounding</span>
    <span class="c1">// of the model here</span>
@@ -102,7 +93,7 @@ model. It is similar to a segment in the sense that we can add point
 nodes to it for attaching joints and muscles. Let’s do just that. Again
 you can insert the objects with the object inserter or save time by
 simply cutting and pasting the following lines into your model:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span> <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span> <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">AnyDrawRefFrame DrwGlobalRef = {};</span>
 <span class="gr">   AnyRefNode Shoulder = {</span>
 <span class="gr">     sRel = {0,0,0};</span>
@@ -125,7 +116,7 @@ simply cutting and pasting the following lines into your model:</p>
 <p>The first line, “AnyDrawRefFrame …” merely displays the global
 reference system in the graphics window. Let us cut down on the display
 size and change its color to distinguish it from the yellow segments:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyDrawRefFrame</span> <span class="n">DrwGlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyDrawRefFrame</span> <span class="n">DrwGlobalRef</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">ScaleXYZ = {0.1, 0.1, 0.1};</span>
 <span class="gr">  RGB = {0,1,0};</span>
 <span class="p">};</span>
@@ -141,7 +132,7 @@ upper arm to the global reference frame through a “shoulder” joint.
 While a real shoulder is a very complex mechanism with several joints,
 this is a planar 2-D model, where we will define it as a simple hinge.
 We create a new folder to contain the joints and define the shoulder:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>    <span class="p">};</span> <span class="c1">// LowerArm</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>    <span class="p">};</span> <span class="c1">// LowerArm</span>
   <span class="p">};</span> <span class="c1">// Segs folder</span>
 
 <span class="gr">AnyFolder Jnts = {</span>
@@ -166,7 +157,7 @@ We create a new folder to contain the joints and define the shoulder:</p>
 definition “AnyRevoluteJoint” means. The joint connects two segments,
 and it needs to know which points on each segment to connect. For this
 purpose, we have the lines</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">GroundNode</span> <span class="o">=</span> <span class="p">..</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">GroundNode</span> <span class="o">=</span> <span class="p">..</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
 <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">UpperArmNode</span> <span class="o">=</span> <span class="p">..</span><span class="n">Segs</span><span class="p">.</span><span class="n">UpperArm</span><span class="p">.</span><span class="n">ShoulderNode</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -195,7 +186,7 @@ sure that the definition is correct.</p>
 <div class="section" id="customizing-the-revolute-joint">
 <h2>Customizing the revolute joint<a class="headerlink" href="#customizing-the-revolute-joint" title="Permalink to this headline">¶</a></h2>
 <p>We then have:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span><span class="p">;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>While each rigid body segment has a reference frame which moves along
@@ -228,7 +219,7 @@ remember to interpret them in the joint’s default reference frame.</p>
 is completely parallel to what you have just seen, but we shall use one
 of the handy tools to define the references. The skeleton of the elbow
 joint is as follows:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Jnts</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Jnts</span> <span class="o">=</span> <span class="p">{</span>
        <span class="c1">//---------------------------------</span>
     <span class="kt">AnyRevoluteJoint</span> <span class="n">Shoulder</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span><span class="p">;</span>
@@ -265,7 +256,7 @@ into the Elbow joint definition where you placed the cursor. Notice that
 this method inserts the absolute and not the relative path. Repeat the
 process to expand the ForeArm segment and insert its ElbowNode in the
 line below to obtain this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyRevoluteJoint</span> <span class="n">Elbow</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRevoluteJoint</span> <span class="n">Elbow</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span><span class="p">;</span>
   <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">UpperArmNode</span> <span class="o">=</span> <span class="gr">Main.ArmModel.Segs.UpperArm.ElbowNode</span><span class="p">;</span>
   <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">ForeArmNode</span> <span class="o">=</span>  <span class="gr">Main.ArmModel.Segs.ForeArm.ElbowNode</span><span class="p">;</span>
@@ -274,7 +265,7 @@ line below to obtain this:</p>
 </div>
 <p>It seems like everything is connected now. So why do we still get the
 annoying error message when we reload the model?</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>Model Warning: Study &#39;Main.ArmStudy&#39; contains too few kinematic
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Model Warning: Study &#39;Main.ArmStudy&#39; contains too few kinematic
 constraints to be kinematically determinate.
 </pre></div>
 </div>
@@ -301,12 +292,14 @@ position. This is taken care of by kinematic drivers.</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

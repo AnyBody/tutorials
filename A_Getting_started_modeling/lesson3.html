@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 3: Making Ends Meet &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -34,8 +26,7 @@
     <link rel="next" title="Lesson 4: Kinetics - Computing Forces" href="lesson4.html" />
     <link rel="prev" title="Lesson 2: Adjusting the Human Model" href="lesson2.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -119,7 +110,7 @@ the default drivers using a corresponding BM statement.</p>
 frame. This means that the ‘seat’ to which we shall fix the pelvis must
 be displaced a suitable distance from the origin. In the Environment.any
 file, add the following to the definition of the GlobalReferenceFrame:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">AnyRefNode Hpoint = {</span>
 <span class="gr">     sRel = {-0.7, 0.5, 0};</span>
 <span class="gr">   };</span>
@@ -133,13 +124,13 @@ pelvis to this point by means of a rigid connection.</p>
 ModelEnvironmentConnection, and for historical reasons, it is placed in
 an include file called JointsAndDrivers.any. Let’s open this file by
 double-clicking of the following line in the main file:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="p">...</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="cp">#include</span> <span class="s">&quot;Model\JointsAndDrivers.any&quot;</span>
 <span class="p">...</span>
 </pre></div>
 </div>
 <p>Then you can see the following structure inside:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
 <span class="p">{</span>
 <span class="p">};</span>
 
@@ -149,7 +140,7 @@ double-clicking of the following line in the main file:</p>
 </pre></div>
 </div>
 <p>Here let’s prepare an AnyStdJoint for the fixation of pelvis:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="gr">AnyStdJoint SeatPelvis =</span>
 <span class="gr">  {</span>
@@ -172,7 +163,7 @@ the&nbsp;Hpoint is inserted at the position of the cursor.</p>
 object tree through HumanModel, BodyModel, Trunk, SegmentsLumbar. Inside
 the lumbar segments folder, you will find the PelvisSeg. Right-click and
 insert the object name. You should now have the following:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="kt">AnyStdJoint</span> <span class="n">SeatPelvis</span> <span class="o">=</span>
   <span class="p">{</span>
@@ -186,12 +177,12 @@ insert the object name. You should now have the following:</p>
 the same position as before.</p>
 <p>The initial positions are controlled by the mannequin file. Open it up
 by double-clicking the following line:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="p">...</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
 <span class="p">...</span>
 </pre></div>
 </div>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
 
   <span class="kt">AnyFolder</span> <span class="n">Posture</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1">//This controls the position of the pelvis wrt. to the global reference frame</span>
@@ -207,7 +198,7 @@ able to see in the model view that the body model has moved to a new
 position. It is also a good idea to specify the initial joint angles so
 that the foot comes closer to the pedal. This can be done further down
 in the Mannequin file:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>    <span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>    <span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
       <span class="c1">//Arm</span>
       <span class="kt">AnyVar</span> <span class="n">SternoClavicularProtraction</span><span class="o">=-</span><span class="mi">23</span><span class="p">;</span>   <span class="c1">//This value is not used for initial position</span>
       <span class="kt">AnyVar</span> <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mf">11.5</span><span class="p">;</span>    <span class="c1">//This value is not used for initial position</span>
@@ -251,7 +242,7 @@ flexion, lateral bending and axial rotation plus the rotation of the
 skull that we will fix to zero degrees. This can be done by a so-called
 simple driver. In the JointsAndDrivers file we can see the ‘Driver’s
 folder below the Joints folder:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="kt">AnyStdJoint</span> <span class="n">SeatPelvis</span> <span class="o">=</span>
   <span class="p">{</span>
@@ -267,7 +258,7 @@ folder below the Joints folder:</p>
 </pre></div>
 </div>
 <p>We then insert two simple drivers into the Drivers folder:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="gr">AnyKinEqSimpleDriver PelvisThoraxDriver =</span>
 <span class="gr">  {</span>
@@ -300,7 +291,7 @@ zero.</p>
 <h2>Connecting the foot to the pedal<a class="headerlink" href="#connecting-the-foot-to-the-pedal" title="Permalink to this headline">¶</a></h2>
 <p>The foot will be connected to the pedal by a spherical joint. This is
 defined inside the JointsAndDrivers.any file in the following way:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="kt">AnyStdJoint</span> <span class="n">SeatPelvis</span> <span class="o">=</span>
   <span class="p">{</span>
@@ -329,7 +320,7 @@ AnklePlantarFlexion and SubTarEversoin. We wish to constrain these
 degrees of freedom to predefined values as zero. This can be done by the
 simple driver. We shall introduce the simple driver into the Drivers
 folder:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
 <span class="p">{</span>
 <span class="p">...</span>
   <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">NeckJntDriver</span> <span class="o">=</span>
@@ -363,7 +354,7 @@ the easiest way to do it is by fixing the knee laterally.</p>
 <p>We shall do this by another simple driver in conjunction with a linear
 measure which is so-called as AnyKinLinear class object. Let us add
 another driver to the Drivers folder:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
 <span class="p">{</span>
 <span class="p">...</span>
   <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">AnkleDriver</span> <span class="o">=</span>
@@ -409,7 +400,7 @@ difference.</p>
 <p>The final step is to drive the movement of the pedal. It is hinged to
 the origin of the coordinate system, and we shall add a driver to the
 joint angle pretty much like we did with the ankle and the knee.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
 <span class="p">{</span>
 <span class="p">...</span>
   <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">KneeDriver</span> <span class="o">=</span>
@@ -496,7 +487,7 @@ Hard Constraints.</p>
 kinematics, let us find the way how to remove these default drivers from
 your model. You can just add one more BM statement in the main file to
 control the default drivers of the human model like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">//--&gt;BM statements</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//--&gt;BM statements</span>
   <span class="c1">// Excluding the muscles in the trunk segments</span>
   <span class="cp">#define</span> <span class="x x-Statements">BM_TRUNK_MUSCLES</span> <span class="x x-Options">_MUSCLES_NONE_</span>
   <span class="c1">// Excluding the left arm segments</span>
@@ -540,12 +531,14 @@ for.</span></a></p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

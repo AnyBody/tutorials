@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 5: Definition of Muscles and External Forces &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -34,8 +26,7 @@
     <link rel="next" title="Lesson 6: Adding Real Bone Geometries" href="lesson6.html" />
     <link rel="prev" title="Lesson 4: Imparting movement with Drivers" href="lesson4.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -94,13 +85,13 @@ tutorial</span></a>. Here, we shall just
 define one very simple muscle model and use it indiscriminately for all
 the muscles of the arm we are building.</p>
 <p>As always, we start by creating a folder for the muscles:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">AnyFolder Muscles = {</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyFolder Muscles = {</span>
 <span class="gr"> }; // Muscles folder</span>
 </pre></div>
 </div>
 <p>The next step is to create a muscle model that the define the general
 properties of all the muscles.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Muscles</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Muscles</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">// Simple muscle model with constant strength = 300 Newton</span>
 <span class="gr">  AnyMuscleModel MusMdl = {</span>
 <span class="gr">    F0 = 300;</span>
@@ -119,7 +110,7 @@ more muscles than that. In fact, it can sometimes be difficult to figure
 out exactly how many muscles are required to drive a complex body model.</p>
 <p>Let’s add just one muscle to start with. Including the following lines
 in the ArmModel will do the trick:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span> <span class="kt">AnyFolder</span> <span class="n">Muscles</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span> <span class="kt">AnyFolder</span> <span class="n">Muscles</span> <span class="o">=</span> <span class="p">{</span>
    <span class="c1">// Simple muscle model with constant strength = 300 Newton</span>
    <span class="kt">AnyMuscleModel</span> <span class="n">MusMdl</span> <span class="o">=</span> <span class="p">{</span>
      <span class="n">F0</span> <span class="o">=</span> <span class="mi">300</span><span class="p">;</span>
@@ -145,12 +136,12 @@ complicated muscle path, then all you need to do is to add the points in
 between the origin and insertion.</p>
 <p>The physiological behavior of the muscle is defined by the first
 property</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">MusMdl</span> <span class="o">=</span> <span class="p">..</span><span class="n">Muscles</span><span class="p">.</span><span class="n">MusMdl</span><span class="p">;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">MusMdl</span> <span class="o">=</span> <span class="p">..</span><span class="n">Muscles</span><span class="p">.</span><span class="n">MusMdl</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>You can see that it points right back to the muscle model we started out
 by creating. Notice the two leading dots. Finally, the line</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyDrawMuscle</span> <span class="n">DrwMus</span> <span class="o">=</span> <span class="p">{};</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyDrawMuscle</span> <span class="n">DrwMus</span> <span class="o">=</span> <span class="p">{};</span>
 </pre></div>
 </div>
 <p>ensures that the muscle is visible in the graphics window. Let’s have a
@@ -166,7 +157,7 @@ by a kinematic analysis.</p>
 <div class="section" id="adding-more-muscles">
 <h2>Adding more muscles<a class="headerlink" href="#adding-more-muscles" title="Permalink to this headline">¶</a></h2>
 <p>All the other muscles are defined in the same way:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">//---------------------------------</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//---------------------------------</span>
 <span class="kt">AnyViaPointMuscle</span> <span class="n">Brachialis</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">MusMdl</span> <span class="o">=</span> <span class="p">..</span><span class="n">Muscles</span><span class="p">.</span><span class="n">MusMdl</span><span class="p">;</span>
   <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">Org</span> <span class="o">=</span> <span class="p">..</span><span class="n">Segs</span><span class="p">.</span><span class="n">UpperArm</span><span class="p">.</span><span class="n">Brachialis</span><span class="p">;</span>
@@ -265,7 +256,7 @@ of us have motors built into our joints. Instead, we have very efficient
 muscles, so we want to leave the task of providing force in the model to
 them. The way to do that is to set a property called Reaction.Type for
 the driver to zero. This is how it’s done for the shoulder:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ShoulderMotion</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ShoulderMotion</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
   <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">100</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
   <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">30</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
@@ -323,14 +314,14 @@ see how it carries an external load in addition to gravity. Let us
 imagine that the model is performing a dumbbell curl where it carries
 some load at the hand. We start by attaching a node to the forearm at
 the position of the palm. Add this definition to the ForeArm section:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">AnyRefNode PalmNode = {</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyRefNode PalmNode = {</span>
 <span class="gr">   sRel = {0.27,0,0};</span>
 <span class="gr"> };</span>
 </pre></div>
 </div>
 <p>The next step is to add an external force. We make a folder for this
 purpose:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">AnyFolder Loads = {</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyFolder Loads = {</span>
 
 <span class="gr">  //---------------------------------</span>
 <span class="gr">  AnyForce3D Dumbbell = {</span>
@@ -378,12 +369,14 @@ Repository</a>.</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 3: Abaqus Interface &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -34,8 +26,7 @@
     <link rel="next" title="13. Making Models using SOLIDWORKS" href="../AnyExp4SOLIDWORKS/index.html" />
     <link rel="prev" title="Lesson 2: ANSYS Interface" href="lesson2.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -100,7 +91,7 @@ BodyPartsSetup.any file.</p>
 later exported with respect to this coordinate system. You can either
 use a pre-defined reference system in the AMS or create a new one. The
 following lines create a new node located in the Sternoclavicular joint:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="o">&amp;</span><span class="n">RiArm</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">ShoulderArm</span><span class="p">.</span><span class="n">Seg</span><span class="p">.</span><span class="n">Clavicula</span><span class="p">;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="o">&amp;</span><span class="n">RiArm</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">ShoulderArm</span><span class="p">.</span><span class="n">Seg</span><span class="p">.</span><span class="n">Clavicula</span><span class="p">;</span>
 <span class="n">RiArm</span> <span class="o">=</span> <span class="p">{</span>
     <span class="kt">AnyRefNode</span> <span class="n">localrefframe</span><span class="o">=</span> <span class="p">{</span>
         <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
@@ -140,7 +131,7 @@ and look for the PostureVel folder. Change the Glenohumeral flexion
 value to 50/<code class="docutils literal"><span class="pre">Main.Study.tEnd</span></code>, this determines the joint velocity
 necessary to reach 50 degree flexion taking into account the simulation
 time.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1">//Arm</span>
     <span class="kt">AnyVar</span> <span class="n">SternoClavicularProtraction</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
     <span class="kt">AnyVar</span> <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
@@ -150,7 +141,7 @@ time.</p>
 </div>
 <p>We also want to alter the initial starting position for the motion,
 enter the Posture position folder and make the changes indicated below.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1">//Arm</span>
     <span class="kt">AnyVar</span> <span class="n">SternoClavicularProtraction</span><span class="o">=-</span><span class="mi">23</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
     <span class="kt">AnyVar</span> <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mf">11.5</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
@@ -165,7 +156,7 @@ enter the Posture position folder and make the changes indicated below.</p>
 <p>We want this motion to be done in 10 seconds and analyze 5 time steps.
 This is set in the main file. Search the Study folder and change the end
 time of the study to 10 seconds and the number of time steps to 5.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
     <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
     <span class="n">tEnd</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
     <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
@@ -179,7 +170,7 @@ Classes tab on the left side of the main file window. Search for the
 class named AnyMechOutputFileForceExport right click on it and choose
 <em>Insert class template.</em> This will insert the class necessary for force
 export.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyMechOutputFileForceExport</span> <span class="o">&lt;</span><span class="n">ObjectName</span><span class="o">&gt;</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyMechOutputFileForceExport</span> <span class="o">&lt;</span><span class="n">ObjectName</span><span class="o">&gt;</span> <span class="o">=</span>
 <span class="p">{</span>
     <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
     <span class="cm">/*NumberFormat =</span>
@@ -209,7 +200,7 @@ and name the ref frame (the one we created before). You can find the
 path to the ref frame by browsing the model tree on the left side of the
 main file window to the right clavicle and right click <em>Insert object
 name.</em></p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyMechOutputFileForceExport</span> <span class="n">FE_out</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyMechOutputFileForceExport</span> <span class="n">FE_out</span> <span class="o">=</span>
 <span class="p">{</span>
     <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;files_in/clavload.xml&quot;</span><span class="p">;</span>
     <span class="n">UseRefFrameOnOff</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
@@ -255,7 +246,7 @@ AnyOperationShellExec. The names for the executable, its working
 directory and the options for the call of the exe file have to be given.
 Please adjust the path corresponding to your setup and insert this code
 below the study folder:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyOperationShellExec</span> <span class="n">ConvertToAbq</span><span class="o">=</span><span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyOperationShellExec</span> <span class="n">ConvertToAbq</span><span class="o">=</span><span class="p">{</span>
     <span class="n">Show</span><span class="o">=</span><span class="kp">On</span><span class="p">;</span>
     <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;AnyFE2Abq.exe&quot;</span><span class="p">;</span>
     <span class="n">Arguments</span> <span class="o">=</span> <span class="s">&quot;-i ..</span><span class="se">\f</span><span class="s">iles_in\clavload.xml -o ..</span><span class="se">\f</span><span class="s">iles_out\output.inp -m .\clavicula.inp&quot;</span><span class="p">;</span>
@@ -266,7 +257,7 @@ below the study folder:</p>
 <p>This will enter an operation called ‘ ConvertToAbq’ into the model and
 running this will execute the AnyFE converter. From the shell prompt you
 write the following to get the same result:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp
 </pre></div>
 </div>
 <p>At this point, let us return to the issue of the coordinate systems that
@@ -287,7 +278,7 @@ the AnyFE XML file may or may not contain motion of the bone and it will
 probably.not be aligned with the FE mesh/CT/MRI scan system. If you
 chose this an option, the AnyFE Converter can remove the rigid body
 motion by using the <code class="docutils literal"><span class="pre">–r</span></code> option equal to ‘segment’:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp –r segment
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp –r segment
 </pre></div>
 </div>
 <p>This makes all AnyFE data from the AnyFE Converter being transformed to
@@ -298,7 +289,7 @@ FE mesh, one can apply a constant transformation to all data
 accommodating for this misalignment. The <code class="docutils literal"><span class="pre">–t</span></code> option allows you to
 enter the transformation as a string containing space separated numbers.
 The command line will look like:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp –r segment –t &quot;a11 a12 a13 a21 a22 a23 a31 a32 a33 dx dy dz&quot;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp –r segment –t &quot;a11 a12 a13 a21 a22 a23 a31 a32 a33 dx dy dz&quot;
 </pre></div>
 </div>
 <p>The transformation may contain either 9 or 12 numbers. The first nine,
@@ -395,12 +386,14 @@ see significant changes due to the modification in the overall picture.</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

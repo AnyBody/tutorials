@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lesson 2: Adding FDK Features &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -34,8 +26,7 @@
     <link rel="next" title="Lesson 3: Results of FDK" href="lesson3.html" />
     <link rel="prev" title="Lesson 1: The Baseline Model" href="lesson1.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -93,7 +84,7 @@ stabilizing forces and retain its integrity.</p>
 <p>Let us begin the steps that will allow AnyBody to compute this
 deformation. We zoom in on the definition of the knee joint and change
 the definition of its reaction forces:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyRevoluteJoint</span> <span class="n">KneeJoint</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRevoluteJoint</span> <span class="n">KneeJoint</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Shank</span> <span class="o">=</span> <span class="p">.</span><span class="n">Shank</span><span class="p">.</span><span class="n">KneeCenter</span><span class="p">;</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Thigh</span> <span class="o">=</span> <span class="p">.</span><span class="n">Thigh</span><span class="p">.</span><span class="n">KneeCenter</span><span class="p">;</span>
   <span class="gr"></span>
@@ -131,7 +122,7 @@ forces in those directions by setting the Reaction.Type vector.</p>
 <p>Now let us add the necessary elasticity to the joint. This can be done
 anywhere in the model, but we might as well place it just below the
 joint:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// Knee joint. Notice that this is only going to be the nominal joint.</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Knee joint. Notice that this is only going to be the nominal joint.</span>
 <span class="c1">// The actual position of the knee joint center will depend on the forces</span>
 <span class="c1">// acting upon it. Notice that we list the shank before the thigh. This</span>
 <span class="c1">// defines the knee joint in the shank coordinate system and we can</span>
@@ -178,7 +169,7 @@ that way and also choose values that are much smaller than in the real
 knee to get some nice, large deformations that are visually perceivable.
 So, the definition of the actual force inside the AnyForce object looks
 like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">F</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">1000</span> <span class="o">*</span> <span class="n">lin</span><span class="p">.</span><span class="n">Pos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">5000</span> <span class="o">*</span> <span class="n">lin</span><span class="p">.</span><span class="n">Pos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">};</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">F</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">1000</span> <span class="o">*</span> <span class="n">lin</span><span class="p">.</span><span class="n">Pos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">5000</span> <span class="o">*</span> <span class="n">lin</span><span class="p">.</span><span class="n">Pos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">};</span>
 </pre></div>
 </div>
 <p>As you can see, we simply specify the forces in the different directions
@@ -197,7 +188,7 @@ input those.</p>
 remaining is to tell the solver in AnyBody that it should apply
 force-dependent kinematics to solve the problem. This is of course done
 in the study section:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
   <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
   <span class="n">tStart</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -251,12 +242,14 @@ Calibration”.</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
