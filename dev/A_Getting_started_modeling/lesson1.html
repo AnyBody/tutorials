@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 1: Starting with a New Model &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="Lesson 2: Adjusting the Human Model" href="lesson2.html" />
     <link rel="prev" title="Introduction: Getting Started with Modeling" href="intro.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -115,7 +106,7 @@ this (let us set the target name as “MyPedal”):</p>
 <p><img alt="New Template dialog" src="../_images/image35.png" /></p>
 <p>If you press the OK button, it will open an editor window of
 “MyPedal.main.any” file that includes the following lines:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;../libdef.any&quot;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;../libdef.any&quot;</span>
 
 <span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">//If you want to use your own draw settings, please outcomment the next line</span>
@@ -163,13 +154,13 @@ can see the HumanModel on your screen like this:</p>
 your own model framework. This means that you could prepare the
 “HumanModel” folder information in your Model Tree.</p>
 <p>If you can double-click the following line,</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="p">...</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="cp">#include</span> <span class="s">&quot;Model\Environment.any&quot;</span>
 <span class="p">...</span>
 </pre></div>
 </div>
 <p>This will open the “Environment.any” file which is created by the Human template.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span>
 <span class="p">{</span>
 
 <span class="p">};</span>
@@ -180,7 +171,7 @@ the global reference frame, i.e. ground, and the pedal that the foot is
 going to step on. In fact, let us define the global reference frame in
 this folder right away (notice that new AnyScript code is written in red
 while existing code has the normal syntax highlighting):</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">//This is a place holder for the modeling of the environment.</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//This is a place holder for the modeling of the environment.</span>
 <span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="gr">AnyFixedRefFrame GlobalRef =</span>
@@ -198,7 +189,7 @@ Environment.any file.</p>
 <p>We now have the framework for adding the pedal to the model. We are
 presuming a pedal hinged in one end and the foot pushing in the other.
 We will define the segment and the hinge in the Environment.any file:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span>
   <span class="p">{</span>
@@ -248,12 +239,14 @@ simulation using AnyBody.</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

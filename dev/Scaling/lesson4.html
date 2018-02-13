@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 2: Including a custom scaling function into your model &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="15. Validation of Models" href="../Validation_of_models/index.html" />
     <link rel="prev" title="Appendix: Morphing based on landmarks" href="lesson3_appendix.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -104,7 +95,7 @@ which will be done in a special file <em>CustomScaling.any</em>, where all the
 modifications related to individual segment morphing are recommended to be done.
 This file is already present in the example and you can include it as shown
 below:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cm">/*------------- SCALING CONFIGURATION SECTION --------------------*/</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cm">/*------------- SCALING CONFIGURATION SECTION --------------------*/</span>
 <span class="c1">// Actual scaling law</span>
 <span class="gr"> #define BM_SCALING _SCALING_STANDARD_</span>
 
@@ -140,7 +131,7 @@ file into the Model folder and follow the instructions from this tutorial.</p>
 to make modifications has already been prepared. Further, we can find
 an access point to the geometrical scaling law folder, which will be
 used to specify individual scaling laws.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// This is a place holder for the inclusion of custom scaling laws</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// This is a place holder for the inclusion of custom scaling laws</span>
 <span class="n">HumanModel</span><span class="p">.</span><span class="n">Scaling</span><span class="p">.</span><span class="n">GeometricalScaling</span> <span class="o">=</span> <span class="p">{</span>
 <span class="p">};</span>
 </pre></div>
@@ -193,7 +184,7 @@ accessed as demonstrated below and no extra actions are needed.</p>
 transformation, TSeg2ScaleFrame. We will need to make the following 3
 changes. Please note how we look up out of the <em>MyScalingFunction</em> folder
 using double and quadruple dots:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="kt">AnyFunTransform3DLin2</span> <span class="n">AffineTransform</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="kt">AnyFunTransform3DLin2</span> <span class="n">AffineTransform</span> <span class="o">=</span>
   <span class="p">{</span>
     <span class="n">Points0</span> <span class="o">=</span> <span class="gr">..TSeg2ScaleFrame(</span>
     <span class="p">{{</span><span class="mf">0.0138187</span><span class="p">,</span><span class="mf">0.00136731</span><span class="p">,</span><span class="mf">0.0273618</span><span class="p">},</span>    <span class="c1">// fovea capitis</span>
@@ -241,7 +232,7 @@ TSeg2ScaleFrame rigid body transform.</p>
 <p>So finally let us add this scaling function to the model. Please
 insert the following lines as shown below into the file
 CustomScaling.any:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">HumanModel</span><span class="p">.</span><span class="n">Scaling</span><span class="p">.</span><span class="n">GeometricalScaling</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">HumanModel</span><span class="p">.</span><span class="n">Scaling</span><span class="p">.</span><span class="n">GeometricalScaling</span> <span class="o">=</span> <span class="p">{</span>
 <span class="gr">#define CUSTOM_SCALING_Left_Thigh</span>
 <span class="gr">Left.Thigh = {</span>
 <span class="gr">  #include &quot;MyScalingFunction.any&quot;</span>
@@ -287,7 +278,7 @@ entities accordingly. In this example such plane corresponds to the
 global XY plane. To perform the reflection, we need to multiply all
 relevant landmark points contained in the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MyScalingFunction_Mirrored</span><span class="p">.</span><span class="n">any</span></code>
 file by a mirroring matrix:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyScalingFunction</span><span class="gr">_Mirrored</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyScalingFunction</span><span class="gr">_Mirrored</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">AnyMatrix AMirroring = { // XY plane symmetry</span>
 <span class="gr">    {1,0,0},</span>
 <span class="gr">    {0,1,0},</span>
@@ -316,7 +307,7 @@ which were also used in the construction of this transform. So we have
 to reflect them too. This can be done easily by just changing the
 ScaleXYZ members of the input surfaces of the AnyFunTransform3DSTL
 class:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyScalingFunction_Mirrored</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyScalingFunction_Mirrored</span> <span class="o">=</span> <span class="p">{</span>
   <span class="p">...</span>
   <span class="kt">AnyFunTransform3DSTL</span> <span class="n">STLTransform</span> <span class="o">=</span>
   <span class="p">{</span>
@@ -349,7 +340,7 @@ class:</p>
 </div>
 <p>Finally, we have to include the mirrored scaling into the model exactly
 the same way the left thigh scaling was included:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="cp">#define</span> <span class="n">CUSTOM_SCALING_Left_Thigh</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#define</span> <span class="n">CUSTOM_SCALING_Left_Thigh</span>
 <span class="gr">#define CUSTOM_SCALING_Right_Thigh</span>
 <span class="n">Left</span><span class="p">.</span><span class="n">Thigh</span> <span class="o">=</span> <span class="p">{</span>
   <span class="cp">#include</span> <span class="s">&quot;MyScalingFunction.any&quot;</span>
@@ -384,12 +375,14 @@ utilized for the mirrored transformed model can be downloaded from here:
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

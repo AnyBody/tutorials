@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 7: Wrapping the Model with AnyBody Project &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="5. A Study of Studies" href="../A_study_of_studies/index.html" />
     <link rel="prev" title="Lesson 6: Modifying the Loaded Model" href="lesson6.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -107,7 +98,7 @@ is <a class="reference download internal" href="../_downloads/AnyProject.any" do
 <a class="reference download internal" href="../_downloads/DrawGroups.any" download=""><code class="xref download docutils literal"><span class="pre">DrawGroups.any</span></code></a> in addition.</p>
 <p>We include the model file in our new main file, and we create an empty
 project called ArmProject.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
 
@@ -123,7 +114,7 @@ project called ArmProject.</p>
 <p>Firstly, we add some file information to the project. This is done in
 the AnyProject Files folder, which is a predefined folder. Here we set
 two files, the MainFile and the SetValueFile.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
 
@@ -174,7 +165,7 @@ project information too.</p>
 <p>Model View Definitions are basically a set of view actions applied to a
 number of drawing groups. In order to set up some standard views for the
 model, we shall, therefore, define some drawing groups:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
 <span class="p">...</span>
 
@@ -213,7 +204,7 @@ model, we shall, therefore, define some drawing groups:</p>
 </div>
 <p>In the final example files, this is actually done in a separate file,
 <a class="reference download internal" href="../_downloads/DrawGroups.any" download=""><code class="xref download docutils literal"><span class="pre">DrawGroups.any</span></code></a>, so we now have</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
 
@@ -236,7 +227,7 @@ model, we shall, therefore, define some drawing groups:</p>
 </div>
 <p>Having defined the draw groups we need, we can return to the project
 definition and define our view</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
 <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
 
@@ -283,7 +274,7 @@ operations of our main (our only) study. It executes the setting of
 initial positions and inverse dynamics. These tasks are created by
 defining two AnyProjectTaskOperation objects that point to the
 particular operations in ArmModelStudy.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
 
@@ -333,7 +324,7 @@ Class Operations for “Save data” and “Load data” on the output folder
 for MainArmModel.Study. All this, we do inside the task folder
 definition because it is not part of the original model, see the
 following code:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
 <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
 
@@ -408,7 +399,7 @@ It can load models and here, we shall indeed make an operation that
 loads the model without any project definition. In other words, we
 create an AnyProjectTaskLoadModel that loads the Demo.arm2d.any, but
 without the AnyProject.any master file.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
 
@@ -462,7 +453,7 @@ string-value object that is one option of entering the body text of the
 description view.</p>
 <p>Please add the following AnyProject task to the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Tasks</span></code> folder in the
 example:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_value_example</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_value_example</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
 
@@ -485,7 +476,7 @@ button shown for it. In order to actually interact with the model from
 this AnyProject task, we will be using some special HTML links, through
 which we can pass commands to the AnyBody Modeling System.</p>
 <p>Modify the newly created <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Set_value_example</span></code> task to look like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_value_example</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_value_example</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">BodyHTML</span> <span class="o">=</span> <span class="s">&quot;&lt;b&gt;Setting values in the model through AnyProject&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;&quot;</span>
@@ -498,7 +489,7 @@ which we can pass commands to the AnyBody Modeling System.</p>
 </pre></div>
 </div>
 <p>The new HTML link defined in the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">BodyHTML</span></code> is formatted like this:</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;about:anybody -command argument&quot;</span><span class="p">&gt;</span>linktext<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;about:anybody -command argument&quot;</span><span class="p">&gt;</span>linktext<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">about</span>:<span class="n">anybody</span></code> (or just <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">anybody</span></code>) beginning of the href-value
@@ -515,7 +506,7 @@ edit a value in the loaded model. The way we can do this is by using a
 command for calling an AnyBody macro defined elsewhere in the AnyScript
 code. We start by creating a new macro command.</p>
 <p>Please modify the beginning of the AnyProject file to look like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
 
@@ -537,7 +528,7 @@ AnyDescription <code class="docutils literal highlight highlight-AnyScriptDoc"><
 BodyHTML, where we use a special command argument that interprets and
 executes this string as a macro.</p>
 <p>Please modify the AnyProject Task from earlier to look like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_value_example</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_value_example</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">BodyHTML</span> <span class="o">=</span>
@@ -577,7 +568,7 @@ in the URL’s query string.</p>
 <a class="reference download internal" href="../_downloads/AnyHTML_argument.htm" download=""><code class="xref download docutils literal"><span class="pre">AnyHTML_argument.htm</span></code></a>.</p>
 <p>We create a new AnyProject Task in the tasks folder for displaying this
 HTML file and sending data to it:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Watch_value</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Watch_value</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
         <span class="kt">AnyFile</span> <span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;AnyHTML_argument.htm&quot;</span><span class="p">;</span>
@@ -609,7 +600,7 @@ expression is not re-evaluated.</p>
 <p>In order to enable this, we add the AnyDescription for this new task to
 the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ArmModelStudy</span></code> by modifying the beginning of the AnyProject file to
 look like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
 
@@ -645,12 +636,14 @@ for <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

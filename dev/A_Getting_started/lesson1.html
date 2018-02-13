@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 1: Creating a Standing Model &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="Lesson 2: Controlling the Posture" href="lesson2.html" />
     <link rel="prev" title="Getting Started Tutorial" href="intro.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -88,15 +79,21 @@ above the ankle joints. Eg., If the arms extend forward, the body will move move
 <p>To create a new standing model using the template model in the AMMR, click the Create Model button <img alt="Model button" src="../_images/image_1.png" /> in the toolbar:</p>
 <p><img alt="ModelLoadButton" src="../_images/image_2.png" /></p>
 <p>The Template dialogue opens and displays a list of pre-defined templates
-supported in the AMMR. Choose the ‘Human Standing’ template and select the folder you want to save your
-new Human Standing model in. To demonstrate, let us create a ‘MyModels’
-folder in the ‘AMMR\Application\’ folder and set it as the target
-folder. Save the model as ‘MyStandingHuman’. Press the OK button on
-completion.</p>
-<p><img alt="TemplateDialog" src="../_images/image_3.png" /></p>
+supported in the AMMR. Choose the <strong>Human Standing</strong> template and select the
+folder you want to save your new Human Standing model in. To demonstrate, let us
+save the model in the ‘AnyBody.7.1.x/AMMR.v2.0.0-Demo’ directory
+which we extracted in the <a class="reference internal" href="intro.html"><span class="doc">introduction</span></a> for this tutorial.</p>
+<p>Give the model a name, for example <code class="file docutils literal"><span class="pre">MyStandingHuman</span></code>, and pres <strong>OK</strong> to save.</p>
+<p><img alt="TemplateDialog" src="../_images/image_3b.png" /></p>
 <p>Your new ‘MyStandingHuman.main.any’ file opens in the script Editor. The
 location of the file is shown in the title bar:</p>
 <p><img alt="MyStandingHumanModel.main.any" src="../_images/image_4.png" /></p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you saved your model in an other location be
+sure to modify the <code class="file docutils literal"><span class="pre">../libdef.any</span></code> file so it points
+to AMMR repository you want to use.</p>
+</div>
 </div>
 <div class="section" id="load-model">
 <h2>Load model<a class="headerlink" href="#load-model" title="Permalink to this headline">¶</a></h2>
@@ -116,9 +113,9 @@ to familiarize yourself with the options.</p>
 <p>In practical use it is often necessary to change quickly between these
 functions, so keyboard shortcuts have been provided:</p>
 <ul class="simple">
-<li>The Ctrl button activates the Pan function.</li>
-<li>The Shift button activates the Zoom function.</li>
-<li>The Ctrl-Shift combination activates the rotation function.</li>
+<li>The <em>Ctrl</em> button activates the Pan function.</li>
+<li>The <em>Shift</em> button activates the Zoom function.</li>
+<li>The <em>Ctrl-Shift</em> combination activates the rotation function.</li>
 <li>If you have a scrolling wheel on your mouse, this will zoom the model
 in and out.</li>
 </ul>
@@ -140,12 +137,14 @@ in and out.</li>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

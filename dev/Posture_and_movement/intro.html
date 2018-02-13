@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>18. Posture and Movement Prediction &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="Legal, Trademarks and Copyrights" href="../legal.html" />
     <link rel="prev" title="17. Trouble Shooting AnyScript Models" href="../Troubleshooting_anyscript/intro.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -170,7 +161,7 @@ muscles with realistic joint strengths in Newton-meter. For an
 explanation of the use of the AnyGeneralMuscle class, please refer to
 the <a class="reference internal" href="../Muscle_modeling/intro.html"><span class="doc">*muscle modeling
 tutorial*</span></a>.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinEqSimpleDriver</span> <span class="n">KneeDriver</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyKinEqSimpleDriver</span> <span class="n">KneeDriver</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">90</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
   <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">90</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">}</span><span class="o">/</span><span class="p">..</span><span class="n">MyStudy</span><span class="p">.</span><span class="n">tEnd</span><span class="p">;</span>
   <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Joint</span> <span class="o">=</span> <span class="p">.</span><span class="n">Knee</span><span class="p">;</span>
@@ -203,7 +194,7 @@ tutorial*</span></a>.</p>
 <p>Please copy and paste the red lines into your model just below the
 KneeDriver definition as indicated. Then remove the reaction moments
 from the drivers like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinEqSimpleDriver</span> <span class="n">HipDriver</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyKinEqSimpleDriver</span> <span class="n">HipDriver</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">90</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
   <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">90</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">}</span><span class="o">/</span><span class="p">..</span><span class="n">MyStudy</span><span class="p">.</span><span class="n">tEnd</span><span class="p">;</span>
   <span class="gr">Reaction.Type = {Off};</span>
@@ -231,7 +222,7 @@ is excellent for this purpose because it allows us to determine the
 position of each joint in certain time steps through the kick and
 subsequently will interpolate between those loctions to generate a
 smooth motion.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">//</span><span class="c1">    AnyKinEqSimpleDriver HipDriver = {</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">//</span><span class="c1">    AnyKinEqSimpleDriver HipDriver = {</span>
 <span class="gr">//</span><span class="c1">      DriverPos = {-90*pi/180};</span>
 <span class="gr">//</span><span class="c1">      DriverVel = {90*pi/180}/..MyStudy.tEnd;</span>
 <span class="gr">//</span><span class="c1">      Reaction.Type = {Off};</span>
@@ -293,7 +284,7 @@ typical for a football kick, and presume that the ball is at rest before
 impact then we have enough information to predict the velocity of the
 ball after the impact given the velocity of the foot before the impact.
 We can write this formula directly into the model like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span> <span class="c1">// The study: Operations to be performed on the model</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span> <span class="c1">// The study: Operations to be performed on the model</span>
  <span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
    <span class="n">RecruitmentSolver</span> <span class="o">=</span> <span class="kp">MinMaxSimplex</span><span class="p">;</span>
@@ -317,7 +308,7 @@ is hit because the foot velocity increases all the time.</p>
 <p>We also want to be able to limit the muscle activation to prevent
 overloading of the muscles, and we make a similar function for that
 purpose:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span> <span class="c1">// The study: Operations to be performed on the model</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span> <span class="c1">// The study: Operations to be performed on the model</span>
  <span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
    <span class="n">RecruitmentSolver</span> <span class="o">=</span> <span class="kp">MinMaxSimplex</span><span class="p">;</span>
@@ -336,7 +327,7 @@ purpose:</p>
 </div>
 <p>With that we should be ready to define an optimization problem. A basic
 optimization study would look like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">// Optimize the ball velocity after the kick.</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">// Optimize the ball velocity after the kick.</span>
 <span class="gr">AnyOptStudy OptStudy = {</span>
 <span class="gr">  LogFile = &quot;OptStudy.log&quot;;</span>
 <span class="gr">  MaxIterationStep = 25;</span>
@@ -376,7 +367,7 @@ the optimal time in the kick.</p>
 <p>Loading the model at this time will produce an error message because we
 have not defined any design variables yet. Let us begin with a single
 variable just to make sure we get it right before adding a lot of them:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>    <span class="c1">// Objective function: Max horizontal velocity of the foot</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// Objective function: Max horizontal velocity of the foot</span>
     <span class="kt">AnyDesMeasure</span> <span class="n">KickVel</span> <span class="o">=</span> <span class="p">{</span>
       <span class="n">Val</span> <span class="o">=</span> <span class="o">-</span><span class="nb">max</span><span class="p">(..</span><span class="n">MyStudy</span><span class="p">.</span><span class="n">BallVel</span><span class="p">());</span>
       <span class="n">Type</span> <span class="o">=</span> <span class="kp">ObjectiveFun</span><span class="p">;</span>
@@ -409,7 +400,7 @@ section and plotting “Main.OptStudy.Output.KickVel.Val”. You will see
 that the optimization decreased the value from about -9 to about -12,
 indicating an improvement of the ball velocity from 9 to 12 m/s.</p>
 <p>Let us quickly add some more variables:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyVar</span> <span class="n">slack</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyVar</span> <span class="n">slack</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span>
 <span class="kt">AnyDesVar</span> <span class="n">Hip3</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">HipDriver</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
   <span class="n">Min</span> <span class="o">=</span> <span class="o">-</span><span class="mi">30</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span>
@@ -468,12 +459,14 @@ to capture the features of the body’s function&nbsp;that we are looking for.</
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

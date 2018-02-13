@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 2: Linear Muscle Recruitment &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="Lesson 3: Quadratic Muscle Recruitment" href="lesson3.html" />
     <link rel="prev" title="Lesson 1: The Basics of Muscle Recruitment" href="lesson1.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -90,7 +81,7 @@ lesson</li>
 remaining for the other muscle to do. It seems that a criterion taking
 both muscles into account is needed. Let us just briefly recall the
 formulation of the muscle recruitment problem again:</p>
-<div class="math">
+<div class="math notranslate">
 \[\begin{split}\begin{equation*}
 \begin{aligned}
 &amp; {\text{minimize}}
@@ -102,17 +93,17 @@ formulation of the muscle recruitment problem again:</p>
 \end{equation*}\end{split}\]</div>
 <p>The simplest imaginable choice of objective function taking the effort
 of both muscles into account seems to be a linear combination like this:</p>
-<div class="math">
+<div class="math notranslate">
 \[G = \frac{f_1}{N_1}+ \frac{f_2}{N_2}\]</div>
-<p>i.e., a linear combination of the two muscle forces, where the <span class="math">\(N_1\)</span> and  <span class="math">\(N_2\)</span>
+<p>i.e., a linear combination of the two muscle forces, where the <span class="math notranslate">\(N_1\)</span> and  <span class="math notranslate">\(N_2\)</span>
 are some choice of normalization factors. Thinking about the physiology
 we might quickly get the idea that it is reasonable if strong muscles do
-more work than weak muscles, so <span class="math">\(N_i\)</span> acould be measures of the
+more work than weak muscles, so <span class="math notranslate">\(N_i\)</span> acould be measures of the
 strength of each muscle. We are going to stick with that idea for the
 remainder of this tutorial because it actually turns out to make sense
 also experimentally. We can get AnyBody to work with precisely this
 definition by making the following additions to our study:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
     <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
     <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
     <span class="n">nStep</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span> <span class="c1">// Lots of time steps to make it run slowly enough</span>
@@ -168,12 +159,14 @@ and we shall therefore proceed to investigate another option in</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

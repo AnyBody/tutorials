@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 1: Using References &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="Lesson 2: Using Include Files" href="lesson2.html" />
     <link rel="prev" title="11. Advanced Script Features" href="index.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -72,25 +63,25 @@
 <p>AnyScript is really a programming language, and just like any other
 programming language you can define variables and assign values to them.
 For instance, you may write</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyVar</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyVar</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
 <span class="kt">AnyVar</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Folders are also variables, and a folder definition can go like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyFolder</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyFolder</span> <span class="o">=</span> <span class="p">{</span>
    <span class="c1">// A whole lot of stuff inside</span>
 <span class="p">};</span>
 </pre></div>
 </div>
 <p>However, folders cannot be assigned like a and b above, so the following
 is illegal:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>In general, you can only do direct assignment of value variables, i.e.
 variables containing numbers or collection of numbers. This assignment
 is allowed:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyVector</span> <span class="n">aa</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyVector</span> <span class="n">aa</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
 <span class="kt">AnyVector</span> <span class="n">bb</span> <span class="o">=</span> <span class="n">aa</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -98,7 +89,7 @@ is allowed:</p>
 portions of the model in just one assignment operation? The answer is
 that you can refer by reference, and just about any assignment between
 variables of compatible type will work:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The ampersand, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">&amp;</span></code>, in front of the variable name specifies that this is
@@ -126,12 +117,14 @@ variables:
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

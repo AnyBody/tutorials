@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 2: Defining Segments and Displaying Objects &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="Lesson 3: Connecting Segments by Joints" href="lesson3.html" />
     <link rel="prev" title="Lesson 1: Basic Concepts" href="lesson1.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -79,7 +70,7 @@ the segments treated as rigid elements which represent human bones as well as no
 <h2>Creating a segment (using the Class Inserter)<a class="headerlink" href="#creating-a-segment-using-the-class-inserter" title="Permalink to this headline">¶</a></h2>
 <p>We shall start by defining a folder for the segments. Please add the
 following text to your model (new text marked in red):</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// The actual body model goes in this folder</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// The actual body model goes in this folder</span>
 <span class="kt">AnyFolder</span> <span class="n">ArmModel</span> <span class="o">=</span> <span class="p">{</span>
 
   <span class="c1">// Global Reference Frame</span>
@@ -109,7 +100,7 @@ interface opens a <strong>Class List</strong> containing all the predefined clas
 defined “AnyFolder Segs”. Then find the class “AnySeg” in the Class List and
 double-click it to insert its template into your text editor.</strong></p>
 <p>You should get this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// Segments</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Segments</span>
 <span class="kt">AnyFolder</span> <span class="n">Segs</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">AnySeg &lt;ObjectName&gt; =</span>
 <span class="gr">  {</span>
@@ -132,7 +123,7 @@ You can delete all optional properties except for r0 and Axes0.</p>
 the segment’s coordinate system is located at the center of mass, with its local coordinate system being the principal axes of inertia.</strong></p>
 <p>You can however change this by editing the properties sCoM and Jij. Refer to the Anyscript Reference Manual for more information.</p>
 <p>Let us rename the segment as “UpperArm” and set its <code class="docutils literal"><span class="pre">Mass = 2</span></code> and <code class="docutils literal"><span class="pre">Jii = {0.001, 0.01, 0.01}</span></code>:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="gr">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="gr">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">//r0 = {0, 0, 0};</span>
   <span class="c1">//Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};</span>
   <span class="n">Mass</span> <span class="o">=</span> <span class="gr">2</span><span class="p">;</span>
@@ -149,7 +140,7 @@ It therefore cannot evaluate the model’s kinematics.</strong> We will take car
 <div class="section" id="displaying-a-segment">
 <h2>Displaying a segment<a class="headerlink" href="#displaying-a-segment" title="Permalink to this headline">¶</a></h2>
 <p>To make something visible in AnyBody, you have to add a drawing object which defines visibility:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">//r0 = {0, 0, 0};</span>
   <span class="c1">//Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};</span>
   <span class="n">Mass</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
@@ -168,7 +159,7 @@ mass distribution represented by Jii.  Changing any one component of Jii will al
 the segment. <strong>Figuring out these node locations for the actual human models can be a laborious task, but you can often use ready-made anatomical
 nodes defined in most AMMR models.</strong></p>
 <p>For this model, copy and paste the following lines into your file:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">//r0 = {0, 0, 0};</span>
   <span class="c1">//Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};</span>
   <span class="n">Mass</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
@@ -208,7 +199,7 @@ yellow pins.</p>
 <div class="section" id="creating-a-second-segment">
 <h2>Creating a second segment<a class="headerlink" href="#creating-a-second-segment" title="Permalink to this headline">¶</a></h2>
 <p>You will now add a forearm segment to the mechanism by copy-pasting these lines:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>    <span class="gr">AnySeg ForeArm = {</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>    <span class="gr">AnySeg ForeArm = {</span>
 <span class="gr">      Mass = 2.0;</span>
 <span class="gr">      Jii = {0.001,0.01,0.01};</span>
 <span class="gr">      AnyRefNode ElbowNode = {</span>
@@ -243,7 +234,7 @@ r0 (translation w.r.t global frame at load-time) and Axes0 (rotation matrix w.r.
 enforcing specified motions and constraints (such as joints between segments). More on this in the next</strong>
 <a class="reference internal" href="lesson3.html"><span class="doc">**Lesson**</span></a>.</p>
 <p>For now, let us first change r0 - the global position of the segment at load-time.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">r0 = {0, 0.3, 0};</span>
   <span class="c1">//Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};</span>
   <span class="n">Mass</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
@@ -252,7 +243,7 @@ enforcing specified motions and constraints (such as joints between segments). M
 </pre></div>
 </div>
 <p>and</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">ForeArm</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">ForeArm</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">r0 = {0.3, 0, 0};</span>
   <span class="n">Mass</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">;</span>
   <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.01</span><span class="p">};</span>
@@ -266,7 +257,7 @@ enforcing specified motions and constraints (such as joints between segments). M
 <p>To improve the visual impression of the arm segments at load time, we will set
 the Axes0 property, which is really a rotation matrix.</p>
 <p>You UpperArm segment currently looks like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">r0</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
   <span class="gr">Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};</span>
 </pre></div>
@@ -279,7 +270,7 @@ first row of a 3x3 matrix.</p>
 <p>Rotation matrices are a bit difficult to cook up on the fly. If your spatial thinking is good, you could maybe figure out
 the exact expressions for all 9 components of the 3x3 Axes0 matrix. <strong>An easier solution is to use a standard function named
 “RotMat”, which returns a rotation matrix corresponding to a given axis and rotation angle. Therefore, we can specify:</strong></p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">r0</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
   <span class="gr">Axes0 = RotMat(-90*pi/180, z);</span>
 </pre></div>
@@ -322,12 +313,14 @@ the rigid parts of the model.</td></tr>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

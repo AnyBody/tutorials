@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 1: Personalizing individual segments based on geometric data from medical images &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="Appendix: Morphing based on landmarks" href="lesson3_appendix.html" />
     <link rel="prev" title="14. Personalizing Your Model" href="index.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -117,7 +108,7 @@ model, the Model View should show the following picture:</p>
 <a class="reference internal image-reference" href="../_images/image139.png"><img alt="../_images/image139.png" src="../_images/image139.png" style="width: 60%;" /></a>
 <p>To define a new scaling function let us insert a new AnyFunTransform3DLin2
 object after the target segment:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">AnyFunTransform3DLin2 &lt;ObjectName&gt; =</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyFunTransform3DLin2 &lt;ObjectName&gt; =</span>
 <span class="gr">{</span>
 <span class="gr">  //PreTransforms = {};</span>
 <span class="gr">  Points0 = ;</span>
@@ -149,7 +140,7 @@ on the surfaces and put them into the two point-sets called Points0 and
 Points1, which are the source and target points, respectively. As the next
 step, we change the mode of the AnyFunTransform3DLin2 object to
 VFK_LANDMARK_AFFINE to use the affine transform:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DLin2</span> <span class="gr">MyTransform</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DLin2</span> <span class="gr">MyTransform</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="c1">//PreTransforms = {};</span>
   <span class="n">Points0</span> <span class="o">=</span>
@@ -174,7 +165,7 @@ VFK_LANDMARK_AFFINE to use the affine transform:</p>
 landmarks and points described in the comments of the AnyScript code.
 Final modification before we can use the constructed linear transform is
 to give this transformation a name and apply it to the source surface:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">SourceFemur</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">SourceFemur</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="n">Mass</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
   <span class="kt">AnyDrawSurf</span> <span class="n">Surface</span> <span class="o">=</span>
@@ -198,7 +189,7 @@ the roles of the source points Points0 and target points Points1 are swapped,
 and the transformation mode is set to VTK_LANDMARK_RIGIDBODY.</p>
 <p>Additionally to that, a combination transform, containing forward affine
 and back registration transforms, is added:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="gr">AnyFunTransform3DLin2 MyTransform2 = {</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyFunTransform3DLin2 MyTransform2 = {</span>
 <span class="gr">  Points0 = .MyTransform.Points1;</span>
 <span class="gr">  Points1 = .MyTransform.Points0;</span>
 <span class="gr">  Mode = VTK_LANDMARK_RIGIDBODY;</span>
@@ -213,7 +204,7 @@ and back registration transforms, is added:</p>
 comment the transform used in the visualization of the source surface
 and create another surface that will show the combined transformation
 that we just constructed:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">SourceFemur</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">SourceFemur</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="n">Mass</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
   <span class="kt">AnyDrawSurf</span> <span class="n">Surface</span> <span class="o">=</span>
@@ -268,7 +259,7 @@ into the previously created model.</p>
 <p>First of all let us configure the visualization of the transformation.
 Now that we know how to compare source and scaled geometries as well as
 reverse registration, so we can switch off the registration step.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DIdentity</span> <span class="n">MyTransform3</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DIdentity</span> <span class="n">MyTransform3</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="n">PreTransforms</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="p">.</span><span class="n">MyTransform</span><span class="gr">/*,&amp;.MyTransform2*/</span><span class="p">};</span>
 <span class="p">};</span>
@@ -281,7 +272,7 @@ difference between the affine scaling and the new transformation
 pipeline employing nonlinear RBF transformations. For a better contrast
 of the different surfaces, we will also add some colors to the drawing
 of the surfaces:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="gr">AnyDrawSurf SurfaceMorphedRBF =</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="gr">AnyDrawSurf SurfaceMorphedRBF =</span>
 <span class="gr">  {</span>
 <span class="gr">    FileName = &quot;SourceFemur.stl&quot;;</span>
 <span class="gr">    AnyFunTransform3D &amp;ref = ..MyRBFTransform;</span>
@@ -400,7 +391,7 @@ recommended settings mentioned before will be used again.</p>
 <p>Let us repeat the step from the previous section by adding one more
 surface to the visualization and another scaling step. You can download
 the model with all modifications <a class="reference download internal" href="../_downloads/lesson3c.Main.any" download=""><code class="xref download docutils literal"><span class="pre">here</span></code></a>:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="gr">AnyDrawSurf SurfaceMorphedSTL =</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="gr">AnyDrawSurf SurfaceMorphedSTL =</span>
 <span class="gr">  {</span>
 <span class="gr">    FileName = &quot;SourceFemur.stl&quot;;</span>
 <span class="gr">    AnyFunTransform3D &amp;ref = ..MySTLTransform;</span>
@@ -468,12 +459,14 @@ done.</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

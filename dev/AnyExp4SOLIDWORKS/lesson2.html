@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Making the translated AnyScript model move &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="Creating human-machine integrated analysis model" href="lesson3.html" />
     <link rel="prev" title="Translating a SOLIDWORKS CAD model to AnyBody" href="lesson1.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -88,7 +79,7 @@ contains the necessary operations that will perform a kinematic
 analysis, which is the way how AnyBody moves the model. Let us add an
 AnyBodyStudy object to make this model work for kinematic and inverse
 dynamic analyses.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="cp">#include</span> <span class="s">&quot;FitnessMachine.any&quot;</span>
 
@@ -118,7 +109,7 @@ contains two linear and two rotational constraints between two different
 components. So this mate can still allow two degrees of freedom: 1
 translational and 1 rotational movement. Let us look the definition of
 this ‘Concentric01’ mate inside AnyScript.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinEqSimpleDriver</span> <span class="n">Concentric01</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyKinEqSimpleDriver</span> <span class="n">Concentric01</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="kt">AnyKinLinear</span> <span class="n">lin</span> <span class="o">=</span>
   <span class="p">{</span>
@@ -152,7 +143,7 @@ be zero, i.e. in-plane, by the translated code. The remaining real
 angle, i.e. the first component of the ‘rot’ measure, can be constrained
 by a driver. We add this to the FitnessMachine AnyFolder from the Main
 file.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="cp">#include</span> <span class="s">&quot;FitnessMachine.any&quot;</span>
 
@@ -195,7 +186,7 @@ a simple way to try to solve this situation in AnyBody without changing
 the SOLIDWORKS model. We shall try this first.</p>
 <p>Firstly, we change the solver type of the AnyBodyStudy object and the
 constraint type of all constraints in the translated model:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="kt">AnyFolder</span><span class="o">&amp;</span> <span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">FitnessMachine</span><span class="p">;</span>
   <span class="n">tStart</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -209,7 +200,7 @@ constraint type of all constraints in the translated model:</p>
 </div>
 <p>And in the ‘FitnessMachine.any’ file we change the type of all kinematic
 constraints created from mates in the SOLIDWORKS model.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">FitnessMachine</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">FitnessMachine</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="kt">AnyKinEqType</span> <span class="n">_ANY_CTYPE_</span> <span class="o">=</span> <span class="gr">Soft</span><span class="p">;</span>
   <span class="p">...</span>
@@ -452,7 +443,7 @@ it will do one revolution of the machine. You can also run the
 <p>In order to do a simple review of the degrees of freedom of the
 translated model try removing the driver, or just add the study to the
 generated ‘FitnessMachine.main.any’, so you load a file like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="cp">#include</span> <span class="s">&quot;FitnessMachine.any&quot;</span>
 
@@ -500,12 +491,14 @@ human to the model in the final <a class="reference internal" href="lesson3.html
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

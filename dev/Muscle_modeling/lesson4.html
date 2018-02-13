@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 4: Wrapping Muscles &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="Lesson 5: Muscle Models" href="lesson5.html" />
     <link rel="prev" title="Lesson 3: Via-point Muscles" href="lesson3.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -94,7 +85,7 @@ surface to the global reference frame, but such wrapping surfaces can be
 attached to any reference frame in the system, including segments. To be
 able to play around with the position of the surface, we initially
 define a point&nbsp;on GlobalRef&nbsp;for the purpose:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// Global Reference Frame</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Global Reference Frame</span>
 <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
@@ -122,7 +113,7 @@ with a cylinder. Go to the class tree, locate the class AnySurfCylinder,
 and insert an instance into the newly defined node on GlobalRef.
 Then&nbsp;define the name of the cylinder, add an AnyDrawParamSurf
 statement,&nbsp;and change the cylinder parameters as shown below:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="kt">AnyRefNode</span> <span class="n">CylCenter</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="kt">AnyRefNode</span> <span class="n">CylCenter</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">};</span>
 
    <span class="gr">AnySurfCylinder WrapSurf = {</span>
@@ -147,7 +138,7 @@ have the orientation you want, then the key to rotate it correctly is to
 control the direction of the AnyRefNode that it is inserted into. In
 fact, let us&nbsp;rotate it just a little bit to make things a bit more
 interesting:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="n">CylCenter</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="n">CylCenter</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">};</span>
  <span class="gr">ARel = RotMat(20*pi/180,y);</span>
 
@@ -177,7 +168,7 @@ let the muscle wrap over the edge of the cylinder if necessary.</p>
 on the global reference frame and one point on the arm, and we can then
 articulate the joint and study the behavior of the wrapping algorithm.
 The point on the global reference frame is added like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// Global Reference Frame</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Global Reference Frame</span>
 <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
@@ -192,7 +183,7 @@ The point on the global reference frame is added like this:</p>
 </pre></div>
 </div>
 <p>Similarly we add a point to the arm:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="c1">// Define one simple segment</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define one simple segment</span>
 <span class="kt">AnySeg</span> <span class="n">Arm</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">r</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.500000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">};</span>
   <span class="n">Mass</span> <span class="o">=</span> <span class="mf">1.000000</span><span class="p">;</span>
@@ -216,7 +207,7 @@ pronator muscles of the human forearm do.</p>
 <p>It is now possible to define the muscle wrapping over the cylinder. The
 easiest way to do it is to make a copy of the via point muscle, Muscle1,
 and then make the necessary changes:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="kt">AnyViaPointMuscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="kt">AnyViaPointMuscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
     <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
     <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M1Origin</span><span class="p">;</span>
     <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Via</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">ViaPoint</span><span class="p">;</span>
@@ -262,7 +253,7 @@ In fact, a shortest path muscle can also have via points as we shall see
 later.</p>
 <p>There is one additional specification necessary for a shortest path
 muscle. The line:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">SPLine</span><span class="p">.</span><span class="n">StringMesh</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">SPLine</span><span class="p">.</span><span class="n">StringMesh</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This line generates a sequence of 20 equidistant points on the shortest
@@ -283,7 +274,7 @@ the model moving through a sequence of positions like this:</p>
 <p>As mentioned above, wrapping muscles can also have via points. In fact,
 we can easily change the via point muscle, Muscle1, &nbsp;to wrap over the
 cylinder even though it also has a via point:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="n">Any</span><span class="gr">ShortestPath</span><span class="n">Muscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Any</span><span class="gr">ShortestPath</span><span class="n">Muscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M1Origin</span><span class="p">;</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Via</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">ViaPoint</span><span class="p">;</span>
@@ -320,7 +311,7 @@ point and come back to the wrapping surface as soon as possible. In the
 present case, the origin point of Muscle1 is only slightly below the
 cylinder surface, so the problem can be rectified by a small offset on
 the origin point:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="n">M1Origin</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="n">M1Origin</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="gr">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
 <span class="p">};</span>
 </pre></div>
@@ -336,7 +327,7 @@ way to do this is to specify one or more so-called initial wrapping
 vectors. These are really points that the muscle initially should pass
 through. You can specify as many of these points as you like. In the
 example below we have used two:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyShortestPathMuscle</span> <span class="n">Muscle2</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyShortestPathMuscle</span> <span class="n">Muscle2</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M2Origin</span><span class="p">;</span>
   <span class="kt">AnySurface</span> <span class="o">&amp;</span><span class="n">srf</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">CylCenter</span><span class="p">.</span><span class="n">WrapSurf</span><span class="p">;</span>
@@ -387,12 +378,14 @@ models</span></a>.</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

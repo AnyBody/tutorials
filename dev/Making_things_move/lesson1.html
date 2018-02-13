@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson1: Simple drivers &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="Lesson 2: Using motion capture data" href="lesson2.html" />
     <link rel="prev" title="Making things move" href="intro.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -81,7 +72,7 @@ brace of the <code class="docutils literal highlight highlight-AnyScriptDoc"><sp
 the left-hand side of the editor window. Unfold the class list and
 scroll down to find <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> . Right-click and insert an instance at
 the cursor position:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Pendulum</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Pendulum</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">Mass</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span><span class="o">/</span><span class="mi">10</span><span class="p">;</span>
     <span class="kt">AnyRefNode</span> <span class="n">Origin</span> <span class="o">=</span> <span class="p">{</span>
@@ -113,13 +104,13 @@ the cursor position:</p>
 different options. But the simplest of these is to directly specify
 something to drive and a function to drive it with. So we start out by
 giving the object a name and removing all of its content.</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="gr">JointDriver</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="gr">JointDriver</span> <span class="o">=</span>
 <span class="p">{</span>
 <span class="p">};</span>
 </pre></div>
 </div>
 <p>Then we specify what to drive by making reference to the pendulum joint:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="n">JointDriver</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="n">JointDriver</span> <span class="o">=</span>
 <span class="p">{</span>
     <span class="gr">AnyRevoluteJoint &amp;Jnt = .Joint;</span>
 <span class="p">};</span>
@@ -134,7 +125,7 @@ motion either in a very standardized way, for instance with constant
 velocity or constant acceleration, or to drive a motion by data to which
 a polynomial has been fitted.</p>
 <p>Try inserting the red part of the code below:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="n">JointDriver</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyKinMotion</span> <span class="n">JointDriver</span> <span class="o">=</span>
 <span class="p">{</span>
     <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">.</span><span class="n">Joint</span><span class="p">;</span>
     <span class="gr">AnyFunPolynomial DriverFun = {</span>
@@ -149,7 +140,7 @@ driving only has one degree of freedom, so the matrix only has one row,
 but it still has to be defined as a matrix rather than a vector, i.e.
 with double braces at each end. The polynomial coefficients then come in
 increasing order and define the following driver function:</p>
-<div class="math">
+<div class="math notranslate">
 \[\textrm{Joint angle} = 0 + 5t - 0.4t^2 \textrm{[rad]}\]</div>
 <p>To get higher polynomial orders, simply add more terms to the vector.</p>
 <p>Now try loading the model. If you have followed the instructions, you
@@ -185,12 +176,14 @@ allows you to drive the pendulum by motion capture data.</p>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Contributing &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="1. Getting Started" href="A_Getting_started/index.html" />
     <link rel="prev" title="AnyBody Tutorials!" href="index.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -104,11 +95,11 @@ server. It is often not necesssary when making small fixes to existing
 tutorials. But when writing major new sections it nice to view how things look.</p>
 <p>The easiest way to install needed packages tools, is to have the <a class="reference external" href="https://www.continuum.io/downloads">Anaconda Python distribution</a>.</p>
 <p>Then run the following commands to install the necesssary packages.</p>
-<div class="highlight-bat"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; conda install -c conda-forge sphinx cloud_sptheme pygments_anyscript</span>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; conda install -c conda-forge sphinx cloud_sptheme pygments_anyscript</span>
 </pre></div>
 </div>
 <p>Once the packages are install run this command to build the tutorial files.</p>
-<div class="highlight-bat"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; make html</span>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; make html</span>
 </pre></div>
 </div>
 <p>Once complete open the file: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">build</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">html</span></code> in a browser to view
@@ -130,13 +121,13 @@ paragraph must be left aligned to the same indentation.</p>
 <li>backquotes: :literal:` <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">text</span></code> ` for code samples.</li>
 </ul>
 <p>There are also options for <sub>subscript</sub> and <sup>superscript</sup> plus more:</p>
-<div class="highlight-rest"><div class="highlight"><pre><span></span><span class="na">:subscript:</span><span class="nv">`subscript`</span> and <span class="na">:superscript:</span><span class="nv">`superscript`</span>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="na">:subscript:</span><span class="nv">`subscript`</span> and <span class="na">:superscript:</span><span class="nv">`superscript`</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="headers">
 <h3>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="gh">Chapter header</span>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Chapter header</span>
 <span class="gh">**************</span>
 
 <span class="gh">Section header</span>
@@ -149,7 +140,7 @@ paragraph must be left aligned to the same indentation.</p>
 </div>
 <div class="section" id="lists-and-quote-like">
 <h3>Lists and Quote-like<a class="headerlink" href="#lists-and-quote-like" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="m">-</span> A bullet list item
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="m">-</span> A bullet list item
 <span class="m">-</span> Second item
 
   <span class="m">-</span> A sub item
@@ -159,7 +150,7 @@ paragraph must be left aligned to the same indentation.</p>
 </pre></div>
 </div>
 <p>Quotes are just paragraph indented more than the surrounding paragraphs.</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span>This is an ordinary paragraph, introducing a block quote.
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>This is an ordinary paragraph, introducing a block quote.
 
     &quot;Don&#39;t panic&quot;
 
@@ -177,7 +168,7 @@ directive and specifing <code class="docutils literal highlight highlight-AnyScr
 It can highlight AnyScript code even if the syntax is not correct, and any code
 fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</p>
 <p>Here is an example</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>.. code-block:: AnyScriptDoc
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. code-block:: AnyScriptDoc
 
     AnyBodyStudy Study = {
         AnyFolder &amp;Model = .Model;
@@ -186,7 +177,7 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
 </pre></div>
 </div>
 <p>Which gives the following:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
     <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
     <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="gr">-9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
 <span class="p">};</span> <span class="c1">// End of study</span>
@@ -216,12 +207,14 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">

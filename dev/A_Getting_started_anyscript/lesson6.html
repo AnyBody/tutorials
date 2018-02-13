@@ -6,22 +6,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 6: Adding Real Bone Geometries &#8212; AnyBody Tutorials v7.1.0.dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '7.1.0.dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -35,8 +27,7 @@
     <link rel="next" title="3. Getting Started with Modeling" href="../A_Getting_started_modeling/index.html" />
     <link rel="prev" title="Lesson 5: Definition of Muscles and External Forces" href="lesson5.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -104,7 +95,7 @@ just created. You can find an STL file to use <a class="reference download inter
 <p>The dumbbell should be added to the forearm, so the first thing to do it
 to add a reference to the STL file we just saved to the definition of
 the forearm:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="kt">AnyDrawSeg</span> <span class="n">DrwSeg</span> <span class="o">=</span> <span class="p">{};</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="kt">AnyDrawSeg</span> <span class="n">DrwSeg</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="gr">AnyDrawSTL DrwSTL = {</span>
 <span class="gr">    FileName = &quot;dumbbell.stl&quot;;</span>
 <span class="gr">  };</span>
@@ -119,7 +110,7 @@ millimeters, where the arm model is in meters. Rather than going back to
 whatever CAD system was used and scale the dumbbell model down 1000
 times, we can add the scale definition to AnyScript in the following
 way:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyDrawSTL</span> <span class="n">DrwSTL</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyDrawSTL</span> <span class="n">DrwSTL</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;dumbbell.stl&quot;</span><span class="p">;</span>
   <span class="gr">ScaleXYZ = {0.001, 0.001, 0.001};</span>
 <span class="p">};</span>
@@ -140,7 +131,7 @@ the dumbbell to the hand is simply a question of moving the reference to
 it from the ForeArm segment to the PalmNode that we defined previously.
 Block the entire AnyDrawSTL folder with the mouse and cut it out. Then
 re-insert it under the PalmNode like this:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span>  <span class="kt">AnyRefNode</span> <span class="n">PalmNode</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="kt">AnyRefNode</span> <span class="n">PalmNode</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.27</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
     <span class="gr">AnyDrawSTL DrwSTL = {</span>
 <span class="gr">      FileName = &quot;dumbbell.stl&quot;;</span>
@@ -167,7 +158,7 @@ positioned nodes by means of the member vector sRel, and relative
 orientation happens similarly with the member matrix ARel, the relative
 rotational transformation matrix. We wish to rotate the dumbbell 90
 degrees about the local y-axis and hence write:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="n">PalmNode</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="n">PalmNode</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.27</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
   <span class="gr">ARel = RotMat(90*pi/180, y);</span>
   <span class="kt">AnyDrawSTL</span> <span class="n">DrwSTL</span> <span class="o">=</span> <span class="p">{</span>
@@ -180,7 +171,7 @@ degrees about the local y-axis and hence write:</p>
 <p>As a final cosmetic touch, you may want to change the color of the
 dumbbell. This can be done by adding the property RGB to the STL file
 reference:</p>
-<div class="highlight-AnyScriptDoc"><div class="highlight"><pre><span></span> <span class="kt">AnyDrawSTL</span> <span class="n">DrwSTL</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span> <span class="kt">AnyDrawSTL</span> <span class="n">DrwSTL</span> <span class="o">=</span> <span class="p">{</span>
    <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;dumbbell.stl&quot;</span><span class="p">;</span>
    <span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">};</span>
    <span class="gr">RGB = {0.2,0.4,0.5};</span>
@@ -208,12 +199,14 @@ result of the efforts is in
         </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
