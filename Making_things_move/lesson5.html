@@ -7,7 +7,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Lesson 5: Using real data &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -68,18 +69,16 @@ are easy to drive with your own data and which contain some really neat features
 for data processing.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Make sure you have installed a your own copy of the AnyBody Model repository (AMMR).
+<p class="last">Make sure you have installed your own copy of the AnyBody Model repository (AMMR).
 See the <a class="reference external" href="https://anyscript.org/ammr-doc/ammr_installation.html#installing-ammr" title="(in AMMR v2.0)"><span class="xref std std-ref">AMMR documentation</span></a>.</p>
 </div>
 <ol class="arabic simple">
 <li>Go to the folder <code class="file docutils literal"><span class="pre">Application/MocapExamples/Plug-in-gait_Simple</span></code>.</li>
-</ol>
-<ol class="arabic simple" start="3">
 <li>Open <code class="file docutils literal"><span class="pre">LowerExtremity.main.any</span></code> in the AnyBody Modeling System</li>
 </ol>
-<p>This is a gait model of comprising only the lower extremities and the necessary
+<p>This is a gait model comprising only the lower extremities and the necessary
 part of the upper body for attachment of muscles. The model is based on a C3D
-file with “Plug In gait” marker protocol, and three force platforms. You can
+file with “Plug in Gait” marker protocol, and three force platforms. You can
 easily modify this to any other movement, simply by importing a different C3D
 file to drive the model with.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
@@ -118,7 +117,7 @@ file to drive the model with.</p>
 <li><code class="file docutils literal"><span class="pre">SubjectSpecificData.any</span></code></li>
 <li><code class="file docutils literal"><span class="pre">TrialSpecificData.any</span></code>.</li>
 </ul>
-<p>Following this structure is not strictly necssary, but good practice. Finally,
+<p>Following this structure is not strictly necessary, but good practice. Finally,
 on line 13 we include the <em>AnyMocap</em> framework or base model.</p>
 <p>Now please load the model and open up a new Model View. You should see
 the following model:</p>
@@ -134,7 +133,7 @@ for a detailed dicussion on different approches to MoCap analysis.</span></p>
 </div>
 <div class="section" id="parameter-identification">
 <h2>Parameter identification<a class="headerlink" href="#parameter-identification" title="Permalink to this headline">¶</a></h2>
-<p>If you look closely at the model view you can see that the skeleton is equipped with
+<p>If you look closely at the model view, you can see that the skeleton is equipped with
 markers and if you zoom in a little, you can also see that the markers
 carry small coordinate systems with red and green arrows.</p>
 <img alt="../_images/image222.png" src="../_images/image222.png" />
@@ -183,7 +182,7 @@ sometimes slowly and sometimes a bit faster depending on the speed of
 your computer and the progress of the computation.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The process is speeded up significantly if you switch off the Model View.</p>
+<p class="last">The process speeds up significantly if you switch off the Model View.</p>
 </div>
 <p>When operation is done you will see the line <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Optimization</span> <span class="n">converged</span></code> in the <em>Output</em> windows
 and final lines will be:</p>
@@ -221,8 +220,8 @@ based models usually require an over-determinate kinematic solver to handle the
 excess in information that the optical markers provide. The over-determinate
 solver in AMS works great, but it will calculate velocities and accelerations
 numerically. That has some performance issues when running inverse dynamics
-analysis. To overcome the problem, the MOCAP analysis is split into a two-step
-producedure, as illustrated on  figure <a class="reference internal" href="#model-flow-chart"><span class="std std-numref">Fig. 6.1</span></a>, separating
+analysis. To overcome this problem, the MOCAP analysis is split into a two-step
+procedure, as illustrated on  figure <a class="reference internal" href="#model-flow-chart"><span class="std std-numref">Fig. 6.1</span></a>, separating
 the Marker tracking from the Inverse dynamic analysis.</p>
 <p>The overdeterminate kinematic analysis solves the model for positions, and
 stores the joint angles as function of time. This step is the “Marker tracking”
@@ -239,7 +238,7 @@ performs calibration movements to adjust the tendon lengths to the lengths of
 the bones; and finally executes a dynamic analysis to determine forces in the
 system. Run the analysis by selecting it from the Operations dropdown, and click “Run”.</p>
 <p>After the kinematic Marker tracking, the muscles are switched on, and the
-inverse dyanamic analysis starts. This step will usually be the slowest, due to
+inverse dynamic analysis starts. This step will usually be the slowest, due to
 the very high amount of detail of the model, requiring the computer to
 continuously calculate forces in more than 300 muscles. When the analysis is
 finished, you can open up a Chart view and investigate the results, for instance
@@ -294,7 +293,7 @@ Saving modified values to &#39;Output\GUI_Plug-in-gait_fast.anyset&#39;
 </div>
 <p>Next, we run the combined <em>Marker tracking</em> and <em>Inverse dynamics</em> (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">RunAnalysis</span></code>) operation.</p>
 <p>Which, after the analysis can provide a new hip joint force profile
-documenting that faster gait leadt to higher hip joint forces.</p>
+documenting that faster gait lead to higher hip joint forces.</p>
 <img alt="../_images/charview_higher_hip_forces.png" src="../_images/charview_higher_hip_forces.png" />
 </div>
 <div class="section" id="using-full-body-models">
@@ -316,13 +315,13 @@ the arm motions while it tries to optimize segment lengths and marker
 positions. It takes 7 iterations and more time than before
 to optimize the model because this is a much larger problem, but as
 before you can speed up the process if you switch off the update of the
-Model View Window. It is possible to monitor the convergence of the
+Model View window. It is possible to monitor the convergence of the
 optimization problem from a Chart window like this:</p>
 <p><img alt="Chart view, Kin objective" src="../_images/image1110.png" /></p>
 <p>Eventually, the optimization process terminates and you can switch run the
 <em>Marker tracking</em> and <em>inverse dynamics</em> (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">RunAnalysis</span></code>) and perform the
 analysis of the entire body including the muscle forces.</p>
-<p>This full-body model with almost 1000 muscles fasicles takes considerable more
+<p>This full-body model with almost 1000 muscle fascicles takes considerable more
 time to analyze but will reward you with very detailed information about the
 function of the muscle system in gait as illustrated below.</p>
 <p><img alt="Model view, full body inverse dynamics" src="../_images/image1210.png" /></p>

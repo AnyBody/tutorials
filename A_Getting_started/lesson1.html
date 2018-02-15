@@ -7,7 +7,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+
     <title>Lesson 1: Creating a Standing Model &#8212; AnyBody Tutorials v7.1.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -59,62 +60,50 @@
             
   <div class="section" id="lesson-1-creating-a-standing-model">
 <h1>Lesson 1: Creating a Standing Model<a class="headerlink" href="#lesson-1-creating-a-standing-model" title="Permalink to this headline">¶</a></h1>
-<p>The model repository contains many applications in the Examples folder.
-A few of these are generic in nature and can serve dual purposes: Either
-they can be used as they are or they can be modified and become models
-of something else. In this lesson, we will load the Standing Model as it
-is and introduce the available options.</p>
-<p>The standing model can be found in the repository under
-Applications/Examples. The model comprises most of the available body
-parts in the library. The main file is called StandingModel.Main.any and
+<p>The standing model can be found in the AMMR folder under
+Applications/Examples. The main file is called StandingModel.Main.any and
 this is the one you must load to see the model.</p>
-<p>You can open the file with the File-&gt;Open menu in AnyBody or through
-Windows Explorer.</p>
-<p>The standing model has a few predefined features and some that you can
-modify. Here is a short list:</p>
+<p>While you can open the file with the File-&gt;Open menu in AnyBody, <strong>this tutorial will teach you how to
+create your own model by using StandingModel as a starting template.</strong></p>
+<p>Key (modifiable) features of the standing model are:</p>
 <ul class="simple">
-<li>The model is supported by having both feet always connected to the
-ground, even when the feet move.</li>
-<li>The posture of the model is controlled via anatomical angles for all
-major joints except the ankles. The model has a place where these
-joint angles can be specified directly. We shall return to this topic
-shortly.</li>
-<li>The model automatically balances its posture by means of the ankle
-angles such that its collective center of mass remains vertically
-above the ankle joints. For instance, if the model extends the arms,
-the entire model will move slightly backward to maintain the balance.</li>
-<li>The model has a set of predefined points to which three-dimensional
-external forces can be applied; they are defined as spatial vectors.
-When doing so, the muscles of the model will be recruited to balance
-the external forces.</li>
+<li>Both feet are always connected to the ground.</li>
+<li>The <strong>posture</strong> is controlled via anatomical angles for all
+major joints except the ankles.</li>
+<li>The model <strong>automatically balances</strong> by keeping its center of mass vertically
+above the ankle joints. Eg., If the arms extend forward, the body will move move slightly backward to maintain the balance.</li>
+<li><strong>Three-dimensional external forces</strong> can be applied to predefined points on the model. Muscle forces may change, to resist these forces and maintain balance.</li>
 </ul>
 <div class="section" id="open-model-template">
 <h2>Open model template<a class="headerlink" href="#open-model-template" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter, we will show you how to create a new standing model
-using templates. You do this by pressing the Create Model button <img alt="Model button" src="../_images/image_1.png" /> in the editor window toolbar or the create model button in the
-mainframe toolbar:</p>
+<p>To create a new standing model using the template model in the AMMR, click the Create Model button <img alt="Model button" src="../_images/image_1.png" /> in the toolbar:</p>
 <p><img alt="ModelLoadButton" src="../_images/image_2.png" /></p>
 <p>The Template dialogue opens and displays a list of pre-defined templates
-supported in the AnyBody Managed Model Repository (AMMR). Choose the
-‘Human Standing’ template and select the folder you want to save your
-new Human Standing model in. To demonstrate, let us create a ‘MyModels’
-folder in the ‘AMMR\Application\’ folder and set it as the target
-folder. Save the model as ‘MyStandingHuman’. Press the OK button on
-completion.</p>
-<p><img alt="TemplateDialog" src="../_images/image_3.png" /></p>
+supported in the AMMR. Choose the <strong>Human Standing</strong> template and select the
+folder you want to save your new Human Standing model in. To demonstrate, let us
+save the model in the ‘AnyBody.7.1.x/AMMR.v2.0.0-Demo’ directory
+which we extracted in the <a class="reference internal" href="intro.html"><span class="doc">introduction</span></a> for this tutorial.</p>
+<p>Give the model a name, for example <code class="file docutils literal"><span class="pre">MyStandingHuman</span></code>, and pres <strong>OK</strong> to save.</p>
+<p><img alt="TemplateDialog" src="../_images/image_3b.png" /></p>
 <p>Your new ‘MyStandingHuman.main.any’ file opens in the script Editor. The
 location of the file is shown in the title bar:</p>
 <p><img alt="MyStandingHumanModel.main.any" src="../_images/image_4.png" /></p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you saved your model in an other location be
+sure to modify the <code class="file docutils literal"><span class="pre">../libdef.any</span></code> file so it points
+to AMMR repository you want to use.</p>
+</div>
 </div>
 <div class="section" id="load-model">
 <h2>Load model<a class="headerlink" href="#load-model" title="Permalink to this headline">¶</a></h2>
-<p>To see the graphical representation of the model, you need to load.
+<p>To see the <strong>3D graphical representation of the model</strong>, you need to load.
 Load/reload is a frequent operation and has been assigned to function
-key F7. You may also load your model by clicking <img alt="Load" src="../_images/image_6.png" />.</p>
+key <strong>F7</strong>. You may also load your model by clicking <img alt="Load" src="../_images/image_6.png" /> in the toolbar.</p>
 </div>
 <div class="section" id="display-the-model">
 <h2>Display the model<a class="headerlink" href="#display-the-model" title="Permalink to this headline">¶</a></h2>
-<p>After loading is completed, the Model View window opens and shows the
+<p>When loading is completed, the Model View window opens and shows the
 standing model: (You can open it manually from View -&gt; Model Views).</p>
 <p><img alt="Model View" src="../_images/image_5.png" /></p>
 <p>The icons in the toolbar at the top of the Model View window allow you
@@ -124,9 +113,9 @@ to familiarize yourself with the options.</p>
 <p>In practical use it is often necessary to change quickly between these
 functions, so keyboard shortcuts have been provided:</p>
 <ul class="simple">
-<li>The Ctrl button activates the Pan function.</li>
-<li>The Shift button activates the Zoom function.</li>
-<li>The Ctrl-Shift combination activates the rotation function.</li>
+<li>The <em>Ctrl</em> button activates the Pan function.</li>
+<li>The <em>Shift</em> button activates the Zoom function.</li>
+<li>The <em>Ctrl-Shift</em> combination activates the rotation function.</li>
 <li>If you have a scrolling wheel on your mouse, this will zoom the model
 in and out.</li>
 </ul>
