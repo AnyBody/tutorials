@@ -72,15 +72,34 @@ Matlab, Python, Java and JavaScript or C++.</p>
 gives faster performance running operations on existing model. The
 console application can be used manually, or it can take input from a
 macro file containing commands.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">The <a class="reference external" href="https://github.com/AnyBody-Research-Group/AnyPyTools">AnyPyTools</a> Python library
+developed at Aalborg University. It greatly simplifies working with the console application.</p>
+</div>
 <div class="section" id="interactive-mode">
 <h2>Interactive mode<a class="headerlink" href="#interactive-mode" title="Permalink to this headline">¶</a></h2>
 <p>We need a model to work on, so please download and save
-<em>Demo.outputfile.any</em> in a working directory.</p>
+<a class="reference download internal" href="../_downloads/Demo.OutputFile.any" download=""><code class="xref download docutils literal"><span class="pre">Demo.OutputFile.any</span></code></a> in a working directory.</p>
 <p><strong>Important:</strong> To start the console application:</p>
-<ol class="arabic simple">
-<li>Launch the command prompt, change directory to where you have saved
-Demo.outputfile.any</li>
-<li>Run the .exe file using its full path, e.g. <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="s">&quot;C:\Program Files\AnyBody Technology\AnyBody.7.0\AnyBodyCon.exe&quot;</span></code>.</li>
+<ol class="arabic">
+<li><p class="first">Launch the command prompt and change directory to where you have saved
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Demo</span><span class="p">.</span><span class="n">outputfile</span><span class="p">.</span><span class="n">any</span></code></p>
+</li>
+<li><p class="first">Run <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">anybodycon</span><span class="p">.</span><span class="n">exe</span></code> using its full path,</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\path\to\model</span><span class="c1">&gt;&quot;C:\Program Files\AnyBody Technology\AnyBody.7.1\AnyBodyCon.exe&quot;</span>
+
+AnyBody Console Application
+AnyBodyCon.exe version : 7. 1. 1. 6004 (64-bit version)
+Build : 17585.48300
+Copyright (c) 1999 - 2018 AnyBody Technology A/S
+
+
+Current path: C:\path\to\model
+&gt;
+</pre></div>
+</div>
+</li>
 </ol>
 </div>
 <div class="section" id="console-commands">
@@ -100,49 +119,50 @@ AnyBody console.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>load “filename.any”</td>
-<td><p class="first">Example: load “demo.outputfile.any”</p>
-<p class="last">Loads an AnyScript model into the system and compiles it.</p>
+<tr class="row-even"><td>load “&lt;filename&gt;”</td>
+<td><p class="first">Loads an AnyScript model into the system and compiles it.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">load</span> <span class="s">&quot;demo.outputfile.any&quot;</span></code></p>
 </td>
 </tr>
 <tr class="row-odd"><td>operation &lt;op.name&gt;</td>
-<td><p class="first">Example: operation Main.ArmStudy.InverseDynamics</p>
-<p class="last">This command sets the active operation. This must be the first thing you do after loading.</p>
+<td><p class="first">This command sets the active operation. This must be the first thing you do after loading.</p>
+<blockquote class="last">
+<div>Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">operation</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmStudy</span><span class="p">.</span><span class="n">InverseDynamics</span></code></div></blockquote>
 </td>
 </tr>
 <tr class="row-even"><td>Run</td>
-<td><p class="first">Example: run</p>
-<p class="last">Runs the active operation.</p>
+<td><p class="first">Runs the active operation.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">run</span></code></p>
 </td>
 </tr>
 <tr class="row-odd"><td>Runmacro</td>
-<td><p class="first">Example runmacro “filename.anymcr”</p>
-<p class="last">This command loads and executes an anymcr file.</p>
+<td><p class="first">This command loads and executes an anymcr file.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">runmacro</span> <span class="s">&quot;filename.anymcr&quot;</span></code></p>
 </td>
 </tr>
 <tr class="row-even"><td>Step</td>
-<td><p class="first">Example: step</p>
-<p class="last">Solves a single time step of the active operation.</p>
+<td><p class="first">Solves a single time step of the active operation.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">step</span></code></p>
 </td>
 </tr>
 <tr class="row-odd"><td>Reset</td>
-<td><p class="first">Example: reset</p>
-<p class="last">Resets the active operation.</p>
+<td><p class="first">Resets the active operation.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">reset</span></code></p>
 </td>
 </tr>
 <tr class="row-even"><td>print &lt;object&gt;</td>
-<td><p class="first">Example: print Main.ArmModel.Jnts.Shoulder.Pos</p>
-<p class="last">Prints the value of a single object.</p>
+<td><p class="first">Prints the value of a single object.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">print</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">.</span><span class="n">Pos</span></code></p>
 </td>
 </tr>
 <tr class="row-odd"><td>printdown &lt;object&gt;</td>
-<td><p class="first">Example: printdown Main.ArmModel.Jnts</p>
-<p class="last">Recursively prints the values of all elements in an object folder.</p>
+<td><p class="first">Recursively prints the values of all elements in an object folder.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">printdown</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Jnts</span></code></p>
 </td>
 </tr>
 <tr class="row-even"><td>exit</td>
-<td><p class="first">Example: Exit</p>
-<p class="last">Exits and returns to the command prompt.</p>
+<td><p class="first">Exits and returns to the command prompt.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">exit</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -163,7 +183,7 @@ simulation results are! But wait, the model has been programmed to write
 some output files.</p>
 <p>For understanding how open demo.outputfile.any model in the GUI Windows
 version of AnyBody Modeling System. You will notice two
-<strong>AnyOutputFile</strong> objects inside the ArmStudy.</p>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyOutputFile</span></code> objects inside the ArmStudy.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
 <span class="kt">AnyBodyStudy</span> <span class="n">ArmStudy</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">ArmModel</span><span class="p">;</span>
@@ -326,7 +346,7 @@ exit
 </pre></div>
 </div>
 <p>We can now execute the macro file by calling</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.0AnyBodyCon.exe&quot; /m “runarm.anymcr”</span>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.1\AnyBodyCon.exe&quot; /m “runarm.anymcr”</span>
 </pre></div>
 </div>
 <p>from the folder where we saved our model and the macro
@@ -334,7 +354,7 @@ file. It will create an output file called ‘armoutput.anydata.h5’ which
 we specified in the .any file.</p>
 <p>To change the name of the output file, we can call the macro again with
 a #define statement for the file name</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.0\AnyBodyCon.exe&quot; /m runarm.anymcr /def OUTPUTFILE=---&quot;\&quot;myoutput.anydata.h5\&quot;&quot;</span>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.1\AnyBodyCon.exe&quot; /m runarm.anymcr /def OUTPUTFILE=---&quot;\&quot;myoutput.anydata.h5\&quot;&quot;</span>
 </pre></div>
 </div>
 <p>What the construction <code class="docutils literal"><span class="pre">—“” … ””</span></code> is doing, in this case,
@@ -350,7 +370,7 @@ system for biomechanical data processing of your own design.</p>
 environmental variable for your command prompt to ease the call to
 AnyBodyCon.exe from anywhere. This you can do from the command prompt
 with a statement such as:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">path</span> <span class="nv">%path%</span>;C:\Program Files\AnyBody Technology\AnyBody.7.0;
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">path</span> <span class="nv">%path%</span>;C:\Program Files\AnyBody Technology\AnyBody.7.1;
 </pre></div>
 </div>
 <p>It will add AnyBodyCon.exe’s path to the existing path
