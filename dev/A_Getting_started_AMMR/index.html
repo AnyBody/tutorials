@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Lesson2: Initial Conditions &#8212; AnyBody Tutorials v7.1.1-dev</title>
+    <title>4. Getting started: The Model Repository &#8212; AnyBody Tutorials v7.1.1-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -24,8 +24,8 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lesson 3: Kinematic Analysis" href="lesson3.html" />
-    <link rel="prev" title="Lesson1: Mechanical System Information" href="lesson1.html" /> 
+    <link rel="next" title="5. User interface features" href="../Interface_features/index.html" />
+    <link rel="prev" title="Lesson 4: Kinetics - Computing Forces" href="../A_Getting_started_modeling/lesson4.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head><body>
     <div class="relbar-top">
@@ -40,14 +40,13 @@
           <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson3.html" title="Lesson 3: Kinematic Analysis"
+          <a href="../Interface_features/index.html" title="5. User interface features"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson1.html" title="Lesson1: Mechanical System Information"
+          <a href="../A_Getting_started_modeling/lesson4.html" title="Lesson 4: Kinetics - Computing Forces"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.1-dev</a> &#187;</li>
-
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">6. A Study of Studies</a> &#187;</li> 
+ 
       </ul>
     </div>
     </div>
@@ -58,65 +57,32 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson2-initial-conditions">
-<h1>Lesson2: Initial Conditions<a class="headerlink" href="#lesson2-initial-conditions" title="Permalink to this headline">¶</a></h1>
-<p>Before we look at the InitialConditions operation, let us just notice
-that when the model is loaded, the segments of the model are positioned
-in space according to their definition in terms of the r0 and Axes0
-properties in each segment’s definition. These are called the load-time
-positions.</p>
-<p>In the figure below, the user has tried to position the forearm and the
-upper arm approximately at the right positions and angles at load time.
-This is always a good idea, but it is almost impossible to get them
-completely in place, and it is not necessary. Indeed, in more
-complicated models, you can often find the segments and muscles in a big
-mess at load time. Typically, you will want to see what the model looks
-like when it has been assembled correctly for time step 1. This is what
-the InitialConditions operation is for.</p>
-<div class="figure" id="id1">
-<a class="reference internal image-reference" href="../_images/image114.png"><img alt="Load time positions" src="../_images/image114.png" style="width: 592.0px; height: 461.0px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 6.1 </span><span class="caption-text">The load-time positions of segments in a simple arm model. Notice that
-the forearm and upper arm do not meet correctly at the elbow joint.*</span></p>
+  <div class="section" id="getting-started-the-model-repository">
+<h1>4. Getting started: The Model Repository<a class="headerlink" href="#getting-started-the-model-repository" title="Permalink to this headline">¶</a></h1>
+<p>The AnyBody Model Repository (AMMR), is an open library of musculoskeletal
+models and examples ready to be used with the AnyBody Modelling System.</p>
+<p>The <a class="reference external" href="https://anyscript.org/ammr-doc">AMMR documentation</a> is hosted
+separately, and contains a few tutorials and other usefull information. The
+<a class="reference external" href="https://anyscript.org/ammr-doc/creating_model_from_scratch.html">Creating a Human Model from scratch</a> tutorial is
+recommended for new users.</p>
+<div class="figure align-center" id="id1" style="width: 85%">
+<a class="reference internal image-reference" href="../_images/ammr_bodyparts.png"><img alt="The AnyBody Model Repository" src="../_images/ammr_bodyparts.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text"><em>The AnyBody Model Repository is a unique open collection of human body parts</em>.</span></p>
 </div>
-<p>When&nbsp;you run the InitialConditions operation, it will attempt to put the
-model in the position is has at time = tStart. This may or may not be
-possible, and in the development stages of a model, when the joints and
-drivers are not yet fully defined, it is definitely not possible, and
-this is the reason why the system does not do it automatically when you
-load the model. Running the InitialConditions operation produces a
-correctly assembled arm:</p>
-<div class="figure" id="id2">
-<a class="reference internal image-reference" href="../_images/image211.png"><img alt="After initial conditions" src="../_images/image211.png" style="width: 493.0px; height: 495.0px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 6.2 </span><span class="caption-text">The arm correctly assembled at the elbow by SetInitialConditions.</span></p>
-</div>
-<p>Here’s a more detailed explanation: The system must perform a
-kinematical analysis to connect the model correctly at the joints. This
-requires that the model is kinematically determinate. Another way of
-expressing that is that there must be the correct number of - and
-relationship between joints and drivers in the model. It usually takes
-some iterations in the model development to get it right. During these
-iterations it is useful to be able to load the model and see a picture
-of it, and this is why the loading simply positions the segments where
-the user placed them.</p>
-<p>Instead of simply running the InitialConditions operation, you can also
-single-step through it to see what it does. This is done by clicking the
-“Step” button instead of the “Run” button.</p>
-<div class="figure" id="id3">
-<a class="reference internal image-reference" href="../_images/image39.png"><img alt="After initial conditions" src="../_images/image39.png" style="width: 831.0px; height: 337.0px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Picking the step button.</span></p>
-</div>
-<p>The first step re-establishes the load-time conditions. This means that
-it positions the model as it was when you loaded it. This is useful for
-identification of kinematic problems. The second step positions the
-segments honoring the joints. The third does not seem to do much, but it
-is used for positioning muscles wrapping over surfaces. It is just not
-visible in this simple model.</p>
-<p>The InitialConditions study can be thought of as the first step of a
-kinematic analysis, which will be the subject of <a class="reference internal" href="lesson3.html"><span class="doc">*the next
-lesson.*</span></a></p>
-<div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Kinematic Analysis</span></a>.</p>
+<p class="rubric">AMMR documentation</p>
+<ul class="simple">
+<li><a class="reference external" href="https://anyscript.org/ammr-doc/">Main AMMR documentation</a></li>
+<li><a class="reference external" href="https://anyscript.org/ammr-doc/getting_started.html">Getting started with the AMMR</a></li>
+<li><a class="reference external" href="https://anyscript.org/ammr-doc/bm_config/index.html">Configuring the Body Model</a></li>
+</ul>
+<p class="rubric">AMMR Tutorials</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://anyscript.org/ammr-doc/creating_model_from_scratch.html">Creating a Human Model from scratch</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson1.html">Scaling: Joint to joint scaling</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson2.html">Scaling: External Body Measurements</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson3.html">Scaling: Segmental scaling factors</a></li>
+</ul>
 </div>
 </div>
 
@@ -150,16 +116,15 @@ lesson.*</span></a></p>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">1. Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. A Study of Studies</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson1: Mechanical System Information</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson2: Initial Conditions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Kinematic Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Inverse Dynamics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Getting started: The Model Repository</a><ul>
+<li class="toctree-l2"><a class="reference external" href="https://anyscript.org/ammr-doc/creating_model_from_scratch.html">Creating a Human Model from scratch</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson1.html">Scaling: Joint to joint scaling</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson2.html">Scaling: External Body Measurements</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson3.html">Scaling: Segmental scaling factors</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
@@ -181,7 +146,7 @@ lesson.*</span></a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/A_study_of_studies/lesson2.rst.txt"
+      <li><a href="../_sources/A_Getting_started_AMMR/index.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -218,14 +183,13 @@ lesson.*</span></a></p>
           <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson3.html" title="Lesson 3: Kinematic Analysis"
+          <a href="../Interface_features/index.html" title="5. User interface features"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="lesson1.html" title="Lesson1: Mechanical System Information"
+          <a href="../A_Getting_started_modeling/lesson4.html" title="Lesson 4: Kinetics - Computing Forces"
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">AnyBody Tutorials v7.1.1-dev</a> &#187;</li>
-
-          <li class="nav-item nav-item-1"><a href="index.html" >6. A Study of Studies</a> &#187;</li> 
+ 
       </ul>
     </div>
     </div>

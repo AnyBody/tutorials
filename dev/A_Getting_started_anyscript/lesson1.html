@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Lesson 1: Basic Concepts &#8212; AnyBody Tutorials v7.1.0.dev</title>
+    <title>Lesson 1: Basic Concepts &#8212; AnyBody Tutorials v7.1.1-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="intro.html" title="Getting started: AnyScript Programming"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">2. Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
@@ -65,15 +65,15 @@
 <p class="last"><strong>To follow this tutorial it is recommended to first to watch the
 introductory video found in this link</strong> “<a class="reference internal" href="../index.html"><span class="doc">Tutorial Overview</span></a>”.</p>
 </div>
-<p>To create an AnyScript model from scratch, go to File menu -&gt; New from template… this will bring up a new window in
+<p>To create an AnyScript model from scratch, go to “File menu -&gt; New from template…” this will bring up a new window in
 which you choose “Basic Main” and provide a “Target Name” (e.g.,
-<em>NewModel</em>) and click OK.</p>
+<em>NewModel</em>) and click OK. This is similar to <a class="reference internal" href="../A_Getting_started/lesson1.html#model-templates"><span class="std std-ref">*this step*</span></a> from the previous tutorial.</p>
 <p><img alt="Editor NewModel.main.any" src="../_images/image22.png" /></p>
 <p>The new file that opens up in the text editor contains a basic skeleton
 for your model, based on a built-in template.</p>
 <div class="section" id="what-are-classes">
 <h2>What are Classes?<a class="headerlink" href="#what-are-classes" title="Permalink to this headline">¶</a></h2>
-<p>Let’s have a look at what the system has generated for you. If you ignore most of the text and comments (lines beginning with <code class="docutils literal"><span class="pre">//</span></code>),
+<p>Let’s have a look at what the system has generated for you. If you ignore most of the text and comments (green lines beginning with <code class="docutils literal"><span class="pre">//</span></code>),
 the overall structure of the model looks like this:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
@@ -87,21 +87,22 @@ the overall structure of the model looks like this:</p>
 </pre></div>
 </div>
 <p>What you see is a hierarchy of braces - the outermost pair of braces is named “Main”.
-Everything else in the model goes between these braces. <strong>When you load the model, the name
+Everything else in the model goes between these braces.</p>
+<p><strong>When you load the model, the name
 assigned to a pair of braces, and all the contents between the braces will show up as
 folders and sub-folders in the Model Tree.</strong></p>
 <p><strong>The code creates two objects - “MyModel” &amp; “MyStudy” - which perform very
-specific functions, which depend on the inbuilt templates (“AnyFolder” &amp; “AnyBodyStudy”)
-used to create these objects. These inbuilt object templates are also known as CLASSES.</strong></p>
-<p>“MyModel” (of type “AnyFolder”) is simply an
+specific functions, which depend on the pre-prgrammed object templates</strong> (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFolder</span></code> &amp; <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyBodyStudy</span></code>)
+<strong>used to create these objects. These inbuilt object templates are also known as CLASSES.</strong></p>
+<p>“MyModel” (of type <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFolder</span></code>) is simply an
 organizational folder for containing the entire model you are going to
 build. Let us change the folder name “MyModel” to “ArmModel”.</p>
-<p>The object named “MyStudy” (of type “AnyBodyStudy”) is a collection of
+<p>The object named “MyStudy” (of type <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyBodyStudy</span></code>) is a collection of
 simulation tasks that you want to perform with your model. The <a class="reference internal" href="../A_study_of_studies/intro.html"><span class="doc">*Study of Studies*</span></a> tutorial
 contains much more information on simulation studies.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Rename “MyStudy” to “ArmModelStudy”, and change all occurences of “MyModel” to “ArmModel”.
+<p class="last">Rename “MyStudy” to “ArmModelStudy”, and replace all occurences of “MyModel” with “ArmModel”.
 All changes to your model will be highlighted in red hereon.</p>
 </div>
 </div>
@@ -124,23 +125,19 @@ All changes to your model will be highlighted in red hereon.</p>
 <span class="p">};</span> <span class="c1">// §ArmModel§</span>
 </pre></div>
 </div>
-<p>Within “ArmModel” is an object named “GlobalRef”, created with the “AnyFixedRefFrame” class. This object is the global reference frame for your model.</p>
+<p>Within “ArmModel” is an object named “GlobalRef”, created with the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFixedRefFrame</span></code> class. This object is the global reference frame for your model.</p>
 <p>You will notice “to do” comments inside the braces, to which we will return later.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The model objects that you create henceforth must be a part of “ArmModel” folder and should go between its
+<p class="last">The model objects that you create henceforth must be placed within the “ArmModel” folder and should go between its
 pair of braces.</p>
 </div>
 </div>
 <div class="section" id="loading-an-anybody-model">
 <h2>Loading an AnyBody model<a class="headerlink" href="#loading-an-anybody-model" title="Permalink to this headline">¶</a></h2>
-<p>You should be ready to load the model now by pressing the <img alt="Loadbutton image" src="../_images/image31.png" /> icon in the toolbar or the F7 key.</p>
-<p>This action will load whatever file is chosen in the text editor. If a
-file is already loaded, the above action will simply reload the file
-until you give another file loading priority by right-clicking its tab
-and select “Load Model”.</p>
-<p><img alt="Load model right click menu" src="../_images/image41.png" /></p>
-<p>You may get a similar message in the Output Window.</p>
+<p>You should be ready to load the model now. If cannot recollect how this is done,
+refer to <a class="reference internal" href="../A_Getting_started/lesson1.html#loading-a-model"><span class="std std-ref">*this section*</span></a>  from a previous tutorial.</p>
+<p>You may get message similar to the one below, in the Output Window.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Loading Main : &quot;C:\\...\\NewModel.main.any&quot;
 Scanning...
 Parsing...
@@ -157,11 +154,11 @@ Elapsed Time : 0.063000
 <div class="section" id="basic-troubleshooting">
 <h2>Basic troubleshooting<a class="headerlink" href="#basic-troubleshooting" title="Permalink to this headline">¶</a></h2>
 <p>If you mistype something, you will get an error message. A common
-mistake is to forget a semicolon somewhere. Try removing a semicolon and re-load the model, which should give you a message like this:</p>
+mistake is to forget a semicolon somewhere. Try removing a semicolon and re-load the model, which may give you an error message like this:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ERROR(SCR.PRS11) : C:\\...\\NewModel.main.any(26) : &#39;EOF&#39; unexpected Model loading skipped
 </pre></div>
 </div>
-<p><strong>The message contains clickable links for the error code and the location of the erroneous file. Upon clicking the file link, the text cursor
+<p><strong>The message contains clickable links for both error code and the location of the error in your file. Upon clicking the file link, the text cursor
 jumps to the exact problematic line in the file. Remember that an error can sometimes be caused by something you mistyped earlier
 in the file.</strong></p>
 <p>Clicking the error code, e.g: ERROR(SCR.PRS11) opens a pop-up window with a complete explanation:</p>
@@ -214,21 +211,22 @@ successfully.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">4. User interface features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">5. A Study of Studies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">6. Making things move</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">7. Inverse Dynamics of Muscle Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">8. Force-Dependent Kinematics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">9. Muscle Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">10. The Mechanical Elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">11. Advanced Script Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">12. Finite Element Analysis Interfacing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">13. Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">14. Personalizing Your Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">15. Validation of Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">16. Parameter Studies and Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">17. Trouble Shooting AnyScript Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">18. Posture and Movement Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
@@ -279,7 +277,7 @@ successfully.</p>
         <li class="right" >
           <a href="intro.html" title="Getting started: AnyScript Programming"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >2. Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>

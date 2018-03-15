@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Introduction: Getting Started with Modeling &#8212; AnyBody Tutorials v7.1.0.dev</title>
+    <title>Introduction: Getting Started with Modeling &#8212; AnyBody Tutorials v7.1.1-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="index.html" title="3. Getting Started with Modeling"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">3. Getting Started with Modeling</a> &#187;</li> 
       </ul>
@@ -60,58 +60,22 @@
             
   <div class="section" id="introduction-getting-started-with-modeling">
 <h1>Introduction: Getting Started with Modeling<a class="headerlink" href="#introduction-getting-started-with-modeling" title="Permalink to this headline">¶</a></h1>
-<p>The objective of this tutorial is to give an understanding of more
-complex models using a full body model. A model will be created using a
-template and will be adapted to explain the reaction of the human body
-to an environment.</p>
-<p>Developing accurate models of the human body is an enormous task, and it
-is not something each user can do from scratch. We often have to rely on
-models other people have made, and if we keep improving and exchanging
-them, we shall end up with an excellent supply of models that fit most
-purposes. <a class="reference external" href="https://www.anybodytech.com/software/model-repository-ammr/">*The AnyBody Managed Model
+<p>Developing accurate models of the human body from scratch is an enormous task.
+It is thus practical to use the models in the <a class="reference external" href="https://anyscript.org/ammr-doc">*The AnyBody Managed Model
 Repository*</a>
-that has been described in a previous chapter is an attempt to provide
-such a library. Additionally, there are templates available that allow
-an easy start into a new model application.</p>
-<p>These are some of the tasks you will want to accomplish with predefined
-models:</p>
+as a starting template for a new application.</p>
+<p>The following elements of the AnyScript language make such templating easier:</p>
 <ul class="simple">
-<li>To change the model pieces to fit your own purposes - preferably
-without tampering with the interior workings of the parts you are
-using.</li>
-<li>To be able to combine existing body parts to larger models.</li>
-<li>To be able to attach the parts you can find to model bits you
-construct yourself.</li>
+<li>Include files - Which aid templating and sharing model components across different applications</li>
+<li>Body model parameters - For customizing the default AMMR body models</li>
 </ul>
-<p>All this can be done very elegantly in the AnyScript language provided
-you keep it in mind when you construct your models. The AnyBody Model
-Repository applications and templates are built that way, and they
-contain numerous examples of the technique. In short, it uses the
-following elements of the language to make it happen:</p>
-<ol class="arabic simple">
-<li>Include files</li>
-<li>Parameters</li>
-<li>Equipping parts with their own interfaces</li>
-</ol>
-<p>While there are many different ways models could be constructed to
-obtain the modularity we are looking for, the AnyScript Model Repository
-represents&nbsp;one very well-structured solution, and AnyBody Technology
-strongly recommends following the structure of this library when new
-models are developed.</p>
-<p>When an existing application is similar enough to what you want to do to
-form the basis of the new application, then you can just copy that
-application and modify it as you want. But sometimes it will be clearer
-to users to build their own models from the bottom-up. We will consider
-the second situation and try to create a new model using templates.</p>
-<p>This tutorial is based on version 2.0 of the AnyBody Managed Model
-Repository. Please notice that the repository models are subject to
-frequent updates. The newest version of the AMMR will be packaged with
-the latest version of the AnyBody Modeling System. Also, the demo models
-provided in the AnyBody Modeling System may be updated compared to the
-version used here.</p>
-<p>With the AnyBody Modeling System, you already have a repository of
-models available, for details, please see the AnyBody Assistant
-available from the menu.</p>
+<p>The AMMR installation folder also contains a library of <a class="reference external" href="https://anyscript.org/ammr-doc/auto_examples/index.html">*demo applications*</a>
+such as MoCap gait, cycling, leg-press exercises etc. If any of these applications are similar to your end goal, you can copy the
+application’s model files and then modify them as required.</p>
+<p><strong>But in this tutorial, you will build a model from the bottom-up using the AMMR model templates.</strong></p>
+<p>This tutorial is based on version 2.1 of the AnyBody Managed Model
+Repository. This the latest AMMR version and the tutorial may not be fully relevant
+if you are using an AnyBody Modeling System prior to version 7.1.</p>
 <div class="without-title admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last"><strong>Next lesson:</strong> With that done, please proceed to Lesson 1: <a class="reference internal" href="lesson1.html"><span class="doc">Starting with a new Model</span></a> using a template.</p>
@@ -155,21 +119,22 @@ available from the menu.</p>
 <li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Kinetics - Computing Forces</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">4. User interface features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">5. A Study of Studies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">6. Making things move</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">7. Inverse Dynamics of Muscle Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">8. Force-Dependent Kinematics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">9. Muscle Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">10. The Mechanical Elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">11. Advanced Script Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">12. Finite Element Analysis Interfacing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">13. Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">14. Personalizing Your Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">15. Validation of Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">16. Parameter Studies and Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">17. Trouble Shooting AnyScript Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">18. Posture and Movement Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
@@ -220,7 +185,7 @@ available from the menu.</p>
         <li class="right" >
           <a href="index.html" title="3. Getting Started with Modeling"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >3. Getting Started with Modeling</a> &#187;</li> 
       </ul>

@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Lesson 2: Controlling the Posture &#8212; AnyBody Tutorials v7.1.0.dev</title>
+    <title>Lesson 2: Controlling the Posture &#8212; AnyBody Tutorials v7.1.1-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: Creating a Standing Model"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">1. Getting Started</a> &#187;</li> 
       </ul>
@@ -60,11 +60,9 @@
             
   <div class="section" id="lesson-2-controlling-the-posture">
 <h1>Lesson 2: Controlling the Posture<a class="headerlink" href="#lesson-2-controlling-the-posture" title="Permalink to this headline">¶</a></h1>
-<p>The Standing Model has been set up to have its posture defined by the
-specification of anatomical angles in the joints.</p>
-<p>These specifications have been collected in one of the model files, <strong>Mannequin.any</strong>. Scroll
-down your model file until you come to the point where the Mannequin.any
-file is included. Here is a step by step description:</p>
+<p>The Standing Model’s posture is defined by the angles at the anatomical joints.</p>
+<p>These specifications have been collected in one of the model files, “Mannequin.any”. Scroll
+down to the line which says <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span></code>.</p>
 <div class="section" id="mannequin-file-structure">
 <h2>Mannequin file structure<a class="headerlink" href="#mannequin-file-structure" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
@@ -75,10 +73,10 @@ file is included. Here is a step by step description:</p>
 <span class="p">...</span>
 </pre></div>
 </div>
-<p><strong>This line means that your model will use this Mannequin.any file located in the Model folder,
+<p><strong>This line means that your model will use the “Mannequin.any” file located in the Model folder,
 relative to the location of the main file that you’re viewing.</strong></p>
-<p><strong>Double-clicking the file name in the editor window after loading
-your model opens the mannequin file opens up in a new tab.</strong> Then you see the
+<p>Double-clicking the file name in the editor window after loading
+your model opens the mannequin file in a new tab. Then you see the
 following structure. (In the interest of legibility we have removed many
 of the lines):</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
@@ -98,12 +96,13 @@ of the lines):</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p><strong>The section between each pair of braces is said to be a Folder</strong>, with all variables defined therein forming the folder contents.</p>
-<p><strong>Once loading is complete, you can scan this folder structure in the Model tree</strong> on the left of your screen.</p>
-<p>All contents of this file are contained within the Mannequin folder. There are sub-folders for
-postural join angles (in degrees), angular velocities (in degrees/second), and right and left-hand sides of the body.</p>
-<p>Changing any of the joint angles and reloading the model, will change the model’s posture at load time. To start with, ensure that the contents of the Right
-and Left sub-folders are as follows.</p>
+<p><strong>The section between each pair of braces is said to be a Folder, with all variables defined therein forming the folder contents.</strong></p>
+<p>Once loading is complete, you can see this folder structure being replicated in “Model tree” on the left of your screen. All contents of this file
+can be seen by expanding the “Mannequin” folder icon in the tree.</p>
+<p>There are sub-folders for postural joint angles (in degrees) and angular velocities (in degrees/second),
+for the right and left halves of the body.</p>
+<p>Changing any of the joint angles and reloading the model, will change the model’s posture at load time. To start with, ensure that the contents of the “Right”
+and “Left” sub-folders are as follows.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
 
@@ -130,32 +129,49 @@ and Left sub-folders are as follows.</p>
 <span class="p">...</span>
 </pre></div>
 </div>
-<p>If you scroll down, you’ll see that the contents of left-hand side folder are set to be equal
-to those from the Right folder, in order to create a symmetric posture.</p>
-<p><strong>This is an important feature of the AnyScript language: Instead of numbers, you can create references to other variables and mathematical expressions wherever necessary.</strong></p>
-<p>To create a non-symmetric posture, simply replace some of the variable references in the Left folder with numbers of your choice.</p>
-<p>Scrolling further below, you will find the PosturVel folder. This is organized exactly like Posture, but the numbers here specify
+<p>If you scroll down, you’ll see that the contents of “Left” folder are set to be equal
+to those from the “Right” folder, in order to create a symmetric posture.</p>
+<p><strong>This is an important feature of the AnyScript language. Instead of numbers, you can create references to other variables or write
+mathematical expressions wherever necessary.</strong></p>
+<p>To create a non-symmetric posture, you would have to replace some of the expressions in the “Left” folder with numbers of your choice.</p>
+<p>Scrolling further below, you will find the “PosturVel folder”. This is organized exactly like Posture, but the numbers here specify
 joint angular velocities in degrees per second. For now, please leave all the values in this folder as zero.</p>
-<p>Now it is time to perform an analysis.</p>
 </div>
-<div class="section" id="running-an-analysis">
-<h2>Running an analysis<a class="headerlink" href="#running-an-analysis" title="Permalink to this headline">¶</a></h2>
-<p>On the left-hand side of the screen, you find a tall, narrow window with
-tabs on its left edge. Please select the Operations tab and find the
-following:</p>
+<div class="section" id="running-a-simulation-analysis">
+<span id="running-analysis"></span><h2>Running a simulation analysis<a class="headerlink" href="#running-a-simulation-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Simulation based analyses in AnyBody are termed “Studies”.</p>
+<p><strong>Step 1</strong>: Click on the operations drop-down menu at the top (see figure). Select “Main.RunApplication”</p>
+<p>This is what the other drop-down items do. “RunApplication” is a readymade package of some pre-processing steps and
+the “InverseDynamics” analysis:</p>
+<ul class="simple">
+<li><strong>Kinematics</strong>: Kinematic analysis</li>
+<li><strong>InverseDynamics</strong>: Inverse dynamic analysis</li>
+<li><strong>InitialConditions</strong>: Runs only the first time step of Kinematics. Useful for testing and debugging.</li>
+<li><strong>Replay</strong>: Replays the last operation that was run.</li>
+</ul>
 <p><img alt="RunApplication" src="../_images/image11.png" /></p>
-<p>What you see are different operations, i.e. simulations which the system
-can perform on the model. Select the “RunApplication” and click the
-“Run” button on the toolbar (image below):</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Step 2</strong>: Click the “Run Operation” button on the Execute toolbar. This toolbar is next to the drop-down menu, and contains three buttons:</p>
 <p><img alt="Run toolbar" src="../_images/image2.png" /></p>
+<ul class="simple">
+<li><strong>Run operation</strong>: Starts or pauses the chosen operation. Shortcut
+F5.</li>
+<li><strong>Step operation</strong>: Advances to next step of operation, typically a
+time step. Shortcut F6.</li>
+<li><strong>Stop operation</strong>: Sets the operation back to its initial position.
+You must reset before you start a new analysis that was previously
+aborted. Shortcut F4</li>
+</ul>
 <p>You will see the model move slightly into position and you are finally
 awarded the following message:</p>
 <p>1.0) Inverse dynamic analysis…</p>
 <p>1.10) …Inverse dynamic analysis completed</p>
 <p>You have just completed your first analysis with an AnyBody model. In the
 next lesson, we will examine the effects of posture on the results
-: <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Reviewing analysis
-results</span></a>.</p>
+: <a class="reference internal" href="lesson3.html"><span class="doc">*Lesson 3: Reviewing analysis
+results*</span></a>.</p>
 </div>
 </div>
 
@@ -195,21 +211,22 @@ results</span></a>.</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">4. User interface features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">5. A Study of Studies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">6. Making things move</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">7. Inverse Dynamics of Muscle Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">8. Force-Dependent Kinematics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">9. Muscle Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">10. The Mechanical Elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">11. Advanced Script Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">12. Finite Element Analysis Interfacing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">13. Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">14. Personalizing Your Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">15. Validation of Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">16. Parameter Studies and Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">17. Trouble Shooting AnyScript Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">18. Posture and Movement Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
@@ -260,7 +277,7 @@ results</span></a>.</p>
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: Creating a Standing Model"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >1. Getting Started</a> &#187;</li> 
       </ul>

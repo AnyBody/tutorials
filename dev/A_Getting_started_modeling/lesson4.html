@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Lesson 4: Kinetics - Computing Forces &#8212; AnyBody Tutorials v7.1.0.dev</title>
+    <title>Lesson 4: Kinetics - Computing Forces &#8212; AnyBody Tutorials v7.1.1-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -24,7 +24,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. User interface features" href="../Interface_features/index.html" />
+    <link rel="next" title="4. Getting started: The Model Repository" href="../A_Getting_started_AMMR/index.html" />
     <link rel="prev" title="Lesson 3: Making Ends Meet" href="lesson3.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head><body>
@@ -40,12 +40,12 @@
           <a href="../contents.html" title="Table Of Contents"
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="../Interface_features/index.html" title="4. User interface features"
+          <a href="../A_Getting_started_AMMR/index.html" title="4. Getting started: The Model Repository"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Making Ends Meet"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">3. Getting Started with Modeling</a> &#187;</li> 
       </ul>
@@ -60,70 +60,49 @@
             
   <div class="section" id="lesson-4-kinetics-computing-forces">
 <h1>Lesson 4: Kinetics - Computing Forces<a class="headerlink" href="#lesson-4-kinetics-computing-forces" title="Permalink to this headline">¶</a></h1>
-<p>With the kinematic analysis in place, we are ready to compute forces and
-investigate ergonomic properties of the pedal arrangement. We shall
-presume that the pedal is loaded by a spring, the force of which the leg
+<p>In this lesson, you will compute forces and investigate the ergonomics of the pedal arrangement.</p>
+<p>We will presume that the pedal is loaded by a spring, the force of which the leg
 must overcome when stepping on the pedal. In this lesson, we will step
 by step define the spring force and look at its effect on the leg.</p>
-<p>A force can be added to any kinematic measure using the AnyForce class.
-If the kinematic measure is a length (linear), then an AnyForce is a
-force, and if it is an angle (rotational), the AnyForce automatically
-becomes a moment. In the present case, we shall add the AnyForce to the
-kinematic measure of the pedal’s hinge (rotational). Let us initially
-study the measure. Run the “Kinematics” analysis again, open an
-AnyChart&nbsp;View, and browse your way through the tree to
-Main.Study.Output.Model.Environment.HingeJoint.Pos. You should see the
-following graph:</p>
-<p><img alt="Chart view HingeJoint.Pos" src="../_images/image111.png" /></p>
-<p>The analysis runs in time from zero to one second, and the pedal angle
-develops in this time from 100 degrees (1.74 rad) to 145 degrees (2.53
-rad). Let us presume that the pedal is loaded by a linear spring that is
-slack at 0 degrees and increases its moment linearly with the rotation
-of the hinge. We might be wondering: What would be a comfortable spring
-stiffness for a pedal like that? Not having much experience with pedal
-design it might be difficult to imagine just how stiff the spring should
-be, and we could find ourselves developing a series of hardware
-prototypes with different springs and perhaps conducting subjective
-investigations with test subjects.</p>
+<div class="section" id="generalized-forces">
+<h2>Generalized forces<a class="headerlink" href="#generalized-forces" title="Permalink to this headline">¶</a></h2>
+<p><strong>When you say “a support torque applied to a joint”, in AnyBody terms, you are saying -
+“A generalized force applied to a kinematic measure of the joint angle”.</strong></p>
+<p>Similarly “a force applied to a segment along Y axis” becomes - “A generalized force
+applied to the Y component of a measure of the segment’s position”.</p>
+<p><strong>Since AnyBody speaks the language of generalized forces, we will simply call them “forces” henceforth. Physically speaking,
+this generalized force will manifest as a rotational torque or a linear force, depending on the type of measure it is applied to.</strong></p>
+<p>You must create an <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyForce</span></code> object in order to apply a generalized force to a measure.</p>
+</div>
 <div class="section" id="include-pedal-spring-force">
 <h2>Include pedal spring force<a class="headerlink" href="#include-pedal-spring-force" title="Permalink to this headline">¶</a></h2>
-<p>Let us do it with AnyBody instead. We shall start out by declaring an
-AnyForce to play the role of the spring. Since this is not a part of the
-body, it is logical to place it in the Environment.any file. Here’s what
+<p>We will therefore create an <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyForce</span></code> object, for applying the spring force.
+Since this is not a part of the human body, it is logical to place it in the Environment.any file. Here’s what
 to add:</p>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyRevoluteJoint HingeJoint = {</span>
-<span class="gr">  Axis = z;</span>
-<span class="gr">  AnyFixedRefFrame &amp;Ground = .GlobalRef;</span>
-<span class="gr">  AnyRefNode &amp;Pedal = .Pedal.Hinge;</span>
-<span class="gr">};</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="kt">AnyRevoluteJoint</span> <span class="n">HingeJoint</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span><span class="p">;</span>
+  <span class="kt">AnyFixedRefFrame</span> <span class="o">&amp;</span><span class="n">Ground</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">;</span>
+  <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">Pedal</span> <span class="o">=</span> <span class="p">.</span><span class="n">Pedal</span><span class="p">.</span><span class="n">Hinge</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span class="gr"> AnyForce Spring = {</span>
+<span class="gr">AnyForce Spring = {</span>
 <span class="gr">  AnyRevoluteJoint &amp;Hinge = .HingeJoint;</span>
-<span class="gr">  F = -0.0\*.HingeJoint.Pos;</span>
+<span class="gr">  F = -0.0*.HingeJoint.Pos;</span>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<p>The AnyForce contains a reference to the HingeJoint. Since the degree of
-freedom in the HingeJoint is rotational, the force is as described above
-turned into a moment and applied to the hinge. The specification of F is
-the actual size of the load. We have made it proportional to the
-HingeJoint.Pos, which is the hinge angle, and we have initially set the
-spring stiffness to 0.0 (Nm/degree), to investigate the effect of having
-no spring before we start adding a spring force. Notice, by the way, the
-minus sign in front of spring constant. It has no importance now, but
-when we start adding non-zero stiffness, it will signify that the spring
-force goes against the angle, i.e. pushes back onto the foot.</p>
+<p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyForce</span></code> object named “Spring” contains a reference to the “HingeJoint”. Since HingeJoint
+is a rotational measure, the force is actually a torque applied to the hinge.</p>
+<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span></code> is the actual generalized force vector, with each vector component corresponding to a
+component of the kinematic measure. <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span></code> is proportional to “HingeJoint.Pos”,
+which is the hinge angle. Stiffness is initially set to 0.0 (Nm/rad), to investigate the effect of having
+no spring. The minus sign in the expression means that the spring will always oppose motions away from the neutral angle.</p>
 </div>
 <div class="section" id="turn-off-default-reaction-forces">
 <h2>Turn off default reaction forces<a class="headerlink" href="#turn-off-default-reaction-forces" title="Permalink to this headline">¶</a></h2>
-<p>There are just a couple of things we need to do before we can do the
-InverseDynamicAnalysis operation and compute the forces: All the drivers
-we added in the previous lesson have motors built into them. This means
-that whatever force or moment is necessary to perform the movement will
-be provided by the drivers, and there will be nothing for the muscles to
-do. Motors in drivers are technically reaction forces, and they can be
-turned off inside the driver. Let us open the “JointsAndDrivers.any”
-file and do the following modifications:</p>
+<p>As mentioned in this <a class="reference internal" href="../A_Getting_started_anyscript/lesson5.html#driver-reactions"><span class="std std-ref">*previous section*</span></a>,
+the “Reaction.Type” property for all kinematic drivers that act on muscle-actuated joints must be set to “Off”.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">PelvisThoraxDriver</span> <span class="o">=</span>
@@ -137,14 +116,17 @@ file and do the following modifications:</p>
     <span class="gr">Reaction.Type = {Off, Off, Off};</span>
   <span class="p">};</span>
 
-  <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">NeckJntDriver</span> <span class="o">=</span>
+  <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">SkullThoraxDriver</span> <span class="o">=</span>
   <span class="p">{</span>
-    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref0</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">NeckJoint</span><span class="p">;</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref0</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SkullThoraxFlexion</span><span class="p">;</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref1</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SkullThoraxLateralBending</span><span class="p">;</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref2</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SkullThoraxRotation</span><span class="p">;</span>
 
-    <span class="n">DriverPos</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-    <span class="n">DriverVel</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-    <span class="gr">Reaction.Type = {Off};</span>
+    <span class="n">DriverPos</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+    <span class="n">DriverVel</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+    <span class="gr">Reaction.Type = {Off, Off, Off};</span>
   <span class="p">};</span>
+
 
   <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">AnkleDriver</span> <span class="o">=</span>
   <span class="p">{</span>
@@ -180,16 +162,13 @@ file and do the following modifications:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>And you should remove the additional reactions on the pelvis which are
-created by the Human template. The purpose of these additional reactions
+<p>You should also remove the additional reactions on the pelvis which are
+created by the model template. The purpose of these additional reactions
 on the pelvis is to provide the necessary supports on the human pelvis
 to run the inverse dynamics if users may not define enough support
-forces on either both feet or pelvis. But because now this model has an
-AnyStdJoint which is defined between the
-Main.Model.Environment.GlobalRef.Hpoint and the pelvis segment, you
-don’t need to use these additional reactions on the pelvis anymore. You
-can remove them by commenting out the “Model\Reactions.any” in the main
-file like this:</p>
+forces on either both feet or pelvis.</p>
+<p>Since your model has a joined named “SeatPelvis” between ground and pelvis (which will apply the default reaction forces),
+you can comment out “Model\Reactions.any” in the main file:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="kt">AnyFolder</span> <span class="n">Model</span> <span class="o">=</span> <span class="p">{</span>
     <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">HumanModel</span><span class="o">=</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModelWithDefaultDrivers</span><span class="p">;</span>
@@ -212,7 +191,7 @@ the moment. This can be corrected by a simple change of BM statements in
 the main file:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//--&gt;BM statements</span>
 <span class="c1">// Excluding the muscles in the trunk segments</span>
-<span class="cp">#define</span> <span class="x x-Statements">BM_TRUNK_MUSCLES</span> <span class="gr">_MUSCLES_NONE_</span>
+<span class="cp">#define</span> <span class="x x-Statements">BM_TRUNK_MUSCLES</span> <span class="gr">_MUSCLES_SIMPLE_</span>
 <span class="c1">// Excluding the left arm segments</span>
 <span class="cp">#define</span> <span class="x x-Statements">BM_ARM_LEFT</span> <span class="x x-Options">OFF</span>
 <span class="c1">// Excluding the right arm segments</span>
@@ -222,7 +201,7 @@ the main file:</p>
 <span class="c1">// Using the right leg as &#39;TLEM&#39; model</span>
 <span class="cp">#define</span> <span class="x x-Statements">BM_LEG_RIGHT</span> <span class="x x-Options">_LEG_MODEL_TLEM1_</span>
 <span class="c1">// Excluding the muscles in the right leg segments</span>
-<span class="cp">#define</span> <span class="x x-Statements">BM_LEG_MUSCLES_RIGHT</span> <span class="gr">_MUSCLES_NONE_</span>
+<span class="cp">#define</span> <span class="x x-Statements">BM_LEG_MUSCLES_RIGHT</span> <span class="gr">_MUSCLES_SIMPLE_</span>
 <span class="c1">// Excluding the default drivers for the human model</span>
 <span class="cp">#define</span> <span class="x x-Statements">BM_MANNEQUIN_DRIVER_DEFAULT</span> <span class="x x-Options">OFF</span>
 <span class="c1">//&lt;--</span>
@@ -231,21 +210,16 @@ the main file:</p>
 </div>
 <div class="section" id="investigating-results">
 <h2>Investigating results<a class="headerlink" href="#investigating-results" title="Permalink to this headline">¶</a></h2>
-<p>Now, reload the model and run the RunApplication operation in the Model
-Tree. The model should look like this:</p>
+<p>Now, reload the model and run the “RunApplication” operation from the operations drop-down menu:</p>
 <p><img alt="InverseDynamics_End" src="../_images/image28.png" /></p>
-<p>Notice that the muscle forces are illustrated by the bulging of the
-muscles. In the AnyChart view near the top of the tree, you can find the
-“Main.Study.Output.Model.HumanModel.BodyModel.SelectedOutput.Right.Leg.Muscles.Envelope”.
-It expresses the maximum muscle activation level among all the muscles
-in the right leg. Plotting this property in the AnyChart View gives you
-the following result:</p>
+<p>Plot “Main.Study.Output.Model.HumanModel.BodyModel.SelectedOutput.Right.Leg.Muscles.Envelope” (see <a class="reference internal" href="../A_Getting_started/lesson3.html#chart-view"><span class="std std-ref">*this for help*</span></a>).
+It expresses the maximum muscle activation level seen across all the muscles
+in the right leg at a given instant:</p>
 <p><img alt="Chart view Muscles.Envelope" src="../_images/image37.png" /></p>
 <p>Obviously holding the leg out in the air like that without the support
 of a pedal spring and holding up the weight of the pedal as well
-requires about slightly less than from about 9% to 6% of the leg’s
-strength.</p>
-<p>Now, let us study the effect of spring stiffness. We initially try:</p>
+requires about 6% to 9% of the leg’s strength.</p>
+<p>Now, let us study the effect of spring stiffness. In “Environment.any”, we change the spring stiffness:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">F</span> <span class="o">=</span> <span class="gr">-10</span><span class="o">*</span><span class="p">.</span><span class="n">HingeJoint</span><span class="p">.</span><span class="n">Pos</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -301,21 +275,22 @@ using the predefined models of the repository.</p>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 4: Kinetics - Computing Forces</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">4. User interface features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">5. A Study of Studies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">6. Making things move</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">7. Inverse Dynamics of Muscle Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">8. Force-Dependent Kinematics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">9. Muscle Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">10. The Mechanical Elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">11. Advanced Script Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">12. Finite Element Analysis Interfacing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">13. Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">14. Personalizing Your Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">15. Validation of Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">16. Parameter Studies and Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">17. Trouble Shooting AnyScript Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">18. Posture and Movement Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
@@ -361,12 +336,12 @@ using the predefined models of the repository.</p>
           <a href="../contents.html" title="Table Of Contents"
              >toc</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="../Interface_features/index.html" title="4. User interface features"
+          <a href="../A_Getting_started_AMMR/index.html" title="4. Getting started: The Model Repository"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Making Ends Meet"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >3. Getting Started with Modeling</a> &#187;</li> 
       </ul>

@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Lesson 6: Adding Real Bone Geometries &#8212; AnyBody Tutorials v7.1.0.dev</title>
+    <title>Lesson 6: Adding Real Bone Geometries &#8212; AnyBody Tutorials v7.1.1-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="lesson5.html" title="Lesson 5: Definition of Muscles and External Forces"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">2. Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
@@ -65,36 +65,29 @@
 <p class="last">Here’s an AnyScript file to start on if you have not completed the
 previous lesson: <a class="reference download internal" href="../_downloads/demo.lesson6.any" download=""><code class="xref download docutils literal"><span class="pre">*demo.lesson6.any*</span></code></a>.</p>
 </div>
-<p>So far, the graphics of the model you have developed is what we can call
-a stick figure representation. You may be wondering how you can add
-bones and other geometries that will be visually more pleasing. Apart
-from mere aesthetics, real bone geometries give you instant visual
-feedback on where the muscle is located in the organism as illustrated
+<p>So far the model graphically resembles a “stick figure representation”.
+However realistic bone geometries can improve both aesthetics and
+visual comprehension of a model’s anatomy, as illustrated
 by the two pictures below.</p>
 <p><img alt="oldleg1" src="../_images/image1.jpeg" /> <img alt="oldleg2" src="../_images/image2.jpeg" /></p>
-<div class="section" id="visualization-object-file-formats">
-<h2>Visualization object File formats<a class="headerlink" href="#visualization-object-file-formats" title="Permalink to this headline">¶</a></h2>
-<p>Adding geometric models such as bones is fortunately very simple. All
-you need is a file with a 3-D graphical representation of the bone or
-another component you may wish to add. The format of the file must be
-STL ASCII. STL is a very simple graphical file format that basically
-contains triangles. Virtually any CAD system you can think of can save
-geometry in STL format, so if you have your geometry described in IGES,
-STEP, DXF or any other usual type, just run it through your favorite CAD
-system and convert it to STL. STL comes in two varieties: ASCII and
-binary. AnyBody needs an ASCII file, so please make sure to choose that
-option if you create your own STL files in a CAD system.</p>
+<div class="section" id="file-formats-for-visualization-objects">
+<h2>File formats for visualization objects<a class="headerlink" href="#file-formats-for-visualization-objects" title="Permalink to this headline">¶</a></h2>
+<p>3-D Geometric models for model components such as bones can be specified using files
+of the STL ASCII format.</p>
+<p>STL is a very simple graphical file format that represents object surfaces as
+triangles. Virtually all CAD systems can export an object in the STL format. So if your files are in the IGES,
+STEP, DXF etc. formats, load them in your favorite CAD system and convert to STL.</p>
+<p>STL files come in two varieties: ASCII and binary. AnyBody needs an ASCII file, so please make sure to choose that
+option during the export process.</p>
 </div>
 <div class="section" id="importing-a-stl-file">
 <h2>Importing a STL file<a class="headerlink" href="#importing-a-stl-file" title="Permalink to this headline">¶</a></h2>
-<p>The bone models you see in the pictures above are a bit elaborate for a
-short tutorial, so we shall start with something a little simpler. What
-we want to do now is to add a dumbbell geometry to the arm model we have
-just created. You can find an STL file to use <a class="reference download internal" href="../_downloads/dumbbell.stl" download=""><code class="xref download docutils literal"><span class="pre">here
+<p>Since the bone models shown in the above tutorial may be a bit too elaborate for a
+basic tutorial, we will demonstrate this by adding an STL file for the dumbbel in the arm model.</p>
+<p>Download the following model <a class="reference download internal" href="../_downloads/dumbbell.stl" download=""><code class="xref download docutils literal"><span class="pre">here
 (dumbell.stl)</span></code></a>.</p>
-<p>The dumbbell should be added to the forearm, so the first thing to do it
-to add a reference to the STL file we just saved to the definition of
-the forearm:</p>
+<p>The dumbbell STL should be added to the forearm, so add the following code - which imports the STL
+file into AnyBody - within the “ArmModel.Segs.ForeArm” object:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="kt">AnyDrawSeg</span> <span class="n">DrwSeg</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="gr">AnyDrawSTL DrwSTL = {</span>
 <span class="gr">    FileName = &quot;dumbbell.stl&quot;;</span>
@@ -102,35 +95,27 @@ the forearm:</p>
 <span class="p">};</span> <span class="c1">// ForeArm</span>
 </pre></div>
 </div>
-<p>Try reloading the model again. You will probably&nbsp;see nothing
-but&nbsp;gray&nbsp;the Model view. &nbsp;A closer investigation of the problem would
-reveal that the entire arm model is actually situated inside the
-dumbbell handle. This is because the STL file was created in
-millimeters, where the arm model is in meters. Rather than going back to
-whatever CAD system was used and scale the dumbbell model down 1000
-times, we can add the scale definition to AnyScript in the following
-way:</p>
+<p>Re-loading the model will result in a fully gray model view.</p>
+<p>This is because the STL file’s units was millimeters, whereas the arm model
+is in meters. This means the dumbbell’s STL swallowed up the entire arm model in the model view.
+We will therefore scale the dumbbell model down a 1000 times, in the following way:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyDrawSTL</span> <span class="n">DrwSTL</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;dumbbell.stl&quot;</span><span class="p">;</span>
   <span class="gr">ScaleXYZ = {0.001, 0.001, 0.001};</span>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>When you reload the model, the picture you get should be similar to what
-you see below. The dumbbell is visible now and has the right size, but
-it is sitting at the center of gravity of the lower arm rather than at
-the hand, and it is not oriented correctly.</p>
+<p>Post re-loading, your model should resemble the figure below.The dumbbell is visible now and has the right size, but
+it is sitting at the center of mass of the lower arm rather than at the hand, and is not oriented correctly.</p>
 <p><img alt="ModelView dumbbell1" src="../_images/image3.jpeg" /></p>
 </div>
-<div class="section" id="re-orienting-your-stl-object">
-<h2>Re-orienting your STL object<a class="headerlink" href="#re-orienting-your-stl-object" title="Permalink to this headline">¶</a></h2>
-<p>The fact is that, when you attach something to a segment, it is
-positioned at the segment’s origin which is usually the same as the
-center of mass. However, you can also attach stuff to points, so moving
-the dumbbell to the hand is simply a question of moving the reference to
-it from the ForeArm segment to the PalmNode that we defined previously.
-Block the entire AnyDrawSTL folder with the mouse and cut it out. Then
-re-insert it under the PalmNode like this:</p>
+<div class="section" id="relocating-your-stl-object">
+<h2>Relocating your STL object<a class="headerlink" href="#relocating-your-stl-object" title="Permalink to this headline">¶</a></h2>
+<p>When you attach something to a segment, it is by default positioned
+at the segment’s origin which is also its center of mass. (This was discussed earlier <a class="reference internal" href="lesson2.html#class-inserter"><span class="std std-ref">* over here*</span></a>)</p>
+<p>Therfore moving the dumbbell to the hand is as simple as relocating the “DrwSTL” object
+from the “ForeArm” folder to the “PalmNode” subfolder. Cut-paste the entire code for the
+“DrwSTL” folder into “PalmNode”, as shown below:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="kt">AnyRefNode</span> <span class="n">PalmNode</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.27</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
     <span class="gr">AnyDrawSTL DrwSTL = {</span>
@@ -143,21 +128,24 @@ re-insert it under the PalmNode like this:</p>
 <span class="p">};</span> <span class="c1">// ForeArm</span>
 </pre></div>
 </div>
-<p>On reload, this produces a new picture with the dumbbell attached at the
-right location, but it is still not oriented correctly.</p>
+<p>Upon reloading, we see that the dumbbell attached to the
+right location, but is still not oriented correctly.</p>
 <p><img alt="ModelView dumbbell2" src="../_images/image4.jpeg" /></p>
-<p>We want to rotate the dumbbell 90 degrees about the y-axis. We could do
-that by going back to the CAD system and modifying the dumbbell STL
-file, but an easier option is to rotate it directly inside AnyScript.</p>
-<p>A geometrical object that you insert gets the same orientation as the
-coordinate system it is attached to. In this case, the dumbbell is
-attached to PalmNode. Nodes are actually reference frames with the
-ability to be positioned and oriented relatively to other reference
-frames, for instance, a segment or another node. We have already
-positioned nodes by means of the member vector sRel, and relative
-orientation happens similarly with the member matrix ARel, the relative
-rotational transformation matrix. We wish to rotate the dumbbell 90
-degrees about the local y-axis and hence write:</p>
+</div>
+<div class="section" id="reorienting-your-stl-object">
+<h2>Reorienting your STL object<a class="headerlink" href="#reorienting-your-stl-object" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can visualize a node’s local reference system, by selecting the node in the model tree
+(e.g., “Main.ArmModel.Segs.ForeArm.PalmNode”) and right-clicking and selecting “Model View-&gt;This object-&gt;View”.</p>
+</div>
+<p>An STL (or other geometrical) object’s axes are always oriented parallel to the local coordinate system it is attached to.
+By visualizing the palm node’s local reference system, you will realize that the dumbbell needs to be rotated 90 degrees
+about the local Y-axis.</p>
+<p><strong>Therefore to rotate the dumbbell by 90 degrees about the Y axis, you must rotate the “PalmNode” by 90 degrees w.r.t its parent
+frame, i.e. the “ForeArm”. While the vector sRel denotes the “PalmNode’s” relative location,you can add a rotation matrix
+ARel (optinal property) which will orient “PalmNode” w.r.t “ForeArm”.</strong></p>
+<p>You can use the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="nb">RotMat</span></code> function to generate the 3x3 rotation matrix:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="n">PalmNode</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.27</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
   <span class="gr">ARel = RotMat(90*pi/180, y);</span>
@@ -168,9 +156,7 @@ degrees about the local y-axis and hence write:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>As a final cosmetic touch, you may want to change the color of the
-dumbbell. This can be done by adding the property RGB to the STL file
-reference:</p>
+<p>The dumbbell’s color can be changed adding the property RGB to the STL file reference:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span> <span class="kt">AnyDrawSTL</span> <span class="n">DrwSTL</span> <span class="o">=</span> <span class="p">{</span>
    <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;dumbbell.stl&quot;</span><span class="p">;</span>
    <span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">};</span>
@@ -178,13 +164,10 @@ reference:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>The RGB property specifies the blend of colors Red, Green, and Blue in
-that order for displaying the STL geometry. The combination above
-produces a dull blue shade.</p>
+<p>The RGB property specifies the blend of colors Red, Green, and Blue on a normalized scale of 0 to 1.</p>
 <p><img alt="ModelView dumbbell3" src="../_images/image5.jpeg" /></p>
 <p>This completes the Getting Started with AnyScript tutorial. The final
-result of the efforts is in
-<a class="reference download internal" href="../_downloads/demo.arm2d.any" download=""><code class="xref download docutils literal"><span class="pre">*demo.arm2d.any</span></code></a>.</p>
+result of your efforts is in <a class="reference download internal" href="../_downloads/demo.arm2d.any" download=""><code class="xref download docutils literal"><span class="pre">*demo.arm2d.any</span></code></a>.</p>
 </div>
 </div>
 
@@ -227,21 +210,22 @@ result of the efforts is in
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">4. User interface features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">5. A Study of Studies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">6. Making things move</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">7. Inverse Dynamics of Muscle Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">8. Force-Dependent Kinematics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">9. Muscle Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">10. The Mechanical Elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">11. Advanced Script Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">12. Finite Element Analysis Interfacing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">13. Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">14. Personalizing Your Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">15. Validation of Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">16. Parameter Studies and Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">17. Trouble Shooting AnyScript Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">18. Posture and Movement Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
@@ -292,7 +276,7 @@ result of the efforts is in
         <li class="right" >
           <a href="lesson5.html" title="Lesson 5: Definition of Muscles and External Forces"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0.dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >2. Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
