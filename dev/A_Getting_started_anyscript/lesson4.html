@@ -63,7 +63,7 @@
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Here’s an AnyScript file to start on if you have not completed the
-previous lesson: <a class="reference download internal" href="../_downloads/demo.lesson4.any" download=""><code class="xref download docutils literal"><span class="pre">*demo.lesson4.any*</span></code></a>.</p>
+previous lesson: <a class="reference download internal" href="../_downloads/demo.lesson4.any" download=""><code class="xref download docutils literal"><span class="pre">demo.lesson4.any</span></code></a>.</p>
 </div>
 <p>If you have completed the three previous lessons, you should have a
 model with an upper arm grounded at the shoulder joint and connected to
@@ -120,7 +120,7 @@ But the same driver class could be used to drive translations, for instance a sl
 <p>The following lines assign the shoulder and elbow joint angle measures to the respective drivers.
 Standard AnyBody joints created using classes such as <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyRevoluteJoint</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnySphericalJoint</span></code> etc. automatically function as measures.
 More customized measures can be created using classes such as <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinLinear</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinRotational</span></code> etc.
-(see <a class="reference internal" href="../The_mechanical_elements/lesson4.html"><span class="doc">*this lesson*</span></a>).:</p>
+(see <a class="reference internal" href="../The_mechanical_elements/lesson4.html"><span class="doc">this lesson</span></a>).:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -130,7 +130,7 @@ More customized measures can be created using classes such as <code class="docut
 </div>
 <p>Since the measures constrained by these drivers are angles, the units
 of “DriverPos” and “DriverVel” are radians and radians/sec respectively.</p>
-<p>Just like in <a class="reference internal" href="lesson3.html#reference-objects"><span class="std std-ref">*Lesson 3*</span></a>, these lines also
+<p>Just like in <a class="reference internal" href="lesson3.html#reference-objects"><span class="std std-ref">Lesson 3</span></a>, these lines also
 use the reference operator <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">&amp;</span></code> to point the local variable “Jnt” towards the
 actual shoulder/elbow joint objects existing in a different folder</p>
 <p>Since “Jnt” is a reference, it will automatically update as the joint angles change during motion.</p>
@@ -148,7 +148,7 @@ multiple <code class="docutils literal highlight highlight-AnyScriptDoc"><span><
 that are specific to that study.</p>
 </div>
 <p><strong>You must now run the “Main.ArmModelStudy.Kinematics” operation. If you need to refer back to how this is done, look at</strong>
-<a class="reference internal" href="../A_Getting_started/lesson2.html#running-analysis"><span class="std std-ref">*this prior tutorial*</span></a>.</p>
+<a class="reference internal" href="../A_Getting_started/lesson2.html#running-analysis"><span class="std std-ref">this prior tutorial</span></a>.</p>
 <p>Since we have no muscles so far, a kinematic analysis is really all that
 makes sense. With a kinematic analysis, you can investigate positions, velocities, and
 accelerations. But force, power, energy or other such things are not computed. These properties are calculated by the
@@ -182,12 +182,12 @@ tree can also be used for plotting purposes.</p>
 </div>
 <p>Let us say, you want to plot the position vector of the hand node over the course of movement.</p>
 <p>You need to find and plot the variable “…..ForeArm.HandNode.r” in the chart view. If you need help with the chart view,
-refer to <a class="reference internal" href="../A_Getting_started/lesson3.html#chart-view"><span class="std std-ref">*this prior tutorial on plotting*</span></a>.</p>
+refer to <a class="reference internal" href="../A_Getting_started/lesson3.html#chart-view"><span class="std std-ref">this prior tutorial on plotting</span></a>.</p>
 <p>If you’re having trouble finding the correct output variable in the chart view’s filtered model tree, refer to the figure below.</p>
 <p><img alt="Chart view HandNode" src="../_images/image61.png" /></p>
 <div class="without-title admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> This is the subject of <a class="reference internal" href="lesson5.html"><span class="doc">*Lesson 5: Definition of muscles and external forces*</span></a>.</p>
+<p class="last"><strong>Next lesson:</strong> This is the subject of <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Definition of muscles and external forces</span></a>.</p>
 </div>
 </div>
 </div>
