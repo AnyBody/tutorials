@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Lesson 1: Creating a Standing Model &#8212; AnyBody Tutorials v7.1.0</title>
+    <title>Lesson 1: Creating a Standing Model &#8212; AnyBody Tutorials v7.1.1</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="intro.html" title="Getting Started Tutorial"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">1. Getting Started</a> &#187;</li> 
       </ul>
@@ -61,29 +61,28 @@
   <div class="section" id="lesson-1-creating-a-standing-model">
 <h1>Lesson 1: Creating a Standing Model<a class="headerlink" href="#lesson-1-creating-a-standing-model" title="Permalink to this headline">¶</a></h1>
 <p>The standing model can be found in the AMMR folder under
-Applications/Examples. The main file is called StandingModel.Main.any and
-this is the one you must load to see the model.</p>
-<p>While you can open the file with the File-&gt;Open menu in AnyBody, <strong>this tutorial will teach you how to
-create your own model by using StandingModel as a starting template.</strong></p>
+Applications/Examples. The main file is called StandingModel.Main.any.</p>
+<p><strong>While a main file can be opened with the “File-&gt;Open” menu in AnyBody, do not do this! This tutorial will teach you an easier way
+to use StandingModel as a starting template.</strong></p>
 <p>Key (modifiable) features of the standing model are:</p>
 <ul class="simple">
 <li>Both feet are always connected to the ground.</li>
-<li>The <strong>posture</strong> is controlled via anatomical angles for all
-major joints except the ankles.</li>
-<li>The model <strong>automatically balances</strong> by keeping its center of mass vertically
-above the ankle joints. Eg., If the arms extend forward, the body will move move slightly backward to maintain the balance.</li>
-<li><strong>Three-dimensional external forces</strong> can be applied to predefined points on the model. Muscle forces may change, to resist these forces and maintain balance.</li>
+<li>The posture is defined by the joint angles for all major joints except the ankles.</li>
+<li>The model automatically balances by maintaining its center of mass vertically
+above the ankle joints. Eg., If the arms extend forward, the moves backward to maintain the balance.</li>
+<li>External forces can be applied to predefined nodes on the model. Muscle forces may change, to resist these forces and maintain balance.</li>
 </ul>
-<div class="section" id="open-model-template">
-<h2>Open model template<a class="headerlink" href="#open-model-template" title="Permalink to this headline">¶</a></h2>
-<p>To create a new standing model using the template model in the AMMR, click the Create Model button <img alt="Model button" src="../_images/image_1.png" /> in the toolbar:</p>
+<div class="section" id="model-templates">
+<span id="id1"></span><h2>Model templates<a class="headerlink" href="#model-templates" title="Permalink to this headline">¶</a></h2>
+<p>To create a new standing model using the template model in the AMMR, click the “Create New from template” button <img alt="Model button" src="../_images/image_1.png" /> in the toolbar:</p>
 <p><img alt="ModelLoadButton" src="../_images/image_2.png" /></p>
 <p>The Template dialogue opens and displays a list of pre-defined templates
-supported in the AMMR. Choose the <strong>Human Standing</strong> template and select the
-folder you want to save your new Human Standing model in. To demonstrate, let us
-save the model in the ‘AnyBody.7.1.x/AMMR.v2.0.0-Demo’ directory
-which we extracted in the <a class="reference internal" href="intro.html"><span class="doc">introduction</span></a> for this tutorial.</p>
-<p>Give the model a name, for example <code class="file docutils literal"><span class="pre">MyStandingHuman</span></code>, and pres <strong>OK</strong> to save.</p>
+supported in the AMMR.</p>
+<p><strong>Choose the “Human Standing” template and select the
+folder you want to save your new Human Standing model in.</strong> To demonstrate, let us
+save the model in the ‘AnyBody.7.1.x/AMMR.v2.1.0-Demo’ directory
+which we extracted in the <a class="reference internal" href="intro.html"><span class="doc">introduction</span></a> of this tutorial.</p>
+<p>Give the model a name, for example <code class="file docutils literal"><span class="pre">MyStandingHuman</span></code>, and press OK to save.</p>
 <p><img alt="TemplateDialog" src="../_images/image_3b.png" /></p>
 <p>Your new ‘MyStandingHuman.main.any’ file opens in the script Editor. The
 location of the file is shown in the title bar:</p>
@@ -95,14 +94,17 @@ sure to modify the <code class="file docutils literal"><span class="pre">../libd
 to AMMR repository you want to use.</p>
 </div>
 </div>
-<div class="section" id="load-model">
-<h2>Load model<a class="headerlink" href="#load-model" title="Permalink to this headline">¶</a></h2>
-<p>To see the <strong>3D graphical representation of the model</strong>, you need to load.
-Load/reload is a frequent operation and has been assigned to function
-key <strong>F7</strong>. You may also load your model by clicking <img alt="Load" src="../_images/image_6.png" /> in the toolbar.</p>
+<div class="section" id="loading-a-model">
+<span id="id2"></span><h2>Loading a model<a class="headerlink" href="#loading-a-model" title="Permalink to this headline">¶</a></h2>
+<p>To see the 3D graphical representation of the model you need to load.</p>
+<p><strong>Load/reload is a frequent operation and has been assigned to function
+key F7. You may also load your model by clicking</strong> <img alt="Load" src="../_images/image_6.png" /> <strong>in the toolbar.</strong></p>
+<p>This action will load whatever file is chosen in the text editor. If a file is already loaded, the
+above action will simply reload the file until you give another file loading priority by right-clicking its tab and select “Load Model”.</p>
+<p><img alt="Load model right click menu" src="../_images/image_7.png" /></p>
 </div>
-<div class="section" id="display-the-model">
-<h2>Display the model<a class="headerlink" href="#display-the-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-model-view">
+<h2>The model view<a class="headerlink" href="#the-model-view" title="Permalink to this headline">¶</a></h2>
 <p>When loading is completed, the Model View window opens and shows the
 standing model: (You can open it manually from View -&gt; Model Views).</p>
 <p><img alt="Model View" src="../_images/image_5.png" /></p>
@@ -162,21 +164,22 @@ in and out.</li>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">4. User interface features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">5. A Study of Studies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">6. Making things move</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">7. Inverse Dynamics of Muscle Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">8. Force-Dependent Kinematics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">9. Muscle Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">10. The Mechanical Elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">11. Advanced Script Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">12. Finite Element Analysis Interfacing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">13. Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">14. Personalizing Your Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">15. Validation of Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">16. Parameter Studies and Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">17. Trouble Shooting AnyScript Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">18. Posture and Movement Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
@@ -227,7 +230,7 @@ in and out.</li>
         <li class="right" >
           <a href="intro.html" title="Getting Started Tutorial"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >1. Getting Started</a> &#187;</li> 
       </ul>

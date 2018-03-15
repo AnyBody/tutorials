@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
-    <title>18. Posture and Movement Prediction &#8212; AnyBody Tutorials v7.1.0</title>
+    <title>19. Posture and Movement Prediction &#8212; AnyBody Tutorials v7.1.1</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Legal, Trademarks and Copyrights" href="../legal.html" />
-    <link rel="prev" title="17. Trouble Shooting AnyScript Models" href="../Troubleshooting_anyscript/intro.html" /> 
+    <link rel="prev" title="18. Trouble Shooting AnyScript Models" href="../Troubleshooting_anyscript/intro.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head><body>
     <div class="relbar-top">
@@ -43,9 +43,9 @@
           <a href="../legal.html" title="Legal, Trademarks and Copyrights"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="../Troubleshooting_anyscript/intro.html" title="17. Trouble Shooting AnyScript Models"
+          <a href="../Troubleshooting_anyscript/intro.html" title="18. Trouble Shooting AnyScript Models"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1</a> &#187;</li>
  
       </ul>
     </div>
@@ -58,7 +58,7 @@
           <div class="body" role="main">
             
   <div class="section" id="posture-and-movement-prediction">
-<h1>18. Posture and Movement Prediction<a class="headerlink" href="#posture-and-movement-prediction" title="Permalink to this headline">¶</a></h1>
+<h1>19. Posture and Movement Prediction<a class="headerlink" href="#posture-and-movement-prediction" title="Permalink to this headline">¶</a></h1>
 <div class="without-title admonition caution">
 <p class="first admonition-title">Caution</p>
 <p class="last"><strong>Old tutorial:</strong>
@@ -95,8 +95,8 @@ Since this involves optimization and optimization takes time we are
 going to formulate a very simple problem, but the principle applies to
 much more complex models as well.</p>
 <p>Understanding this tutorial requires a-priory knowledge of the tutorial
-on <a class="reference internal" href="../Parameter_studies_and_optimization/intro.html"><span class="doc">*Parameter Studies and
-Optimization*</span></a>.</p>
+on <a class="reference internal" href="../Parameter_studies_and_optimization/intro.html"><span class="doc">Parameter Studies and
+Optimization</span></a>.</p>
 <div class="section" id="definition-of-the-problem">
 <h2>Definition of the Problem<a class="headerlink" href="#definition-of-the-problem" title="Permalink to this headline">¶</a></h2>
 <p>As the name indicates, in posture and movement optimization we use
@@ -159,8 +159,8 @@ are going to need such joint muscles for flexion and extension
 respectively for both of the two joints. The red lines below add such
 muscles with realistic joint strengths in Newton-meter. For an
 explanation of the use of the AnyGeneralMuscle class, please refer to
-the <a class="reference internal" href="../Muscle_modeling/intro.html"><span class="doc">*muscle modeling
-tutorial*</span></a>.</p>
+the <a class="reference internal" href="../Muscle_modeling/intro.html"><span class="doc">muscle modeling
+tutorial</span></a>.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyKinEqSimpleDriver</span> <span class="n">KneeDriver</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">90</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
   <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">90</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">}</span><span class="o">/</span><span class="p">..</span><span class="n">MyStudy</span><span class="p">.</span><span class="n">tEnd</span><span class="p">;</span>
@@ -478,21 +478,22 @@ to capture the features of the body’s function&nbsp;that we are looking for.</
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">1. Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">4. User interface features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">5. A Study of Studies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">6. Making things move</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">7. Inverse Dynamics of Muscle Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">8. Force-Dependent Kinematics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">9. Muscle Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">10. The Mechanical Elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">11. Advanced Script Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">12. Finite Element Analysis Interfacing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">13. Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">14. Personalizing Your Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">15. Validation of Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">16. Parameter Studies and Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">17. Trouble Shooting AnyScript Models</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">18. Posture and Movement Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">19. Posture and Movement Prediction</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
@@ -541,9 +542,9 @@ to capture the features of the body’s function&nbsp;that we are looking for.</
           <a href="../legal.html" title="Legal, Trademarks and Copyrights"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="../Troubleshooting_anyscript/intro.html" title="17. Trouble Shooting AnyScript Models"
+          <a href="../Troubleshooting_anyscript/intro.html" title="18. Trouble Shooting AnyScript Models"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1</a> &#187;</li>
  
       </ul>
     </div>

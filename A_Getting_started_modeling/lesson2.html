@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Lesson 2: Adjusting the Human Model &#8212; AnyBody Tutorials v7.1.0</title>
+    <title>Lesson 2: Adjusting the Human Model &#8212; AnyBody Tutorials v7.1.1</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: Starting with a New Model"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">3. Getting Started with Modeling</a> &#187;</li> 
       </ul>
@@ -60,27 +60,22 @@
             
   <div class="section" id="lesson-2-adjusting-the-human-model">
 <h1>Lesson 2: Adjusting the Human Model<a class="headerlink" href="#lesson-2-adjusting-the-human-model" title="Permalink to this headline">¶</a></h1>
-<p>Having defined the environment in the previous lesson, the next step is
-to adjust your human model. The body model is divided into individual
+<p>The next step is to configure the anatomy of your human model. The body model is divided into individual
 body parts: legs, arms, and trunk.</p>
-<p>As we could learn from the chapter <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Getting</span> <span class="n">started</span>: <span class="n">The</span> <span class="n">Model</span>
-<span class="n">Repository</span> <span class="p">(</span><span class="n">AMMR</span><span class="p">)</span> <span class="o">&lt;</span><span class="p">..</span><span class="o">/</span><span class="n">A_Getting_started_AMMR</span><span class="o">/</span><span class="n">intro</span></code>, you can
-now use various kinds of BM (Body Model) statements which can control
-the configuration of your human model. All that you should know is to
-find the proper
-<a class="reference external" href="../A_Getting_started_AMMR/BodyModel.defs.parameters.html">parameters</a>
-and
-<a class="reference external" href="../A_Getting_started_AMMR/BodyModel.defs.constants.html">constants</a>
-for the BM statements.</p>
-<p>For this pedal model, we will adjust the human model such as:</p>
+<p><strong>Body model configuration refers to the selection of limb segments to include, muscle model types,
+scaling algorithms etc. These are done by setting switches known as Body model (BM) parameters.
+The configuration process is described in greater detail in this</strong> <a class="reference external" href="https://anyscript.org/ammr-doc/bm_config/index">document</a></p>
+<div class="section" id="body-model-configuration">
+<h2>Body model configuration<a class="headerlink" href="#body-model-configuration" title="Permalink to this headline">¶</a></h2>
+<p>For this pedal model, you will configure the human model as follows:</p>
 <ul class="simple">
-<li>There will be no muscle in the trunk segment.</li>
-<li>Both the left and the right arm segments will be excluded.</li>
+<li>No muscles in the trunk segment.</li>
+<li>Both the left and the right arms will be excluded.</li>
 <li>The left leg segments will be excluded.</li>
-<li>There will be no muscle in the right leg segments.</li>
+<li>There will be no muscles in the right leg.</li>
 </ul>
-<p>Then you should declare the corresponding BM statements just before
-including the “HumanModel.any” file.</p>
+<p>This is implemented by declaring the corresponding BM statements just before
+the inclusion of the “HumanModel.any” file.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">//#path BM_DRAWSETTINGS_FILE &quot;Model\DrawSettings.any&quot;</span>
 
@@ -105,7 +100,7 @@ including the “HumanModel.any” file.</p>
   <span class="cp">#include</span> <span class="s">&quot;&lt;ANYBODY_PATH_BODY&gt;\HumanModel.any&quot;</span>
 </pre></div>
 </div>
-<p>Try loading the model again. F7 should produce the encouraging message:</p>
+<p>Loading the model (F7 key) should produce the following message:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Model Warning: Study &#39;Main.Study&#39; contains too few kinematic constraints to be kinematically determinate.
 Evaluating model...
 Loaded successfully.
@@ -114,14 +109,14 @@ Elapsed Time : 0.511000
 </div>
 <p>The model view should show you the following picture:</p>
 <p><img alt="ModelView_Human_Adjusted" src="../_images/image19.png" /></p>
-<p>The warning message about the model containing too few kinematic
-constraints means that it is not ready yet to perform any movement. We
-have not made any specifications yet of how everything in the model is
-connected. This will be the topic of <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Making Ends
-Meet</span></a>.</p>
+<p>The message warns about the model containing too few kinematic
+constraints, which means that AnyBody lacks the full information needed to perform movement.</p>
+<p>This is because we are yet to specify how the human and environment are connected in this model.
+This will be the topic of the next lesson.</p>
 <div class="without-title admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last"><strong>Next lesson:</strong> Next up is <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Making Ends Meet</span></a>.</p>
+</div>
 </div>
 </div>
 
@@ -162,21 +157,22 @@ Meet</span></a>.</p>
 <li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Kinetics - Computing Forces</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">4. User interface features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">5. A Study of Studies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">6. Making things move</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">7. Inverse Dynamics of Muscle Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">8. Force-Dependent Kinematics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">9. Muscle Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">10. The Mechanical Elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">11. Advanced Script Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">12. Finite Element Analysis Interfacing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">13. Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">14. Personalizing Your Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">15. Validation of Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">16. Parameter Studies and Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">17. Trouble Shooting AnyScript Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">18. Posture and Movement Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
@@ -227,7 +223,7 @@ Meet</span></a>.</p>
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: Starting with a New Model"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >3. Getting Started with Modeling</a> &#187;</li> 
       </ul>

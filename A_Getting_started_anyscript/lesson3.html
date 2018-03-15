@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Lesson 3: Connecting Segments by Joints &#8212; AnyBody Tutorials v7.1.0</title>
+    <title>Lesson 3: Connecting Segments by Joints &#8212; AnyBody Tutorials v7.1.1</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Defining Segments and Displaying Objects"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">2. Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
@@ -74,7 +74,8 @@ previous lesson: <a class="reference download internal" href="../_downloads/demo
 </ul>
 <p><strong>In AnyBody, we consider joints as being constraints on freedom</strong>. When you create
 two independent segments in AnyBody, they will have 2 x 6 = 12 degrees of freedom
-in total. Joints in AnyBody take away (or constrain) some of these degrees of freedom with the different joint types (eg. revolute, spherical etc.)
+in total.</p>
+<p>Joints in AnyBody take away (or constrain) some of these degrees of freedom with the different joint types (eg. revolute, spherical etc.)
 differing only in the number and type of degrees of freedom they constrain.</p>
 </div>
 <div class="section" id="the-global-reference-frame">
@@ -92,9 +93,10 @@ It is already defined in the model template that you originally used, and is sho
 <p><strong>Just like with segments, you can add point nodes to the global reference frame for attaching joints and muscles. There is however no
 concept of mass associated with this frame.</strong></p>
 <p>You will now add some nodes to the global frame by copy-pasting the following lines into your model (Alternatively use the class inserter
-and then copy-paste the class properties):</p>
+and then copy-paste the class properties alone):</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span> <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">AnyDrawRefFrame DrwGlobalRef = {};</span>
+
 <span class="gr">   AnyRefNode Shoulder = {</span>
 <span class="gr">     sRel = {0,0,0};</span>
 <span class="gr">   };</span>
@@ -113,7 +115,7 @@ and then copy-paste the class properties):</p>
 <span class="p">};</span> <span class="c1">// Global reference frame</span>
 </pre></div>
 </div>
-<p>The first line, “AnyDrawRefFrame …” merely displays the global
+<p>The first line, “<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyDrawRefFrame</span></code> …” merely displays the global
 reference system in the graphics window. The remaining lines define point nodes attached to the global reference
 system.</p>
 <p>Let us scale down the display
@@ -129,7 +131,7 @@ size and change its color to distinguish it from the yellow segments:</p>
 <h2>Creating a revolute joint<a class="headerlink" href="#creating-a-revolute-joint" title="Permalink to this headline">¶</a></h2>
 <p>We can now connect the upper arm to the global reference frame through a shoulder joint.
 For this planar 2-D model, where we simplify the shoulder as a simple revolute joint (also known as a hinge joint).
-We create a new “AnyFolder”, to contain all joints in the model:</p>
+We create a new <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFolder</span></code> object, to contain all joints in the model:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>    <span class="p">};</span> <span class="c1">// LowerArm</span>
   <span class="p">};</span> <span class="c1">// Segs folder</span>
 
@@ -148,33 +150,33 @@ We create a new “AnyFolder”, to contain all joints in the model:</p>
 <span class="gr">}; // Jnts folder</span>
 </pre></div>
 </div>
-<p><strong>The “AnyRevoluteJoint” class creates a revolute joint object connecting two segments.</strong></p>
+<p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyRevoluteJoint</span></code> class creates a revolute joint object connecting two nodes on different segments.</p>
 </div>
 <div class="section" id="relative-folder-paths-why-use-and-in-anyscript">
-<h2>Relative folder paths - Why use ‘.’ and ‘..’ in AnyScript?<a class="headerlink" href="#relative-folder-paths-why-use-and-in-anyscript" title="Permalink to this headline">¶</a></h2>
-<p>The “AnyRevoluteJoint” object named “Shoulder”, needs to know which points on each segment to connect. For this
+<span id="relative-folder-path"></span><h2>Relative folder paths - Why use ‘.’ and ‘..’ in AnyScript?<a class="headerlink" href="#relative-folder-paths-why-use-and-in-anyscript" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyRevoluteJoint</span></code> object named “Shoulder”, needs to know which nodes on each segment to connect. For this
 purpose, we have the lines:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">GroundNode</span> <span class="o">=</span> <span class="p">..</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
 <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">UpperArmNode</span> <span class="o">=</span> <span class="p">..</span><span class="n">Segs</span><span class="p">.</span><span class="n">UpperArm</span><span class="p">.</span><span class="n">ShoulderNode</span><span class="p">;</span>
 </pre></div>
 </div>
-<p><strong>They refer to two nodes that we created earlier, located on the GlobalRef and UpperArm
+<p><strong>They refer to two nodes that we created earlier, located on the “GlobalRef” and “UpperArm”
 segments. Notice the two dots in front of the names. They signify that
-the GlobalRef and Segs folders are defined two levels outside the folder
-where we are in the Model Tree.</strong></p>
-<p>If you neglected the two dots, then AnyBody would search for the two objects in the Shoulder folder and fail
+the “GlobalRef” and “Segs” folders are defined two levels outside the folder
+we are writing into, in the model tree.</strong></p>
+<p>If you neglected the two dots, then AnyBody would search for the two objects in the “Shoulder” folder and fail
 to find them. This “dot” system is quite similar to the system you may
 know from directory structures in Dos, Windows, Unix, or just about any
 other computer operating system.</p>
 </div>
 <div class="section" id="reference-objects-and-the-symbol">
-<h2>Reference objects and the ‘&amp;’ symbol<a class="headerlink" href="#reference-objects-and-the-symbol" title="Permalink to this headline">¶</a></h2>
+<span id="reference-objects"></span><h2>Reference objects and the ‘&amp;’ symbol<a class="headerlink" href="#reference-objects-and-the-symbol" title="Permalink to this headline">¶</a></h2>
 <p>You can see also see that the Shoulder point on GlobalRef has been given the local name of “GroundNode”.
 This means that, within the current folder, we can simply refer to
 the point as “GroundNode” instead of the longer external reference.</p>
-<p><strong>You will also realize that GroundNode is merely a reference (a pointer) to GlobalRef.Shoulder
+<p><strong>You will also realize that “GroundNode” is merely a reference (a pointer) to “GlobalRef.Shoulder”
 rather than a copy of it. We denote this by the</strong> <code class="docutils literal"><span class="pre">&</span></code> <strong>sign.</strong></p>
-<p>If GlobalRef.Shoulder moves around, Shoulder.GroundNode will keep up with those changes in position. Hit F7 to reload the model again to make
+<p>If “Main.ArmModel.GlobalRef.Shoulder” moves around, “Main.ArmModel.Jnts.Shoulder.GroundNode” will keep up with those changes in position. Hit F7 to reload the model again to make
 sure that the definition is correct.</p>
 </div>
 <div class="section" id="customizing-the-revolute-joint">
@@ -187,8 +189,8 @@ sure that the definition is correct.</p>
 By default, these coordinate systems are parallel to the segment frame. However, the relative orientations
 between these two frames can be altered by the user. Check the</strong> <code class="docutils literal"><span class="pre">ARel</span></code> <strong>property of and AnyRefNode
 object in the AnyScript Reference Manual for more information.</strong></p>
-<p>The AnyBody system is always three-dimensional, even when our model is
-two dimensional. The property Axis = z simply specifies that both
+<p>The AnyBody Modeling System is always three-dimensional, even when our model is
+two dimensional. The property <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span></code> simply specifies that both
 segments connected by that joint will rotate about the z axis of two nodes forming the joint.</p>
 <p>In other words, the z-axes of the nodes on either connected segment will
 always be parallel, and so the mechanism will rotate in the plane
@@ -232,7 +234,7 @@ of the pertinent nodes on the upper arm and the forearm, but in a
 complex model, this can be difficult. So we use “Absolute folder paths”.</p>
 </div>
 <div class="section" id="absolute-folder-path-and-some-useful-tips">
-<h2>Absolute folder path (and some useful tips)<a class="headerlink" href="#absolute-folder-path-and-some-useful-tips" title="Permalink to this headline">¶</a></h2>
+<span id="absolute-folder-path"></span><h2>Absolute folder path (and some useful tips)<a class="headerlink" href="#absolute-folder-path-and-some-useful-tips" title="Permalink to this headline">¶</a></h2>
 <p>Place the cursor just before the semicolon in the line that reads <code class="docutils literal"><span class="pre">AnyRefNode &UpperArmNode = ;</span></code>.
 Open the model tree where the UpperArm folder should expand as shown below.</p>
 <p><img alt="Model tree ElbowNode" src="../_images/image15.png" /></p>
@@ -254,8 +256,8 @@ annoying error message when we reload the model:</p>
 constraints to be kinematically determinate.
 </pre></div>
 </div>
-<p>The explanation is that we have connected the model, but we have not
-specified its position yet. The shoulder and elbow joints can still take any
+<p>The explanation is that we have created joints, but we have not
+specified the joint posture yet. The shoulder and elbow joints can still take any
 angular position, so there are two degrees of freedom whose kinematic
 states need to specified before AnyBody can solve for the mechanism’s
 kinematics. This is taken care of by kinematic drivers.</p>
@@ -305,21 +307,22 @@ kinematics. This is taken care of by kinematic drivers.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">4. User interface features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">5. A Study of Studies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">6. Making things move</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">7. Inverse Dynamics of Muscle Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">8. Force-Dependent Kinematics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">9. Muscle Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">10. The Mechanical Elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">11. Advanced Script Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">12. Finite Element Analysis Interfacing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">13. Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">14. Personalizing Your Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">15. Validation of Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">16. Parameter Studies and Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">17. Trouble Shooting AnyScript Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">18. Posture and Movement Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
@@ -370,7 +373,7 @@ kinematics. This is taken care of by kinematic drivers.</p>
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Defining Segments and Displaying Objects"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >2. Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>

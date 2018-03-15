@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Lesson 4: Imparting movement with Drivers &#8212; AnyBody Tutorials v7.1.0</title>
+    <title>Lesson 4: Imparting movement with Drivers &#8212; AnyBody Tutorials v7.1.1</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Connecting Segments by Joints"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">2. Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
@@ -63,7 +63,7 @@
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Here’s an AnyScript file to start on if you have not completed the
-previous lesson: <a class="reference download internal" href="../_downloads/demo.lesson4.any" download=""><code class="xref download docutils literal"><span class="pre">*demo.lesson4.any*</span></code></a>.</p>
+previous lesson: <a class="reference download internal" href="../_downloads/demo.lesson4.any" download=""><code class="xref download docutils literal"><span class="pre">demo.lesson4.any</span></code></a>.</p>
 </div>
 <p>If you have completed the three previous lessons, you should have a
 model with an upper arm grounded at the shoulder joint and connected to
@@ -73,25 +73,25 @@ a forearm by the elbow. What we want to do now is to make the arm move.</p>
 the inverse dynamics technique, where we prescribe motion first and then deduce
 the values of muscle forces which produce the motion.</strong></p>
 <div class="section" id="measures-drivers">
-<h2>Measures &amp; drivers<a class="headerlink" href="#measures-drivers" title="Permalink to this headline">¶</a></h2>
+<span id="measures-and-drivers"></span><h2>Measures &amp; drivers<a class="headerlink" href="#measures-drivers" title="Permalink to this headline">¶</a></h2>
 <p>We need to specify the motion for two degrees of freedom (DOF) of our arm mechanism, because it has hinge joints at the
 shoulder and at the elbow.</p>
 <ul class="simple">
-<li><strong>Measures</strong> are AnyBody objects which literally measure the value of a specific DOF within the model.</li>
-<li><strong>Drivers</strong> are AnyBody objects which constrain the value of a measure to a constant value or a mathemtical function of time.</li>
+<li><strong>Measures</strong> are AnyBody objects which literally measure the value of a user-specified DOF within the model.</li>
+<li><strong>Drivers</strong> are AnyBody objects which constrain the value of a measure to a constant value or a mathematical function of time. Drivers essentially assemble and impart motion to your mechanisms.</li>
 </ul>
 <p>In this model, we therefore need two drivers, to specify motions for the two DOF. We therefore also need two measures,
 which we will chose to be measures of the shoulder and elbow joint angle values.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>There is no unique way to choose measures that need to be driven (i.e. constrained). <strong>What’s important is that
-the measures represent two independent DOFs of the model.</strong> For example, in this case, we could have used the X and Y coordinates
+<p><strong>It is only important that the constrained measures represent independent DOFs of the model. The exact measures themselves are your choice</strong>.</p>
+<p>Eg: For this arm model with 2 remaining DOFs, we can either apply motion drivers to the shoulder (1 DOF) and elbow joints (+1 DOF) OR the X (1 DOF) and Y (+1 DOF) coordinates
 of the end-point of the ForeArm segment (the wrist).</p>
-<p class="last"><strong>Creating driver constraints for more than 2 DOFs in this case would also over-constrain the model and lead to errors.</strong></p>
+<p class="last">Creating more than 2 driver constraints will over-constrain the model and lead to errors.</p>
 </div>
 </div>
-<div class="section" id="creating-an-constant-velocity-motion-driver">
-<h2>Creating an constant velocity motion driver<a class="headerlink" href="#creating-an-constant-velocity-motion-driver" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="creating-a-constant-velocity-joint-motion">
+<span id="anykineqsimpledriver"></span><h2>Creating a constant velocity joint motion<a class="headerlink" href="#creating-a-constant-velocity-joint-motion" title="Permalink to this headline">¶</a></h2>
 <p>Let’s create a new folder and define two drivers:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">};</span> <span class="c1">// Jnts folder</span>
 
@@ -112,14 +112,15 @@ of the end-point of the ForeArm segment (the wrist).</p>
 </pre></div>
 </div>
 <p>The folder contains two objects named “ShoulderMotion” and “ElbowMotion”, belonging to the
-“AnyKinEqSimpleDriver” class.</p>
-<p>An “AnyKinEqSimpleDriver” constrains the position of given measures to a given value
-at time = 0, and changes this position at constant velocity thereon.</p>
-<p>These measures supplied to these drivers -  drivers are attached to joints,
-and therefore they drive joint rotations. But the same driver class
-could also be used to drive translations, for instance the cartesian
-position of a point.</p>
-<p>The lines</p>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinEqSimpleDriver</span></code> class.</p>
+<p><strong>All AnyBody drivers only work on the measures that are supplied to them. The</strong> <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinEqSimpleDriver</span></code> <strong>class used in this case, constrains
+the supplied measure’s positions to a given value at time = 0 (“DriverPos”) and changes this position at constant velocity thereon (“DriverVel”).</strong></p>
+<p>Since the measures supplied to the above drivers are rotational joints, the drivers produce joint rotation.
+But the same driver class could be used to drive translations, for instance a sliding joint.</p>
+<p>The following lines assign the shoulder and elbow joint angle measures to the respective drivers.
+Standard AnyBody joints created using classes such as <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyRevoluteJoint</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnySphericalJoint</span></code> etc. automatically function as measures.
+More customized measures can be created using classes such as <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinLinear</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinRotational</span></code> etc.
+(see <a class="reference internal" href="../The_mechanical_elements/lesson4.html"><span class="doc">this lesson</span></a>).:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -127,120 +128,66 @@ position of a point.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Elbow</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>are the ones that affiliate the two drivers with the shoulder and elbow
-joints respectively. They are constructed the same way as the joint
-definition in <a class="reference internal" href="lesson3.html"><span class="doc">*Lesson 3*</span></a> in the sense that a local
-variable, Jnt, is declared and can be used instead of the longer global
-name if we need to reference the joint somewhere else inside the driver.
-Notice also the use of the reference operator ‘&amp;’ that causes the local
-variable to be a pointer to the global one rather than a copy. It means
-that if some property of the globally defined joint changes, then the
-local version changes with it.</p>
-<p>The specifications of DriverPos and DriverVel are&nbsp;the starting value of
-the driver and the constant velocity, respectively.</p>
+<p>Since the measures constrained by these drivers are angles, the units
+of “DriverPos” and “DriverVel” are radians and radians/sec respectively.</p>
+<p>Just like in <a class="reference internal" href="lesson3.html#reference-objects"><span class="std std-ref">Lesson 3</span></a>, these lines also
+use the reference operator <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">&amp;</span></code> to point the local variable “Jnt” towards the
+actual shoulder/elbow joint objects existing in a different folder</p>
+<p>Since “Jnt” is a reference, it will automatically update as the joint angles change during motion.</p>
+</div>
+<div class="section" id="running-a-kinematic-simulation">
+<h2>Running a kinematic simulation<a class="headerlink" href="#running-a-kinematic-simulation" title="Permalink to this headline">¶</a></h2>
+<p>Re-load the model by hitting F7, and you should see the message “Loaded successfully” with NO
+warning messages about the lack of kinematic constraints. You’re now ready to get this model moving.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Since these drivers drive angles, the units are radians and
-radians/sec.</p>
+<p>The object named “ArmModelStudy” (of <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyBodyStudy</span></code> class) creates simulations to run your model through. “ArmModelStudy”
+contains a reference object (created with a <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">&amp;</span></code>) pointing to the “ArmModel” folder.</p>
+<p class="last">This allows you to create
+multiple <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyBodyStudy</span></code> objects, each of which contains a reference to same mechanical model, and a second reference object pointing to a folder with motion drivers,
+that are specific to that study.</p>
 </div>
-<p>Try loading the model again by hitting F7. If you did not mistype
-anything, you should get the message “Loaded successfully” and no
-warning messages about lacking kinematic constraints this time.</p>
-</div>
-<div class="section" id="running-simulations-making-things-move">
-<h2>Running simulations - making things move!<a class="headerlink" href="#running-simulations-making-things-move" title="Permalink to this headline">¶</a></h2>
-<p>This is good news because you are now actually ready to see the model
-move. If you look closer at the model tree window, it has a second tab
-labelled “Operations”. This is the place where the AnyBody system places
-your studies, and from this window, you can execute them, i.e., start
-analyses and calculations.</p>
-<p><img alt="Operations ArmStudy" src="../_images/image24.png" /></p>
-<p>Try expanding the ArmStudy root. You will get&nbsp;a list of the study types
-that the system can perform. “Study” is a common name for operations you
-can perform on a model. Try clicking the KinematicAnalysis study. With
-the buttons in the Operations window, you can now execute various types
-of analysis.</p>
-<p>The Execute toolbar above the operations tree contains three buttons
-<img alt="Model tree toolbar Execute buttons" src="../_images/image33.png" />:</p>
-<ul class="simple">
-<li><strong>Run operation</strong>: Starts or pauses the chosen operation. Shortcut
-F5.</li>
-<li><strong>Step operation</strong>: Advances to next step of operation, typically a
-time step. Shortcut F6.</li>
-<li><strong>Stop operation</strong>: Sets the operation back to its initial position.
-You must reset before you start a new analysis that was previously
-aborted. Shortcut F4</li>
-</ul>
+<p><strong>You must now run the “Main.ArmModelStudy.Kinematics” operation. If you need to refer back to how this is done, look at</strong>
+<a class="reference internal" href="../A_Getting_started/lesson2.html#running-analysis"><span class="std std-ref">this prior tutorial</span></a>.</p>
+<p>Since we have no muscles so far, a kinematic analysis is really all that
+makes sense. With a kinematic analysis, you can investigate positions, velocities, and
+accelerations. But force, power, energy or other such things are not computed. These properties are calculated by the
+“InverseDynamics” study.</p>
 </div>
 <div class="section" id="replaying-a-simulation">
 <h2>Replaying a simulation<a class="headerlink" href="#replaying-a-simulation" title="Permalink to this headline">¶</a></h2>
-<p>All these functions are also available from the main frame toolbar
-<img alt="Execute toolbar" src="../_images/image43.png" /> and the menu Operation.</p>
-<p>Now, try your luck with the <strong>KinematicAnalysis</strong> study and the Run
-button. What should happen is that the model starts to move as the
-system runs through 101 timesteps of the study.</p>
+<p>While the analysis is running, you can see the model move in the Model View window.</p>
 <p>When the analysis in finished, you can use the replay panel to replay
-the model as you do in a movie player.</p>
+the motion as you would in a movie player.</p>
 <p><img alt="Replay toolbar" src="../_images/image53.png" /></p>
-<p>Since we have no muscles so far, kinematic analysis is really all that
-makes sense. A kinematic analysis is pure motion. The model moves, and
-you can subsequently investigate positions, velocities, and
-accelerations. But no force, power, energy or other such things are
-computed. These properties are calculated by the
-<strong>InverseDynamicAnalysis</strong>.</p>
 </div>
-<div class="section" id="fetching-simulation-results">
-<h2>Fetching simulation results<a class="headerlink" href="#fetching-simulation-results" title="Permalink to this headline">¶</a></h2>
-<p>The analysis has 101 time steps corresponding to a division of the total
-analysis time into 100 equal pieces. The total time span simulated in
-the analysis is 1 sec. These are default values because we did not
-specify them when we defined the ArmModelStudy in the AnyScript model.
-If you want more or fewer time steps or a longer or shorter analysis
-interval, all you have to do is to set the corresponding property in the
-ArmModelStudy definition. When you click “Run”, all the time steps are
-executed in sequence, and the mechanism animates in the graphics window.</p>
-<p>So far, the model was merely a two-bar mechanism moving at constant
-joint angular velocities. However, the system has actually computed
-information that might be interesting to investigate. <strong>All the analysis
-results are available in the ArmModelStudy branch of the tree view</strong>.</p>
-<p>Directly under the ArmModelStudy branch, you find the <strong>Output branch</strong>
-where all computed results are stored. Notice that the Output branch
-contains the same folders we defined in the AnyScript model: GlobalRef,
-Segs, and so on. In the Segs folder you find ForeArm, and in that a
-branch for each of the nodes we defined on the arm. Try expanding the
-branch for the HandNode. It contains the field ‘r’ which is the position
-vector of the node. We might want to know the precise position of the
-HandNode at each time in the analysis, for instance, if we were doing an
-ergonomic study and wanted to know if the hand had collided with
-anything on its way.</p>
-<p>If you double-click the ‘r’ node, the instantaneous position vector
-(depending on where your replay slider is) of the hand node for each
-time step is dumped in the message window at the bottom of the screen.</p>
+<div class="section" id="viewing-simulation-outputs">
+<h2>Viewing simulation outputs<a class="headerlink" href="#viewing-simulation-outputs" title="Permalink to this headline">¶</a></h2>
+<p>If you look at the “ArmModelStudy” object in the AnyScript window, start/end times and the
+number of simulation steps (time frames) are not specified. These are actually optional parameters
+when using the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyBodyStudy</span></code> class, which by default creates an analysis of 100 steps and spanning 1 second.</p>
+<p><strong>To view the output variables of the study that was run, open the “ArmModelStudy” folder in the model tree and expand the “Output” folder.</strong></p>
+<p>Since the “ArmModelStudy” contained a reference object (“Model”) pointing to the “ArmModel” folder, the “Output”
+folder contains the instantaneous values of all the time varying variables (including variables in sub-folders) within “ArmModel”.</p>
+<p>In “ArmModelStudy.Output.Model.Segs.ForeArm” in the model tree, you find all the nodes on the segment. Within the “HandNode”
+sub-folder, you will find <code class="docutils literal"><span class="pre">r</span></code> - the position vector of the node. Clicking on <code class="docutils literal"><span class="pre">r</span></code>
+shows the hand position vector (w.r.t global) for each time instant in the Information Window.</p>
 </div>
 <div class="section" id="plotting-simulation-results">
 <h2>Plotting simulation results<a class="headerlink" href="#plotting-simulation-results" title="Permalink to this headline">¶</a></h2>
-<p>However, we often prefer to plot our results. With the default layout,
-this feature is located in the same window as Model View under the tab
-called “Chart 1”. You can also open it from the pull-down menus by
-choosing View -&gt; Charts -&gt; …</p>
-<p>This gives you a new window structured just like the editor window with
-a tree view to the left, but with an empty field for graphing results.</p>
-<p>The tree in this window is much like the tree in the editor window
-except that some of the data has been filtered out so that you mainly
-see the parts of the tree that are relevant in terms of results or
-output. You can expand the tree in the chart window through ArmStudy and
-Output until you come to the HandNode. When you pick the property ‘r’,
-you get three curves corresponding to the movement of the three
-Cartesian coordinates of this node during the simulated time period. Try
-holding the mouse pointer over one of the curves for a moment. A small
-label with the global name of the data of the curve appears. All data
-computed in AnyBody can be visualized this way.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The chart view contains a filtered down version of the model tree, which only displays “AnyBodyStudy” objects. This
+tree can also be used for plotting purposes.</p>
+</div>
+<p>Let us say, you want to plot the position vector of the hand node over the course of movement.</p>
+<p>You need to find and plot the variable “…..ForeArm.HandNode.r” in the chart view. If you need help with the chart view,
+refer to <a class="reference internal" href="../A_Getting_started/lesson3.html#chart-view"><span class="std std-ref">this prior tutorial on plotting</span></a>.</p>
+<p>If you’re having trouble finding the correct output variable in the chart view’s filtered model tree, refer to the figure below.</p>
 <p><img alt="Chart view HandNode" src="../_images/image61.png" /></p>
-<p>So far, we have only the kinematic data to look at. Before we can start
-the real biomechanics, we must add some muscles to the model.</p>
 <div class="without-title admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> This is the subject of <a class="reference internal" href="lesson5.html"><span class="doc">*Lesson 5: Definition of muscles and external forces*</span></a>.</p>
+<p class="last"><strong>Next lesson:</strong> This is the subject of <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Definition of muscles and external forces</span></a>.</p>
 </div>
 </div>
 </div>
@@ -284,21 +231,22 @@ the real biomechanics, we must add some muscles to the model.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">4. User interface features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">5. A Study of Studies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">6. Making things move</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">7. Inverse Dynamics of Muscle Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">8. Force-Dependent Kinematics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">9. Muscle Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">10. The Mechanical Elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">11. Advanced Script Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">12. Finite Element Analysis Interfacing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">13. Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">14. Personalizing Your Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">15. Validation of Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">16. Parameter Studies and Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">17. Trouble Shooting AnyScript Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">18. Posture and Movement Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
@@ -349,7 +297,7 @@ the real biomechanics, we must add some muscles to the model.</p>
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Connecting Segments by Joints"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.0</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.1.1</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >2. Getting started: AnyScript Programming</a> &#187;</li> 
       </ul>
