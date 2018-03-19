@@ -91,7 +91,7 @@ the so-called reaction forces.</p>
 arm model, <a class="reference download internal" href="../_downloads/arm2d.any" download=""><code class="xref download docutils literal"><span class="pre">arm2d.any</span></code></a>, and the slider crank
 mechanism,
 <a class="reference download internal" href="../_downloads/Demo.SliderCrank3D.any" download=""><code class="xref download docutils literal"><span class="pre">demo.SliderCrank3D.any</span></code></a>. In both
-case, you will now see forces being calculated, i.e. forces that a
+case, you will now see forces being calculated, i.e. forces that are
 non-zero in the output. But please also notice how the slider crank
 study is defined with simpler AnyMechStudy whereas the arm model uses
 AnyBodyStudy.</p>
@@ -100,7 +100,7 @@ failure, because it cannot balance the mechanism. This is because the
 AnyMechStudy does not recognize the muscles as unknown forces. It
 regards them as applied (known) forces (which will be zero because their
 value is not defined anywhere) and therefore there are no forces to
-balance the moments exerted about the elbow and should joints by the
+balance the moments exerted about the elbow and shoulder joints by the
 external load.</p>
 <p>Much more details about inverse dynamics of musculoskeletal systems are
 found <a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html"><span class="doc">the special tutorial on the

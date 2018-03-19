@@ -121,13 +121,15 @@ statement,&nbsp;and change the cylinder parameters as shown below:</p>
 <span class="gr">      Length = 0.4;</span>
 <span class="gr">      //CapRatio = 0.1;</span>
 <span class="gr">      //CapRatio2 = 0.1;</span>
+<span class="gr">      AnyDrawParamSurf drw = {};</span>
 <span class="gr">    };</span>
   <span class="p">};</span>
 
 <span class="p">};</span>  <span class="c1">// Global reference frame</span>
 </pre></div>
 </div>
-<p>Most of this should be self explanatory. However, please notice that the
+<p>Most of this should be self explanatory. However, notice that we inserted a
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyDrawParamSurf</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{};</span></code> to visualize the surface. Also please notice that the
 insertion point of the cylinder is at {0, 0, 0.2} corresponding exactly
 to half of the length of the cylinder of 0.4. This causes the cylinder
 to be inserted symmetrically about the xy plane as illustrated below:</p>
@@ -147,6 +149,7 @@ interesting:</p>
     <span class="n">Length</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">;</span>
     <span class="c1">//CapRatio = 0.1;</span>
     <span class="c1">//CapRatio2 = 0.1;</span>
+    <span class="kt">AnyDrawParamSurf</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="p">};</span>
 <span class="p">};</span>
 </pre></div>

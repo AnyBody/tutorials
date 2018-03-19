@@ -146,7 +146,7 @@ a rather big distance between the knee center nodes of thigh and shank.</p>
 to the model. We need the two STL files
 <a class="reference download internal" href="../_downloads/simplefemoral.stl" download=""><code class="xref download docutils literal"><span class="pre">simplefemoral.stl</span></code></a> and
 <a class="reference download internal" href="../_downloads/simpletibial.stl" download=""><code class="xref download docutils literal"><span class="pre">simpletibial.stl</span></code></a>. First, we define the
-femoral head as an AnySurfSTL inside the KneeCenter and add an
+femoral condyles as an AnySurfSTL inside the KneeCenter and add an
 AnyDrawSurf object inside to also be able to see the geometry:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Thigh</span> <span class="o">=</span> <span class="p">{</span>
       <span class="n">r0</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
@@ -193,7 +193,7 @@ AnyDrawSurf object inside to also be able to see the geometry:</p>
 </pre></div>
 </div>
 <p>The geometry of the tibial plateau would be a little bit misplaced if we
-would just add it the same way as the femoral head. To adjust it to the
+would just add it the same way as the femoral condyles. To adjust it to the
 right position, we add a new node SurfSTLCenter centered at the right
 position and define the AnySurfSTL inside this node:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Shank</span> <span class="o">=</span> <span class="p">{</span>
