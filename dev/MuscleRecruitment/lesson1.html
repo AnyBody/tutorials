@@ -70,7 +70,7 @@ which set of muscle forces will balance a given external load. If we
 take the trouble of setting up the system of equilibrium equations for a
 musculoskeletal system by hand, then we can organize them on the
 following form:</p>
-<div class="math notranslate">
+<div class="math notranslate nohighlight">
 \[\mathbf{Cf}=\mathbf{r}\]</div>
 <p>where <strong>f</strong> is a vector of muscle and joint forces, <strong>r</strong> is a vector
 representing the external forces and inertia forces, and <strong>C</strong> is a
@@ -93,7 +93,7 @@ muscles tend to be recruited systematically, so there is some criterion
 behind the central nervous system’s choice of muscle activations.
 Mathematically we can formulate the choice between the infinitely many
 solutions as an optimization problem in the following way:</p>
-<div class="math notranslate">
+<div class="math notranslate nohighlight">
 \[\begin{split}\begin{equation*}
 \begin{aligned}
 &amp; {\text{minimize}}
@@ -141,11 +141,11 @@ muscle force:</p>
 <p><img alt="Chart view M1.fm" src="../_images/image419.png" /></p>
 <p>Obviously, AnyBody has solved the equilibrium equations and has
 determined what the muscle force is at every instant of the simulation
-time. But which objective function, <span class="math notranslate">\(G\)</span>, has the system used?</p>
+time. But which objective function, <span class="math notranslate nohighlight">\(G\)</span>, has the system used?</p>
 <p>If we review this problem we can see that it has only a single degree of
 freedom and only a single muscle to carry the load. This actually means
 that the equilibrium equations are determinate (one degree of freedom
-and one muscle) and in this case it does no matter what <span class="math notranslate">\(G\)</span> is, so there
+and one muscle) and in this case it does no matter what <span class="math notranslate nohighlight">\(G\)</span> is, so there
 is little we can do in the settings to influence the result of the
 analysis. The result is given by equilibrium alone and there is no other
 muscle force than the one you see in the graph that would be able to
