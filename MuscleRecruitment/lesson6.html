@@ -137,37 +137,37 @@ Obviously, the solution of an infinity-powered objective function
 requires some additional mathematical tricks. The trick is to redefine
 the muscle recruitment problem to the following form:</p>
 <p>Minimize</p>
-<div class="math notranslate">
+<div class="math notranslate nohighlight">
 \[\beta\]</div>
 <p>Subject to</p>
-<div class="math notranslate">
+<div class="math notranslate nohighlight">
 \[\frac{f_{i}^{\left( M \right)}}{N_{i}} \leq \beta,\ \ for\ i = 1..n^{(M)}\]</div>
-<div class="math notranslate">
+<div class="math notranslate nohighlight">
 \[\mathbf{\text{Cf}} = \mathbf{r}\]</div>
-<div class="math notranslate">
+<div class="math notranslate nohighlight">
 \[f_{i}^{(M)} \geq 0,\ \ for\ i = 1..n^{(M)}\]</div>
 <p>It is easy to see why this minimizes the maximum muscle activity: The
-only way to reduce the objective function, <span class="math notranslate">\(\beta\)</span>, and to honor the
+only way to reduce the objective function, <span class="math notranslate nohighlight">\(\beta\)</span>, and to honor the
 constraints is to simultaneously reduce all the muscle activities. The
 question now is: what happens if we add a quadratic auxiliary term to
-the objective function, <span class="math notranslate">\(\beta\)</span>, this way:</p>
+the objective function, <span class="math notranslate nohighlight">\(\beta\)</span>, this way:</p>
 <p>Minimize</p>
-<div class="math notranslate">
+<div class="math notranslate nohighlight">
 \[\beta + \varepsilon\sum_{i}^{}\left( \frac{f_{i}^{(M)}}{N_{i}} \right)^{2}\]</div>
 <p>Subject to</p>
-<div class="math notranslate">
+<div class="math notranslate nohighlight">
 \[\frac{f_{i}^{\left( M \right)}}{N_{i}} \leq \beta,\ \ for\ i = 1..n^{(M)}\]</div>
-<div class="math notranslate">
+<div class="math notranslate nohighlight">
 \[\mathbf{\text{Cf}} = \mathbf{r}\]</div>
-<div class="math notranslate">
+<div class="math notranslate nohighlight">
 \[f_{i}^{(M)} \geq 0,\ \ for\ i = 1..n^{(M)}\]</div>
-<p>where <span class="math notranslate">\(\varepsilon\)</span> is the weight we use to tune the influence of the quadratic
+<p>where <span class="math notranslate nohighlight">\(\varepsilon\)</span> is the weight we use to tune the influence of the quadratic
 term.</p>
 <p>We can do this in AnyBody by choosing the auxiliary form of the min/max
 recruitment criterion:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">Type</span> <span class="o">=</span> <span class="gr">MR\_MinMaxAux;</span>
+        <span class="n">Type</span> <span class="o">=</span> <span class="gr">MR_MinMaxAux;</span>
         <span class="gr">AuxQuadraticTerm.Weight = 1</span><span class="p">;</span>
     <span class="p">};</span>
 </pre></div>
@@ -177,10 +177,10 @@ recruitment criterion:</p>
 <p>This appears to produce a combination of soft onset and offset of
 muscles together with a clearly defined envelope on which several
 muscles cooperate evenly to carry the load. Please notice, however, that
-the effect of the Weight property, i.e. the <span class="math notranslate">\(\varepsilon\)</span> in the objective
+the effect of the Weight property, i.e. the <span class="math notranslate nohighlight">\(\varepsilon\)</span> in the objective
 function, is somewhat problem dependent because the size of the sum that
 it multiplies depends on the number of muscles in the system while the
-size of the <span class="math notranslate">\(\beta\)</span> variable remains between 0 and 1 for normal problems. So
+size of the <span class="math notranslate nohighlight">\(\beta\)</span> variable remains between 0 and 1 for normal problems. So
 models with many muscles would typically require a smaller value of:math:<cite>varepsilon</cite>.</p>
 <p>From what we have seen so far, the MinMaxAux criterion looks ideal from
 a mathematical and physiological point-of-view. Unfortunately, there is

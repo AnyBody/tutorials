@@ -122,7 +122,7 @@ linearly elastic behavior with a slack length. Ligament elasticity is
 generally not linear, so we need something extra to be able to specify
 nonlinear behavior. The mathematical background for the
 AnyLigamentModelPol is that it takes the form:</p>
-<p><span class="math notranslate">\(F = c_0 + c_1 \epsilon + c_2 \epsilon^2 + c_4 \epsilon^4\)</span></p>
+<p><span class="math notranslate nohighlight">\(F = c_0 + c_1 \epsilon + c_2 \epsilon^2 + c_4 \epsilon^4\)</span></p>
 <p>As you can see, it is a fourth order polynomial with the third order
 term missing. The 0’th order coefficient accounts for the slack length,
 and the first order coefficient accounts for the slope when the model is
@@ -130,7 +130,7 @@ linear. In the
 presence of the nonlinear terms it becomes very difficult to interpret
 the significance of each term. For this reason, the nonlinearity in the
 model is defined by two parameters with an easier interpretation than
-the above-mentioned <span class="math notranslate">\(c_2\)</span> and <span class="math notranslate">\(c_4\)</span>.</p>
+the above-mentioned <span class="math notranslate nohighlight">\(c_2\)</span> and <span class="math notranslate nohighlight">\(c_4\)</span>.</p>
 <p>These two parameters are named a0 and a1, respectively. The first
 parameter, a0, defines the slope of the curve at slack length. If you
 study the curve above, you can see that it has a sharp kink at the slack

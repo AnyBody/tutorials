@@ -69,7 +69,7 @@ can very easily drive the pendulum using this DoF.</p>
 <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code>. With Pendulum.any open in an editor and the model loaded,
 please place the cursor in the editor window just below then ending
 brace of the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnySeg</span> <span class="n">Pendulum</span></code> definition. Then click the Classes tab on
-the left-hand side of the editor window. Unfold the class list and
+the right-hand side of the editor window. Unfold the class list and
 scroll down to find <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code> . Right-click and insert an instance at
 the cursor position:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Pendulum</span> <span class="o">=</span> <span class="p">{</span>
@@ -129,7 +129,7 @@ a polynomial has been fitted.</p>
 <span class="p">{</span>
     <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">.</span><span class="n">Joint</span><span class="p">;</span>
     <span class="gr">AnyFunPolynomial DriverFun = {</span>
-<span class="gr">        PolyCoef = {{0, 5, -0.4}}</span>
+<span class="gr">        PolyCoef = {{0, 5, -0.4}};</span>
 <span class="gr">    };</span>
 <span class="p">};</span>
 </pre></div>
@@ -140,7 +140,7 @@ driving only has one degree of freedom, so the matrix only has one row,
 but it still has to be defined as a matrix rather than a vector, i.e.
 with double braces at each end. The polynomial coefficients then come in
 increasing order and define the following driver function:</p>
-<div class="math notranslate">
+<div class="math notranslate nohighlight">
 \[\textrm{Joint angle} = 0 + 5t - 0.4t^2 \textrm{[rad]}\]</div>
 <p>To get higher polynomial orders, simply add more terms to the vector.</p>
 <p>Now try loading the model. If you have followed the instructions, you

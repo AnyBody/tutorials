@@ -269,7 +269,7 @@ reference frame in the object:</p>
 </pre></div>
 </div>
 <p>The marker coordinates in the C3D file are recorded in the laboratory
-coordinate system, which we chall assume is our global reference frame.
+coordinate system, which we shall assume is our global reference frame.
 Driving from <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">GlobalRef</span></code> is default in linear measures, so we need not
 mention <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">GlobalRef</span></code> explicitly in the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinDriverMarker</span></code> object.</p>
 <p>We are going to drive the point directly by means of the interpolation
@@ -329,7 +329,7 @@ following error message:</p>
 <p>It is time to think back to the concept of degrees-of-freedom, DoF. In the
 beginning of the tutorial, we established that the free pendulum has one DoF.
 But the marker trajectory has three coordinates and therefore wants to drive
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">P1</span></code> of the pendulum in <span class="math notranslate">\(x\)</span>, <span class="math notranslate">\(y\)</span> and <span class="math notranslate">\(z\)</span>, i.e. two DoFs more
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">P1</span></code> of the pendulum in <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span>, i.e. two DoFs more
 than we have available.</p>
 <p>There are two possible solutions to this problem. Either we pick only one of the
 directions given by the marker and let the revolute joint decide the rest, or we
