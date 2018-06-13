@@ -131,7 +131,7 @@ SetInitialConditions operation, you should get the following picture:</p>
 the movement. The arm flexes about the origin of the red reference
 frame. If you try to run the InverseDynamicAnalysis, you will get an
 error:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ERROR: Muscle recruitment analysis failed, simplex solver reports that solution does not satisfy all constraints.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ERROR(OBJ1) :   C:/../MuscleDemo.Ini.any(43)  :   MyStudy.InverseDynamics  :  No solution found :  There are fewer unknown forces (muscles and reactions) than dynamic equations.
 </pre></div>
 </div>
 <p>This is because the model does not have any muscles to balance the arm
