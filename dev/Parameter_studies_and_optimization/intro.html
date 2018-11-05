@@ -60,11 +60,6 @@
             
   <div class="section" id="parameter-studies-and-optimization">
 <h1>Parameter Studies and Optimization<a class="headerlink" href="#parameter-studies-and-optimization" title="Permalink to this headline">¶</a></h1>
-<div class="without-title admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last"><strong>Old tutorial:</strong>
-This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
-</div>
 <p>The AnyBody Modeling System has a nice mechanism that allows you to
 perform investigations of the model’s reaction to its parameters and
 even to automatically find the set of parameters that causes a given
@@ -82,12 +77,14 @@ optimization you can find the movement pattern that maximizes, for
 instance,&nbsp;the jump height given the body weight and limitations on
 muscular strength.</li>
 </ul>
-<img alt="../_images/image14.gif" src="../_images/image14.gif" />
-<p><cite>Parameter study: Metabolic efficiency of a bicycle as a function of
-seat height and seat horizontal position.</cite></p>
+<blockquote>
+<div><img alt="../_images/image14.gif" src="../_images/image14.gif" />
+<p>Parameter study: Metabolic efficiency of a bicycle as a function of
+seat height and seat horizontal position.</p>
+</div></blockquote>
 <p>This functionality is provided through two complementary
 <a class="reference internal" href="../A_study_of_studies/intro.html"><span class="doc">studies</span></a>:</p>
-<p>The <strong>AnyParamStudy</strong> performs an exhaustive search of the variable
+<p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyParamStudy</span></code> performs an exhaustive search of the variable
 space computing the model’s reaction to every combination of the
 variables within a given interval. For instance, a parameter study could
 investigate the metabolic efficiency of a bicycle depending on the
@@ -99,7 +96,7 @@ with five values of each parameter leads to 5 x 5 = 25 analyses, which
 is usually no problem to do, while a five parameter problem will lead to
 5^5 = 3125 analyses, which obviously is a more time-consuming
 undertaking, at least for larger models.</p>
-<p>The <strong>AnyOptStudy</strong> performs a systematic search within a parameter
+<p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyOptStudy</span></code> performs a systematic search within a parameter
 space using optimization techniques of solutions that fulfill certain
 criteria. For instance, you could ask the study to find the saddle
 position that maximizes the metabolic efficiency of the bicycle while
@@ -111,8 +108,8 @@ it does not provide the overview of the design space that you get from a
 parameter study.</p>
 <p>This tutorial devotes one lesson to each of the two study types:</p>
 <ol class="arabic simple">
-<li>Defining a parameter study</li>
-<li>Optimization studies</li>
+<li><a class="reference internal" href="lesson1.html"><span class="doc">Defining a parameter study</span></a></li>
+<li><a class="reference internal" href="lesson2.html"><span class="doc">Optimization studies</span></a></li>
 </ol>
 <div class="without-title admonition seealso">
 <p class="first admonition-title">See also</p>
@@ -167,6 +164,7 @@ parameter study.</p>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson1.html">Defining a Parameter Study</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lesson2.html">Optimization Studies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Optimization Studies in Python</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
