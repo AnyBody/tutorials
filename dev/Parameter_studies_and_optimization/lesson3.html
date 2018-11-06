@@ -60,132 +60,323 @@
             
   <div class="section" id="optimization-studies-in-python">
 <h1>Optimization Studies in Python<a class="headerlink" href="#optimization-studies-in-python" title="Permalink to this headline">¶</a></h1>
-<p>The optimization study introduces in the preceding lesson used AnyBody’s builtin
+<p>The optimization study introduced in the preceding lesson used AnyBody’s builtin
 facilities for optimizing. Sometimes that is not enough, either because the
 objective functions depends on data that is not easily included in AnyBody, or
 because a different solver is needed.</p>
-<p>In this tutorial we use an external optimizer together with AnyBody. The example is
-based on the model from the <a class="reference internal" href="lesson2.html"><span class="doc">previous lesson</span></a> but uses an optimizer
-in the Python programming language. But the same could be achived with other
-tools like MatLab etc.</p>
+<p>In this tutorial we use an external optimizer together with AnyBody. The example
+is based on the model from the <a class="reference internal" href="lesson2.html"><span class="doc">previous lesson</span></a> but uses an
+optimizer from the <a class="reference external" href="https://scipy.org/">Scipy</a> python library. The same
+could also have been achived with other optimization frameworks (like <a class="reference external" href="https://nlopt.readthedocs.io/en/latest/">NLopt</a>, or languages (like <a class="reference external" href="https://www.mathworks.com/products/matlab.html">MatLab</a>).</p>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Before we begin you need to install the Anaconda Python distribution. It is free and comes
-with most of the necessary packages preinstalled.</p>
+<p>Before we begin you need to install the Anaconda Python distribution.
+It is free and comes with most of the necessary packages preinstalled.</p>
 <ul class="simple">
-<li>Download and install Anaconda Python Distribution (&gt;3.6)</li>
+<li><a class="reference external" href="https://www.anaconda.com/download/">Download and install Anaconda Python Distribution (&gt;3.6)</a></li>
 </ul>
-<p>We also need one additional Python library (<a class="reference external" href="https://anybody-research-group.github.io/anypytools-docs/">AnyPyTools</a>) which will make
-it easier to work with AnyBody from Python.</p>
-<p>AnyPyTools can be easily installed from the command prompt. Open the Anaconda
-command prompt and type:</p>
+<p>We also need one additional Python library (AnyPyTools) which will make it
+easier to work with AnyBody from Python. <a class="reference external" href="https://anybody-research-group.github.io/anypytools-docs/">AnyPyTools</a> can be easily
+installed from the command prompt. Open the Anaconda command prompt and type:</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>conda config --add channels conda-forge
 conda install anypytools
 </pre></div>
 </div>
 </div>
+<div class="section" id="example-python-script">
+<h2>Example Python script<a class="headerlink" href="#example-python-script" title="Permalink to this headline">¶</a></h2>
+<p>First we show the full Python program used in this tutorial.
+Secondly, we will go through and explain the different sections in the file.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">import</span> <span class="nn">math</span>
+ <span class="kn">import</span> <span class="nn">scipy</span>
+
+ <span class="kn">from</span> <span class="nn">anypytools</span> <span class="kn">import</span> <span class="n">AnyPyProcess</span>
+ <span class="kn">from</span> <span class="nn">anypytools.macro_commands</span> <span class="kn">import</span> <span class="n">Load</span><span class="p">,</span> <span class="n">OperationRun</span><span class="p">,</span> <span class="n">Dump</span><span class="p">,</span> <span class="n">SetValue</span>
+
+
+ <span class="k">def</span> <span class="nf">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+     <span class="sd">&quot;&quot;&quot;Run the AnyBody model and return the metabolism results&quot;&quot;&quot;</span>
+     <span class="n">macro</span> <span class="o">=</span> <span class="p">[</span>
+         <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;BikeModel2D.main.any&quot;</span><span class="p">),</span>
+         <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddleHeight&quot;</span><span class="p">,</span> <span class="n">saddle_height</span><span class="p">),</span>
+         <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddlePos&quot;</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">),</span>
+         <span class="n">OperationRun</span><span class="p">(</span><span class="s2">&quot;Main.Study.InverseDynamics&quot;</span><span class="p">),</span>
+         <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Pmet&quot;</span><span class="p">),</span>
+         <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Abscissa.t&quot;</span><span class="p">),</span>
+     <span class="p">]</span>
+     <span class="n">app</span> <span class="o">=</span> <span class="n">AnyPyProcess</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="n">silent</span><span class="p">)</span>
+     <span class="n">results</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">start_macro</span><span class="p">(</span><span class="n">macro</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+ <span class="k">def</span> <span class="nf">objfun</span><span class="p">(</span><span class="n">designvars</span><span class="p">):</span>
+     <span class="sd">&quot;&quot;&quot;Calculate the objective function value&quot;&quot;&quot;</span>
+     <span class="n">saddle_height</span> <span class="o">=</span> <span class="n">designvars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+     <span class="n">saddle_pos</span> <span class="o">=</span> <span class="n">designvars</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+     <span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+     <span class="k">if</span> <span class="s2">&quot;ERROR&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Failed to run model&quot;</span><span class="p">)</span>
+
+     <span class="n">pmet</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Pmet&quot;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;Abscissa.t&quot;</span><span class="p">])</span>
+
+     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">pmet</span><span class="p">)</span>
+
+
+ <span class="k">def</span> <span class="nf">seat_distance_constraint</span><span class="p">(</span><span class="n">designvars</span><span class="p">):</span>
+     <span class="sd">&quot;&quot;&quot;Compute contraint value which must be larger than zero&quot;&quot;&quot;</span>
+     <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">designvars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">designvars</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.66</span>
+
+
+ <span class="n">constaints</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ineq&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">:</span> <span class="n">seat_distance_constraint</span><span class="p">}</span>
+ <span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.61</span><span class="p">,</span> <span class="mf">0.69</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.22</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">)]</span>
+ <span class="n">initial_guess</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.68</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">)</span>
+
+ <span class="n">solution</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span>
+     <span class="n">objfun</span><span class="p">,</span> <span class="n">initial_guess</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constaints</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;SLSQP&quot;</span>
+ <span class="p">)</span>
+
+ <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>A copy of the file can be <a class="reference download internal" href="../_downloads/optimize.py" download=""><code class="xref download docutils literal"><span class="pre">downloaded here.</span></code></a>
+For now you can place the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">optimize</span><span class="p">.</span><span class="n">py</span></code> next to your main file <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">BikeModel2D</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">any</span></code>.
+If you didn’t complete the model from <a class="reference internal" href="lesson2.html"><span class="doc">lesson 2</span></a>, you can download the
+<a class="reference download internal" href="../_downloads/OptimBike2-lesson3.zip" download=""><code class="xref download docutils literal"><span class="pre">finshed model here</span></code></a>.</p>
+</div>
+<div class="section" id="importing-the-necessary-libraries">
+<h2>Importing the necessary libraries<a class="headerlink" href="#importing-the-necessary-libraries" title="Permalink to this headline">¶</a></h2>
+<p>The first part of the code is the <code class="code python docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">import</span></code> statements. They include the
+libraries which is used by the code:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">import</span> <span class="nn">math</span>
+ <span class="kn">import</span> <span class="nn">scipy</span>
+
+ <span class="kn">from</span> <span class="nn">anypytools</span> <span class="kn">import</span> <span class="n">AnyPyProcess</span>
+ <span class="kn">from</span> <span class="nn">anypytools.macro_commands</span> <span class="kn">import</span> <span class="n">Load</span><span class="p">,</span> <span class="n">OperationRun</span><span class="p">,</span> <span class="n">Dump</span><span class="p">,</span> <span class="n">SetValue</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 <div class="section" id="running-a-model-from-python">
 <h2>Running a model from Python<a class="headerlink" href="#running-a-model-from-python" title="Permalink to this headline">¶</a></h2>
-<p>If you didn’t complete the model from <a class="reference internal" href="lesson2.html"><span class="doc">lesson 2</span></a>, you can download the
-<a class="reference download internal" href="../_downloads/OptimBike2-lesson3.zip" download=""><code class="xref download docutils literal"><span class="pre">finshed model here</span></code></a>.</p>
 <p>For the external optimizers to work, we need a way to run AnyBody models from
-Python and record the results of the simulations. There are more information on
-how to do this in the <a class="reference external" href="https://anybody-research-group.github.io/anypytools-docs/">documentaion for AnyPyTools</a>. So here we will
+Python and record the results of the simulations, so we need to create a
+function to do this. There are more information on how to do this in the
+<a class="reference external" href="https://anybody-research-group.github.io/anypytools-docs/">documentaion for AnyPyTools</a>. So here we will
 just show how the code looks and not discuss the details.</p>
-<p>First we create a new Python file <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">optimize</span><span class="p">.</span><span class="n">py</span></code> and place next to our main file <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">BikeModel2D</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">any</span></code>.
-Within the file we create a Python function to run the AnyBody simulation.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">scipy</span>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="k">def</span> <span class="nf">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Run the AnyBody model and return the metabolism results&quot;&quot;&quot;</span>
+    <span class="n">macro</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;BikeModel2D.main.any&quot;</span><span class="p">),</span>
+        <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddleHeight&quot;</span><span class="p">,</span> <span class="n">saddle_height</span><span class="p">),</span>
+        <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddlePos&quot;</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">),</span>
+        <span class="n">OperationRun</span><span class="p">(</span><span class="s2">&quot;Main.Study.InverseDynamics&quot;</span><span class="p">),</span>
+        <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Pmet&quot;</span><span class="p">),</span>
+        <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Abscissa.t&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">AnyPyProcess</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="n">silent</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">start_macro</span><span class="p">(</span><span class="n">macro</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="kn">from</span> <span class="nn">anypytools</span> <span class="kn">import</span> <span class="n">AnyPyProcess</span>
-<span class="kn">from</span> <span class="nn">anypytools.macro_commands</span> <span class="kn">import</span> <span class="n">Load</span><span class="p">,</span> <span class="n">OperationRun</span><span class="p">,</span> <span class="n">Dump</span><span class="p">,</span> <span class="n">SetValue</span>
+ <span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="mf">0.66</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">)</span>
+ <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Main.Study.Output.Pmet&quot;</span><span class="p">])</span>
+</pre></div>
+</td></tr></table></div>
+<p>The function <code class="code python docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">run_model</span><span class="p">()</span></code> takes <code class="code python docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">saddle_height</span></code> and <code class="code python docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">saddle_pos</span></code> as input
+and return the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Pmet</span></code> metabolism output from AnyBody.</p>
+<p>If you use an interactive Python environment (like <a class="reference external" href="https://ipython.org/">IPython</a>) you could try calling the function directly to to
+test it and investigate the results:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="mf">0.66</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">)</span>
+<span class="go">[****************100%******************]  1 of 1 completeTotal time: 0.8 seconds</span>
 
-<span class="k">def</span> <span class="nf">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-   <span class="sd">&quot;&quot;&quot;Run the AnyBody model and return the metabolism results&quot;&quot;&quot;</span>
-   <span class="n">macro</span> <span class="o">=</span> <span class="p">[</span>
-       <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;BikeModel2D.main.any&quot;</span><span class="p">),</span>
-       <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddleHeight&quot;</span><span class="p">,</span> <span class="n">saddle_height</span><span class="p">),</span>
-       <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddlePos&quot;</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">),</span>
-       <span class="n">OperationRun</span><span class="p">(</span><span class="s2">&quot;Main.Study.InverseDynamics&quot;</span><span class="p">),</span>
-       <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Pmet&quot;</span><span class="p">),</span>
-       <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Abscissa.t&quot;</span><span class="p">),</span>
-   <span class="p">]</span>
-   <span class="n">app</span> <span class="o">=</span> <span class="n">AnyPyProcess</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="n">silent</span><span class="p">)</span>
-   <span class="n">results</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">start_macro</span><span class="p">(</span><span class="n">macro</span><span class="p">)</span>
-   <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">In [5]: </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="go">odict_keys([&#39;Main.Study.Output.Pmet&#39;, &#39;Main.Study.Output.Abscissa.t&#39;])</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="mf">0.66</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Main.Study.Output.Pmet&quot;</span><span class="p">])</span>
+<span class="gp">In [6]: </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Main.Study.Output.Pmet&quot;</span><span class="p">])</span>
+<span class="go">[  17.20903341   73.49291834  209.58490241  379.67002659  559.57715608</span>
+<span class="go">  736.92126247  901.88875426 1045.75303378 1162.65470516 1248.32088806</span>
+<span class="go"> 1299.79539032 1315.38241529 1294.6947524  1238.68684947 1149.59584772</span>
+<span class="go"> 1030.78784505  886.60667952  722.43408728  547.1840971   368.64175002</span>
+<span class="go">  198.07134668   53.41928909   25.84379129   30.60376508   23.17442367</span>
+<span class="go">   24.30809055  139.3209062   292.35610808  469.73382854  649.02576552</span>
+<span class="go">  821.74094457  977.02863522 1108.05435136 1209.79739513 1278.65973442</span>
+<span class="go"> 1312.31195028 1309.70451022 1271.1212895  1198.17227557 1093.68215448</span>
+<span class="go">  961.51890402  806.51623776  634.74029158  458.00117565  280.40563034</span>
+<span class="go">  121.30841553   21.54859903   28.97200722   26.82989147   17.2090334 ]</span>
 </pre></div>
 </div>
-<p>The functions <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">run_model</span><span class="p">()</span></code> takes <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">saddle_height</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">saddle_pos</span></code> as input and return
-the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Pmet</span></code> metabolism output.</p>
-<p>The two last lines are just for testing. They call the function and prints the result.
-Let us test it by running the python file:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>python optimize.py
-[****************100<span class="nv">%*</span>*****************]  1 of 1 completeTotal time: 0.6 seconds
-[  17.20903341   73.49291834  209.58490241  379.67002659  559.57715608
-736.92126247  901.88875426 1045.75303378 1162.65470516 1248.32088806
-1299.79539032 1315.38241529 1294.6947524  1238.68684947 1149.59584772
-1030.78784505  886.60667952  722.43408728  547.1840971   368.64175002
-198.07134668   53.41928909   25.84379129   30.60376508   23.17442367
-24.30809055  139.3209062   292.35610808  469.73382854  649.02576552
-821.74094457  977.02863522 1108.05435136 1209.79739513 1278.65973442
-1312.31195028 1309.70451022 1271.1212895  1198.17227557 1093.68215448
-961.51890402  806.51623776  634.74029158  458.00117565  280.40563034
-121.30841553   21.54859903   28.97200722   26.82989147   17.2090334 ]
-</pre></div>
-</div>
+<p>As we expected the output contains the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">Study</span><span class="p">.</span><span class="n">Output</span><span class="p">.</span><span class="n">Pmet</span></code> value for each timestep in our model.</p>
 </div>
 <div class="section" id="defining-the-objective-function">
 <h2>Defining the objective function<a class="headerlink" href="#defining-the-objective-function" title="Permalink to this headline">¶</a></h2>
 <p>The next step is to define the objective function. The objective function should
-take an array of design values as input and return the objective function value.
+take a list of design values as input and return the objective function value.
 In <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2</span></a> the objective function was the time integral of the
-metabolism variable. So we will do the same:</p>
-<p>So remove the last two lines and add a new function like this.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objfun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="n">saddle_height</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">saddle_pos</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+metabolism variable. So we will do the same here with Scipy’s
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.trapz.html#scipy.integrate.trapz" title="(in SciPy v1.1.0)"><code class="xref py py-func docutils literal"><span class="pre">scipy.integrate.trapz()</span></code></a>: function.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="k">def</span> <span class="nf">objfun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+     <span class="n">saddle_height</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+     <span class="n">saddle_pos</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+     <span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="s2">&quot;ERROR&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Failed to run model&quot;</span><span class="p">)</span>
+     <span class="k">if</span> <span class="s2">&quot;ERROR&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Failed to run model&quot;</span><span class="p">)</span>
+     <span class="c1"># Integrate Pmet</span>
+     <span class="n">pmet</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Pmet&quot;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;Abscissa.t&quot;</span><span class="p">])</span>
 
-    <span class="c1"># Integrate Pmet</span>
-    <span class="n">pmet</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Pmet&quot;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;Abscissa.t&quot;</span><span class="p">])</span>
+     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">pmet</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The function also checks the results for errors reported
+by AnyBody and raises a <a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#ValueError" title="(in Python v3.7)"><code class="xref py py-exc docutils literal"><span class="pre">ValueError</span></code></a> exception if that happens.
+There could be ways of handle error without failing but it is important to
+handle model failures, otherwise they may go unnoticed or mess with the
+optimization results.</p>
+</div>
+<p>Again, we can run this function interactively to test it:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">pmet</span> <span class="o">=</span> <span class="n">objfun</span><span class="p">([</span><span class="mf">0.66</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">])</span>
 
-    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">pmet</span><span class="p">)</span>
-
-<span class="n">pmet</span> <span class="o">=</span> <span class="n">objfun</span><span class="p">([</span><span class="mf">0.66</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">pmet</span><span class="p">)</span>
+<span class="gp">In [10]: </span><span class="k">print</span><span class="p">(</span><span class="n">pmet</span><span class="p">)</span>
+<span class="go">505.329399532772</span>
 </pre></div>
 </div>
-<p>Now let us try running the file again:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>$ python optimize.py
-505.329399532772
-</pre></div>
-</div>
+<p>Now we get the time integral of the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Pmet</span></code> variable as as single value,
+and we are now ready to define the optimization process.</p>
 </div>
 <div class="section" id="setting-up-the-optimization-study">
 <h2>Setting up the optimization study<a class="headerlink" href="#setting-up-the-optimization-study" title="Permalink to this headline">¶</a></h2>
-<p>Finally, we wrap things up by calling the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">scipy</span><span class="p">.</span><span class="n">optimize</span><span class="p">.</span><span class="n">minimize</span></code>….</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">seat_distance_constraint</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Compute contraint value which must be larger than zero&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.66</span><span class="p">)</span>
+<p>We wrap things up by creating a function, <a class="reference internal" href="lesson2.html#optimization-contraint"><span class="std std-ref">similar to what we did in
+AnyBody</span></a>, as well as defining the bounds and initial guess
+for the design variables.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>37
+38
+39
+40
+41
+42
+43
+44</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="k">def</span> <span class="nf">seat_distance_constraint</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+     <span class="sd">&quot;&quot;&quot; Compute contraint value which must be larger than zero&quot;&quot;&quot;</span>
+     <span class="k">return</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.66</span><span class="p">)</span>
 
-<span class="n">constaints</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ineq&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">:</span> <span class="n">seat_distance_constraint</span><span class="p">}</span>
-<span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.22</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">)]</span>
-<span class="n">initial_guess</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">)</span>
 
-<span class="n">solution</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span>
-    <span class="n">objfun</span><span class="p">,</span> <span class="n">initial_guess</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constaints</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;SLSQP&quot;</span>
-<span class="p">)</span>
+ <span class="n">constaints</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ineq&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">:</span> <span class="n">seat_distance_constraint</span><span class="p">}</span>
+ <span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.61</span><span class="p">,</span> <span class="mf">0.69</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.22</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">)]</span>
+ <span class="n">initial_guess</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.68</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>The documentation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.1.0)"><code class="xref py py-func docutils literal"><span class="pre">scipy.optimize.minimize()</span></code></a> has more information on how to define bounds, contraints, tolerances, etc.</p>
+<p>Finally, we call the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">scipy</span><span class="p">.</span><span class="n">optimize</span><span class="p">.</span><span class="n">minimize</span></code> function run the optimizer. In this case we used the
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-slsqp.html#optimize-minimize-slsqp">SLSQP</a> algorithm.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>46
+47
+48</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="n">solution</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span>
+     <span class="n">objfun</span><span class="p">,</span> <span class="n">initial_guess</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constaints</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;SLSQP&quot;</span>
+ <span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>Let us try to do this interactively and look at the results.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">solution</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span>
+<span class="go">    ...:     objfun, initial_guess, constraints=constaints, bounds=bounds, method=&quot;SLSQP&quot;</span>
+<span class="go">    ...: )</span>
 
-
-<span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+<span class="gp">In [12]: </span><span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+<span class="go">     fun: 503.57634385063113</span>
+<span class="go">     jac: array([39.43954086, -6.95677948])</span>
+<span class="go"> message: &#39;Optimization terminated successfully.&#39;</span>
+<span class="go">    nfev: 56</span>
+<span class="go">     nit: 12</span>
+<span class="go">    njev: 12</span>
+<span class="go">  status: 0</span>
+<span class="go"> success: True</span>
+<span class="go">       x: array([ 0.65010304, -0.11386853])</span>
 </pre></div>
 </div>
+<p>And there we have it!
+We can now take advantage of the many different algorithms and settings available for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.1.0)"><code class="xref py py-func docutils literal"><span class="pre">scipy.optimize.minimize()</span></code></a>.
+We could also use a different package or customize our own algorithm, constraints etc.
+The possibilities are practically endless.</p>
+<p>For more information regarding the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyPyTools</span></code> python package follow <a class="reference external" href="https://anybody-research-group.github.io/anypytools-docs/">this link.</a>
+You can also check out this <a class="reference external" href="https://www.youtube.com/results?search_query=anybody+webcast+batch">webcast.</a></p>
 </div>
 </div>
 
