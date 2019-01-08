@@ -12,12 +12,13 @@
     <title>Lesson 7: Wrapping the Model with AnyBody Project &#8212; AnyBody Tutorials v7.1.2-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -91,11 +92,11 @@ most objects is that project objects do not provide new information by
 themselves, but merely collect information to the AnyBody Modeling
 System GUI about what is important in the particular model.</p>
 <p>In this lesson, we shall make an AnyBody Project wrapper of the very
-simple planar arm model (<a class="reference download internal" href="../_downloads/demo.arm2d1.any" download=""><code class="xref download docutils literal"><span class="pre">Demo.arm2d.any</span></code></a>
-using <a class="reference download internal" href="../_downloads/dumbbell1.stl" download=""><code class="xref download docutils literal"><span class="pre">dumbbell.stl</span></code></a>) that we have used in
+simple planar arm model (<a class="reference download internal" download="" href="../_downloads/ec80c44ec1e5b8775541e13bca434289/demo.arm2d.any"><code class="xref download docutils literal"><span class="pre">Demo.arm2d.any</span></code></a>
+using <a class="reference download internal" download="" href="../_downloads/61bc19bff0094c9eabebcbba77b01b18/dumbbell.stl"><code class="xref download docutils literal"><span class="pre">dumbbell.stl</span></code></a>) that we have used in
 previous lessons. The final example file we shall build in this lesson
-is <a class="reference download internal" href="../_downloads/AnyProject.any" download=""><code class="xref download docutils literal"><span class="pre">AnyProject.any</span></code></a> using
-<a class="reference download internal" href="../_downloads/DrawGroups.any" download=""><code class="xref download docutils literal"><span class="pre">DrawGroups.any</span></code></a> in addition.</p>
+is <a class="reference download internal" download="" href="../_downloads/61a49f2497d72128b6254b5dbb5965cb/AnyProject.any"><code class="xref download docutils literal"><span class="pre">AnyProject.any</span></code></a> using
+<a class="reference download internal" download="" href="../_downloads/34f599a00db9ecfc059811c0f44d9b33/DrawGroups.any"><code class="xref download docutils literal"><span class="pre">DrawGroups.any</span></code></a> in addition.</p>
 <p>We include the model file in our new main file, and we create an empty
 project called ArmProject.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
@@ -203,7 +204,7 @@ model, we shall, therefore, define some drawing groups:</p>
 </pre></div>
 </div>
 <p>In the final example files, this is actually done in a separate file,
-<a class="reference download internal" href="../_downloads/DrawGroups.any" download=""><code class="xref download docutils literal"><span class="pre">DrawGroups.any</span></code></a>, so we now have</p>
+<a class="reference download internal" download="" href="../_downloads/34f599a00db9ecfc059811c0f44d9b33/DrawGroups.any"><code class="xref download docutils literal"><span class="pre">DrawGroups.any</span></code></a>, so we now have</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
@@ -565,7 +566,7 @@ URL and then using JavaScript in the HTML file for inserting the data in
 the right place. The data is transferred through the URL by encoding it
 in the URL’s query string.</p>
 <p>We will use a previously prepared external HTML file called
-<a class="reference download internal" href="../_downloads/AnyHTML_argument.htm" download=""><code class="xref download docutils literal"><span class="pre">AnyHTML_argument.htm</span></code></a>.</p>
+<a class="reference download internal" download="" href="../_downloads/027636d259adaafd2565668d2f3e4b13/AnyHTML_argument.htm"><code class="xref download docutils literal"><span class="pre">AnyHTML_argument.htm</span></code></a>.</p>
 <p>We create a new AnyProject Task in the tasks folder for displaying this
 HTML file and sending data to it:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Watch_value</span> <span class="o">=</span> <span class="p">{</span>
@@ -647,7 +648,7 @@ for <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -740,7 +741,7 @@ for <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

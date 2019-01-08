@@ -12,12 +12,13 @@
     <title>Lesson 7: Calibration &#8212; AnyBody Tutorials v7.1.2-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -112,7 +113,7 @@ cause very large antagonistic muscle actions.</p>
 <p>Enough talk! Let’s define a muscle and calibrate it. We shall begin with
 the simple arm model we developed in the “Getting Started: AnyScript
 Programming” tutorial. If you have not already saved the model in a
-file, get it here: <a class="reference download internal" href="../_downloads/arm2d1.any" download=""><code class="xref download docutils literal"><span class="pre">arm2d.any</span></code></a>.</p>
+file, get it here: <a class="reference download internal" download="" href="../_downloads/dfb24d44a9bde387316750f39b131b86/arm2d.any"><code class="xref download docutils literal"><span class="pre">arm2d.any</span></code></a>.</p>
 <p>In that simple example, all the muscles were assumed to be of a simple
 type with constant strength. We shall add another and much more detailed
 muscle model:</p>
@@ -169,14 +170,14 @@ InverseDynamics of overloaded models:</p>
 <p>Let’s have a look at the consequences. Press Load button or F7 and
 subsequently run the InverseDynamics study. Then, press Ctrl + 1 to navigate to the Chart  to
 investigate the results.</p>
-<p><img alt="Chart view BicepsLong.Ft" src="../_images/image134.png" /></p>
+<p><img alt="Chart view BicepsLong.Ft" src="../_images/image133.png" /></p>
 <p>This graph shows the muscle force or more precisely the force in the tendon. The
 force in this more complex muscle model is composed of 3 elements: Fm, the
 muscle force is the force from the contractile element of the muscle. Parallel
 to Fm is Fp which is the passive elastic element in the muscle. Conected in
 series of the muscle, is the tendon where Ft is the elastic tendon force. If you
 pick the Fp property, you should get the following graph:</p>
-<p><img alt="Chart view BicepsLong.Fp" src="../_images/image227.png" /></p>
+<p><img alt="Chart view BicepsLong.Fp" src="../_images/image225.png" /></p>
 <p>The parallel-elastic force Fp sets in when the muscle is stretched beyond
 its optimal fiber length. In the movement of this example, the elbow
 starts at 90 degrees flexion, and as the graph shows, this gives rise to
@@ -219,7 +220,7 @@ study. Its basic definition is straightforward:</p>
 </pre></div>
 </div>
 <p>If you load the model you can study the structure of the new study in the Operations tab:</p>
-<p><img alt="Operations Main.InverseDynamics" src="../_images/image326.png" /></p>
+<p><img alt="Operations Main.InverseDynamics" src="../_images/image324.png" /></p>
 <p>You can see that it has multiple operations. The interesting ones are
 the two latter: TendonLengthAdjustment and LigamentLengthAdjustment. As
 the names indicate, they are for tendon and ligament calibration
@@ -334,7 +335,7 @@ remember the values for the until the model is reloaded. Now run the
 InverseDynamics study and have a look at the chart. Notice that the Fp passive
 muscle force now is zero because the BicepsLongModel slack length Lt0 was
 elongated by the calibration.</p>
-<p>Here’s a link to the finished <a class="reference download internal" href="../_downloads/calibration.any" download=""><code class="xref download docutils literal"><span class="pre">calibration.any example</span></code></a>.</p>
+<p>Here’s a link to the finished <a class="reference download internal" download="" href="../_downloads/8a1f5d90607829bd599889a6ccc0d51c/calibration.any"><code class="xref download docutils literal"><span class="pre">calibration.any example</span></code></a>.</p>
 </div>
 
 
@@ -359,7 +360,7 @@ elongated by the calibration.</p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -452,7 +453,7 @@ elongated by the calibration.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

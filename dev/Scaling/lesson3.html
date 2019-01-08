@@ -12,12 +12,13 @@
     <title>Lesson 1: Personalizing individual segments based on geometric data from medical images &#8212; AnyBody Tutorials v7.1.2-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -92,8 +93,8 @@ example, you can locate any two points on source and target surface
 consistently without thinking of how a segment length was measured.</p>
 <p>Let us make a simple example of using landmark-based affine scaling.
 First, please download two femur surfaces,
-<a class="reference download internal" href="../_downloads/SourceFemur.stl" download=""><code class="xref download docutils literal"><span class="pre">SourceFemur.stl</span></code></a> and
-<a class="reference download internal" href="../_downloads/TargetFemur.stl" download=""><code class="xref download docutils literal"><span class="pre">TargetFemur.stl</span></code></a> and save them in your
+<a class="reference download internal" download="" href="../_downloads/244d539a55493a22ad7ae42b48176347/SourceFemur.stl"><code class="xref download docutils literal"><span class="pre">SourceFemur.stl</span></code></a> and
+<a class="reference download internal" download="" href="../_downloads/95805b555f81896cd16d5d6f90d4075e/TargetFemur.stl"><code class="xref download docutils literal"><span class="pre">TargetFemur.stl</span></code></a> and save them in your
 working directory. These femur geometries will be used for the rest of
 this tutorial. The source surface is an unscaled femur used in the
 standard AnyBody models in the AMMR. The target surface is a femur
@@ -101,11 +102,11 @@ reconstructed from a CT image and saved as a surface mesh in STL format
 (courtesy of Prof. Sebastian Dendorfer, OTH Regensburg,
 Germany).</p>
 <p>Next, please download the AnyScript file
-<a class="reference download internal" href="../_downloads/lesson3a.Main.any" download=""><code class="xref download docutils literal"><span class="pre">lesson3a.main.any</span></code></a>. This file contains
+<a class="reference download internal" download="" href="../_downloads/200d7e76ae81d5b3a45c0c615357c58b/lesson3a.Main.any"><code class="xref download docutils literal"><span class="pre">lesson3a.main.any</span></code></a>. This file contains
 a model with two segments which contain the definition of a surface
 each, one for the source and one for the target bone. When we load this
 model, the Model View should show the following picture:</p>
-<a class="reference internal image-reference" href="../_images/image139.png"><img alt="../_images/image139.png" src="../_images/image139.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image137.png"><img alt="../_images/image137.png" src="../_images/image137.png" style="width: 60%;" /></a>
 <p>To define a new scaling function let us insert a new AnyFunTransform3DLin2
 object after the target segment:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyFunTransform3DLin2 &lt;ObjectName&gt; =</span>
@@ -179,7 +180,7 @@ to give this transformation a name and apply it to the source surface:</p>
 <p>Reloading the model and looking at the bones shown in the Model View, we
 can see that these bones are now merged. To highlight the differences,
 we select one of them. This will produce the following picture.</p>
-<a class="reference internal image-reference" href="../_images/image232.png"><img alt="../_images/image232.png" src="../_images/image232.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image230.png"><img alt="../_images/image230.png" src="../_images/image230.png" style="width: 60%;" /></a>
 <p>The source bone is now transformed, i.e., translated, scaled and
 skewed to match the target bone. To make that clear, let us add a new
 AnyFunTransform3DLin2 called MyTransform2 to the model which we place
@@ -220,7 +221,7 @@ that we just constructed:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/image330.png"><img alt="../_images/image330.png" src="../_images/image330.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image328.png"><img alt="../_images/image328.png" src="../_images/image328.png" style="width: 60%;" /></a>
 <p>Looking at the Model View, we can see that the femur is now scaled, it
 became shorter and now aligns with the original source femur position.
 From the previous picture, we also know that geometry is matching the
@@ -253,7 +254,7 @@ simplicity, we use a preselected set of femoral landmarks and RBF settings.</p>
 <p>We start with the model from the previous steps to introduce the landmark-based
 nonlinear scaling. Several tranformations will build up into a pipeline, where
 pre-transforms will be used to inherit obtained accuracy throughout different steps.
-A complete model can you find here: <a class="reference download internal" href="../_downloads/lesson3b.Main.any" download=""><code class="xref download docutils literal"><span class="pre">lesson3b.Main.any</span></code></a>.
+A complete model can you find here: <a class="reference download internal" download="" href="../_downloads/285d99015cc3c6cecbda0686edec4ef6/lesson3b.Main.any"><code class="xref download docutils literal"><span class="pre">lesson3b.Main.any</span></code></a>.
 The following tutorial shows how to add an RBF transform with the recommended settings
 into the previously created model.</p>
 <p>First of all let us configure the visualization of the transformation.
@@ -351,7 +352,7 @@ of the surfaces:</p>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/image421.png"><img alt="../_images/image421.png" src="../_images/image421.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image418.png"><img alt="../_images/image418.png" src="../_images/image418.png" style="width: 60%;" /></a>
 <p>This code constructs a transform, which deforms the source geometry
 into the target one using the thin-plate interpolation method and minimizes
 the distance between the selected key points (landmarks). This can be used
@@ -390,7 +391,7 @@ tutorial</span></a>. However, for this example the
 recommended settings mentioned before will be used again.</p>
 <p>Let us repeat the step from the previous section by adding one more
 surface to the visualization and another scaling step. You can download
-the model with all modifications <a class="reference download internal" href="../_downloads/lesson3c.Main.any" download=""><code class="xref download docutils literal"><span class="pre">here</span></code></a>:</p>
+the model with all modifications <a class="reference download internal" download="" href="../_downloads/82c73674d4d333f19c61c039a30fba4b/lesson3c.Main.any"><code class="xref download docutils literal"><span class="pre">here</span></code></a>:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="gr">AnyDrawSurf SurfaceMorphedSTL =</span>
 <span class="gr">  {</span>
 <span class="gr">    FileName = &quot;SourceFemur.stl&quot;;</span>
@@ -435,7 +436,7 @@ to hide affine and RBF scaled femurs to see the final results:</p>
 <p>If we just look at the green target surface and the blue STL-transformed
 surface, we can see that the surfaces now match each other very well. That means
 that now the subject-specificity will be taken into account in the inverse
-dynamics simulation. The final model can be downloaded <a class="reference download internal" href="../_downloads/lesson3d.Main.any" download=""><code class="xref download docutils literal"><span class="pre">here</span></code></a>.</p>
+dynamics simulation. The final model can be downloaded <a class="reference download internal" download="" href="../_downloads/c5d1aa8a118a056c79d92527e1f4f356/lesson3d.Main.any"><code class="xref download docutils literal"><span class="pre">here</span></code></a>.</p>
 <div class="toctree-wrapper compound">
 </div>
 <p>Finally, the only thing left is to include this scaling function into an
@@ -470,7 +471,7 @@ done.</p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -557,7 +558,7 @@ done.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

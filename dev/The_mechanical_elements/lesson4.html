@@ -12,12 +12,13 @@
     <title>Lesson 4: Kinematic Measures &#8212; AnyBody Tutorials v7.1.2-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -87,7 +88,7 @@ available as predefined objects in AnyScript.</p>
 AnyScript Programming</span></a>”
 tutorial? That was a 2-D model of an arm where we produced the movement
 by driving the angles of the shoulder and elbow joints directly.</p>
-<p><img alt="Simple arm model" src="../_images/image111.jpeg" /></p>
+<p><img alt="Simple arm model" src="../_images/image110.jpeg" /></p>
 <p>But let us imagine that we wanted the hand to reach out and grab
 something at a specific position. It would probably be difficult to
 figure out precisely how to drive the two joint angles to put the hand
@@ -96,7 +97,7 @@ able to put the hand (actually the wrist since this simple model has no
 hand) directly at the desired position in space and have the elbow and
 shoulder joints follow implicitly. This is where the kinematic measures
 come into play. Let’s start off with the model just about where we left
-in the “Getting Started with AnyScript” tutorial. Please <a class="reference download internal" href="../_downloads/Measures.any" download=""><code class="xref download docutils literal"><span class="pre">click here to
+in the “Getting Started with AnyScript” tutorial. Please <a class="reference download internal" download="" href="../_downloads/d2fcf94c91f7c089d6e0334421f4be8b/Measures.any"><code class="xref download docutils literal"><span class="pre">click here to
 download the necessary file (Measures.any)</span></code></a>,
 and save it in some working directory on your own hard disk.</p>
 <p>Let us try initially to create a kinematic measure that will allow us to
@@ -132,10 +133,10 @@ ChartFX view.</p>
 <p>Expanding the tree though
 Main.ArmModelStudy.Output.Model.KinematicMeasures.WristPos will give you
 the options shown to the below.</p>
-<p><img alt="Model tree KinematicMeasures" src="../_images/image27.gif" /></p>
+<p><img alt="Model tree KinematicMeasures" src="../_images/image26.gif" /></p>
 <p>Click Pos, and you will get three graphs tracking the x, y, and z
 components of the WristPos kinematic measure.</p>
-<p><img alt="WristPos.Pos graph" src="../_images/image37.gif" /></p>
+<p><img alt="WristPos.Pos graph" src="../_images/image35.gif" /></p>
 <p>The z component (blue curve) of the measure remains zero throughout the
 movement because the model is two-dimensional. The top curve (red) is
 the x component, and the bottom curve (green) is the y component.</p>
@@ -193,7 +194,7 @@ may be difficult to find in more complex cases.</p>
 <p>To conclude, the special feature about kinematic measures is that you
 can drive them. In AnyBody, you can drive anything that you can measure,
 and this is really a unique facility. If something went wrong for you
-along the way, you can <a class="reference download internal" href="../_downloads/Measures2.any" download=""><code class="xref download docutils literal"><span class="pre">download a commented version of the final result
+along the way, you can <a class="reference download internal" download="" href="../_downloads/def19de4eabad78deb43515df8c59223/Measures2.any"><code class="xref download docutils literal"><span class="pre">download a commented version of the final result
 here (Measures2.any)</span></code></a>.</p>
 <div class="without-title admonition seealso">
 <p class="first admonition-title">See also</p>
@@ -223,7 +224,7 @@ here (Measures2.any)</span></code></a>.</p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -314,7 +315,7 @@ here (Measures2.any)</span></code></a>.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

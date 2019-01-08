@@ -12,12 +12,13 @@
     <title>Lesson 2: Using motion capture data &#8212; AnyBody Tutorials v7.1.2-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -70,7 +71,7 @@ called a C3D file.</p>
 the object whose motion we want to record. The file can also contain analog data
 such as force platform measurements or EMG.</p>
 <p>AnyBody can read the data from a C3D file directly. Please download and save the
-file <a class="reference download internal" href="../_downloads/pendulum.c3d" download=""><code class="xref download docutils literal"><span class="pre">pendulum.c3d</span></code></a> in the directory where
+file <a class="reference download internal" download="" href="../_downloads/dbfcb4de64164dd259a2b010432526c6/pendulum.c3d"><code class="xref download docutils literal"><span class="pre">pendulum.c3d</span></code></a> in the directory where
 you saved the <code class="file docutils literal"><span class="pre">Pendulum.any</span></code> file.</p>
 <p>Next, place the cursor in the editor window just before the <code class="code docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinMotion</span></code>
 object, click the Classes tab (on the right side of the screen), unfold the class list, and locate the
@@ -157,7 +158,7 @@ the editor window (or press <code class="docutils literal"><span class="pre">Ctr
 <p>Now the model should load with no problems, and you can go to the tree
 view in the left hand side of the screen, click the Model tab and unfold
 the MyModel tree down to the C3D object as shown below.</p>
-<p><img alt="Model tree" src="../_images/image128.png" /></p>
+<p><img alt="Model tree" src="../_images/image126.png" /></p>
 <p>A bit down in this object you find the Header section. When you unfold
 it you get access to a number of basic properties of the C3D file. Each
 time you double-click a property, a window will pop up and give you its
@@ -298,7 +299,7 @@ equality sign:</p>
 window, unfold the MyModel branch and subsequently the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">C3D</span></code> object -&gt;
 <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Points</span></code> -&gt; <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Markers</span></code> -&gt; <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">L000</span></code> and arrive at <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">PosInterpol</span></code> as shown
 below.</p>
-<p><img alt="Model tree 2" src="../_images/image319.png" /></p>
+<p><img alt="Model tree 2" src="../_images/image317.png" /></p>
 <p>This is the actual interpolation function of the marker in question.
 Place the cursor after the equality sign of the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyParamFun</span></code> line,
 right-click the PosInterpol object, and choose “Insert object name”. You
@@ -502,7 +503,7 @@ the measured data.</p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -594,7 +595,7 @@ the measured data.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

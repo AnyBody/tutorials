@@ -12,12 +12,13 @@
     <title>Lesson3: Noise and filters &#8212; AnyBody Tutorials v7.1.2-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -63,7 +64,7 @@
 <p>Let us run the Kinematics operation and investigate the results. After
 the operation has completed, please open the Chart View tab and
 plot the position vector of the pendulum as shown below:</p>
-<p><img alt="pendulum.r" src="../_images/image129.png" /></p>
+<p><img alt="pendulum.r" src="../_images/image127.png" /></p>
 <p>The red, green and blue curves designate x, y and z locations
 respectively of the center of mass of the pendulum. We see the expected
 sinusoidal curves for x and y and a z location that is constantly zero.
@@ -71,11 +72,11 @@ It all looks fine and dandy, but closer investigation will reveal that
 it is not.</p>
 <p>If we plot the velocity, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">rDot</span></code>, rather than the position, we begin to see
 the problem:</p>
-<p><img alt="pendulum.rdot" src="../_images/image221.png" /></p>
+<p><img alt="pendulum.rdot" src="../_images/image219.png" /></p>
 <p>It is obvious that the motion is not as smooth as we would expect from
 the first set of graphs, and it gets even worse if we plot the
 accelerations, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">rDDot</span></code>:</p>
-<p><img alt="pendulum.rddot" src="../_images/image320.png" /></p>
+<p><img alt="pendulum.rddot" src="../_images/image318.png" /></p>
 <p>Since forces in a mechanical system stem from accelerations, an analysis
 of the force in this system would lead to a completely different result
 than we would expect. The problem is due to noise in the measurements,
@@ -165,7 +166,7 @@ room to eliminate more noise by using a lower value of <code class="docutils lit
 </pre></div>
 </div>
 <p>…we can get the following accelerations:</p>
-<p><img alt="pendulumfilt" src="../_images/image417.png" /></p>
+<p><img alt="pendulumfilt" src="../_images/image415.png" /></p>
 <p>They look much more reasonable, but notice that each end of the curve is
 influenced by the initial conditions of the filter. Filters remove noise
 but they are also sources of artifacts in the model and nothing is ever
@@ -204,7 +205,7 @@ be used to our advantage for other purposes too, as we shall see in
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -296,7 +297,7 @@ be used to our advantage for other purposes too, as we shall see in
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

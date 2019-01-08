@@ -12,12 +12,13 @@
     <title>Lesson 5: Using real data &#8212; AnyBody Tutorials v7.1.2-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -70,7 +71,7 @@ for data processing.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Make sure you have installed your own copy of the AnyBody Model repository (AMMR).
-See the <a class="reference external" href="https://anyscript.org/ammr-doc/dev/ammr_installation.html#installing-ammr" title="(in AMMR v2.1)"><span class="xref std std-ref">AMMR documentation</span></a>.</p>
+See the <a class="reference external" href="https://anyscript.org/ammr-doc/ammr-2.2-beta/ammr_installation.html#installing-ammr" title="(in AMMR v2.2)"><span class="xref std std-ref">AMMR documentation</span></a>.</p>
 </div>
 <ol class="arabic simple">
 <li>Go to the folder <code class="file docutils literal"><span class="pre">Application/MocapExamples/Plug-in-gait_Simple</span></code>.</li>
@@ -121,7 +122,7 @@ file to drive the model with.</p>
 on line 13 we include the <em>AnyMocap</em> framework or base model.</p>
 <p>Now please load the model and open up a new Model View. You should see
 the following model:</p>
-<img alt="../_images/image130.png" src="../_images/image130.png" />
+<img alt="../_images/image128.png" src="../_images/image128.png" />
 <p>The model consist of number of operations which must be executed in the correct
 order. The flow of the model is illustrated in the following figure.</p>
 <div class="figure" id="id2">
@@ -136,7 +137,7 @@ for a detailed dicussion on different approches to MoCap analysis.</span></p>
 <p>If you look closely at the model view, you can see that the skeleton is equipped with
 markers and if you zoom in a little, you can also see that the markers
 carry small coordinate systems with red and green arrows.</p>
-<img alt="../_images/image222.png" src="../_images/image222.png" />
+<img alt="../_images/image220.png" src="../_images/image220.png" />
 <style> .red {color:red} .green {color:green}</style><p>These are the marker points defined on the human body, and the <span class="red">red</span> and
 <span class="green">green</span> arrows designate directions in which the marker position is fixed
 versus free to be optimized. A free marker position is one that is not
@@ -176,7 +177,7 @@ lengths of adjacent segments from the marker data.</p>
 <h3>Running Parameter identification<a class="headerlink" href="#running-parameter-identification" title="Permalink to this headline">¶</a></h3>
 <p>Without further ado, let us perform the optimization:</p>
 <p>Find the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">RunParameterIdentification</span></code> in the operations dropdown, and run it.</p>
-<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image322.png" /></p>
+<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image320.png" /></p>
 <p>You will see the model walking repeatedly over the force platforms,
 sometimes slowly and sometimes a bit faster depending on the speed of
 your computer and the progress of the computation.</p>
@@ -309,7 +310,7 @@ one. You will see the model as before, but now with the arms included.</p>
 <p><img alt="Model view Fullbody initial load" src="../_images/image91.png" /></p>
 <p>Select and run the RunMotionAndParameterOptimizationSequence in the
 Operations tree:</p>
-<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image322.png" /></p>
+<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image320.png" /></p>
 <p>The model starts walking repeatedly over the force platforms including
 the arm motions while it tries to optimize segment lengths and marker
 positions. It takes 7 iterations and more time than before
@@ -324,7 +325,7 @@ analysis of the entire body including the muscle forces.</p>
 <p>This full-body model with almost 1000 muscle fascicles takes considerable more
 time to analyze but will reward you with very detailed information about the
 function of the muscle system in gait as illustrated below.</p>
-<p><img alt="Model view, full body inverse dynamics" src="../_images/image1210.png" /></p>
+<p><img alt="Model view, full body inverse dynamics" src="../_images/image129.png" /></p>
 <p>The final lesson of this tutorial is about problems that may arise with
 C3D files.</p>
 <div class="without-title admonition seealso">
@@ -356,7 +357,7 @@ C3D files.</p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -448,7 +449,7 @@ C3D files.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

@@ -12,12 +12,13 @@
     <title>19. Posture and Movement Prediction &#8212; AnyBody Tutorials v7.1.2-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -129,12 +130,12 @@ objectives and decide on one that leads to a plausible movement.</p>
 a two-dimensional football kick. There are all sorts&nbsp;of reasons why a
 simple model of this task might be totally inadequate, but it will serve
 well to demonstrate the idea. Please download a model to begin on.
-<a class="reference download internal" href="../_downloads/Kick1.any" download=""><code class="xref download docutils literal"><span class="pre">Right-click the link and save the file
+<a class="reference download internal" download="" href="../_downloads/4be09a46bc1daef1d3b2a8a4a39b1ead/Kick1.any"><code class="xref download docutils literal"><span class="pre">Right-click the link and save the file
 Kick1.any</span></code></a> in some working directory. Then open
 it up in the AnyBody Modeling System, load it in and open a Model View
 window to have a look at the model. You should see something like this
 (except the legends):</p>
-<p><img alt="kick1.png" src="../_images/image138.png" /></p>
+<p><img alt="kick1.png" src="../_images/image136.png" /></p>
 <p>It is&nbsp;a two-segment model with revolute joints&nbsp;at the hip and the knee,
 so it has in total two degrees of freedom.&nbsp;Let us imagine that no motion
 capture experiment has been performed, so&nbsp;we do not really know how the
@@ -211,7 +212,7 @@ from the drivers like this:</p>
 </div>
 <p>After you reload and re-run the model you should be able to open a Chart
 window, plot the MaxMuscleActivity and get this:</p>
-<p><img alt="image1" src="../_images/image230.png" /></p>
+<p><img alt="image1" src="../_images/image229.png" /></p>
 <p>The movement we have imposed is unrealistic. Both joints move with
 constant angular velocity while, in a realistic case, the model should
 capture the fact that it is necessary to accelerate the leg from some
@@ -300,7 +301,7 @@ We can write this formula directly into the model like this:</p>
 </div>
 <p>&nbsp;Please load and run the model again, and then go to the Chart window
 and plot the new output function. You should see this:</p>
-<p><img alt="kickvel1.gif" src="../_images/image36.gif" /></p>
+<p><img alt="kickvel1.gif" src="../_images/image34.gif" /></p>
 <p>The function&nbsp;shows the predicted post-impact velocity of the ball if the
 foot were to hit is at any time during the imposed movement. As
 expected, the exit velocity is higher the later in the movement the ball
@@ -431,7 +432,7 @@ point the same as the first point.</p>
 <p>Running the optimization at this stage will make the problem converge in
 a few interations to an optimized ball velocity of a little over 13 m/s.
 If we plot the two joint accelerations we get:</p>
-<p><img alt="kickacc1.gif" src="../_images/image45.gif" /></p>
+<p><img alt="kickacc1.gif" src="../_images/image42.gif" /></p>
 <p>The movement shows subtle signs of a whiplash action in the sense that
 the movement is initiated by a knee acceleration, which is taken over by
 the hip acceleration, after which the peak knee acceleration sets in
@@ -470,7 +471,7 @@ to capture the features of the body’s function&nbsp;that we are looking for.</
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -552,7 +553,7 @@ to capture the features of the body’s function&nbsp;that we are looking for.</
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

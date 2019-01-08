@@ -12,12 +12,13 @@
     <title>Lesson 2: Including a custom scaling function into your model &#8212; AnyBody Tutorials v7.1.2-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -138,10 +139,10 @@ used to specify individual scaling laws.</p>
 </div>
 <p>So let us introduce a custom scaling function for the left femur from
 <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 1</span></a>. We prepared a single file
-<a class="reference download internal" href="../_downloads/MyScalingFunction.any" download=""><code class="xref download docutils literal"><span class="pre">MyScalingFunction.any</span></code></a> holding the scaling
+<a class="reference download internal" download="" href="../_downloads/81040b74ed6538c183af92c0cdc64a05/MyScalingFunction.any"><code class="xref download docutils literal"><span class="pre">MyScalingFunction.any</span></code></a> holding the scaling
 transforms from the previous lesson. We also need to download the
-<a class="reference download internal" href="../_downloads/SourceFemur.stl" download=""><code class="xref download docutils literal"><span class="pre">source</span></code></a> (native to AMMR) and
-<a class="reference download internal" href="../_downloads/TargetFemur.stl" download=""><code class="xref download docutils literal"><span class="pre">target</span></code></a> (courtesy of Prof.
+<a class="reference download internal" download="" href="../_downloads/244d539a55493a22ad7ae42b48176347/SourceFemur.stl"><code class="xref download docutils literal"><span class="pre">source</span></code></a> (native to AMMR) and
+<a class="reference download internal" download="" href="../_downloads/95805b555f81896cd16d5d6f90d4075e/TargetFemur.stl"><code class="xref download docutils literal"><span class="pre">target</span></code></a> (courtesy of Prof.
 Sebastian Dendorfer, OTH Regensburg, Germany) femur surface
 geometries, and copy them to the <em>Model</em> folder of the
 StandingModelScalingDisplay example. Now, we need to make several
@@ -249,14 +250,14 @@ bone segment, e.g. <code class="docutils literal highlight highlight-AnyScriptDo
 different sides or <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">CUSTOM_SCALING_</span><span class="o">&lt;</span><span class="n">SegmentName</span><span class="o">&gt;</span></code> for parts of the
 body that do not have sides. You can find a list of segments by
 browsing the scaling law in the Model tab:</p>
-<a class="reference internal image-reference" href="../_images/image143.png"><img alt="../_images/image143.png" src="../_images/image143.png" style="width: 50%;" /></a>
+<a class="reference internal image-reference" href="../_images/image140.png"><img alt="../_images/image140.png" src="../_images/image140.png" style="width: 50%;" /></a>
 <p>The other change was to assign the new custom scaling function to be
 used in the segment of the left thigh instead of the excluded one. If
 we now comment in DrawExternalMeasures.any and look in the Model View,
 we can see that the left femur is now shorter and a little thinner
 than with the standard scaling. So we have now successfully introduced
 our custom scaling law into the model.</p>
-<a class="reference internal image-reference" href="../_images/image234.png"><img alt="../_images/image234.png" src="../_images/image234.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image233.png"><img alt="../_images/image233.png" src="../_images/image233.png" style="width: 60%;" /></a>
 <p>If we worked with a bone that does not have a pair, e.g.
 vertebrae, skull, etc., or we just wanted to scale a single side with a
 patient-specific scaling function, we would be finished now and could
@@ -357,10 +358,10 @@ When we load the model and look at our Model View, we can see that the model
 looks symmetric again and, compared to the standard scaling model, the bones
 look smaller. We can also see this in the following image where the model
 changed from the standard scaling case (left) to the custom scaling one (right):</p>
-<a class="reference internal image-reference" href="../_images/image333.png"><img alt="../_images/image333.png" src="../_images/image333.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="../_images/image330.png"><img alt="../_images/image330.png" src="../_images/image330.png" style="width: 100%;" /></a>
 <p>This concludes the subject-specific scaling tutorial. The modifications
 utilized for the mirrored transformed model can be downloaded from here:
-<a class="reference download internal" href="../_downloads/MyScalingFunction_Mirrored.final.any" download=""><code class="xref download docutils literal"><span class="pre">Downloads/MyScalingFunction_Mirrored.final.any</span></code></a></p>
+<a class="reference download internal" download="" href="../_downloads/9612a0495aadd98d728e93be21dfaa60/MyScalingFunction_Mirrored.final.any"><code class="xref download docutils literal"><span class="pre">Downloads/MyScalingFunction_Mirrored.final.any</span></code></a></p>
 </div>
 </div>
 
@@ -386,7 +387,7 @@ utilized for the mirrored transformed model can be downloaded from here:
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -473,7 +474,7 @@ utilized for the mirrored transformed model can be downloaded from here:
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

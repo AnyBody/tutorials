@@ -12,12 +12,13 @@
     <title>Lesson 5: Definition of Muscles and External Forces &#8212; AnyBody Tutorials v7.1.2-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -63,7 +64,7 @@
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Here’s an AnyScript file to start on if you have not completed the
-previous lesson: <a class="reference download internal" href="../_downloads/demo.lesson5.any" download=""><code class="xref download docutils literal"><span class="pre">demo.lesson5.any</span></code></a>.</p>
+previous lesson: <a class="reference download internal" download="" href="../_downloads/04d178144405ab7e1cff55b547de9874/demo.lesson5.any"><code class="xref download docutils literal"><span class="pre">demo.lesson5.any</span></code></a>.</p>
 </div>
 <p>The model so far has been capable of motion despite lacking muscles.
 This is because a kinematic analysis that does not consider forces.</p>
@@ -207,7 +208,7 @@ tutorial</span></a>.</p>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<p><img alt="image0" src="../_images/image17.png" /></p>
+<p><img alt="image0" src="../_images/image16.png" /></p>
 </div>
 <div class="section" id="the-initialconditions-analysis">
 <h2>The InitialConditions analysis<a class="headerlink" href="#the-initialconditions-analysis" title="Permalink to this headline">¶</a></h2>
@@ -216,7 +217,7 @@ joint constraints during a simulation.</p>
 <p>Use the operation drop down menu to run the “InitialConditions” operation. If you don’t remember
 how this is done, refer to <a class="reference internal" href="../A_Getting_started/lesson2.html#running-analysis"><span class="std std-ref">this prior tutorial</span></a>.</p>
 <p>The assembled model should resemble the following figure.</p>
-<p><img alt="image1" src="../_images/image25.png" /></p>
+<p><img alt="image1" src="../_images/image24.png" /></p>
 </div>
 <div class="section" id="switching-off-driver-reactions-when-muscles-do-the-job-important">
 <span id="driver-reactions"></span><h2>Switching off driver reactions when muscles do the job (Important!)<a class="headerlink" href="#switching-off-driver-reactions-when-muscles-do-the-job-important" title="Permalink to this headline">¶</a></h2>
@@ -269,11 +270,11 @@ In this analysis, the AnyBody system computes all muscle, joint forces and much 
 <p>To plot the muscle forces in the brachialis muscle, open
 “Main.Study.Output.Model.Muscles.Brachialis” in the chart view’s model tree, and plot the variable named <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Fm</span></code>.
 You should get a curve that looks like the one below.</p>
-<p><img alt="image2" src="../_images/image34.png" /></p>
+<p><img alt="image2" src="../_images/image32.png" /></p>
 <p>The drop in muscle force with movement progression is due to the decreasing moment arm of the gravity
 gravity vector about the elbow joint, as the elbow flexes. Therefore lesser the muscle force.</p>
 <p>If you look at the muscle force in the BicepsLong, you see a different pattern:</p>
-<p><img alt="image3" src="../_images/image44.png" /></p>
+<p><img alt="image3" src="../_images/image42.png" /></p>
 <p>This muscle’s force increases during the movement because this muscle supports both, the shoulder and the
 elbow. In addition, it collaborates both with DeltoidusA on shoulder
 flexion, and with the other elbow flexors, and all these muscles have to
@@ -347,7 +348,7 @@ Repository</a>.</p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -439,7 +440,7 @@ Repository</a>.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

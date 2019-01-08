@@ -12,12 +12,13 @@
     <title>Lesson 1: The Basics of Muscle Definition &#8212; AnyBody Tutorials v7.1.2-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -74,7 +75,7 @@ of the muscle.</li>
 <p>This would be a sad excuse for a tutorial if we did not have an example
 to work on. So let us quickly construct a very simple example that will
 enable us to examine the properties of muscles.</p>
-<p>Here’s an extremely simple <a class="reference download internal" href="../_downloads/MuscleDemo.Ini.any" download=""><code class="xref download docutils literal"><span class="pre">one-degree-of-freedom model</span></code></a>.</p>
+<p>Here’s an extremely simple <a class="reference download internal" download="" href="../_downloads/7be75c6d8340629d16fe3fb5fbab3c62/MuscleDemo.Ini.any"><code class="xref download docutils literal"><span class="pre">one-degree-of-freedom model</span></code></a>.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// This is a very simple model for demonstration of muscle modeling</span>
 <span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
@@ -143,7 +144,7 @@ possible version.</p>
 <p>If you pick the Classes tab in the right-hand side of the window, then
 you will get access to the class tree. Expand the tree as shown in the
 picture until you get to the AnyMuscleModel.</p>
-<p><img alt="class tree" src="../_images/image228.png" /></p>
+<p><img alt="class tree" src="../_images/image226.png" /></p>
 <p>Notice that this class has&nbsp;three derived classes. These are more
 advanced muscle models, and we shall get to those later. However for the
 time being, place the cursor in the Editor View on an empty line just
@@ -210,7 +211,7 @@ with via point muscles.</p>
 <p>Place the cursor right after the end brace of the musle model,
 right-click the AnyViaPointMuscle class in the tree, and insert an
 instance of it:</p>
-<p><img alt="class tree AnyViaPointMuscle" src="../_images/image327.png" /></p>
+<p><img alt="class tree AnyViaPointMuscle" src="../_images/image325.png" /></p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyMuscleModel</span> <span class="n">SimpleModel</span> <span class="o">=</span> <span class="p">{</span>
       <span class="n">F0</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
       <span class="c1">//Lf0 = 0;</span>
@@ -280,7 +281,7 @@ reference frame and the insertion on the segment:</p>
 Like other classes in AnyScript, muscles are not drawn in the Model View
 window unless you specifically ask for it. When you load the model and
 run the SetInitialConditions study you will get the following picture
-(if your model does not load, and you cannot find the error, <a class="reference download internal" href="../_downloads/MuscleDemo.1.any" download=""><code class="xref download docutils literal"><span class="pre">click
+(if your model does not load, and you cannot find the error, <a class="reference download internal" download="" href="../_downloads/c3f3357896dc9244461bcadf6f39faf7/MuscleDemo.1.any"><code class="xref download docutils literal"><span class="pre">click
 here to download a model that works</span></code></a>):</p>
 <p><img alt="simple model with muscle" src="../_images/image44.jpeg" /></p>
 <p>Notice that the muscle is now&nbsp;able to balance the gravity, and we are
@@ -332,7 +333,7 @@ how to control the way a muscle is displayed.</p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -425,7 +426,7 @@ how to control the way a muscle is displayed.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

@@ -12,12 +12,13 @@
     <title>Lesson 3: Results of FDK &#8212; AnyBody Tutorials v7.1.2-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -68,14 +69,14 @@ This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System.
 <p>In this lesson we play a little around with our new FDK model and see
 what kind of results we can obtain from it. If you did not manage to
 obtain a working model from the previous lesson, then please download a
-new one <a class="reference download internal" href="../_downloads/DemoSimpleKnee2.any" download=""><code class="xref download docutils literal"><span class="pre">here</span></code></a>.</p>
+new one <a class="reference download internal" download="" href="../_downloads/4faf622ac52a880de88c2d39e37d3bab/DemoSimpleKnee2.any"><code class="xref download docutils literal"><span class="pre">here</span></code></a>.</p>
 <p>After loading the model, open a Model View window, select
 InverseDynamics and then click the Run button. You should see the knee
 extending and the muscle bulging just like you saw with the baseline
 model. However, inside the joint, much more is now going on. We can
 investigate this in detail if we open a ChartFX window and browse down
 to the linear measure inside the joint:</p>
-<p><img alt="Chart view Linear pos" src="../_images/image120.png" /></p>
+<p><img alt="Chart view Linear pos" src="../_images/image118.png" /></p>
 <p>The red curve is the deformation of the joint in the <em>x</em> direction, i.e.
 parallel with the tibial plateau. Despite the stiffness being smaller in
 this direction, the deformation is rather small. This is of course due
@@ -87,7 +88,7 @@ precisely to get some large deformations to look at. If you right-click
 the blue condyle, select ‘Hide” from the context menu and zoom in on the
 joint, you can see the deformation very clearly as a penetration of the
 shank part of the joint into the thigh part:</p>
-<p><img alt="Model view Knee close up" src="../_images/image215.png" /></p>
+<p><img alt="Model view Knee close up" src="../_images/image213.png" /></p>
 <p>Now let us try something that will create a larger shear deformation in
 the joint: we relocate the position of the insertion node of the
 quadriceps muscle on the tibia:</p>
@@ -110,11 +111,11 @@ quadriceps muscle on the tibia:</p>
 </div>
 <p>This moves the insertion point of the node from the surface of the tibia
 to centerline of the tibia as shown below:</p>
-<p><img alt="Model view Knee wrapping sureface" src="../_images/image313.png" /></p>
+<p><img alt="Model view Knee wrapping sureface" src="../_images/image311.png" /></p>
 <p>Obviously, this causes the muscle to pull much more anteriorly on the
 shank. Please reload and re-run the analysis and investigate the
 deformations once again in the ChartFX window.</p>
-<p><img alt="Chart view Linear pos 2" src="../_images/image412.png" /></p>
+<p><img alt="Chart view Linear pos 2" src="../_images/image410.png" /></p>
 <p>The shear deformation, symbolized by the green curve, is now comparable
 with the normal deformation depicted by the red curve, and once again it
 is easily visible if we remove the blue condyle from the Model View:</p>
@@ -187,7 +188,7 @@ improve on the kinematical behavior in combination with the FDK solver.</p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -279,7 +280,7 @@ improve on the kinematical behavior in combination with the FDK solver.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>
