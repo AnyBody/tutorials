@@ -12,12 +12,13 @@
     <title>Creating human-machine integrated analysis model &#8212; AnyBody Tutorials v7.1.2</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -61,7 +62,7 @@
   <div class="section" id="creating-human-machine-integrated-analysis-model">
 <h1>Creating human-machine integrated analysis model<a class="headerlink" href="#creating-human-machine-integrated-analysis-model" title="Permalink to this headline">¶</a></h1>
 <p>If you did not finish the previous lesson, please download the
-<a class="reference download internal" href="../_downloads/FitnessMachine_Mate_Config3.zip" download=""><code class="xref download docutils literal"><span class="pre">FitnessMachine_Mate_Config3.zip</span></code></a> file in order to get the correct set of files for starting this lesson.</p>
+<a class="reference download internal" download="" href="../_downloads/3803f8d0874563c02a9275c7c7b42da5/FitnessMachine_Mate_Config3.zip"><code class="xref download docutils literal"><span class="pre">FitnessMachine_Mate_Config3.zip</span></code></a> file in order to get the correct set of files for starting this lesson.</p>
 <p>In this lesson, we will create a model with a human body using a
 template; we will add the fitness machine created in the previous lesson
 and then connect the human body to the fitness machine.</p>
@@ -103,7 +104,7 @@ new created file ‘FitnessMachine_With_Human.main.any’ to
 For this we must add an extra virtual segment that follows the CoM. We will make
 the virtual segment massless, since it is not a real segment. We use the CoM
 measure (AnyKinCoM) to drive this dummy segment. The code for doing this is
-prepared in <a class="reference download internal" href="../_downloads/CoM_View.any" download=""><code class="xref download docutils literal"><span class="pre">CoM_View.any</span></code></a>. This kind of CoM
+prepared in <a class="reference download internal" download="" href="../_downloads/c1a6f36d24521254428223a0b0993388/CoM_View.any"><code class="xref download docutils literal"><span class="pre">CoM_View.any</span></code></a>. This kind of CoM
 segment can be used not only for visualization, but also for kinematic
 constraints of the human model.</p>
 <p>Furthermore, we will extend the human model with reference frames
@@ -111,7 +112,7 @@ attached to the human segments for interfacing with the machine. This
 will of course be done at the hands and feet, but also at the pelvis,
 which we may want to control. We add nodes (AnyRefNode) at the palms of
 the hands, the toes of the feet and at the center of the pelvis. Please
-see <a class="reference download internal" href="../_downloads/HumanRefNodes.any" download=""><code class="xref download docutils literal"><span class="pre">HumanRefNodes.any</span></code></a>.</p>
+see <a class="reference download internal" download="" href="../_downloads/86ca97f88e9069b145cc6dd1b0423748/HumanRefNodes.any"><code class="xref download docutils literal"><span class="pre">HumanRefNodes.any</span></code></a>.</p>
 <p>Let us edit the main file in order to include these additional AnyScript
 files like this:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span> <span class="kt">AnyFolder</span> <span class="n">Model</span> <span class="o">=</span> <span class="p">{</span>
@@ -183,7 +184,7 @@ like we did in Lesson 2 to prepare for an actual dynamic analysis.</p>
 </div>
 <p>Similar to the previous lesson, we will add a driver for the fitness machine to
 make the model kinematically determinate. To do this, we can use the
-<a class="reference download internal" href="../_downloads/MachineOperation.any" download=""><code class="xref download docutils literal"><span class="pre">MachineOperation.any</span></code></a> file which
+<a class="reference download internal" download="" href="../_downloads/feb704882204f7a1bc21feb92c39da12/MachineOperation.any"><code class="xref download docutils literal"><span class="pre">MachineOperation.any</span></code></a> file which
 defines the drivers we created in Lesson 2.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MachineOperation</span> <span class="o">=</span>
 <span class="p">{</span>
@@ -243,7 +244,7 @@ machine, but because he was not designed to sit on the machine, we need
 to change his position so it is relative to the fitness machine. We do
 this by changing the mannequin of the model. Since we do not want to
 spend too much time positioning the human model in this tutorial, we
-will use the file <a class="reference download internal" href="../_downloads/Mannequin.any" download=""><code class="xref download docutils literal"><span class="pre">Mannequin.any</span></code></a> (click to download). Copy the file to the Model subfolder
+will use the file <a class="reference download internal" download="" href="../_downloads/dae55098b8871aa4b1bd1aa47a46ef3b/Mannequin.any"><code class="xref download docutils literal"><span class="pre">Mannequin.any</span></code></a> (click to download). Copy the file to the Model subfolder
 to overwrite it.</p>
 <p>When we now load the model and run the Kinematics, we will see that out
 human is located on the fitness machine and the machine is moving. Now,
@@ -326,7 +327,7 @@ model.</p>
 <p>Now we will create the missing 44 constraints to govern the motion.</p>
 <p>We shall prepare this as a separate AnyScript file, which we will name
 ‘JointsAndDrivers.any’. You can download this file here:
-<a class="reference download internal" href="../_downloads/JointsAndDrivers.any" download=""><code class="xref download docutils literal"><span class="pre">JointsAndDrivers.any</span></code></a>. And put it into
+<a class="reference download internal" download="" href="../_downloads/78339a2e9ff186e363de17cd9e2f0afc/JointsAndDrivers.any"><code class="xref download docutils literal"><span class="pre">JointsAndDrivers.any</span></code></a>. And put it into
 the Model subfolder of your model folder to overwrite. Starting from the bottom
 of the human (the top of the file) the constraints applied are as follows:</p>
 <ul class="simple">
@@ -391,7 +392,7 @@ beginning of this lesson.</p>
 now run successfully.</p>
 <p><img alt="Model view Full Body on Fitnessmachine with muscles" src="../_images/lesson3_image5.png" /></p>
 <p>The final version of this model file can be downloaded here:
-<a class="reference download internal" href="../_downloads/FitnessMachine_With_Human.zip" download=""><code class="xref download docutils literal"><span class="pre">‘FitnessMachine_With_Human.zip’</span></code></a>.</p>
+<a class="reference download internal" download="" href="../_downloads/258dff145f0c8ac5c61e14a26e1d7294/FitnessMachine_With_Human.zip"><code class="xref download docutils literal"><span class="pre">‘FitnessMachine_With_Human.zip’</span></code></a>.</p>
 </div>
 </div>
 
@@ -417,7 +418,7 @@ now run successfully.</p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -505,7 +506,7 @@ now run successfully.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

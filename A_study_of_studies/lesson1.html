@@ -12,12 +12,13 @@
     <title>Lesson1: Mechanical System Information &#8212; AnyBody Tutorials v7.1.2</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -62,10 +63,10 @@
 <h1>Lesson1: Mechanical System Information<a class="headerlink" href="#lesson1-mechanical-system-information" title="Permalink to this headline">¶</a></h1>
 <p>In this lesson we are presuming that you have the arm2d.any file loaded
 into AnyBody. If you do not have the model on file, please download and
-save a copy from this link: <a class="reference download internal" href="../_downloads/arm2d.any" download=""><code class="xref download docutils literal"><span class="pre">arm2d.any</span></code></a>. It should look like this when
+save a copy from this link: <a class="reference download internal" download="" href="../_downloads/702cee6f25e55b412882a4113064da26/arm2d.any"><code class="xref download docutils literal"><span class="pre">arm2d.any</span></code></a>. It should look like this when
 you have loaded the model, run InitialConditions operation, and opened a
 Model View:</p>
-<p><img alt="Dumbbel" src="../_images/image113.png" /></p>
+<p><img alt="Dumbbel" src="../_images/image111.png" /></p>
 <p>The mechanics of this model is fairly simple in the sense that it only
 has two segments and two revolute joints. However, in more realistic
 models with dozens of segments connected by many joints of different
@@ -79,7 +80,7 @@ This is included in the study’s Objects Description, which is found by
 double-clicking the objects in any Model Tree View. Double-click the
 ArmModel study folder in the loaded model and you will find a System
 description like this:</p>
-<p><img alt="Study object description" src="../_images/image210.png" /></p>
+<p><img alt="Study object description" src="../_images/image28.png" /></p>
 <p>The Mechanical System Information is comprised of four sections: 0)
 Contents, 1) List of segments, 2) List of joints and kinematic
 constraints, and 3) List of reaction forces.</p>
@@ -195,7 +196,7 @@ it might not be possible to assemble the mechanism and it is almost
 certainly not possible to run a kinematic analysis. Opening the Object
 Description window, by double-clicking the ArmStudy folder, produces
 this output:</p>
-<p><img alt="Object description, number of constraints" src="../_images/image38.png" /></p>
+<p><img alt="Object description, number of constraints" src="../_images/image36.png" /></p>
 <p>The Mechanical System Information allows you to investigate in detail
 how many constraints are missing and which ones they may be. Let us
 shift the missing driver back in:</p>
@@ -245,7 +246,7 @@ will get the following message for each time-step</p>
 </pre></div>
 </div>
 <p>And the Object Description window will give the following feedback:</p>
-<p><img alt="Object description, list of reaction forces" src="../_images/image48.png" /></p>
+<p><img alt="Object description, list of reaction forces" src="../_images/image46.png" /></p>
 <p>indicating that the model is precisely statically determinate with 12 reactions
 corresponding to the 12 rigid body degrees of freedom.</p>
 <p>Having familiarized ourselves with the Mechanical System Information in
@@ -279,7 +280,7 @@ Conditions in the <a class="reference internal" href="lesson2.html"><span class=
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -369,7 +370,7 @@ Conditions in the <a class="reference internal" href="lesson2.html"><span class=
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

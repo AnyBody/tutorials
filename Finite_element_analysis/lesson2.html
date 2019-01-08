@@ -12,12 +12,13 @@
     <title>Lesson 2: ANSYS Interface &#8212; AnyBody Tutorials v7.1.2</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -72,7 +73,7 @@ will analyze the muscle forces acting on the clavicle during lifting his
 arm and analyze the stress in the implant. The standard Standing model
 taken from the AMMRV1.1 will be used. The basic general workflow is
 shown the figure below.</p>
-<p><img alt="FEA tutorial flow chart" src="../_images/image116.png" /></p>
+<p><img alt="FEA tutorial flow chart" src="../_images/image114.png" /></p>
 <p>Here we will focus on the link between AnyBody and ANSYS. So we assume
 we have a “ready to go” Finite Element model which basically only lacks
 its boundary conditions. <em>(This model could be e.g. generated from
@@ -107,18 +108,18 @@ located in the Sternoclavicular joint:</p>
 </div>
 <p>Include them e.g. in the Environment file. After reload of the model the
 reference frame is shown</p>
-<p><img alt="Clavicular ref frame" src="../_images/image213.png" /></p>
+<p><img alt="Clavicular ref frame" src="../_images/image211.png" /></p>
 <p>Next, we have to define the same local coordinate system in the ANSYS
 model. Download the prepared ANSYS file
-<a class="reference download internal" href="../_downloads/clavicular_base.zip" download=""><code class="xref download docutils literal"><span class="pre">here</span></code></a> and save it in your working
+<a class="reference download internal" download="" href="../_downloads/6b7b44d5b93fa6142a12cd5d118581bc/clavicular_base.zip"><code class="xref download docutils literal"><span class="pre">here</span></code></a> and save it in your working
 directory. In the Mechanical APDL (ANSYS) environment (ANSYS Classic), a
 simple way to do so is to modify the location of the work plane. Once
 the work plane is in place create a local coordinate system at the
 workplane origin and give it the number 1000. (In fact you can give it
 any number, but we have to refer to the coordinate system later, so we
-have to know its name). Load the <code class="docutils literal"><span class="pre">clavicular_base.db</span></code> in the Mechanical
+have to know its name). Load the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">clavicular_base</span><span class="p">.</span><span class="n">db</span></code> in the Mechanical
 APDL (ANSYS) environment and have a look.</p>
-<p><img alt="ANSYS nodes" src="../_images/image311.png" /></p>
+<p><img alt="ANSYS nodes" src="../_images/image39.png" /></p>
 <p>This shows the clavicle model, which contains a midshaft fracture,
 modeled with a reduced stiffness and treated with a plate fixation.</p>
 <p>Next we want to analyze the forces in the AMS. Change the Mannequin file
@@ -186,8 +187,8 @@ export.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Create a folder in your Standing model folder named <code class="docutils literal"><span class="pre">files_in</span></code> and one
-called <code class="docutils literal"><span class="pre">files_out</span></code>. This will be used to store the FE files. Change the
+<p>Create a folder in your Standing model folder named <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">files_in</span></code> and one
+called <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">files_out</span></code>. This will be used to store the FE files. Change the
 class as shown below. These definitions specify that all forces acting
 on the segment Clavicula will be written in the xml file clavload. The
 UseRefFrameOnOff option allows giving a reference frame in which all
@@ -209,7 +210,7 @@ right clavicle and right click <em>Insert object name.</em></p>
 </pre></div>
 </div>
 <p>This class will write all the muscle and joint forces for all time steps
-in one xml file. Please create a folder names <code class="docutils literal"><span class="pre">files_in</span></code> in your
+in one xml file. Please create a folder names <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">files_in</span></code> in your
 Application folder. We need one more step to convert the xml file to
 ANSYS APDL language. An additional add-on to the AnyBody Modeling System
 is necessary to do so. This tool is available at
@@ -220,7 +221,7 @@ specification. You can call this code either by a shell prompt or from
 inside AnyBody. You can use the class AnyOperationShellExec for this.
 The names for the executable, its working directory and the options for
 the call of the exe file have to be given. The options specify the input
-file (<code class="docutils literal"><span class="pre">-i</span></code>) and the output file folder (<code class="docutils literal"><span class="pre">-o</span></code>). The <code class="docutils literal"><span class="pre">–t</span></code> option gives a
+file (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">-</span><span class="n">i</span></code>) and the output file folder (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">-</span><span class="n">o</span></code>). The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span>–<span class="n">t</span></code> option gives a
 template for the APDL conversion. Please adjust the path corresponding
 to your setup and insert this code below the study folder:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyOperationShellExec</span> <span class="n">ConvertToAPDL</span><span class="o">=</span><span class="p">{</span>
@@ -257,11 +258,11 @@ have to change right now is the path to your FE model.</p>
 model in the AMS. Select RunApplication in the Operations tree. This
 will automatically run the Calibration and InverseDynamics studies. Next
 select ConvertToAPDL and run it. This will create 5 files in the
-<code class="docutils literal"><span class="pre">files_out</span></code> folder written in APDL language.</p>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">files_out</span></code> folder written in APDL language.</p>
 <p>Open ANSYS Mechanical Utility and read the input of each individual file
 with File-Read input from. This will load the model, apply the boundary
 conditions and start to solve. Once finished post-process the results.</p>
-<p><img alt="Ansys stresses" src="../_images/image410.png" /></p>
+<p><img alt="Ansys stresses" src="../_images/image48.png" /></p>
 <p>Alternatively you can run all models in one go by reading in the
 outputfileList file. Each loadstep will be written in a new result file.
 You can look at the results by loading them one on one in the
@@ -294,7 +295,7 @@ post-processor.</p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -382,7 +383,7 @@ post-processor.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

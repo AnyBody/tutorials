@@ -12,12 +12,13 @@
     <title>Lesson 5: Muscle Models &#8212; AnyBody Tutorials v7.1.2</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -111,7 +112,7 @@ for their parameters, and they also need fairly costly calibration steps to impr
 of the different muscle models and muscle model calibration.
 The AnyScript model from the previous lesson will suffice very nicely.
 You can download a functional version
-of the model here: <a class="reference download internal" href="../_downloads/MuscleDemo.5.any" download=""><code class="xref download docutils literal"><span class="pre">MuscleDemo.5.any</span></code></a>.</p>
+of the model here: <a class="reference download internal" download="" href="../_downloads/3c2721412381b5ac4174df8b352a4d8f/MuscleDemo.5.any"><code class="xref download docutils literal"><span class="pre">MuscleDemo.5.any</span></code></a>.</p>
 <div class="section" id="anymusclemodel2elin">
 <h2>AnyMuscleModel2ELin<a class="headerlink" href="#anymusclemodel2elin" title="Permalink to this headline">¶</a></h2>
 <p>Right-click and save the file to your local disk, and subsequently open
@@ -234,7 +235,7 @@ properties Lm and Lmdot affecting the strength of the model. You can
 plot several properties simultaneously in the Chart View by use of an
 asterix in the variable specification field at the top of the window
 like this:</p>
-<p><img alt="chart view: muscle1.L" src="../_images/image229.png" /></p>
+<p><img alt="chart view: muscle1.L" src="../_images/image227.png" /></p>
 <p>Now we can compare the variation of Lm and Lmdot to our settings of
 Lf0 and V0. Lm seems to vary between approximately 0.31 and 0.15. With
 an Lf0 of 0.3 (= 2x0.15) this means that the muscle must come close to
@@ -244,12 +245,12 @@ from its speed limit&nbsp;V0 =&nbsp;-8, so the contraction speed is not expected
 to have much effect. We can investigate the effect very easily simply by
 clicking the Strength property of the muscle and obtain the following
 graph:</p>
-<p><img alt="muscle strength plot" src="../_images/image328.png" /></p>
+<p><img alt="muscle strength plot" src="../_images/image326.png" /></p>
 <p>The strength does indeed decrease&nbsp;drastically from around 200 N to
 almost nothing as we expected when the muscle contracts.</p>
 <p>Now that we have muscle data available, let us briefly review the
 parameters presented in the Chart View:</p>
-<p><img alt="Muscle parameters" src="../_images/image420.png" /></p>
+<p><img alt="Muscle parameters" src="../_images/image417.png" /></p>
 <table border="1" class="colwidths-given docutils">
 <colgroup>
 <col width="23%" />
@@ -461,7 +462,7 @@ Hill-type model, which does not have these shortcomings.</p>
 and left Muscle2 with the simple muscle model. Let us briefly study what
 Muscle2 is actually doing (if you need an updated&nbsp;working model, you can
 download it here:
-<a class="reference download internal" href="../_downloads/MuscleDemo.5-2.any" download=""><code class="xref download docutils literal"><span class="pre">MuscleDemo.5-2.any</span></code></a>. Muscle2 wraps
+<a class="reference download internal" download="" href="../_downloads/73897abbf655a83b061831f775fe6443/MuscleDemo.5-2.any"><code class="xref download docutils literal"><span class="pre">MuscleDemo.5-2.any</span></code></a>. Muscle2 wraps
 about the cylinder and obviously extends significantly&nbsp;as the arm&nbsp;turns
 upward. If you run the analysis and plot the length of Muscle2, you will
 see that it increases from 0.7 to 1 meter. For a normal muscle (actually&nbsp;a
@@ -705,11 +706,11 @@ to do some work. Let us systematically investigate the output:</p>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Lmt</span></code></td>
 <td>The length of the muscle-tendon unit. If you plot this property you will see that it rises almost linearly as the muscle is extended. Closer investigation, however, will reveal that it is offset slightly by the nonlinearity caused by the elongation of the tendon due to the varying force.</td>
-<td><img alt="Small Lmt plot" src="../_images/image1211.png" /></td>
+<td><img alt="Small Lmt plot" src="../_images/image1210.png" /></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Lm</span></code></td>
 <td>The length of the contractile element.</td>
-<td><img alt="small Lm plot" src="../_images/image135.png" /></td>
+<td><img alt="small Lm plot" src="../_images/image134.png" /></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Lt</span></code></td>
 <td>The length of the tendon. This appears to be constant, but the tendon length actually changes slightly over the movement with the changes of muscle force as described above.</td>
@@ -749,7 +750,7 @@ to do some work. Let us systematically investigate the output:</p>
 </tr>
 <tr class="row-even"><td><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Ft0</span></code></td>
 <td>The hypothetical force that the tendon would have if the activity of the muscle were zero. The reason why this is slightly different from Fp is that Ft0 acts directly along the action line of the muscle while Fp is diverted by the pennation angle. This property is mostly interesting to scientists involved in detailed modeling of single muscles.</td>
-<td><img alt="Small Ft0 plot" src="../_images/image2210.png" /></td>
+<td><img alt="Small Ft0 plot" src="../_images/image228.png" /></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Ft0Grad</span></code></td>
 <td>The gradient of Ft0 with respect to the muscle activity. For mathematical reasons&nbsp;this is&nbsp;equal to the Strength, and the two graphs are identical. The reason why this property is included under to different names is that the simple muscle model, from which this model is derived, does not have Ft0Grad and hence needs a Strength property.</td>
@@ -804,7 +805,7 @@ Muscle2 has the following development over the movement:</p>
 model definition&nbsp;was just slightly off the correct value? Well if we
 change the current value from 0.5 m to 0.45 m, i.e. a reduction of 10%,
 we get the following activity:</p>
-<p><img alt="Calibration Activity plot" src="../_images/image329.png" /></p>
+<p><img alt="Calibration Activity plot" src="../_images/image327.png" /></p>
 <p>Not only is the shape of the graph different, the maximum activity is
 also significantly higher. An error of 10% in anthropometric
 data&nbsp;value is not uncommon considering the accuracy of measurement
@@ -950,7 +951,7 @@ modeling, namely General Muscles. They are the topic of the next lesson,
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -1043,7 +1044,7 @@ modeling, namely General Muscles. They are the topic of the next lesson,
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

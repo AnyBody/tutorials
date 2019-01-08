@@ -12,12 +12,13 @@
     <title>Lesson 3: Kinematic Analysis &#8212; AnyBody Tutorials v7.1.2</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -148,8 +149,8 @@ be difficult to find out what the problem is.</p>
 <p>Now that you know the basics of kinematic analysis, let us look at how
 it is performed. We need an example to work on, and this one will serve
 the purpose:
-<a class="reference download internal" href="../_downloads/Demo.SliderCrank3D.any" download=""><code class="xref download docutils literal"><span class="pre">demo.SliderCrank3D.any</span></code></a></p>
-<p><img alt="demo.SliderCrank3D.any" src="../_images/image115.png" /></p>
+<a class="reference download internal" download="" href="../_downloads/b685570db0e977725ec28dbf3c1960fd/Demo.SliderCrank3D.any"><code class="xref download docutils literal"><span class="pre">demo.SliderCrank3D.any</span></code></a></p>
+<p><img alt="demo.SliderCrank3D.any" src="../_images/image113.png" /></p>
 <p>When you load it and open a <a class="reference internal" href="../Interface_features/lesson3.html"><span class="doc">Model
 View</span></a> you will see that
 this is a very simple mechanism comprising only three segments. They are
@@ -163,7 +164,7 @@ the Kinematics study is everything that has to do with positions,
 velocities, and accelerations. You may expand the tree until you reach
 the Slider segment, and you can chart its acceleration by choosing the
 rDDot property.</p>
-<p><img alt="Chart view Acceleration" src="../_images/image212.png" /></p>
+<p><img alt="Chart view Acceleration" src="../_images/image210.png" /></p>
 <p>Notice the naming of the positional properties: r is position, rDot is
 velocity, and rDDot is acceleration. “Dot” or “DDot” are reflections of
 the mathematical custom of designating differentiation with respect to
@@ -171,12 +172,12 @@ time by a dot over the symbol. So velocity would be ‘r’ with a dot over,
 and acceleration would be ‘r’ with two dots. Try browsing around the
 tree and look up the various available data.</p>
 <p>You may encounter some strange looking results like this one:</p>
-<p><img alt="Shaft acceleration" src="../_images/image310.png" /></p>
+<p><img alt="Shaft acceleration" src="../_images/image38.png" /></p>
 <p>Why would anything in a smoothly running model behave like this? The
 answer lies in the ordinate axis. You will notice that it has no values
 on it, and if you hold the mouse over a point on the curve a small
 window will pop up and show you the value:</p>
-<p><img alt="Shaft acc details" src="../_images/image49.png" /></p>
+<p><img alt="Shaft acc details" src="../_images/image47.png" /></p>
 <p>You can see that the value is 4.45e-14. For all practical purposes this
 is zero, and this is also why there are no values on the ordinate axis.
 What you see here is really zero augmented by numerical round-off
@@ -225,7 +226,7 @@ the subject of <a class="reference internal" href="lesson4.html"><span class="do
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -315,7 +316,7 @@ the subject of <a class="reference internal" href="lesson4.html"><span class="do
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

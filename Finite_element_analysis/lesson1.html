@@ -12,12 +12,13 @@
     <title>Lesson 1: Export of data for FEA &#8212; AnyBody Tutorials v7.1.2</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
     <script type="text/javascript" src="../_static/cloud.base.js"></script>
     <script type="text/javascript" src="../_static/cloud.js"></script>
@@ -193,15 +194,15 @@ displacement becomes work/energy; in other words the kinematic measure
 decides the unit of the force component. Anyway, these occasionally
 somewhat artificial force measures present in the AnyBody model are
 converted to real point forces and point torques, when outputted to
-the AnyFE output file. Therefore, we find <code class="docutils literal"><span class="pre">F[i]</span></code> and <code class="docutils literal"><span class="pre">M[i]</span></code> in the AnyFE,
+the AnyFE output file. Therefore, we find <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></code> in the AnyFE,
 which are the point force and the point torque associated the <em>i</em>’th
 component of the given AnyForce object. The total force acting in the
 global direction at a point can be found by simply adding all the
-components forces, i.e. summing <code class="docutils literal"><span class="pre">F[i]</span></code> for all <em>i</em> at that location.</p>
-<p>In many cases, the components are indeed simple such that component <code class="docutils literal"><span class="pre">i=0</span></code>
-for instance is <code class="docutils literal"><span class="pre">Fx</span></code> as could be expected, but since this <code class="docutils literal"><span class="pre">Fx</span></code> may refer to
+components forces, i.e. summing <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></code> for all <em>i</em> at that location.</p>
+<p>In many cases, the components are indeed simple such that component <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">i</span><span class="o">=</span><span class="mi">0</span></code>
+for instance is <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Fx</span></code> as could be expected, but since this <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Fx</span></code> may refer to
 a local coordinate system of a particular segment, a joint attachment
-node, or the like, <code class="docutils literal"><span class="pre">F[i]</span></code> and <code class="docutils literal"><span class="pre">M[i]</span></code> may still have three non-zero values
+node, or the like, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></code> may still have three non-zero values
 when exported to the AnyFE file. This is because the data is tansformed
 while being exported so that the AnyFE is referring to a single
 coordinate system for all of the exported data; this system is often (by
@@ -238,7 +239,7 @@ has not been reloaded since the force export otherwise run the
 InverseDynamicAnalysis again to bring it to right position. Of course
 it also involves all scaling which has been applied to the bones.
 Browse through the model tree to the L5Seg
-<code class="docutils literal"><span class="pre">Main/HumanModel/BodyModel/Trunk.SegmentsLumbar/L5Seg</span></code> in order
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="o">/</span><span class="n">HumanModel</span><span class="o">/</span><span class="n">BodyModel</span><span class="o">/</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SegmentsLumbar</span><span class="o">/</span><span class="n">L5Seg</span></code> in order
 to export the L5 segment. Inside this folder you find the DrawSTL
 folder. Right-click the folder and choose “Export Surface”. Choose a
 convenient place to store the file and give it the name “L5.stl”. A
@@ -255,7 +256,7 @@ file into the AnyBody Modeling System to substitute existing bones.
 You will have to tweak your CAD file a bit in order to make it fit.
 <a class="reference external" href="mailto:anybody&#37;&#52;&#48;anybodytech&#46;com">Donation of better quality CAD files of bones to the models&nbsp;is most
 welcome<span>&#46;</span></a></p>
-<p>Based on the exported forces and <code class="docutils literal"><span class="pre">.stl</span></code> file we can now build and analyze
+<p>Based on the exported forces and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="p">.</span><span class="n">stl</span></code> file we can now build and analyze
 a FE model. Below we shall build an FE model applying the loads and
 other boundary conditions manually using non-commercially available
 software. However please notice that in the following lessons, we
@@ -305,13 +306,13 @@ programs if you want to do some hands-on FEA.</p>
 want to go through the entire model building process.</p>
 <dl class="docutils">
 <dt>Open IA-FEMesh and press the “Surface” tab to load your (earlier</dt>
-<dd>exported) <code class="docutils literal"><span class="pre">.stl</span></code> file. After successful loading we have to define a
+<dd>exported) <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="p">.</span><span class="n">stl</span></code> file. After successful loading we have to define a
 building block. The building block is a prerequisite to the mesh
 generation and its surfaces will be meshed and further projected on
 the bone. For reasons of simplicity it has been prepared. Please press
 the “Block” tab and chose “Load”. Browse to the folder “FEA” which is
 inside the “StandingLiftFE” application folder. Choose the file
-<code class="docutils literal"><span class="pre">L5_block.vtk</span></code>. Some boxes around the vertebral body will appear.</dd>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">L5_block</span><span class="p">.</span><span class="n">vtk</span></code>. Some boxes around the vertebral body will appear.</dd>
 </dl>
 <p><img alt="FEA tutorial Mesh" src="../_images/image41.jpeg" /></p>
 <p>In the next step, we will have a look at the local mesh density and
@@ -370,7 +371,7 @@ F[2]=-1.526868368696591e-004;4.304677367488389e-003;1.424576103082109e+000;
 M[2]=4.217476399426685e-020;4.217476399426685e-020;4.217476399426685e-020;
 </pre></div>
 </div>
-<p>By summing up the rows for the forces <code class="docutils literal"><span class="pre">F[0]</span></code>, <code class="docutils literal"><span class="pre">F[1]</span></code>, and <code class="docutils literal"><span class="pre">F[2]</span></code> we get the
+<p>By summing up the rows for the forces <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></code>, and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span></code> we get the
 resulting components for the joint reaction load. This can be directly
 used in the force definition as they are given in the same coordinate
 system. In this case only the Y-force component is of interest as all
@@ -427,7 +428,7 @@ editor.</p>
 <h3>Solve and postprocessing<a class="headerlink" href="#solve-and-postprocessing" title="Permalink to this headline">¶</a></h3>
 <p>If you have somehow screwed up your model or simply didn’t want to go
 through the model building process, you can find a working model here:
-<code class="docutils literal"><span class="pre">StandingLift\Input\FEA\L5FEABackup.inp</span></code>. (In this model also
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">StandingLift</span>\<span class="n">Input</span>\<span class="n">FEA</span>\<span class="n">L5FEABackup</span><span class="p">.</span><span class="n">inp</span></code>. (In this model also
 different materials for the cortical shell (E = 12000 MPa) and the
 cancellous bone structure (E = 200 MPa) have been assigned.</p>
 <p>If you want to use this model instead of your own build, please change
@@ -489,7 +490,7 @@ selected commercial FE packages using small interface tools</p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table Of Contents</a></h3>
+<h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
 </ul>
@@ -577,7 +578,7 @@ selected commercial FE packages using small interface tools</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, AnyBody Technology.
+        &#169; Copyright 2019, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>
