@@ -63,43 +63,45 @@
 <h1>Lesson 2: Controlling the Posture<a class="headerlink" href="#lesson-2-controlling-the-posture" title="Permalink to this headline">¶</a></h1>
 <p>The Standing Model’s posture is defined by the angles at the anatomical joints.</p>
 <p>These specifications have been collected in one of the model files, “Mannequin.any”. Scroll
-down to the line which says <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span></code>.</p>
+down to the line which says <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="cp">#include</span> <span class="s">&quot;Model\Mannequin.any&quot;</span></code>.</p>
 <div class="section" id="mannequin-file-structure">
 <h2>Mannequin file structure<a class="headerlink" href="#mannequin-file-structure" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 
-<span class="c1">// Using your own Mannequin.any file in the Model folder of your model</span>
-<span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
+<span class="c1">// Define desired posture or movement of the model</span>
+<span class="cp">#include</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
 
 <span class="p">...</span>
 </pre></div>
 </div>
-<p><strong>This line means that your model will use the “Mannequin.any” file located in the Model folder,
-relative to the location of the main file that you’re viewing.</strong></p>
+<p><strong>This line means that your model will include the “Mannequin.any” file located in the Model folder,
+within the main file.</strong></p>
 <p>Double-clicking the file name in the editor window after loading
 your model opens the mannequin file in a new tab. Then you see the
 following structure. (In the interest of legibility we have removed many
 of the lines):</p>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="kt">AnyFolder</span> <span class="n">Posture</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Default mannequin position values</span>
+<span class="n">HumanModel</span><span class="p">.</span><span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">Posture</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">};</span>
-    <span class="kt">AnyFolder</span> <span class="n">Left</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Left</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">};</span>
   <span class="p">};</span>
 
-<span class="kt">AnyFolder</span> <span class="n">PostureVel</span><span class="o">=</span> <span class="p">{</span>
-   <span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="p">};</span>
-    <span class="kt">AnyFolder</span> <span class="n">Left</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="p">};</span>
+  <span class="n">PostureVel</span><span class="o">=</span> <span class="p">{</span>
+    <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">};</span>
+    <span class="n">Left</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">};</span>
   <span class="p">};</span>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p><strong>The section between each pair of braces is said to be a Folder, with all variables defined therein forming the folder contents.</strong></p>
-<p>Once loading is complete, you can see this folder structure being replicated in “Model tree” on the left of your screen. All contents of this file
+<p><strong>The section between each pair of braces creates a Folder, with all variables defined within forming the folder contents.</strong></p>
+<p>Once the loading process is complete, you can see this folder structure being replicated in “Model tree” on the left of your screen. All contents of this file
 can be seen by expanding the “Mannequin” folder icon in the tree.</p>
+<p><img alt="ModelTree" src="../_images/image11.png" /></p>
 <p>There are sub-folders for postural joint angles (in degrees) and angular velocities (in degrees/second),
 for the right and left halves of the body.</p>
 <p>Changing any of the joint angles and reloading the model, will change the model’s posture at load time. To start with, ensure that the contents of the “Right”
@@ -111,11 +113,14 @@ and “Left” sub-folders are as follows.</p>
     <span class="kt">AnyVar</span> <span class="n">SternoClavicularProtraction</span><span class="o">=-</span><span class="mi">23</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
     <span class="kt">AnyVar</span> <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mf">11.5</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
     <span class="kt">AnyVar</span> <span class="n">SternoClavicularAxialRotation</span><span class="o">=-</span><span class="mi">20</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+
     <span class="kt">AnyVar</span> <span class="n">GlenohumeralFlexion</span> <span class="o">=-</span><span class="mi">0</span><span class="p">;</span>
     <span class="kt">AnyVar</span> <span class="n">GlenohumeralAbduction</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
     <span class="kt">AnyVar</span> <span class="n">GlenohumeralExternalRotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
     <span class="kt">AnyVar</span> <span class="n">ElbowFlexion</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
     <span class="kt">AnyVar</span> <span class="n">ElbowPronation</span> <span class="o">=</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">;</span>
+
     <span class="kt">AnyVar</span> <span class="n">WristFlexion</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
     <span class="kt">AnyVar</span> <span class="n">WristAbduction</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
@@ -123,7 +128,9 @@ and “Left” sub-folders are as follows.</p>
     <span class="kt">AnyVar</span> <span class="n">HipFlexion</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
     <span class="kt">AnyVar</span> <span class="n">HipAbduction</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>
     <span class="kt">AnyVar</span> <span class="n">HipExternalRotation</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+
     <span class="kt">AnyVar</span> <span class="n">KneeFlexion</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+
     <span class="kt">AnyVar</span> <span class="n">AnklePlantarFlexion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="kt">AnyVar</span> <span class="n">SubTalarEversion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
 
@@ -142,20 +149,19 @@ joint angular velocities in degrees per second. For now, please leave all the va
 <span id="running-analysis"></span><h2>Running a simulation analysis<a class="headerlink" href="#running-a-simulation-analysis" title="Permalink to this headline">¶</a></h2>
 <p>Simulation based analyses in AnyBody are termed “Studies”.</p>
 <p><strong>Step 1</strong>: Click on the operations drop-down menu at the top (see figure). Select “Main.RunApplication”</p>
-<p>This is what the other drop-down items do. “RunApplication” is a readymade package of some pre-processing steps and
-the “InverseDynamics” analysis:</p>
+<p>“RunApplication” is a readymade package of some pre-processing steps and the “InverseDynamics” analysis. Other drop-down operations include:</p>
 <ul class="simple">
-<li><strong>Kinematics</strong>: Kinematic analysis</li>
-<li><strong>InverseDynamics</strong>: Inverse dynamic analysis</li>
+<li><strong>Kinematics</strong>: Runs Kinematic analysis</li>
+<li><strong>InverseDynamics</strong>: Runs Inverse dynamic analysis</li>
 <li><strong>InitialConditions</strong>: Runs only the first time step of Kinematics. Useful for testing and debugging.</li>
 <li><strong>Replay</strong>: Replays the last operation that was run.</li>
 </ul>
-<p><img alt="RunApplication" src="../_images/image11.png" /></p>
+<p><img alt="RunApplication" src="../_images/image2.png" /></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p><strong>Step 2</strong>: Click the “Run Operation” button on the Execute toolbar. This toolbar is next to the drop-down menu, and contains three buttons:</p>
-<p><img alt="Run toolbar" src="../_images/image2.png" /></p>
+<p><img alt="Run toolbar" src="../_images/image3.png" /></p>
 <ul class="simple">
 <li><strong>Run operation</strong>: Starts or pauses the chosen operation. Shortcut
 F5.</li>

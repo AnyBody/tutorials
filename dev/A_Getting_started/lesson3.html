@@ -73,9 +73,9 @@ filtered down version of the model tree, which only contains simulation outputs 
 due to the static posture of the model.</p>
 <p><img alt="Chart view" src="../_images/image21.png" /></p>
 <p>If you want to see details of the actual values being plotted, click this
-button <img alt="getting started 8" src="../_images/image3.png" />. It adds a table with values below the chart:</p>
+button <img alt="getting started 8" src="../_images/image31.png" />. It adds a table with values below the chart:</p>
 <p><img alt="Chart view Data button" src="../_images/image4.png" /></p>
-<p><strong>This chart shows you that when standing upright, the most active muscle in model is using about 15%
+<p><strong>This chart shows you that when standing upright, the most active muscle in model is using about 12%
 of that particular muscle’s maximum strength.</strong></p>
 </div>
 <div class="section" id="hip-forces-standing-posture">
@@ -91,7 +91,7 @@ by expanding the tree view like this</strong>:</p>
 <p>If you select the ‘Hip_ProximoDistalForce’, you will see its value vs time in
 the Chart View.</p>
 <p><img alt="Chartview ProximoDistalForce" src="../_images/image7.png" /></p>
-<p>From this chart, we can see that there is about 334N force at the
+<p>From this chart, we can see that there is about 558N force at the
 right hip joint in the proximodistal direction.</p>
 <p><strong>It is possible to select and plot several outputs simultaneously
 by using the asterisk character</strong> (<code class="docutils literal"><span class="pre">*</span></code>). <strong>If you double-click
@@ -108,16 +108,16 @@ and ‘Hip_AnteroPosteriorForce’ in the same Chart View.</p>
 model to see what happens to the hip joint reaction force.</p>
 <p>To adjust the posture of the human model, open your Mannequin.any
 file and change the PelvisThoraxExtension value from 0 to -60.</p>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
 
-    <span class="kt">AnyFolder</span> <span class="n">Posture</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Posture</span> <span class="o">=</span> <span class="p">{</span>
 
         <span class="p">...</span>
 
-        <span class="gr">AnyVar PelvisThoraxExtension=-60; </span>
+        <span class="gr">PelvisThoraxExtension=-60; </span>
 
-        <span class="kt">AnyVar</span> <span class="n">PelvisThoraxLateralBending</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-        <span class="kt">AnyVar</span> <span class="n">PelvisThoraxRotation</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">PelvisThoraxLateralBending</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">PelvisThoraxRotation</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
         <span class="p">...</span>
 </pre></div>
@@ -129,7 +129,7 @@ human model in the Model View.</p>
 <p>Next, we will check the changes in the right hip joint reaction forces.</p>
 <p><img alt="Chart view: bowing hip reaction forces" src="../_images/image10.png" /></p>
 <p>In the above Chart View, the largest hip joint reaction
-force component is the “ProximoDistalForce” at about 919N.
+force component is the “ProximoDistalForce” at about 1263N.
 So compared to the normal standing posture model, the value has more than
 doubled. The forces of the “Mediolateral” and “AnteroPosterior” directions have also
 increased.</p>
