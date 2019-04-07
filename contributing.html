@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Contributing &#8212; AnyBody Tutorials v7.1.2</title>
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
@@ -82,11 +80,11 @@ wrong reST syntax etc, the Pull Request can not be merged.</p>
 master branch the tutorials becomes availble online.</p>
 <p>The newest released version of the tutorials are available at:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://anyscript.org/tutorials">https://anyscript.org/tutorials</a></li>
+<li><p><a class="reference external" href="https://anyscript.org/tutorials">https://anyscript.org/tutorials</a></p></li>
 </ul>
 <p>The newest development version (current master branch) is availble at:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://anyscript.org/tutorials/dev">https://anyscript.org/tutorials/dev</a></li>
+<li><p><a class="reference external" href="https://anyscript.org/tutorials/dev">https://anyscript.org/tutorials/dev</a></p></li>
 </ul>
 <div class="section" id="building-the-tutorials-locally">
 <h3>Building the tutorials locally<a class="headerlink" href="#building-the-tutorials-locally" title="Permalink to this headline">¶</a></h3>
@@ -103,7 +101,7 @@ tutorials. But when writing major new sections it nice to view how things look.<
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; make html</span>
 </pre></div>
 </div>
-<p>Once complete open the file: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">build</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">html</span></code> in a browser to view
+<p>Once complete open the file: <code class="docutils literal notranslate"><span class="pre">build/html/index.html</span></code> in a browser to view
 the result.</p>
 </div>
 </div>
@@ -117,9 +115,9 @@ quick run through over some of the reST concepts which are important for the tut
 or more blank lines. Identation matters in reST, so lines of the same
 paragraph must be left aligned to the same indentation.</p>
 <ul class="simple">
-<li>one asterisk: <code class="docutils literal"><span class="pre">*text*</span></code> for emphasis (italics),</li>
-<li>two asterisks: <code class="docutils literal"><span class="pre">**text**</span></code> for strong emphasis (boldface), and</li>
-<li>backquotes: :literal:` <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">text</span></code> ` for code samples.</li>
+<li><p>one asterisk: <code class="docutils literal notranslate"><span class="pre">*text*</span></code> for emphasis (italics),</p></li>
+<li><p>two asterisks: <code class="docutils literal notranslate"><span class="pre">**text**</span></code> for strong emphasis (boldface), and</p></li>
+<li><p>backquotes: :literal:` <code class="docutils literal notranslate"><span class="pre">text</span></code> ` for code samples.</p></li>
 </ul>
 <p>There are also options for <sub>subscript</sub> and <sup>superscript</sup> plus more:</p>
 <div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="na">:subscript:</span><span class="nv">`subscript`</span> and <span class="na">:superscript:</span><span class="nv">`superscript`</span>
@@ -161,11 +159,11 @@ paragraph must be left aligned to the same indentation.</p>
 </div>
 <div class="section" id="highlighting-code">
 <h3>Highlighting code<a class="headerlink" href="#highlighting-code" title="Permalink to this headline">¶</a></h3>
-<p>Highlighting AnyScript code snippets is also supported, using the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">pygments_anyscript</span></code>
+<p>Highlighting AnyScript code snippets is also supported, using the <code class="docutils literal notranslate"><span class="pre">pygments_anyscript</span></code>
 extension to pygments.</p>
-<p>AnyScript highlighting is started using the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">code</span><span class="o">-</span><span class="n">block</span></code>
-directive and specifing <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyScriptDoc</span></code> as the highlighting language.</p>
-<style> .red {color:red} </style><p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyScriptDoc</span></code> is highlighter specifically for the documentation in sphinx.
+<p>AnyScript highlighting is started using the <code class="docutils literal notranslate"><span class="pre">code-block</span></code>
+directive and specifing <code class="docutils literal notranslate"><span class="pre">AnyScriptDoc</span></code> as the highlighting language.</p>
+<style> .red {color:red} </style><p>The <code class="docutils literal notranslate"><span class="pre">AnyScriptDoc</span></code> is highlighter specifically for the documentation in sphinx.
 It can highlight AnyScript code even if the syntax is not correct, and any code
 fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</p>
 <p>Here is an example</p>
@@ -186,12 +184,12 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
 </div>
 <p>Valid values for the highlighting languages are:</p>
 <ul class="simple">
-<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">none</span></code>: no highlighting</li>
-<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyScript</span></code>: AnyScript (Syntax must be valid)</li>
-<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyBodyDoc</span></code> AnyScript (Allows invalid syntax)</li>
-<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">python</span><span class="o">/</span><span class="n">c</span><span class="o">++/</span><span class="n">ruby</span></code> Different known programming languages</li>
-<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">rest</span></code> ReStructuredText</li>
-<li>… and any other <a class="reference external" href="http://pygments.org/docs/lexers/">lexer alias that Pygments supports</a>.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">none</span></code>: no highlighting</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AnyScript</span></code>: AnyScript (Syntax must be valid)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AnyBodyDoc</span></code> AnyScript (Allows invalid syntax)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python/c++/ruby</span></code> Different known programming languages</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rest</span></code> ReStructuredText</p></li>
+<li><p>… and any other <a class="reference external" href="http://pygments.org/docs/lexers/">lexer alias that Pygments supports</a>.</p></li>
 </ul>
 </div>
 </div>
@@ -212,8 +210,6 @@ fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Introduction to Validation &#8212; AnyBody Tutorials v7.1.2</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -68,14 +66,14 @@ results I get?</p>
 a model of reality, and there will always be some amount of
 approximation involved. The good news is that with careful modeling and
 the ‘right model for the right problem’ you can get very close to
-reality with the AnyBody Modeling System because it is&nbsp;tailor-made
-for&nbsp;the complexity of musculoskeletal systems.</p>
+reality with the AnyBody Modeling System because it is tailor-made
+for the complexity of musculoskeletal systems.</p>
 <p>Investigation of the accuracy of the model goes under the term
 ‘validation’, and this is what we will be dealing with in this tutorial.
 More precisely, you can expect to find the following in this tutorial:</p>
 <ol class="arabic simple">
-<li>Clever ideas for validation methods.</li>
-<li>Examples of models that have been validated previously.</li>
+<li><p>Clever ideas for validation methods.</p></li>
+<li><p>Examples of models that have been validated previously.</p></li>
 </ol>
 <p>Several <a class="reference external" href="https://www.anybodytech.com/anybody.html?fwd=webcasts">previous
 webcasts</a> have
@@ -86,9 +84,9 @@ presented validation studies and results, the most recent one was
 <p>Well, lots, actually. But it is helpful to try to categorize the matter
 into a few sources of error.</p>
 <ul class="simple">
-<li>Errors sources in the model</li>
-<li>Errors sources in the basic assumptions</li>
-<li>Errors sources in the software</li>
+<li><p>Errors sources in the model</p></li>
+<li><p>Errors sources in the basic assumptions</p></li>
+<li><p>Errors sources in the software</p></li>
 </ul>
 </div>
 <div class="section" id="errors-sources-in-the-model">
@@ -121,17 +119,17 @@ advice is to approach the matter with a critical mind. If results look
 suspicious in some part of the model, consider whether this can be due
 to the model input. Some typical cases are:</p>
 <ul class="simple">
-<li>The muscle primarily responsible for carrying the load over a joint
+<li><p>The muscle primarily responsible for carrying the load over a joint
 does not have sufficient strength. This can happen even in
-well-tested models if an unusual loading, posture&nbsp;or support
-condition that was never tested before is imposed.</li>
-<li>The model has attained a posture in which the moment arm of a primary
+well-tested models if an unusual loading, posture or support
+condition that was never tested before is imposed.</p></li>
+<li><p>The model has attained a posture in which the moment arm of a primary
 muscle erroneously becomes zero or negative. This can happen, for
 instance, if a wrapping muscle slides off its wrapping surface. The
 variation of muscle length with the joint angle reflects the moment
 arm, so if the moment arm is too small, then the muscle will have
-little length variation when the joint is articulated.</li>
-<li>If the model makes use of a muscle model with stength/length
+little length variation when the joint is articulated.</p></li>
+<li><p>If the model makes use of a muscle model with stength/length
 variation and passive stiffness, then a tendon length that is poorly
 calibrated to the model can cause malfunction of its muscle. A too
 long tendon will cause its muscle to have little or no strength in
@@ -140,14 +138,14 @@ to excert passive force and likely cause muscles on the other side of
 the joint to work more than they are supposed to. Please notice that
 AnyBody has facilities for calibrating tendon lengths. <a class="reference internal" href="../Muscle_modeling/intro.html"><span class="doc">The muscle
 modeling tutorial</span></a> has
-in-depth information about these issues.</li>
+in-depth information about these issues.</p></li>
 </ul>
 </div>
 <div class="section" id="boundary-conditions">
 <h3>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">¶</a></h3>
 <p>Input to inverse dynamics is movement and boundary conditions, and these
 can have more influence on the result than most inexperienced modelers
-would expect. In fact, they&nbsp;are the principal source of error in many
+would expect. In fact, they are the principal source of error in many
 models. The human body is remarkable in its ability to make the best of
 the available supports, and this often creates the illusion that
 supports are solid while they really are not.</p>
@@ -243,8 +241,8 @@ accelerations oscillate or attain unrealistic values, then the input
 positional information definitely needs careful reviewing and probably
 smoothing with a low-pass filter.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="Kinematic_input.html"><span class="doc">Kinematic input validation</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="Kinematic_input.html"><span class="doc">Kinematic input validation</span></a>.</p>
 </div>
 </div>
 </div>
@@ -264,8 +262,6 @@ smoothing with a low-pass filter.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

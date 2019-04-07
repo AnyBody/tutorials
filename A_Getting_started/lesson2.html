@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 2: Controlling the Posture &#8212; AnyBody Tutorials v7.1.2</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -63,7 +61,7 @@
 <h1>Lesson 2: Controlling the Posture<a class="headerlink" href="#lesson-2-controlling-the-posture" title="Permalink to this headline">¶</a></h1>
 <p>The Standing Model’s posture is defined by the angles at the anatomical joints.</p>
 <p>These specifications have been collected in one of the model files, “Mannequin.any”. Scroll
-down to the line which says <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span></code>.</p>
+down to the line which says <code class="docutils literal notranslate"><span class="pre">#path</span> <span class="pre">BM_MANNEQUIN_FILE</span> <span class="pre">&quot;Model\Mannequin.any&quot;</span></code>.</p>
 <div class="section" id="mannequin-file-structure">
 <h2>Mannequin file structure<a class="headerlink" href="#mannequin-file-structure" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
@@ -145,10 +143,10 @@ joint angular velocities in degrees per second. For now, please leave all the va
 <p>This is what the other drop-down items do. “RunApplication” is a readymade package of some pre-processing steps and
 the “InverseDynamics” analysis:</p>
 <ul class="simple">
-<li><strong>Kinematics</strong>: Kinematic analysis</li>
-<li><strong>InverseDynamics</strong>: Inverse dynamic analysis</li>
-<li><strong>InitialConditions</strong>: Runs only the first time step of Kinematics. Useful for testing and debugging.</li>
-<li><strong>Replay</strong>: Replays the last operation that was run.</li>
+<li><p><strong>Kinematics</strong>: Kinematic analysis</p></li>
+<li><p><strong>InverseDynamics</strong>: Inverse dynamic analysis</p></li>
+<li><p><strong>InitialConditions</strong>: Runs only the first time step of Kinematics. Useful for testing and debugging.</p></li>
+<li><p><strong>Replay</strong>: Replays the last operation that was run.</p></li>
 </ul>
 <p><img alt="RunApplication" src="../_images/image11.png" /></p>
 <div class="line-block">
@@ -157,13 +155,13 @@ the “InverseDynamics” analysis:</p>
 <p><strong>Step 2</strong>: Click the “Run Operation” button on the Execute toolbar. This toolbar is next to the drop-down menu, and contains three buttons:</p>
 <p><img alt="Run toolbar" src="../_images/image2.png" /></p>
 <ul class="simple">
-<li><strong>Run operation</strong>: Starts or pauses the chosen operation. Shortcut
-F5.</li>
-<li><strong>Step operation</strong>: Advances to next step of operation, typically a
-time step. Shortcut F6.</li>
-<li><strong>Stop operation</strong>: Sets the operation back to its initial position.
+<li><p><strong>Run operation</strong>: Starts or pauses the chosen operation. Shortcut
+F5.</p></li>
+<li><p><strong>Step operation</strong>: Advances to next step of operation, typically a
+time step. Shortcut F6.</p></li>
+<li><p><strong>Stop operation</strong>: Sets the operation back to its initial position.
 You must reset before you start a new analysis that was previously
-aborted. Shortcut F4</li>
+aborted. Shortcut F4</p></li>
 </ul>
 <p>You will see the model move slightly into position and you are finally
 awarded the following message:</p>
@@ -191,8 +189,6 @@ results</span></a>.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

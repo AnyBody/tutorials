@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 4: Kinematic Measures &#8212; AnyBody Tutorials v7.1.2</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -62,8 +60,8 @@
   <div class="section" id="lesson-4-kinematic-measures">
 <h1>Lesson 4: Kinematic Measures<a class="headerlink" href="#lesson-4-kinematic-measures" title="Permalink to this headline">¶</a></h1>
 <div class="without-title admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last"><strong>Old tutorial:</strong>
+<p class="admonition-title">Caution</p>
+<p><strong>Old tutorial:</strong>
 This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
 </div>
 <p>You are not likely to have any sort of idea what a kinematic measure is.
@@ -97,8 +95,8 @@ able to put the hand (actually the wrist since this simple model has no
 hand) directly at the desired position in space and have the elbow and
 shoulder joints follow implicitly. This is where the kinematic measures
 come into play. Let’s start off with the model just about where we left
-in the “Getting Started with AnyScript” tutorial. Please <a class="reference download internal" download="" href="../_downloads/d2fcf94c91f7c089d6e0334421f4be8b/Measures.any"><code class="xref download docutils literal"><span class="pre">click here to
-download the necessary file (Measures.any)</span></code></a>,
+in the “Getting Started with AnyScript” tutorial. Please <a class="reference download internal" download="" href="../_downloads/d2fcf94c91f7c089d6e0334421f4be8b/Measures.any"><code class="xref download docutils literal notranslate"><span class="pre">click</span> <span class="pre">here</span> <span class="pre">to</span>
+<span class="pre">download</span> <span class="pre">the</span> <span class="pre">necessary</span> <span class="pre">file</span> <span class="pre">(Measures.any)</span></code></a>,
 and save it in some working directory on your own hard disk.</p>
 <p>Let us try initially to create a kinematic measure that will allow us to
 track the movement of the wrist. To honor the folder structure of the
@@ -119,10 +117,10 @@ kinematic measures and joints:</p>
 <span class="gr">}; // KinematicMeasures</span>
 </pre></div>
 </div>
-<p>An AnyKinLinear is a kinematic measure that gauges the&nbsp;spatial
-vector&nbsp;between two points. The line Ref = 0 means that the coordinates
-of this linear distance are measured in the coordinate system&nbsp;first of
-the measure’s&nbsp;end points&nbsp;which in this case happens to be the global
+<p>An AnyKinLinear is a kinematic measure that gauges the spatial
+vector between two points. The line Ref = 0 means that the coordinates
+of this linear distance are measured in the coordinate system first of
+the measure’s end points which in this case happens to be the global
 reference frame. For other options, please refer to the AnyScript
 Reference Manual.</p>
 <p>So far, we have just added a measure that allows us to track the
@@ -146,7 +144,7 @@ them, you can actually drive them!</strong></p>
 by drivers on the x and y components of the WristPos kinematic measure.</p>
 <p>We need to remove the existing elbow and shoulder drivers to avoid
 kinematic redundancy. You can enclose the drivers in comment characters
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="cm">/*  */</span></code>, or you can simply erase them, leaving you with an empty
+<code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">*/</span></code>, or you can simply erase them, leaving you with an empty
 drivers folder:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span> <span class="p">{</span>
 <span class="p">};</span> <span class="c1">// Drivers folder</span>
@@ -194,11 +192,11 @@ may be difficult to find in more complex cases.</p>
 <p>To conclude, the special feature about kinematic measures is that you
 can drive them. In AnyBody, you can drive anything that you can measure,
 and this is really a unique facility. If something went wrong for you
-along the way, you can <a class="reference download internal" download="" href="../_downloads/def19de4eabad78deb43515df8c59223/Measures2.any"><code class="xref download docutils literal"><span class="pre">download a commented version of the final result
-here (Measures2.any)</span></code></a>.</p>
+along the way, you can <a class="reference download internal" download="" href="../_downloads/def19de4eabad78deb43515df8c59223/Measures2.any"><code class="xref download docutils literal notranslate"><span class="pre">download</span> <span class="pre">a</span> <span class="pre">commented</span> <span class="pre">version</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">final</span> <span class="pre">result</span>
+<span class="pre">here</span> <span class="pre">(Measures2.any)</span></code></a>.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> The last lesson in the tutorial on mechanical elements is <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Forces</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> The last lesson in the tutorial on mechanical elements is <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Forces</span></a>.</p>
 </div>
 </div>
 
@@ -217,8 +215,6 @@ here (Measures2.any)</span></code></a>.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

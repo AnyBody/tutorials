@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 7: Calibration &#8212; AnyBody Tutorials v7.1.2</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -62,8 +60,8 @@
   <div class="section" id="lesson-7-calibration">
 <h1>Lesson 7: Calibration<a class="headerlink" href="#lesson-7-calibration" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The following tutorial will explain how to set up your simple
+<p class="admonition-title">Note</p>
+<p>The following tutorial will explain how to set up your simple
 calibration study. Calibration is already built into the AMMR,
 :ammr:doc`see the AMMR documentation &lt;index&gt;` for more details.</p>
 </div>
@@ -113,7 +111,7 @@ cause very large antagonistic muscle actions.</p>
 <p>Enough talk! Let’s define a muscle and calibrate it. We shall begin with
 the simple arm model we developed in the “Getting Started: AnyScript
 Programming” tutorial. If you have not already saved the model in a
-file, get it here: <a class="reference download internal" download="" href="../_downloads/dfb24d44a9bde387316750f39b131b86/arm2d.any"><code class="xref download docutils literal"><span class="pre">arm2d.any</span></code></a>.</p>
+file, get it here: <a class="reference download internal" download="" href="../_downloads/dfb24d44a9bde387316750f39b131b86/arm2d.any"><code class="xref download docutils literal notranslate"><span class="pre">arm2d.any</span></code></a>.</p>
 <p>In that simple example, all the muscles were assumed to be of a simple
 type with constant strength. We shall add another and much more detailed
 muscle model:</p>
@@ -274,7 +272,7 @@ this:</p>
 <span class="gr">}; // Driver folder</span>
 </pre></div>
 </div>
-<p>Notice&nbsp;that after moving the Drivers folder we have changed the
+<p>Notice that after moving the Drivers folder we have changed the
 references to the joints. We also have to change the study a little bit.
 This is because the study points at the ArmModel folder and that no
 longer contains a movement, so the study would not know how to move the
@@ -335,7 +333,7 @@ remember the values for the until the model is reloaded. Now run the
 InverseDynamics study and have a look at the chart. Notice that the Fp passive
 muscle force now is zero because the BicepsLongModel slack length Lt0 was
 elongated by the calibration.</p>
-<p>Here’s a link to the finished <a class="reference download internal" download="" href="../_downloads/8a1f5d90607829bd599889a6ccc0d51c/calibration.any"><code class="xref download docutils literal"><span class="pre">calibration.any example</span></code></a>.</p>
+<p>Here’s a link to the finished <a class="reference download internal" download="" href="../_downloads/8a1f5d90607829bd599889a6ccc0d51c/calibration.any"><code class="xref download docutils literal notranslate"><span class="pre">calibration.any</span> <span class="pre">example</span></code></a>.</p>
 </div>
 
 
@@ -353,8 +351,6 @@ elongated by the calibration.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

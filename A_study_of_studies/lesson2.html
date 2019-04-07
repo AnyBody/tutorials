@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson2: Initial Conditions &#8212; AnyBody Tutorials v7.1.2</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -74,21 +72,21 @@ complicated models, you can often find the segments and muscles in a big
 mess at load time. Typically, you will want to see what the model looks
 like when it has been assembled correctly for time step 1. This is what
 the InitialConditions operation is for.</p>
-<div class="figure" id="id1">
+<div class="figure align-center" id="id1">
 <a class="reference internal image-reference" href="../_images/image112.png"><img alt="Load time positions" src="../_images/image112.png" style="width: 592.0px; height: 461.0px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 6.1 </span><span class="caption-text">The load-time positions of segments in a simple arm model. Notice that
-the forearm and upper arm do not meet correctly at the elbow joint.*</span></p>
+the forearm and upper arm do not meet correctly at the elbow joint.*</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p>When&nbsp;you run the InitialConditions operation, it will attempt to put the
+<p>When you run the InitialConditions operation, it will attempt to put the
 model in the position is has at time = tStart. This may or may not be
 possible, and in the development stages of a model, when the joints and
 drivers are not yet fully defined, it is definitely not possible, and
 this is the reason why the system does not do it automatically when you
 load the model. Running the InitialConditions operation produces a
 correctly assembled arm:</p>
-<div class="figure" id="id2">
+<div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="../_images/image29.png"><img alt="After initial conditions" src="../_images/image29.png" style="width: 493.0px; height: 495.0px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 6.2 </span><span class="caption-text">The arm correctly assembled at the elbow by SetInitialConditions.</span></p>
+<p class="caption"><span class="caption-number">Fig. 6.2 </span><span class="caption-text">The arm correctly assembled at the elbow by SetInitialConditions.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Here’s a more detailed explanation: The system must perform a
 kinematical analysis to connect the model correctly at the joints. This
@@ -102,9 +100,9 @@ the user placed them.</p>
 <p>Instead of simply running the InitialConditions operation, you can also
 single-step through it to see what it does. This is done by clicking the
 “Step” button instead of the “Run” button.</p>
-<div class="figure" id="id3">
+<div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="../_images/image37.png"><img alt="After initial conditions" src="../_images/image37.png" style="width: 831.0px; height: 337.0px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Picking the step button.</span></p>
+<p class="caption"><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Picking the step button.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>The first step re-establishes the load-time conditions. This means that
 it positions the model as it was when you loaded it. This is useful for
@@ -116,8 +114,8 @@ visible in this simple model.</p>
 kinematic analysis, which will be the subject of <a class="reference internal" href="lesson3.html"><span class="doc">the next
 lesson.</span></a></p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Kinematic Analysis</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Kinematic Analysis</span></a>.</p>
 </div>
 </div>
 
@@ -136,8 +134,6 @@ lesson.</span></a></p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

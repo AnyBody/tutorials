@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 3: Abaqus Interface &#8212; AnyBody Tutorials v7.1.2</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -106,7 +104,7 @@ following lines create a new node located in the Sternoclavicular joint:</p>
 <p>Include them e.g. in the Environment file. After reload of the model the
 reference frame is shown</p>
 <p><img alt="clavicula ref frame" src="../_images/image115.png" /></p>
-<p>Download the prepared Abaqus file <a class="reference download internal" download="" href="../_downloads/715bbc09b708690c191eeccd887d119f/clavicula.inp"><code class="xref download docutils literal"><span class="pre">here</span></code></a> and
+<p>Download the prepared Abaqus file <a class="reference download internal" download="" href="../_downloads/715bbc09b708690c191eeccd887d119f/clavicula.inp"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a> and
 save it in your working directory. Please note that this FE model of
 clavicle was created in the same reference frame as the clavicle model
 in the AnyBody model, since we have actually used the STL exported from
@@ -114,13 +112,13 @@ AMMR for this bone. Therefore, ‘localrefframe’ does not have to be
 displaced in order to match with the coordinate system of the FE mesh,
 but had the FE mesh been generated based on scanned data, the
 registration between AnyBody model’s clavicle and the FE mesh can be
-entered using <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">localrefframe</span></code>’s sRel and Arel members.</p>
+entered using <code class="docutils literal notranslate"><span class="pre">localrefframe</span></code>’s sRel and Arel members.</p>
 <p>In a similar manner one could define a local reference frame in Abaqus
-by means of the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">*</span><span class="n">SYSTEM</span></code> keyword; however, this is not advisable because
-the AnyFE Converter does not handle the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">*</span><span class="n">SYSTEM</span></code> keyword in the supplied
+by means of the <code class="docutils literal notranslate"><span class="pre">*SYSTEM</span></code> keyword; however, this is not advisable because
+the AnyFE Converter does not handle the <code class="docutils literal notranslate"><span class="pre">*SYSTEM</span></code> keyword in the supplied
 mesh file. We shall return to the issue of aligning the coordinate
 systems for the AnyBody forces and the mesh later, and so far we
-consider <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">localrefframe</span></code> to be aligned with the mesh coordinate system.</p>
+consider <code class="docutils literal notranslate"><span class="pre">localrefframe</span></code> to be aligned with the mesh coordinate system.</p>
 <p><img alt="Clavicula mesh" src="../_images/image212.png" /></p>
 <p>This figure above shows the clavicle bone mesh used for this example.
 This bone is modeled with a reduced stiffness, which can be interpreted
@@ -130,7 +128,7 @@ computed in the AMS. First, change the Mannequin file to create the
 desired physical activity. We want to analyze a simple lifting case, so
 all we specify is flexion in the shoulder joint. Open the Mannequin file
 and look for the PostureVel folder. Change the Glenohumeral flexion
-value to 50/<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">Study</span><span class="p">.</span><span class="n">tEnd</span></code>, this determines the joint velocity
+value to 50/<code class="docutils literal notranslate"><span class="pre">Main.Study.tEnd</span></code>, this determines the joint velocity
 necessary to reach 50 degree flexion taking into account the simulation
 time.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
@@ -190,9 +188,9 @@ export.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Create a folder in your Standing model folder named <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">files_in</span></code> and one
-called <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">files_out</span></code>. This will be used to store the FE files. Change the
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">FE_out</span></code> object as shown below. These definitions specify that all forces
+<p>Create a folder in your Standing model folder named <code class="docutils literal notranslate"><span class="pre">files_in</span></code> and one
+called <code class="docutils literal notranslate"><span class="pre">files_out</span></code>. This will be used to store the FE files. Change the
+<code class="docutils literal notranslate"><span class="pre">FE_out</span></code> object as shown below. These definitions specify that all forces
 acting on the segment Clavicula will be written in the xml file
 clavload. It is important to use the xml format, since the AnyFE
 converter only reads this format.</p>
@@ -225,15 +223,15 @@ the files in your model folder. These files include the AnyFE converter,
 which is an executable called AnyFE2Abq.exe. It can convert the xml code
 to Abaqus keyword sequence and combine it with the FE model.</p>
 <p>The AnyFE converter is a command line tool with options controlled by
-program arguments. Running the program with the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span>–<span class="n">h</span></code>, i.e.
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyFE2Abq</span><span class="p">.</span><span class="n">exe</span> –<span class="n">h</span></code>. We shall briefly go through the important options
+program arguments. Running the program with the <code class="docutils literal notranslate"><span class="pre">–h</span></code>, i.e.
+<code class="docutils literal notranslate"><span class="pre">AnyFE2Abq.exe</span> <span class="pre">–h</span></code>. We shall briefly go through the important options
 here.</p>
-<p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span>–<span class="n">i</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span>–<span class="n">o</span></code> options specify the input AnyFE xml file
-(<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">-</span><span class="n">i</span></code>) and the output file (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">-</span><span class="n">o</span></code>), respectively. The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span>–<span class="n">m</span></code>
+<p>The <code class="docutils literal notranslate"><span class="pre">–i</span></code> and <code class="docutils literal notranslate"><span class="pre">–o</span></code> options specify the input AnyFE xml file
+(<code class="docutils literal notranslate"><span class="pre">-i</span></code>) and the output file (<code class="docutils literal notranslate"><span class="pre">-o</span></code>), respectively. The <code class="docutils literal notranslate"><span class="pre">–m</span></code>
 option is used to specify a FE model without boundary conditions. This
 Abaqus INP file, containing the mesh only, will be included in the
 converter output INP file by means of an include-statement.</p>
-<p>Another significant option is <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span>–<span class="n">e</span></code>, which is the radius of
+<p>Another significant option is <code class="docutils literal notranslate"><span class="pre">–e</span></code>, which is the radius of
 muscle/ligament attachment area. This radius (default value is 1 cm) is
 used for the construction of coupling constraint between a loaded point
 and the surface of the bone. Please note that this radius is used on all
@@ -272,14 +270,14 @@ file. In the above, we have therefore considered ‘localrefframe’ to be
 the coordinate system of the FE model, which is also the CT/MRI scan
 system. Notice that in the given case, the segment reference and the
 output reference are aligned since the FE mesh was based on the original
-bone geometry from the AnyBody model, i.e. <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">sRel</span><span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">}</span></code>.</p>
+bone geometry from the AnyBody model, i.e. <code class="docutils literal notranslate"><span class="pre">sRel=</span> <span class="pre">{0,</span> <span class="pre">0,</span> <span class="pre">0}</span></code>.</p>
 <p>As an alternatively, you can export the AnyFE XML file in another
 reference frame, even the global system in AnyBody
 (UseRefFrameOnOff=Off) for that matter. This implies that the data of
 the AnyFE XML file may or may not contain motion of the bone and it will
 probably.not be aligned with the FE mesh/CT/MRI scan system. If you
 chose this an option, the AnyFE Converter can remove the rigid body
-motion by using the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span>–<span class="n">r</span></code> option equal to ‘segment’:</p>
+motion by using the <code class="docutils literal notranslate"><span class="pre">–r</span></code> option equal to ‘segment’:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp –r segment
 </pre></div>
 </div>
@@ -288,7 +286,7 @@ the local frame of the segment, here the clavicle segment, before
 applied to the FE model and outputted.</p>
 <p>If the reference frame of the segment is not identical to the one of the
 FE mesh, one can apply a constant transformation to all data
-accommodating for this misalignment. The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span>–<span class="n">t</span></code> option allows you to
+accommodating for this misalignment. The <code class="docutils literal notranslate"><span class="pre">–t</span></code> option allows you to
 enter the transformation as a string containing space separated numbers.
 The command line will look like:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp –r segment –t &quot;a11 a12 a13 a21 a22 a23 a31 a32 a33 dx dy dz&quot;
@@ -307,7 +305,7 @@ let us have a look at what it does.</p>
 <p>Please notice that the AnyFE Converter is reading Abaqus input file
 (INP) and it is only expecting a simple mesh specification. This reader
 is not fully compatible with the INP keyword language for Abaqus.
-Basically, it only reads in the first block of nodes (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">*</span><span class="n">NODE</span></code> section)
+Basically, it only reads in the first block of nodes (<code class="docutils literal notranslate"><span class="pre">*NODE</span></code> section)
 and it does not accept commands that may interfere with the
 interpretation of this node section. This implies that many Abaqus
 keywords are not allowed in front of the first node section. This also
@@ -315,22 +313,23 @@ implies that subsequent node sections are not read and therefore, not
 used for application of forces.</p>
 <p>The AnyFE Converter performs the following actions:</p>
 <ul class="simple">
-<li>Maps all AnyBody exported forces, i.e., joint reactions, muscle
+<li><p>Maps all AnyBody exported forces, i.e., joint reactions, muscle
 forces and applied forces to the provided FE mesh. Mass related
 forces are neglected, i.e., gravitational and acceleration equivalent
-forces.<ul>
-<li>Defines nodes in the positions from the AnyFE output file, i.e.
+forces.</p>
+<ul>
+<li><p>Defines nodes in the positions from the AnyFE output file, i.e.
 the position of all loads (this includes muscle/ligament
-attachment nodes)</li>
-<li>Defines amplitudes for each force/moment component in the AnyFE
-output file</li>
-<li>Defines concentrated loads (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">*</span><span class="n">CLOAD</span></code>) in each of these nodes</li>
-<li>Defines coupling constraints between the created nodes and a part
-of the surface of the bone</li>
+attachment nodes)</p></li>
+<li><p>Defines amplitudes for each force/moment component in the AnyFE
+output file</p></li>
+<li><p>Defines concentrated loads (<code class="docutils literal notranslate"><span class="pre">*CLOAD</span></code>) in each of these nodes</p></li>
+<li><p>Defines coupling constraints between the created nodes and a part
+of the surface of the bone</p></li>
 </ul>
 </li>
-<li>The mesh in included</li>
-<li>Adds inertia relief loads (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">*</span><span class="n">INERTIA</span> <span class="n">RELIEF</span></code>)</li>
+<li><p>The mesh in included</p></li>
+<li><p>Adds inertia relief loads (<code class="docutils literal notranslate"><span class="pre">*INERTIA</span> <span class="pre">RELIEF</span></code>)</p></li>
 </ul>
 <p>Please note that the inertia relief loads will automatically be added to
 the model in order to provide a full set of boundary conditions.
@@ -343,7 +342,7 @@ inertia loads can be suppressed or removed.</p>
 model in the AMS. Select RunApplication in the Operations tree. This
 will automatically run the Calibration and InverseDynamics studies. Next
 select ConvertToAbq operation and run it. This will create a new Abaqus
-input file in the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">files_out</span></code> folder.</p>
+input file in the <code class="docutils literal notranslate"><span class="pre">files_out</span></code> folder.</p>
 <p>Open Abaqus and import the input file from the output directory. This
 will load the clavicle mesh model, apply the boundary conditions. Next
 step is to make your custom final adjustments, run the FE solver, and
@@ -392,8 +391,6 @@ see significant changes due to the modification in the overall picture.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
