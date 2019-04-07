@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Optimization Studies &#8212; AnyBody Tutorials v7.1.2-dev</title>
+    <title>Optimization Studies &#8212; AnyBody Tutorials v7.2.0-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -46,7 +44,7 @@
         <li class="right" >
           <a href="lesson1.html" title="Defining a Parameter Study"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.2-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.2.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">17. Parameter Studies and Optimization</a> &#187;</li> 
       </ul>
@@ -61,7 +59,7 @@
             
   <div class="section" id="optimization-studies">
 <h1>Optimization Studies<a class="headerlink" href="#optimization-studies" title="Permalink to this headline">¶</a></h1>
-<p>The parameter study introduced in the preceding lesson&nbsp;provides a
+<p>The parameter study introduced in the preceding lesson provides a
 complete overview of the design space, but the study is only feasible
 when the problem has few independent parameters, preferably one or two.
 In the previous lesson we considered a problem with two parameters and 10
@@ -75,7 +73,7 @@ more than very few independent parameters. So what to do?</p>
 carefully and only has to evaluate a few of them. One class of such
 methods is optimization. An optimization algorithm systematically
 searches through the design space for the combination of parameters that
-minimizes the value of a function&nbsp;of the parameters, the so-called
+minimizes the value of a function of the parameters, the so-called
 objective function. Some algorithms also allow the definition of
 constraint functions, which are dependent parameters that must be
 maintained below a certain upper limit.</p>
@@ -86,7 +84,7 @@ follows:</p>
 <p><span class="math notranslate nohighlight">\(g_0(x_1..x_n)\)</span></p>
 <p>Subject to</p>
 <p><span class="math notranslate nohighlight">\(g_i(x_1..x_n) \leq 0 \\ \text{and} \\L_j \leq x_j \leq U_j\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(g_0\)</span> is called the objective function, <span class="math notranslate nohighlight">\(x_j\)</span>, <span class="math notranslate nohighlight">\(j=1..n\)</span>&nbsp;are the design variables, and <span class="math notranslate nohighlight">\(g_i\)</span>,
+<p>where <span class="math notranslate nohighlight">\(g_0\)</span> is called the objective function, <span class="math notranslate nohighlight">\(x_j\)</span>, <span class="math notranslate nohighlight">\(j=1..n\)</span> are the design variables, and <span class="math notranslate nohighlight">\(g_i\)</span>,
 <span class="math notranslate nohighlight">\(i=1..m\)</span> are the constraints. The definition of an optimization
 problem in AnyBody is therefore a question of appointing independent
 parameters as design variables and dependent parameters as the objective
@@ -97,23 +95,25 @@ the variables.</p>
 lesson could be defined as:</p>
 <p>Minimize</p>
 <blockquote>
-<div><em>Metabolic energy&nbsp;consumption</em></div></blockquote>
+<div><p><em>Metabolic energy consumption</em></p>
+</div></blockquote>
 <p>Subject to</p>
 <blockquote>
-<div><em>Saddle height within predefined limits</em>
-<em>Saddle horizontal position within predefined limits</em></div></blockquote>
+<div><p><em>Saddle height within predefined limits</em>
+<em>Saddle horizontal position within predefined limits</em></p>
+</div></blockquote>
 <p>In fact, this is precisely what we are going to do, but before we
 proceed, let us briefly look at the properties of a typical
 musculoskeletal objective function and how the optimization algorithm
 solves the problem.</p>
 <img alt="../_images/image13.gif" src="../_images/image13.gif" />
 <img alt="../_images/image25.gif" src="../_images/image25.gif" />
-<p>The two pictures above both show the result of&nbsp;a parameter study. The
+<p>The two pictures above both show the result of a parameter study. The
 picture on the right is the section indicated by the magnifying glass on
 the left amplified by 50 times. As you can see, the seemingly smooth
 objective function has a microscopic jump. In other words the function
 is non-smooth and in fact discontinuous at certain points. Not
-all&nbsp;design measures&nbsp;have such discontinuities, but some do. The figure
+all design measures have such discontinuities, but some do. The figure
 also indicates that the function is smooth in between these
 discontinuities. Optimization algorithms are trying to navigate on
 multi-dimentional hyper-surfaces with such qualities and must
@@ -123,9 +123,9 @@ most cases. It is a special version of a so-called feasible directions
 algorithm, which seeks out the optimum in two-step loops. The two steps
 are:</p>
 <ol class="arabic simple">
-<li>Decide on a search direction.</li>
-<li>Perform a linear search to find the minimum along the chosen
-direction.</li>
+<li><p>Decide on a search direction.</p></li>
+<li><p>Perform a linear search to find the minimum along the chosen
+direction.</p></li>
 </ol>
 <p>This means that it is only necessary to perform analyses of the function
 values at the points that the algorithm actually visits and not all
@@ -138,7 +138,7 @@ not predispose smoothness.</p>
 <h2>Adding the optimization class<a class="headerlink" href="#adding-the-optimization-class" title="Permalink to this headline">¶</a></h2>
 <p>Now that we know what to expect, we can proceed to the actual definition of the
 optimization study. If you didn’t complete <a class="reference internal" href="lesson1.html"><span class="doc">lesson 1</span></a>, download
-<a class="reference download internal" download="" href="../_downloads/27ef9f3fe8e2181855afd217b10f4cee/OptimBike2-final.zip"><code class="xref download docutils literal"><span class="pre">the finished parameter study model</span></code></a> to get started quickly.</p>
+<a class="reference download internal" download="" href="../_downloads/27ef9f3fe8e2181855afd217b10f4cee/OptimBike2-final.zip"><code class="xref download docutils literal notranslate"><span class="pre">the</span> <span class="pre">finished</span> <span class="pre">parameter</span> <span class="pre">study</span> <span class="pre">model</span></code></a> to get started quickly.</p>
 <p>The previous definition of the parameter
 study will help us a lot because an optimization study has almost
 exactly the same structure. So the first step would be to simply copy
@@ -212,16 +212,16 @@ the parameter study:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Please notice that the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyDesMeasure</span> <span class="n">MaxAct</span></code> was removed, and so was the
-entire line with the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">nStep</span></code> specification. The optimization study does
+<p>Please notice that the <code class="docutils literal notranslate"><span class="pre">AnyDesMeasure</span> <span class="pre">MaxAct</span></code> was removed, and so was the
+entire line with the <code class="docutils literal notranslate"><span class="pre">nStep</span></code> specification. The optimization study does
 not use any particular step size but rather adapts its steps
 automatically to find the accurate position of the optimum. This is
-another advantage of&nbsp;optimization over a parameter study. Finally, we
+another advantage of optimization over a parameter study. Finally, we
 have added a type specification to the Metab object specifying that this
 is the objective function of the problem.</p>
-<p>This is&nbsp;the definition of an optimization problem that will vary the
+<p>This is the definition of an optimization problem that will vary the
 saddle height and horizontal position to minimize the metabolism. Let
-us&nbsp;run it and see what happens. Load the model in and please make sure
+us run it and see what happens. Load the model in and please make sure
 that you have a Model View window open so that you can see the
 difference in the way the seat position is varied compared to the
 parameter study.</p>
@@ -231,7 +231,7 @@ text.</p>
 </div>
 <div class="section" id="running-the-optimization-study">
 <h2>Running the optimization study<a class="headerlink" href="#running-the-optimization-study" title="Permalink to this headline">¶</a></h2>
-<p>Select the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">OptStudy</span><span class="p">.</span><span class="n">Optimization</span></code> in the operation dropdown and
+<p>Select the <code class="docutils literal notranslate"><span class="pre">Main.OptStudy.Optimization</span></code> in the operation dropdown and
 then the Run button. The model starts cycling and after a few rounds you will
 notice the saddle position changing, but not in a systematic grid like in the
 parameters study. What you will see is gradual changes back and forth in
@@ -249,25 +249,25 @@ with the Metabolism parameter study open? It should look like this:</p>
 <img alt="../_images/metab100.png" src="../_images/metab100.png" />
 <p>If not, please run the ParamStudy again and plot the surface. When you
 have this surface ready, please open another Chart window by clicking
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">View</span></code>-&gt;``Charts``-&gt;``Chart2``.&nbsp; In the new window, please expand the tree
+<code class="docutils literal notranslate"><span class="pre">View</span></code>-&gt;``Charts``-&gt;``Chart2``.  In the new window, please expand the tree
 down to Main.OptStudy.Output.Metab. Then click the Val variable
 under Metab. This produces a simple 2-D graph showing the development of
-the metabolism over the&nbsp;4 iterations:</p>
+the metabolism over the 4 iterations:</p>
 <img alt="../_images/metabcon2.png" src="../_images/metabcon2.png" />
 <p>The graph confirms that the vast majority of the improvement is obtained
 in a couple of iterations and the final iteration contributes only by a
-minor, almost insignificant&nbsp;adjustment. Such iterations
-with&nbsp;insignificant improvements occur due to the convergence criterion,
+minor, almost insignificant adjustment. Such iterations
+with insignificant improvements occur due to the convergence criterion,
 i.e., the criterion that stops the optimization process. The optimizer
 does not detect mathemtically that the objective function has an optimum
-value; it merely detects that the changes of the&nbsp;found solution are
+value; it merely detects that the changes of the found solution are
 small from one iteration to the next. Therefore, the optimization
 process will always end with one (or more) steps with insignificant
 changes.</p>
 <p>The optimal solution in the Model View looks like this:</p>
 <img alt="../_images/bikeopt2.png" src="../_images/bikeopt2.png" />
-<p>Just above the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Metab</span></code> variable in the tree you can find the two
-independent variables, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">SaddleHeight</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">SaddlePos</span></code>, and they can be
+<p>Just above the <code class="docutils literal notranslate"><span class="pre">Metab</span></code> variable in the tree you can find the two
+independent variables, <code class="docutils literal notranslate"><span class="pre">SaddleHeight</span></code> and <code class="docutils literal notranslate"><span class="pre">SaddlePos</span></code>, and they can be
 graphed the same way revealing that their convergence is less monotone
 over the iterations. This is also quite usual for optimization
 processes.</p>
@@ -279,13 +279,13 @@ Please right-click in the series window and select “New”:</p>
 <img alt="../_images/newseries.png" src="../_images/newseries.png" />
 <p>This will give you a blank “Series 1”. When you highlight it by clicking
 with the mouse you will see the list of Selected Objects in the
-right-hand pane is empty. We are going to fill in the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">SaddleHeight</span></code> and
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">SaddlePos</span></code> variables from the OptStudy&nbsp;as Abscissa and Abscissa2,
-respectively.&nbsp; This is done by selecting Abscissa and Abscissa2 in turn
-and then expanding the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">OptStudy</span></code> branch until the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">SaddleHeight</span><span class="p">.</span><span class="n">Val</span></code> and
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">SaddlePos</span><span class="p">.</span><span class="n">Val</span></code>, respectively, can be selected:</p>
+right-hand pane is empty. We are going to fill in the <code class="docutils literal notranslate"><span class="pre">SaddleHeight</span></code> and
+<code class="docutils literal notranslate"><span class="pre">SaddlePos</span></code> variables from the OptStudy as Abscissa and Abscissa2,
+respectively.  This is done by selecting Abscissa and Abscissa2 in turn
+and then expanding the <code class="docutils literal notranslate"><span class="pre">OptStudy</span></code> branch until the <code class="docutils literal notranslate"><span class="pre">SaddleHeight.Val</span></code> and
+<code class="docutils literal notranslate"><span class="pre">SaddlePos.Val</span></code>, respectively, can be selected:</p>
 <img alt="../_images/selectheight.png" src="../_images/selectheight.png" />
-<p>Finally, in the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Value</span></code> field select <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">OptStudy</span><span class="p">.</span><span class="n">Metab</span><span class="p">.</span><span class="n">Val</span></code> and look carefully
+<p>Finally, in the <code class="docutils literal notranslate"><span class="pre">Value</span></code> field select <code class="docutils literal notranslate"><span class="pre">OptStudy.Metab.Val</span></code> and look carefully
 at the plot. You will see that an additional polyline has been added. It
 originates approximately at the middle of the surface and shows the path
 the optimization process has taken through the design space to the
@@ -293,7 +293,7 @@ minimum point. You can change the color of the line by clicking the second
 leftmost button (<img alt="chartsettings.png" src="../_images/chartsettings1.png" />) in the toolbar directly over the graphics
 pane. This gives you access to all the settings and lets you control the
 appearance of graphs in detail. In the picture below we have selected
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">}</span></code>, i.e. red,&nbsp;for <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Series1</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Thickness</span> <span class="o">=</span> <span class="mi">4</span></code>:</p>
+<code class="docutils literal notranslate"><span class="pre">RGB</span> <span class="pre">=</span> <span class="pre">{1,0,0}</span></code>, i.e. red, for <code class="docutils literal notranslate"><span class="pre">Series1</span></code> and <code class="docutils literal notranslate"><span class="pre">Thickness</span> <span class="pre">=</span> <span class="pre">4</span></code>:</p>
 <img alt="../_images/optpath2.png" src="../_images/optpath2.png" />
 </div>
 <div class="section" id="caveat-when-running-optimization-studies">
@@ -302,7 +302,7 @@ appearance of graphs in detail. In the picture below we have selected
 objective function. Here we can see the reasons for the convergence
 being as it is. Actually, the optimum value lies in a relatively flat
 region and therefore the exact mathematical location of the optimum may
-be of a more academic&nbsp;importance than practical relevance&nbsp;since we can
+be of a more academic importance than practical relevance since we can
 find many design point with almost the same objective function value.</p>
 <p>“A flat optimum”, like this, can occasionally cause problems for the
 optimization process to provide exact convergence because it is
@@ -310,7 +310,7 @@ difficult to distinguish between insignificant changes due to flatness
 or convergence. Furthermore, one more obstacle for finding the exact
 optimum is present in the given case. The objective function is not as
 smooth as the parameter study with the relative crude grid indicates.
-Below you&nbsp;see the result of a parameter study, we have prepared for a
+Below you see the result of a parameter study, we have prepared for a
 small 2 by 2 mm design area in the vicinity of the end-point of the fist
 optimization step.</p>
 <img alt="../_images/metabzoom2.png" src="../_images/metabzoom2.png" />
@@ -326,7 +326,7 @@ a convergence history like in the plots shown below</p>
 <p>Notice how  how only the first
 iteration out of 7 provides significant improvement of the objective
 function. This step brings the design value down into to the valley. The
-remaining&nbsp;iterations zigzags in the bottom of the valley without being
+remaining iterations zigzags in the bottom of the valley without being
 able to get up and out and without providing any visible improvement.
 Finally, the convergence criterion is fulfilled. It can be mentioned
 that the convergence criterion requires both objective and design
@@ -338,7 +338,7 @@ changes to be small.</p>
 problem formulation also handles constraints. They can be used for all
 sorts of purposes. For instance we notice that the optimal solution is a
 rather low saddle position, cf. the picture above. Suppose that for some
-reason, this position is too low. We, therefore,&nbsp;want to ensure that the
+reason, this position is too low. We, therefore, want to ensure that the
 distance between the crank and the seat is not too small, for instance
 larger than 0.66 m. This can be formulated very nicely as a constraint
 like this:</p>
@@ -353,28 +353,28 @@ like this:</p>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<p>Notice that constraints are defined as <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyDesMeasures</span></code> of type
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">LessThanZero</span></code> or <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">GreaterThanZero</span></code>. In the mathematical formulation of the
+<p>Notice that constraints are defined as <code class="docutils literal notranslate"><span class="pre">AnyDesMeasures</span></code> of type
+<code class="docutils literal notranslate"><span class="pre">LessThanZero</span></code> or <code class="docutils literal notranslate"><span class="pre">GreaterThanZero</span></code>. In the mathematical formulation of the
 optimization problem stated in the beginning of this lesson, we have
 only less-than-or-equal-to constraints, but there is only a minus sign
-in difference&nbsp;of making a greater-than-or-equal-to into a
+in difference of making a greater-than-or-equal-to into a
 less-than-or-equal-to constraint. You can put this minus sign manually
-or you can use Type = <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">GreaterThanZero</span></code>, which is equivalent. Notice that
-equality constraints&nbsp;are in principle also a possibility, but currently
+or you can use Type = <code class="docutils literal notranslate"><span class="pre">GreaterThanZero</span></code>, which is equivalent. Notice that
+equality constraints are in principle also a possibility, but currently
 the optimization solvers in AnyBody do not handle this type of
 constraints. Moreover, it is most often possible to handle equality
 constraints by means of inequality constraints, because the objective
 function’s gradient will put pressure on the constraint from one side;
 thus, it is merely a matter of determining the proper type of inequality
 constraint.</p>
-<p>Notice also that the constraint is just an <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyDesMeasure</span></code>, so anything
+<p>Notice also that the constraint is just an <code class="docutils literal notranslate"><span class="pre">AnyDesMeasure</span></code>, so anything
 you could conceivably use as an objective function can also be a
 constraint. In this case, the constraint is a simple mathematical
 combination of variables, but in general it can also be properties such
 as muscle forces, joint reactions, point locations, segment velocities,
 and any other model property that the system can compute.</p>
 <p>Enough talk; let’s try the optimization with the constraint added.
-Please load the model again, select the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">OptStudy</span><span class="p">.</span><span class="n">Optimization</span></code> operation, and
+Please load the model again, select the <code class="docutils literal notranslate"><span class="pre">Main.OptStudy.Optimization</span></code> operation, and
 click the run button. The optimization process will have the following
 convergence picture:</p>
 <img alt="../_images/metab2_constrained.png" src="../_images/metab2_constrained.png" />
@@ -382,12 +382,12 @@ convergence picture:</p>
 convergence:</p>
 <img alt="../_images/optpath2_constrained.png" src="../_images/optpath2_constrained.png" />
 <p>We see that the result is indeed a compromise since the objective
-function&nbsp;value cannot be reduced as much as in the unconstrained
-case.&nbsp;The path of the design values&nbsp;bounces off the constraint and
+function value cannot be reduced as much as in the unconstrained
+case. The path of the design values bounces off the constraint and
 finally it gets stuck on the constraint even though the objective
 function still has a downwards inclination. The constraint lies like a
 wall through the design space. We can see the convergence path along the
-constraint by plot the constraint value, i.e., the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">SeatDist</span><span class="p">.</span><span class="n">Val</span></code>. This
+constraint by plot the constraint value, i.e., the <code class="docutils literal notranslate"><span class="pre">SeatDist.Val</span></code>. This
 looks like:</p>
 <img alt="../_images/SeatDist2_constrained.png" src="../_images/SeatDist2_constrained.png" />
 <p>where it is obvious how the optimizer hits the constraint, bounces off,
@@ -396,14 +396,14 @@ constraint value becomes negative, which was exactly what we prescribed
 in its definition.</p>
 <p>A final look at the result could be the picture of the model after this
 constained optimization, which shows a visible difference compared to
-the unconstrained solution: The hip position is now higher,&nbsp;i.e., longer
+the unconstrained solution: The hip position is now higher, i.e., longer
 from the crank and to achieve this it is further forward, see the
 picture below:</p>
 <img alt="../_images/BikeOpt2_constrained.png" src="../_images/BikeOpt2_constrained.png" />
 <p>This completes the introduction to optimization studies.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Optimization Studies in Python</span></a>.&nbsp;We will look at how to use external (3rd. party) optimizers with
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Optimization Studies in Python</span></a>. We will look at how to use external (3rd. party) optimizers with
 AnyBody. In particular we will show how to use the Python programming language to run the
 same optimizations as we have done in this Tutorial.</p>
 </div>
@@ -425,8 +425,6 @@ same optimizations as we have done in this Tutorial.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -513,7 +511,7 @@ same optimizations as we have done in this Tutorial.</p>
         <li class="right" >
           <a href="lesson1.html" title="Defining a Parameter Study"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.2-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.2.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >17. Parameter Studies and Optimization</a> &#187;</li> 
       </ul>

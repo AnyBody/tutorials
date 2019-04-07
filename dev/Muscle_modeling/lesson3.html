@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Lesson 3: Via-point Muscles &#8212; AnyBody Tutorials v7.1.2-dev</title>
+    <title>Lesson 3: Via-point Muscles &#8212; AnyBody Tutorials v7.2.0-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -46,7 +44,7 @@
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Controlling Muscle Drawing"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.2-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.2.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">10. Muscle Modeling</a> &#187;</li> 
       </ul>
@@ -69,10 +67,10 @@ origin to insertion, either by connective tissues or by the contact with
 bone surfaces.</p>
 <p>In the former case, the muscle tends to pass as a piecewise straight
 line between the constrained points, and this is relatively easy to
-accomplish by means of an AnyViaPointMuscle.&nbsp;In the latter case, the
+accomplish by means of an AnyViaPointMuscle. In the latter case, the
 muscle may engage and release contact with the bone surfaces it
 encounters. This wrapping over bones is a problem of contact mechanics
-and optimization. It requires a different muscle class&nbsp;and it is
+and optimization. It requires a different muscle class and it is
 computationally much more demanding. In this lesson we shall look at
 AnyViaPointMuscles and postpone the discussion of wrapping to the next
 lesson.</p>
@@ -87,14 +85,14 @@ reasonably with via point muscles.</em></p>
 of the humerus.</em></p>
 <div class="section" id="via-point-muscles">
 <h2>Via Point Muscles<a class="headerlink" href="#via-point-muscles" title="Permalink to this headline">¶</a></h2>
-<p>Via point muscles&nbsp;pass through a set of at least two points on their way
+<p>Via point muscles pass through a set of at least two points on their way
 from origin to insertion. Each of the via points must be attached to a
 segment or the global reference frame of the model. The first and the
 last of the point sequence are special because the muscle is rigidly
 fixed to them and hence transfers forces in its local longitudinal
 direction to them. Conversely, the muscle passes through the interior
 via points like a thread through the eye of a needle. This means that
-the muscle transfers only&nbsp;forces to interior via points along a line
+the muscle transfers only forces to interior via points along a line
 that bisects the angle formed by the muscle on the two sides of the via
 point.</p>
 <p>Let us modify the model we have been working on to investigate the
@@ -169,7 +167,7 @@ the muscle:</p>
 <p><img alt="Simpel model with via point muscle" src="../_images/image32.jpeg" /></p>
 <p>A muscle can pass through an unlimited number of via points, and the
 points can be attached to different segments. This can be used to create
-rather complex&nbsp;kinematic behaviors of muscles, but it also requires care
+rather complex kinematic behaviors of muscles, but it also requires care
 in the definition to avoid unrealistic muscle paths when the via points
 move around with the different segments.</p>
 <p>From-the-point of view of kinematic robustness, the wrapping muscles are
@@ -177,8 +175,8 @@ easier to handle than via point muscles, but the price is much higher
 computationally. Wrapping muscles is the subject of <a class="reference internal" href="lesson4.html"><span class="doc">Lesson
 4</span></a>.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4: Wrapping Muscles</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4: Wrapping Muscles</span></a>.</p>
 </div>
 </div>
 </div>
@@ -198,8 +196,6 @@ computationally. Wrapping muscles is the subject of <a class="reference internal
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -290,7 +286,7 @@ computationally. Wrapping muscles is the subject of <a class="reference internal
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Controlling Muscle Drawing"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.2-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.2.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >10. Muscle Modeling</a> &#187;</li> 
       </ul>

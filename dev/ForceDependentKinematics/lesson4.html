@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Lesson 4: Using Surfaces to Define the Knee Joint &#8212; AnyBody Tutorials v7.1.2-dev</title>
+    <title>Lesson 4: Using Surfaces to Define the Knee Joint &#8212; AnyBody Tutorials v7.2.0-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -46,7 +44,7 @@
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Results of FDK"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.2-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.2.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">9. Force-Dependent Kinematics</a> &#187;</li> 
       </ul>
@@ -62,8 +60,8 @@
   <div class="section" id="lesson-4-using-surfaces-to-define-the-knee-joint">
 <h1>Lesson 4: Using Surfaces to Define the Knee Joint<a class="headerlink" href="#lesson-4-using-surfaces-to-define-the-knee-joint" title="Permalink to this headline">¶</a></h1>
 <div class="without-title admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last"><strong>Old tutorial:</strong>
+<p class="admonition-title">Caution</p>
+<p><strong>Old tutorial:</strong>
 This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
 </div>
 <p>The knee model developed in the previous lessons is obviously very
@@ -73,7 +71,7 @@ realistic geometries of surfaces such as the femoral condyles, and we
 shall explore those in this lesson. We start from the model developed in
 the second lesson. If you did not manage to obtain a working model from
 the second lesson, then please download a new one
-<a class="reference download internal" download="" href="../_downloads/4faf622ac52a880de88c2d39e37d3bab/DemoSimpleKnee2.any"><code class="xref download docutils literal"><span class="pre">here</span></code></a>.</p>
+<a class="reference download internal" download="" href="../_downloads/4faf622ac52a880de88c2d39e37d3bab/DemoSimpleKnee2.any"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 <p>In this example, we are modeling the knee joint using some simplified
 2-D implants (see picture) for the femoral head and the tibial plateau.
 To do this, we add some STL surfaces for theses implants to the model
@@ -145,8 +143,8 @@ segments to show the migration. For the thigh segment we add</p>
 a rather big distance between the knee center nodes of thigh and shank.</p>
 <p>Now we start to add our new knee joint by adding the knee implant parts
 to the model. We need the two STL files
-<a class="reference download internal" download="" href="../_downloads/8072fe6e63be7fd01f1342834fc1248b/simplefemoral.stl"><code class="xref download docutils literal"><span class="pre">simplefemoral.stl</span></code></a> and
-<a class="reference download internal" download="" href="../_downloads/95e4dd10572b3229ee93fe5ac98c0b4b/simpletibial.stl"><code class="xref download docutils literal"><span class="pre">simpletibial.stl</span></code></a>. First, we define the
+<a class="reference download internal" download="" href="../_downloads/8072fe6e63be7fd01f1342834fc1248b/simplefemoral.stl"><code class="xref download docutils literal notranslate"><span class="pre">simplefemoral.stl</span></code></a> and
+<a class="reference download internal" download="" href="../_downloads/95e4dd10572b3229ee93fe5ac98c0b4b/simpletibial.stl"><code class="xref download docutils literal notranslate"><span class="pre">simpletibial.stl</span></code></a>. First, we define the
 femoral condyles as an AnySurfSTL inside the KneeCenter and add an
 AnyDrawSurf object inside to also be able to see the geometry:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Thigh</span> <span class="o">=</span> <span class="p">{</span>
@@ -267,12 +265,12 @@ contact by reducing the PressureModule.</p>
 model by changing e.g. the pressure module to change the penetration of
 the implants or the positions of the tibial part to change the motion.
 If you couldn’t make your model run up to this point, you can find the
-complete model <a class="reference download internal" download="" href="../_downloads/292daf62fb851fb8761570eacadae0c6/DemoSimpleKnee3.any"><code class="xref download docutils literal"><span class="pre">here</span></code></a>.</p>
+complete model <a class="reference download internal" download="" href="../_downloads/292daf62fb851fb8761570eacadae0c6/DemoSimpleKnee3.any"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 <p>In <a class="reference internal" href="lesson5.html"><span class="doc">Lesson5</span></a> we can see how this kind of joint can be
 included into an existing model based on an AMMR body model.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Using Contact Forces to Replace a Joint in a Human Model</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Using Contact Forces to Replace a Joint in a Human Model</span></a>.</p>
 </div>
 </div>
 
@@ -291,8 +289,6 @@ included into an existing model based on an AMMR body model.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -382,7 +378,7 @@ included into an existing model based on an AMMR body model.</p>
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Results of FDK"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.2-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.2.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >9. Force-Dependent Kinematics</a> &#187;</li> 
       </ul>

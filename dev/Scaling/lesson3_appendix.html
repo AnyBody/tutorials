@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Appendix: Morphing based on landmarks &#8212; AnyBody Tutorials v7.1.2-dev</title>
+    <title>Appendix: Morphing based on landmarks &#8212; AnyBody Tutorials v7.2.0-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -46,7 +44,7 @@
         <li class="right" >
           <a href="lesson3.html" title="Lesson 1: Personalizing individual segments based on geometric data from medical images"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.2-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.2.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >15. Personalizing Your Model</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="lesson3.html" accesskey="U">Lesson 1: Personalizing individual segments based on geometric data from medical images</a> &#187;</li> 
@@ -87,11 +85,11 @@ is constructed:</p>
 RBF function, which can take different forms. Here, we are just looking
 at one of the following forms:</p>
 <ul class="simple">
-<li><span class="math notranslate nohighlight">\(\phi\left( r \right) = e^{- \text{ar}^{2}},\ a &gt; 0\)</span>, –
-Gaussian function, or</li>
-<li><span class="math notranslate nohighlight">\(\phi(r) = r^{2} \bullet ln(r)\)</span> – thin plate spline, or</li>
-<li><span class="math notranslate nohighlight">\(\phi\left( r \right) = \sqrt{r^{2} - a},\ \ a &lt; r^{2}\)</span>, –
-multiquadratic function.</li>
+<li><p><span class="math notranslate nohighlight">\(\phi\left( r \right) = e^{- \text{ar}^{2}},\ a &gt; 0\)</span>, –
+Gaussian function, or</p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi(r) = r^{2} \bullet ln(r)\)</span> – thin plate spline, or</p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi\left( r \right) = \sqrt{r^{2} - a},\ \ a &lt; r^{2}\)</span>, –
+multiquadratic function.</p></li>
 </ul>
 <p>Other forms can be found in the reference manual.</p>
 <p>To define such a transform in AnyScript we can use a template provided
@@ -130,9 +128,9 @@ alone define a 3D RBF transform.</p>
 polynomial term of the aforementioned approximation. Recommended degree
 is 1, i.e. a linear component. This kind of approximation gives good
 results in our empirical observations.</p>
-<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">RBFDef</span><span class="p">.</span><span class="n">Type</span></code> defines a type of the RBF function. Possible options are
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_Gaussian</span></code> (default), <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_ThinPlate</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_Biharmonic</span></code>,
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_Triharmonic</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_MultiQuadratic</span></code>, and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_InverseMultiQuadratic</span></code> as
+<p><code class="docutils literal notranslate"><span class="pre">RBFDef.Type</span></code> defines a type of the RBF function. Possible options are
+<code class="docutils literal notranslate"><span class="pre">RBF_Gaussian</span></code> (default), <code class="docutils literal notranslate"><span class="pre">RBF_ThinPlate</span></code>, <code class="docutils literal notranslate"><span class="pre">RBF_Biharmonic</span></code>,
+<code class="docutils literal notranslate"><span class="pre">RBF_Triharmonic</span></code>, <code class="docutils literal notranslate"><span class="pre">RBF_MultiQuadratic</span></code>, and <code class="docutils literal notranslate"><span class="pre">RBF_InverseMultiQuadratic</span></code> as
 can be found in the reference manual. This type of specification is an
 important parameter as it defines the interpolation/extrapolation
 behavior of the RBF transform. Further, we will demonstrate the
@@ -163,8 +161,8 @@ AnyFunTransform3DLin2 or others.</p>
 <p>There are two ways to compute an auxiliary bounding box – the first way
 is to compute it in the Cartesian coordinate system, the other way is to
 look at the principal axes. This can be changed by modifying the
-BoundingBox.Type parameter to be either <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">BB_Cartesian</span></code> or
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">BB_PrincipalAxes</span></code>.</p>
+BoundingBox.Type parameter to be either <code class="docutils literal notranslate"><span class="pre">BB_Cartesian</span></code> or
+<code class="docutils literal notranslate"><span class="pre">BB_PrincipalAxes</span></code>.</p>
 <p>The parameter BoundingBox.ScaleXYZ defines a vector of scaling factors
 that will be applied to the bounding box dimensions, which will expand
 or shrink the field of the extrapolation improvements.</p>
@@ -180,12 +178,12 @@ transform.</p>
 <div class="section" id="nonlinear-surface-based-scaling-transform">
 <h2>Nonlinear surface based scaling transform<a class="headerlink" href="#nonlinear-surface-based-scaling-transform" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><dl class="docutils">
-<dt>The previous section describes an interpolation and extrapolation</dt>
-<dd>transform that works on discrete points in space. However, often the
+<div><dl class="simple">
+<dt>The previous section describes an interpolation and extrapolation</dt><dd><p>transform that works on discrete points in space. However, often the
 selection of these landmarks is unintuitive and we may require an
 automated tool to assist us in this task. A surface-based RBF class,
-AnyFunTransform3DSTL, was developed for this purpose:</dd>
+AnyFunTransform3DSTL, was developed for this purpose:</p>
+</dd>
 </dl>
 </div></blockquote>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DSTL</span> <span class="o">&lt;</span><span class="n">ObjectName</span><span class="o">&gt;</span> <span class="o">=</span>
@@ -216,31 +214,31 @@ AnyFunTransform3DSTL, was developed for this purpose:</dd>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Similarly to the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFunTransform3DRBF</span></code>, the pre-transforms will be
+<p>Similarly to the <code class="docutils literal notranslate"><span class="pre">AnyFunTransform3DRBF</span></code>, the pre-transforms will be
 included into the transformation that is being constructed. As well as
 that auxiliary bounding box points will be added to the transform
-exactly like in <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFunTransform3DRBF</span></code>.</p>
-<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">FileName0</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">FileName1</span></code> specify surface files that will be used for the
+exactly like in <code class="docutils literal notranslate"><span class="pre">AnyFunTransform3DRBF</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">FileName0</span></code> and <code class="docutils literal notranslate"><span class="pre">FileName1</span></code> specify surface files that will be used for the
 construction of the transform. The underlying method is exactly the same
-as in the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFunTransform3DRBF</span></code>, except that source and landmarks now
+as in the <code class="docutils literal notranslate"><span class="pre">AnyFunTransform3DRBF</span></code>, except that source and landmarks now
 will be found automatically.</p>
-<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ScaleXYZ0</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ScaleXYZ1</span></code> members are scaling vectors that can be used to
+<p><code class="docutils literal notranslate"><span class="pre">ScaleXYZ0</span></code> and <code class="docutils literal notranslate"><span class="pre">ScaleXYZ1</span></code> members are scaling vectors that can be used to
 scale or mirror the surfaces. For example, unit change from millimeters
 to meters can be done by multiplying the components of the vectors with
 0.001.</p>
-<p>However, it is best to use <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">SurfaceObjects0</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">SurfaceObjects1</span></code> to define
+<p>However, it is best to use <code class="docutils literal notranslate"><span class="pre">SurfaceObjects0</span></code> and <code class="docutils literal notranslate"><span class="pre">SurfaceObjects1</span></code> to define
 the input, since these objects can also be pretransformed using various
 linear and nonlinear transformations, i.e. registration from the
 coordinate system of the CT scanner to the anatomical frame.
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">SurfaceObjects0</span></code> and SurfaceObjects expect references to the AnySurfSTL
-objects, that already contain <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ScaleXYZ</span></code>, and, thus, will not use
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ScaleXYZ0</span></code>/<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ScaleXYZ1</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">SurfaceObjects0</span></code> and SurfaceObjects expect references to the AnySurfSTL
+objects, that already contain <code class="docutils literal notranslate"><span class="pre">ScaleXYZ</span></code>, and, thus, will not use
+<code class="docutils literal notranslate"><span class="pre">ScaleXYZ0</span></code>/<code class="docutils literal notranslate"><span class="pre">ScaleXYZ1</span></code>.</p>
 <p>The NumPoints parameter specifies how many landmarks will be used to construct a
 transformation. This number of source landmarks is seeded on the vertices of the
 source STL surface. To find matching pairs the closest points are found
 on the target surface. Please note that it is assumed that the
-geometries are well aligned using <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFunTransform3DLin2</span></code> or
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFunTransform3DRBF</span></code>, and therefore, the error of the closest point
+geometries are well aligned using <code class="docutils literal notranslate"><span class="pre">AnyFunTransform3DLin2</span></code> or
+<code class="docutils literal notranslate"><span class="pre">AnyFunTransform3DRBF</span></code>, and therefore, the error of the closest point
 algorithm is negligible.</p>
 </div>
 <div class="section" id="rbf-point-based-scaling-example">
@@ -251,7 +249,7 @@ constructed using some pre-defined settings. The intention of this example
 is to see how different parameters affect the scaling law. Thus, we will
 adjust the parameters and observe how that changes the results.</p>
 <p>Let us start by downloading the model:
-<a class="reference download internal" download="" href="../_downloads/e760ad97adb0273275ca3802a5d63f7d/appendixa.zip"><code class="xref download docutils literal"><span class="pre">AppendixA.zip</span></code></a></p>
+<a class="reference download internal" download="" href="../_downloads/e760ad97adb0273275ca3802a5d63f7d/appendixa.zip"><code class="xref download docutils literal notranslate"><span class="pre">AppendixA.zip</span></code></a></p>
 <p>The downloaded model consists of a two-component transformation pipeline
 (the first step is a point-based affine, the second one is an RBF transform),
 a set of points aligned in a grid, and the source and target surfaces that will
@@ -289,19 +287,19 @@ try to set it to A: 0.2, B: 2, C: 20, and D: 200.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<table border="1" class="plain docutils">
+<table class="plain docutils align-center">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">A <a class="reference internal" href="../_images/image232.png"><img alt="image1" src="../_images/image232.png" style="width: 80%;" /></a></th>
-<th class="head">B <a class="reference internal" href="../_images/image330.png"><img alt="image2" src="../_images/image330.png" style="width: 80%;" /></a></th>
+<thead>
+<tr class="row-odd"><th class="head"><p>A <a class="reference internal" href="../_images/image232.png"><img alt="image1" src="../_images/image232.png" style="width: 80%;" /></a></p></th>
+<th class="head"><p>B <a class="reference internal" href="../_images/image330.png"><img alt="image2" src="../_images/image330.png" style="width: 80%;" /></a></p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>C <a class="reference internal" href="../_images/image419.png"><img alt="image3" src="../_images/image419.png" style="width: 80%;" /></a></td>
-<td>D <a class="reference internal" href="../_images/image518.png"><img alt="image4" src="../_images/image518.png" style="width: 80%;" /></a></td>
+<tbody>
+<tr class="row-even"><td><p>C <a class="reference internal" href="../_images/image419.png"><img alt="image3" src="../_images/image419.png" style="width: 80%;" /></a></p></td>
+<td><p>D <a class="reference internal" href="../_images/image518.png"><img alt="image4" src="../_images/image518.png" style="width: 80%;" /></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -413,7 +411,7 @@ both source and target sets – will it increase the accuracy?</p>
 <p>Now we see that the scaling does not work at all. The problem here is
 that the Gaussian type of the RBF transform is sensitive to the number
 of landmarks, and does not work well with a too large number of them.
-The solution here is to switch RBFDef.Type to <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_ThinPlate</span></code>:</p>
+The solution here is to switch RBFDef.Type to <code class="docutils literal notranslate"><span class="pre">RBF_ThinPlate</span></code>:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DRBF</span> <span class="n">RBFTransform</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">PreTransforms</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="n">RBFDef</span> <span class="o">=</span> <span class="p">{</span>
@@ -426,9 +424,9 @@ The solution here is to switch RBFDef.Type to <code class="docutils literal high
 <a class="reference internal image-reference" href="../_images/image78.png"><img alt="../_images/image78.png" src="../_images/image78.png" style="width: 80%;" /></a>
 <p>This modification fixes the problem for the bony surfaces and their
 vicinities – now they look alike. Thus, it is recommended to use
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_Gaussian</span></code> type only with low number of landmarks. <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_ThinPlate</span></code> is
+<code class="docutils literal notranslate"><span class="pre">RBF_Gaussian</span></code> type only with low number of landmarks. <code class="docutils literal notranslate"><span class="pre">RBF_ThinPlate</span></code> is
 recommended for larger numbers. However, you may also choose between
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_ThinPlate</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">RBF_Gaussian</span></code> based on their performance.</p>
+<code class="docutils literal notranslate"><span class="pre">RBF_ThinPlate</span></code> and <code class="docutils literal notranslate"><span class="pre">RBF_Gaussian</span></code> based on their performance.</p>
 <p>Now we can morph the bone surface itself and some points that are close
 to the surface. But what about the extrapolation problem, which is
 supposed to handle all muscle/ligament attachments and other points? It
@@ -500,7 +498,7 @@ the paragraph before.</p>
 <p>Let us try to play with settings of this transform. We will use the
 model from the first part of this lesson with all modifications and an
 additional AnyFunTransform3DSTL object. Please download this model,
-<a class="reference download internal" download="" href="../_downloads/147e232c0528f0398cee938715c4f1f1/appendixb.Main.any"><code class="xref download docutils literal"><span class="pre">AppendixB.Main.any</span></code></a>, into the same
+<a class="reference download internal" download="" href="../_downloads/147e232c0528f0398cee938715c4f1f1/appendixb.Main.any"><code class="xref download docutils literal notranslate"><span class="pre">AppendixB.Main.any</span></code></a>, into the same
 folder – that will make sure that all common files are in place.</p>
 <p>Let us start by modifying the number of landmarks. Such modification
 plays two slightly different roles in the construction of the non-linear
@@ -551,19 +549,19 @@ the values of A: 20, B: 200, C: 400, and D: 1000:</p>
   <span class="n">BoundingBoxOnOff</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
 </pre></div>
 </div>
-<table border="1" class="plain docutils">
+<table class="plain docutils align-center">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">A <a class="reference internal" href="../_images/image1113.png"><img alt="image10" src="../_images/image1113.png" style="width: 80%;" /></a></th>
-<th class="head">B <a class="reference internal" href="../_images/image1211.png"><img alt="image11" src="../_images/image1211.png" style="width: 80%;" /></a></th>
+<thead>
+<tr class="row-odd"><th class="head"><p>A <a class="reference internal" href="../_images/image1113.png"><img alt="image10" src="../_images/image1113.png" style="width: 80%;" /></a></p></th>
+<th class="head"><p>B <a class="reference internal" href="../_images/image1211.png"><img alt="image11" src="../_images/image1211.png" style="width: 80%;" /></a></p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>C <a class="reference internal" href="../_images/image139.png"><img alt="image12" src="../_images/image139.png" style="width: 80%;" /></a></td>
-<td>D <a class="reference internal" href="../_images/image142.png"><img alt="image13" src="../_images/image142.png" style="width: 80%;" /></a></td>
+<tbody>
+<tr class="row-even"><td><p>C <a class="reference internal" href="../_images/image139.png"><img alt="image12" src="../_images/image139.png" style="width: 80%;" /></a></p></td>
+<td><p>D <a class="reference internal" href="../_images/image142.png"><img alt="image13" src="../_images/image142.png" style="width: 80%;" /></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -597,8 +595,6 @@ which have corresponding vertices and connectivity matrixces.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -683,7 +679,7 @@ which have corresponding vertices and connectivity matrixces.</p>
         <li class="right" >
           <a href="lesson3.html" title="Lesson 1: Personalizing individual segments based on geometric data from medical images"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.2-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.2.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >15. Personalizing Your Model</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="lesson3.html" >Lesson 1: Personalizing individual segments based on geometric data from medical images</a> &#187;</li> 

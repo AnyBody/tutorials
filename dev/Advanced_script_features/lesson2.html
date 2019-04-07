@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Lesson 2: Using Include Files &#8212; AnyBody Tutorials v7.1.2-dev</title>
+    <title>Lesson 2: Using Include Files &#8212; AnyBody Tutorials v7.2.0-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -46,7 +44,7 @@
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: Using References"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.2-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.2.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">12. Advanced Script Features</a> &#187;</li> 
       </ul>
@@ -92,33 +90,33 @@ simply reads the include file, and subsequently continues reading the
 main file. It is a very simple principle, but it does have some
 interesting implications:</p>
 <ul class="simple">
-<li>You can divide large models into smaller and more manageable chunks</li>
-<li>You can create blocks of data that are easy to re-use in your model.
+<li><p>You can divide large models into smaller and more manageable chunks</p></li>
+<li><p>You can create blocks of data that are easy to re-use in your model.
 Simply put the data in a file and include that same file several
 times at different positions in your the main file. For instance, if
 you have modeled two arms, you might want to use the same set of
 muscles for both of them. In that case, create one file containing
-the muscles and include it twice.</li>
-<li>You can create libraries of files containing elements you often use
+the muscles and include it twice.</p></li>
+<li><p>You can create libraries of files containing elements you often use
 in your modeling tasks, and when you build a new model much of the
 work is accomplished simply by including the files you have made
 previously. It is much like constructing models from larger building
-blocks.</li>
+blocks.</p></li>
 </ul>
 <p>The principle of include files in demonstrated in the following four
 interconnected files:</p>
 <ul class="simple">
-<li><a class="reference download internal" download="" href="../_downloads/b2630aa31f4c05cae4ca921bf289b689/demo.include.any"><code class="xref download docutils literal"><span class="pre">demo.include.any</span></code></a> (the main file)</li>
-<li><a class="reference download internal" download="" href="../_downloads/2b943ad6644db3bd73e5ce35474bf007/demo.include2.any"><code class="xref download docutils literal"><span class="pre">demo.include2.any</span></code></a></li>
-<li><a class="reference download internal" download="" href="../_downloads/c29c11d08b7a60ae84dea2644a777449/demo.include3.any"><code class="xref download docutils literal"><span class="pre">demo.include3.any</span></code></a></li>
-<li><a class="reference download internal" download="" href="../_downloads/4bb1ed3847471cbcee52420ec1e961e6/demo.include4.any"><code class="xref download docutils literal"><span class="pre">demo.include4.any</span></code></a></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/b2630aa31f4c05cae4ca921bf289b689/demo.include.any"><code class="xref download docutils literal notranslate"><span class="pre">demo.include.any</span></code></a> (the main file)</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/2b943ad6644db3bd73e5ce35474bf007/demo.include2.any"><code class="xref download docutils literal notranslate"><span class="pre">demo.include2.any</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/c29c11d08b7a60ae84dea2644a777449/demo.include3.any"><code class="xref download docutils literal notranslate"><span class="pre">demo.include3.any</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/4bb1ed3847471cbcee52420ec1e961e6/demo.include4.any"><code class="xref download docutils literal notranslate"><span class="pre">demo.include4.any</span></code></a></p></li>
 </ul>
 <p><img alt="Include tree" src="../_images/image1.gif" /></p>
 <p>Right-click the files and save them in a directory of your choice. Then
 start AnyBody and load the main file, demo.include.any.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Mathematical Expressions</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Mathematical Expressions</span></a>.</p>
 </div>
 </div>
 
@@ -137,8 +135,6 @@ start AnyBody and load the main file, demo.include.any.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -224,7 +220,7 @@ start AnyBody and load the main file, demo.include.any.</p>
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: Using References"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.1.2-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.2.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >12. Advanced Script Features</a> &#187;</li> 
       </ul>
