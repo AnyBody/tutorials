@@ -1,16 +1,18 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta charset="utf-8" /><meta content="noindex" name="robots" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Optimization Studies in Python &#8212; AnyBody Tutorials v7.2.0-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -72,7 +74,7 @@ could also have been achived with other optimization frameworks (like <a class="
 <p>Before we begin you need to install the Anaconda Python distribution.
 It is free and comes with most of the necessary packages preinstalled.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.anaconda.com/download/">Download and install Anaconda Python Distribution (&gt;3.6)</a></p></li>
+<li><a class="reference external" href="https://www.anaconda.com/download/">Download and install Anaconda Python Distribution (&gt;3.6)</a></li>
 </ul>
 <p>We also need one additional Python library (AnyPyTools) which will make it
 easier to work with AnyBody from Python. <a class="reference external" href="https://anybody-research-group.github.io/anypytools-docs/">AnyPyTools</a> can be easily
@@ -187,14 +189,14 @@ Secondly, we will go through and explain the different sections in the file.</p>
  <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
-<p>A copy of the file can be <a class="reference download internal" download="" href="../_downloads/9f2dae8ffa82bec6bb18cb782fcf181c/optimize.py"><code class="xref download docutils literal notranslate"><span class="pre">downloaded</span> <span class="pre">here.</span></code></a>
-For now you can place the <code class="docutils literal notranslate"><span class="pre">optimize.py</span></code> next to your main file <code class="docutils literal notranslate"><span class="pre">BikeModel2D.main.any</span></code>.
+<p>A copy of the file can be <a class="reference download internal" download="" href="../_downloads/9f2dae8ffa82bec6bb18cb782fcf181c/optimize.py"><code class="xref download docutils literal"><span class="pre">downloaded here.</span></code></a>
+For now you can place the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">optimize</span><span class="p">.</span><span class="n">py</span></code> next to your main file <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">BikeModel2D</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">any</span></code>.
 If you didn’t complete the model from <a class="reference internal" href="lesson2.html"><span class="doc">lesson 2</span></a>, you can download the
-<a class="reference download internal" download="" href="../_downloads/e52cd2dfde250080c130fae5650d945f/OptimBike2-lesson3.zip"><code class="xref download docutils literal notranslate"><span class="pre">finshed</span> <span class="pre">model</span> <span class="pre">here</span></code></a>.</p>
+<a class="reference download internal" download="" href="../_downloads/e52cd2dfde250080c130fae5650d945f/OptimBike2-lesson3.zip"><code class="xref download docutils literal"><span class="pre">finshed model here</span></code></a>.</p>
 </div>
 <div class="section" id="importing-the-necessary-libraries">
 <h2>Importing the necessary libraries<a class="headerlink" href="#importing-the-necessary-libraries" title="Permalink to this headline">¶</a></h2>
-<p>The first part of the code is the <code class="code python docutils literal notranslate"><span class="keyword namespace"><span class="pre">import</span></span></code> statements. They include the
+<p>The first part of the code is the <code class="code python docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">import</span></code> statements. They include the
 libraries which is used by the code:</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -248,8 +250,8 @@ just show how the code looks and not discuss the details.</p>
  <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Main.Study.Output.Pmet&quot;</span><span class="p">])</span>
 </pre></div>
 </td></tr></table></div>
-<p>The function <code class="code python docutils literal notranslate"><span class="name"><span class="pre">run_model</span></span><span class="punctuation"><span class="pre">()</span></span></code> takes <code class="code python docutils literal notranslate"><span class="name"><span class="pre">saddle_height</span></span></code> and <code class="code python docutils literal notranslate"><span class="name"><span class="pre">saddle_pos</span></span></code> as input
-and return the <code class="docutils literal notranslate"><span class="pre">Pmet</span></code> metabolism output from AnyBody.</p>
+<p>The function <code class="code python docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">run_model</span><span class="p">()</span></code> takes <code class="code python docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">saddle_height</span></code> and <code class="code python docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">saddle_pos</span></code> as input
+and return the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Pmet</span></code> metabolism output from AnyBody.</p>
 <p>If you use an interactive Python environment (like <a class="reference external" href="https://ipython.org/">IPython</a>) you could try calling the function directly to to
 test it and investigate the results:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="mf">0.66</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">)</span>
@@ -271,7 +273,7 @@ test it and investigate the results:</p>
 <span class="go">  121.30841553   21.54859903   28.97200722   26.82989147   17.2090334 ]</span>
 </pre></div>
 </div>
-<p>As we expected the output contains the <code class="docutils literal notranslate"><span class="pre">Main.Study.Output.Pmet</span></code> value for each timestep in our model.</p>
+<p>As we expected the output contains the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">Study</span><span class="p">.</span><span class="n">Output</span><span class="p">.</span><span class="n">Pmet</span></code> value for each timestep in our model.</p>
 </div>
 <div class="section" id="defining-the-objective-function">
 <h2>Defining the objective function<a class="headerlink" href="#defining-the-objective-function" title="Permalink to this headline">¶</a></h2>
@@ -279,7 +281,7 @@ test it and investigate the results:</p>
 take a list of design values as input and return the objective function value.
 In <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2</span></a> the objective function was the time integral of the
 metabolism variable. So we will do the same here with Scipy’s
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.trapz.html#scipy.integrate.trapz" title="(in SciPy v1.2.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.integrate.trapz()</span></code></a>: function.</p>
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.trapz.html#scipy.integrate.trapz" title="(in SciPy v1.2.1)"><code class="xref py py-func docutils literal"><span class="pre">scipy.integrate.trapz()</span></code></a>: function.</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>23
 24
 25
@@ -304,9 +306,9 @@ metabolism variable. So we will do the same here with Scipy’s
 </pre></div>
 </td></tr></table></div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The function also checks the results for errors reported
-by AnyBody and raises a <a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#ValueError" title="(in Python v3.7)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> exception if that happens.
+<p class="first admonition-title">Note</p>
+<p class="last">The function also checks the results for errors reported
+by AnyBody and raises a <a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#ValueError" title="(in Python v3.7)"><code class="xref py py-exc docutils literal"><span class="pre">ValueError</span></code></a> exception if that happens.
 There could be ways of handle error without failing but it is important to
 handle model failures, otherwise they may go unnoticed or mess with the
 optimization results.</p>
@@ -318,7 +320,7 @@ optimization results.</p>
 <span class="go">505.329399532772</span>
 </pre></div>
 </div>
-<p>Now we get the time integral of the <code class="docutils literal notranslate"><span class="pre">Pmet</span></code> variable as as single value,
+<p>Now we get the time integral of the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Pmet</span></code> variable as as single value,
 and we are now ready to define the optimization process.</p>
 </div>
 <div class="section" id="setting-up-the-optimization-study">
@@ -343,8 +345,8 @@ for the design variables.</p>
  <span class="n">initial_guess</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.68</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
-<p>The documentation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.2.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a> has more information on how to define bounds, contraints, tolerances, etc.</p>
-<p>Finally, we call the <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code> function run the optimizer. In this case we used the
+<p>The documentation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.2.1)"><code class="xref py py-func docutils literal"><span class="pre">scipy.optimize.minimize()</span></code></a> has more information on how to define bounds, contraints, tolerances, etc.</p>
+<p>Finally, we call the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">scipy</span><span class="p">.</span><span class="n">optimize</span><span class="p">.</span><span class="n">minimize</span></code> function run the optimizer. In this case we used the
 <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-slsqp.html#optimize-minimize-slsqp">SLSQP</a> algorithm.</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>46
 47
@@ -371,10 +373,10 @@ for the design variables.</p>
 </pre></div>
 </div>
 <p>And there we have it!
-We can now take advantage of the many different algorithms and settings available for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.2.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a>.
+We can now take advantage of the many different algorithms and settings available for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.2.1)"><code class="xref py py-func docutils literal"><span class="pre">scipy.optimize.minimize()</span></code></a>.
 We could also use a different package or customize our own algorithm, constraints etc.
 The possibilities are practically endless.</p>
-<p>For more information regarding the <code class="docutils literal notranslate"><span class="pre">AnyPyTools</span></code> python package follow <a class="reference external" href="https://anybody-research-group.github.io/anypytools-docs/">this link.</a>
+<p>For more information regarding the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyPyTools</span></code> python package follow <a class="reference external" href="https://anybody-research-group.github.io/anypytools-docs/">this link.</a>
 You can also check out this <a class="reference external" href="https://www.youtube.com/results?search_query=anybody+webcast+batch">webcast.</a></p>
 </div>
 </div>
@@ -394,6 +396,8 @@ You can also check out this <a class="reference external" href="https://www.yout
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

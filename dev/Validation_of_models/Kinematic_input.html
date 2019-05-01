@@ -1,16 +1,18 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta charset="utf-8" /><meta content="noindex" name="robots" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Kinematic Input Validation &#8212; AnyBody Tutorials v7.2.0-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -71,7 +73,7 @@ data with respect to time and we get the following:</p>
 <p><img alt="rowvel.gif" src="../_images/image27.gif" /></p>
 <p>It still looks reasonable except for a suspicion that the maximum
 velocity around 12 m/s may be a bit high over such a short distance. The
-system dfferentiates the velocity function to obtain the accelerations,
+system dfferentiates&nbsp;the velocity function&nbsp;to obtain the accelerations,
 which subsequently according to the second law of Newton will generate
 forces:</p>
 <p><img alt="rowacc.gif" src="../_images/image36.gif" /></p>
@@ -79,14 +81,14 @@ forces:</p>
 maximum acceleration is around 300 m/s^2 or 30 g. Notice that this is
 for the thorax and not a distal segment like a hand or a foot. It is not
 realistic, and it is in fact an artifact produced by the amplification
-of small errors in the positional signal through the two subsequent
+of small errors in the&nbsp;positional signal&nbsp;through the two subsequent
 differentiations.</p>
 <p>If you work with recorded movement data, then it is very important to
 check that the accelerations are within reasonable limits. The movement
 is input in inverse dynamics, and if the accelerations are unrealistic,
 then the muscle and joint forces will be too.</p>
 <p>Too high acceerations are usually due to lack of smoothness of the
-recorded motion data. The solution is often to apply smoothing with a
+recorded motion data. The&nbsp;solution is often to apply smoothing with a
 low pass filter to reduce the unrealistic acceleratons.</p>
 </div>
 
@@ -105,6 +107,8 @@ low pass filter to reduce the unrealistic acceleratons.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

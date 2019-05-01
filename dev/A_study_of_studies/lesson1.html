@@ -1,16 +1,18 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta charset="utf-8" /><meta content="noindex" name="robots" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson1: Mechanical System Information &#8212; AnyBody Tutorials v7.2.0-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -61,7 +63,7 @@
 <h1>Lesson1: Mechanical System Information<a class="headerlink" href="#lesson1-mechanical-system-information" title="Permalink to this headline">¶</a></h1>
 <p>In this lesson we are presuming that you have the arm2d.any file loaded
 into AnyBody. If you do not have the model on file, please download and
-save a copy from this link: <a class="reference download internal" download="" href="../_downloads/702cee6f25e55b412882a4113064da26/arm2d.any"><code class="xref download docutils literal notranslate"><span class="pre">arm2d.any</span></code></a>. It should look like this when
+save a copy from this link: <a class="reference download internal" download="" href="../_downloads/702cee6f25e55b412882a4113064da26/arm2d.any"><code class="xref download docutils literal"><span class="pre">arm2d.any</span></code></a>. It should look like this when
 you have loaded the model, run InitialConditions operation, and opened a
 Model View:</p>
 <p><img alt="Dumbbel" src="../_images/image111.png" /></p>
@@ -118,10 +120,10 @@ neither any of the predefined joint types nor driver functions. Such
 constraints are very frequent in more complex models because the
 AnyScript language allows for user-defined joints and other constraints
 to mimic complex behaviors movement patterns between different
-joints. This, however, is an advanced topic that we shall postpone for
+joints.&nbsp;This, however, is an advanced topic that&nbsp;we shall postpone for
 now.</p>
 <p>The final section 3) lists the reaction forces. The fact that
-the reaction and driver forces add up to the same number as the joints
+the&nbsp;reaction and driver forces add up to the same number as the joints
 and kinemaic constraints is no coincidence. In a straightforward model
 like this one, joints usually provide the same number of reactions as
 kinematic constraints. This is also how it is in real life in most
@@ -143,16 +145,16 @@ Mechanical System Information in Object Description is helpful in this
 respect.</p>
 <p>A few special cases are:</p>
 <ol class="arabic simple">
-<li><p>The number of reaction and driver forces is less than the number of
+<li>The number of reaction and driver forces is less than the number of
 rigid body degrees of freedom in the model as it is the case here.
 This leaves some reactions to be provided by other elements, and
-these elements are usually the muscles in the model.</p></li>
-<li><p>If the number of reaction and driver forces is equal to the number of
+these elements are usually the muscles in the model.</li>
+<li>If the number of reaction and driver forces is equal to the number of
 rigid body degrees of freedom, then the model is (usually) capable of
 balancing itself, and there is no use for muscles. In fact, if you
 add muscles to such a mechanism, the muscles will end up doing
-nothing.</p></li>
-<li><p>If the model has more reaction and driver forces than rigid body
+nothing.</li>
+<li>If the model has more reaction and driver forces than rigid body
 degrees of freedom then it is statically indeterminate. This usually
 means that there is something wrong with the model. Mechanically it
 is equivalent to the model having multiple different ways of
@@ -160,7 +162,7 @@ balancing itself and having no way of determining which the correct
 one is. Even though AnyBody is capable of computing the forces in
 such a model you will often find the solutions oscillating between
 the infinitely many possibilities between time steps. Models like
-these should in general be avoided.</p></li>
+these should in general be avoided.</li>
 </ol>
 <p>Let us investigate what happens if we make some changes in the model.
 Let us initially remove one of the drivers in the model leaving it
@@ -215,7 +217,7 @@ shift the missing driver back in:</p>
 <span class="p">};</span> <span class="c1">// Elbow driver</span>
 </pre></div>
 </div>
-<p>… and try something else:</p>
+<p>…&nbsp;and try something else:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//---------------------------------</span>
 <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ShoulderMotion</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
@@ -251,8 +253,8 @@ corresponding to the 12 rigid body degrees of freedom.</p>
 the Object Description of the study, let us proceed to Initial
 Conditions in the <a class="reference internal" href="lesson2.html"><span class="doc">next lesson</span></a>.</p>
 <div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson2.html"><span class="doc">Lesson2: Initial Conditions</span></a>.</p>
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson2.html"><span class="doc">Lesson2: Initial Conditions</span></a>.</p>
 </div>
 </div>
 
@@ -271,6 +273,8 @@ Conditions in the <a class="reference internal" href="lesson2.html"><span class=
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

@@ -1,16 +1,18 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta charset="utf-8" /><meta content="noindex" name="robots" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 6: General Muscles &#8212; AnyBody Tutorials v7.2.0-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -62,8 +64,8 @@
 <p>Physiological muscles are truly amazing machines, and despite many
 attempts it has not been possible to make technical actuators that are
 as light and efficient as natural muscles. As you may have seen in the
-preceding sections, the mathematical modeling of muscles is not an easy
-task either. But once it has been done, we can use some of the
+preceding sections, the mathematical modeling of muscles is not&nbsp;an easy
+task&nbsp;either. But once it has been done, we can use some of the
 properties of muscles to our advantage. We would like these “muscles” to
 be able to have a slightly more general formulation than physiological
 muscles, which are confined to acting along strings.</p>
@@ -76,40 +78,40 @@ section on <a class="reference internal" href="../The_mechanical_elements/intro.
 Elements</span></a>. Some
 examples are:</p>
 <ul class="simple">
-<li><p>A general muscle working on a distance measure between two points
+<li>A general muscle working on a distance measure between two points
 becomes simply a linear force provider, or in fact a reaction
 provider in the sense that the force is not predetermined but will
-become whatever equilibrium requires.</p></li>
-<li><p>A general muscle working on an angular measure, for instance a joint
-angle, becomes a torque provider.</p></li>
-<li><p>A general muscle working on a Center of Mass measure becomes an
+become whatever equilibrium requires.</li>
+<li>A general muscle working on an angular measure, for instance a joint
+angle, becomes a torque provider.</li>
+<li>A general muscle working on a Center of Mass measure becomes an
 abstract force working on all segments of the body contributing to
-the center of mass.</p></li>
+the center of mass.</li>
 </ul>
 <p>This lesson demonstrates how general muscles can be used for a variety
 of modeling tasks.</p>
 <div class="section" id="muscles-as-joint-torque-providers">
 <h2>Muscles as joint torque providers<a class="headerlink" href="#muscles-as-joint-torque-providers" title="Permalink to this headline">¶</a></h2>
 <p>One of the purposes of the AnyBody Modeling System is to be able to
-model the musculoskeletal system to a realistic level of detail.
+model the musculoskeletal system&nbsp;to a realistic level of detail.
 However, there is a place in the world for traditional inverse dynamics,
 where the muscles are disregarded and the body is balanced entirely by
 joint torques. This type of analysis can provide important information
 about the function of limbs and joints, and it is extremely numerically
 efficient.</p>
-<p>Joint torque inverse dynamics can be accomplished by adding general
+<p>Joint torque inverse dynamics can&nbsp;be accomplished by adding general
 muscles to the joints to replace the physiological muscles of the body.
 This way, the “muscle forces” computed in the general muscles will
 simply be the joint torques.</p>
 <p>The example from the preceding lessons is not well suited to play with joint
-torques, so please <a class="reference download internal" download="" href="../_downloads/a1aa62e3f47147b58672725446fe88ca/MuscleDemo.6.any"><code class="xref download docutils literal notranslate"><span class="pre">download</span> <span class="pre">a</span> <span class="pre">new</span> <span class="pre">example</span> <span class="pre">to</span> <span class="pre">start</span> <span class="pre">on.</span></code></a> This is in fact a simplified version of the simple
+torques, so please <a class="reference download internal" download="" href="../_downloads/a1aa62e3f47147b58672725446fe88ca/MuscleDemo.6.any"><code class="xref download docutils literal"><span class="pre">download a new example to start on.</span></code></a>&nbsp;This is in fact a simplified version of the simple
 arm example from the <em>Getting Started with AnyScript</em> tutorial, where the
 muscles have been removed. The model has two segments, an upper arm and a
-forearm, and is attached to the global reference frame at the shoulder. It has a
+forearm,&nbsp;and is attached to the global reference frame at the shoulder. It has a
 100 N vertical load acting downwards at the hand.</p>
 <p><img alt="Arm 2D" src="../_images/image18.jpeg" /></p>
 <p>The lack of muscles means that the model cannot currently do an inverse
-dynamics analysis. If you try to run the InverseDynamics operation, you will get the following error message:</p>
+dynamics analysis. If you try to run the&nbsp;InverseDynamics operation, you will get the following error message:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>NOTICE(OBJ1): MuscleDemo.6.any(103): ArmStudy.InverseDynamics: No muscles in the model.
 ERROR(OBJ1): MuscleDemo.6.any(103): ArmStudy.InverseDynamics: No solution found: There are fewer unknown forces (muscles and reactions) than dynamic equations.
 </pre></div>
@@ -234,7 +236,7 @@ estimate of how many percent of each joint’s strength is used in a given
 situation. You can also define different strengths of extension and
 flexion muscles in a given joint and thereby take for instance the
 difference in strength in the knee in these two directions into account.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Important</span> <span class="pre">Remark:</span></code> Another useful property of the general muscles used as joint torque
+<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Important</span> <span class="n">Remark</span>:</code> Another useful property of the general muscles used as joint torque
 providers is that you can handle <strong>closed loops</strong> and other statically
 indeterminate situations, which are not treatable by traditional inverse
 dynamics because the equilibrium equations do not have a unique
@@ -251,9 +253,9 @@ creates a significant amount of problems, but many mechanical phenomena
 have the same characteristics, namely any kind of contact phenomenon.
 Biomechanics is full of contact problems:</p>
 <ul class="simple">
-<li><p>The contact between a foot and the floor</p></li>
-<li><p>The contact between the upper thighs and the seat of a chair</p></li>
-<li><p>The contact between two articulating surfaces in a joint.</p></li>
+<li>The contact between a foot and the floor</li>
+<li>The contact between&nbsp;the upper thighs&nbsp;and the seat of a chair</li>
+<li>The contact between two articulating surfaces in a joint.</li>
 </ul>
 <p>There is another less appreciated similarity between muscle forces and
 contact forces: neither is without limit. Muscle forces are obviously
@@ -387,25 +389,25 @@ first switch the reaction off again:</p>
 </div>
 <p>There are two things to notice here</p>
 <ol class="arabic simple">
-<li><p>The muscle model for the reaction, ReacModel, is much stronger than
+<li>The muscle model for the reaction, ReacModel, is much stronger than
 the joint muscles. This is because the wall is presumed to be very
-strong.</p></li>
-<li><p>The ForceDirection property equals -1. This means that the force is
+strong.</li>
+<li>The ForceDirection property equals -1. This means that the force is
 working in the opposite direction of the Kinematic measure, i.e. in
-the negative global x direction, just like a contact force with the
-wall would do.</p></li>
+the negative global x direction, just like&nbsp;a contact force with the
+wall would do.</li>
 </ol>
 <p>Running the InverseDynamics operation again and plotting the two joint
 torques provides the following graph (notice they can be plotted
 simultaneously with the specification line
-<code class="docutils literal notranslate"><span class="pre">Main.ArmStudy.Output.Model.*Torque.Fm</span></code>):</p>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">ArmStudy</span><span class="p">.</span><span class="n">Output</span><span class="p">.</span><span class="n">Model</span><span class="p">.</span><span class="o">*</span><span class="n">Torque</span><span class="p">.</span><span class="n">Fm</span></code>):</p>
 <p><img alt="Joint torques plot" src="../_images/image61.gif" /></p>
 <p>The red curve is the shoulder joint torque, and the green curve is the
 elbow torque. Notice that the envelope of these two curves is in fact
 identical to the MaxMuscleActivity curve we plotted above for the case
 of no support. You would think that the support would be beneficial in
 the final stages of the movement where the arm could rest a bit against
-the wall. Actually, it is beneficial for the elbow, but the reaction
+the wall. Actually, it&nbsp;is beneficial for the elbow, but the reaction
 force also increases the torque about the shoulder, and since the
 shoulder (red curve) has the higher load of the two, this limits the
 benefit of the support. Let us see what happens if we turn the reaction
@@ -435,7 +437,7 @@ which then decreases the torque in the shoulder.</p>
 this very simplified case would have different solutions if the
 parameters of the model were different. For instance if the shoulder
 were much stronger compared to the elbow, then the elbow would not have
-been able to help the shoulder in the latter case because the elbow
+been able to help&nbsp;the shoulder&nbsp;in the latter case because the elbow
 would have the higher load compared to its strength. On the contrary,
 the shoulder would have been able to help the elbow in the former case
 by generating an additional force pushing against the wall.</p>
@@ -443,8 +445,8 @@ by generating an additional force pushing against the wall.</p>
 are not completely finished yet. The <a class="reference internal" href="lesson7.html"><span class="doc">next lesson</span></a>
 deals with the important topic of ligament modeling.</p>
 <div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson7.html"><span class="doc">Lesson 7: Ligaments</span></a>.</p>
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson7.html"><span class="doc">Lesson 7: Ligaments</span></a>.</p>
 </div>
 </div>
 </div>
@@ -464,6 +466,8 @@ deals with the important topic of ligament modeling.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

@@ -1,16 +1,18 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta charset="utf-8" /><meta content="noindex" name="robots" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 4: Parameter identification &#8212; AnyBody Tutorials v7.2.0-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -72,11 +74,11 @@ length of the femur and the location of the hip joint center are always somewhat
 uncertain. In this section, we are going to see how the data in a C3D file can
 help us automatically determine these parameters with good accuracy.</p>
 <p>Please download and save the file
-<a class="reference download internal" download="" href="../_downloads/a46576d0f8692d5ae436e5148a8d9bb3/multiple.c3d"><code class="xref download docutils literal notranslate"><span class="pre">multiple.c3d</span></code></a>.</p>
+<a class="reference download internal" download="" href="../_downloads/a46576d0f8692d5ae436e5148a8d9bb3/multiple.c3d"><code class="xref download docutils literal"><span class="pre">multiple.c3d</span></code></a>.</p>
 <p>Then close all open windows in AnyBody and create a new Main file by
 clicking the ‘M’ tool button in the upper left hand corner of the main
 frame. This give you a dialog to create an empty model into which you can insert an
-<code class="docutils literal notranslate"><span class="pre">AnyInputC3D</span></code> object, refer to the <code class="file docutils literal notranslate"><span class="pre">multiple.c3d</span></code> file and specify the
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyInputC3D</span></code> object, refer to the <code class="file docutils literal"><span class="pre">multiple.c3d</span></code> file and specify the
 filter as we did before:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
@@ -126,9 +128,9 @@ filter as we did before:</p>
     <span class="p">};</span>
 </pre></div>
 </div>
-<p>Notice that we have also colored the markers blue with the <code class="docutils literal notranslate"><span class="pre">MarkerRGB</span></code>
+<p>Notice that we have also colored the markers blue with the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MarkerRGB</span></code>
 property and disabled the plot of the 3D trajectories with the
-<code class="docutils literal notranslate"><span class="pre">ConstructChartOnOff</span></code> property. We also set the duration of the movement
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ConstructChartOnOff</span></code> property. We also set the duration of the movement
 to automatically fit the C3D file as we have done before:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
 <span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
@@ -321,7 +323,7 @@ the origin of the global reference frame:</p>
 </div>
 <p>A reload and re-run will reveal that the point is now forced to coincide
 exactly with the origin of the coordinate system. This is because, as
-opposed to <code class="docutils literal notranslate"><span class="pre">AnyKinDriverMarker</span></code> objects, joints by default contain hard
+opposed to <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinDriverMarker</span></code> objects, joints by default contain hard
 constraints that must be exactly fulfilled. The consequence is that the
 blue marker dots inside the leg segment points now seem to deviate a bit
 further from the center of the points.</p>
@@ -333,9 +335,9 @@ points on the leg segment or, alternatively, ask AnyBody to find for us.</p>
 <p>We are going to do the latter, and we shall employ a special study that
 AnyBody has implemented for the purpose. Please click on the Classes tab
 in the Tree View on the right side of the screen, expand the
-Class List, and scroll down to find the <code class="docutils literal notranslate"><span class="pre">AnyOptKinStudy</span></code>. Place the cursor
+Class List, and scroll down to find the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyOptKinStudy</span></code>. Place the cursor
 after the end brace of the existing AnyBody Study, right-click the
-<code class="docutils literal notranslate"><span class="pre">AnyOptKinStudy</span></code> in the Class Tree, and insert a template of the class:</p>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyOptKinStudy</span></code> in the Class Tree, and insert a template of the class:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
   <span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
     <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
@@ -366,8 +368,8 @@ after the end brace of the existing AnyBody Study, right-click the
 <span class="gr">  };</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">AnyOptKinStudy</span></code>’s structure is very similar to the general optimization
-class <code class="docutils literal notranslate"><span class="pre">AnyOptStudy</span></code>, but it contains an algorithm specially made for kinematic
+<p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyOptKinStudy</span></code>’s structure is very similar to the general optimization
+class <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyOptStudy</span></code>, but it contains an algorithm specially made for kinematic
 parameter optimization and several of the necessary definitions are implicit, so
 the study is simple to use. All we have to do is to specify the unknown
 parameters in the model and the location of the kinematic analysis necessary to
@@ -389,7 +391,7 @@ i.e. the C3D data.</p>
 <p>The next step is to specify which parameters to
 optimize. In this case, we are uncertain about the precise location of
 the revolute joint in the upper end of the segment. Its location is
-defined by the local coordinates to the <code class="docutils literal notranslate"><span class="pre">AnyRefNode</span></code> ‘Joint’ on the leg
+defined by the local coordinates to the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyRefNode</span></code> ‘Joint’ on the leg
 segment:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyOptKinStudy</span> <span class="n">OptKinStudy</span> <span class="o">=</span>
 <span class="p">{</span>
@@ -427,7 +429,7 @@ of the Joint node on the Leg segment is a variable in the problem.</p>
 <p>Now we can reload the model and a new set of operations will have
 appeared:</p>
 <p><img alt="image2" src="../_images/image320.png" /></p>
-<p>Pick the <code class="docutils literal notranslate"><span class="pre">ParameterOptimization</span></code> and click the <em>Run</em> button.</p>
+<p>Pick the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ParameterOptimization</span></code> and click the <em>Run</em> button.</p>
 <p>If you have a Model View open, you will see the pendulum starting to move and
 messages about the convergence of the process will appear in the Report View at
 the bottom of the screen.</p>
@@ -445,11 +447,11 @@ marker positions and the corresponding nodes on the segment over the
 entire motion was reduced from about 0.27 to about 0.01.</p>
 <p>Now that we have identified a better location of the joint node on the
 segment, we might want to save it for later use.</p>
-<p>This is done by right-clicking the <code class="docutils literal notranslate"><span class="pre">OptKinStudy</span></code> in the operations tree on the
+<p>This is done by right-clicking the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">OptKinStudy</span></code> in the operations tree on the
 left hand side of the mainframe and selecting “Save design” from the context
 menu. This opens a file manager dialogue. Please navigate to the directory where
 you keep the model and specify a name for the new file, for instance
-<code class="file docutils literal notranslate"><span class="pre">Opt1.txt</span></code>.</p>
+<code class="file docutils literal"><span class="pre">Opt1.txt</span></code>.</p>
 <p>If you open the new file you can see the saved values:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Jointx 1.574794116583949e-002
 Jointy 4.907819352974447e-001
@@ -509,10 +511,10 @@ as the Joint node:</p>
 <span class="gr">  };</span>
 </pre></div>
 </div>
-<p>Please reload and re-run the <code class="docutils literal notranslate"><span class="pre">Main.OptKinStudy.ParameterOptimization</span></code>.</p>
+<p>Please reload and re-run the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="p">.</span><span class="n">OptKinStudy</span><span class="p">.</span><span class="n">ParameterOptimization</span></code>.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To speed up the optimization study, try to disable Model View by clicking the “On/Off” button in the Model view toolbar.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">To speed up the optimization study, try to disable Model View by clicking the “On/Off” button in the Model view toolbar.</p>
 </div>
 <p>The convergence should be quite fast in such a small model, and you arrive at the following solution:</p>
 <p><img alt="Pendulum final" src="../_images/image6.jpeg" /></p>
@@ -589,8 +591,8 @@ technology works.</p>
 and see what the technology can do with real motion capture data. That
 will be the subject of <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5</span></a>.</p>
 <div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Using real data</span></a>.</p>
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Using real data</span></a>.</p>
 </div>
 </div>
 
@@ -609,6 +611,8 @@ will be the subject of <a class="reference internal" href="lesson5.html"><span c
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
