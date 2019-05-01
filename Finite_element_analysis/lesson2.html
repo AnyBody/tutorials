@@ -1,16 +1,18 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta charset="utf-8" /><meta content="noindex" name="robots" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 2: ANSYS Interface &#8212; AnyBody Tutorials v7.2.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -109,13 +111,13 @@ reference frame is shown</p>
 <p><img alt="Clavicular ref frame" src="../_images/image211.png" /></p>
 <p>Next, we have to define the same local coordinate system in the ANSYS
 model. Download the prepared ANSYS file
-<a class="reference download internal" download="" href="../_downloads/6b7b44d5b93fa6142a12cd5d118581bc/clavicular_base.zip"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a> and save it in your working
+<a class="reference download internal" download="" href="../_downloads/6b7b44d5b93fa6142a12cd5d118581bc/clavicular_base.zip"><code class="xref download docutils literal"><span class="pre">here</span></code></a> and save it in your working
 directory. In the Mechanical APDL (ANSYS) environment (ANSYS Classic), a
 simple way to do so is to modify the location of the work plane. Once
 the work plane is in place create a local coordinate system at the
 workplane origin and give it the number 1000. (In fact you can give it
 any number, but we have to refer to the coordinate system later, so we
-have to know its name). Load the <code class="docutils literal notranslate"><span class="pre">clavicular_base.db</span></code> in the Mechanical
+have to know its name). Load the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">clavicular_base</span><span class="p">.</span><span class="n">db</span></code> in the Mechanical
 APDL (ANSYS) environment and have a look.</p>
 <p><img alt="ANSYS nodes" src="../_images/image310.png" /></p>
 <p>This shows the clavicle model, which contains a midshaft fracture,
@@ -185,8 +187,8 @@ export.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Create a folder in your Standing model folder named <code class="docutils literal notranslate"><span class="pre">files_in</span></code> and one
-called <code class="docutils literal notranslate"><span class="pre">files_out</span></code>. This will be used to store the FE files. Change the
+<p>Create a folder in your Standing model folder named <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">files_in</span></code> and one
+called <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">files_out</span></code>. This will be used to store the FE files. Change the
 class as shown below. These definitions specify that all forces acting
 on the segment Clavicula will be written in the xml file clavload. The
 UseRefFrameOnOff option allows giving a reference frame in which all
@@ -208,7 +210,7 @@ right clavicle and right click <em>Insert object name.</em></p>
 </pre></div>
 </div>
 <p>This class will write all the muscle and joint forces for all time steps
-in one xml file. Please create a folder names <code class="docutils literal notranslate"><span class="pre">files_in</span></code> in your
+in one xml file. Please create a folder names <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">files_in</span></code> in your
 Application folder. We need one more step to convert the xml file to
 ANSYS APDL language. An additional add-on to the AnyBody Modeling System
 is necessary to do so. This tool is available at
@@ -219,7 +221,7 @@ specification. You can call this code either by a shell prompt or from
 inside AnyBody. You can use the class AnyOperationShellExec for this.
 The names for the executable, its working directory and the options for
 the call of the exe file have to be given. The options specify the input
-file (<code class="docutils literal notranslate"><span class="pre">-i</span></code>) and the output file folder (<code class="docutils literal notranslate"><span class="pre">-o</span></code>). The <code class="docutils literal notranslate"><span class="pre">–t</span></code> option gives a
+file (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">-</span><span class="n">i</span></code>) and the output file folder (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="o">-</span><span class="n">o</span></code>). The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span>–<span class="n">t</span></code> option gives a
 template for the APDL conversion. Please adjust the path corresponding
 to your setup and insert this code below the study folder:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyOperationShellExec</span> <span class="n">ConvertToAPDL</span><span class="o">=</span><span class="p">{</span>
@@ -232,11 +234,11 @@ to your setup and insert this code below the study folder:</p>
 </div>
 <p>The basic procedure of the conversion is:</p>
 <ul class="simple">
-<li><p>Create local coordinate systems for each muscle insertion and joint
-point</p></li>
-<li><p>Apply forces to the points</p></li>
-<li><p>Create beam connections between the force application points and the
-bone surface</p></li>
+<li>Create local coordinate systems for each muscle insertion and joint
+point</li>
+<li>Apply forces to the points</li>
+<li>Create beam connections between the force application points and the
+bone surface</li>
 </ul>
 <p>Let’s have a closer look at the APDL template. Open the APDLTemplate.txt
 file in a text editor. It is structured in three sections, a head
@@ -256,7 +258,7 @@ have to change right now is the path to your FE model.</p>
 model in the AMS. Select RunApplication in the Operations tree. This
 will automatically run the Calibration and InverseDynamics studies. Next
 select ConvertToAPDL and run it. This will create 5 files in the
-<code class="docutils literal notranslate"><span class="pre">files_out</span></code> folder written in APDL language.</p>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">files_out</span></code> folder written in APDL language.</p>
 <p>Open ANSYS Mechanical Utility and read the input of each individual file
 with File-Read input from. This will load the model, apply the boundary
 conditions and start to solve. Once finished post-process the results.</p>
@@ -266,8 +268,8 @@ outputfileList file. Each loadstep will be written in a new result file.
 You can look at the results by loading them one on one in the
 post-processor.</p>
 <div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Abaqus Interface</span></a>.</p>
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Abaqus Interface</span></a>.</p>
 </div>
 </div>
 
@@ -286,6 +288,8 @@ post-processor.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

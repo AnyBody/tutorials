@@ -1,16 +1,18 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta charset="utf-8" /><meta content="noindex" name="robots" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 5: The Command Line Application &#8212; AnyBody Tutorials v7.2.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -72,19 +74,20 @@ gives faster performance running operations on existing model. The
 console application can be used manually, or it can take input from a
 macro file containing commands.</p>
 <div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>The <a class="reference external" href="https://github.com/AnyBody-Research-Group/AnyPyTools">AnyPyTools</a> Python library
+<p class="first admonition-title">See also</p>
+<p class="last">The <a class="reference external" href="https://github.com/AnyBody-Research-Group/AnyPyTools">AnyPyTools</a> Python library
 developed at Aalborg University. It greatly simplifies working with the console application.</p>
 </div>
 <div class="section" id="interactive-mode">
 <h2>Interactive mode<a class="headerlink" href="#interactive-mode" title="Permalink to this headline">¶</a></h2>
 <p>We need a model to work on, so please download and save
-<a class="reference download internal" download="" href="../_downloads/ee613ecef777db9bd265299058c10871/Demo.OutputFile.any"><code class="xref download docutils literal notranslate"><span class="pre">Demo.OutputFile.any</span></code></a> in a working directory.</p>
+<a class="reference download internal" download="" href="../_downloads/ee613ecef777db9bd265299058c10871/Demo.OutputFile.any"><code class="xref download docutils literal"><span class="pre">Demo.OutputFile.any</span></code></a> in a working directory.</p>
 <p><strong>Important:</strong> To start the console application:</p>
 <ol class="arabic">
-<li><p>Launch the command prompt and change directory to where you have saved
-<code class="docutils literal notranslate"><span class="pre">Demo.outputfile.any</span></code></p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">anybodycon.exe</span></code> using its full path,</p>
+<li><p class="first">Launch the command prompt and change directory to where you have saved
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Demo</span><span class="p">.</span><span class="n">outputfile</span><span class="p">.</span><span class="n">any</span></code></p>
+</li>
+<li><p class="first">Run <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">anybodycon</span><span class="p">.</span><span class="n">exe</span></code> using its full path,</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\path\to\model</span><span class="c1">&gt;&quot;C:\Program Files\AnyBody Technology\AnyBody.7.1\AnyBodyCon.exe&quot;</span>
 
 AnyBody Console Application
@@ -102,66 +105,65 @@ Current path: C:\path\to\model
 </div>
 <div class="section" id="console-commands">
 <h2>Console commands<a class="headerlink" href="#console-commands" title="Permalink to this headline">¶</a></h2>
-<p>It only understands eight different commands. You can always get help by
+<p>It only understands&nbsp;eight different commands. You can always get help by
 using the ‘help’ command or by calling AnyBodyCon with an /? argument.
 The table below contains a description of the commands accepted by the
 AnyBody console.</p>
-<table class="docutils align-center">
+<table border="1" class="docutils">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col width="20%" />
+<col width="80%" />
 </colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Command name</strong></p></th>
-<th class="head"><p><strong>Functionality</strong></p></th>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Command name</strong></th>
+<th class="head"><strong>Functionality</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>load “&lt;filename&gt;”</p></td>
-<td><p>Loads an AnyScript model into the system and compiles it.</p>
-<p>Example: <code class="docutils literal notranslate"><span class="pre">load</span> <span class="pre">&quot;demo.outputfile.any&quot;</span></code></p>
+<tbody valign="top">
+<tr class="row-even"><td>load “&lt;filename&gt;”</td>
+<td><p class="first">Loads an AnyScript model into the system and compiles it.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">load</span> <span class="s">&quot;demo.outputfile.any&quot;</span></code></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>operation &lt;op.name&gt;</p></td>
-<td><p>This command sets the active operation. This must be the first thing you do after loading.</p>
-<blockquote>
-<div><p>Example: <code class="docutils literal notranslate"><span class="pre">operation</span> <span class="pre">Main.ArmStudy.InverseDynamics</span></code></p>
-</div></blockquote>
+<tr class="row-odd"><td>operation &lt;op.name&gt;</td>
+<td><p class="first">This command sets the active operation. This must be the first thing you do after loading.</p>
+<blockquote class="last">
+<div>Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">operation</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmStudy</span><span class="p">.</span><span class="n">InverseDynamics</span></code></div></blockquote>
 </td>
 </tr>
-<tr class="row-even"><td><p>Run</p></td>
-<td><p>Runs the active operation.</p>
-<p>Example: <code class="docutils literal notranslate"><span class="pre">run</span></code></p>
+<tr class="row-even"><td>Run</td>
+<td><p class="first">Runs the active operation.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">run</span></code></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>Runmacro</p></td>
-<td><p>This command loads and executes an anymcr file.</p>
-<p>Example: <code class="docutils literal notranslate"><span class="pre">runmacro</span> <span class="pre">&quot;filename.anymcr&quot;</span></code></p>
+<tr class="row-odd"><td>Runmacro</td>
+<td><p class="first">This command loads and executes an anymcr file.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">runmacro</span> <span class="s">&quot;filename.anymcr&quot;</span></code></p>
 </td>
 </tr>
-<tr class="row-even"><td><p>Step</p></td>
-<td><p>Solves a single time step of the active operation.</p>
-<p>Example: <code class="docutils literal notranslate"><span class="pre">step</span></code></p>
+<tr class="row-even"><td>Step</td>
+<td><p class="first">Solves a single time step of the active operation.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">step</span></code></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>Reset</p></td>
-<td><p>Resets the active operation.</p>
-<p>Example: <code class="docutils literal notranslate"><span class="pre">reset</span></code></p>
+<tr class="row-odd"><td>Reset</td>
+<td><p class="first">Resets the active operation.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">reset</span></code></p>
 </td>
 </tr>
-<tr class="row-even"><td><p>print &lt;object&gt;</p></td>
-<td><p>Prints the value of a single object.</p>
-<p>Example: <code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">Main.ArmModel.Jnts.Shoulder.Pos</span></code></p>
+<tr class="row-even"><td>print &lt;object&gt;</td>
+<td><p class="first">Prints the value of a single object.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">print</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">.</span><span class="n">Pos</span></code></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>printdown &lt;object&gt;</p></td>
-<td><p>Recursively prints the values of all elements in an object folder.</p>
-<p>Example: <code class="docutils literal notranslate"><span class="pre">printdown</span> <span class="pre">Main.ArmModel.Jnts</span></code></p>
+<tr class="row-odd"><td>printdown &lt;object&gt;</td>
+<td><p class="first">Recursively prints the values of all elements in an object folder.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">printdown</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Jnts</span></code></p>
 </td>
 </tr>
-<tr class="row-even"><td><p>exit</p></td>
-<td><p>Exits and returns to the command prompt.</p>
-<p>Example: <code class="docutils literal notranslate"><span class="pre">exit</span></code></p>
+<tr class="row-even"><td>exit</td>
+<td><p class="first">Exits and returns to the command prompt.</p>
+<p class="last">Example: <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">exit</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -182,7 +184,7 @@ simulation results are! But wait, the model has been programmed to write
 some output files.</p>
 <p>For understanding how open demo.outputfile.any model in the GUI Windows
 version of AnyBody Modeling System. You will notice two
-<code class="docutils literal notranslate"><span class="pre">AnyOutputFile</span></code> objects inside the ArmStudy.</p>
+<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyOutputFile</span></code> objects inside the ArmStudy.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
 <span class="kt">AnyBodyStudy</span> <span class="n">ArmStudy</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">ArmModel</span><span class="p">;</span>
@@ -356,7 +358,7 @@ a #define statement for the file name</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.1\AnyBodyCon.exe&quot; /m runarm.anymcr /def OUTPUTFILE=---&quot;\&quot;myoutput.anydata.h5\&quot;&quot;</span>
 </pre></div>
 </div>
-<p>What the construction <code class="docutils literal notranslate"><span class="pre">—“”</span> <span class="pre">…</span> <span class="pre">””</span></code> is doing, in this case,
+<p>What the construction <code class="docutils literal"><span class="pre">—“” … ””</span></code> is doing, in this case,
 is that it will define a quoted string for the #define statement similar
 to the definition in the .any file. As a result we see that the output
 is written to the file ‘myoutput.anydata.h5’.</p>
@@ -373,8 +375,8 @@ with a statement such as:</p>
 </pre></div>
 </div>
 <p>It will add AnyBodyCon.exe’s path to the existing path
-definition. Notice that there cannot be any space between <code class="docutils literal notranslate"><span class="pre">;</span></code> and the
-following path <code class="docutils literal notranslate"><span class="pre">c:...</span></code> and that you can see the resulting path by
+definition.&nbsp;Notice that there cannot be any space between <code class="docutils literal"><span class="pre">;</span></code> and the
+following path <code class="docutils literal"><span class="pre">c:...</span></code> and that you can see the resulting path by
 simply calling the internal path command again without arguments.</p>
 <p>These statements will only take effect until the current command prompt
 is closed, but you can also add the path of AnyBodyCon.exe permanently
@@ -382,26 +384,26 @@ to the path for all command prompts. In Windows XP for instance, you do
 this from Control Panel -&gt; System under the Advanced tab. You should,
 however, be aware that multiple versions of AnyBody may be installed on
 the computer at the same time, and therefore, multiple versions of
-<code class="docutils literal notranslate"><span class="pre">AnyBodyCon.exe</span></code> may exist in different locations. Thus, your path
-specification not only makes it easy to call <code class="docutils literal notranslate"><span class="pre">AnyBodyCon.exe</span></code>; it will
+<code class="docutils literal"><span class="pre">AnyBodyCon.exe</span></code> may exist in different locations. Thus, your path
+specification not only makes it easy to call <code class="docutils literal"><span class="pre">AnyBodyCon.exe</span></code>; it will
 also specify which version that will be used. This can make it unclear
 which version you are actually using if you need several of them.</p>
 <p>To be in full control of multiple AnyBody installations, you can define
 aliases by the following procedure:</p>
 <ol class="arabic simple">
-<li><p>Make a directory with .bat files or shortcuts to the AnyBodyCon.exe
+<li>Make a directory with .bat files or shortcuts to the AnyBodyCon.exe
 version you will need. Name the bat-files so you can recognize the
 different versions, e.g. AnyBodyCon61.bat and AnyBodyCon70.bat. The
 bat files contain a single statement, the call of AnyBodyCon.exe with
-its full path.</p></li>
-<li><p>Add this directory to the permanent path of the command prompt.</p></li>
-<li><p>You can now call the different versions of AnyBodyCon via the bat
-files, so the bat file names are working as aliases for the real .exe
-files.</p></li>
+its full path.</li>
+<li>Add this directory to the permanent path of the command prompt.</li>
+<li>You can now call the different versions of AnyBodyCon via the bat
+files, so&nbsp;the bat file names are working as aliases for the real .exe
+files.</li>
 </ol>
 <div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Modifying the Loaded Model</span></a>.</p>
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Modifying the Loaded Model</span></a>.</p>
 </div>
 </div>
 </div>
@@ -421,6 +423,8 @@ files.</p></li>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

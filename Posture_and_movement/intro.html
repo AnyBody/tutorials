@@ -1,16 +1,18 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta charset="utf-8" /><meta content="noindex" name="robots" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>19. Posture and Movement Prediction &#8212; AnyBody Tutorials v7.2.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -59,8 +61,8 @@
   <div class="section" id="posture-and-movement-prediction">
 <h1>19. Posture and Movement Prediction<a class="headerlink" href="#posture-and-movement-prediction" title="Permalink to this headline">¶</a></h1>
 <div class="without-title admonition caution">
-<p class="admonition-title">Caution</p>
-<p><strong>Old tutorial:</strong>
+<p class="first admonition-title">Caution</p>
+<p class="last"><strong>Old tutorial:</strong>
 This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
 </div>
 <p>Just about every example you find in these tutorials is based on the
@@ -114,7 +116,7 @@ maximum muscle activation stays below 100%.</p>
 movement of lifting a coffee cup from the table to the mouth then what
 would a reasonable goal be? The constraints are rather easy: Start at
 the table, end at the mouth, keep the cup horizontal all the time, avoid
-accelerations that would spill the coffee and so on, but many different
+accelerations that would spill the coffee&nbsp;and so on, but many different
 movements would honor those conditions. Which of them would be the one a
 given person would actually choose? Some investigations indicate that
 for submaximal tasks like this, a lazyness criterion often applies; we
@@ -125,19 +127,19 @@ objectives and decide on one that leads to a plausible movement.</p>
 <div class="section" id="a-football-kick">
 <h2>A Football Kick<a class="headerlink" href="#a-football-kick" title="Permalink to this headline">¶</a></h2>
 <p>So we need a simple model to play with. We are going to try to optimize
-a two-dimensional football kick. There are all sorts of reasons why a
+a two-dimensional football kick. There are all sorts&nbsp;of reasons why a
 simple model of this task might be totally inadequate, but it will serve
 well to demonstrate the idea. Please download a model to begin on.
-<a class="reference download internal" download="" href="../_downloads/4be09a46bc1daef1d3b2a8a4a39b1ead/Kick1.any"><code class="xref download docutils literal notranslate"><span class="pre">Right-click</span> <span class="pre">the</span> <span class="pre">link</span> <span class="pre">and</span> <span class="pre">save</span> <span class="pre">the</span> <span class="pre">file</span>
-<span class="pre">Kick1.any</span></code></a> in some working directory. Then open
+<a class="reference download internal" download="" href="../_downloads/4be09a46bc1daef1d3b2a8a4a39b1ead/Kick1.any"><code class="xref download docutils literal"><span class="pre">Right-click the link and save the file
+Kick1.any</span></code></a> in some working directory. Then open
 it up in the AnyBody Modeling System, load it in and open a Model View
 window to have a look at the model. You should see something like this
 (except the legends):</p>
 <p><img alt="kick1.png" src="../_images/image136.png" /></p>
-<p>It is a two-segment model with revolute joints at the hip and the knee,
-so it has in total two degrees of freedom. Let us imagine that no motion
-capture experiment has been performed, so we do not really know how the
-model will kick. But we have made the initial guess that both of the two
+<p>It is&nbsp;a two-segment model with revolute joints&nbsp;at the hip and the knee,
+so it has in total two degrees of freedom.&nbsp;Let us imagine that no motion
+capture experiment has been performed, so&nbsp;we do not really know how the
+model will kick. But we have made&nbsp;the initial guess that both of the two
 joints are moving with constant velocity just to have some movement to
 look at. Please select the InverseDynamicAnalysis operation and run it.
 You will be rewarded with a very fast analysis but should be able to see
@@ -149,7 +151,7 @@ over-constrained mechanical system.</p>
 dynamic analysis completed</p>
 <p>We get this message because the model has no muscles and the necessary
 joint torques to produce the movement are provided by the drivers. We
-are going to want the model to relate to realistic joint strengths as
+are going to want&nbsp;the model to relate to realistic joint strengths as
 opposed to the infinitely strong driver reaction moments. On the other
 hand we want to keep it simple. So rather than defining a lof of muscles
 representing the real anatomy of the leg we shall just add “joint
@@ -274,8 +276,8 @@ making these variations.</p>
 <p>We already have some data now that can be used in the definition of our
 optimization problem. The first question is: What do we actually want to
 optimize? Given that the mass of the foot and football are given in
-advance we can presume that maximising the velocity of the football
-after the impact is equivalent to maximizing the velocity of the foot
+advance we can presume that maximising the&nbsp;velocity of the football
+after the impact&nbsp;is equivalent to maximizing the velocity of the foot
 before the impact. In fact, the law of conservation of momentum says
 something about that. If we presume the mass of the football to be 0.2
 kg, the coefficient of restitution of the collision to be 0.5, which is
@@ -297,10 +299,10 @@ We can write this formula directly into the model like this:</p>
  <span class="p">};</span>
 </pre></div>
 </div>
-<p> Please load and run the model again, and then go to the Chart window
+<p>&nbsp;Please load and run the model again, and then go to the Chart window
 and plot the new output function. You should see this:</p>
 <p><img alt="kickvel1.gif" src="../_images/image34.gif" /></p>
-<p>The function shows the predicted post-impact velocity of the ball if the
+<p>The function&nbsp;shows the predicted post-impact velocity of the ball if the
 foot were to hit is at any time during the imposed movement. As
 expected, the exit velocity is higher the later in the movement the ball
 is hit because the foot velocity increases all the time.</p>
@@ -380,8 +382,8 @@ variable just to make sure we get it right before adding a lot of them:</p>
 <span class="gr">    };</span>
 </pre></div>
 </div>
-<p>This design variable controls the position of the fourth data
-point (remember that items in arrays are numbered from zero, so number
+<p>This design variable controls the position&nbsp;of the fourth data
+point&nbsp;(remember that items in arrays are numbered from zero, so number
 three is the fourth position) in the knee joint driver. There are five
 point in total in each driver, but we do not want to include the last
 one in the optimization because it determines the position of the foot
@@ -443,7 +445,7 @@ the movement, and this can possibly be improved by adding additional
 points to the interpolation and making them variables in the
 optimization problem. Optimization problems are often ongoing projects
 in the sense that is it difficult to know when the model is good enough
-to capture the features of the body’s function that we are looking for.</p>
+to capture the features of the body’s function&nbsp;that we are looking for.</p>
 </div>
 </div>
 
@@ -462,6 +464,8 @@ to capture the features of the body’s function that we are looking for.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

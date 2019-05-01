@@ -1,16 +1,18 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta charset="utf-8" /><meta content="noindex" name="robots" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 1: Basic Concepts &#8212; AnyBody Tutorials v7.2.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -60,8 +62,8 @@
   <div class="section" id="lesson-1-basic-concepts">
 <h1>Lesson 1: Basic Concepts<a class="headerlink" href="#lesson-1-basic-concepts" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>To follow this tutorial it is recommended to first to watch the
+<p class="first admonition-title">Note</p>
+<p class="last"><strong>To follow this tutorial it is recommended to first to watch the
 introductory video found in this link</strong> “<a class="reference internal" href="../index.html"><span class="doc">Tutorial Overview</span></a>”.</p>
 </div>
 <p>To create an AnyScript model from scratch, go to “File menu -&gt; New from template…” this will bring up a new window in
@@ -72,7 +74,7 @@ which you choose “Basic Main” and provide a “Target Name” (e.g.,
 for your model, based on a built-in template.</p>
 <div class="section" id="what-are-classes">
 <h2>What are Classes?<a class="headerlink" href="#what-are-classes" title="Permalink to this headline">¶</a></h2>
-<p>Let’s have a look at what the system has generated for you. If you ignore most of the text and comments (green lines beginning with <code class="docutils literal notranslate"><span class="pre">//</span></code>),
+<p>Let’s have a look at what the system has generated for you. If you ignore most of the text and comments (green lines beginning with <code class="docutils literal"><span class="pre">//</span></code>),
 the overall structure of the model looks like this:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
@@ -91,17 +93,17 @@ Everything else in the model goes between these braces.</p>
 assigned to a pair of braces, and all the contents between the braces will show up as
 folders and sub-folders in the Model Tree.</strong></p>
 <p><strong>The code creates two objects - “MyModel” &amp; “MyStudy” - which perform very
-specific functions, which depend on the pre-preprogrammed object templates</strong> (<code class="docutils literal notranslate"><span class="pre">AnyFolder</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">AnyBodyStudy</span></code>)
+specific functions, which depend on the pre-preprogrammed object templates</strong> (<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFolder</span></code> &amp; <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyBodyStudy</span></code>)
 <strong>used to create these objects. These inbuilt object templates are also known as CLASSES.</strong></p>
-<p>“MyModel” (of type <code class="docutils literal notranslate"><span class="pre">AnyFolder</span></code>) is simply an
+<p>“MyModel” (of type <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFolder</span></code>) is simply an
 organizational folder for containing the entire model you are going to
 build. Let us change the folder name “MyModel” to “ArmModel”.</p>
-<p>The object named “MyStudy” (of type <code class="docutils literal notranslate"><span class="pre">AnyBodyStudy</span></code>) is a collection of
+<p>The object named “MyStudy” (of type <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyBodyStudy</span></code>) is a collection of
 simulation tasks that you want to perform with your model. The <a class="reference internal" href="../A_study_of_studies/intro.html"><span class="doc">Study of Studies</span></a> tutorial
 contains much more information on simulation studies.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Rename “MyStudy” to “ArmModelStudy”, and replace all occurences of “MyModel” with “ArmModel”.
+<p class="first admonition-title">Warning</p>
+<p class="last">Rename “MyStudy” to “ArmModelStudy”, and replace all occurences of “MyModel” with “ArmModel”.
 All changes to your model will be highlighted in red hereon.</p>
 </div>
 </div>
@@ -124,11 +126,11 @@ All changes to your model will be highlighted in red hereon.</p>
 <span class="p">};</span> <span class="c1">// §ArmModel§</span>
 </pre></div>
 </div>
-<p>Within “ArmModel” is an object named “GlobalRef”, created with the <code class="docutils literal notranslate"><span class="pre">AnyFixedRefFrame</span></code> class. This object is the global reference frame for your model.</p>
+<p>Within “ArmModel” is an object named “GlobalRef”, created with the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFixedRefFrame</span></code> class. This object is the global reference frame for your model.</p>
 <p>You will notice “to do” comments inside the braces, to which we will return later.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The model objects that you create henceforth must be placed within the “ArmModel” folder and should go between its
+<p class="first admonition-title">Note</p>
+<p class="last">The model objects that you create henceforth must be placed within the “ArmModel” folder and should go between its
 pair of braces.</p>
 </div>
 </div>
@@ -165,8 +167,8 @@ in the file.</strong></p>
 <p>We now assume that you have removed the errors and have loaded the model
 successfully.</p>
 <div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> If you are up to it, let’s continue onward to <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2: Segments</span></a>.</p>
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> If you are up to it, let’s continue onward to <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2:&nbsp;Segments</span></a>.</p>
 </div>
 </div>
 </div>
@@ -186,6 +188,8 @@ successfully.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

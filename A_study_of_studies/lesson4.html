@@ -1,16 +1,18 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta charset="utf-8" /><meta content="noindex" name="robots" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 4: Inverse Dynamics &#8212; AnyBody Tutorials v7.2.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -77,8 +79,8 @@ fair bit of mathematical complexity to the problem.</p>
 assume that the mechanical system is a musculoskeletal system. The
 inverse dynamic solver basically deals with</p>
 <ul class="simple">
-<li><p>The statical indeterminacy of the musculoskeletal system</p></li>
-<li><p>Unilateral forces elements.</p></li>
+<li>The statical indeterminacy of the musculoskeletal system</li>
+<li>Unilateral forces elements.</li>
 </ul>
 <p>The class called AnyMechStudy does also contain an InverseDynamics
 operation. This operations is far more simple and does not deal with
@@ -87,9 +89,9 @@ dynamics problem of a general simple mechanical system, namely to solve
 the dynamic equilibrium equations for a equal amount of unknown forces,
 the so-called reaction forces.</p>
 <p>To conclude this tutorial, please try InverseDynamics operations in the
-arm model, <a class="reference download internal" download="" href="../_downloads/702cee6f25e55b412882a4113064da26/arm2d.any"><code class="xref download docutils literal notranslate"><span class="pre">arm2d.any</span></code></a>, and the slider crank
+arm model, <a class="reference download internal" download="" href="../_downloads/702cee6f25e55b412882a4113064da26/arm2d.any"><code class="xref download docutils literal"><span class="pre">arm2d.any</span></code></a>, and the slider crank
 mechanism,
-<a class="reference download internal" download="" href="../_downloads/b685570db0e977725ec28dbf3c1960fd/Demo.SliderCrank3D.any"><code class="xref download docutils literal notranslate"><span class="pre">demo.SliderCrank3D.any</span></code></a>. In both
+<a class="reference download internal" download="" href="../_downloads/b685570db0e977725ec28dbf3c1960fd/Demo.SliderCrank3D.any"><code class="xref download docutils literal"><span class="pre">demo.SliderCrank3D.any</span></code></a>. In both
 case, you will now see forces being calculated, i.e. forces that are
 non-zero in the output. But please also notice how the slider crank
 study is defined with simpler AnyMechStudy whereas the arm model uses
@@ -121,6 +123,8 @@ topic</span></a>.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

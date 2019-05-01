@@ -1,16 +1,18 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta charset="utf-8" /><meta content="noindex" name="robots" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 5: Definition of Muscles and External Forces &#8212; AnyBody Tutorials v7.2.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -60,9 +62,9 @@
   <div class="section" id="lesson-5-definition-of-muscles-and-external-forces">
 <h1>Lesson 5: Definition of Muscles and External Forces<a class="headerlink" href="#lesson-5-definition-of-muscles-and-external-forces" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here’s an AnyScript file to start on if you have not completed the
-previous lesson: <a class="reference download internal" download="" href="../_downloads/04d178144405ab7e1cff55b547de9874/demo.lesson5.any"><code class="xref download docutils literal notranslate"><span class="pre">demo.lesson5.any</span></code></a>.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">Here’s an AnyScript file to start on if you have not completed the
+previous lesson: <a class="reference download internal" download="" href="../_downloads/04d178144405ab7e1cff55b547de9874/demo.lesson5.any"><code class="xref download docutils literal"><span class="pre">demo.lesson5.any</span></code></a>.</p>
 </div>
 <p>The model so far has been capable of motion despite lacking muscles.
 This is because a kinematic analysis that does not consider forces.</p>
@@ -81,8 +83,8 @@ to muscle modeling can be found here <a class="reference internal" href="../Musc
 </div>
 <p>The next step is to create a muscle model that defines the properties that will be assumed common for all the muscles.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Since properties such as Max muscle strength, fiber length etc. differ between muscles, realistic AMMR human body models
+<p class="first admonition-title">Note</p>
+<p class="last">Since properties such as Max muscle strength, fiber length etc. differ between muscles, realistic AMMR human body models
 define unique muscle models for each muscle element.</p>
 </div>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Muscles</span> <span class="o">=</span> <span class="p">{</span>
@@ -118,13 +120,13 @@ to drive a complex body model.</p>
 <span class="p">};</span> <span class="c1">// Muscles folder</span>
 </pre></div>
 </div>
-<p><strong>This muscle is created by the</strong> <code class="docutils literal notranslate"><span class="pre">AnyViaPointMuscle</span></code> <strong>class. These are muscles which begin at
+<p><strong>This muscle is created by the</strong> <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyViaPointMuscle</span></code> <strong>class. These are muscles which begin at
 an origin point, pass through a number of pre-defined via points, and finally terminate
 at the insertion.</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">Org</span></code> <strong>and</strong> <code class="docutils literal notranslate"><span class="pre">Ins</span></code> <strong>are the origin and insertion of the Brachialis. They are reference objects,
+<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Org</span></code> <strong>and</strong> <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Ins</span></code> <strong>are the origin and insertion of the Brachialis. They are reference objects,
 pointing to reference nodes named “Brachialis” that have already been created on the “UpperArm” and “ForeArm”</strong></p>
 <p>The Brachialis muscle in our model lacks via-points. However if a muscle has via points, we must insert
-reference objects to respective via-point nodes in the lines between <code class="docutils literal notranslate"><span class="pre">Org</span></code> and <code class="docutils literal notranslate"><span class="pre">Ins</span></code>, in the correct order.</p>
+reference objects to respective via-point nodes in the lines between <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Org</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Ins</span></code>, in the correct order.</p>
 <p>The physiological behavior of the muscle is defined by the first line:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">MusMdl</span> <span class="o">=</span> <span class="p">..</span><span class="n">Muscles</span><span class="p">.</span><span class="n">MusMdl</span><span class="p">;</span>
 </pre></div>
@@ -223,8 +225,8 @@ how this is done, refer to <a class="reference internal" href="../A_Getting_star
 requires some assistive force to hold up its own weight. Note that you’ve specified
 a gravity vector in the “ArmModelStudy” object.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>A kinematic constraint needs to be enforced by an accompanying constraint force.
+<p class="first admonition-title">Note</p>
+<p class="last">A kinematic constraint needs to be enforced by an accompanying constraint force.
 For example, when you lean on a table, the normal reaction force on your hand maintains the
 surface-surface constraint between hand and table. Were it not for the force you would have fallen, with your hand
 passing through the table surface. Similarly motion constraints such as joint angle motions need a driving
@@ -256,7 +258,7 @@ switched off by setting the “Reaction.Type” property.</strong></p>
 <p>On the other hand, the driver reactions come in handy in models under development, while you are still adding
 muscles or other force elements to enforce the constraints. The driver reactions will allow you to successfully run
 inverse dynamic simulations at the intermediate model stages, by ensuring dynamic consistency.</p>
-<p>The single <code class="docutils literal notranslate"><span class="pre">Off</span></code> is encapsulated in braces, <code class="docutils literal notranslate"><span class="pre">{Off}</span></code> because it is a vector.
+<p>The single <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">Off</span></code> is encapsulated in braces, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="p">{</span><span class="kp">Off</span><span class="p">}</span></code> because it is a vector.
 A driver by can theoretically have any number of total DOF from all the measures
 that it drives. Therefore all data in a driver are vector quantities, even when it is a 1 DOF driver .</p>
 </div>
@@ -266,7 +268,7 @@ that it drives. Therefore all data in a driver are vector quantities, even when 
 In this analysis, the AnyBody system computes all muscle, joint forces and much more.</p>
 <p>Review the instructions from <a class="reference internal" href="../A_Getting_started/lesson3.html#chart-view"><span class="std std-ref">this prior tutorial</span></a> on plotting simulation results.</p>
 <p>To plot the muscle forces in the brachialis muscle, open
-“Main.Study.Output.Model.Muscles.Brachialis” in the chart view’s model tree, and plot the variable named <code class="docutils literal notranslate"><span class="pre">Fm</span></code>.
+“Main.Study.Output.Model.Muscles.Brachialis” in the chart view’s model tree, and plot the variable named <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Fm</span></code>.
 You should get a curve that looks like the one below.</p>
 <p><img alt="image2" src="../_images/image33.png" /></p>
 <p>The drop in muscle force with movement progression is due to the decreasing moment arm of the gravity
@@ -307,8 +309,8 @@ should see this:</p>
 development is also different. It now reaches a maximum during the
 movement and drops off again.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Applied forces do not have to be constant. They can change with time
+<p class="first admonition-title">Note</p>
+<p class="last">Applied forces do not have to be constant. They can change with time
 and other properties in the model.  Please refer to the <a class="reference internal" href="../The_mechanical_elements/intro.html"><span class="doc">tutorial on
 forces</span></a> for more
 details.</p>
@@ -318,8 +320,8 @@ difficult job to define a realistic body model from scratch. We recommend that u
 start out with the body models available in the</strong> <a class="reference external" href="http://www.anybodytech.com/anybody.html?fwd=modelrepository">AnyBody Managed Model
 Repository</a>.</p>
 <div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> Now, let’s continue to <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Adding real bone geometrics</span></a></p>
+<p class="first admonition-title">See also</p>
+<p class="last"><strong>Next lesson:</strong> Now, let’s continue to <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Adding real bone geometrics</span></a></p>
 </div>
 </div>
 </div>
@@ -339,6 +341,8 @@ Repository</a>.</p>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
