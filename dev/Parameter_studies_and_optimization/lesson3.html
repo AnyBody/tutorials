@@ -281,7 +281,7 @@ test it and investigate the results:</p>
 take a list of design values as input and return the objective function value.
 In <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2</span></a> the objective function was the time integral of the
 metabolism variable. So we will do the same here with Scipy’s
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.trapz.html#scipy.integrate.trapz" title="(in SciPy v1.2.1)"><code class="xref py py-func docutils literal"><span class="pre">scipy.integrate.trapz()</span></code></a>: function.</p>
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.trapz.html#scipy.integrate.trapz" title="(in SciPy v1.3.0)"><code class="xref py py-func docutils literal"><span class="pre">scipy.integrate.trapz()</span></code></a>: function.</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>23
 24
 25
@@ -345,7 +345,7 @@ for the design variables.</p>
  <span class="n">initial_guess</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.68</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
-<p>The documentation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.2.1)"><code class="xref py py-func docutils literal"><span class="pre">scipy.optimize.minimize()</span></code></a> has more information on how to define bounds, contraints, tolerances, etc.</p>
+<p>The documentation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.3.0)"><code class="xref py py-func docutils literal"><span class="pre">scipy.optimize.minimize()</span></code></a> has more information on how to define bounds, contraints, tolerances, etc.</p>
 <p>Finally, we call the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">scipy</span><span class="p">.</span><span class="n">optimize</span><span class="p">.</span><span class="n">minimize</span></code> function run the optimizer. In this case we used the
 <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-slsqp.html#optimize-minimize-slsqp">SLSQP</a> algorithm.</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>46
@@ -373,7 +373,7 @@ for the design variables.</p>
 </pre></div>
 </div>
 <p>And there we have it!
-We can now take advantage of the many different algorithms and settings available for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.2.1)"><code class="xref py py-func docutils literal"><span class="pre">scipy.optimize.minimize()</span></code></a>.
+We can now take advantage of the many different algorithms and settings available for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.3.0)"><code class="xref py py-func docutils literal"><span class="pre">scipy.optimize.minimize()</span></code></a>.
 We could also use a different package or customize our own algorithm, constraints etc.
 The possibilities are practically endless.</p>
 <p>For more information regarding the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">AnyPyTools</span></code> python package follow <a class="reference external" href="https://anybody-research-group.github.io/anypytools-docs/">this link.</a>
