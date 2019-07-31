@@ -1,18 +1,17 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Appendix: Cleaning and Preparing STL Surfaces for Contact Calculation &#8212; AnyBody Tutorials v7.2.1-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -64,7 +63,7 @@
 <p>To use the AnyForceSurfaceContact, it is necessary that the STL- or
 AnySurf-file fulfils some requirements to obtain good results.</p>
 <ul>
-<li><div class="first line-block">
+<li><div class="line-block">
 <div class="line">The surface should not have sharp edges in the region of contact.</div>
 <div class="line">Sharp edges can cause a jump in calculation of the penetration
 depth of the two surfaces and thus can cause jumps in the contact
@@ -72,7 +71,7 @@ force. For the FDK-solver, this is not easy to handle and can cause
 slow convergence or even failure.</div>
 </div>
 </li>
-<li><div class="first line-block">
+<li><div class="line-block">
 <div class="line">The surface should not have too large curvatures.</div>
 <div class="line">Large curvatures on a surface cause, similar to sharp edges, lead
 to jumps in the calculation depth.</div>
@@ -84,7 +83,7 @@ Thus, large curvatures causes can cause large variations in the
 force directions.</div>
 </div>
 </li>
-<li><div class="first line-block">
+<li><div class="line-block">
 <div class="line">The surface should not contain too small triangles.</div>
 <div class="line">Small triangles, i.e. vertices which are too close to each other
 are collapsed into one vertex during the process of converting
@@ -94,7 +93,7 @@ These triangles must be ignored in the contact calculation and
 warnings show up.</div>
 </div>
 </li>
-<li><div class="first line-block">
+<li><div class="line-block">
 <div class="line">The face normal for each face of the surface should have a unique
 orientation.</div>
 <div class="line">Make sure that the surface normal and the numbering of triangles
@@ -104,7 +103,7 @@ and outside of the surface and thus, which direction is
 penetration.</div>
 </div>
 </li>
-<li><p class="first">To check the above mentioned requirements, you can use an external
+<li><p>To check the above mentioned requirements, you can use an external
 tool such as MeshLab (<a class="reference external" href="http://meshlab.sourceforge.net">http://meshlab.sourceforge.net</a> ). To smooth
 sharp edges and large curvatures, filters, such as Laplacian
 filters, or others can be used, depending on the surface. Checking
@@ -115,20 +114,16 @@ be used:</p>
 </li>
 </ul>
 <ol class="arabic">
-<li><p class="first">Load STL-file in MeshLab</p>
-</li>
-<li><p class="first">Use Filters-&gt;Cleaning and Repairing-&gt;Merge Close Vertices. Use an abs
-tolerance bigger than 0.0001</p>
-</li>
-<li><p class="first">Use Filters-&gt;Cleaning and Repairing-&gt;Remove Duplicate Faces</p>
-</li>
-<li><div class="first line-block">
+<li><p>Load STL-file in MeshLab</p></li>
+<li><p>Use Filters-&gt;Cleaning and Repairing-&gt;Merge Close Vertices. Use an abs
+tolerance bigger than 0.0001</p></li>
+<li><p>Use Filters-&gt;Cleaning and Repairing-&gt;Remove Duplicate Faces</p></li>
+<li><div class="line-block">
 <div class="line">Use Filters-&gt;Cleaning and Repairing-&gt;Remove Duplicate</div>
 <div class="line">Vertices</div>
 </div>
 </li>
-<li><p class="first">Use Filters-&gt;Cleaning and Repairing-&gt;Remove Zero Area Faces</p>
-</li>
+<li><p>Use Filters-&gt;Cleaning and Repairing-&gt;Remove Zero Area Faces</p></li>
 </ol>
 </div>
 
@@ -142,13 +137,11 @@ tolerance bigger than 0.0001</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

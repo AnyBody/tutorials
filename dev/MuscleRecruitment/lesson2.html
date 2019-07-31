@@ -1,18 +1,17 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 2: Linear Muscle Recruitment &#8212; AnyBody Tutorials v7.2.1-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -62,8 +61,8 @@
   <div class="section" id="lesson-2-linear-muscle-recruitment">
 <h1>Lesson 2: Linear Muscle Recruitment<a class="headerlink" href="#lesson-2-linear-muscle-recruitment" title="Permalink to this headline">¶</a></h1>
 <div class="without-title admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last"><strong>Old tutorial:</strong>
+<p class="admonition-title">Caution</p>
+<p><strong>Old tutorial:</strong>
 This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
 </div>
 <p>Let us begin this lesson with a physiological observation. We know that
@@ -73,10 +72,10 @@ has programmed us to save muscle work in some sense. But exactly how?</p>
 <p>When two muscles are sharing the load of one joint moment, the options
 seem to be:</p>
 <ul class="simple">
-<li>Letting muscle 1 do the work</li>
-<li>Letting muscle 2 do the work</li>
-<li>Letting the two muscles share the work as we saw in the previous
-lesson</li>
+<li><p>Letting muscle 1 do the work</p></li>
+<li><p>Letting muscle 2 do the work</p></li>
+<li><p>Letting the two muscles share the work as we saw in the previous
+lesson</p></li>
 </ul>
 <p>So we can reduce the load on one muscle, but the cost will be more work
 remaining for the other muscle to do. It seems that a criterion taking
@@ -133,19 +132,19 @@ between them.</p>
 <p>This type of muscle recruitment is included in AnyBody for two reasons
 despite being non-physiological:</p>
 <ol class="arabic simple">
-<li>For completeness. The strategy behind AnyBody is to leave decisions
-about physiology to the user as much as possible.</li>
-<li>This type of analysis is excellent for identifying the important
+<li><p>For completeness. The strategy behind AnyBody is to leave decisions
+about physiology to the user as much as possible.</p></li>
+<li><p>This type of analysis is excellent for identifying the important
 muscles in a complex system in a given posture and external load. In
 complex systems this can be very challenging to determine manually
 and the result can be useful for a variety of purposes including
-decisions on tendon transfer surgery.</li>
+decisions on tendon transfer surgery.</p></li>
 </ol>
 <p>For normal purposes, however, the linear criterion is not a good choice,
 and we shall therefore proceed to investigate another option in</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Quadratic Muscle Recruitment</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Quadratic Muscle Recruitment</span></a>.</p>
 </div>
 </div>
 
@@ -159,13 +158,11 @@ and we shall therefore proceed to investigate another option in</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

@@ -1,18 +1,17 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 1: Export of data for FEA &#8212; AnyBody Tutorials v7.2.1-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -73,8 +72,8 @@ Repository Ver. 1.6 (AMMRV1.6) if you see differences between the
 tutorial text and your own results please download AMMRV1.6 from
 <a class="reference external" href="http://www.anybodytech.com/anybody.html?fwd=modelrepository">www.anybodytech.com/anybody.html?fwd=modelrepository</a></p>
 <p>The starting point for this tutorial is the model:</p>
-<p><code class="file docutils literal"><span class="pre">Applications/Examples/StandingLift/StandingLiftFEA.main.any</span></code></p>
-<p>However, this model internally reuses the code of <code class="file docutils literal"><span class="pre">StandingLift.main.any</span></code>. Please
+<p><code class="file docutils literal notranslate"><span class="pre">Applications/Examples/StandingLift/StandingLiftFEA.main.any</span></code></p>
+<p>However, this model internally reuses the code of <code class="file docutils literal notranslate"><span class="pre">StandingLift.main.any</span></code>. Please
 find the model and load it by pushing F7 and open a Model View. You
 should see something similar to the picture to the right. The vertebral
 body we want to analyze is marked with a circle on the zoomed-in
@@ -194,15 +193,15 @@ displacement becomes work/energy; in other words the kinematic measure
 decides the unit of the force component. Anyway, these occasionally
 somewhat artificial force measures present in the AnyBody model are
 converted to real point forces and point torques, when outputted to
-the AnyFE output file. Therefore, we find <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></code> in the AnyFE,
+the AnyFE output file. Therefore, we find <code class="docutils literal notranslate"><span class="pre">F[i]</span></code> and <code class="docutils literal notranslate"><span class="pre">M[i]</span></code> in the AnyFE,
 which are the point force and the point torque associated the <em>i</em>’th
 component of the given AnyForce object. The total force acting in the
 global direction at a point can be found by simply adding all the
-components forces, i.e. summing <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></code> for all <em>i</em> at that location.</p>
-<p>In many cases, the components are indeed simple such that component <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">i</span><span class="o">=</span><span class="mi">0</span></code>
-for instance is <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Fx</span></code> as could be expected, but since this <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Fx</span></code> may refer to
+components forces, i.e. summing <code class="docutils literal notranslate"><span class="pre">F[i]</span></code> for all <em>i</em> at that location.</p>
+<p>In many cases, the components are indeed simple such that component <code class="docutils literal notranslate"><span class="pre">i=0</span></code>
+for instance is <code class="docutils literal notranslate"><span class="pre">Fx</span></code> as could be expected, but since this <code class="docutils literal notranslate"><span class="pre">Fx</span></code> may refer to
 a local coordinate system of a particular segment, a joint attachment
-node, or the like, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></code> may still have three non-zero values
+node, or the like, <code class="docutils literal notranslate"><span class="pre">F[i]</span></code> and <code class="docutils literal notranslate"><span class="pre">M[i]</span></code> may still have three non-zero values
 when exported to the AnyFE file. This is because the data is tansformed
 while being exported so that the AnyFE is referring to a single
 coordinate system for all of the exported data; this system is often (by
@@ -239,7 +238,7 @@ has not been reloaded since the force export otherwise run the
 InverseDynamicAnalysis again to bring it to right position. Of course
 it also involves all scaling which has been applied to the bones.
 Browse through the model tree to the L5Seg
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Main</span><span class="o">/</span><span class="n">HumanModel</span><span class="o">/</span><span class="n">BodyModel</span><span class="o">/</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SegmentsLumbar</span><span class="o">/</span><span class="n">L5Seg</span></code> in order
+<code class="docutils literal notranslate"><span class="pre">Main/HumanModel/BodyModel/Trunk.SegmentsLumbar/L5Seg</span></code> in order
 to export the L5 segment. Inside this folder you find the DrawSTL
 folder. Right-click the folder and choose “Export Surface”. Choose a
 convenient place to store the file and give it the name “L5.stl”. A
@@ -254,9 +253,9 @@ of the body it may appear that some bone are simply to coarse for a
 detailed analysis. But of course you are free to import your own .stl
 file into the AnyBody Modeling System to substitute existing bones.
 You will have to tweak your CAD file a bit in order to make it fit.
-<a class="reference external" href="mailto:anybody&#37;&#52;&#48;anybodytech&#46;com">Donation of better quality CAD files of bones to the models&nbsp;is most
+<a class="reference external" href="mailto:anybody&#37;&#52;&#48;anybodytech&#46;com">Donation of better quality CAD files of bones to the models is most
 welcome<span>&#46;</span></a></p>
-<p>Based on the exported forces and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="p">.</span><span class="n">stl</span></code> file we can now build and analyze
+<p>Based on the exported forces and <code class="docutils literal notranslate"><span class="pre">.stl</span></code> file we can now build and analyze
 a FE model. Below we shall build an FE model applying the loads and
 other boundary conditions manually using non-commercially available
 software. However please notice that in the following lessons, we
@@ -274,11 +273,11 @@ body.</p>
 <p>With a stress level of approx. 0.5 MPa in the cancellous bone we are
 pretty far away from the yield strength, so we can conclude that it
 appears to be ok for aquarium owners to lift their pets in an
-aquarium&nbsp;of this size. But of course we did some generous shortcuts to achieve this goal and
+aquarium of this size. But of course we did some generous shortcuts to achieve this goal and
 neglected a lot of detail which is provided by the AnyBody Modeling
 System.</p>
 <div class="section" id="building-the-fe-model">
-<h2>&nbsp;Building the FE-model<a class="headerlink" href="#building-the-fe-model" title="Permalink to this headline">¶</a></h2>
+<h2> Building the FE-model<a class="headerlink" href="#building-the-fe-model" title="Permalink to this headline">¶</a></h2>
 <p>In this section a short description of how to build a Finite Element
 model using AnyBody data is given. If you are an experienced FE user
 you may want to skip this section.</p>
@@ -304,15 +303,15 @@ programs if you want to do some hands-on FEA.</p>
 <h3>Building the model - preprocessing<a class="headerlink" href="#building-the-model-preprocessing" title="Permalink to this headline">¶</a></h3>
 <p>A file with the finished model is provided below, in case you do not
 want to go through the entire model building process.</p>
-<dl class="docutils">
-<dt>Open IA-FEMesh and press the “Surface” tab to load your (earlier</dt>
-<dd>exported) <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="p">.</span><span class="n">stl</span></code> file. After successful loading we have to define a
+<dl class="simple">
+<dt>Open IA-FEMesh and press the “Surface” tab to load your (earlier</dt><dd><p>exported) <code class="docutils literal notranslate"><span class="pre">.stl</span></code> file. After successful loading we have to define a
 building block. The building block is a prerequisite to the mesh
 generation and its surfaces will be meshed and further projected on
 the bone. For reasons of simplicity it has been prepared. Please press
 the “Block” tab and chose “Load”. Browse to the folder “FEA” which is
 inside the “StandingLiftFE” application folder. Choose the file
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">L5_block</span><span class="p">.</span><span class="n">vtk</span></code>. Some boxes around the vertebral body will appear.</dd>
+<code class="docutils literal notranslate"><span class="pre">L5_block.vtk</span></code>. Some boxes around the vertebral body will appear.</p>
+</dd>
 </dl>
 <p><img alt="FEA tutorial Mesh" src="../_images/image41.jpeg" /></p>
 <p>In the next step, we will have a look at the local mesh density and
@@ -371,7 +370,7 @@ F[2]=-1.526868368696591e-004;4.304677367488389e-003;1.424576103082109e+000;
 M[2]=4.217476399426685e-020;4.217476399426685e-020;4.217476399426685e-020;
 </pre></div>
 </div>
-<p>By summing up the rows for the forces <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></code>, <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></code>, and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span></code> we get the
+<p>By summing up the rows for the forces <code class="docutils literal notranslate"><span class="pre">F[0]</span></code>, <code class="docutils literal notranslate"><span class="pre">F[1]</span></code>, and <code class="docutils literal notranslate"><span class="pre">F[2]</span></code> we get the
 resulting components for the joint reaction load. This can be directly
 used in the force definition as they are given in the same coordinate
 system. In this case only the Y-force component is of interest as all
@@ -428,7 +427,7 @@ editor.</p>
 <h3>Solve and postprocessing<a class="headerlink" href="#solve-and-postprocessing" title="Permalink to this headline">¶</a></h3>
 <p>If you have somehow screwed up your model or simply didn’t want to go
 through the model building process, you can find a working model here:
-<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">StandingLift</span>\<span class="n">Input</span>\<span class="n">FEA</span>\<span class="n">L5FEABackup</span><span class="p">.</span><span class="n">inp</span></code>. (In this model also
+<code class="docutils literal notranslate"><span class="pre">StandingLift\Input\FEA\L5FEABackup.inp</span></code>. (In this model also
 different materials for the cortical shell (E = 12000 MPa) and the
 cancellous bone structure (E = 200 MPa) have been assigned.</p>
 <p>If you want to use this model instead of your own build, please change
@@ -455,14 +454,15 @@ look at the Calculix help file for more information on this). Here are
 two examples for the von-Mises stresses in the middle of the cross
 section of the vertebral body:</p>
 <blockquote>
-<div><img alt="FEA tutorial von-Mises 2" src="../_images/image31.jpeg" /></div></blockquote>
+<div><p><img alt="FEA tutorial von-Mises 2" src="../_images/image31.jpeg" /></p>
+</div></blockquote>
 <p>This completes Lesson 1.</p>
 <p>In the following lessons, we show somewhat more automatic interfaces to
 selected commercial FE packages using small interface tools</p>
 <p>Click here to continue to</p>
 <ul class="simple">
-<li><a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2: ANSYS interface</span></a>.</li>
-<li><a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: ABAQUS interface</span></a></li>
+<li><p><a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2: ANSYS interface</span></a>.</p></li>
+<li><p><a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: ABAQUS interface</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -478,13 +478,11 @@ selected commercial FE packages using small interface tools</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

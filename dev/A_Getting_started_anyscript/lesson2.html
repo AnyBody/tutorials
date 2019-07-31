@@ -1,18 +1,17 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 2: Defining Segments and Displaying Objects &#8212; AnyBody Tutorials v7.2.1-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -62,11 +61,11 @@
   <div class="section" id="lesson-2-defining-segments-and-displaying-objects">
 <h1>Lesson 2: Defining Segments and Displaying Objects<a class="headerlink" href="#lesson-2-defining-segments-and-displaying-objects" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Here’s an AnyScript file to start on if you have not completed the previous lesson:
-<a class="reference download internal" download="" href="../_downloads/da6bf347ae6d543e1197ded4837a624c/demo.lesson2.any"><code class="xref download docutils literal"><span class="pre">demo.lesson2.any</span></code></a></p>
+<p class="admonition-title">Note</p>
+<p>Here’s an AnyScript file to start on if you have not completed the previous lesson:
+<a class="reference download internal" download="" href="../_downloads/da6bf347ae6d543e1197ded4837a624c/demo.lesson2.any"><code class="xref download docutils literal notranslate"><span class="pre">demo.lesson2.any</span></code></a></p>
 </div>
-<p>The basic building blocks of a mechanical system are the “segments” <a class="footnote-reference" href="#f1" id="id1">[1]</a>. In AnyBody,
+<p>The basic building blocks of a mechanical system are the “segments” <a class="footnote-reference brackets" href="#f1" id="id1">1</a>. In AnyBody,
 the segments are treated as rigid elements which represent human bones as well as non-human components such as exoskeleton/machine parts etc.</p>
 <p><strong>A segment is just a coordinate system with mass and inertial properties, which can move around freely in 3D space.</strong></p>
 <div class="section" id="creating-a-segment-using-the-class-inserter">
@@ -91,7 +90,7 @@ following text to your model (new text marked in red):</p>
 <span class="p">};</span> <span class="c1">// ArmModel</span>
 </pre></div>
 </div>
-<p>Load the model by clicking the&nbsp;<img alt="Load button image" src="../_images/image13.png" /> icon or the
+<p>Load the model by clicking the <img alt="Load button image" src="../_images/image13.png" /> icon or the
 F7 key. If you expand the “ArmModel” folder in the tree view, you should
 see a new, empty folder named “Segs”.</p>
 <p>We are now ready to add a segment to the model, and this would probably be a good time to introduce you to
@@ -100,7 +99,7 @@ the Class Inserter.</p>
 <p><strong>The Classes tab on the right edge of your AnyBody
 interface opens a Class List containing all the predefined classes in AnyScript.</strong></p>
 <p><strong>To insert a segment, start by placing your text cursor within the braces of the newly
-defined “AnyFolder Segs”. Then find the class</strong> <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnySeg</span></code> <strong>in the Class List and
+defined “AnyFolder Segs”. Then find the class</strong> <code class="docutils literal notranslate"><span class="pre">AnySeg</span></code> <strong>in the Class List and
 double-click it to insert its template into your text editor.</strong></p>
 <p>You should get this:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Segments</span>
@@ -122,10 +121,10 @@ double-click it to insert its template into your text editor.</strong></p>
 <p>Every object in AnyBody defined by some properties that are both mandatory (the
 template contains some default values) or optional (these properties are commented out).
 You can delete all optional properties except for r0 and Axes0.</p>
-<p>For an <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnySeg</span></code> object <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Mass</span></code> (segment mass) and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Jii</span></code> (diagonal elements of the inertia tensor) are the mandatory properties. Note that by default,
+<p>For an <code class="docutils literal notranslate"><span class="pre">AnySeg</span></code> object <code class="docutils literal notranslate"><span class="pre">Mass</span></code> (segment mass) and <code class="docutils literal notranslate"><span class="pre">Jii</span></code> (diagonal elements of the inertia tensor) are the mandatory properties. Note that by default,
 the segment’s coordinate system is located at the center of mass, with its local coordinate system being the principal axes of inertia.</p>
-<p>You can however change this by editing the properties <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">sCoM</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Jij</span></code>. Go to “Help-&gt;Anyscript Reference” for more information on the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnySeg</span></code> class’s properties.</p>
-<p>Let us rename the segment as “UpperArm” and set its <code class="docutils literal"><span class="pre">Mass = 2</span></code> and <code class="docutils literal"><span class="pre">Jii = {0.001, 0.01, 0.01}</span></code>:</p>
+<p>You can however change this by editing the properties <code class="docutils literal notranslate"><span class="pre">sCoM</span></code> and <code class="docutils literal notranslate"><span class="pre">Jij</span></code>. Go to “Help-&gt;Anyscript Reference” for more information on the <code class="docutils literal notranslate"><span class="pre">AnySeg</span></code> class’s properties.</p>
+<p>Let us rename the segment as “UpperArm” and set its <code class="docutils literal notranslate"><span class="pre">Mass</span> <span class="pre">=</span> <span class="pre">2</span></code> and <code class="docutils literal notranslate"><span class="pre">Jii</span> <span class="pre">=</span> <span class="pre">{0.001,</span> <span class="pre">0.01,</span> <span class="pre">0.01}</span></code>:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="gr">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">//r0 = {0, 0, 0};</span>
   <span class="c1">//Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};</span>
@@ -266,8 +265,8 @@ the Axes0 property, which is really a rotation matrix.</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Note that matrices in AnyBody are arranged row-wise, so {1, 0, 0} in Axes0 is the
+<p class="admonition-title">Note</p>
+<p>Note that matrices in AnyBody are arranged row-wise, so {1, 0, 0} in Axes0 is the
 first row of a 3x3 matrix.</p>
 </div>
 <p>Rotation matrices are a bit difficult to cook up on the fly. If your spatial thinking is good, you could maybe figure out
@@ -284,25 +283,24 @@ the exact expressions for all 9 components of the 3x3 Axes0 matrix.</p>
 rotations as radians, hence the multiplication of the 90 degree angle by pi/180. AnyBody identifies the word
 “pi” as 3.14159.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Angles in AnyBody are always in radians.</p>
+<p class="admonition-title">Note</p>
+<p>Angles in AnyBody are always in radians.</p>
 </div>
 <p>In the next section, we will look at how joints can be used to constrain
 the movement of segments and allow them to articulate the way we desire.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> So if you are up to it, let’s continue onward to <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Connecting segments by joints</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> So if you are up to it, let’s continue onward to <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: Connecting segments by joints</span></a>.</p>
 </div>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In rigid body dynamics terminology, a “segment” would be called a
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>In rigid body dynamics terminology, a “segment” would be called a
 “rigid body”, but to avoid unnecessary confusion between the rigid
 bodies and the total body model, we have chosen to use “segments” for
-the rigid parts of the model.</td></tr>
-</tbody>
-</table>
+the rigid parts of the model.</p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -316,13 +314,11 @@ the rigid parts of the model.</td></tr>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
