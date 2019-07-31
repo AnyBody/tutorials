@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 3: Making Ends Meet &#8212; AnyBody Tutorials v7.2.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -69,28 +67,28 @@ an inventory check on the degrees of freedom (DOFs) of the model.</p>
 <h2>Degrees of freedom overview<a class="headerlink" href="#degrees-of-freedom-overview" title="Permalink to this headline">¶</a></h2>
 <p>The pedal is simply hinged to the global reference frame, and has the following DOFs:</p>
 <ul class="simple">
-<li>1 DOF of rotation at the hinge.</li>
+<li><p>1 DOF of rotation at the hinge.</p></li>
 </ul>
 <p>With no environmental constraints defined so far, the human body has the following DOFs:</p>
 <ul class="simple">
-<li>6 DOF because the body as a whole is currently “floating around in space”</li>
-<li>3 DOF of the spherical joint between pelvis and thorax rotation</li>
-<li>3 DOF of the spherical joint at the neck</li>
-<li>3 DOF of the spherical joint at the hip</li>
-<li>1 DOF of the revolute joint at the knee</li>
-<li>2 DOF of rotation (flexion + eversion) at the ankle</li>
+<li><p>6 DOF because the body as a whole is currently “floating around in space”</p></li>
+<li><p>3 DOF of the spherical joint between pelvis and thorax rotation</p></li>
+<li><p>3 DOF of the spherical joint at the neck</p></li>
+<li><p>3 DOF of the spherical joint at the hip</p></li>
+<li><p>1 DOF of the revolute joint at the knee</p></li>
+<li><p>2 DOF of rotation (flexion + eversion) at the ankle</p></li>
 </ul>
 <p><strong>Total Human + pedal DOFs adds up to 19. In other words, we to need to specify 19 constraints before the model is kinematically determinate.
 We will do this using the concepts of “Measures and Drivers” introduced in</strong> <a class="reference internal" href="../A_Getting_started_anyscript/lesson4.html#measures-and-drivers"><span class="std std-ref">this previous chapter</span></a>.</p>
 <p>The following steps specify a total of 19 driver constraints for the model:</p>
 <ul class="simple">
-<li>Step 1 - 6 DOF constrained by fixing the pelvis rigidly to a point on ground (like a seat).</li>
-<li>Step 2 - 3 DOF constrained by locking all 3 rotations between pelvis-thorax</li>
-<li>Step 3 - 3 DOF constrained by locking all 3 rotations at neck</li>
-<li>Step 4 - 3 DOF constrained by locking 3 translations between pedal and foot (a spherical joint)</li>
-<li>Step 5 - 2 DOF constrained by fixing the 2 ankle DOFs</li>
-<li>Step 6 - 1 DOF constrained by constraining the global, lateral position of the knee</li>
-<li>Step 7 - 1 DOF constrained as pedal rotation at constant velocity</li>
+<li><p>Step 1 - 6 DOF constrained by fixing the pelvis rigidly to a point on ground (like a seat).</p></li>
+<li><p>Step 2 - 3 DOF constrained by locking all 3 rotations between pelvis-thorax</p></li>
+<li><p>Step 3 - 3 DOF constrained by locking all 3 rotations at neck</p></li>
+<li><p>Step 4 - 3 DOF constrained by locking 3 translations between pedal and foot (a spherical joint)</p></li>
+<li><p>Step 5 - 2 DOF constrained by fixing the 2 ankle DOFs</p></li>
+<li><p>Step 6 - 1 DOF constrained by constraining the global, lateral position of the knee</p></li>
+<li><p>Step 7 - 1 DOF constrained as pedal rotation at constant velocity</p></li>
 </ul>
 <p><strong>Each of these steps is implemented in sequence below.</strong></p>
 </div>
@@ -125,7 +123,7 @@ the position of the pelvis in a seat. Here we shall simply attach the
 pelvis to this point by means of a rigid connection.</p>
 <p><strong>Drivers which connect the human and environment are traditionally placed in a folder called
 “ModelEnvironmentConnection” (</strong> <a class="reference internal" href="lesson1.html#model-structure"><span class="std std-ref">explained here</span></a> <strong>), and for historical reasons, it is placed in
-an</strong> <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="cp">#include</span></code> <strong>file called “JointsAndDrivers.any”. Let’s open this file by
+an</strong> <code class="docutils literal notranslate"><span class="pre">#include</span></code> <strong>file called “JointsAndDrivers.any”. Let’s open this file by
 double-clicking of the following line in the main file</strong>:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="cp">#include</span> <span class="s">&quot;Model\JointsAndDrivers.any&quot;</span>
@@ -142,7 +140,7 @@ double-clicking of the following line in the main file</strong>:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Here let’s prepare an <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyStdJoint</span></code> object named “SeatPelvis” for the fixation of pelvis:</p>
+<p>Here let’s prepare an <code class="docutils literal notranslate"><span class="pre">AnyStdJoint</span></code> object named “SeatPelvis” for the fixation of pelvis:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="gr">AnyStdJoint SeatPelvis =</span>
@@ -249,7 +247,7 @@ the leg. So we will set to zero, the angles and velocities of 3 DOF of pelvis-th
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Insert a”PelvisThoraxDriver” into the Drivers folder, created using the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinEqSimpleDriver</span></code> class.
+<p>Insert a”PelvisThoraxDriver” into the Drivers folder, created using the <code class="docutils literal notranslate"><span class="pre">AnyKinEqSimpleDriver</span></code> class.
 You already know how to create model objects from scratch by using the
 the “Class Inserter” (<a class="reference internal" href="../A_Getting_started_anyscript/lesson2.html#class-inserter"><span class="std std-ref">described here</span></a>). More details on properties
 such as DriverPos, DriverVel etc. can be (<a class="reference internal" href="../A_Getting_started_anyscript/lesson4.html#anykineqsimpledriver"><span class="std std-ref">found here</span></a>) :</p>
@@ -323,7 +321,7 @@ defined inside the “JointsAndDrivers.any” file in the following way:</p>
 <div class="section" id="step-5-locking-the-ankle-angles">
 <h2>Step 5: Locking the ankle angles<a class="headerlink" href="#step-5-locking-the-ankle-angles" title="Permalink to this headline">¶</a></h2>
 <p>In ankle has 2 DOFs - AnklePlantarFlexion and SubTarEversion. We will constrain both
-DOFs to always equal zero. Just as in Steps 3 &amp; 4, this will be done using <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinEqSimpleDriver</span></code>:</p>
+DOFs to always equal zero. Just as in Steps 3 &amp; 4, this will be done using <code class="docutils literal notranslate"><span class="pre">AnyKinEqSimpleDriver</span></code>:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
 <span class="p">{</span>
 <span class="p">...</span>
@@ -355,7 +353,7 @@ DOFs to always equal zero. Just as in Steps 3 &amp; 4, this will be done using <
 <p>Imagine your pelvis on a seat (like in Step 1) and your foot resting at the tip of a sharp spike jutting
 out of the ground (a spherical joint connection, like in Step 4). You can still move your knee sideways.
 You will now constrain this medio-lateral knee movement in your model.</p>
-<p>This is done using an <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinLinear</span></code> measure and a <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinEqSimpleDriver</span></code> driver acting on that measure
+<p>This is done using an <code class="docutils literal notranslate"><span class="pre">AnyKinLinear</span></code> measure and a <code class="docutils literal notranslate"><span class="pre">AnyKinEqSimpleDriver</span></code> driver acting on that measure
 (<a class="reference internal" href="../A_Getting_started_anyscript/lesson4.html#measures-and-drivers"><span class="std std-ref">read more one measures &amp; drivers here</span></a>):</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
 <span class="p">{</span>
@@ -384,16 +382,16 @@ You will now constrain this medio-lateral knee movement in your model.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinLinear</span></code> object measures the 3D position vector between the two reference
-frames <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ref0</span></code> and <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">ref1</span></code> which it refers to, i.e., in this case, the position of the knee
+<p>The <code class="docutils literal notranslate"><span class="pre">AnyKinLinear</span></code> object measures the 3D position vector between the two reference
+frames <code class="docutils literal notranslate"><span class="pre">ref0</span></code> and <code class="docutils literal notranslate"><span class="pre">ref1</span></code> which it refers to, i.e., in this case, the position of the knee
 with respect to the global reference frame.</p>
 <p><strong>We however, only wish to constrain the medio-lateral component of this vector, which is the global
-“Z” component. We hence specify the</strong> <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">MeasureOrganizer</span></code> <strong>property to specify that only the 3rd component of the measure
+“Z” component. We hence specify the</strong> <code class="docutils literal notranslate"><span class="pre">MeasureOrganizer</span></code> <strong>property to specify that only the 3rd component of the measure
 which is given by the index 2 (0 being X, 1 being Y component) must be constrained by the driver.</strong></p>
 </div>
 <div class="section" id="step-7-specify-pedal-movement">
 <h2>Step 7: Specify pedal movement<a class="headerlink" href="#step-7-specify-pedal-movement" title="Permalink to this headline">¶</a></h2>
-<p>We will specify motion for the pedal’s hinge joint again using the <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyKinEqSimpleDriver</span></code>.
+<p>We will specify motion for the pedal’s hinge joint again using the <code class="docutils literal notranslate"><span class="pre">AnyKinEqSimpleDriver</span></code>.
 This resembles what you did in <a class="reference internal" href="../A_Getting_started_anyscript/lesson4.html#anykineqsimpledriver"><span class="std std-ref">this earlier chapter</span></a>.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
 <span class="p">{</span>
@@ -489,8 +487,8 @@ open the Object Description dialog of “Study” object in the Model Tree.</p>
 and this is exactly as same as the total number of DOFs. Of course, you
 can still run the kinematics of your model.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> Now that the kinematics is in order let us move on to the <a class="reference internal" href="lesson4.html"><span class="doc">kinetic
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> Now that the kinematics is in order let us move on to the <a class="reference internal" href="lesson4.html"><span class="doc">kinetic
 analysis in Lesson 4 and see what the model is good
 for.</span></a></p>
 </div>
@@ -507,13 +505,11 @@ for.</span></a></p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

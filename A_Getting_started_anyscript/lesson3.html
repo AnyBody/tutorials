@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 3: Connecting Segments by Joints &#8212; AnyBody Tutorials v7.2.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -62,16 +60,16 @@
   <div class="section" id="lesson-3-connecting-segments-by-joints">
 <h1>Lesson 3: Connecting Segments by Joints<a class="headerlink" href="#lesson-3-connecting-segments-by-joints" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Here’s an AnyScript file to start on if you have not completed the
-previous lesson: <a class="reference download internal" download="" href="../_downloads/7e85693964d870764b21308bcedc4f3f/demo.lesson3.any"><code class="xref download docutils literal"><span class="pre">demo.lesson3.any</span></code></a>.</p>
+<p class="admonition-title">Note</p>
+<p>Here’s an AnyScript file to start on if you have not completed the
+previous lesson: <a class="reference download internal" download="" href="../_downloads/7e85693964d870764b21308bcedc4f3f/demo.lesson3.any"><code class="xref download docutils literal notranslate"><span class="pre">demo.lesson3.any</span></code></a>.</p>
 </div>
 <div class="section" id="some-quick-theory">
 <h2>Some quick theory<a class="headerlink" href="#some-quick-theory" title="Permalink to this headline">¶</a></h2>
 <p>You can think of joints in two different ways:</p>
 <ul class="simple">
-<li><strong>Providers of freedom</strong>, when compared to a system of rigidly joined segments</li>
-<li><strong>Constraints on freedom</strong>, when compared to a system of free-floating segments</li>
+<li><p><strong>Providers of freedom</strong>, when compared to a system of rigidly joined segments</p></li>
+<li><p><strong>Constraints on freedom</strong>, when compared to a system of free-floating segments</p></li>
 </ul>
 <p><strong>In AnyBody, we consider joints as being constraints on freedom</strong>. When you create
 two independent segments in AnyBody, they will have 2 x 6 = 12 degrees of freedom
@@ -116,7 +114,7 @@ and then copy-paste the class properties alone):</p>
 <span class="p">};</span> <span class="c1">// Global reference frame</span>
 </pre></div>
 </div>
-<p>The first line, “<code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyDrawRefFrame</span></code> …” merely displays the global
+<p>The first line, “<code class="docutils literal notranslate"><span class="pre">AnyDrawRefFrame</span></code> …” merely displays the global
 reference system in the graphics window. The remaining lines define point nodes attached to the global reference
 system.</p>
 <p>Let us scale down the display
@@ -132,7 +130,7 @@ size and change its color to distinguish it from the yellow segments:</p>
 <h2>Creating a revolute joint<a class="headerlink" href="#creating-a-revolute-joint" title="Permalink to this headline">¶</a></h2>
 <p>We can now connect the upper arm to the global reference frame through a shoulder joint.
 For this planar 2-D model, where we simplify the shoulder as a simple revolute joint (also known as a hinge joint).
-We create a new <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyFolder</span></code> object, to contain all joints in the model:</p>
+We create a new <code class="docutils literal notranslate"><span class="pre">AnyFolder</span></code> object, to contain all joints in the model:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>    <span class="p">};</span> <span class="c1">// LowerArm</span>
   <span class="p">};</span> <span class="c1">// Segs folder</span>
 
@@ -151,11 +149,11 @@ We create a new <code class="docutils literal highlight highlight-AnyScriptDoc">
 <span class="gr">}; // Jnts folder</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyRevoluteJoint</span></code> class creates a revolute joint object connecting two nodes on different segments.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AnyRevoluteJoint</span></code> class creates a revolute joint object connecting two nodes on different segments.</p>
 </div>
 <div class="section" id="relative-folder-paths-why-use-and-in-anyscript">
 <span id="relative-folder-path"></span><h2>Relative folder paths - Why use ‘.’ and ‘..’ in AnyScript?<a class="headerlink" href="#relative-folder-paths-why-use-and-in-anyscript" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyRevoluteJoint</span></code> object named “Shoulder”, needs to know which nodes on each segment to connect. For this
+<p>The <code class="docutils literal notranslate"><span class="pre">AnyRevoluteJoint</span></code> object named “Shoulder”, needs to know which nodes on each segment to connect. For this
 purpose, we have the lines:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">GroundNode</span> <span class="o">=</span> <span class="p">..</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
 <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">UpperArmNode</span> <span class="o">=</span> <span class="p">..</span><span class="n">Segs</span><span class="p">.</span><span class="n">UpperArm</span><span class="p">.</span><span class="n">ShoulderNode</span><span class="p">;</span>
@@ -176,7 +174,7 @@ other computer operating system.</p>
 This means that, within the current folder, we can simply refer to
 the point as “GroundNode” instead of the longer external reference.</p>
 <p><strong>You will also realize that “GroundNode” is merely a reference (a pointer) to “GlobalRef.Shoulder”
-rather than a copy of it. We denote this by the</strong> <code class="docutils literal"><span class="pre">&</span></code> <strong>sign.</strong></p>
+rather than a copy of it. We denote this by the</strong> <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> <strong>sign.</strong></p>
 <p>If “Main.ArmModel.GlobalRef.Shoulder” moves around, “Main.ArmModel.Jnts.Shoulder.GroundNode” will keep up with those changes in position. Hit F7 to reload the model again to make
 sure that the definition is correct.</p>
 </div>
@@ -188,10 +186,10 @@ sure that the definition is correct.</p>
 </div>
 <p><strong>Every node on a rigid body segment has its own reference frame which moves along with the segment.
 By default, these coordinate systems are parallel to the segment frame. However, the relative orientations
-between these two frames can be altered by the user. Check the</strong> <code class="docutils literal"><span class="pre">ARel</span></code> <strong>property of and AnyRefNode
+between these two frames can be altered by the user. Check the</strong> <code class="docutils literal notranslate"><span class="pre">ARel</span></code> <strong>property of and AnyRefNode
 object in the AnyScript Reference Manual for more information.</strong></p>
 <p>The AnyBody Modeling System is always three-dimensional, even when our model is
-two dimensional. The property <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span></code> simply specifies that both
+two dimensional. The property <code class="docutils literal notranslate"><span class="pre">Axis</span> <span class="pre">=</span> <span class="pre">z</span></code> simply specifies that both
 segments connected by that joint will rotate about the z axis of two nodes forming the joint.</p>
 <p>In other words, the z-axes of the nodes on either connected segment will
 always be parallel, and so the mechanism will rotate in the plane
@@ -200,9 +198,9 @@ the two segments can be adjusted by rotating the reference frames of the
 nodes being connected. This is relevant if you want one of the segments
 to rotate about some skewed axis.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last">The first of the two
-nodes declared in the joint (in this case <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">GroundNode</span></code>) becomes the
+<p class="admonition-title">Caution</p>
+<p>The first of the two
+nodes declared in the joint (in this case <code class="docutils literal notranslate"><span class="pre">GroundNode</span></code>) becomes the
 default reference frame for the joint. When directly accessing the
 post-simulation values of constraint reaction forces etc., you must
 remember to interpret them in the joint’s default reference frame.</p>
@@ -236,7 +234,7 @@ complex model, this can be difficult. So we use “Absolute folder paths”.</p>
 </div>
 <div class="section" id="absolute-folder-path-and-some-useful-tips">
 <span id="absolute-folder-path"></span><h2>Absolute folder path (and some useful tips)<a class="headerlink" href="#absolute-folder-path-and-some-useful-tips" title="Permalink to this headline">¶</a></h2>
-<p>Place the cursor just before the semicolon in the line that reads <code class="docutils literal"><span class="pre">AnyRefNode &UpperArmNode = ;</span></code>.
+<p>Place the cursor just before the semicolon in the line that reads <code class="docutils literal notranslate"><span class="pre">AnyRefNode</span> <span class="pre">&amp;UpperArmNode</span> <span class="pre">=</span> <span class="pre">;</span></code>.
 Open the model tree where the UpperArm folder should expand as shown below.</p>
 <p><img alt="Model tree ElbowNode" src="../_images/image14.png" /></p>
 <p><strong>Right-click the folder named “ElbowNode”, and select “Insert object
@@ -263,8 +261,8 @@ angular position, so there are two degrees of freedom whose kinematic
 states need to specified before AnyBody can solve for the mechanism’s
 kinematics. This is taken care of by kinematic drivers.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> They are one of the subjects of <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4: Imparting Movement with Drivers</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> They are one of the subjects of <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4: Imparting Movement with Drivers</span></a>.</p>
 </div>
 </div>
 </div>
@@ -279,13 +277,11 @@ kinematics. This is taken care of by kinematic drivers.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

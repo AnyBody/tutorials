@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 4: Kinetics - Computing Forces &#8212; AnyBody Tutorials v7.2.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -73,11 +71,11 @@ by step define the spring force and look at its effect on the leg.</p>
 applied to the Y component of a measure of the segment’s position”.</p>
 <p><strong>Since AnyBody speaks the language of generalized forces, we will simply call them “forces” henceforth. Physically speaking,
 this generalized force will manifest as a rotational torque or a linear force, depending on the type of measure it is applied to.</strong></p>
-<p>You must create an <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyForce</span></code> object in order to apply a generalized force to a measure.</p>
+<p>You must create an <code class="docutils literal notranslate"><span class="pre">AnyForce</span></code> object in order to apply a generalized force to a measure.</p>
 </div>
 <div class="section" id="include-pedal-spring-force">
 <h2>Include pedal spring force<a class="headerlink" href="#include-pedal-spring-force" title="Permalink to this headline">¶</a></h2>
-<p>We will therefore create an <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyForce</span></code> object, for applying the spring force.
+<p>We will therefore create an <code class="docutils literal notranslate"><span class="pre">AnyForce</span></code> object, for applying the spring force.
 Since this is not a part of the human body, it is logical to place it in the Environment.any file. Here’s what
 to add:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
@@ -93,10 +91,10 @@ to add:</p>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kt">AnyForce</span></code> object named “Spring” contains a reference to the “HingeJoint”. Since HingeJoint
+<p>The <code class="docutils literal notranslate"><span class="pre">AnyForce</span></code> object named “Spring” contains a reference to the “HingeJoint”. Since HingeJoint
 is a rotational measure, the force is actually a torque applied to the hinge.</p>
-<p><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span></code> is the actual generalized force vector, with each vector component corresponding to a
-component of the kinematic measure. <code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="n">F</span></code> is proportional to “HingeJoint.Pos”,
+<p><code class="docutils literal notranslate"><span class="pre">F</span></code> is the actual generalized force vector, with each vector component corresponding to a
+component of the kinematic measure. <code class="docutils literal notranslate"><span class="pre">F</span></code> is proportional to “HingeJoint.Pos”,
 which is the hinge angle. Stiffness is initially set to 0.0 (Nm/rad), to investigate the effect of having
 no spring. The minus sign in the expression means that the spring will always oppose motions away from the neutral angle.</p>
 </div>
@@ -230,7 +228,7 @@ requires about 6% to 9% of the leg’s strength.</p>
 spring really seems to help. This can make it easier for the operator to
 control the pedal and thereby enhance the operability.</p>
 <p>The completed model is available here:
-<a class="reference download internal" download="" href="../_downloads/51f419853fe4fcd8378efac01f55493c/PedalModel.zip"><code class="xref download docutils literal"><span class="pre">PedalModel.zip</span></code></a>.</p>
+<a class="reference download internal" download="" href="../_downloads/51f419853fe4fcd8378efac01f55493c/PedalModel.zip"><code class="xref download docutils literal notranslate"><span class="pre">PedalModel.zip</span></code></a>.</p>
 <p>The AnyBody Modeling System is all about making this type of
 investigation easy. The mechanical model we have put together in four
 simple lessons has a complexity worthy of a Ph.D. project if you develop
@@ -249,13 +247,11 @@ using the predefined models of the repository.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

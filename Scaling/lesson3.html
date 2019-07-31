@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Lesson 1: Personalizing individual segments based on geometric data from medical images &#8212; AnyBody Tutorials v7.2.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -93,8 +91,8 @@ example, you can locate any two points on source and target surface
 consistently without thinking of how a segment length was measured.</p>
 <p>Let us make a simple example of using landmark-based affine scaling.
 First, please download two femur surfaces,
-<a class="reference download internal" download="" href="../_downloads/244d539a55493a22ad7ae42b48176347/SourceFemur.stl"><code class="xref download docutils literal"><span class="pre">SourceFemur.stl</span></code></a> and
-<a class="reference download internal" download="" href="../_downloads/95805b555f81896cd16d5d6f90d4075e/TargetFemur.stl"><code class="xref download docutils literal"><span class="pre">TargetFemur.stl</span></code></a> and save them in your
+<a class="reference download internal" download="" href="../_downloads/244d539a55493a22ad7ae42b48176347/SourceFemur.stl"><code class="xref download docutils literal notranslate"><span class="pre">SourceFemur.stl</span></code></a> and
+<a class="reference download internal" download="" href="../_downloads/95805b555f81896cd16d5d6f90d4075e/TargetFemur.stl"><code class="xref download docutils literal notranslate"><span class="pre">TargetFemur.stl</span></code></a> and save them in your
 working directory. These femur geometries will be used for the rest of
 this tutorial. The source surface is an unscaled femur used in the
 standard AnyBody models in the AMMR. The target surface is a femur
@@ -102,7 +100,7 @@ reconstructed from a CT image and saved as a surface mesh in STL format
 (courtesy of Prof. Sebastian Dendorfer, OTH Regensburg,
 Germany).</p>
 <p>Next, please download the AnyScript file
-<a class="reference download internal" download="" href="../_downloads/200d7e76ae81d5b3a45c0c615357c58b/lesson3a.Main.any"><code class="xref download docutils literal"><span class="pre">lesson3a.main.any</span></code></a>. This file contains
+<a class="reference download internal" download="" href="../_downloads/200d7e76ae81d5b3a45c0c615357c58b/lesson3a.Main.any"><code class="xref download docutils literal notranslate"><span class="pre">lesson3a.main.any</span></code></a>. This file contains
 a model with two segments which contain the definition of a surface
 each, one for the source and one for the target bone. When we load this
 model, the Model View should show the following picture:</p>
@@ -129,9 +127,9 @@ d.o.f.). Please note that the AnyFunTransform3DLin2 object utilizes the
 vtk-function/filter <em>vtkLandmarkTransform</em>, and, therefore inherits its
 modes:</p>
 <ul class="simple">
-<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">VTK_LANDMARK_AFFINE</span></code></li>
-<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">VTK_LANDMARK_SIMILARITY</span></code></li>
-<li><code class="docutils literal highlight highlight-AnyScriptDoc"><span></span><span class="kp">VTK_LANDMARK_RIGIDBODY</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VTK_LANDMARK_AFFINE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VTK_LANDMARK_SIMILARITY</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VTK_LANDMARK_RIGIDBODY</span></code></p></li>
 </ul>
 <p>A description of this function can be found
 <a class="reference external" href="http://davis.lbl.gov/Manuals/VTK-4.5/classvtkLandmarkTransform.html#w0">here</a>.</p>
@@ -254,7 +252,7 @@ simplicity, we use a preselected set of femoral landmarks and RBF settings.</p>
 <p>We start with the model from the previous steps to introduce the landmark-based
 nonlinear scaling. Several tranformations will build up into a pipeline, where
 pre-transforms will be used to inherit obtained accuracy throughout different steps.
-A complete model can you find here: <a class="reference download internal" download="" href="../_downloads/285d99015cc3c6cecbda0686edec4ef6/lesson3b.Main.any"><code class="xref download docutils literal"><span class="pre">lesson3b.Main.any</span></code></a>.
+A complete model can you find here: <a class="reference download internal" download="" href="../_downloads/285d99015cc3c6cecbda0686edec4ef6/lesson3b.Main.any"><code class="xref download docutils literal notranslate"><span class="pre">lesson3b.Main.any</span></code></a>.
 The following tutorial shows how to add an RBF transform with the recommended settings
 into the previously created model.</p>
 <p>First of all let us configure the visualization of the transformation.
@@ -391,7 +389,7 @@ tutorial</span></a>. However, for this example the
 recommended settings mentioned before will be used again.</p>
 <p>Let us repeat the step from the previous section by adding one more
 surface to the visualization and another scaling step. You can download
-the model with all modifications <a class="reference download internal" download="" href="../_downloads/82c73674d4d333f19c61c039a30fba4b/lesson3c.Main.any"><code class="xref download docutils literal"><span class="pre">here</span></code></a>:</p>
+the model with all modifications <a class="reference download internal" download="" href="../_downloads/82c73674d4d333f19c61c039a30fba4b/lesson3c.Main.any"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="gr">AnyDrawSurf SurfaceMorphedSTL =</span>
 <span class="gr">  {</span>
 <span class="gr">    FileName = &quot;SourceFemur.stl&quot;;</span>
@@ -436,15 +434,15 @@ to hide affine and RBF scaled femurs to see the final results:</p>
 <p>If we just look at the green target surface and the blue STL-transformed
 surface, we can see that the surfaces now match each other very well. That means
 that now the subject-specificity will be taken into account in the inverse
-dynamics simulation. The final model can be downloaded <a class="reference download internal" download="" href="../_downloads/c5d1aa8a118a056c79d92527e1f4f356/lesson3d.Main.any"><code class="xref download docutils literal"><span class="pre">here</span></code></a>.</p>
+dynamics simulation. The final model can be downloaded <a class="reference download internal" download="" href="../_downloads/c5d1aa8a118a056c79d92527e1f4f356/lesson3d.Main.any"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 <div class="toctree-wrapper compound">
 </div>
 <p>Finally, the only thing left is to include this scaling function into an
 actual model. <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 2</span></a> describes how this can be
 done.</p>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><strong>Next lesson:</strong> <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 2: Including a custom scaling function into your model</span></a>.</p>
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 2: Including a custom scaling function into your model</span></a>.</p>
 </div>
 </div>
 </div>
@@ -459,13 +457,11 @@ done.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

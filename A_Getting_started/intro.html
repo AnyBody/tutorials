@@ -1,18 +1,16 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="noindex" name="robots" />
+    <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
     <title>Getting Started Tutorial &#8212; AnyBody Tutorials v7.2.0</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -75,9 +73,9 @@ Things Move</span></a>” tutorials.</p>
 <p class="rubric">Goals for this tutorial</p>
 <p>This tutorial takes the top-down approach and aims to accomplish the following:</p>
 <ol class="arabic simple">
-<li>Create a new standing model using the Human Standing template model</li>
-<li>Learn how to load &amp; change the posture of the human model, and use the model view window</li>
-<li>Run an inverse dynamics analysis and review the results.</li>
+<li><p>Create a new standing model using the Human Standing template model</p></li>
+<li><p>Learn how to load &amp; change the posture of the human model, and use the model view window</p></li>
+<li><p>Run an inverse dynamics analysis and review the results.</p></li>
 </ol>
 <p>This entire tutorial relies heavily on using the AMMR described above.</p>
 <p class="rubric">Setup the AMMR</p>
@@ -93,24 +91,24 @@ so that you do not overwrite the original AMMR folder by accident.</p>
 repository. You should see a folder structure that includes the
 following subfolders:</p>
 <ul class="simple">
-<li><strong>Application</strong> includes demo simulations of activities such as cycling, lifting
-a box or propelling a wheelchair.</li>
-<li><strong>Body</strong> contains models of body parts and collections of body parts such as the lumbar spine model, leg models etc.
-which are used by the applications.</li>
+<li><p><strong>Application</strong> includes demo simulations of activities such as cycling, lifting
+a box or propelling a wheelchair.</p></li>
+<li><p><strong>Body</strong> contains models of body parts and collections of body parts such as the lumbar spine model, leg models etc.
+which are used by the applications.</p></li>
 </ul>
 <p>A closer inspection of the Application branch reveals that it has three subfolders:</p>
 <ul class="simple">
-<li>The <strong>Beta</strong> folder contains models that are unfinished, but may still be useful.</li>
-<li>The <strong>Examples</strong> folder contains many models of various activities of daily living, and it is likely that you
-will find a model that is similar to your own end goal.</li>
-<li>The <strong>MocapExamples</strong> folder contains models utilizing the AnyMoCap framework. If you have your own motion capture data this is a good place to start,
-whether you want to analyze multi trial/subject MoCap data or a single subject wearing an inertial MoCap suit.</li>
-<li>The <strong>Validation</strong> folder contains models that have been used for validation purposes, typically by comparison of the model predictions
-with experimental measurements.</li>
+<li><p>The <strong>Beta</strong> folder contains models that are unfinished, but may still be useful.</p></li>
+<li><p>The <strong>Examples</strong> folder contains many models of various activities of daily living, and it is likely that you
+will find a model that is similar to your own end goal.</p></li>
+<li><p>The <strong>MocapExamples</strong> folder contains models utilizing the AnyMoCap framework. If you have your own motion capture data this is a good place to start,
+whether you want to analyze multi trial/subject MoCap data or a single subject wearing an inertial MoCap suit.</p></li>
+<li><p>The <strong>Validation</strong> folder contains models that have been used for validation purposes, typically by comparison of the model predictions
+with experimental measurements.</p></li>
 </ul>
 <div class="without-title admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last">With that knowledge, you are all set to go, and you can proceed with
+<p class="admonition-title">See also</p>
+<p>With that knowledge, you are all set to go, and you can proceed with
 <a class="reference internal" href="lesson1.html"><span class="doc">Lesson 1: Creating the standing model</span></a> using
 template.</p>
 </div>
@@ -126,13 +124,11 @@ template.</p>
           <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
