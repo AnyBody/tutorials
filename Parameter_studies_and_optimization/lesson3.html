@@ -3,24 +3,40 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html lang="en">
   <head>
     <meta charset="utf-8" /><meta content="noindex" name="robots" />
 
-    <title>Optimization Studies in Python &#8212; AnyBody Tutorials v7.2.2</title>
+    <title>Optimization Studies in Python &#8212; AnyBody Tutorials v7.2.2-dev</title>
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.base.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -45,9 +61,9 @@
         <li class="right" >
           <a href="lesson2.html" title="Optimization Studies"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.2.2</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.2.2-dev</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">17. Parameter Studies and Optimization</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">17. </span>Parameter Studies and Optimization</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -143,14 +159,14 @@ Secondly, we will go through and explain the different sections in the file.</p>
  <span class="kn">from</span> <span class="nn">anypytools.macro_commands</span> <span class="kn">import</span> <span class="n">Load</span><span class="p">,</span> <span class="n">OperationRun</span><span class="p">,</span> <span class="n">Dump</span><span class="p">,</span> <span class="n">SetValue</span>
 
 
- <span class="k">def</span> <span class="nf">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+ <span class="k">def</span> <span class="nf">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
      <span class="sd">&quot;&quot;&quot;Run the AnyBody model and return the metabolism results&quot;&quot;&quot;</span>
      <span class="n">macro</span> <span class="o">=</span> <span class="p">[</span>
          <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;BikeModel2D.main.any&quot;</span><span class="p">),</span>
          <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddleHeight&quot;</span><span class="p">,</span> <span class="n">saddle_height</span><span class="p">),</span>
          <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddlePos&quot;</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">),</span>
          <span class="n">OperationRun</span><span class="p">(</span><span class="s2">&quot;Main.Study.InverseDynamics&quot;</span><span class="p">),</span>
-         <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Pmet&quot;</span><span class="p">),</span>
+         <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Pmet_total&quot;</span><span class="p">),</span>
          <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Abscissa.t&quot;</span><span class="p">),</span>
      <span class="p">]</span>
      <span class="n">app</span> <span class="o">=</span> <span class="n">AnyPyProcess</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="n">silent</span><span class="p">)</span>
@@ -162,12 +178,12 @@ Secondly, we will go through and explain the different sections in the file.</p>
      <span class="sd">&quot;&quot;&quot;Calculate the objective function value&quot;&quot;&quot;</span>
      <span class="n">saddle_height</span> <span class="o">=</span> <span class="n">designvars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
      <span class="n">saddle_pos</span> <span class="o">=</span> <span class="n">designvars</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-     <span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+     <span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
      <span class="k">if</span> <span class="s2">&quot;ERROR&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
          <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Failed to run model&quot;</span><span class="p">)</span>
 
-     <span class="n">pmet</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Pmet&quot;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;Abscissa.t&quot;</span><span class="p">])</span>
+     <span class="n">pmet</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Pmet_total&quot;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;Abscissa.t&quot;</span><span class="p">])</span>
 
      <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">pmet</span><span class="p">)</span>
 
@@ -185,7 +201,7 @@ Secondly, we will go through and explain the different sections in the file.</p>
      <span class="n">objfun</span><span class="p">,</span> <span class="n">initial_guess</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constaints</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;SLSQP&quot;</span>
  <span class="p">)</span>
 
- <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
 <p>A copy of the file can be <a class="reference download internal" download="" href="../_downloads/1dd190eb9f65d49b03ff4cfae7ea4c48/optimize.py"><code class="xref download docutils literal notranslate"><span class="pre">downloaded</span> <span class="pre">here.</span></code></a>
@@ -231,14 +247,14 @@ just show how the code looks and not discuss the details.</p>
 20
 21
 22
-23</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="k">def</span> <span class="nf">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="k">def</span> <span class="nf">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Run the AnyBody model and return the metabolism results&quot;&quot;&quot;</span>
     <span class="n">macro</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;BikeModel2D.main.any&quot;</span><span class="p">),</span>
         <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddleHeight&quot;</span><span class="p">,</span> <span class="n">saddle_height</span><span class="p">),</span>
         <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddlePos&quot;</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">),</span>
         <span class="n">OperationRun</span><span class="p">(</span><span class="s2">&quot;Main.Study.InverseDynamics&quot;</span><span class="p">),</span>
-        <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Pmet&quot;</span><span class="p">),</span>
+        <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Pmet_total&quot;</span><span class="p">),</span>
         <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Abscissa.t&quot;</span><span class="p">),</span>
     <span class="p">]</span>
     <span class="n">app</span> <span class="o">=</span> <span class="n">AnyPyProcess</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="n">silent</span><span class="p">)</span>
@@ -246,7 +262,7 @@ just show how the code looks and not discuss the details.</p>
     <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
  <span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="mf">0.66</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">)</span>
- <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Main.Study.Output.Pmet&quot;</span><span class="p">])</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Main.Study.Output.Pmet_total&quot;</span><span class="p">])</span>
 </pre></div>
 </td></tr></table></div>
 <p>The function <code class="code python docutils literal notranslate"><span class="name"><span class="pre">run_model</span></span><span class="punctuation"><span class="pre">()</span></span></code> takes <code class="code python docutils literal notranslate"><span class="name"><span class="pre">saddle_height</span></span></code> and <code class="code python docutils literal notranslate"><span class="name"><span class="pre">saddle_pos</span></span></code> as input
@@ -256,10 +272,10 @@ test it and investigate the results:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="mf">0.66</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">)</span>
 <span class="go">[****************100%******************]  1 of 1 completeTotal time: 0.8 seconds</span>
 
-<span class="gp">In [5]: </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-<span class="go">odict_keys([&#39;Main.Study.Output.Pmet&#39;, &#39;Main.Study.Output.Abscissa.t&#39;])</span>
+<span class="gp">In [5]: </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="go">odict_keys([&#39;Main.Study.Output.Pmet_total&#39;, &#39;Main.Study.Output.Abscissa.t&#39;])</span>
 
-<span class="gp">In [6]: </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Main.Study.Output.Pmet&quot;</span><span class="p">])</span>
+<span class="gp">In [6]: </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Main.Study.Output.Pmet_total&quot;</span><span class="p">])</span>
 <span class="go">[  17.20903341   73.49291834  209.58490241  379.67002659  559.57715608</span>
 <span class="go">  736.92126247  901.88875426 1045.75303378 1162.65470516 1248.32088806</span>
 <span class="go"> 1299.79539032 1315.38241529 1294.6947524  1238.68684947 1149.59584772</span>
@@ -272,7 +288,7 @@ test it and investigate the results:</p>
 <span class="go">  121.30841553   21.54859903   28.97200722   26.82989147   17.2090334 ]</span>
 </pre></div>
 </div>
-<p>As we expected the output contains the <code class="docutils literal notranslate"><span class="pre">Main.Study.Output.Pmet</span></code> value for each timestep in our model.</p>
+<p>As we expected the output contains the <code class="docutils literal notranslate"><span class="pre">Main.Study.Output.Pmet_total</span></code> value for each timestep in our model.</p>
 </div>
 <div class="section" id="defining-the-objective-function">
 <h2>Defining the objective function<a class="headerlink" href="#defining-the-objective-function" title="Permalink to this headline">¶</a></h2>
@@ -280,7 +296,7 @@ test it and investigate the results:</p>
 take a list of design values as input and return the objective function value.
 In <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2</span></a> the objective function was the time integral of the
 metabolism variable. So we will do the same here with Scipy’s
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.trapz.html#scipy.integrate.trapz" title="(in SciPy v1.3.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.integrate.trapz()</span></code></a>: function.</p>
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.trapz.html#scipy.integrate.trapz" title="(in SciPy v1.4.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.integrate.trapz()</span></code></a>: function.</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>23
 24
 25
@@ -294,12 +310,12 @@ metabolism variable. So we will do the same here with Scipy’s
 33</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="k">def</span> <span class="nf">objfun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
      <span class="n">saddle_height</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
      <span class="n">saddle_pos</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-     <span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+     <span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
      <span class="k">if</span> <span class="s2">&quot;ERROR&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
          <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Failed to run model&quot;</span><span class="p">)</span>
-     <span class="c1"># Integrate Pmet</span>
-     <span class="n">pmet</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Pmet&quot;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;Abscissa.t&quot;</span><span class="p">])</span>
+     <span class="c1"># Integrate Pmet_total</span>
+     <span class="n">pmet</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Pmet_total&quot;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;Abscissa.t&quot;</span><span class="p">])</span>
 
      <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">pmet</span><span class="p">)</span>
 </pre></div>
@@ -315,11 +331,11 @@ optimization results.</p>
 <p>Again, we can run this function interactively to test it:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">pmet</span> <span class="o">=</span> <span class="n">objfun</span><span class="p">([</span><span class="mf">0.66</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">])</span>
 
-<span class="gp">In [10]: </span><span class="k">print</span><span class="p">(</span><span class="n">pmet</span><span class="p">)</span>
+<span class="gp">In [10]: </span><span class="nb">print</span><span class="p">(</span><span class="n">pmet</span><span class="p">)</span>
 <span class="go">505.329399532772</span>
 </pre></div>
 </div>
-<p>Now we get the time integral of the <code class="docutils literal notranslate"><span class="pre">Pmet</span></code> variable as as single value,
+<p>Now we get the time integral of the <code class="docutils literal notranslate"><span class="pre">Pmet_total</span></code> variable as as single value,
 and we are now ready to define the optimization process.</p>
 </div>
 <div class="section" id="setting-up-the-optimization-study">
@@ -344,7 +360,7 @@ for the design variables.</p>
  <span class="n">initial_guess</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.68</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
-<p>The documentation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.3.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a> has more information on how to define bounds, contraints, tolerances, etc.</p>
+<p>The documentation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.4.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a> has more information on how to define bounds, contraints, tolerances, etc.</p>
 <p>Finally, we call the <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code> function run the optimizer. In this case we used the
 <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-slsqp.html#optimize-minimize-slsqp">SLSQP</a> algorithm.</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>46
@@ -359,7 +375,7 @@ for the design variables.</p>
 <span class="go">    ...:     objfun, initial_guess, constraints=constaints, bounds=bounds, method=&quot;SLSQP&quot;</span>
 <span class="go">    ...: )</span>
 
-<span class="gp">In [12]: </span><span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+<span class="gp">In [12]: </span><span class="nb">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
 <span class="go">     fun: 503.57634385063113</span>
 <span class="go">     jac: array([39.43954086, -6.95677948])</span>
 <span class="go"> message: &#39;Optimization terminated successfully.&#39;</span>
@@ -372,9 +388,10 @@ for the design variables.</p>
 </pre></div>
 </div>
 <p>And there we have it!
-We can now take advantage of the many different algorithms and settings available for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.3.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a>.
-We could also use a different package or customize our own algorithm, constraints etc.
-The possibilities are practically endless.</p>
+We can now take advantage of the many different algorithms and settings available for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.4.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a>.
+We could also use a different package or customize our own algorithm, constraints etc.</p>
+<p>The possibilities are practically endless. The full example from this tutorial can be
+:download:` downloaded here &lt;Downloads/python-optimize.zip&gt;`.</p>
 <p>For more information regarding the <code class="docutils literal notranslate"><span class="pre">AnyPyTools</span></code> python package follow <a class="reference external" href="https://anybody-research-group.github.io/anypytools-docs/">this link.</a>
 You can also check out this <a class="reference external" href="https://www.youtube.com/results?search_query=anybody+webcast+batch">webcast.</a></p>
 </div>
@@ -398,7 +415,7 @@ You can also check out this <a class="reference external" href="https://www.yout
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div class="sphinx-toc sphinxglobaltoc">
 <h3><a href="../contents.html">Table of Contents</a></h3>
 <ul>
@@ -434,15 +451,11 @@ You can also check out this <a class="reference external" href="https://www.yout
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
 </ul>
-</div><h3>Tutorials not working?</h3>
-<p><a href="https://github.com/AnyBody/anybody-tutorial/issues/"><img src="_static/mark-github.svg"></img> Please report it here...</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/Parameter_studies_and_optimization/lesson3.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+</div><h3>Found a problem?</h3>
+
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Parameter_studies_and_optimization/lesson3.rst">
+    <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+</p>
         </div>
       </div>
     
@@ -481,15 +494,15 @@ You can also check out this <a class="reference external" href="https://www.yout
         <li class="right" >
           <a href="lesson2.html" title="Optimization Studies"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.2.2</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.2.2-dev</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" >17. Parameter Studies and Optimization</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">17. </span>Parameter Studies and Optimization</a> &#187;</li> 
       </ul>
     </div>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2019, AnyBody Technology.
+        &#169; Copyright 2020, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>
