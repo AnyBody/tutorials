@@ -187,7 +187,7 @@ place inside the PalmLoad object like this:</p>
         <span class="c1">//Flocal = {0, -50, 0};</span>
         <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">PointOfAttack</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Segs</span><span class="p">.</span><span class="n">ForeArm</span><span class="p">.</span><span class="n">PalmNode</span><span class="p">;</span>
         <span class="gr">AnyDrawVector drF = {</span>
-<span class="gr">          Vec = .Fout/200;   // Scale the length down</span>
+<span class="gr">          Vec = .RefFrameOutput.F[0]/200;   // Scale the length down</span>
 <span class="gr">          Line = {</span>
 <span class="gr">            Style = Line3DStyleFull;</span>
 <span class="gr">            Thickness = 0.01;</span>
@@ -320,10 +320,10 @@ and insert a template. You should get this:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Loads</span> <span class="o">=</span> <span class="p">{</span>
        <span class="kt">AnyForce3D</span> <span class="n">PalmLoad</span> <span class="o">=</span> <span class="p">{</span>
          <span class="c1">//F = {0, -50, 0};</span>
-         <span class="n">Flocal</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+         <span class="n">Flocal</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
          <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">PointOfAttack</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Segs</span><span class="p">.</span><span class="n">ForeArm</span><span class="p">.</span><span class="n">PalmNode</span><span class="p">;</span>
          <span class="kt">AnyDrawVector</span> <span class="n">drF</span> <span class="o">=</span> <span class="p">{</span>
-           <span class="n">Vec</span> <span class="o">=</span> <span class="p">.</span><span class="n">Fout</span><span class="o">/</span><span class="mi">200</span><span class="p">;</span>
+           <span class="n">Vec</span> <span class="o">=</span> <span class="p">.</span><span class="n">RefFrameOutput</span><span class="p">.</span><span class="n">F</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">200</span><span class="p">;</span>
            <span class="n">Line</span> <span class="o">=</span> <span class="p">{</span>
              <span class="n">Style</span> <span class="o">=</span> <span class="kp">Line3DStyleFull</span><span class="p">;</span>
              <span class="n">Thickness</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
