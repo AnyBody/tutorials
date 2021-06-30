@@ -8,8 +8,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lesson 2: ANSYS Interface &#8212; AnyBody Tutorials v7.3.0</title>
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -18,8 +18,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
     
     
@@ -89,7 +87,7 @@ will analyze the muscle forces acting on the clavicle during lifting his
 arm and analyze the stress in the implant. The standard Standing model
 taken from the AMMRV1.1 will be used. The basic general workflow is
 shown the figure below.</p>
-<p><img alt="FEA tutorial flow chart" src="../_images/image114.png" /></p>
+<p><img alt="FEA tutorial flow chart" src="../_images/image116.png" /></p>
 <p>Here we will focus on the link between AnyBody and ANSYS. So we assume
 we have a “ready to go” Finite Element model which basically only lacks
 its boundary conditions. <em>(This model could be e.g. generated from
@@ -124,7 +122,7 @@ located in the Sternoclavicular joint:</p>
 </div>
 <p>Include them e.g. in the Environment file. After reload of the model the
 reference frame is shown</p>
-<p><img alt="Clavicular ref frame" src="../_images/image211.png" /></p>
+<p><img alt="Clavicular ref frame" src="../_images/image213.png" /></p>
 <p>Next, we have to define the same local coordinate system in the ANSYS
 model. Download the prepared ANSYS file
 <a class="reference download internal" download="" href="../_downloads/7b2105d8bd9353b8f9f51f02892ac485/clavicular_base.zip"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a> and save it in your working
@@ -135,7 +133,7 @@ workplane origin and give it the number 1000. (In fact you can give it
 any number, but we have to refer to the coordinate system later, so we
 have to know its name). Load the <code class="docutils literal notranslate"><span class="pre">clavicular_base.db</span></code> in the Mechanical
 APDL (ANSYS) environment and have a look.</p>
-<p><img alt="ANSYS nodes" src="../_images/image310.png" /></p>
+<p><img alt="ANSYS nodes" src="../_images/image312.png" /></p>
 <p>This shows the clavicle model, which contains a midshaft fracture,
 modeled with a reduced stiffness and treated with a plate fixation.</p>
 <p>Next we want to analyze the forces in the AMS. Change the Mannequin file
@@ -278,7 +276,7 @@ select ConvertToAPDL and run it. This will create 5 files in the
 <p>Open ANSYS Mechanical Utility and read the input of each individual file
 with File-Read input from. This will load the model, apply the boundary
 conditions and start to solve. Once finished post-process the results.</p>
-<p><img alt="Ansys stresses" src="../_images/image48.png" /></p>
+<p><img alt="Ansys stresses" src="../_images/image410.png" /></p>
 <p>Alternatively you can run all models in one go by reading in the
 outputfileList file. Each loadstep will be written in a new result file.
 You can look at the results by loading them one on one in the
@@ -395,7 +393,7 @@ post-processor.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, AnyBody Technology.
+        &#169; Copyright 2021, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

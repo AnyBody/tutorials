@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="noindex" name="robots" />
 
     <title>Lesson 1: Personalizing individual segments based on geometric data from medical images &#8212; AnyBody Tutorials v7.3.0-dev</title>
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -19,8 +19,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
     
     
@@ -123,7 +121,7 @@ Germany).</p>
 a model with two segments which contain the definition of a surface
 each, one for the source and one for the target bone. When we load this
 model, the Model View should show the following picture:</p>
-<a class="reference internal image-reference" href="../_images/image137.png"><img alt="../_images/image137.png" src="../_images/image137.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image139.png"><img alt="../_images/image139.png" src="../_images/image139.png" style="width: 60%;" /></a>
 <p>To define a new scaling function let us insert a new AnyFunTransform3DLin2
 object after the target segment:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyFunTransform3DLin2 &lt;ObjectName&gt; =</span>
@@ -197,7 +195,7 @@ to give this transformation a name and apply it to the source surface:</p>
 <p>Reloading the model and looking at the bones shown in the Model View, we
 can see that these bones are now merged. To highlight the differences,
 we select one of them. This will produce the following picture.</p>
-<a class="reference internal image-reference" href="../_images/image230.png"><img alt="../_images/image230.png" src="../_images/image230.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image232.png"><img alt="../_images/image232.png" src="../_images/image232.png" style="width: 60%;" /></a>
 <p>The source bone is now transformed, i.e., translated, scaled and
 skewed to match the target bone. To make that clear, let us add a new
 AnyFunTransform3DLin2 called MyTransform2 to the model which we place
@@ -238,7 +236,7 @@ that we just constructed:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/image329.png"><img alt="../_images/image329.png" src="../_images/image329.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image330.png"><img alt="../_images/image330.png" src="../_images/image330.png" style="width: 60%;" /></a>
 <p>Looking at the Model View, we can see that the femur is now scaled, it
 became shorter and now aligns with the original source femur position.
 From the previous picture, we also know that geometry is matching the
@@ -369,7 +367,7 @@ of the surfaces:</p>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/image418.png"><img alt="../_images/image418.png" src="../_images/image418.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image421.png"><img alt="../_images/image421.png" src="../_images/image421.png" style="width: 60%;" /></a>
 <p>This code constructs a transform, which deforms the source geometry
 into the target one using the thin-plate interpolation method and minimizes
 the distance between the selected key points (landmarks). This can be used
@@ -571,7 +569,7 @@ done.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, AnyBody Technology.
+        &#169; Copyright 2021, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

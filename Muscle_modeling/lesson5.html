@@ -8,8 +8,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lesson 5: Muscle Models &#8212; AnyBody Tutorials v7.3.0</title>
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -18,7 +18,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
     
@@ -251,7 +250,7 @@ properties Lm and Lmdot affecting the strength of the model. You can
 plot several properties simultaneously in the Chart View by use of an
 asterix in the variable specification field at the top of the window
 like this:</p>
-<p><img alt="chart view: muscle1.L" src="../_images/image227.png" /></p>
+<p><img alt="chart view: muscle1.L" src="../_images/image229.png" /></p>
 <p>Now we can compare the variation of Lm and Lmdot to our settings of
 Lf0 and V0. Lm seems to vary between approximately 0.31 and 0.15. With
 an Lf0 of 0.3 (= 2x0.15) this means that the muscle must come close to
@@ -261,12 +260,12 @@ from its speed limit V0 = -8, so the contraction speed is not expected
 to have much effect. We can investigate the effect very easily simply by
 clicking the Strength property of the muscle and obtain the following
 graph:</p>
-<p><img alt="muscle strength plot" src="../_images/image327.png" /></p>
+<p><img alt="muscle strength plot" src="../_images/image329.png" /></p>
 <p>The strength does indeed decrease drastically from around 200 N to
 almost nothing as we expected when the muscle contracts.</p>
 <p>Now that we have muscle data available, let us briefly review the
 parameters presented in the Chart View:</p>
-<p><img alt="Muscle parameters" src="../_images/image417.png" /></p>
+<p><img alt="Muscle parameters" src="../_images/image420.png" /></p>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 23%" />
@@ -722,11 +721,11 @@ to do some work. Let us systematically investigate the output:</p>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Lmt</span></code></p></td>
 <td><p>The length of the muscle-tendon unit. If you plot this property you will see that it rises almost linearly as the muscle is extended. Closer investigation, however, will reveal that it is offset slightly by the nonlinearity caused by the elongation of the tendon due to the varying force.</p></td>
-<td><p><img alt="Small Lmt plot" src="../_images/image1210.png" /></p></td>
+<td><p><img alt="Small Lmt plot" src="../_images/image1211.png" /></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Lm</span></code></p></td>
 <td><p>The length of the contractile element.</p></td>
-<td><p><img alt="small Lm plot" src="../_images/image134.png" /></p></td>
+<td><p><img alt="small Lm plot" src="../_images/image135.png" /></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Lt</span></code></p></td>
 <td><p>The length of the tendon. This appears to be constant, but the tendon length actually changes slightly over the movement with the changes of muscle force as described above.</p></td>
@@ -766,7 +765,7 @@ to do some work. Let us systematically investigate the output:</p>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Ft0</span></code></p></td>
 <td><p>The hypothetical force that the tendon would have if the activity of the muscle were zero. The reason why this is slightly different from Fp is that Ft0 acts directly along the action line of the muscle while Fp is diverted by the pennation angle. This property is mostly interesting to scientists involved in detailed modeling of single muscles.</p></td>
-<td><p><img alt="Small Ft0 plot" src="../_images/image228.png" /></p></td>
+<td><p><img alt="Small Ft0 plot" src="../_images/image2210.png" /></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Ft0Grad</span></code></p></td>
 <td><p>The gradient of Ft0 with respect to the muscle activity. For mathematical reasons this is equal to the Strength, and the two graphs are identical. The reason why this property is included under to different names is that the simple muscle model, from which this model is derived, does not have Ft0Grad and hence needs a Strength property.</p></td>
@@ -821,7 +820,7 @@ Muscle2 has the following development over the movement:</p>
 model definition was just slightly off the correct value? Well if we
 change the current value from 0.5 m to 0.45 m, i.e. a reduction of 10%,
 we get the following activity:</p>
-<p><img alt="Calibration Activity plot" src="../_images/image328.png" /></p>
+<p><img alt="Calibration Activity plot" src="../_images/image3210.png" /></p>
 <p>Not only is the shape of the graph different, the maximum activity is
 also significantly higher. An error of 10% in anthropometric
 data value is not uncommon considering the accuracy of measurement
@@ -1049,7 +1048,7 @@ modeling, namely General Muscles. They are the topic of the next lesson,
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, AnyBody Technology.
+        &#169; Copyright 2021, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

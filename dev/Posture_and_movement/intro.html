@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="noindex" name="robots" />
 
     <title>19. Posture and Movement Prediction &#8212; AnyBody Tutorials v7.3.0-dev</title>
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -19,8 +19,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
     
     
@@ -152,7 +150,7 @@ well to demonstrate the idea. Please download a model to begin on.
 it up in the AnyBody Modeling System, load it in and open a Model View
 window to have a look at the model. You should see something like this
 (except the legends):</p>
-<p><img alt="kick1.png" src="../_images/image136.png" /></p>
+<p><img alt="kick1.png" src="../_images/image138.png" /></p>
 <p>It is a two-segment model with revolute joints at the hip and the knee,
 so it has in total two degrees of freedom. Let us imagine that no motion
 capture experiment has been performed, so we do not really know how the
@@ -229,7 +227,7 @@ from the drivers like this:</p>
 </div>
 <p>After you reload and re-run the model you should be able to open a Chart
 window, plot the MaxMuscleActivity and get this:</p>
-<p><img alt="image1" src="../_images/image229.png" /></p>
+<p><img alt="image1" src="../_images/image230.png" /></p>
 <p>The movement we have imposed is unrealistic. Both joints move with
 constant angular velocity while, in a realistic case, the model should
 capture the fact that it is necessary to accelerate the leg from some
@@ -318,7 +316,7 @@ We can write this formula directly into the model like this:</p>
 </div>
 <p> Please load and run the model again, and then go to the Chart window
 and plot the new output function. You should see this:</p>
-<p><img alt="kickvel1.gif" src="../_images/image34.gif" /></p>
+<p><img alt="kickvel1.gif" src="../_images/image36.gif" /></p>
 <p>The function shows the predicted post-impact velocity of the ball if the
 foot were to hit is at any time during the imposed movement. As
 expected, the exit velocity is higher the later in the movement the ball
@@ -449,7 +447,7 @@ point the same as the first point.</p>
 <p>Running the optimization at this stage will make the problem converge in
 a few interations to an optimized ball velocity of a little over 13 m/s.
 If we plot the two joint accelerations we get:</p>
-<p><img alt="kickacc1.gif" src="../_images/image42.gif" /></p>
+<p><img alt="kickacc1.gif" src="../_images/image45.gif" /></p>
 <p>The movement shows subtle signs of a whiplash action in the sense that
 the movement is initiated by a knee acceleration, which is taken over by
 the hip acceleration, after which the peak knee acceleration sets in
@@ -566,7 +564,7 @@ to capture the features of the body’s function that we are looking for.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, AnyBody Technology.
+        &#169; Copyright 2021, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

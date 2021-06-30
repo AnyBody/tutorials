@@ -8,8 +8,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lesson 6: Composite Recruitment Criteria &#8212; AnyBody Tutorials v7.3.0</title>
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -18,7 +18,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
     
@@ -124,7 +123,7 @@ require upper limits on the muscle activation:</p>
 <p>Loading and running this version will produce the exact same result as
 the standard quadratic criterion because the weight on the linear term
 is set to zero. The result looks like this:</p>
-<p><img alt="Chart view Muscle activty" src="../_images/image132.png" /></p>
+<p><img alt="Chart view Muscle activty" src="../_images/image133.png" /></p>
 <p>However, if we add a bit of weight to the linear term:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">Type</span> <span class="o">=</span> <span class="kp">MR_QuadraticAux</span><span class="p">;</span>
@@ -134,7 +133,7 @@ is set to zero. The result looks like this:</p>
 </div>
 <p>…we can influence the resulting recruitment and get the following
 result:</p>
-<p><img alt="Chart view Muscle activty linear weight" src="../_images/image224.png" /></p>
+<p><img alt="Chart view Muscle activty linear weight" src="../_images/image226.png" /></p>
 <p>The muscle synergy is slightly reduced by the linear term in the
 objective function, and the maximum muscle activation is consequently
 slightly higher. Is this better than the pure quadratic recruitment?
@@ -190,7 +189,7 @@ recruitment criterion:</p>
 </pre></div>
 </div>
 <p>Reloading and rerunning produces the following rather attractive result:</p>
-<p><img alt="Chart view Muscle activity MinMaxAux" src="../_images/image324.png" /></p>
+<p><img alt="Chart view Muscle activity MinMaxAux" src="../_images/image326.png" /></p>
 <p>This appears to produce a combination of soft onset and offset of
 muscles together with a clearly defined envelope on which several
 muscles cooperate evenly to carry the load. Please notice, however, that
@@ -353,7 +352,7 @@ oxygen consumption. Journal of Biomechanics, 39, 758–765.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, AnyBody Technology.
+        &#169; Copyright 2021, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

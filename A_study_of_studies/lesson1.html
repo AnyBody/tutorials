@@ -8,8 +8,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lesson1: Mechanical System Information &#8212; AnyBody Tutorials v7.3.0</title>
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
@@ -18,8 +18,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
     
     
@@ -82,7 +80,7 @@ into AnyBody. If you do not have the model on file, please download and
 save a copy from this link: <a class="reference download internal" download="" href="../_downloads/084a30c634fba5f845573c954d75c60b/arm2d.any"><code class="xref download docutils literal notranslate"><span class="pre">arm2d.any</span></code></a>. It should look like this when
 you have loaded the model, run InitialConditions operation, and opened a
 Model View:</p>
-<p><img alt="Dumbbel" src="../_images/image111.png" /></p>
+<p><img alt="Dumbbel" src="../_images/image113.png" /></p>
 <p>The mechanics of this model is fairly simple in the sense that it only
 has two segments and two revolute joints. However, in more realistic
 models with dozens of segments connected by many joints of different
@@ -96,7 +94,7 @@ This is included in the study’s Objects Description, which is found by
 double-clicking the objects in any Model Tree View. Double-click the
 ArmModel study folder in the loaded model and you will find a System
 description like this:</p>
-<p><img alt="Study object description" src="../_images/image28.png" /></p>
+<p><img alt="Study object description" src="../_images/image210.png" /></p>
 <p>The Mechanical System Information is comprised of four sections: 0)
 Contents, 1) List of segments, 2) List of joints and kinematic
 constraints, and 3) List of reaction forces.</p>
@@ -212,7 +210,7 @@ it might not be possible to assemble the mechanism and it is almost
 certainly not possible to run a kinematic analysis. Opening the Object
 Description window, by double-clicking the ArmStudy folder, produces
 this output:</p>
-<p><img alt="Object description, number of constraints" src="../_images/image37.png" /></p>
+<p><img alt="Object description, number of constraints" src="../_images/image39.png" /></p>
 <p>The Mechanical System Information allows you to investigate in detail
 how many constraints are missing and which ones they may be. Let us
 shift the missing driver back in:</p>
@@ -262,7 +260,7 @@ will get the following message for each time-step</p>
 </pre></div>
 </div>
 <p>And the Object Description window will give the following feedback:</p>
-<p><img alt="Object description, list of reaction forces" src="../_images/image46.png" /></p>
+<p><img alt="Object description, list of reaction forces" src="../_images/image48.png" /></p>
 <p>indicating that the model is precisely statically determinate with 12 reactions
 corresponding to the 12 rigid body degrees of freedom.</p>
 <p>Having familiarized ourselves with the Mechanical System Information in
@@ -382,7 +380,7 @@ Conditions in the <a class="reference internal" href="lesson2.html"><span class=
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, AnyBody Technology.
+        &#169; Copyright 2021, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>
