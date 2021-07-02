@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 2: Including a custom scaling function into your model &#8212; AnyBody Tutorials v7.3.0</title>
+    <title>Lesson 2: Including a custom scaling function into your model &#8212; AnyBody Tutorials v7.3.4</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -59,7 +59,7 @@
         <li class="right" >
           <a href="lesson3_appendix.html" title="Appendix: Morphing based on landmarks"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.0</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.3.4</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">15. </span>Personalizing Your Model</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 2: Including a custom scaling function into your model</a></li> 
@@ -272,17 +272,16 @@ we can see that the left femur is now shorter and a little thinner
 than with the standard scaling. So we have now successfully introduced
 our custom scaling law into the model.</p>
 <a class="reference internal image-reference" href="../_images/image234.png"><img alt="../_images/image234.png" src="../_images/image234.png" style="width: 60%;" /></a>
-<p>If we worked with a bone that does not have a pair, e.g.
-vertebrae, skull, etc., or we just wanted to scale a single side with a
-patient-specific scaling function, we would be finished now and could
+<p>If we worked with a bone that does not have a controlateral pair, e.g.
+vertebrae, skull, etc., or just wanted to personalize a single side, we would
 continue with running the inverse dynamics. But as an exercise, we want to
 continue and scale the other side as well to ensure symmetry of the model.
-Normally we would use the patient-specific bones of the other side and
-copy the code. But in our case only one side is available. We will assume
-that the body is symmetric, which is typically true up to a certain extent.
-Thus, we will include a similar scaling for the corresponding mirrored pair.
+Normally, we would use the contralateral patient-specific bone and
+copy the scaling code. But, in our case, only one side was available. We will assume
+that the body is symmetric, which is only true up to a certain extent.
+So let us include a similar scaling for the corresponding mirrored pair.
 In the next section we will describe how to introduce mirroring to our
-transformation.</p>
+scaling functions.</p>
 </div>
 <div class="section" id="introducing-a-mirrored-custom-scaling-function">
 <h2>Introducing a mirrored custom scaling function<a class="headerlink" href="#introducing-a-mirrored-custom-scaling-function" title="Permalink to this headline">¶</a></h2>
@@ -327,7 +326,8 @@ class:</p>
   <span class="kt">AnyFunTransform3DSTL</span> <span class="n">STLTransform</span> <span class="o">=</span>
   <span class="p">{</span>
     <span class="n">PreTransforms</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="p">.</span><span class="n">RBFTransform</span><span class="p">};</span>
-    <span class="n">RBFDef</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="kp">RBF_ThinPlate</span><span class="p">;</span>
+    <span class="n">PolynomDegree</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">RBFDef</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="kp">RBF_Triharmonic</span><span class="p">;</span>
     <span class="kt">AnyFixedRefFrame</span> <span class="n">Input</span> <span class="o">=</span> <span class="p">{</span>
       <span class="kt">AnySurfSTL</span> <span class="n">SourceSurf</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;SourceFemur.stl&quot;</span><span class="p">;</span>
@@ -344,7 +344,7 @@ class:</p>
     <span class="n">SurfaceObjects1</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="n">Input</span><span class="p">.</span><span class="n">TargetSurf</span><span class="p">};</span>
     <span class="c1">//FileName0 = &quot;SourceFemur.stl&quot;;    // such definition was used previously</span>
     <span class="c1">//FileName1 = &quot;TargetFemur.stl&quot;;    // such definition was used previously</span>
-    <span class="n">NumPoints</span> <span class="o">=</span> <span class="mi">400</span><span class="p">;</span>
+    <span class="n">NumPoints</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
     <span class="n">BoundingBox</span><span class="p">.</span><span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">};</span>
     <span class="n">BoundingBox</span><span class="p">.</span><span class="n">DivisionFactorXYZ</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
     <span class="n">BoundingBoxOnOff</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
@@ -475,7 +475,7 @@ utilized for the mirrored transformed model can be downloaded from here:
         <li class="right" >
           <a href="lesson3_appendix.html" title="Appendix: Morphing based on landmarks"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.0</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.3.4</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">15. </span>Personalizing Your Model</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 2: Including a custom scaling function into your model</a></li> 
