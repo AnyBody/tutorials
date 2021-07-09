@@ -74,7 +74,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="kinematic-input-validation">
+  <div class="tex2jax_ignore mathjax_ignore section" id="kinematic-input-validation">
 <h1>Kinematic Input Validation<a class="headerlink" href="#kinematic-input-validation" title="Permalink to this headline">¶</a></h1>
 <p>The picture below shows the thorax position variation over time recorded
 by digitizing images from a video capture (model curtesy of the
@@ -82,16 +82,16 @@ Technical University of Vienna) of ergometer rowing. The red curve is
 the horizontal position, and the green curve is the vertical position.
 The lateral position remains zero and is the blue curve. It looks very
 reasonable, and it does not seem to be infested with significant noise.</p>
-<p><img alt="rowpos.gif" src="../_images/image17.gif" /></p>
+<p><img alt="rowpos.gif" src="../_images/image15.gif" /></p>
 <p>To find velocities, the system automatically differentiates positional
 data with respect to time and we get the following:</p>
-<p><img alt="rowvel.gif" src="../_images/image28.gif" /></p>
+<p><img alt="rowvel.gif" src="../_images/image27.gif" /></p>
 <p>It still looks reasonable except for a suspicion that the maximum
 velocity around 12 m/s may be a bit high over such a short distance. The
 system dfferentiates the velocity function to obtain the accelerations,
 which subsequently according to the second law of Newton will generate
 forces:</p>
-<p><img alt="rowacc.gif" src="../_images/image38.gif" /></p>
+<p><img alt="rowacc.gif" src="../_images/image36.gif" /></p>
 <p>This graph still looks nice and smooth, but notice the values: The
 maximum acceleration is around 300 m/s^2 or 30 g. Notice that this is
 for the thorax and not a distal segment like a hand or a foot. It is not

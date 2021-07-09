@@ -73,9 +73,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="posture-and-movement-prediction">
+  <div class="tex2jax_ignore mathjax_ignore section" id="posture-and-movement-prediction">
 <h1><span class="section-number">19. </span>Posture and Movement Prediction<a class="headerlink" href="#posture-and-movement-prediction" title="Permalink to this headline">¶</a></h1>
-<div class="without-title admonition caution">
+<div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p><strong>Old tutorial:</strong>
 This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
@@ -111,8 +111,7 @@ Since this involves optimization and optimization takes time we are
 going to formulate a very simple problem, but the principle applies to
 much more complex models as well.</p>
 <p>Understanding this tutorial requires a-priory knowledge of the tutorial
-on <a class="reference internal" href="../Parameter_studies_and_optimization/intro.html"><span class="doc">Parameter Studies and
-Optimization</span></a>.</p>
+on {doc}<code class="docutils literal notranslate"><span class="pre">Parameter</span> <span class="pre">Studies</span> <span class="pre">and</span> <span class="pre">Optimization</span> <span class="pre">&lt;/Parameter_studies_and_optimization/intro&gt;</span></code>.</p>
 <div class="section" id="definition-of-the-problem">
 <h2>Definition of the Problem<a class="headerlink" href="#definition-of-the-problem" title="Permalink to this headline">¶</a></h2>
 <p>As the name indicates, in posture and movement optimization we use
@@ -145,12 +144,11 @@ objectives and decide on one that leads to a plausible movement.</p>
 a two-dimensional football kick. There are all sorts of reasons why a
 simple model of this task might be totally inadequate, but it will serve
 well to demonstrate the idea. Please download a model to begin on.
-<a class="reference download internal" download="" href="../_downloads/be106906cd405368538ae5a50916fff8/Kick1.any"><code class="xref download docutils literal notranslate"><span class="pre">Right-click</span> <span class="pre">the</span> <span class="pre">link</span> <span class="pre">and</span> <span class="pre">save</span> <span class="pre">the</span> <span class="pre">file</span>
-<span class="pre">Kick1.any</span></code></a> in some working directory. Then open
+{download}<code class="docutils literal notranslate"><span class="pre">Right-click</span> <span class="pre">the</span> <span class="pre">link</span> <span class="pre">and</span> <span class="pre">save</span> <span class="pre">the</span> <span class="pre">file</span> <span class="pre">Kick1.any</span> <span class="pre">&lt;Downloads/Kick1.any&gt;</span></code> in some working directory. Then open
 it up in the AnyBody Modeling System, load it in and open a Model View
 window to have a look at the model. You should see something like this
 (except the legends):</p>
-<p><img alt="kick1.png" src="../_images/image138.png" /></p>
+<p><img alt="kick1.png" src="../_images/image135.png" /></p>
 <p>It is a two-segment model with revolute joints at the hip and the knee,
 so it has in total two degrees of freedom. Let us imagine that no motion
 capture experiment has been performed, so we do not really know how the
@@ -175,8 +173,7 @@ are going to need such joint muscles for flexion and extension
 respectively for both of the two joints. The red lines below add such
 muscles with realistic joint strengths in Newton-meter. For an
 explanation of the use of the AnyGeneralMuscle class, please refer to
-the <a class="reference internal" href="../Muscle_modeling/intro.html"><span class="doc">muscle modeling
-tutorial</span></a>.</p>
+the {doc}<code class="docutils literal notranslate"><span class="pre">muscle</span> <span class="pre">modeling</span> <span class="pre">tutorial</span> <span class="pre">&lt;/Muscle_modeling/intro&gt;</span></code>.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyKinEqSimpleDriver</span> <span class="n">KneeDriver</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">90</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
   <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">90</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">}</span><span class="o">/</span><span class="p">..</span><span class="n">MyStudy</span><span class="p">.</span><span class="n">tEnd</span><span class="p">;</span>
@@ -227,7 +224,7 @@ from the drivers like this:</p>
 </div>
 <p>After you reload and re-run the model you should be able to open a Chart
 window, plot the MaxMuscleActivity and get this:</p>
-<p><img alt="image1" src="../_images/image230.png" /></p>
+<p><img alt="..." src="../_images/image228.png" /></p>
 <p>The movement we have imposed is unrealistic. Both joints move with
 constant angular velocity while, in a realistic case, the model should
 capture the fact that it is necessary to accelerate the leg from some
@@ -316,7 +313,7 @@ We can write this formula directly into the model like this:</p>
 </div>
 <p> Please load and run the model again, and then go to the Chart window
 and plot the new output function. You should see this:</p>
-<p><img alt="kickvel1.gif" src="../_images/image36.gif" /></p>
+<p><img alt="kickvel1.gif" src="../_images/image34.gif" /></p>
 <p>The function shows the predicted post-impact velocity of the ball if the
 foot were to hit is at any time during the imposed movement. As
 expected, the exit velocity is higher the later in the movement the ball
@@ -447,7 +444,7 @@ point the same as the first point.</p>
 <p>Running the optimization at this stage will make the problem converge in
 a few interations to an optimized ball velocity of a little over 13 m/s.
 If we plot the two joint accelerations we get:</p>
-<p><img alt="kickacc1.gif" src="../_images/image45.gif" /></p>
+<p><img alt="kickacc1.gif" src="../_images/image42.gif" /></p>
 <p>The movement shows subtle signs of a whiplash action in the sense that
 the movement is initiated by a knee acceleration, which is taken over by
 the hip acceleration, after which the peak knee acceleration sets in

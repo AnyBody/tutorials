@@ -74,7 +74,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-5-definition-of-muscles-and-external-forces">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-5-definition-of-muscles-and-external-forces">
 <h1>Lesson 5: Definition of Muscles and External Forces<a class="headerlink" href="#lesson-5-definition-of-muscles-and-external-forces" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -151,8 +151,7 @@ reference objects to respective via-point nodes in the lines between <code class
 </pre></div>
 </div>
 <p>Upon re-loading the model, you should see a thick, red line connecting the muscle’s origin and
-insertion points. There are other ways to visualize muscles, and these are described here in a <a class="reference internal" href="../Muscle_modeling/intro.html"><span class="doc">dedicated muscle
-tutorial</span></a>.</p>
+insertion points. There are other ways to visualize muscles, and these are described here in a {doc}<code class="docutils literal notranslate"><span class="pre">dedicated</span> <span class="pre">muscle</span> <span class="pre">tutorial</span> <span class="pre">&lt;../Muscle_modeling/intro&gt;</span></code>.</p>
 <p>The muscle path may appear strange because the mechanism hasn’t been assembled by a kinematic analysis.</p>
 </div>
 <div class="section" id="adding-more-muscles">
@@ -223,7 +222,7 @@ tutorial</span></a>.</p>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<p><img alt="image0" src="../_images/image17.png" /></p>
+<img alt="../_images/image16.png" src="../_images/image16.png" />
 </div>
 <div class="section" id="the-initialconditions-analysis">
 <h2>The InitialConditions analysis<a class="headerlink" href="#the-initialconditions-analysis" title="Permalink to this headline">¶</a></h2>
@@ -232,7 +231,7 @@ joint constraints during a simulation.</p>
 <p>Use the operation drop down menu to run the “InitialConditions” operation. If you don’t remember
 how this is done, refer to <a class="reference internal" href="../A_Getting_started/lesson2.html#running-analysis"><span class="std std-ref">this prior tutorial</span></a>.</p>
 <p>The assembled model should resemble the following figure.</p>
-<p><img alt="image1" src="../_images/image25.png" /></p>
+<img alt="../_images/image24.png" src="../_images/image24.png" />
 </div>
 <div class="section" id="switching-off-driver-reactions-when-muscles-do-the-job-important">
 <span id="driver-reactions"></span><h2>Switching off driver reactions when muscles do the job (Important!)<a class="headerlink" href="#switching-off-driver-reactions-when-muscles-do-the-job-important" title="Permalink to this headline">¶</a></h2>
@@ -285,11 +284,11 @@ In this analysis, the AnyBody system computes all muscle, joint forces and much 
 <p>To plot the muscle forces in the brachialis muscle, open
 “Main.Study.Output.Model.Muscles.Brachialis” in the chart view’s model tree, and plot the variable named <code class="docutils literal notranslate"><span class="pre">Fm</span></code>.
 You should get a curve that looks like the one below.</p>
-<p><img alt="image2" src="../_images/image35.png" /></p>
+<img alt="../_images/image33.png" src="../_images/image33.png" />
 <p>The drop in muscle force with movement progression is due to the decreasing moment arm of the gravity
 gravity vector about the elbow joint, as the elbow flexes. Therefore lesser the muscle force.</p>
 <p>If you look at the muscle force in the BicepsLong, you see a different pattern:</p>
-<p><img alt="image3" src="../_images/image44.png" /></p>
+<img alt="../_images/image42.png" src="../_images/image42.png" />
 <p>This muscle’s force increases during the movement because this muscle supports both, the shoulder and the
 elbow. In addition, it collaborates both with DeltoidusA on shoulder
 flexion, and with the other elbow flexors, and all these muscles have to
@@ -319,15 +318,14 @@ is carrying a dumbbell. Let us imagine that the model is performing a dumbbell c
 <p>Now you can reload the model and re-run inverse dynamics to analyze how the model reacts
 to a downward force of 100 N (approximately 10 kg dumbbell weight). The BicepsLong force again, you
 should see this:</p>
-<p><img alt="image4" src="../_images/image54.png" /></p>
+<img alt="../_images/image54.png" src="../_images/image54.png" />
 <p>The muscle force is obviously much larger than before, and the
 development is also different. It now reaches a maximum during the
 movement and drops off again.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Applied forces do not have to be constant. They can change with time
-and other properties in the model.  Please refer to the <a class="reference internal" href="../The_mechanical_elements/intro.html"><span class="doc">tutorial on
-forces</span></a> for more
+and other properties in the model.  Please refer to the {doc}<code class="docutils literal notranslate"><span class="pre">tutorial</span> <span class="pre">on</span> <span class="pre">forces</span> <span class="pre">&lt;../The_mechanical_elements/intro&gt;</span></code> for more
 details.</p>
 </div>
 <p><strong>The model you’ve built here was anatomically simplified, and it can be a

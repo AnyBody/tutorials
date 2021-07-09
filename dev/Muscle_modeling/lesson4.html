@@ -74,7 +74,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-4-wrapping-muscles">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-4-wrapping-muscles">
 <h1>Lesson 4: Wrapping Muscles<a class="headerlink" href="#lesson-4-wrapping-muscles" title="Permalink to this headline">¶</a></h1>
 <p>Many muscles in the body are wrapped over bones and slide on the bony
 surfaces when the body moves. This means that the contact forces between
@@ -93,8 +93,7 @@ surfaces, and hence there is no friction between the muscle and the
 surface.</p>
 <p>Enough talk! Let us prepare for addition of a wrapping muscle to our
 model. If for some reason you do not have a working model from the
-previous lessons, <a class="reference download internal" download="" href="../_downloads/c02f78f79dd2b62bc9b2929d7a830740/MuscleDemo.4.any"><code class="xref download docutils literal notranslate"><span class="pre">you</span> <span class="pre">can</span> <span class="pre">download</span> <span class="pre">one</span>
-<span class="pre">here</span></code></a>.</p>
+previous lessons, {download}<code class="docutils literal notranslate"><span class="pre">you</span> <span class="pre">can</span> <span class="pre">download</span> <span class="pre">one</span> <span class="pre">here</span> <span class="pre">&lt;Downloads/MuscleDemo.4.any&gt;</span></code>.</p>
 <p>A wrapping muscle needs one or several surfaces to wrap on, so the first
 thing to do is to define a surface. For convenience we shall attach the
 surface to the global reference frame, but such wrapping surfaces can be
@@ -261,7 +260,7 @@ origin and an insertion, and they are both displayed on the screen by
 means of the same type of drawing object. Notice that if you have many
 muscles in a model and you want to have an easy way of controlling the
 display of all of them, then you can define the drawing object in an
-<cite>#include</cite> file, and include that same file in the definition of all the
+<code class="docutils literal notranslate"><span class="pre">#include</span></code> file, and include that same file in the definition of all the
 muscles. This way, when you change the display definition in the include
 file, it influences all the muscles simultaneously.</p>
 <p>The difference between the two definitions is that the via point of
@@ -316,10 +315,8 @@ us the following result:</p>
 <p>As you can see, both muscles are now wrapping over the cylinder, and we
 can run the InverseDynamics analysis. It seems to work, but the system
 provides the following warning:</p>
-<p><code class="docutils literal notranslate"><span class="pre">WARNING</span> <span class="pre">-</span> <span class="pre">Via-point</span> <span class="pre">'Main.MyModel.GlobalRef.M1Origin'</span> <span class="pre">on</span>
-<span class="pre">'Main.MyModel.Muscle1.SPLine'</span></code>
-<code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">located</span> <span class="pre">below</span> <span class="pre">the</span> <span class="pre">wrapping</span> <span class="pre">surface</span>
-<span class="pre">'Main.MyModel.GlobalRef.CylCenter.WrapSurf'.</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">WARNING</span> <span class="pre">-</span> <span class="pre">Via-point</span> <span class="pre">'Main.MyModel.GlobalRef.M1Origin'</span> <span class="pre">on</span> <span class="pre">'Main.MyModel.Muscle1.SPLine'</span></code>
+<code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">located</span> <span class="pre">below</span> <span class="pre">the</span> <span class="pre">wrapping</span> <span class="pre">surface</span> <span class="pre">'Main.MyModel.GlobalRef.CylCenter.WrapSurf'.</span></code></p>
 <p>This is a warning that you will see rather frequently when working with
 complex models with wrapping. The warning comes when one of the end
 points or a via point is located below the surface over which the muscle
@@ -364,8 +361,7 @@ example below we have used two:</p>
 <p>Notice that the InitWrapPosVectors like the StringMesh is part of an
 object called SPLine. This is an object in its own right that gets
 defined automatically inside a shortest path muscle. It is a special
-kind of <a class="reference internal" href="../The_mechanical_elements/lesson4.html"><span class="doc">kinematic
-measure</span></a> that is
+kind of {doc}<code class="docutils literal notranslate"><span class="pre">kinematic</span> <span class="pre">measure</span> <span class="pre">&lt;../The_mechanical_elements/lesson4&gt;</span></code> that is
 really a string that wraps just like a muscle but does nothing else than
 measure its own length. These objects can be used outside the muscle
 definition for various purposes in the model, for instance for
@@ -378,8 +374,7 @@ the cylinder:</p>
 <p>If you keep pressing the step button you will see how the muscle now
 wraps on the other side of the cylinder.</p>
 <p>With the kinematics of muscles well under control, we can proceed to
-another important and interesting topic, <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Muscle
-models</span></a>.</p>
+another important and interesting topic, {doc}<code class="docutils literal notranslate"><span class="pre">Lesson</span> <span class="pre">5:</span> <span class="pre">Muscle</span> <span class="pre">models</span> <span class="pre">&lt;lesson5&gt;</span></code>.</p>
 <div class="without-title admonition seealso">
 <p class="admonition-title">See also</p>
 <p><strong>Next lesson:</strong> <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Muscle Models</span></a>.</p>

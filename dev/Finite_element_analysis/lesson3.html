@@ -74,7 +74,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-3-abaqus-interface">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-3-abaqus-interface">
 <h1>Lesson 3: Abaqus Interface<a class="headerlink" href="#lesson-3-abaqus-interface" title="Permalink to this headline">¶</a></h1>
 <p>This chapter shows how forces calculated in AnyBody can be applied as
 boundary conditions to a FE Models generated for Abaqus.</p>
@@ -120,7 +120,7 @@ following lines create a new node located in the Sternoclavicular joint:</p>
 </div>
 <p>Include them e.g. in the Environment file. After reload of the model the
 reference frame is shown</p>
-<p><img alt="clavicula ref frame" src="../_images/image117.png" /></p>
+<p><img alt="clavicula ref frame" src="../_images/image115.png" /></p>
 <p>Download the prepared Abaqus file <a class="reference download internal" download="" href="../_downloads/591e0a352b179354933064180ab125f3/clavicula.inp"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a> and
 save it in your working directory. Please note that this FE model of
 clavicle was created in the same reference frame as the clavicle model
@@ -136,7 +136,7 @@ the AnyFE Converter does not handle the <code class="docutils literal notranslat
 mesh file. We shall return to the issue of aligning the coordinate
 systems for the AnyBody forces and the mesh later, and so far we
 consider <code class="docutils literal notranslate"><span class="pre">localrefframe</span></code> to be aligned with the mesh coordinate system.</p>
-<p><img alt="Clavicula mesh" src="../_images/image214.png" /></p>
+<p><img alt="Clavicula mesh" src="../_images/image212.png" /></p>
 <p>This figure above shows the clavicle bone mesh used for this example.
 This bone is modeled with a reduced stiffness, which can be interpreted
 as an osteoporotic bone.</p>
@@ -367,10 +367,10 @@ when finished, post-process the results. The image below shows the
 results of running the model without any custom adjustments, however in
 the following we shall consider modification of the load application
 regions.</p>
-<p><img alt="Clavicula stresses" src="../_images/image313.png" /></p>
+<p><img alt="Clavicula stresses" src="../_images/image311.png" /></p>
 <p>On the following picture, you can see the muscle attachments nodes and
 coupling constraints that are applied to the finite element model.</p>
-<p><img alt="Clavicula force application points" src="../_images/image411.png" /></p>
+<p><img alt="Clavicula force application points" src="../_images/image49.png" /></p>
 <p>Bear in mind that the muscle attachment area is considered to have a
 constant radius, however, in many cases these areas are elongated and
 have irregular pattern. Let us assume that the area for the

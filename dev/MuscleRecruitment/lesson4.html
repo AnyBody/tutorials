@@ -20,6 +20,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
 
     
     
@@ -75,9 +76,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-4-polynomial-muscle-recruitment">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-4-polynomial-muscle-recruitment">
 <h1>Lesson 4: Polynomial Muscle Recruitment<a class="headerlink" href="#lesson-4-polynomial-muscle-recruitment" title="Permalink to this headline">¶</a></h1>
-<div class="without-title admonition caution">
+<div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p><strong>Old tutorial:</strong>
 This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
@@ -117,14 +118,16 @@ manageable but still challenging level:</p>
 <p>Now we have specified polynomial muscle recruitment, which comes down to
 the following objective function:</p>
 <div class="math notranslate nohighlight">
-\[G = \sum_{i}\left( \frac{f_{i}}{N_{i}} \right)^{p}\]</div>
+\[
+G = \sum_{i}\left( \frac{f_{i}}{N_{i}} \right)^{p}
+\]</div>
 <p>We have not, however, specified what the power <em>p</em> is. In the absence of
 a specification, AnyBody assumes <em>p</em> = 3, i.e. one higher than the
 quadratic criterion from before. When we ran the quadratic criterion
 with 500 W mechanical output, two of the muscle activities became
 constrained by the upper of 1. If we reload and rerun the model now, we
 get the following result:</p>
-<p><img alt="Chart view Muscle activity" src="../_images/image13.gif" /></p>
+<p><img alt="Chart view Muscle activity" src="../_images/image11.gif" /></p>
 <p>The muscle activations are nice and smooth and the upper limit on the
 muscle activity is not active. It is hard to say which criterion is the
 right one, but it appears that for this load the third order polynomial

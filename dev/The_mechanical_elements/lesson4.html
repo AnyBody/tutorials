@@ -74,9 +74,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-4-kinematic-measures">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-4-kinematic-measures">
 <h1>Lesson 4: Kinematic Measures<a class="headerlink" href="#lesson-4-kinematic-measures" title="Permalink to this headline">¶</a></h1>
-<div class="without-title admonition caution">
+<div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p><strong>Old tutorial:</strong>
 This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
@@ -99,11 +99,10 @@ For instance, a spherical joint is a distance between two points on two
 different segments that is driven to be zero. This means that, using
 kinematic measures, you can define types of joints that are not
 available as predefined objects in AnyScript.</p>
-<p>Do you remember the simple arm example of the “<a class="reference internal" href="../A_Getting_started_anyscript/intro.html"><span class="doc">Getting Started:
-AnyScript Programming</span></a>”
+<p>Do you remember the simple arm example of the “{doc}<code class="docutils literal notranslate"><span class="pre">Getting</span> <span class="pre">Started:</span> <span class="pre">AnyScript</span> <span class="pre">Programming</span> <span class="pre">&lt;../A_Getting_started_anyscript/intro&gt;</span></code>”
 tutorial? That was a 2-D model of an arm where we produced the movement
 by driving the angles of the shoulder and elbow joints directly.</p>
-<p><img alt="Simple arm model" src="../_images/image111.jpeg" /></p>
+<p><img alt="Simple arm model" src="../_images/image110.jpeg" /></p>
 <p>But let us imagine that we wanted the hand to reach out and grab
 something at a specific position. It would probably be difficult to
 figure out precisely how to drive the two joint angles to put the hand
@@ -112,8 +111,7 @@ able to put the hand (actually the wrist since this simple model has no
 hand) directly at the desired position in space and have the elbow and
 shoulder joints follow implicitly. This is where the kinematic measures
 come into play. Let’s start off with the model just about where we left
-in the “Getting Started with AnyScript” tutorial. Please <a class="reference download internal" download="" href="../_downloads/0ecf6975d0c2581b02bcc6fe0fdc7f73/Measures.any"><code class="xref download docutils literal notranslate"><span class="pre">click</span> <span class="pre">here</span> <span class="pre">to</span>
-<span class="pre">download</span> <span class="pre">the</span> <span class="pre">necessary</span> <span class="pre">file</span> <span class="pre">(Measures.any)</span></code></a>,
+in the “Getting Started with AnyScript” tutorial. Please {download}<code class="docutils literal notranslate"><span class="pre">click</span> <span class="pre">here</span> <span class="pre">to</span> <span class="pre">download</span> <span class="pre">the</span> <span class="pre">necessary</span> <span class="pre">file</span> <span class="pre">(Measures.any)</span> <span class="pre">&lt;Downloads/Measures.any&gt;</span></code>,
 and save it in some working directory on your own hard disk.</p>
 <p>Let us try initially to create a kinematic measure that will allow us to
 track the movement of the wrist. To honor the folder structure of the
@@ -148,10 +146,10 @@ ChartFX view.</p>
 <p>Expanding the tree though
 Main.ArmModelStudy.Output.Model.KinematicMeasures.WristPos will give you
 the options shown to the below.</p>
-<p><img alt="Model tree KinematicMeasures" src="../_images/image27.gif" /></p>
+<p><img alt="Model tree KinematicMeasures" src="../_images/image26.gif" /></p>
 <p>Click Pos, and you will get three graphs tracking the x, y, and z
 components of the WristPos kinematic measure.</p>
-<p><img alt="WristPos.Pos graph" src="../_images/image37.gif" /></p>
+<p><img alt="WristPos.Pos graph" src="../_images/image35.gif" /></p>
 <p>The z component (blue curve) of the measure remains zero throughout the
 movement because the model is two-dimensional. The top curve (red) is
 the x component, and the bottom curve (green) is the y component.</p>
@@ -209,8 +207,7 @@ may be difficult to find in more complex cases.</p>
 <p>To conclude, the special feature about kinematic measures is that you
 can drive them. In AnyBody, you can drive anything that you can measure,
 and this is really a unique facility. If something went wrong for you
-along the way, you can <a class="reference download internal" download="" href="../_downloads/0b2d1359a27a21af6a7ef2155b57e643/Measures2.any"><code class="xref download docutils literal notranslate"><span class="pre">download</span> <span class="pre">a</span> <span class="pre">commented</span> <span class="pre">version</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">final</span> <span class="pre">result</span>
-<span class="pre">here</span> <span class="pre">(Measures2.any)</span></code></a>.</p>
+along the way, you can {download}<code class="docutils literal notranslate"><span class="pre">download</span> <span class="pre">a</span> <span class="pre">commented</span> <span class="pre">version</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">final</span> <span class="pre">result</span> <span class="pre">here</span> <span class="pre">(Measures2.any)</span> <span class="pre">&lt;Downloads/Measures2.any&gt;</span></code>.</p>
 <div class="without-title admonition seealso">
 <p class="admonition-title">See also</p>
 <p><strong>Next lesson:</strong> The last lesson in the tutorial on mechanical elements is <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Forces</span></a>.</p>

@@ -20,6 +20,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
 
     
     
@@ -75,7 +76,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson1-simple-drivers">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson1-simple-drivers">
 <h1>Lesson1: Simple drivers<a class="headerlink" href="#lesson1-simple-drivers" title="Permalink to this headline">¶</a></h1>
 <p>As mentioned above, we often have preconceived ideas about a system’s
 natural DoFs, such as abduction of the shoulder or flexion of the knee.
@@ -158,7 +159,9 @@ but it still has to be defined as a matrix rather than a vector, i.e.
 with double braces at each end. The polynomial coefficients then come in
 increasing order and define the following driver function:</p>
 <div class="math notranslate nohighlight">
-\[\textrm{Joint angle} = 0 + 5t - 0.4t^2 \textrm{[rad]}\]</div>
+\[
+\textrm{Joint angle} = 0 + 5t - 0.4t^2 \textrm{[rad]}
+\]</div>
 <p>To get higher polynomial orders, simply add more terms to the vector.</p>
 <p>Now try loading the model. If you have followed the instructions, you
 should no longer get the warning that that model is kinematically
@@ -166,7 +169,7 @@ indeterminate. It now has the same number of drivers as degrees of
 freedom.</p>
 <p>Next, run the model. Select <code class="docutils literal notranslate"><span class="pre">Main.MyStudy.Kinematics</span></code> from the Operations
 dropdown menu in the toolbar, and click the “Run” button:</p>
-<img alt="../_images/run_operation.png" src="../_images/run_operation.png" />
+<p><img alt="..." src="../_images/run_operation.png" /></p>
 <p>If you have a model view open, you should see the pendulum starting to
 move and accelerate as it rotates a little more than one round before
 the end of the analysis at <em>t</em> = 1 second.</p>

@@ -74,13 +74,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-7-calibration">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-7-calibration">
 <h1>Lesson 7: Calibration<a class="headerlink" href="#lesson-7-calibration" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The following tutorial will explain how to set up your simple
 calibration study. Calibration is already built into the AMMR,
-:ammr:doc`see the AMMR documentation &lt;index&gt;` for more details.</p>
+<a class="reference internal" href="index.html"><span class="doc">see the AMMR documentation</span></a> for more details.</p>
 </div>
 <p>One of the challenges in body modeling is that models must be able to change
 size to reflect individuals of different statures. Even if you are working on a
@@ -185,14 +185,14 @@ InverseDynamics of overloaded models:</p>
 <p>Let’s have a look at the consequences. Press Load button or F7 and
 subsequently run the InverseDynamics study. Then, press Ctrl + 1 to navigate to the Chart  to
 investigate the results.</p>
-<p><img alt="Chart view BicepsLong.Ft" src="../_images/image134.png" /></p>
+<p><img alt="Chart view BicepsLong.Ft" src="../_images/image133.png" /></p>
 <p>This graph shows the muscle force or more precisely the force in the tendon. The
 force in this more complex muscle model is composed of 3 elements: Fm, the
 muscle force is the force from the contractile element of the muscle. Parallel
 to Fm is Fp which is the passive elastic element in the muscle. Conected in
 series of the muscle, is the tendon where Ft is the elastic tendon force. If you
 pick the Fp property, you should get the following graph:</p>
-<p><img alt="Chart view BicepsLong.Fp" src="../_images/image227.png" /></p>
+<p><img alt="Chart view BicepsLong.Fp" src="../_images/image225.png" /></p>
 <p>The parallel-elastic force Fp sets in when the muscle is stretched beyond
 its optimal fiber length. In the movement of this example, the elbow
 starts at 90 degrees flexion, and as the graph shows, this gives rise to
@@ -235,7 +235,7 @@ study. Its basic definition is straightforward:</p>
 </pre></div>
 </div>
 <p>If you load the model you can study the structure of the new study in the Operations tab:</p>
-<p><img alt="Operations Main.InverseDynamics" src="../_images/image327.png" /></p>
+<p><img alt="Operations Main.InverseDynamics" src="../_images/image325.png" /></p>
 <p>You can see that it has multiple operations. The interesting ones are
 the two latter: TendonLengthAdjustment and LigamentLengthAdjustment. As
 the names indicate, they are for tendon and ligament calibration

@@ -20,6 +20,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
 
     
     
@@ -75,7 +76,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-2-using-motion-capture-data">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-2-using-motion-capture-data">
 <h1>Lesson 2: Using motion capture data<a class="headerlink" href="#lesson-2-using-motion-capture-data" title="Permalink to this headline">¶</a></h1>
 <p>In biomechanics, we often want to make our models move as we have measured in
 the laboratory and the measurement technique would often be tracking of optical
@@ -174,7 +175,7 @@ the editor window (or press <code class="docutils literal notranslate"><span cla
 <p>Now the model should load with no problems, and you can go to the tree
 view in the left hand side of the screen, click the Model tab and unfold
 the MyModel tree down to the C3D object as shown below.</p>
-<p><img alt="Model tree" src="../_images/image128.png" /></p>
+<p><img alt="Model tree" src="../_images/image126.png" /></p>
 <p>A bit down in this object you find the Header section. When you unfold
 it you get access to a number of basic properties of the C3D file. Each
 time you double-click a property, a window will pop up and give you its
@@ -236,7 +237,7 @@ Kinematics operation, you will see the pendulum move as before, while the marker
 performs an oscillating motion back and forth</p>
 <p>So how do we get the marker to drive the pendulum? This can be done
 quite easily with the AnyKinDriverMarker object. The steps are:</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Remove the existing driver that makes the pendulum rotate.</p></li>
 <li><p>Drive the marker point, <code class="docutils literal notranslate"><span class="pre">P1</span></code>, on the pendulum to follow the data
 recorded in the C3D file.</p></li>
@@ -315,7 +316,7 @@ equality sign:</p>
 window, unfold the MyModel branch and subsequently the <code class="docutils literal notranslate"><span class="pre">C3D</span></code> object -&gt;
 <code class="docutils literal notranslate"><span class="pre">Points</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Markers</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">L000</span></code> and arrive at <code class="docutils literal notranslate"><span class="pre">PosInterpol</span></code> as shown
 below.</p>
-<p><img alt="Model tree 2" src="../_images/image320.png" /></p>
+<p><img alt="Model tree 2" src="../_images/image318.png" /></p>
 <p>This is the actual interpolation function of the marker in question.
 Place the cursor after the equality sign of the <code class="docutils literal notranslate"><span class="pre">AnyParamFun</span></code> line,
 right-click the PosInterpol object, and choose “Insert object name”. You

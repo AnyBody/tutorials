@@ -20,6 +20,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
 
     
     
@@ -75,9 +76,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-1-the-basics-of-muscle-recruitment">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-1-the-basics-of-muscle-recruitment">
 <h1>Lesson 1: The Basics of Muscle Recruitment<a class="headerlink" href="#lesson-1-the-basics-of-muscle-recruitment" title="Permalink to this headline">¶</a></h1>
-<div class="without-title admonition caution">
+<div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p><strong>Old tutorial:</strong>
 This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
@@ -88,7 +89,9 @@ take the trouble of setting up the system of equilibrium equations for a
 musculoskeletal system by hand, then we can organize them on the
 following form:</p>
 <div class="math notranslate nohighlight">
-\[\mathbf{Cf}=\mathbf{r}\]</div>
+\[
+\mathbf{Cf}=\mathbf{r}
+\]</div>
 <p>where <strong>f</strong> is a vector of muscle and joint forces, <strong>r</strong> is a vector
 representing the external forces and inertia forces, and <strong>C</strong> is a
 matrix of equation coefficients. In other words, equilibrium always
@@ -111,7 +114,8 @@ behind the central nervous system’s choice of muscle activations.
 Mathematically we can formulate the choice between the infinitely many
 solutions as an optimization problem in the following way:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation*}
+\[\begin{split}
+\begin{equation*}
 \begin{aligned}
 &amp; {\text{minimize}}
 &amp; &amp; G\left(\mathbf{f^{(M)}}\right) \\
@@ -119,7 +123,8 @@ solutions as an optimization problem in the following way:</p>
 &amp; &amp; \mathbf{Cf} = \mathbf{r} \\
 &amp;&amp;&amp; f_i^{(M)} \geq 0, i=1\ldots n^{(M)}
 \end{aligned}
-\end{equation*}\end{split}\]</div>
+\end{equation*}
+\end{split}\]</div>
 <p>The equilibrium equations are constraints in this problem: whatever
 solution we find must balance the external forces. The requirement for
 positive muscle forces has also been added as a constraint to the
@@ -146,7 +151,7 @@ working area of your hard disk:
 <p>Open the model in the AnyBody Modeling System, load it into memory, open
 a Model View window, select the InverseDynamics operation, and click the
 Run button. You should see something like this:</p>
-<p><img alt="Model view simple model" src="../_images/image324.png" /></p>
+<p><img alt="Model view simple model" src="../_images/image322.png" /></p>
 <p>The thick blue rod is an arm hinged at its left end to the origin of the
 global reference frame. A muscle is attached at the other end and the
 muscle elevates the arm against gravity.</p>
@@ -155,7 +160,7 @@ of results. You can expand the tree on the left hand side of that window
 and find the muscle force, Fm, somewhere inside the properties of the M1
 muscle. When you click it you get a graphical representation of the
 muscle force:</p>
-<p><img alt="Chart view M1.fm" src="../_images/image419.png" /></p>
+<p><img alt="Chart view M1.fm" src="../_images/image416.png" /></p>
 <p>Obviously, AnyBody has solved the equilibrium equations and has
 determined what the muscle force is at every instant of the simulation
 time. But which objective function, <span class="math notranslate nohighlight">\(G\)</span>, has the system used?</p>
