@@ -73,7 +73,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-3-kinematic-analysis">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-3-kinematic-analysis">
 <h1>Lesson 3: Kinematic Analysis<a class="headerlink" href="#lesson-3-kinematic-analysis" title="Permalink to this headline">¶</a></h1>
 <p>The Kinematics operation has a short and a very long explanation. The
 short explanation is that it makes the model perform whichever movement
@@ -164,9 +164,8 @@ be difficult to find out what the problem is.</p>
 it is performed. We need an example to work on, and this one will serve
 the purpose:
 <a class="reference download internal" download="" href="../_downloads/563e114299b3c103cff9f153c89cbce2/Demo.SliderCrank3D.any"><code class="xref download docutils literal notranslate"><span class="pre">demo.SliderCrank3D.any</span></code></a></p>
-<p><img alt="demo.SliderCrank3D.any" src="../_images/image115.png" /></p>
-<p>When you load it and open a <a class="reference internal" href="../Interface_features/lesson3.html"><span class="doc">Model
-View</span></a> you will see that
+<p><img alt="demo.SliderCrank3D.any" src="../_images/image113.png" /></p>
+<p>When you load it and open a {doc}<code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">View</span> <span class="pre">&lt;../Interface_features/lesson3&gt;</span></code> you will see that
 this is a very simple mechanism comprising only three segments. They are
 not yet connected correctly at their joints, but they will be if you run
 the Kinematics operation. Go to the Study tree, pick Kinematics and
@@ -178,7 +177,7 @@ the Kinematics study is everything that has to do with positions,
 velocities, and accelerations. You may expand the tree until you reach
 the Slider segment, and you can chart its acceleration by choosing the
 rDDot property.</p>
-<p><img alt="Chart view Acceleration" src="../_images/image212.png" /></p>
+<p><img alt="Chart view Acceleration" src="../_images/image210.png" /></p>
 <p>Notice the naming of the positional properties: r is position, rDot is
 velocity, and rDDot is acceleration. “Dot” or “DDot” are reflections of
 the mathematical custom of designating differentiation with respect to
@@ -186,12 +185,12 @@ time by a dot over the symbol. So velocity would be ‘r’ with a dot over,
 and acceleration would be ‘r’ with two dots. Try browsing around the
 tree and look up the various available data.</p>
 <p>You may encounter some strange looking results like this one:</p>
-<p><img alt="Shaft acceleration" src="../_images/image311.png" /></p>
+<p><img alt="Shaft acceleration" src="../_images/image39.png" /></p>
 <p>Why would anything in a smoothly running model behave like this? The
 answer lies in the ordinate axis. You will notice that it has no values
 on it, and if you hold the mouse over a point on the curve a small
 window will pop up and show you the value:</p>
-<p><img alt="Shaft acc details" src="../_images/image49.png" /></p>
+<p><img alt="Shaft acc details" src="../_images/image47.png" /></p>
 <p>You can see that the value is 4.45e-14. For all practical purposes this
 is zero, and this is also why there are no values on the ordinate axis.
 What you see here is really zero augmented by numerical round-off

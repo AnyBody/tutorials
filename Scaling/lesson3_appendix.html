@@ -19,6 +19,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
 
     
     
@@ -75,7 +76,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="appendix-morphing-based-on-landmarks">
+  <div class="tex2jax_ignore mathjax_ignore section" id="appendix-morphing-based-on-landmarks">
 <h1>Appendix: Morphing based on landmarks<a class="headerlink" href="#appendix-morphing-based-on-landmarks" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial is an appendix to the <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 1</span></a>, where
 construction of an advanced scaling function is introduced.</p>
@@ -195,7 +196,7 @@ transform.</p>
 <div class="section" id="nonlinear-surface-based-scaling-transform">
 <h2>Nonlinear surface based scaling transform<a class="headerlink" href="#nonlinear-surface-based-scaling-transform" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><dl class="simple">
+<div><dl class="simple myst">
 <dt>The previous section describes an interpolation and extrapolation</dt><dd><p>transform that works on discrete points in space. However, often the
 selection of these landmarks is unintuitive and we may require an
 automated tool to assist us in this task. A surface-based RBF class,
@@ -276,7 +277,7 @@ reference. If we load the model and look at the Model View, you can
 observe two point clouds – a red one that corresponds to the point cloud
 prior to the RBF transform, and a blue one that corresponds to the
 result of application of the RBF transform:</p>
-<a class="reference internal image-reference" href="../_images/image140.png"><img alt="../_images/image140.png" src="../_images/image140.png" style="width: 40%;" /></a>
+<a class="reference internal image-reference" href="../_images/image137.png"><img alt="../_images/image137.png" src="../_images/image137.png" style="width: 40%;" /></a>
 <p>Now we take a look at the content of the file grid.any. This file
 contains a matrix of grid coordinates that is used to exemplify how
 the morphing works and show the deformations. It is possible to
@@ -304,19 +305,15 @@ try to set it to A: 0.2, B: 2, C: 20, and D: 200.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<table class="plain docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
+<table class="colwidths-auto plain docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>A <a class="reference internal" href="../_images/image233.png"><img alt="image1" src="../_images/image233.png" style="width: 80%;" /></a></p></th>
-<th class="head"><p>B <a class="reference internal" href="../_images/image332.png"><img alt="image2" src="../_images/image332.png" style="width: 80%;" /></a></p></th>
+<tr class="row-odd"><th class="head"><p>A <a class="reference internal" href="../_images/image230.png"><img alt="../_images/image230.png" src="../_images/image230.png" style="width: 80%;" /></a></p></th>
+<th class="head"><p>B <a class="reference internal" href="../_images/image330.png"><img alt="../_images/image330.png" src="../_images/image330.png" style="width: 80%;" /></a></p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>C <a class="reference internal" href="../_images/image422.png"><img alt="image3" src="../_images/image422.png" style="width: 80%;" /></a></p></td>
-<td><p>D <a class="reference internal" href="../_images/image518.png"><img alt="image4" src="../_images/image518.png" style="width: 80%;" /></a></p></td>
+<tr class="row-even"><td><p>C <a class="reference internal" href="../_images/image419.png"><img alt="../_images/image419.png" src="../_images/image419.png" style="width: 80%;" /></a></p></td>
+<td><p>D <a class="reference internal" href="../_images/image518.png"><img alt="../_images/image518.png" src="../_images/image518.png" style="width: 80%;" /></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -324,7 +321,7 @@ try to set it to A: 0.2, B: 2, C: 20, and D: 200.</p>
 explain, however, you can notice that the deformed grid is approaching
 the origin of the coordinate system, when the parameter increases. Let
 us look back at the definition of the Gaussian radial basis function:
-<span class="math notranslate nohighlight">\(\phi\left( r \right) = e^{- \text{ar}^{2}}\ \)</span>. We can see that
+$\phi\left( r \right) = e^{- \text{ar}^{2}}$. We can see that
 the exponential nature will decrease the influence of the <em>r</em> component.
 However, if the parameter is too large the influence of radial distances
 will be minor and insignificant. Thus, it is necessary to keep the
@@ -566,19 +563,15 @@ the values of A: 20, B: 200, C: 400, and D: 1000:</p>
   <span class="n">BoundingBoxOnOff</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
 </pre></div>
 </div>
-<table class="plain docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
+<table class="colwidths-auto plain docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>A <a class="reference internal" href="../_images/image1113.png"><img alt="image10" src="../_images/image1113.png" style="width: 80%;" /></a></p></th>
-<th class="head"><p>B <a class="reference internal" href="../_images/image1212.png"><img alt="image11" src="../_images/image1212.png" style="width: 80%;" /></a></p></th>
+<tr class="row-odd"><th class="head"><p>A <a class="reference internal" href="../_images/image1113.png"><img alt="../_images/image1113.png" src="../_images/image1113.png" style="width: 80%;" /></a></p></th>
+<th class="head"><p>B <a class="reference internal" href="../_images/image1210.png"><img alt="../_images/image1210.png" src="../_images/image1210.png" style="width: 80%;" /></a></p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>C <a class="reference internal" href="../_images/image1310.png"><img alt="image12" src="../_images/image1310.png" style="width: 80%;" /></a></p></td>
-<td><p>D <a class="reference internal" href="../_images/image142.png"><img alt="image13" src="../_images/image142.png" style="width: 80%;" /></a></p></td>
+<tr class="row-even"><td><p>C <a class="reference internal" href="../_images/image138.png"><img alt="../_images/image138.png" src="../_images/image138.png" style="width: 80%;" /></a></p></td>
+<td><p>D <a class="reference internal" href="../_images/image141.png"><img alt="../_images/image141.png" src="../_images/image141.png" style="width: 80%;" /></a></p></td>
 </tr>
 </tbody>
 </table>

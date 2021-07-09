@@ -73,7 +73,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-1-personalizing-individual-segments-based-on-geometric-data-from-medical-images">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-1-personalizing-individual-segments-based-on-geometric-data-from-medical-images">
 <h1>Lesson 1: Personalizing individual segments based on geometric data from medical images<a class="headerlink" href="#lesson-1-personalizing-individual-segments-based-on-geometric-data-from-medical-images" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial presumes that you have read the AMMR documentation and know
 how to personalize your model using information about height, weight, and
@@ -120,7 +120,7 @@ Germany).</p>
 a model with two segments which contain the definition of a surface
 each, one for the source (bone color) and one for the target (yellow) bone. When we load this
 model, the Model View should show the following picture:</p>
-<a class="reference internal image-reference" href="../_images/image139.png"><img alt="../_images/image139.png" src="../_images/image139.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image136.png"><img alt="../_images/image136.png" src="../_images/image136.png" style="width: 60%;" /></a>
 <p>To define a new scaling function let us insert a new AnyFunTransform3DLin2
 object after the target segment:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyFunTransform3DLin2 &lt;ObjectName&gt; =</span>
@@ -196,7 +196,7 @@ to give this transformation a name and apply it to the source surface:</p>
 <p>Reloading the model and looking at the bones shown in the Model View, we
 can see that these bones are now merged. To highlight the differences,
 we select one of them. This will produce the following picture.</p>
-<a class="reference internal image-reference" href="../_images/image232.png"><img alt="../_images/image232.png" src="../_images/image232.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image229.png"><img alt="../_images/image229.png" src="../_images/image229.png" style="width: 60%;" /></a>
 <p>The source bone is now transformed, i.e., translated, scaled and
 skewed to match the target bone. To make that clear, let us add a new
 AnyFunTransform3DLin2 called MyTransform2 to the model which we place
@@ -238,7 +238,7 @@ that we just constructed:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/image330.png"><img alt="../_images/image330.png" src="../_images/image330.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image329.png"><img alt="../_images/image329.png" src="../_images/image329.png" style="width: 60%;" /></a>
 <p>Looking at the Model View, we can see that the femur is now scaled, it
 became shorter and now aligns with the original source femur position.
 From the previous picture, we also know that geometry is matching the
@@ -370,7 +370,7 @@ of the surfaces:</p>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/image421.png"><img alt="../_images/image421.png" src="../_images/image421.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image418.png"><img alt="../_images/image418.png" src="../_images/image418.png" style="width: 60%;" /></a>
 <p>This code constructs a transform, which deforms the source geometry
 into the target one using the thin-plate interpolation method and minimizes
 the distance between the selected key points (landmarks). This can be used
@@ -405,8 +405,7 @@ For the latter option, we require an acceptable pre-registration
 transform, e.g. the RBF transform that was described previously, in
 order for the closest point search to make sense. Due to the implementation
 specifics most of the RBF recommendations apply to this class as well.
-More details about how to create this kind of transforms are described in <a class="reference internal" href="lesson3_appendix.html"><span class="doc">appendix
-tutorial</span></a>. However, for this example the
+More details about how to create this kind of transforms are described in {doc}<code class="docutils literal notranslate"><span class="pre">appendix</span> <span class="pre">tutorial</span> <span class="pre">&lt;lesson3_appendix&gt;</span></code>. However, for this example the
 recommended settings mentioned before will be used again.</p>
 <p>Let us repeat the step from the previous section by adding one more
 surface to the visualization and another scaling step. You can download
@@ -456,7 +455,7 @@ to hide affine and RBF scaled femurs to see the final results:</p>
 <p>If we just look at the green target surface and the blue STL-transformed
 surface, we can see that the surfaces now match each other very well. That means
 that now the subject-specificity will be taken into account in the inverse
-dynamics simulation. The final model can be downloaded <a class="reference download internal" download="" href="../_downloads/052bed7e0ed5ac44521917b666808aa2/lesson3d.Main.any"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
+dynamics simulation. The final model can be downloaded {download}<code class="docutils literal notranslate"><span class="pre">here</span> <span class="pre">&lt;Downloads/lesson3d.Main.any&gt;</span></code>.</p>
 <div class="toctree-wrapper compound">
 </div>
 <p>Finally, the only thing left is to include this scaling function into an

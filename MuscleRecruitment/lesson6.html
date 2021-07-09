@@ -19,6 +19,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
 
     
     
@@ -74,9 +75,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-6-composite-recruitment-criteria">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-6-composite-recruitment-criteria">
 <h1>Lesson 6: Composite Recruitment Criteria<a class="headerlink" href="#lesson-6-composite-recruitment-criteria" title="Permalink to this headline">¶</a></h1>
-<div class="without-title admonition caution">
+<div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p><strong>Old tutorial:</strong>
 This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.</p>
@@ -123,7 +124,7 @@ require upper limits on the muscle activation:</p>
 <p>Loading and running this version will produce the exact same result as
 the standard quadratic criterion because the weight on the linear term
 is set to zero. The result looks like this:</p>
-<p><img alt="Chart view Muscle activty" src="../_images/image133.png" /></p>
+<p><img alt="Chart view Muscle activty" src="../_images/image132.png" /></p>
 <p>However, if we add a bit of weight to the linear term:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span> <span class="o">=</span> <span class="p">{</span>
   <span class="n">Type</span> <span class="o">=</span> <span class="kp">MR_QuadraticAux</span><span class="p">;</span>
@@ -133,7 +134,7 @@ is set to zero. The result looks like this:</p>
 </div>
 <p>…we can influence the resulting recruitment and get the following
 result:</p>
-<p><img alt="Chart view Muscle activty linear weight" src="../_images/image226.png" /></p>
+<p><img alt="Chart view Muscle activty linear weight" src="../_images/image224.png" /></p>
 <p>The muscle synergy is slightly reduced by the linear term in the
 objective function, and the maximum muscle activation is consequently
 slightly higher. Is this better than the pure quadratic recruitment?
@@ -154,14 +155,22 @@ requires some additional mathematical tricks. The trick is to redefine
 the muscle recruitment problem to the following form:</p>
 <p>Minimize</p>
 <div class="math notranslate nohighlight">
-\[\beta\]</div>
+\[
+\beta
+\]</div>
 <p>Subject to</p>
 <div class="math notranslate nohighlight">
-\[\frac{f_{i}^{\left( M \right)}}{N_{i}} \leq \beta,\ \ for\ i = 1..n^{(M)}\]</div>
+\[
+\frac{f_{i}^{\left( M \right)}}{N_{i}} \leq \beta,\ \ for\ i = 1..n^{(M)}
+\]</div>
 <div class="math notranslate nohighlight">
-\[\mathbf{\text{Cf}} = \mathbf{r}\]</div>
+\[
+\mathbf{\text{Cf}} = \mathbf{r}
+\]</div>
 <div class="math notranslate nohighlight">
-\[f_{i}^{(M)} \geq 0,\ \ for\ i = 1..n^{(M)}\]</div>
+\[
+f_{i}^{(M)} \geq 0,\ \ for\ i = 1..n^{(M)}
+\]</div>
 <p>It is easy to see why this minimizes the maximum muscle activity: The
 only way to reduce the objective function, <span class="math notranslate nohighlight">\(\beta\)</span>, and to honor the
 constraints is to simultaneously reduce all the muscle activities. The
@@ -169,14 +178,22 @@ question now is: what happens if we add a quadratic auxiliary term to
 the objective function, <span class="math notranslate nohighlight">\(\beta\)</span>, this way:</p>
 <p>Minimize</p>
 <div class="math notranslate nohighlight">
-\[\beta + \varepsilon\sum_{i}^{}\left( \frac{f_{i}^{(M)}}{N_{i}} \right)^{2}\]</div>
+\[
+\beta + \varepsilon\sum_{i}^{}\left( \frac{f_{i}^{(M)}}{N_{i}} \right)^{2}
+\]</div>
 <p>Subject to</p>
 <div class="math notranslate nohighlight">
-\[\frac{f_{i}^{\left( M \right)}}{N_{i}} \leq \beta,\ \ for\ i = 1..n^{(M)}\]</div>
+\[
+\frac{f_{i}^{\left( M \right)}}{N_{i}} \leq \beta,\ \ for\ i = 1..n^{(M)}
+\]</div>
 <div class="math notranslate nohighlight">
-\[\mathbf{\text{Cf}} = \mathbf{r}\]</div>
+\[
+\mathbf{\text{Cf}} = \mathbf{r}
+\]</div>
 <div class="math notranslate nohighlight">
-\[f_{i}^{(M)} \geq 0,\ \ for\ i = 1..n^{(M)}\]</div>
+\[
+f_{i}^{(M)} \geq 0,\ \ for\ i = 1..n^{(M)}
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(\varepsilon\)</span> is the weight we use to tune the influence of the quadratic
 term.</p>
 <p>We can do this in AnyBody by choosing the auxiliary form of the min/max
@@ -189,7 +206,7 @@ recruitment criterion:</p>
 </pre></div>
 </div>
 <p>Reloading and rerunning produces the following rather attractive result:</p>
-<p><img alt="Chart view Muscle activity MinMaxAux" src="../_images/image326.png" /></p>
+<p><img alt="Chart view Muscle activity MinMaxAux" src="../_images/image324.png" /></p>
 <p>This appears to produce a combination of soft onset and offset of
 muscles together with a clearly defined envelope on which several
 muscles cooperate evenly to carry the load. Please notice, however, that
@@ -203,7 +220,7 @@ a mathematical and physiological point-of-view. Unfortunately, there is
 one additional, physiological requirement that we have not touched upon,
 and on the MinMaxAux criterion fails on that. To understand it, let us
 make a thought experiment:</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>We create a model of a person lifting a box. The mass of the box is
 10 kg. The muscle recruitment algorithm will return some distribution
 of load between the muscles in the system.</p></li>

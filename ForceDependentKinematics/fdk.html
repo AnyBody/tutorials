@@ -19,6 +19,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
 
     
     
@@ -74,12 +75,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="introduction-to-force-dependent-kinematics">
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-force-dependent-kinematics">
 <h1>Introduction to Force-Dependent Kinematics<a class="headerlink" href="#introduction-to-force-dependent-kinematics" title="Permalink to this headline">¶</a></h1>
 <p>Let us start by looking at the simplest form of Newton’s second law,
 when it’s written for a point mass particle:</p>
 <div class="math notranslate nohighlight">
-\[a = \frac{F}{m}\]</div>
+\[
+a = \frac{F}{m}
+\]</div>
 <p>Here <strong>F</strong> is the resultant of all forces acting on the particle, <em>m</em> is
 its mass, and <strong>a</strong> is the consequent acceleration. If we knew the
 values of all the applied forces, the accelerations could be computed
@@ -88,7 +91,9 @@ move. Such a study of the particle’s physics would be termed a Forward
 Dynamic Analysis.</p>
 <p>Alternatively, the equation could be re-written as:</p>
 <div class="math notranslate nohighlight">
-\[F = ma\]</div>
+\[
+F = ma
+\]</div>
 <p>This would be more beneficial when the particle’s accelerations could be
 observed using say a video camera, but the forces were unknown. This is
 called an Inverse Dynamic Analysis.</p>
@@ -118,7 +123,7 @@ understand, and fast to build and analyse. It however permits small
 motions between the two bones which will really help us understand the
 detailed functions of real joints. This is what the model will look
 like:</p>
-<p><img alt="Simple knee" src="../_images/image118.png" /></p>
+<p><img alt="Simple knee" src="../_images/image116.png" /></p>
 <p>This model is a knee joint extended by a single quadriceps muscle. The
 joint, however, is somewhat different from the idealized “engineering”
 revolute joints you often see in musculoskeletal models. It comprises a

@@ -19,6 +19,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
 
     
     
@@ -74,7 +75,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="optimization-studies">
+  <div class="tex2jax_ignore mathjax_ignore section" id="optimization-studies">
 <h1>Optimization Studies<a class="headerlink" href="#optimization-studies" title="Permalink to this headline">¶</a></h1>
 <p>The parameter study introduced in the preceding lesson provides a
 complete overview of the design space, but the study is only feasible
@@ -123,8 +124,8 @@ lesson could be defined as:</p>
 proceed, let us briefly look at the properties of a typical
 musculoskeletal objective function and how the optimization algorithm
 solves the problem.</p>
-<img alt="../_images/image15.gif" src="../_images/image15.gif" />
-<img alt="../_images/image26.gif" src="../_images/image26.gif" />
+<img alt="../_images/image13.gif" src="../_images/image13.gif" />
+<img alt="../_images/image25.gif" src="../_images/image25.gif" />
 <p>The two pictures above both show the result of a parameter study. The
 picture on the right is the section indicated by the magnifying glass on
 the left amplified by 50 times. As you can see, the seemingly smooth
@@ -139,7 +140,7 @@ optimization algorithm in AnyBody is indeed capable of doing this in
 most cases. It is a special version of a so-called feasible directions
 algorithm, which seeks out the optimum in two-step loops. The two steps
 are:</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Decide on a search direction.</p></li>
 <li><p>Perform a linear search to find the minimum along the chosen
 direction.</p></li>

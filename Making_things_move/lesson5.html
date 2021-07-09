@@ -73,7 +73,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lesson-5-using-real-data">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-5-using-real-data">
 <span id="making-things-move-move-real-mocap"></span><h1>Lesson 5: Using real data<a class="headerlink" href="#lesson-5-using-real-data" title="Permalink to this headline">¶</a></h1>
 <p>Without further ado, let us import a real C3D file and drive a complete model.</p>
 <p>The AnyBody Modeling System offers you virtually unlimited ways of doing
@@ -87,7 +87,7 @@ for data processing.</p>
 <p>Make sure you have installed your own copy of the AnyBody Model repository (AMMR).
 See the <a class="reference external" href="https://anyscript.org/ammr-doc/ammr_installation.html#installing-ammr" title="(in AMMR v2.3)"><span class="xref std std-ref">AMMR documentation</span></a>.</p>
 </div>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Go to the folder <code class="file docutils literal notranslate"><span class="pre">Application/MocapExamples/Plug-in-gait_Simple</span></code>.</p></li>
 <li><p>Open <code class="file docutils literal notranslate"><span class="pre">LowerExtremity.main.any</span></code> in the AnyBody Modeling System</p></li>
 </ol>
@@ -136,7 +136,7 @@ file to drive the model with.</p>
 on line 13 we include the <em>AnyMocap</em> framework or base model.</p>
 <p>Now please load the model and open up a new Model View. You should see
 the following model:</p>
-<img alt="../_images/image130.png" src="../_images/image130.png" />
+<img alt="../_images/image128.png" src="../_images/image128.png" />
 <p>The model consist of number of operations which must be executed in the correct
 order. The flow of the model is illustrated in the following figure.</p>
 <div class="figure align-default" id="id2">
@@ -151,7 +151,7 @@ for a detailed dicussion on different approches to MoCap analysis.</span><a clas
 <p>If you look closely at the model view, you can see that the skeleton is equipped with
 markers and if you zoom in a little, you can also see that the markers
 carry small coordinate systems with red and green arrows.</p>
-<img alt="../_images/image222.png" src="../_images/image222.png" />
+<img alt="../_images/image220.png" src="../_images/image220.png" />
 <style> .red {color:red} .green {color:green}</style><p>These are the marker points defined on the human body, and the <span class="red">red</span> and
 <span class="green">green</span> arrows designate directions in which the marker position is fixed
 versus free to be optimized. A free marker position is one that is not
@@ -191,7 +191,7 @@ lengths of adjacent segments from the marker data.</p>
 <h3>Running Parameter identification<a class="headerlink" href="#running-parameter-identification" title="Permalink to this headline">¶</a></h3>
 <p>Without further ado, let us perform the optimization:</p>
 <p>Find the <code class="docutils literal notranslate"><span class="pre">Main.RunParameterIdentification</span></code> in the operations dropdown, and run it.</p>
-<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image323.png" /></p>
+<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image321.png" /></p>
 <p>You will see the model walking repeatedly over the force platforms,
 sometimes slowly and sometimes a bit faster depending on the speed of
 your computer and the progress of the computation.</p>
@@ -211,7 +211,7 @@ text file for later use.</p>
 <p>Before we continue, let us ponder for a moment when it is necessary to
 perform this optimization. The results of the optimization in summary
 are the following:</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Updated anthropometrical parameters.</p></li>
 <li><p>Updated marker locations.</p></li>
 </ol>
@@ -265,7 +265,7 @@ the hip joint reaction forces:</p>
 <p>So we have seen the model optimize its parameters and we have seen it
 perform a dynamic analysis on existing data that somebody else has
 defined. But here comes the real point of the application:</p>
-<p><strong>Processing a different motion is exactly the same</strong>!</p>
+<p><strong>Processing a different motion is exactly the same</strong></p>
 <p>All we have to do is to replace the C3D file containing the motion data.
 The MoCapModel folder already contains a few C3D files located in the
 subfolder Input that we can try. All we have to do is to make the model
@@ -324,7 +324,7 @@ one. You will see the model as before, but now with the arms included.</p>
 <p><img alt="Model view Fullbody initial load" src="../_images/image91.png" /></p>
 <p>Select and run the RunMotionAndParameterOptimizationSequence in the
 Operations tree:</p>
-<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image323.png" /></p>
+<p><img alt="Opertions RunModtionAndParameterOpt" src="../_images/image321.png" /></p>
 <p>The model starts walking repeatedly over the force platforms including
 the arm motions while it tries to optimize segment lengths and marker
 positions. It takes 7 iterations and more time than before
@@ -339,7 +339,7 @@ analysis of the entire body including the muscle forces.</p>
 <p>This full-body model with almost 1000 muscle fascicles takes considerable more
 time to analyze but will reward you with very detailed information about the
 function of the muscle system in gait as illustrated below.</p>
-<p><img alt="Model view, full body inverse dynamics" src="../_images/image1210.png" /></p>
+<p><img alt="Model view, full body inverse dynamics" src="../_images/image129.png" /></p>
 <p>The final lesson of this tutorial is about problems that may arise with
 C3D files.</p>
 <div class="without-title admonition seealso">
