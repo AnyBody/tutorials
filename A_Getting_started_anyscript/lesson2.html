@@ -6,15 +6,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Lesson 2: Defining Segments and Displaying Objects &#8212; AnyBody Tutorials v7.3.4</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -73,7 +74,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-2-defining-segments-and-displaying-objects">
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-2-defining-segments-and-displaying-objects">
 <h1>Lesson 2: Defining Segments and Displaying Objects<a class="headerlink" href="#lesson-2-defining-segments-and-displaying-objects" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -83,7 +84,7 @@
 <p>The basic building blocks of a mechanical system are the “segments” <a class="footnote-reference brackets" href="#f1" id="id1">1</a>. In AnyBody,
 the segments are treated as rigid elements which represent human bones as well as non-human components such as exoskeleton/machine parts etc.</p>
 <p><strong>A segment is just a coordinate system with mass and inertial properties, which can move around freely in 3D space.</strong></p>
-<div class="section" id="creating-a-segment-using-the-class-inserter">
+<section id="creating-a-segment-using-the-class-inserter">
 <span id="class-inserter"></span><h2>Creating a segment (using the Class Inserter)<a class="headerlink" href="#creating-a-segment-using-the-class-inserter" title="Permalink to this headline">¶</a></h2>
 <p>We shall start by defining a folder for the segments. Please add the
 following text to your model (new text marked in red):</p>
@@ -153,8 +154,8 @@ the segment’s coordinate system is located at the center of mass, with its loc
 constraints to be kinematically determinate.</em></p>
 <p><strong>This means that your model has some degrees of freedom, for which AnyBody does not have any motion or constraint information.
 It therefore cannot evaluate the model’s kinematics.</strong> We will take care of this in the next lesson</p>
-</div>
-<div class="section" id="displaying-a-segment">
+</section>
+<section id="displaying-a-segment">
 <h2>Displaying a segment<a class="headerlink" href="#displaying-a-segment" title="Permalink to this headline">¶</a></h2>
 <p>To make something visible in AnyBody, you have to add a drawing object which defines visibility:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">UpperArm</span> <span class="o">=</span> <span class="p">{</span>
@@ -169,8 +170,8 @@ It therefore cannot evaluate the model’s kinematics.</strong> We will take car
 <p>Reload the model, and look at the Model View (you might have to press
 the <img alt="../_images/image32.png" src="../_images/image32.png" /> button to locate your segment) . The segment is displayed as an ellipsoid whose dimensions capture the
 mass distribution represented by Jii.  Changing any one component of Jii will alter the shape of the ellipse.</p>
-</div>
-<div class="section" id="adding-point-nodes-to-a-segment">
+</section>
+<section id="adding-point-nodes-to-a-segment">
 <h2>Adding point nodes to a segment<a class="headerlink" href="#adding-point-nodes-to-a-segment" title="Permalink to this headline">¶</a></h2>
 <p>We define some nodes in the local coordinate system of the segment, for eventually attaching muscles, joints, forces etc. to
 the segment.</p>
@@ -213,8 +214,8 @@ nodes defined in most AMMR models.</strong></p>
 <img alt="../_images/image41.png" src="../_images/image41.png" />
 <p>If you reload the model, you should see the newly added nodes connected to the center of gravity by
 yellow pins.</p>
-</div>
-<div class="section" id="creating-a-second-segment">
+</section>
+<section id="creating-a-second-segment">
 <h2>Creating a second segment<a class="headerlink" href="#creating-a-second-segment" title="Permalink to this headline">¶</a></h2>
 <p>You will now add a forearm segment to the mechanism by copy-pasting these lines into the “Segs” folder:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>    <span class="gr">AnySeg ForeArm = {</span>
@@ -268,8 +269,8 @@ enforcing specified motions and constraints (such as joints between segments). M
 </div>
 <p>This will clearly separate the segments in your Model View:</p>
 <img alt="../_images/image52.png" src="../_images/image52.png" />
-</div>
-<div class="section" id="rotation-matrices-in-anybody">
+</section>
+<section id="rotation-matrices-in-anybody">
 <h2>Rotation matrices in AnyBody<a class="headerlink" href="#rotation-matrices-in-anybody" title="Permalink to this headline">¶</a></h2>
 <p>To improve the visual impression of the arm segments at load time, we will set
 the Axes0 property, which is really a rotation matrix.</p>
@@ -317,8 +318,8 @@ bodies and the total body model, we have chosen to use “segments” for
 the rigid parts of the model.</p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -334,7 +335,7 @@ the rigid parts of the model.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -380,7 +381,7 @@ the rigid parts of the model.</p>
 </ul>
 </div><h3>Found a problem?</h3>
 
-<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_Getting_started_anyscript/lesson2.rst">
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_Getting_started_anyscript/lesson2.md">
     <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
 </p>
         </div>

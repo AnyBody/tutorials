@@ -6,16 +6,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="noindex" name="robots" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="noindex" name="robots" />
 
     <title>Lesson 4: Kinetics - Computing Forces &#8212; AnyBody Tutorials v7.3.4-dev</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -74,13 +75,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-4-kinetics-computing-forces">
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-4-kinetics-computing-forces">
 <h1>Lesson 4: Kinetics - Computing Forces<a class="headerlink" href="#lesson-4-kinetics-computing-forces" title="Permalink to this headline">¶</a></h1>
 <p>In this lesson, you will compute forces and investigate the ergonomics of the pedal arrangement.</p>
 <p>We will presume that the pedal is loaded by a spring, the force of which the leg
 must overcome when stepping on the pedal. In this lesson, we will step
 by step define the spring force and look at its effect on the leg.</p>
-<div class="section" id="generalized-forces">
+<section id="generalized-forces">
 <h2>Generalized forces<a class="headerlink" href="#generalized-forces" title="Permalink to this headline">¶</a></h2>
 <p><strong>When you say “a support torque applied to a joint”, in AnyBody terms, you are saying -
 “A generalized force applied to a kinematic measure of the joint angle”.</strong></p>
@@ -89,8 +90,8 @@ applied to the Y component of a measure of the segment’s position”.</p>
 <p><strong>Since AnyBody speaks the language of generalized forces, we will simply call them “forces” henceforth. Physically speaking,
 this generalized force will manifest as a rotational torque or a linear force, depending on the type of measure it is applied to.</strong></p>
 <p>You must create an <code class="docutils literal notranslate"><span class="pre">AnyForce</span></code> object in order to apply a generalized force to a measure.</p>
-</div>
-<div class="section" id="include-pedal-spring-force">
+</section>
+<section id="include-pedal-spring-force">
 <h2>Include pedal spring force<a class="headerlink" href="#include-pedal-spring-force" title="Permalink to this headline">¶</a></h2>
 <p>We will therefore create an <code class="docutils literal notranslate"><span class="pre">AnyForce</span></code> object, for applying the spring force.
 Since this is not a part of the human body, it is logical to place it in the Environment.any file. Here’s what
@@ -114,8 +115,8 @@ is a rotational measure, the force is actually a torque applied to the hinge.</p
 component of the kinematic measure. <code class="docutils literal notranslate"><span class="pre">F</span></code> is proportional to “HingeJoint.Pos”,
 which is the hinge angle. Stiffness is initially set to 0.0 (Nm/rad), to investigate the effect of having
 no spring. The minus sign in the expression means that the spring will always oppose motions away from the neutral angle.</p>
-</div>
-<div class="section" id="turn-off-default-reaction-forces">
+</section>
+<section id="turn-off-default-reaction-forces">
 <h2>Turn off default reaction forces<a class="headerlink" href="#turn-off-default-reaction-forces" title="Permalink to this headline">¶</a></h2>
 <p>As mentioned in this <a class="reference internal" href="../A_Getting_started_anyscript/lesson5.html#driver-reactions"><span class="std std-ref">previous section</span></a>,
 the “Reaction.Type” property for all kinematic drivers that act on muscle-actuated joints must be set to “Off”.</p>
@@ -199,8 +200,8 @@ you can comment out “Model\Reactions.any” in the main file:</p>
 <span class="p">...</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="adding-muscles">
+</section>
+<section id="adding-muscles">
 <h2>Adding muscles<a class="headerlink" href="#adding-muscles" title="Permalink to this headline">¶</a></h2>
 <p>There is one more thing we have to do: The human model has no muscles at
 the moment. This can be corrected by a simple change of BM statements in
@@ -223,8 +224,8 @@ the main file:</p>
 <span class="c1">//&lt;--</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="investigating-results">
+</section>
+<section id="investigating-results">
 <h2>Investigating results<a class="headerlink" href="#investigating-results" title="Permalink to this headline">¶</a></h2>
 <p>Now, reload the model and run the “RunApplication” operation from the operations drop-down menu:</p>
 <p><img alt="InverseDynamics_End" src="../_images/image26.png" /></p>
@@ -251,8 +252,8 @@ investigation easy. The mechanical model we have put together in four
 simple lessons has a complexity worthy of a Ph.D. project if you develop
 it bottom up. In AnyBody, this is a matter of a few hours of work when
 using the predefined models of the repository.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -268,7 +269,7 @@ using the predefined models of the repository.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -312,7 +313,7 @@ using the predefined models of the repository.</p>
 </ul>
 </div><h3>Found a problem?</h3>
 
-<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_Getting_started_modeling/lesson4.rst">
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_Getting_started_modeling/lesson4.md">
     <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
 </p>
         </div>

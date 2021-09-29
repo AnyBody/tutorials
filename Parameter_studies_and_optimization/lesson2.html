@@ -6,20 +6,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Optimization Studies &#8212; AnyBody Tutorials v7.3.4</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
 
     
     
@@ -75,7 +76,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="optimization-studies">
+  <section class="tex2jax_ignore mathjax_ignore" id="optimization-studies">
 <h1>Optimization Studies<a class="headerlink" href="#optimization-studies" title="Permalink to this headline">¶</a></h1>
 <p>The parameter study introduced in the preceding lesson provides a
 complete overview of the design space, but the study is only feasible
@@ -152,7 +153,7 @@ means that the algorithm depends on the smoothness of the surface when
 it decides on a direction to take in step 1, but once the direction has
 been chosen, the line search in step 2 can be done with methods that do
 not predispose smoothness.</p>
-<div class="section" id="adding-the-optimization-class">
+<section id="adding-the-optimization-class">
 <h2>Adding the optimization class<a class="headerlink" href="#adding-the-optimization-class" title="Permalink to this headline">¶</a></h2>
 <p>Now that we know what to expect, we can proceed to the actual definition of the
 optimization study. If you didn’t complete <a class="reference internal" href="lesson1.html"><span class="doc">lesson 1</span></a>, download
@@ -246,8 +247,8 @@ parameter study.</p>
 <img alt="../_images/runopt.png" src="../_images/runopt.png" />
 <p>If the model loads you should get a screen picture similar to the one above this
 text.</p>
-</div>
-<div class="section" id="running-the-optimization-study">
+</section>
+<section id="running-the-optimization-study">
 <h2>Running the optimization study<a class="headerlink" href="#running-the-optimization-study" title="Permalink to this headline">¶</a></h2>
 <p>Select the <code class="docutils literal notranslate"><span class="pre">Main.OptStudy.Optimization</span></code> in the operation dropdown and
 then the Run button. The model starts cycling and after a few rounds you will
@@ -313,8 +314,8 @@ pane. This gives you access to all the settings and lets you control the
 appearance of graphs in detail. In the picture below we have selected
 <code class="docutils literal notranslate"><span class="pre">RGB</span> <span class="pre">=</span> <span class="pre">{1,0,0}</span></code>, i.e. red, for <code class="docutils literal notranslate"><span class="pre">Series1</span></code> and <code class="docutils literal notranslate"><span class="pre">Thickness</span> <span class="pre">=</span> <span class="pre">4</span></code>:</p>
 <img alt="../_images/optpath2.png" src="../_images/optpath2.png" />
-</div>
-<div class="section" id="caveat-when-running-optimization-studies">
+</section>
+<section id="caveat-when-running-optimization-studies">
 <h2>Caveat when running Optimization studies<a class="headerlink" href="#caveat-when-running-optimization-studies" title="Permalink to this headline">¶</a></h2>
 <p>This plot illustrates the convergence history in the “landscape” of the
 objective function. Here we can see the reasons for the convergence
@@ -349,8 +350,8 @@ able to get up and out and without providing any visible improvement.
 Finally, the convergence criterion is fulfilled. It can be mentioned
 that the convergence criterion requires both objective and design
 changes to be small.</p>
-</div>
-<div class="section" id="constrained-optimization">
+</section>
+<section id="constrained-optimization">
 <span id="optimization-contraint"></span><h2>Constrained optimization<a class="headerlink" href="#constrained-optimization" title="Permalink to this headline">¶</a></h2>
 <p>In the beginning of this lesson, we mentioned that the optimization
 problem formulation also handles constraints. They can be used for all
@@ -425,8 +426,8 @@ picture below:</p>
 AnyBody. In particular we will show how to use the Python programming language to run the
 same optimizations as we have done in this Tutorial.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -442,7 +443,7 @@ same optimizations as we have done in this Tutorial.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -485,7 +486,7 @@ same optimizations as we have done in this Tutorial.</p>
 </ul>
 </div><h3>Found a problem?</h3>
 
-<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Parameter_studies_and_optimization/lesson2.rst">
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Parameter_studies_and_optimization/lesson2.md">
     <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
 </p>
         </div>

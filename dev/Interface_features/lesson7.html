@@ -6,16 +6,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="noindex" name="robots" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="noindex" name="robots" />
 
     <title>Lesson 7: Wrapping the Model with AnyBody Project &#8212; AnyBody Tutorials v7.3.4-dev</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -74,7 +75,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-7-wrapping-the-model-with-anybody-project">
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-7-wrapping-the-model-with-anybody-project">
 <h1>Lesson 7: Wrapping the Model with AnyBody Project<a class="headerlink" href="#lesson-7-wrapping-the-model-with-anybody-project" title="Permalink to this headline">¶</a></h1>
 <p>“AnyBody Project” or just AnyProject, since it is defined with this
 class name, is a data structure aimed at wrapping a model and bringing
@@ -125,7 +126,7 @@ project called ArmProject.</p>
 <span class="p">};</span> <span class="c1">// Main</span>
 </pre></div>
 </div>
-<div class="section" id="project-files">
+<section id="project-files">
 <h2>Project Files<a class="headerlink" href="#project-files" title="Permalink to this headline">¶</a></h2>
 <p>Firstly, we add some file information to the project. This is done in
 the AnyProject Files folder, which is a predefined folder. Here we set
@@ -175,8 +176,8 @@ but it is also used during “Send to” export operations on the model
 (Class Operation of Main). It should, however, be noticed that the “Send
 to” Class Operation to some extent is functional for models without
 project information too.</p>
-</div>
-<div class="section" id="model-view-definitions">
+</section>
+<section id="model-view-definitions">
 <h2>Model View Definitions<a class="headerlink" href="#model-view-definitions" title="Permalink to this headline">¶</a></h2>
 <p>Model View Definitions are basically a set of view actions applied to a
 number of drawing groups. In order to set up some standard views for the
@@ -282,8 +283,8 @@ show their default drawing.</p>
 <p>In the final example model you can download, we have defined three other
 views, just to show how it works. For further information on how to
 define Model View Definitions, please refer to the Reference Manual.</p>
-</div>
-<div class="section" id="project-tasks">
+</section>
+<section id="project-tasks">
 <h2>Project Tasks<a class="headerlink" href="#project-tasks" title="Permalink to this headline">¶</a></h2>
 <p>Firstly, we define two simple tasks that execute the two important
 operations of our main (our only) study. It executes the setting of
@@ -445,8 +446,8 @@ file would leave the project information, such as Tasks and Views, more
 or less unaffected, even though the loaded model is shifted. This way a
 Task flow that requires more than one model can in principle be bound
 together in the same user interface.</p>
-</div>
-<div class="section" id="html-based-interaction-in-anyproject">
+</section>
+<section id="html-based-interaction-in-anyproject">
 <h2>HTML-based interaction in AnyProject<a class="headerlink" href="#html-based-interaction-in-anyproject" title="Permalink to this headline">¶</a></h2>
 <p>From AnyBody version 5.1, the windows displaying AnyProject are now
 capable of using HTML-based contents. This opens new possibilities for
@@ -456,8 +457,8 @@ views in the AnyProject. In this section, we shall add simple examples
 of both HTML-based and dynamically updated content as well as a
 hyperlink for user interaction with the model to the AnyProject model we
 have been creating above.</p>
-</div>
-<div class="section" id="adding-html-content-to-an-anyproject-anydescription">
+</section>
+<section id="adding-html-content-to-an-anyproject-anydescription">
 <h2>Adding HTML content to an AnyProject AnyDescription<a class="headerlink" href="#adding-html-content-to-an-anyproject-anydescription" title="Permalink to this headline">¶</a></h2>
 <p>We have already seen that the various types of AnyProject tasks all have
 an AnyDescription member, which is used to describe the purpose and
@@ -563,8 +564,8 @@ executes this string as a macro.</p>
 <p>For a full list of the available AHTML commands, please refer to the
 AnyBody Reference Manual (Introduction-&gt;How to write AnyScript-&gt;Section:
 HTML-based Descriptions).</p>
-</div>
-<div class="section" id="using-external-html-files">
+</section>
+<section id="using-external-html-files">
 <h2>Using external HTML files<a class="headerlink" href="#using-external-html-files" title="Permalink to this headline">¶</a></h2>
 <p>We have seen that HTML content can be written directly in an
 AnyDescription’s <code class="docutils literal notranslate"><span class="pre">BodyHTML</span></code> member, but for larger HTML pages this can
@@ -638,8 +639,8 @@ look like this:</p>
 <p>If we reload the model and run the <code class="docutils literal notranslate"><span class="pre">InverseDynamics</span></code> operation now while
 viewing the new AnyProject task, we will see that the displayed value
 for <code class="docutils literal notranslate"><span class="pre">r</span></code> is being updated dynamically as the values change in the model.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -655,7 +656,7 @@ for <code class="docutils literal notranslate"><span class="pre">r</span></code>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -702,7 +703,7 @@ for <code class="docutils literal notranslate"><span class="pre">r</span></code>
 </ul>
 </div><h3>Found a problem?</h3>
 
-<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Interface_features/lesson7.rst">
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Interface_features/lesson7.md">
     <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
 </p>
         </div>

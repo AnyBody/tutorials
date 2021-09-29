@@ -6,15 +6,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Defining a Parameter Study &#8212; AnyBody Tutorials v7.3.4</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -73,7 +74,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="defining-a-parameter-study">
+  <section class="tex2jax_ignore mathjax_ignore" id="defining-a-parameter-study">
 <h1>Defining a Parameter Study<a class="headerlink" href="#defining-a-parameter-study" title="Permalink to this headline">¶</a></h1>
 <p>A parameter study is a systematic way to vary several model
 parameters and have the system automatically run one or several analyses
@@ -87,10 +88,10 @@ influences the muscular effort of operating it.</p>
 position influence the muscle effort and metabolism of the rider. This
 is precisely what we shall do in this tutorial. To make life a bit
 easier for you, we have prepared a bicycle model you can download and
-play around with. {download}<code class="docutils literal notranslate"><span class="pre">Please</span> <span class="pre">click</span> <span class="pre">here</span> <span class="pre">to</span> <span class="pre">download</span> <span class="pre">the</span> <span class="pre">zip</span> <span class="pre">file</span> <span class="pre">OptimBike.zip</span> <span class="pre">&lt;Downloads/OptimBike2.zip&gt;</span></code> and unpack it to some
+play around with. <a class="reference download internal" download="" href="../_downloads/3baef19de9a426654b0f02de41b18722/OptimBike2.zip"><code class="xref download docutils literal notranslate"><span class="pre">Please</span> <span class="pre">click</span> <span class="pre">here</span> <span class="pre">to</span> <span class="pre">download</span> <span class="pre">the</span> <span class="pre">zip</span> <span class="pre">fileOptimBike.zip</span></code></a> and unpack it to some
 pertinent place on your hard disk.</p>
-<p>The bicycle model is pretty much the {ref}<code class="docutils literal notranslate"><span class="pre">2D</span> <span class="pre">Bike</span> <span class="pre">&lt;ammr:sphx_glr_auto_examples_Sports_plot_BikeModel2D.py&gt;</span></code> that you may know from the
-{doc}<code class="docutils literal notranslate"><span class="pre">AnyBody</span> <span class="pre">Managed</span> <span class="pre">Model</span> <span class="pre">Repository</span> <span class="pre">&lt;ammr:index&gt;</span></code>.</p>
+<p>The bicycle model is pretty much the <a class="reference external" href="https://anyscript.org/ammr-doc/auto_examples/Sports/plot_BikeModel2D.html#sphx-glr-auto-examples-sports-plot-bikemodel2d-py" title="(in AMMR v2.3)"><span class="xref std std-ref">2D Bike</span></a> that you may know from the
+<a class="reference external" href="https://anyscript.org/ammr-doc/index.html" title="(in AMMR v2.3)"><span class="xref std std-doc">AnyBody Managed Model Repository</span></a>.</p>
 <img alt="../_images/bike2D.png" src="../_images/bike2D.png" />
 <p>As you can see the model is very simple. It has two legs and a pelvis
 that is rigidly fixed to the seat. The feet are attached to the crank
@@ -112,7 +113,7 @@ changes. To account for this, a special feature has been set up in this
 model to adjust the phase shift of the crank torque profile to the seat
 position such that the minimum crank torque occurs when the pedals point
 towards the hip joint regardless of where the saddle is positioned.</p>
-<div class="section" id="some-general-terminology">
+<section id="some-general-terminology">
 <h2>Some General Terminology<a class="headerlink" href="#some-general-terminology" title="Permalink to this headline">¶</a></h2>
 <p>Before we proceed with the definition of a parameter study it might be
 useful to introduce the terminology used by AnyBody for parameter and
@@ -150,8 +151,8 @@ design variables. The “analysis” is in fact an AnyScript operation
 studies. To state an optimization or a parameter study properly, the
 design variables, the design measures, and the analysis must all be
 defined.</p>
-</div>
-<div class="section" id="definition-of-a-parameter-study">
+</section>
+<section id="definition-of-a-parameter-study">
 <h2>Definition of a Parameter Study<a class="headerlink" href="#definition-of-a-parameter-study" title="Permalink to this headline">¶</a></h2>
 <img alt="../_images/class_insert.png" src="../_images/class_insert.png" />
 <p>A parameter study is as the name indicates a study. Therefore its
@@ -544,8 +545,8 @@ definition of optimization studies.</p>
 <p class="admonition-title">See also</p>
 <p><strong>Next lesson:</strong> <a class="reference internal" href="lesson2.html"><span class="doc">Optimization Studies</span></a>.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -561,7 +562,7 @@ definition of optimization studies.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -604,7 +605,7 @@ definition of optimization studies.</p>
 </ul>
 </div><h3>Found a problem?</h3>
 
-<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Parameter_studies_and_optimization/lesson1.rst">
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Parameter_studies_and_optimization/lesson1.md">
     <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
 </p>
         </div>

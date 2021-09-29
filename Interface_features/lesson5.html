@@ -6,15 +6,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Lesson 5: The Command Line Application &#8212; AnyBody Tutorials v7.3.4</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -73,7 +74,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-5-the-command-line-application">
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-5-the-command-line-application">
 <h1>Lesson 5: The Command Line Application<a class="headerlink" href="#lesson-5-the-command-line-application" title="Permalink to this headline">¶</a></h1>
 <p>The AnyBody Modeling System comes with a command line application named
 AnyBodyCon.exe; sometimes referred to as the AnyBody Console
@@ -92,7 +93,7 @@ macro file containing commands.</p>
 <p>The <a class="reference external" href="https://github.com/AnyBody-Research-Group/AnyPyTools">AnyPyTools</a> Python library
 developed at Aalborg University. It greatly simplifies working with the console application.</p>
 </div>
-<div class="section" id="interactive-mode">
+<section id="interactive-mode">
 <h2>Interactive mode<a class="headerlink" href="#interactive-mode" title="Permalink to this headline">¶</a></h2>
 <p>We need a model to work on, so please download and save
 <a class="reference download internal" download="" href="../_downloads/85067cc57cd7d262f85b39ce776fc53a/Demo.OutputFile.any"><code class="xref download docutils literal notranslate"><span class="pre">Demo.OutputFile.any</span></code></a> in a working directory.</p>
@@ -115,8 +116,8 @@ Current path: C:\path\to\model
 </div>
 </li>
 </ol>
-</div>
-<div class="section" id="console-commands">
+</section>
+<section id="console-commands">
 <h2>Console commands<a class="headerlink" href="#console-commands" title="Permalink to this headline">¶</a></h2>
 <p>It only understands eight different commands. You can always get help by
 using the ‘help’ command or by calling AnyBodyCon with an /? argument.
@@ -147,8 +148,8 @@ AnyBody console.</p>
 | printdown &lt;object&gt;  | Recursively prints the values of all elements in an object folder.Example: <code class="docutils literal notranslate"><span class="pre">printdown</span> <span class="pre">Main.ArmModel.Jnts</span></code>                                           |
 | exit                 | Exits and returns to the command prompt.Example: <code class="docutils literal notranslate"><span class="pre">exit</span></code>                                                                                             |</p>
 </div></blockquote>
-</div>
-<div class="section" id="using-the-console-application">
+</section>
+<section id="using-the-console-application">
 <h2>Using the console application<a class="headerlink" href="#using-the-console-application" title="Permalink to this headline">¶</a></h2>
 <p>Start AnyBodyCon.exe from the command prompt and issue the command
 sequence</p>
@@ -226,7 +227,7 @@ AnyOutputFile) will be saved in h5 format in the working directory.
 These results can either be read into MATLAB or Python or be re-loaded
 into AnyBody GUI (Right click the output sub-folder of the study, and
 select “Load Data”) for review.</p>
-<div class="section" id="using-define-and-path-statements-for-loading-a-model">
+<section id="using-define-and-path-statements-for-loading-a-model">
 <h3>Using define and path statements for loading a model<a class="headerlink" href="#using-define-and-path-statements-for-loading-a-model" title="Permalink to this headline">¶</a></h3>
 <p>If you are firstly unfamiliar with these statements, you can find an
 introduction in the tutorial Getting started: AnyScript Programming.
@@ -261,9 +262,9 @@ change the number of time steps in our operation.</p>
 </pre></div>
 </div>
 <p>we will see that our model will only to 50 timesteps now.</p>
-</div>
-</div>
-<div class="section" id="non-interactive-mode">
+</section>
+</section>
+<section id="non-interactive-mode">
 <h2>Non-interactive Mode<a class="headerlink" href="#non-interactive-mode" title="Permalink to this headline">¶</a></h2>
 <p>One of the main strengths of the console application is that it can be
 executed by other software such as Matlab, Visual Basic or Python. You
@@ -343,8 +344,8 @@ to the definition in the .any file. As a result we see that the output
 is written to the file ‘myoutput.anydata.h5’.</p>
 <p>You are now ready to let the command line application be part of a
 system for biomechanical data processing of your own design.</p>
-</div>
-<div class="section" id="path-specification">
+</section>
+<section id="path-specification">
 <h2>Path specification<a class="headerlink" href="#path-specification" title="Permalink to this headline">¶</a></h2>
 <p>As mentioned earlier, you can add the path of AnyBodyCon.exe to the PATH
 environmental variable for your command prompt to ease the call to
@@ -384,8 +385,8 @@ files.</p></li>
 <p class="admonition-title">See also</p>
 <p><strong>Next lesson:</strong> <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Modifying the Loaded Model</span></a>.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -401,7 +402,7 @@ files.</p></li>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -448,7 +449,7 @@ files.</p></li>
 </ul>
 </div><h3>Found a problem?</h3>
 
-<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Interface_features/lesson5.rst">
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Interface_features/lesson5.md">
     <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
 </p>
         </div>

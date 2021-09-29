@@ -6,16 +6,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="noindex" name="robots" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="noindex" name="robots" />
 
     <title>18. Trouble Shooting AnyScript Models &#8212; AnyBody Tutorials v7.3.4-dev</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -73,7 +74,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="trouble-shooting-anyscript-models">
+  <section class="tex2jax_ignore mathjax_ignore" id="trouble-shooting-anyscript-models">
 <h1><span class="section-number">18. </span>Trouble Shooting AnyScript Models<a class="headerlink" href="#trouble-shooting-anyscript-models" title="Permalink to this headline">¶</a></h1>
 <p>If you think mechanics is simple, it’s probably just because you haven’t
 worked with three-dimensional space yet. The laws of mechanics are
@@ -99,7 +100,7 @@ erroneous</p></li>
 <li><p>Run-time errors - when a successfully loaded model refuses to be
 analyzed.</p></li>
 </ul>
-<div class="section" id="load-time-errors">
+<section id="load-time-errors">
 <h2>Load-time errors<a class="headerlink" href="#load-time-errors" title="Permalink to this headline">¶</a></h2>
 <p>A load-time error occurs when you load a model by pressing F7 or the
 M&lt;-S icon on top of each window. This causes the system to attempt a
@@ -156,7 +157,7 @@ likely to meet statements or references to objects that do not exist.
 The compiler will report en error in WrongFile.any, but the real error
 is in the file that included WrongFile.any.</p>
 <p>Here are some typical errors and their consequences:</p>
-<div class="section" id="forgotten-semicolon">
+<section id="forgotten-semicolon">
 <h3>Forgotten semicolon<a class="headerlink" href="#forgotten-semicolon" title="Permalink to this headline">¶</a></h3>
 <p>Every statement in AnyScript must be terminated by a semicolon, and it is easy
 to forget. The consequence is that the compiler will proceed to the next line
@@ -164,8 +165,8 @@ and probably report that it has encountered something unexpected there. By
 closer investigation, the next line may be fully in order, and you get confused.
 The problem was really on the former line.</p>
 <p>Notice also that end braces must also have a semicolon after them.</p>
-</div>
-<div class="section" id="unbalanced-braces">
+</section>
+<section id="unbalanced-braces">
 <h3>Unbalanced braces<a class="headerlink" href="#unbalanced-braces" title="Permalink to this headline">¶</a></h3>
 <p>Braces <code class="docutils literal notranslate"><span class="pre">{}</span></code> are used to group things together in AnyScript. They must be coherent
 and balanced, and if you have one too few or one too many it can completely
@@ -176,19 +177,19 @@ follow the brace level and spot mistakes.</p>
 text and press Alt-F8, all lines are indented according to the brace level, and
 this often makes it much easier to see where the problem is. Beware that the
 missing brace can be in an include file.</p>
-</div>
-<div class="section" id="mix-up-of-decimal-points-and-commas">
+</section>
+<section id="mix-up-of-decimal-points-and-commas">
 <h3>Mix-up of decimal points and commas<a class="headerlink" href="#mix-up-of-decimal-points-and-commas" title="Permalink to this headline">¶</a></h3>
 <p>Some nationalities use decimal commas, and some use decimal points. The AnyBody
 Modeling System consistently uses decimal points regardless of the nationality
 settings in your computer. If you type a comma in place of a decimal point, you
 will get a syntax error.</p>
-</div>
-<div class="section" id="mix-up-of-of-letters">
+</section>
+<section id="mix-up-of-of-letters">
 <h3>Mix-up of of letters<a class="headerlink" href="#mix-up-of-of-letters" title="Permalink to this headline">¶</a></h3>
 <p>Beware that there is a difference between the letter ‘O’ and the digit zero, ‘0’, and the letter ‘l’ and the digit one, ‘1’.</p>
-</div>
-<div class="section" id="inconsistent-use-of-capitals">
+</section>
+<section id="inconsistent-use-of-capitals">
 <h3>Inconsistent use of capitals<a class="headerlink" href="#inconsistent-use-of-capitals" title="Permalink to this headline">¶</a></h3>
 <p>AnyScript is case-sensitive, so these two statements refer to different variables:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">MyVariable</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -196,8 +197,8 @@ will get a syntax error.</p>
 </pre></div>
 </div>
 <p>This also means that predefined class names such as AnyVar or AnyFolder must be written with correct capitalization.</p>
-</div>
-<div class="section" id="missing-reference-operator">
+</section>
+<section id="missing-reference-operator">
 <h3>Missing reference operator<a class="headerlink" href="#missing-reference-operator" title="Permalink to this headline">¶</a></h3>
 <p>If by mistake you assign two folders to each other:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
@@ -217,8 +218,8 @@ folders to each other must be by reference like this.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="missing-expected-members">
+</section>
+<section id="missing-expected-members">
 <h3>Missing expected members<a class="headerlink" href="#missing-expected-members" title="Permalink to this headline">¶</a></h3>
 <p>Some classes in AnyScript have members that must be initialized. For instance,
 this declaration</p>
@@ -245,16 +246,16 @@ are untouchable. This declaration:</p>
 </div>
 <p>because t is a protected variable. It is set automatically by the system and
 cannot be assigned a value by the user.</p>
-</div>
-</div>
-<div class="section" id="run-time-errors">
+</section>
+</section>
+<section id="run-time-errors">
 <h2>Run-time errors<a class="headerlink" href="#run-time-errors" title="Permalink to this headline">¶</a></h2>
 <p>Run-time errors occur during analysis of a successfully loaded model.
 Their nature and remedies are completely dependent on the nature of the
-study. Please refer to the tutorial “{doc}<code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">study</span> <span class="pre">of</span> <span class="pre">studies</span> <span class="pre">&lt;/A_study_of_studies/intro&gt;</span></code>” for further
+study. Please refer to the tutorial “<a class="reference internal" href="../A_study_of_studies/intro.html"><span class="doc">A study of studies</span></a>” for further
 information.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -270,7 +271,7 @@ information.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -307,7 +308,7 @@ information.</p>
 </ul>
 </div><h3>Found a problem?</h3>
 
-<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Troubleshooting_anyscript/intro.rst">
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Troubleshooting_anyscript/intro.md">
     <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
 </p>
         </div>

@@ -6,16 +6,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="noindex" name="robots" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="noindex" name="robots" />
 
     <title>Lesson 3: Connecting Segments by Joints &#8212; AnyBody Tutorials v7.3.4-dev</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -74,14 +75,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-3-connecting-segments-by-joints">
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-3-connecting-segments-by-joints">
 <h1>Lesson 3: Connecting Segments by Joints<a class="headerlink" href="#lesson-3-connecting-segments-by-joints" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Here’s an AnyScript file to start on if you have not completed the
 previous lesson: <a class="reference download internal" download="" href="../_downloads/580d7e9997b9565d5ee7a23e30e86da8/demo.lesson3.any"><code class="xref download docutils literal notranslate"><span class="pre">demo.lesson3.any</span></code></a>.</p>
 </div>
-<div class="section" id="some-quick-theory">
+<section id="some-quick-theory">
 <h2>Some quick theory<a class="headerlink" href="#some-quick-theory" title="Permalink to this headline">¶</a></h2>
 <p>You can think of joints in two different ways:</p>
 <ul class="simple">
@@ -93,8 +94,8 @@ two independent segments in AnyBody, they will have 2 x 6 = 12 degrees of freedo
 in total.</p>
 <p>Joints in AnyBody take away (or constrain) some of these degrees of freedom with the different joint types (eg. revolute, spherical etc.)
 differing only in the number and type of degrees of freedom they constrain.</p>
-</div>
-<div class="section" id="the-global-reference-frame">
+</section>
+<section id="the-global-reference-frame">
 <h2>The global reference frame<a class="headerlink" href="#the-global-reference-frame" title="Permalink to this headline">¶</a></h2>
 <p>Every model needs a global reference frame to serve as a ground reference point for measuring positions &amp; orientations from.
 It is already defined in the model template that you originally used, and is shown below:</p>
@@ -142,8 +143,8 @@ size and change its color to distinguish it from the yellow segments:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="creating-a-revolute-joint">
+</section>
+<section id="creating-a-revolute-joint">
 <h2>Creating a revolute joint<a class="headerlink" href="#creating-a-revolute-joint" title="Permalink to this headline">¶</a></h2>
 <p>We can now connect the upper arm to the global reference frame through a shoulder joint.
 For this planar 2-D model, where we simplify the shoulder as a simple revolute joint (also known as a hinge joint).
@@ -167,8 +168,8 @@ We create a new <code class="docutils literal notranslate"><span class="pre">Any
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">AnyRevoluteJoint</span></code> class creates a revolute joint object connecting two nodes on different segments.</p>
-</div>
-<div class="section" id="relative-folder-paths-why-use-and-in-anyscript">
+</section>
+<section id="relative-folder-paths-why-use-and-in-anyscript">
 <span id="relative-folder-path"></span><h2>Relative folder paths - Why use ‘.’ and ‘..’ in AnyScript?<a class="headerlink" href="#relative-folder-paths-why-use-and-in-anyscript" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">AnyRevoluteJoint</span></code> object named “Shoulder”, needs to know which nodes on each segment to connect. For this
 purpose, we have the lines:</p>
@@ -184,8 +185,8 @@ we are writing into, in the model tree.</strong></p>
 to find them. This “dot” system is quite similar to the system you may
 know from directory structures in Dos, Windows, Unix, or just about any
 other computer operating system.</p>
-</div>
-<div class="section" id="reference-objects-and-the-symbol">
+</section>
+<section id="reference-objects-and-the-symbol">
 <span id="reference-objects"></span><h2>Reference objects and the ‘&amp;’ symbol<a class="headerlink" href="#reference-objects-and-the-symbol" title="Permalink to this headline">¶</a></h2>
 <p>You can also see that the Shoulder point on GlobalRef has been given the local name of “GroundNode”.
 This means that, within the current folder, we can simply refer to
@@ -194,8 +195,8 @@ the point as “GroundNode” instead of the longer external reference.</p>
 rather than a copy of it. We denote this by the</strong> <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> <strong>sign.</strong></p>
 <p>If “Main.ArmModel.GlobalRef.Shoulder” moves around, “Main.ArmModel.Jnts.Shoulder.GroundNode” will keep up with those changes in position. Hit F7 to reload the model again to make
 sure that the definition is correct.</p>
-</div>
-<div class="section" id="customizing-the-revolute-joint">
+</section>
+<section id="customizing-the-revolute-joint">
 <h2>Customizing the revolute joint<a class="headerlink" href="#customizing-the-revolute-joint" title="Permalink to this headline">¶</a></h2>
 <p>We then have:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span><span class="p">;</span>
@@ -222,8 +223,8 @@ default reference frame for the joint. When directly accessing the
 post-simulation values of constraint reaction forces etc., you must
 remember to interpret them in the joint’s default reference frame.</p>
 </div>
-</div>
-<div class="section" id="creating-a-revolute-elbow-joint">
+</section>
+<section id="creating-a-revolute-elbow-joint">
 <h2>Creating a revolute elbow joint<a class="headerlink" href="#creating-a-revolute-elbow-joint" title="Permalink to this headline">¶</a></h2>
 <p>We will next add a revolute elbow joint. While the definition is similar to the shoulder,
 you will learn to use a handy tool to define the references. Copy-paste the skeleton of the elbow
@@ -248,8 +249,8 @@ joint as follows:</p>
 anything yet. In this simple model it is easy to find the relative path
 of the pertinent nodes on the upper arm and the forearm, but in a
 complex model, this can be difficult. So we use “Absolute folder paths”.</p>
-</div>
-<div class="section" id="absolute-folder-path-and-some-useful-tips">
+</section>
+<section id="absolute-folder-path-and-some-useful-tips">
 <span id="absolute-folder-path"></span><h2>Absolute folder path (and some useful tips)<a class="headerlink" href="#absolute-folder-path-and-some-useful-tips" title="Permalink to this headline">¶</a></h2>
 <p>Place the cursor just before the semicolon in the line that reads <code class="docutils literal notranslate"><span class="pre">AnyRefNode</span> <span class="pre">&amp;UpperArmNode</span> <span class="pre">=</span> <span class="pre">;</span></code>.
 Open the model tree where the UpperArm folder should expand as shown below.</p>
@@ -281,8 +282,8 @@ kinematics. This is taken care of by kinematic drivers.</p>
 <p class="admonition-title">See also</p>
 <p><strong>Next lesson:</strong> They are one of the subjects of <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4: Imparting Movement with Drivers</span></a>.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -298,7 +299,7 @@ kinematics. This is taken care of by kinematic drivers.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -344,7 +345,7 @@ kinematics. This is taken care of by kinematic drivers.</p>
 </ul>
 </div><h3>Found a problem?</h3>
 
-<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_Getting_started_anyscript/lesson3.rst">
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_Getting_started_anyscript/lesson3.md">
     <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
 </p>
         </div>

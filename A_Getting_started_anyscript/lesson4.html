@@ -6,15 +6,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Lesson 4: Imparting movement with Drivers &#8212; AnyBody Tutorials v7.3.4</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -73,7 +74,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-4-imparting-movement-with-drivers">
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-4-imparting-movement-with-drivers">
 <h1>Lesson 4: Imparting movement with Drivers<a class="headerlink" href="#lesson-4-imparting-movement-with-drivers" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -87,7 +88,7 @@ a forearm by the elbow. What we want to do now is to make the arm move.</p>
 <p><strong>Can an arm without muscles move? Well, in reality no, but AnyBody simulations use
 the inverse dynamics technique, where we prescribe motion first and then deduce
 the values of muscle forces which produce the motion.</strong></p>
-<div class="section" id="measures-drivers">
+<section id="measures-drivers">
 <span id="measures-and-drivers"></span><h2>Measures &amp; drivers<a class="headerlink" href="#measures-drivers" title="Permalink to this headline">¶</a></h2>
 <p>We need to specify the motion for two degrees of freedom (DOF) of our arm mechanism, because it has hinge joints at the
 shoulder and at the elbow.</p>
@@ -104,8 +105,8 @@ which we will chose to be measures of the shoulder and elbow joint angle values.
 of the end-point of the ForeArm segment (the wrist).</p>
 <p>Creating more than 2 driver constraints will over-constrain the model and lead to errors.</p>
 </div>
-</div>
-<div class="section" id="creating-a-constant-velocity-joint-motion">
+</section>
+<section id="creating-a-constant-velocity-joint-motion">
 <span id="anykineqsimpledriver"></span><h2>Creating a constant velocity joint motion<a class="headerlink" href="#creating-a-constant-velocity-joint-motion" title="Permalink to this headline">¶</a></h2>
 <p>Let’s create a new folder and define two drivers:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">};</span> <span class="c1">// Jnts folder</span>
@@ -149,8 +150,8 @@ of “DriverPos” and “DriverVel” are radians and radians/sec respectively.
 use the reference operator <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> to point the local variable “Jnt” towards the
 actual shoulder/elbow joint objects existing in a different folder</p>
 <p>Since “Jnt” is a reference, it will automatically update as the joint angles change during motion.</p>
-</div>
-<div class="section" id="running-a-kinematic-simulation">
+</section>
+<section id="running-a-kinematic-simulation">
 <h2>Running a kinematic simulation<a class="headerlink" href="#running-a-kinematic-simulation" title="Permalink to this headline">¶</a></h2>
 <p>Re-load the model by hitting F7, and you should see the message “Loaded successfully” with NO
 warning messages about the lack of kinematic constraints. You’re now ready to get this model moving.</p>
@@ -168,15 +169,15 @@ that are specific to that study.</p>
 makes sense. With a kinematic analysis, you can investigate positions, velocities, and
 accelerations. But force, power, energy or other such things are not computed. These properties are calculated by the
 “InverseDynamics” study.</p>
-</div>
-<div class="section" id="replaying-a-simulation">
+</section>
+<section id="replaying-a-simulation">
 <h2>Replaying a simulation<a class="headerlink" href="#replaying-a-simulation" title="Permalink to this headline">¶</a></h2>
 <p>While the analysis is running, you can see the model move in the Model View window.</p>
 <p>When the analysis in finished, you can use the replay panel to replay
 the motion as you would in a movie player.</p>
 <p><img alt="Replay toolbar" src="../_images/image53.png" /></p>
-</div>
-<div class="section" id="viewing-simulation-outputs">
+</section>
+<section id="viewing-simulation-outputs">
 <h2>Viewing simulation outputs<a class="headerlink" href="#viewing-simulation-outputs" title="Permalink to this headline">¶</a></h2>
 <p>If you look at the “ArmModelStudy” object in the AnyScript window, start/end times and the
 number of simulation steps (time frames) are not specified. These are actually optional parameters
@@ -187,8 +188,8 @@ folder contains the instantaneous values of all the time varying variables (incl
 <p>In “ArmModelStudy.Output.Model.Segs.ForeArm” in the model tree, you find all the nodes on the segment. Within the “HandNode”
 sub-folder, you will find <code class="docutils literal notranslate"><span class="pre">r</span></code> - the position vector of the node. Clicking on <code class="docutils literal notranslate"><span class="pre">r</span></code>
 shows the hand position vector (w.r.t global) for each time instant in the Information Window.</p>
-</div>
-<div class="section" id="plotting-simulation-results">
+</section>
+<section id="plotting-simulation-results">
 <h2>Plotting simulation results<a class="headerlink" href="#plotting-simulation-results" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -204,8 +205,8 @@ refer to <a class="reference internal" href="../A_Getting_started/lesson3.html#c
 <p class="admonition-title">See also</p>
 <p><strong>Next lesson:</strong> This is the subject of <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Definition of muscles and external forces</span></a>.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -221,7 +222,7 @@ refer to <a class="reference internal" href="../A_Getting_started/lesson3.html#c
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -267,7 +268,7 @@ refer to <a class="reference internal" href="../A_Getting_started/lesson3.html#c
 </ul>
 </div><h3>Found a problem?</h3>
 
-<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_Getting_started_anyscript/lesson4.rst">
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_Getting_started_anyscript/lesson4.md">
     <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
 </p>
         </div>

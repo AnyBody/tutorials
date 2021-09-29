@@ -6,15 +6,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Lesson 3: Making Ends Meet &#8212; AnyBody Tutorials v7.3.4</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -73,13 +74,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-3-making-ends-meet">
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-3-making-ends-meet">
 <h1>Lesson 3: Making Ends Meet<a class="headerlink" href="#lesson-3-making-ends-meet" title="Permalink to this headline">¶</a></h1>
 <p>Your model still lacks the the full specifications of how the human and
 environment (pedal &amp; ground) are connected, and how the model moves.</p>
 <p>To ensure that sufficient kinematic information is provided to AnyBody, it is best to start with
 an inventory check on the degrees of freedom (DOFs) of the model.</p>
-<div class="section" id="degrees-of-freedom-overview">
+<section id="degrees-of-freedom-overview">
 <h2>Degrees of freedom overview<a class="headerlink" href="#degrees-of-freedom-overview" title="Permalink to this headline">¶</a></h2>
 <p>The pedal is simply hinged to the global reference frame, and has the following DOFs:</p>
 <ul class="simple">
@@ -107,8 +108,8 @@ We will do this using the concepts of “Measures and Drivers” introduced in</
 <li><p>Step 7 - 1 DOF constrained as pedal rotation at constant velocity</p></li>
 </ul>
 <p><strong>Each of these steps is implemented in sequence below.</strong></p>
-</div>
-<div class="section" id="the-default-mannequin-drivers">
+</section>
+<section id="the-default-mannequin-drivers">
 <span id="mannequin-drivers"></span><h2>The “Default mannequin drivers”<a class="headerlink" href="#the-default-mannequin-drivers" title="Permalink to this headline">¶</a></h2>
 <p>Do all 19 driver constraints mentioned above need to be added before a kinematic simulation will work? Yes. But there
 is one model feature that will make your life easier.</p>
@@ -119,8 +120,8 @@ constraints - constraints that be overridden by the 19 ‘hard constraints’ wh
 <p><strong>You can therefore sequentially add the 19 hard drivers on top of the soft default drivers, and deactivate the default
 drivers at the</strong> <a class="reference internal" href="#kinematically-determined"><span class="std std-ref">very end of this lesson</span></a> <strong>. The advantage is that you have a model whose
 kinematics can be tested at every step along the way.</strong></p>
-</div>
-<div class="section" id="step-1-fixing-the-pelvis-to-ground">
+</section>
+<section id="step-1-fixing-the-pelvis-to-ground">
 <h2>Step 1: Fixing the pelvis to ground<a class="headerlink" href="#step-1-fixing-the-pelvis-to-ground" title="Permalink to this headline">¶</a></h2>
 <p>The pedal is currently hinged at the origin of the global reference
 frame. A “seat” node to which we fix the pelvis must therefore
@@ -242,8 +243,8 @@ where it will eventually be. It is not necessary to align the model
 exactly with the pedal. The kinematic constraints will take care of this
 once they are properly defined.</strong></p>
 <a class="reference internal image-reference" href="../_images/image19.png"><img alt="Posture Adjustment1" class="align-right" src="../_images/image19.png" style="width: 300px;" /></a>
-</div>
-<div class="section" id="step-2-locking-pelvis-thorax-rotation">
+</section>
+<section id="step-2-locking-pelvis-thorax-rotation">
 <h2>Step 2: Locking pelvis-thorax rotation<a class="headerlink" href="#step-2-locking-pelvis-thorax-rotation" title="Permalink to this headline">¶</a></h2>
 <p>The only purpose of the trunk in this model is to anchor the psoas muscles which move
 the leg. So we will set to zero, the angles and velocities of 3 DOF of pelvis-thorax flexion, lateral bending and axial rotation.</p>
@@ -281,8 +282,8 @@ such as DriverPos, DriverVel etc. can be (<a class="reference internal" href="..
 <span class="p">};</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="step-3-locking-neck-rotation">
+</section>
+<section id="step-3-locking-neck-rotation">
 <h2>Step 3: Locking neck rotation<a class="headerlink" href="#step-3-locking-neck-rotation" title="Permalink to this headline">¶</a></h2>
 <p>The following lines lock all 3 DOFs of rotation between the skull and the thorax (neck). The
 drivers are defined in a manner that is very similar to Step 2.</p>
@@ -311,8 +312,8 @@ drivers are defined in a manner that is very similar to Step 2.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="step-4-connecting-the-foot-to-the-pedal">
+</section>
+<section id="step-4-connecting-the-foot-to-the-pedal">
 <h2>Step 4: Connecting the foot to the pedal<a class="headerlink" href="#step-4-connecting-the-foot-to-the-pedal" title="Permalink to this headline">¶</a></h2>
 <p>The foot will be connected to the pedal by a spherical joint. We have assumed
 the connection node on the foot to be the “MetatarsalJoint2Node”. The driver is
@@ -333,8 +334,8 @@ defined inside the “JointsAndDrivers.any” file in the following way:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="step-5-locking-the-ankle-angles">
+</section>
+<section id="step-5-locking-the-ankle-angles">
 <h2>Step 5: Locking the ankle angles<a class="headerlink" href="#step-5-locking-the-ankle-angles" title="Permalink to this headline">¶</a></h2>
 <p>In ankle has 2 DOFs - AnklePlantarFlexion and SubTarEversion. We will constrain both
 DOFs to always equal zero. Just as in Steps 3 &amp; 4, this will be done using <code class="docutils literal notranslate"><span class="pre">AnyKinEqSimpleDriver</span></code>:</p>
@@ -363,8 +364,8 @@ DOFs to always equal zero. Just as in Steps 3 &amp; 4, this will be done using <
 </pre></div>
 </div>
 <p>Re-loading the model should show no significant differences.</p>
-</div>
-<div class="section" id="step-6-fix-the-lateral-position-of-the-knee">
+</section>
+<section id="step-6-fix-the-lateral-position-of-the-knee">
 <h2>Step 6: Fix the lateral position of the knee<a class="headerlink" href="#step-6-fix-the-lateral-position-of-the-knee" title="Permalink to this headline">¶</a></h2>
 <p>Imagine your pelvis on a seat (like in Step 1) and your foot resting at the tip of a sharp spike jutting
 out of the ground (a spherical joint connection, like in Step 4). You can still move your knee sideways.
@@ -404,8 +405,8 @@ with respect to the global reference frame.</p>
 <p><strong>We however, only wish to constrain the medio-lateral component of this vector, which is the global
 “Z” component. We hence specify the</strong> <code class="docutils literal notranslate"><span class="pre">MeasureOrganizer</span></code> <strong>property to specify that only the 3rd component of the measure
 which is given by the index 2 (0 being X, 1 being Y component) must be constrained by the driver.</strong></p>
-</div>
-<div class="section" id="step-7-specify-pedal-movement">
+</section>
+<section id="step-7-specify-pedal-movement">
 <h2>Step 7: Specify pedal movement<a class="headerlink" href="#step-7-specify-pedal-movement" title="Permalink to this headline">¶</a></h2>
 <p>We will specify motion for the pedal’s hinge joint again using the <code class="docutils literal notranslate"><span class="pre">AnyKinEqSimpleDriver</span></code>.
 This resembles what you did in <a class="reference internal" href="../A_Getting_started_anyscript/lesson4.html#anykineqsimpledriver"><span class="std std-ref">this earlier chapter</span></a>.</p>
@@ -438,14 +439,14 @@ This resembles what you did in <a class="reference internal" href="../A_Getting_
 this angle increases as a rate of 45 degrees per second.</p>
 <p><strong>For now, hit F7 again to reload the model. Notice that the system no
 longer complains about the model being kinematically indeterminate.</strong></p>
-</div>
-<div class="section" id="running-kinematics">
+</section>
+<section id="running-kinematics">
 <h2>Running kinematics<a class="headerlink" href="#running-kinematics" title="Permalink to this headline">¶</a></h2>
 <p>Select and run the ‘Main.Study.Kinematics’ operation from the operations dropdown menu (<a class="reference internal" href="../A_Getting_started/lesson2.html#running-analysis"><span class="std std-ref">more info here</span></a>).
 This will show you the movement of the entire system as the pedal is rotating.</p>
 <p><img alt="Operation Result Kinematics" src="../_images/image35.png" /></p>
-</div>
-<div class="section" id="check-if-model-is-kinematically-determined">
+</section>
+<section id="check-if-model-is-kinematically-determined">
 <span id="kinematically-determined"></span><h2>Check if model is kinematically determined?<a class="headerlink" href="#check-if-model-is-kinematically-determined" title="Permalink to this headline">¶</a></h2>
 <p>Finally, you will check the number of DOFs and the number of kinematic
 constraints in the simulation from the “Object Description” of your “Study” object.
@@ -504,10 +505,10 @@ and this is exactly as same as the total number of DOFs. Of course, you
 can still run the kinematics of your model.</p>
 <div class="without-title admonition seealso">
 <p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> Now that the kinematics is in order let us move on to the {doc}<code class="docutils literal notranslate"><span class="pre">kinetic</span> <span class="pre">analysis</span> <span class="pre">in</span> <span class="pre">Lesson</span> <span class="pre">4</span> <span class="pre">and</span> <span class="pre">see</span> <span class="pre">what</span> <span class="pre">the</span> <span class="pre">model</span> <span class="pre">is</span> <span class="pre">good</span> <span class="pre">for.</span> <span class="pre">&lt;lesson4&gt;</span></code></p>
+<p><strong>Next lesson:</strong> Now that the kinematics is in order let us move on to the <a class="reference internal" href="lesson4.html"><span class="doc">kineticanalysis in Lesson 4 and see what the model is goodfor.</span></a></p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -523,7 +524,7 @@ can still run the kinematics of your model.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -567,7 +568,7 @@ can still run the kinematics of your model.</p>
 </ul>
 </div><h3>Found a problem?</h3>
 
-<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_Getting_started_modeling/lesson3.rst">
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_Getting_started_modeling/lesson3.md">
     <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
 </p>
         </div>

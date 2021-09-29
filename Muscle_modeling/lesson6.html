@@ -6,15 +6,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Lesson 6: General Muscles &#8212; AnyBody Tutorials v7.3.4</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -73,7 +74,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-6-general-muscles">
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-6-general-muscles">
 <h1>Lesson 6: General Muscles<a class="headerlink" href="#lesson-6-general-muscles" title="Permalink to this headline">¶</a></h1>
 <p>Physiological muscles are truly amazing machines, and despite many
 attempts it has not been possible to make technical actuators that are
@@ -86,8 +87,8 @@ muscles, which are confined to acting along strings.</p>
 <p>The solution is the AnyGeneralMuscle class. This type of muscle is
 capable of acting on <em>Kinematic Measures</em>. <em>Kinematic Measures</em> is an
 abstract class representing anything you can measure on a model, and
-there is in fact {doc}<code class="docutils literal notranslate"><span class="pre">an</span> <span class="pre">entire</span> <span class="pre">tutorial</span> <span class="pre">lesson</span> <span class="pre">devoted</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">subject</span> <span class="pre">&lt;../The_mechanical_elements/lesson4&gt;</span></code> in the
-section on {doc}<code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">Mechanical</span> <span class="pre">Elements</span> <span class="pre">&lt;../The_mechanical_elements/intro&gt;</span></code>. Some
+there is in fact <a class="reference internal" href="../The_mechanical_elements/lesson4.html"><span class="doc">an entire tutorial lesson devoted to the subject</span></a> in the
+section on <a class="reference internal" href="../The_mechanical_elements/intro.html"><span class="doc">The Mechanical Elements</span></a>. Some
 examples are:</p>
 <ul class="simple">
 <li><p>A general muscle working on a distance measure between two points
@@ -102,7 +103,7 @@ the center of mass.</p></li>
 </ul>
 <p>This lesson demonstrates how general muscles can be used for a variety
 of modeling tasks.</p>
-<div class="section" id="muscles-as-joint-torque-providers">
+<section id="muscles-as-joint-torque-providers">
 <h2>Muscles as joint torque providers<a class="headerlink" href="#muscles-as-joint-torque-providers" title="Permalink to this headline">¶</a></h2>
 <p>One of the purposes of the AnyBody Modeling System is to be able to
 model the musculoskeletal system to a realistic level of detail.
@@ -116,7 +117,8 @@ muscles to the joints to replace the physiological muscles of the body.
 This way, the “muscle forces” computed in the general muscles will
 simply be the joint torques.</p>
 <p>The example from the preceding lessons is not well suited to play with joint
-torques, so please {download}<code class="docutils literal notranslate"><span class="pre">download</span> <span class="pre">a</span> <span class="pre">new</span> <span class="pre">example</span> <span class="pre">to</span> <span class="pre">start</span> <span class="pre">on.</span> <span class="pre">&lt;Downloads/MuscleDemo.6.any&gt;</span></code> This is in fact a simplified version of the simple
+torques, so please <a class="reference download internal" download="" href="../_downloads/9f6a87f3ab96e977574c5e0800acdb81/MuscleDemo.6.any"><code class="xref download docutils literal notranslate"><span class="pre">download</span> <span class="pre">a</span> <span class="pre">new</span> <span class="pre">example</span> <span class="pre">to</span> <span class="pre">start</span> <span class="pre">on.</span></code></a>
+This is in fact a simplified version of the simple
 arm example from the <em>Getting Started with AnyScript</em> tutorial, where the
 muscles have been removed. The model has two segments, an upper arm and a
 forearm, and is attached to the global reference frame at the shoulder. It has a
@@ -256,8 +258,8 @@ solution. The muscle recruitment algorithm will then distribute the load
 between joints according to their individual strengths, and it is
 therefore important to have reasonable estimates of joint strengths for
 this type of situation.</p>
-</div>
-<div class="section" id="contact-and-other-boundary-conditions">
+</section>
+<section id="contact-and-other-boundary-conditions">
 <h2>Contact and other boundary conditions<a class="headerlink" href="#contact-and-other-boundary-conditions" title="Permalink to this headline">¶</a></h2>
 <p>One of the characteristics of muscles is that they are unilateral, i.e.
 they can only exert force in one direction. Mathematically this behavior
@@ -460,8 +462,8 @@ deals with the important topic of ligament modeling.</p>
 <p class="admonition-title">See also</p>
 <p><strong>Next lesson:</strong> <a class="reference internal" href="lesson7.html"><span class="doc">Lesson 7: Ligaments</span></a>.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -477,7 +479,7 @@ deals with the important topic of ligament modeling.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -524,7 +526,7 @@ deals with the important topic of ligament modeling.</p>
 </ul>
 </div><h3>Found a problem?</h3>
 
-<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Muscle_modeling/lesson6.rst">
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Muscle_modeling/lesson6.md">
     <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
 </p>
         </div>
