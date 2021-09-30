@@ -122,7 +122,7 @@ Germany).</p>
 a model with two segments which contain the definition of a surface
 each, one for the source (bone color) and one for the target (yellow) bone. When we load this
 model, the Model View should show the following picture:</p>
-<a class="reference internal image-reference" href="../_images/image136.png"><img alt="../_images/image136.png" src="../_images/image136.png" style="width: 60%;" /></a>
+<p><img alt="Modelview of initial load" src="../_images/image136.png" /></p>
 <p>To define a new scaling function let us insert a new AnyFunTransform3DLin2
 object after the target segment:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyFunTransform3DLin2 &lt;ObjectName&gt; =</span>
@@ -134,9 +134,9 @@ object after the target segment:</p>
 <span class="gr">};</span>
 </pre></div>
 </div>
-<p>The AnyFunTransform3DLin2 object allows us to build a transform that
-fits a set of source and target landmarks in a least-squares manner as
-mentioned before. The object constructs a linear transforms in a full
+<p>The <code class="docutils literal notranslate"><span class="pre">AnyFunTransform3DLin2</span></code> object allows us to build a transform that
+fits a set of source and target landmarks in a least-squares manner.
+The object constructs a linear transforms in a full
 affine (linear transformation with translation, rotation, size-scaling
 and skewing, i.e. 12 degrees of freedom), uniform (orthogonal rotation
 with uniform scaling and translation, i.e., 9 d.o.f.), or rigid-body
@@ -150,13 +150,13 @@ modes:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">VTK_LANDMARK_RIGIDBODY</span></code></p></li>
 </ul>
 <p>A description of this function can be found
-<a class="reference external" href="http://davis.lbl.gov/Manuals/VTK-4.5/classvtkLandmarkTransform.html#w0">here</a>.</p>
+<a class="reference external" href="https://vtk.org/doc/release/7.1/html/classvtkLandmarkTransform.html">here</a>.</p>
 <p>For this example we want to register our source surface into the target one by using a
 full affine transform. Therefore, we select several corresponding points
 on the surfaces and put them into the two point-sets called Points0 and
 Points1, which are the source and target points, respectively. As the next
-step, we change the mode of the AnyFunTransform3DLin2 object to
-VFK_LANDMARK_AFFINE to use the affine transform:</p>
+step, we change the mode of the <code class="docutils literal notranslate"><span class="pre">AnyFunTransform3DLin2</span></code> object to
+<code class="docutils literal notranslate"><span class="pre">VFK_LANDMARK_AFFINE</span></code> to use the affine transform:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFunTransform3DLin2</span> <span class="gr">MyTransform</span> <span class="o">=</span>
 <span class="p">{</span>
   <span class="c1">//PreTransforms = {};</span>
@@ -198,14 +198,14 @@ to give this transformation a name and apply it to the source surface:</p>
 <p>Reloading the model and looking at the bones shown in the Model View, we
 can see that these bones are now merged. To highlight the differences,
 we select one of them. This will produce the following picture.</p>
-<a class="reference internal image-reference" href="../_images/image229.png"><img alt="../_images/image229.png" src="../_images/image229.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image229.png"><img alt="Target and scaled source bone" src="../_images/image229.png" style="width: 60%;" /></a>
 <p>The source bone is now transformed, i.e., translated, scaled and
 skewed to match the target bone. To make that clear, let us add a new
-AnyFunTransform3DLin2 called MyTransform2 to the model which we place
+<code class="docutils literal notranslate"><span class="pre">AnyFunTransform3DLin2</span></code> called MyTransform2 to the model which we place
 after MyTransform. The intention is to construct a rigid-body
 registration transform between target and source surface. Please note,
 the roles of the source points Points0 and target points Points1 are swapped,
-and the transformation mode is set to VTK_LANDMARK_RIGIDBODY.</p>
+and the transformation mode is set to <code class="docutils literal notranslate"><span class="pre">VTK_LANDMARK_RIGIDBODY</span></code>.</p>
 <p>Additionally to that, a combination transform, containing forward affine
 and back registration transforms, is added:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyFunTransform3DLin2 MyTransform2 = {</span>
@@ -240,7 +240,7 @@ that we just constructed:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/image329.png"><img alt="../_images/image329.png" src="../_images/image329.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image329.png"><img alt="Original and scaled source bone" src="../_images/image329.png" style="width: 60%;" /></a>
 <p>Looking at the Model View, we can see that the femur is now scaled, it
 became shorter and now aligns with the original source femur position.
 From the previous picture, we also know that geometry is matching the
@@ -264,7 +264,7 @@ details and improved morphing for even better match.</p>
 <section id="incorporating-landmark-based-nonlinearities-into-the-scaling-function">
 <h2>Incorporating landmark-based nonlinearities into the scaling function<a class="headerlink" href="#incorporating-landmark-based-nonlinearities-into-the-scaling-function" title="Permalink to this headline">¶</a></h2>
 <p>The next level of detail can be achieved by introducing local nonlinear deformations
-by means of the AnyFunTransform3DRBF class. This class represents a nonlinear
+by means of the <code class="docutils literal notranslate"><span class="pre">AnyFunTransform3DRBF</span></code> class. This class represents a nonlinear
 interpolation/extrapolation transformation, which is based on the Radial Basis Functions (RBF)
 method and uses landmarks selected on source and target surfaces. Detailed behaviour
 of this transform is described in an <a class="reference internal" href="lesson3_appendix.html"><span class="doc">appendix tutorial</span></a>.
@@ -287,12 +287,16 @@ reverse registration, so we can switch off the registration step.</p>
 </div>
 <p>This will return our morphed geometry back to the target bone location
 and we can observe the improvements as we go. Let us now define an
-RBF transformation and another AnyDrawSurf object that will show the
+RBF transformation and another <code class="docutils literal notranslate"><span class="pre">AnyDrawSurf</span></code> object that will show the
 difference between the affine scaling and the new transformation
 pipeline employing nonlinear RBF transformations. For a better contrast
 of the different surfaces, we will also add some colors to the drawing
 of the surfaces:</p>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="gr">AnyDrawSurf SurfaceMorphedRBF =</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">SourceFemur</span> <span class="o">=</span> 
+<span class="p">{</span>
+  <span class="n">Mass</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+<span class="p">...</span>
+  <span class="gr">AnyDrawSurf SurfaceMorphedRBF =</span>
 <span class="gr">  {</span>
 <span class="gr">    FileName = &quot;SourceFemur.stl&quot;;</span>
 <span class="gr">    AnyFunTransform3D &amp;ref = ..MyRBFTransform;</span>
@@ -300,90 +304,97 @@ of the surfaces:</p>
 <span class="gr">  };</span>
 
 <span class="p">...</span>
+<span class="p">...</span>
 
-<span class="gr">AnyFunTransform3DRBF MyRBFTransform =</span>
-<span class="gr">{</span>
-<span class="gr">  PreTransforms = {&amp;.MyTransform};</span>
-<span class="gr">  PolynomDegree = 1;</span>
-<span class="gr">  RBFDef.Type = RBF_Triharmonic;</span>
-
-<span class="gr">  Points0 = {</span>
-<span class="gr">    {-0.00920594,  0.36459700,  0.0174376},  // fovea capitis</span>
-<span class="gr">    { 0.03691960, -0.01011610, -0.0197803},  // anterior lateral condyle</span>
-<span class="gr">    { 0.03001110, -0.00998133,  0.0186877},  // anterior medial condyle</span>
-<span class="gr">    { 0.02009270,  0.34511400, -0.0387426},  // anterior greater trochanter point</span>
-<span class="gr">    { 0.02783850,  0.18320400, -0.0217463},  // anterior shaft point</span>
-<span class="gr">    {-0.02461770, -0.00623515, -0.0231383},  // posterior lateral condyle</span>
-<span class="gr">    {-0.03211040, -0.00908290,  0.0246153},  // posterior medial condyle</span>
-<span class="gr">    {-0.02643670,  0.35630800,  0.0014140},  // posterior head point</span>
-<span class="gr">    { 0.01780310,  0.36194400,  0.0059740},  // anterior head point</span>
-<span class="gr">    {-0.00197744,  0.38387300, -0.0031698},  // superior head point</span>
-<span class="gr">    {-0.00316772,  0.34248600,  0.0114698},  // inferior head point</span>
-<span class="gr">    {-0.02469710,  0.30335600, -0.0171113},  // medial lesser trochanter</span>
-<span class="gr">    {-0.00969883,  0.34826800, -0.0462823},  // distal trochanteric fossa</span>
-<span class="gr">    {-0.01959660,  0.36243100, -0.0441186},  // proximal posterior greater trochanter</span>
-<span class="gr">    {-0.00084335,  0.32253400, -0.0641596},  // distal trochanteric fossa</span>
-<span class="gr">    {-0.00431680,  0.35912600,  0.0036940}   // femoral COR</span>
-<span class="gr">  };</span>
-<span class="gr">  PointNames = {</span>
-<span class="gr">    &quot;Medial_Head_Point&quot;,</span>
-<span class="gr">    &quot;Anterior_LateralCondyle_Point&quot;,</span>
-<span class="gr">    &quot;Anterior_MedialCondyle_Point&quot;,</span>
-<span class="gr">    &quot;Anterior_GreaterTrochanter_Point&quot;,</span>
-<span class="gr">    &quot;Anterior_Shaft_Point&quot;,</span>
-<span class="gr">    &quot;Posterior_LateralCondyle_Point&quot;,</span>
-<span class="gr">    &quot;Posterior_MedialCondyle_Point&quot;,</span>
-<span class="gr">    &quot;Posterior_Head_Point&quot;,</span>
-<span class="gr">    &quot;Anterior_Head_Point&quot;,</span>
-<span class="gr">    &quot;Proximal_Head_Point&quot;,</span>
-<span class="gr">    &quot;Infeior_Head_Point&quot;,</span>
-<span class="gr">    &quot;Medial_LesserTrochanter_Point&quot;,</span>
-<span class="gr">    &quot;Distal_TrochantericFossa_Point&quot;,</span>
-<span class="gr">    &quot;Proximal_Posterior_GreaterTrochanter_Point&quot;,</span>
-<span class="gr">    &quot;Lateral_Lesser_Trochanter_Point&quot;,</span>
-<span class="gr">    &quot;Femoral_COR&quot;</span>
-<span class="gr">  };</span>
-
-<span class="gr">  Points1 = {</span>
-<span class="gr">    { 0.2900, 0.4205, 0.0139},</span>
-<span class="gr">    { 0.3220, 0.4332,-0.3786},</span>
-<span class="gr">    { 0.2893, 0.4268,-0.3730},</span>
-<span class="gr">    { 0.3599, 0.4429,-0.0050},</span>
-<span class="gr">    { 0.3289, 0.4259,-0.1750},</span>
-<span class="gr">    { 0.3062, 0.4872,-0.3703},</span>
-<span class="gr">    { 0.2619, 0.4759,-0.3727},</span>
-<span class="gr">    { 0.2900, 0.4405, 0.0139},</span>
-<span class="gr">    { 0.3200, 0.4095, 0.0134},</span>
-<span class="gr">    { 0.3100, 0.4295, 0.0314},</span>
-<span class="gr">    { 0.2983, 0.4196,-0.0066},</span>
-<span class="gr">    { 0.3089, 0.4599,-0.0355},</span>
-<span class="gr">    { 0.3349, 0.4579, 0.0050},</span>
-<span class="gr">    { 0.3329, 0.4679, 0.0175},</span>
-<span class="gr">    { 0.3519, 0.4599,-0.0355},</span>
-<span class="gr">    { 0.3075, 0.4235, 0.0139}</span>
-<span class="gr">  };</span>
-<span class="gr">  BoundingBox =</span>
+  <span class="gr">AnyFunTransform3DRBF MyRBFTransform =</span>
 <span class="gr">  {</span>
-<span class="gr">    Type = BB_Cartesian;</span>
-<span class="gr">    ScaleXYZ = {2, 2, 2};</span>
-<span class="gr">    DivisionFactorXYZ = 5*{1, 1, 1};</span>
+<span class="gr">    PreTransforms = {&amp;.MyTransform};</span>
+<span class="gr">    PolynomDegree = 1;</span>
+<span class="gr">    RBFDef.Type = RBF_Triharmonic;</span>
+
+<span class="gr">    Points0 = {</span>
+<span class="gr">      {-0.00920594,  0.36459700,  0.0174376},  // fovea capitis</span>
+<span class="gr">      { 0.03691960, -0.01011610, -0.0197803},  // anterior lateral condyle</span>
+<span class="gr">      { 0.03001110, -0.00998133,  0.0186877},  // anterior medial condyle</span>
+<span class="gr">      { 0.02009270,  0.34511400, -0.0387426},  // anterior greater trochanter point</span>
+<span class="gr">      { 0.02783850,  0.18320400, -0.0217463},  // anterior shaft point</span>
+<span class="gr">      {-0.02461770, -0.00623515, -0.0231383},  // posterior lateral condyle</span>
+<span class="gr">      {-0.03211040, -0.00908290,  0.0246153},  // posterior medial condyle</span>
+<span class="gr">      {-0.02643670,  0.35630800,  0.0014140},  // posterior head point</span>
+<span class="gr">      { 0.01780310,  0.36194400,  0.0059740},  // anterior head point</span>
+<span class="gr">      {-0.00197744,  0.38387300, -0.0031698},  // superior head point</span>
+<span class="gr">      {-0.00316772,  0.34248600,  0.0114698},  // inferior head point</span>
+<span class="gr">      {-0.02469710,  0.30335600, -0.0171113},  // medial lesser trochanter</span>
+<span class="gr">      {-0.00969883,  0.34826800, -0.0462823},  // distal trochanteric fossa</span>
+<span class="gr">      {-0.01959660,  0.36243100, -0.0441186},  // proximal posterior greater trochanter</span>
+<span class="gr">      {-0.00084335,  0.32253400, -0.0641596},  // distal trochanteric fossa</span>
+<span class="gr">      {-0.00431680,  0.35912600,  0.0036940}   // femoral COR</span>
+<span class="gr">    };</span>
+<span class="gr">    PointNames = {</span>
+<span class="gr">      &quot;Medial_Head_Point&quot;,</span>
+<span class="gr">      &quot;Anterior_LateralCondyle_Point&quot;,</span>
+<span class="gr">      &quot;Anterior_MedialCondyle_Point&quot;,</span>
+<span class="gr">      &quot;Anterior_GreaterTrochanter_Point&quot;,</span>
+<span class="gr">      &quot;Anterior_Shaft_Point&quot;,</span>
+<span class="gr">      &quot;Posterior_LateralCondyle_Point&quot;,</span>
+<span class="gr">      &quot;Posterior_MedialCondyle_Point&quot;,</span>
+<span class="gr">      &quot;Posterior_Head_Point&quot;,</span>
+<span class="gr">      &quot;Anterior_Head_Point&quot;,</span>
+<span class="gr">      &quot;Proximal_Head_Point&quot;,</span>
+<span class="gr">      &quot;Infeior_Head_Point&quot;,</span>
+<span class="gr">      &quot;Medial_LesserTrochanter_Point&quot;,</span>
+<span class="gr">      &quot;Distal_TrochantericFossa_Point&quot;,</span>
+<span class="gr">      &quot;Proximal_Posterior_GreaterTrochanter_Point&quot;,</span>
+<span class="gr">      &quot;Lateral_Lesser_Trochanter_Point&quot;,</span>
+<span class="gr">      &quot;Femoral_COR&quot;</span>
+<span class="gr">    };</span>
+
+<span class="gr">    Points1 = {</span>
+<span class="gr">      { 0.2900, 0.4205, 0.0139},</span>
+<span class="gr">      { 0.3220, 0.4332,-0.3786},</span>
+<span class="gr">      { 0.2893, 0.4268,-0.3730},</span>
+<span class="gr">      { 0.3599, 0.4429,-0.0050},</span>
+<span class="gr">      { 0.3289, 0.4259,-0.1750},</span>
+<span class="gr">      { 0.3062, 0.4872,-0.3703},</span>
+<span class="gr">      { 0.2619, 0.4759,-0.3727},</span>
+<span class="gr">      { 0.2900, 0.4405, 0.0139},</span>
+<span class="gr">      { 0.3200, 0.4095, 0.0134},</span>
+<span class="gr">      { 0.3100, 0.4295, 0.0314},</span>
+<span class="gr">      { 0.2983, 0.4196,-0.0066},</span>
+<span class="gr">      { 0.3089, 0.4599,-0.0355},</span>
+<span class="gr">      { 0.3349, 0.4579, 0.0050},</span>
+<span class="gr">      { 0.3329, 0.4679, 0.0175},</span>
+<span class="gr">      { 0.3519, 0.4599,-0.0355},</span>
+<span class="gr">      { 0.3075, 0.4235, 0.0139}</span>
+<span class="gr">    };</span>
+<span class="gr">    BoundingBox =</span>
+<span class="gr">    {</span>
+<span class="gr">      Type = BB_Cartesian;</span>
+<span class="gr">      ScaleXYZ = {2, 2, 2};</span>
+<span class="gr">      DivisionFactorXYZ = 5*{1, 1, 1};</span>
+<span class="gr">    };</span>
+<span class="gr">    BoundingBoxOnOff = On;</span>
 <span class="gr">  };</span>
-<span class="gr">  BoundingBoxOnOff = On;</span>
-<span class="gr">};</span>
+<span class="p">};</span> <span class="c1">// MyModel</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/image418.png"><img alt="../_images/image418.png" src="../_images/image418.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image418.png"><img alt="Targe, linear, and RBF scaling" src="../_images/image418.png" style="width: 60%;" /></a>
 <p>This code constructs a transform, which deforms the source geometry
 into the target one using the thin-plate interpolation method and minimizes
 the distance between the selected key points (landmarks). This can be used
 when certain muscle attachment areas/points need to be scaled. Using this
 allows us improving the model by making some local features more accurate
-for the sensitive analyses. Please note that MyTransform object was
+for the sensitive analyses. Please note that <code class="docutils literal notranslate"><span class="pre">MyTransform</span></code> object was
 included as a pre-transform as a rough scaling preceding the nonlinear
 RBF function, and it will be applied to the source entities, i.e. achieving
 the result of the previous step. Target bone is color-coded with the yellow color,
-initial linear scaling is grey, RBF-scaled bone is red. Tip: mouse-over in the Model
+initial linear scaling is grey, RBF-scaled bone is red.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>mouse-over in the Model
 View helps to see the name of the object.</p>
+</div>
 <p>However, it still possible to improve the fitting of the femur surfaces and, thus,
 improve the accuracy of the model. Looking at the Model View you can notice that
 the red and yellow surfaces are slightly different, e.g. at the femoral head region.
@@ -394,16 +405,19 @@ construction of an improved scaling law.</p>
 <section id="incorporating-surface-based-nonlinearities-into-the-scaling-function">
 <h2>Incorporating surface based nonlinearities into the scaling function<a class="headerlink" href="#incorporating-surface-based-nonlinearities-into-the-scaling-function" title="Permalink to this headline">¶</a></h2>
 <p>In this section, next improvement to the morphing is added by utilizing
-surface information. The surfaces will be requested to morphg into each
+surface information. The surfaces will be requested to morphed into each
 other, which will at the same time deform all related soft tissue attachment
-points accordingly. The AnyFunTransform3DSTL class is used for this purpose.
-This class constructs an RBF transformation similarly to the AnyFunTransform3DRBF
-by using either corresponding vertices on the STL surfaces or seeding a number
-of vertices on one surface and finding a matching closest point on the second.
-For constructing a transformation using the vertices of STL surfaces, the surfaces
+points accordingly. The <code class="docutils literal notranslate"><span class="pre">AnyFunTransform3DSTL</span></code> class is used for this purpose.
+This class constructs an RBF transformation similarly to the <code class="docutils literal notranslate"><span class="pre">AnyFunTransform3DRBF</span></code>
+by using either 1) corresponding vertices on the STL surfaces or 2) seeding a number
+of vertices on one surface and finding a matching closest point on the second.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For constructing a transformation using the vertices of STL surfaces, the surfaces
 have to be topologically equivalent, i.e. the surfaces have the same number of
-triangles and each neighbor and vertices represent the same features on both surfaces.
-For the latter option, we require an acceptable pre-registration
+triangles and each neighbor and vertices represent the same features on both surfaces.</p>
+</div>
+<p>For the latter option, we require an acceptable pre-registration
 transform, e.g. the RBF transform that was described previously, in
 order for the closest point search to make sense. Due to the implementation
 specifics most of the RBF recommendations apply to this class as well.
@@ -412,7 +426,11 @@ recommended settings mentioned before will be used again.</p>
 <p>Let us repeat the step from the previous section by adding one more
 surface to the visualization and another scaling step. You can download
 the model with all modifications <a class="reference download internal" download="" href="../_downloads/70e422ffee111f0915330a89b17a592c/lesson3c.Main.any"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>:</p>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="gr">AnyDrawSurf SurfaceMorphedSTL =</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">SourceFemur</span> <span class="o">=</span> 
+<span class="p">{</span>
+  <span class="n">Mass</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+<span class="p">...</span>
+  <span class="gr">AnyDrawSurf SurfaceMorphedSTL =</span>
 <span class="gr">  {</span>
 <span class="gr">    FileName = &quot;SourceFemur.stl&quot;;</span>
 <span class="gr">    AnyFunTransform3D &amp;ref = ..MySTLTransform;</span>
@@ -420,41 +438,45 @@ the model with all modifications <a class="reference download internal" download
 <span class="gr">  };</span>
 
 <span class="p">...</span>
-<span class="gr">    AnyFunTransform3DSTL MySTLTransform =</span>
-<span class="gr">{</span>
-<span class="gr">  PreTransforms = {&amp;.MyRBFTransform};</span>
-<span class="gr">  PolynomDegree = 1;</span>
-<span class="gr">  RBFDef.Type = RBF_Triharmonic;</span>
-<span class="gr">  AnyFixedRefFrame Input = {</span>
-<span class="gr">    AnySurfSTL SourceSurf = {</span>
-<span class="gr">      FileName = &quot;SourceFemur.stl&quot;;</span>
-<span class="gr">      ScaleXYZ = {1, 1, 1};</span>
+<span class="p">...</span>
+
+  <span class="gr">AnyFunTransform3DSTL MySTLTransform =</span>
+<span class="gr">  {</span>
+<span class="gr">    PreTransforms = {&amp;.MyRBFTransform};</span>
+<span class="gr">    PolynomDegree = 1;</span>
+<span class="gr">    RBFDef.Type = RBF_Triharmonic;</span>
+<span class="gr">    AnyFixedRefFrame Input = {</span>
+<span class="gr">      AnySurfSTL SourceSurf = {</span>
+<span class="gr">        FileName = &quot;SourceFemur.stl&quot;;</span>
+<span class="gr">        ScaleXYZ = {1, 1, 1};</span>
+<span class="gr">      };</span>
+<span class="gr">      AnySurfSTL TargetSurf = {</span>
+<span class="gr">        FileName = &quot;TargetFemur.stl&quot;;</span>
+<span class="gr">        ScaleXYZ = {1, 1, 1};</span>
+<span class="gr">      };</span>
 <span class="gr">    };</span>
-<span class="gr">    AnySurfSTL TargetSurf = {</span>
-<span class="gr">      FileName = &quot;TargetFemur.stl&quot;;</span>
-<span class="gr">      ScaleXYZ = {1, 1, 1};</span>
-<span class="gr">    };</span>
+
+<span class="gr">    SurfaceObjects0 = {&amp;Input.SourceSurf};</span>
+<span class="gr">    SurfaceObjects1 = {&amp;Input.TargetSurf};</span>
+<span class="gr">    //FileName0 = &quot;SourceFemur.stl&quot;;    // such definition was used previously</span>
+<span class="gr">    //FileName1 = &quot;TargetFemur.stl&quot;;    // such definition was used previously</span>
+<span class="gr">    NumPoints = 1000;</span>
+<span class="gr">    BoundingBox.ScaleXYZ = {2, 2, 2};</span>
+<span class="gr">    BoundingBox.DivisionFactorXYZ = {1, 1, 1};</span>
+<span class="gr">    BoundingBoxOnOff = On;</span>
 <span class="gr">  };</span>
 
-<span class="gr">  SurfaceObjects0 = {&amp;Input.SourceSurf};</span>
-<span class="gr">  SurfaceObjects1 = {&amp;Input.TargetSurf};</span>
-<span class="gr">  //FileName0 = &quot;SourceFemur.stl&quot;;    // such definition was used previously</span>
-<span class="gr">  //FileName1 = &quot;TargetFemur.stl&quot;;    // such definition was used previously</span>
-<span class="gr">  NumPoints = 1000;</span>
-<span class="gr">  BoundingBox.ScaleXYZ = {2, 2, 2};</span>
-<span class="gr">  BoundingBox.DivisionFactorXYZ = {1, 1, 1};</span>
-<span class="gr">  BoundingBoxOnOff = On;</span>
-<span class="gr">};</span>
+<span class="p">};</span> <span class="c1">// MyModel</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/image517.png"><img alt="../_images/image517.png" src="../_images/image517.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/image517.png"><img alt="Target, linear, and RBF, RBF-STL scaling" src="../_images/image517.png" style="width: 60%;" /></a>
 <p>Please note again the transform from the previous section of this
 tutorial was included as a pre-transform, which means we will start working with
 the result of the previous step. Reloading the model, we can now see all steps
 of scaling in one place and can switch them on and off. For example, let us try
 to hide affine and RBF scaled femurs to see the final results:</p>
-<a class="reference internal image-reference" href="../_images/image611.png"><img alt="../_images/image611.png" src="../_images/image611.png" style="width: 60%;" /></a>
-<p>If we just look at the green target surface and the blue STL-transformed
+<a class="reference internal image-reference" href="../_images/image611.png"><img alt="RBF, RBF-STL scaling" src="../_images/image611.png" style="width: 60%;" /></a>
+<p>If we just look at the yellow target surface and the blue STL-transformed
 surface, we can see that the surfaces now match each other very well. That means
 that now the subject-specificity will be taken into account in the inverse
 dynamics simulation. The final model can be downloaded <a class="reference download internal" download="" href="../_downloads/052bed7e0ed5ac44521917b666808aa2/lesson3d.Main.any"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
