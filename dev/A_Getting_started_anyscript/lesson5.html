@@ -274,7 +274,7 @@ switched off by setting the “Reaction.Type” property.</strong></p>
 muscles or other force elements to enforce the constraints. The driver reactions will allow you to successfully run
 inverse dynamic simulations at the intermediate model stages, by ensuring dynamic consistency.</p>
 <p>The single <code class="docutils literal notranslate"><span class="pre">Off</span></code> is encapsulated in braces, <code class="docutils literal notranslate"><span class="pre">{Off}</span></code> because it is a vector.
-A driver by can theoretically have any number of total DOF from all the measures
+A driver can theoretically have any number of total DOF from all the measures
 that it drives. Therefore all data in a driver are vector quantities, even when it is a 1 DOF driver .</p>
 </section>
 <section id="the-inversedynamicanalysis-and-plotting-muscle-forces">
@@ -286,7 +286,7 @@ In this analysis, the AnyBody system computes all muscle, joint forces and much 
 “Main.Study.Output.Model.Muscles.Brachialis” in the chart view’s model tree, and plot the variable named <code class="docutils literal notranslate"><span class="pre">Fm</span></code>.
 You should get a curve that looks like the one below.</p>
 <img alt="../_images/image33.png" src="../_images/image33.png" />
-<p>The drop in muscle force with movement progression is due to the decreasing moment arm of the gravity
+<p>The drop in muscle force with movement progression is due to the decreasing moment arm of the
 gravity vector about the elbow joint, as the elbow flexes. Therefore lesser the muscle force.</p>
 <p>If you look at the muscle force in the BicepsLong, you see a different pattern:</p>
 <img alt="../_images/image42.png" src="../_images/image42.png" />
