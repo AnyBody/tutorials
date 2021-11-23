@@ -83,9 +83,12 @@ body parts: legs, arms, and trunk.</p>
 <p class="admonition-title">Todo</p>
 <p>Add a intersphinx link to AMMMR documentation on BM statments</p>
 </div>
-<p><strong>Body model configuration refers to the selection of limb segments to include, muscle model types,
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Body model configuration refers to the selection of limb segments to include, muscle model types,
 scaling algorithms etc. These are done by setting switches known as Body model (BM) parameters.
-The configuration process is described in greater detail in this</strong> <a class="reference external" href="https://anyscript.org/ammr-doc/bm_config/index">document</a></p>
+The configuration process is described in greater detail in this <a class="reference external" href="https://anyscript.org/ammr-doc/bm_config/index">document</a></p>
+</div>
 <section id="body-model-configuration">
 <h2>Body model configuration<a class="headerlink" href="#body-model-configuration" title="Permalink to this headline">¶</a></h2>
 <p>For this pedal model, you will configure the human model as follows:</p>
@@ -98,9 +101,11 @@ The configuration process is described in greater detail in this</strong> <a cla
 <p>This is implemented by declaring the corresponding BM statements just before
 the inclusion of the “HumanModel.any” file.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="c1">//#path BM_DRAWSETTINGS_FILE &quot;Model\DrawSettings.any&quot;</span>
 
-  <span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
+  <span class="c1">// Body Model configuration:</span>
+  <span class="cp">#include</span> <span class="s">&quot;Model/BodyModelConfiguration.any&quot;</span>
+  <span class="c1">// Using your own Mannequin.any file in the Model folder of your model</span>
+  <span class="cp">#include</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
 
   <span class="c1">//--&gt;BM statements</span>
   <span class="c1">// Excluding the muscles in the trunk segments</span>

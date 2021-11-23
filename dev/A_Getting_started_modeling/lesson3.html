@@ -151,10 +151,12 @@ double-clicking of the following line in the main file</strong>:</p>
 <p>Then you can see the following structure inside:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Joints</span> <span class="o">=</span>
 <span class="p">{</span>
+
 <span class="p">};</span>
 
 <span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span>
 <span class="p">{</span>
+
 <span class="p">};</span>
 </pre></div>
 </div>
@@ -192,17 +194,18 @@ the same position as before.</p>
 <p>The initial positions are controlled by the mannequin file. Open it up
 by double-clicking the following line, and make the changes show in red:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
-<span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
+<span class="cp">#include</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
 <span class="p">...</span>
 </pre></div>
 </div>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">HumanModel</span><span class="p">.</span><span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
+  
+  <span class="n">Posture</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//This controls the position of the pelvi wrt. to the global reference frame</span>
+    <span class="n">PelvisPosX</span><span class="o">=</span><span class="gr">-0.7</span><span class="p">;</span>
+    <span class="n">PelvisPosY</span><span class="o">=</span><span class="gr">0.5</span><span class="p">;</span>
+    <span class="n">PelvisPosZ</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
-  <span class="kt">AnyFolder</span> <span class="n">Posture</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="c1">//This controls the position of the pelvis wrt. to the global reference frame</span>
-    <span class="kt">AnyVar</span> <span class="n">PelvisPosX</span> <span class="o">=</span> <span class="gr">-0.7</span><span class="p">;</span>
-    <span class="kt">AnyVar</span> <span class="n">PelvisPosY</span> <span class="o">=</span> <span class="gr">0.5</span><span class="p">;</span>
-    <span class="kt">AnyVar</span> <span class="n">PelvisPosZ</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">...</span>
 </pre></div>
 </div>
@@ -210,31 +213,32 @@ by double-clicking the following line, and make the changes show in red:</p>
 pelvis to the coordinates of the “Hpoint” node. It is also a good idea to specify the initial joint angles
 in the leg so that the foot is closer to the pedal. This can be done further down
 in the Mannequin file:</p>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>    <span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="c1">//Arm</span>
-      <span class="kt">AnyVar</span> <span class="n">SternoClavicularProtraction</span><span class="o">=-</span><span class="mi">23</span><span class="p">;</span>   <span class="c1">//This value is not used for initial position</span>
-      <span class="kt">AnyVar</span> <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mf">11.5</span><span class="p">;</span>    <span class="c1">//This value is not used for initial position</span>
-      <span class="kt">AnyVar</span> <span class="n">SternoClavicularAxialRotation</span><span class="o">=-</span><span class="mi">20</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
-
-      <span class="kt">AnyVar</span> <span class="n">GlenohumeralFlexion</span> <span class="o">=-</span><span class="mi">0</span><span class="p">;</span>
-      <span class="kt">AnyVar</span> <span class="n">GlenohumeralAbduction</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-      <span class="kt">AnyVar</span> <span class="n">GlenohumeralExternalRotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-      <span class="kt">AnyVar</span> <span class="n">ElbowFlexion</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
-      <span class="kt">AnyVar</span> <span class="n">ElbowPronation</span> <span class="o">=</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">;</span>
-
-      <span class="kt">AnyVar</span> <span class="n">WristFlexion</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-      <span class="kt">AnyVar</span> <span class="n">WristAbduction</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>    <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="c1">//Arm </span>
+      <span class="n">SternoClavicularProtraction</span><span class="o">=-</span><span class="mi">23</span><span class="p">;</span>   <span class="c1">//This value is not used for initial position</span>
+      <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mf">11.5</span><span class="p">;</span>    <span class="c1">//This value is not used for initial position</span>
+      <span class="n">SternoClavicularAxialRotation</span><span class="o">=-</span><span class="mi">20</span><span class="p">;</span> <span class="c1">///&lt; Only used when the clavicular axial rotation rhythm is diabled</span>
+      
+      <span class="n">GlenohumeralFlexion</span> <span class="o">=-</span><span class="mi">0</span><span class="p">;</span> 
+      <span class="n">GlenohumeralAbduction</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> 
+      <span class="n">GlenohumeralExternalRotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+      
+      <span class="n">ElbowFlexion</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span> 
+      <span class="n">ElbowPronation</span> <span class="o">=</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">;</span>
+      
+      <span class="n">WristFlexion</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+      <span class="n">WristAbduction</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+            
       <span class="c1">//Leg</span>
-      <span class="kt">AnyVar</span> <span class="n">HipFlexion</span> <span class="o">=</span> <span class="gr">110.0</span><span class="p">;</span>
-      <span class="kt">AnyVar</span> <span class="n">HipAbduction</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>
-      <span class="kt">AnyVar</span> <span class="n">HipExternalRotation</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+      <span class="n">HipFlexion</span> <span class="o">=</span> <span class="gr">110.0</span><span class="p">;</span> 
+      <span class="n">HipAbduction</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span> 
+      <span class="n">HipExternalRotation</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+      
+      <span class="n">KneeFlexion</span> <span class="o">=</span> <span class="gr">100.0</span><span class="p">;</span>
+      
+      <span class="n">AnklePlantarFlexion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span> 
+      <span class="n">SubTalarEversion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span> 
 
-      <span class="kt">AnyVar</span> <span class="n">KneeFlexion</span> <span class="o">=</span> <span class="gr">100.0</span><span class="p">;</span>
-
-      <span class="kt">AnyVar</span> <span class="n">AnklePlantarFlexion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
-      <span class="kt">AnyVar</span> <span class="n">SubTalarEversion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
 <span class="p">...</span>
 </pre></div>
 </div>
@@ -265,7 +269,7 @@ the leg. So we will set to zero, the angles and velocities of 3 DOF of pelvis-th
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Insert a”PelvisThoraxDriver” into the Drivers folder, created using the <code class="docutils literal notranslate"><span class="pre">AnyKinEqSimpleDriver</span></code> class.
+<p>Insert a “PelvisThoraxDriver” into the Drivers folder, created using the <code class="docutils literal notranslate"><span class="pre">AnyKinEqSimpleDriver</span></code> class.
 You already know how to create model objects from scratch by using the
 the “Class Inserter” (<a class="reference internal" href="../A_Getting_started_anyscript/lesson2.html#class-inserter"><span class="std std-ref">described here</span></a>). More details on properties
 such as DriverPos, DriverVel etc. can be (<a class="reference internal" href="../A_Getting_started_anyscript/lesson4.html#anykineqsimpledriver"><span class="std std-ref">found here</span></a>) :</p>
@@ -273,9 +277,9 @@ such as DriverPos, DriverVel etc. can be (<a class="reference internal" href="..
 <span class="p">{</span>
   <span class="gr">AnyKinEqSimpleDriver PelvisThoraxDriver =</span>
 <span class="gr">  {</span>
-<span class="gr">    AnyKinMeasure&amp; ref0 = ...HumanModel.BodyModel.Interface.Trunk.PelvisThoraxExtension;</span>
-<span class="gr">    AnyKinMeasure&amp; ref1 = ...HumanModel.BodyModel.Interface.Trunk.PelvisThoraxLateralBending;</span>
-<span class="gr">    AnyKinMeasure&amp; ref2 = ...HumanModel.BodyModel.Interface.Trunk.PelvisThoraxRotation;</span>
+<span class="gr">    AnyKinMeasure&amp; ref0 = ....HumanModel.BodyModel.Interface.Trunk.PelvisThoraxExtension;</span>
+<span class="gr">    AnyKinMeasure&amp; ref1 = ....HumanModel.BodyModel.Interface.Trunk.PelvisThoraxLateralBending;</span>
+<span class="gr">    AnyKinMeasure&amp; ref2 = ....HumanModel.BodyModel.Interface.Trunk.PelvisThoraxRotation;</span>
 
 <span class="gr">    DriverPos = pi/180*{0,0,0};</span>
 <span class="gr">    DriverVel = pi/180*{0,0,0};</span>
@@ -292,9 +296,9 @@ drivers are defined in a manner that is very similar to Step 2.</p>
 <span class="p">{</span>
   <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">PelvisThoraxDriver</span> <span class="o">=</span>
   <span class="p">{</span>
-    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref0</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">PelvisThoraxExtension</span><span class="p">;</span>
-    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref1</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">PelvisThoraxLateralBending</span><span class="p">;</span>
-    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref2</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">PelvisThoraxRotation</span><span class="p">;</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref0</span> <span class="o">=</span> <span class="p">....</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">PelvisThoraxExtension</span><span class="p">;</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref1</span> <span class="o">=</span> <span class="p">....</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">PelvisThoraxLateralBending</span><span class="p">;</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref2</span> <span class="o">=</span> <span class="p">....</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">PelvisThoraxRotation</span><span class="p">;</span>
 
     <span class="n">DriverPos</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
     <span class="n">DriverVel</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
@@ -303,9 +307,9 @@ drivers are defined in a manner that is very similar to Step 2.</p>
 
   <span class="gr">AnyKinEqSimpleDriver SkullThoraxDriver =</span>
 <span class="gr">  {</span>
-<span class="gr">    AnyKinMeasure&amp; ref0 = ...HumanModel.BodyModel.Interface.Trunk.SkullThoraxFlexion;</span>
-<span class="gr">    AnyKinMeasure&amp; ref1 = ...HumanModel.BodyModel.Interface.Trunk.SkullThoraxLateralBending;</span>
-<span class="gr">    AnyKinMeasure&amp; ref2 = ...HumanModel.BodyModel.Interface.Trunk.SkullThoraxRotation;</span>
+<span class="gr">    AnyKinMeasure&amp; ref0 = ....HumanModel.BodyModel.Interface.Trunk.SkullThoraxFlexion;</span>
+<span class="gr">    AnyKinMeasure&amp; ref1 = ....HumanModel.BodyModel.Interface.Trunk.SkullThoraxLateralBending;</span>
+<span class="gr">    AnyKinMeasure&amp; ref2 = ....HumanModel.BodyModel.Interface.Trunk.SkullThoraxRotation;</span>
 
 <span class="gr">    DriverPos = pi/180*{0,0,0};</span>
 <span class="gr">    DriverVel = pi/180*{0,0,0};</span>
@@ -345,9 +349,9 @@ DOFs to always equal zero. Just as in Steps 3 &amp; 4, this will be done using <
 <span class="p">...</span>
   <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">SkullThoraxDriver</span> <span class="o">=</span>
   <span class="p">{</span>
-    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref0</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SkullThoraxFlexion</span><span class="p">;</span>
-    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref1</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SkullThoraxLateralBending</span><span class="p">;</span>
-    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref2</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SkullThoraxRotation</span><span class="p">;</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref0</span> <span class="o">=</span> <span class="p">....</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SkullThoraxFlexion</span><span class="p">;</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref1</span> <span class="o">=</span> <span class="p">....</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SkullThoraxLateralBending</span><span class="p">;</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref2</span> <span class="o">=</span> <span class="p">....</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SkullThoraxRotation</span><span class="p">;</span>
 
     <span class="n">DriverPos</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
     <span class="n">DriverVel</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
@@ -355,8 +359,8 @@ DOFs to always equal zero. Just as in Steps 3 &amp; 4, this will be done using <
 
   <span class="gr">AnyKinEqSimpleDriver AnkleDriver =</span>
 <span class="gr">  {</span>
-<span class="gr">    AnyKinMeasure&amp; ref0 = ...HumanModel.BodyModel.Interface.Right.AnklePlantarFlexion;</span>
-<span class="gr">    AnyKinMeasure&amp; ref1 = ...HumanModel.BodyModel.Interface.Right.SubTalarEversion;</span>
+<span class="gr">    AnyKinMeasure&amp; ref0 = ....HumanModel.BodyModel.Interface.Right.AnklePlantarFlexion;</span>
+<span class="gr">    AnyKinMeasure&amp; ref1 = ....HumanModel.BodyModel.Interface.Right.SubTalarEversion;</span>
 
 <span class="gr">    DriverPos = pi/180*{0, 0};</span>
 <span class="gr">    DriverVel = pi/180*{0, 0};</span>
@@ -378,8 +382,8 @@ You will now constrain this medio-lateral knee movement in your model.</p>
 <span class="p">...</span>
   <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">AnkleDriver</span> <span class="o">=</span>
   <span class="p">{</span>
-    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref0</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">AnklePlantarFlexion</span><span class="p">;</span>
-    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref1</span> <span class="o">=</span> <span class="p">...</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">SubTalarEversion</span><span class="p">;</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref0</span> <span class="o">=</span> <span class="p">....</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">AnklePlantarFlexion</span><span class="p">;</span>
+    <span class="kt">AnyKinMeasure</span><span class="o">&amp;</span> <span class="n">ref1</span> <span class="o">=</span> <span class="p">....</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Interface</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">SubTalarEversion</span><span class="p">;</span>
 
     <span class="n">DriverPos</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
     <span class="n">DriverVel</span> <span class="o">=</span> <span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="o">*</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
@@ -456,7 +460,7 @@ You can find this here:</p>
 <p>Then you see the Object Description dialog will open.</p>
 <p><img alt="ObjectDescription DOFs" src="../_images/image56.png" /></p>
 <p><strong>This indicates that the total number of DOFs(degrees of freedom) in your
-model is 132. It makes sense because there are 21 segments in your model
+model is 132. It makes sense because there are 22 segments in your model
 and each segment has 6 DOFs.</strong></p>
 <p>If you scroll down this dialog a little bit more, then you can see the
 following section:</p>
