@@ -86,44 +86,51 @@ Select the “Human” template, set the “Target Folder” as per your conveni
 <p><img alt="New Template dialog" src="../_images/image34.png" /></p>
 <p>If you press the OK button, it will open an editor window of
 “MyPedal.main.any” file that includes the following lines:</p>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;../libdef.any&quot;</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;libdef.any&quot;</span>
 
-<span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="c1">//If you want to use your own draw settings, please outcomment the next line</span>
-  <span class="c1">//#path BM_DRAWSETTINGS_FILE &quot;Model\DrawSettings.any&quot;</span>
+<span class="n">Main</span> <span class="o">=</span> 
+<span class="p">{</span>  
+
+  <span class="c1">// Body Model configuration:</span>
+  <span class="cp">#include</span> <span class="s">&quot;Model/BodyModelConfiguration.any&quot;</span>
 
   <span class="c1">// Using your own Mannequin.any file in the Model folder of your model</span>
-  <span class="cp">#path</span> <span class="x x-Statements">BM_MANNEQUIN_FILE</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
+  <span class="cp">#include</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
 
   <span class="c1">// Include default human model</span>
   <span class="cp">#include</span> <span class="s">&quot;&lt;ANYBODY_PATH_BODY&gt;\HumanModel.any&quot;</span>
 
-  <span class="kt">AnyFolder</span> <span class="n">Model</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyFolder</span> <span class="n">Model</span> <span class="o">=</span> 
+  <span class="p">{</span>
     <span class="c1">// A link to the human model</span>
-    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">BodyModel</span><span class="o">=</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModelWithDefaultDrivers</span><span class="p">;</span>
-
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">BodyModel</span> <span class="o">=</span> <span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">;</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">DefaultMannequinDrivers</span> <span class="o">=</span> <span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">DefaultMannequinDrivers</span><span class="p">;</span>
+ 
     <span class="c1">// Environment files are used to include objects surrounding human</span>
-    <span class="cp">#include</span> <span class="s">&quot;Model\Environment.any&quot;</span>
-
-    <span class="kt">AnyFolder</span> <span class="n">ModelEnvironmentConnection</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="cp">#include</span> <span class="s">&quot;Model\Environment.any&quot;</span>   
+ 
+    <span class="kt">AnyFolder</span> <span class="n">ModelEnvironmentConnection</span> <span class="o">=</span> 
+    <span class="p">{</span>
       <span class="c1">//&#39;JointsAndDrivers.any&#39; file can include all kinematic constraints such as joints and drivers</span>
       <span class="cp">#include</span> <span class="s">&quot;Model\JointsAndDrivers.any&quot;</span>
       <span class="c1">// Additional reactions which are required to run the inverse dynamics analysis</span>
       <span class="cp">#include</span> <span class="s">&quot;Model\Reactions.any&quot;</span>
     <span class="p">};</span>
   <span class="p">};</span>
-
-  <span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
+ 
+  <span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> 
+  <span class="p">{</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>  
+    
     <span class="n">Gravity</span><span class="o">=</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
     <span class="n">nStep</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
-
-    <span class="c1">// these settings are needed for adding drivers without removing the default set</span>
+    <span class="c1">// Overdeterminate solver is needed while using the </span>
+    <span class="c1">// soft default mannequin drivers.</span>
     <span class="n">Kinematics</span><span class="p">.</span><span class="n">SolverType</span> <span class="o">=</span> <span class="kp">KinSolOverDeterminate</span><span class="p">;</span>
     <span class="n">InitialConditions</span><span class="p">.</span><span class="n">SolverType</span> <span class="o">=</span> <span class="n">Kinematics</span><span class="p">.</span><span class="n">SolverType</span> <span class="p">;</span>
   <span class="p">};</span>
 
-  <span class="cp">#include</span> <span class="s">&quot;Model\RunAppSequence.any&quot;</span>
+    <span class="cp">#include</span> <span class="s">&quot;Model\RunAppSequence.any&quot;</span>
 <span class="p">};</span> <span class="c1">//Main</span>
 </pre></div>
 </div>

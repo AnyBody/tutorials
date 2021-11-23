@@ -122,32 +122,31 @@ for the right and left halves of the body.</p>
 <p>Changing any of the joint angles and reloading the model, will change the model’s posture at load time. To start with, ensure that the contents of the “Right”
 and “Left” sub-folders are as follows.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
-<span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
-
-    <span class="c1">//Arm</span>
-    <span class="kt">AnyVar</span> <span class="n">SternoClavicularProtraction</span><span class="o">=-</span><span class="mi">23</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
-    <span class="kt">AnyVar</span> <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mf">11.5</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
-    <span class="kt">AnyVar</span> <span class="n">SternoClavicularAxialRotation</span><span class="o">=-</span><span class="mi">20</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
-
-    <span class="kt">AnyVar</span> <span class="n">GlenohumeralFlexion</span> <span class="o">=-</span><span class="mi">0</span><span class="p">;</span>
-    <span class="kt">AnyVar</span> <span class="n">GlenohumeralAbduction</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-    <span class="kt">AnyVar</span> <span class="n">GlenohumeralExternalRotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="kt">AnyVar</span> <span class="n">ElbowFlexion</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
-    <span class="kt">AnyVar</span> <span class="n">ElbowPronation</span> <span class="o">=</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">;</span>
-
-    <span class="kt">AnyVar</span> <span class="n">WristFlexion</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-    <span class="kt">AnyVar</span> <span class="n">WristAbduction</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-
+<span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//Arm </span>
+    <span class="n">SternoClavicularProtraction</span><span class="o">=-</span><span class="mi">23</span><span class="p">;</span>   <span class="c1">//This value is not used for initial position</span>
+    <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mf">11.5</span><span class="p">;</span>    <span class="c1">//This value is not used for initial position</span>
+    <span class="n">SternoClavicularAxialRotation</span><span class="o">=-</span><span class="mi">20</span><span class="p">;</span> <span class="c1">///&lt; Only used when the clavicular axial rotation rhythm is diabled</span>
+      
+    <span class="n">GlenohumeralFlexion</span> <span class="o">=-</span><span class="mi">0</span><span class="p">;</span> 
+    <span class="n">GlenohumeralAbduction</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> 
+    <span class="n">GlenohumeralExternalRotation</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> 
+      
+    <span class="n">ElbowFlexion</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span> 
+    <span class="n">ElbowPronation</span> <span class="o">=</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">;</span>
+      
+    <span class="n">WristFlexion</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">WristAbduction</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+            
     <span class="c1">//Leg</span>
-    <span class="kt">AnyVar</span> <span class="n">HipFlexion</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-    <span class="kt">AnyVar</span> <span class="n">HipAbduction</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>
-    <span class="kt">AnyVar</span> <span class="n">HipExternalRotation</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-
-    <span class="kt">AnyVar</span> <span class="n">KneeFlexion</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-
-    <span class="kt">AnyVar</span> <span class="n">AnklePlantarFlexion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
-    <span class="kt">AnyVar</span> <span class="n">SubTalarEversion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">HipFlexion</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> 
+    <span class="n">HipAbduction</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span> 
+    <span class="n">HipExternalRotation</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+      
+    <span class="n">KneeFlexion</span> <span class="o">=</span> <span class="mf">4.0</span><span class="p">;</span>
+      
+    <span class="n">AnklePlantarFlexion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span> 
+    <span class="n">SubTalarEversion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span> 
 
 <span class="p">...</span>
 </pre></div>

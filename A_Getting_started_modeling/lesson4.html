@@ -183,17 +183,18 @@ created by the model template. The purpose of these additional reactions
 on the pelvis is to provide the necessary supports on the human pelvis
 to run the inverse dynamics if users may not define enough support
 forces on either both feet or pelvis.</p>
-<p>Since your model has a joined named “SeatPelvis” between ground and pelvis (which will apply the default reaction forces),
+<p>Since your model has a joint named “SeatPelvis” between ground and pelvis (which will apply the default reaction forces),
 you can comment out “Model\Reactions.any” in the main file:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="kt">AnyFolder</span> <span class="n">Model</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">BodyModel</span><span class="o">=</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModelWithDefaultDrivers</span><span class="p">;</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">BodyModel</span> <span class="o">=</span> <span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">;</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">DefaultMannequinDrivers</span> <span class="o">=</span> <span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">DefaultMannequinDrivers</span><span class="p">;</span>
 
     <span class="cp">#include</span> <span class="s">&quot;Model\Environment.any&quot;</span>
 
     <span class="kt">AnyFolder</span> <span class="n">ModelEnvironmentConnection</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="cp">#include</span> <span class="s">&quot;Model\JointsAndDrivers.any&quot;</span>
-    <span class="gr">//#include &quot;Model\Reactions.any&quot;</span>
+      <span class="cp">#include</span> <span class="s">&quot;Model\JointsAndDrivers.any&quot;</span>
+      <span class="gr">//#include &quot;Model\Reactions.any&quot;</span>
     <span class="p">};</span>
 <span class="p">};</span>
 <span class="p">...</span>
