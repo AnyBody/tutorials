@@ -23,7 +23,7 @@
   
 <meta property="og:image:alt" content="New template model button" />
   
-    <title>Lesson 1: Starting with a New Model &#8212; AnyBody Tutorials v7.3.4-dev</title>
+    <title>Lesson 1: Starting with a New Model &#8212; AnyBody Tutorials v7.4.0-dev</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -75,7 +75,7 @@
         <li class="right" >
           <a href="intro.html" title="Introduction: Getting Started with Modeling"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">3. </span>Getting Started with Modeling</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 1: Starting with a New Model</a></li> 
@@ -158,7 +158,8 @@ Select the “Human” template, set the “Target Folder” as per your conveni
 </pre></div>
 </div>
 <p>Opens up the “Environment.any” file which is created by the Human template.</p>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//This is a place holder for the modeling of the environment.</span>
+<span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span> 
 <span class="p">{</span>
 
 <span class="p">};</span>
@@ -172,7 +173,8 @@ environment folder as follows:</p>
 <span class="p">{</span>
   <span class="gr">AnyFixedRefFrame GlobalRef =</span>
 <span class="gr">  {</span>
-<span class="gr">   AnyDrawRefFrame drw={};</span>
+<span class="gr">   viewRefFrame.Visible=On;</span>
+<span class="gr">   viewRefFrame.ScaleXYZ = 0.5*{1,1,1};</span>
 <span class="gr">  };</span>
 <span class="p">};</span>
 </pre></div>
@@ -208,9 +210,11 @@ We will define the pedal segment and the hinge in the “Environment.any” file
 <span class="p">{</span>
   <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span>
   <span class="p">{</span>
-   <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span><span class="o">=</span><span class="p">{};</span>
+   <span class="n">viewRefFrame</span><span class="p">.</span><span class="n">Visible</span><span class="o">=</span><span class="kp">On</span><span class="p">;</span>
+   <span class="n">viewRefFrame</span><span class="p">.</span><span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
   <span class="p">};</span>
   <span class="gr">AnySeg Pedal = {</span>
+<span class="gr">    viewInertia.Visible = On;</span>
 <span class="gr">    Mass = 2;</span>
 <span class="gr">    Jii = {0.05, 0.001, 0.05};</span>
 <span class="gr">    AnyRefNode Hinge = {</span>
@@ -219,7 +223,6 @@ We will define the pedal segment and the hinge in the “Environment.any” file
 <span class="gr">    AnyRefNode FootNode = {</span>
 <span class="gr">      sRel = {0, 0.15, 0};</span>
 <span class="gr">    };</span>
-<span class="gr">    AnyDrawSeg drw = {};</span>
 <span class="gr">  };</span>
 <span class="gr">  AnyRevoluteJoint HingeJoint = {</span>
 <span class="gr">    Axis = z;</span>
@@ -339,7 +342,7 @@ simulation using AnyBody.</strong></p>
         <li class="right" >
           <a href="intro.html" title="Introduction: Getting Started with Modeling"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">3. </span>Getting Started with Modeling</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 1: Starting with a New Model</a></li> 

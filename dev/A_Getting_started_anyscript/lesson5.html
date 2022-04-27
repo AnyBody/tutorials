@@ -23,7 +23,7 @@
   
 <meta property="og:image:alt" content="AnyScript Tutorials" />
   
-    <title>Lesson 5: Definition of Muscles and External Forces &#8212; AnyBody Tutorials v7.3.4-dev</title>
+    <title>Lesson 5: Definition of Muscles and External Forces &#8212; AnyBody Tutorials v7.4.0-dev</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -75,7 +75,7 @@
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Imparting movement with Drivers"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">2. </span>Getting started: AnyScript Programming</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 5: Definition of Muscles and External Forces</a></li> 
@@ -141,7 +141,7 @@ to drive a complex body model.</p>
    <span class="p">};</span>
 
    <span class="gr">//---------------------------------</span>
-<span class="gr">   AnyViaPointMuscle Brachialis = {</span>
+<span class="gr">   AnyMuscleViaPoint Brachialis = {</span>
 <span class="gr">     AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
 <span class="gr">     AnyRefNode &amp;Org = ..Segs.UpperArm.Brachialis;</span>
 <span class="gr">     AnyRefNode &amp;Ins = ..Segs.ForeArm.Brachialis;</span>
@@ -150,7 +150,7 @@ to drive a complex body model.</p>
 <span class="p">};</span> <span class="c1">// Muscles folder</span>
 </pre></div>
 </div>
-<p><strong>This muscle is created by the</strong> <code class="docutils literal notranslate"><span class="pre">AnyViaPointMuscle</span></code> <strong>class. These are muscles which begin at
+<p><strong>This muscle is created by the</strong> <code class="docutils literal notranslate"><span class="pre">AnyMuscleViaPoint</span></code> <strong>class. These are muscles which begin at
 an origin point, pass through a number of pre-defined via points, and finally terminate
 at the insertion.</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">Org</span></code> <strong>and</strong> <code class="docutils literal notranslate"><span class="pre">Ins</span></code> <strong>are the origin and insertion of the Brachialis. They are reference objects,
@@ -173,7 +173,7 @@ insertion points. There are other ways to visualize muscles, and these are descr
 <h2>Adding more muscles<a class="headerlink" href="#adding-more-muscles" title="Permalink to this headline">¶</a></h2>
 <p>All the other muscles are defined in the same way. Your model should resemble the image seen further below:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//---------------------------------</span>
-<span class="kt">AnyViaPointMuscle</span> <span class="n">Brachialis</span> <span class="o">=</span> <span class="p">{</span>
+<span class="n">AnyMuscleViaPoint</span> <span class="n">Brachialis</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">MusMdl</span> <span class="o">=</span> <span class="p">..</span><span class="n">Muscles</span><span class="p">.</span><span class="n">MusMdl</span><span class="p">;</span>
   <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">Org</span> <span class="o">=</span> <span class="p">..</span><span class="n">Segs</span><span class="p">.</span><span class="n">UpperArm</span><span class="p">.</span><span class="n">Brachialis</span><span class="p">;</span>
   <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">Ins</span> <span class="o">=</span> <span class="p">..</span><span class="n">Segs</span><span class="p">.</span><span class="n">ForeArm</span><span class="p">.</span><span class="n">Brachialis</span><span class="p">;</span>
@@ -181,7 +181,7 @@ insertion points. There are other ways to visualize muscles, and these are descr
 <span class="p">};</span>
 
 <span class="gr">//---------------------------------</span>
-<span class="gr">AnyViaPointMuscle DeltodeusA = {</span>
+<span class="gr">AnyMuscleViaPoint DeltodeusA = {</span>
 <span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
 <span class="gr">  AnyRefNode &amp;Org = ..GlobalRef.DeltodeusA;</span>
 <span class="gr">  AnyRefNode &amp;Ins = ..Segs.UpperArm.DeltodeusA;</span>
@@ -189,7 +189,7 @@ insertion points. There are other ways to visualize muscles, and these are descr
 <span class="gr">};</span>
 
 <span class="gr">//---------------------------------</span>
-<span class="gr">AnyViaPointMuscle DeltodeusB = {</span>
+<span class="gr">AnyMuscleViaPoint DeltodeusB = {</span>
 <span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
 <span class="gr">  AnyRefNode &amp;Org = ..GlobalRef.DeltodeusB;</span>
 <span class="gr">  AnyRefNode &amp;Ins = ..Segs.UpperArm.DeltodeusB;</span>
@@ -197,7 +197,7 @@ insertion points. There are other ways to visualize muscles, and these are descr
 <span class="gr">};</span>
 
 <span class="gr">//---------------------------------</span>
-<span class="gr">AnyViaPointMuscle Brachioradialis = {</span>
+<span class="gr">AnyMuscleViaPoint Brachioradialis = {</span>
 <span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
 <span class="gr">  AnyRefNode &amp;Org = ..Segs.UpperArm.Brachioradialis;</span>
 <span class="gr">  AnyRefNode &amp;Ins = ..Segs.ForeArm.Brachioradialis;</span>
@@ -205,7 +205,7 @@ insertion points. There are other ways to visualize muscles, and these are descr
 <span class="gr">};</span>
 
 <span class="gr">//---------------------------------</span>
-<span class="gr">AnyViaPointMuscle BicepsShort = {</span>
+<span class="gr">AnyMuscleViaPoint BicepsShort = {</span>
 <span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
 <span class="gr">  AnyRefNode &amp;Org = ..Segs.UpperArm.BicepsShort;</span>
 <span class="gr">  AnyRefNode &amp;Ins = ..Segs.ForeArm.Biceps;</span>
@@ -213,7 +213,7 @@ insertion points. There are other ways to visualize muscles, and these are descr
 <span class="gr">};</span>
 
 <span class="gr">//---------------------------------</span>
-<span class="gr">AnyViaPointMuscle TricepsShort = {</span>
+<span class="gr">AnyMuscleViaPoint TricepsShort = {</span>
 <span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
 <span class="gr">  AnyRefNode &amp;Org = ..Segs.UpperArm.TricepsShort;</span>
 <span class="gr">  AnyRefNode &amp;Ins = ..Segs.ForeArm.Triceps;</span>
@@ -221,7 +221,7 @@ insertion points. There are other ways to visualize muscles, and these are descr
 <span class="gr">};</span>
 
 <span class="gr">//---------------------------------</span>
-<span class="gr">AnyViaPointMuscle BicepsLong = {</span>
+<span class="gr">AnyMuscleViaPoint BicepsLong = {</span>
 <span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
 <span class="gr">  AnyRefNode &amp;Org = ..GlobalRef.BicepsLong;</span>
 <span class="gr">  AnyRefNode &amp;Ins = ..Segs.ForeArm.Biceps;</span>
@@ -229,7 +229,7 @@ insertion points. There are other ways to visualize muscles, and these are descr
 <span class="gr">};</span>
 
 <span class="gr">//---------------------------------</span>
-<span class="gr">AnyViaPointMuscle TricepsLong = {</span>
+<span class="gr">AnyMuscleViaPoint TricepsLong = {</span>
 <span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
 <span class="gr">  AnyRefNode &amp;Org = ..GlobalRef.TricepsLong;</span>
 <span class="gr">  AnyRefNode &amp;Ins = ..Segs.ForeArm.Triceps;</span>
@@ -455,7 +455,7 @@ Repository</a>.</p>
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Imparting movement with Drivers"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">2. </span>Getting started: AnyScript Programming</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 5: Definition of Muscles and External Forces</a></li> 

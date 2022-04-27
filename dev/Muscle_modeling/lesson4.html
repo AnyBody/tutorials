@@ -23,7 +23,7 @@
   
 <meta property="og:image:alt" content="wrapcylinder" />
   
-    <title>Lesson 4: Wrapping Muscles &#8212; AnyBody Tutorials v7.3.4-dev</title>
+    <title>Lesson 4: Wrapping Muscles &#8212; AnyBody Tutorials v7.4.0-dev</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -75,7 +75,7 @@
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Via-point Muscles"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">10. </span>Muscle Modeling</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 4: Wrapping Muscles</a></li> 
@@ -102,7 +102,7 @@ AnyBody Modeling System has a special muscle object for this purpose.</p>
 like the via point muscle. However, instead of interior via points it
 passes a set of surfaces. If the surfaces are blocking the way then the
 muscles finds the shortest geodetic path around the surface. For that reason, the
-name of the class is AnyShortestPathMuscle. The fact that the muscle
+name of the class is AnyMuscleShortestPath. The fact that the muscle
 always uses the shortest path means that it slides effortlessly on the
 surfaces, and hence there is no friction between the muscle and the
 surface.</p>
@@ -240,7 +240,7 @@ pronator muscles of the human forearm do.</p>
 <p>It is now possible to define the muscle wrapping over the cylinder. The
 easiest way to do it is to make a copy of the via point muscle, Muscle1,
 and then make the necessary changes:</p>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="kt">AnyViaPointMuscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="n">AnyMuscleViaPoint</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
     <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
     <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M1Origin</span><span class="p">;</span>
     <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Via</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">ViaPoint</span><span class="p">;</span>
@@ -256,7 +256,7 @@ and then make the necessary changes:</p>
     <span class="p">};</span>
   <span class="p">};</span>
 
-<span class="gr">AnyShortestPathMuscle Muscle2 = {</span>
+<span class="gr">AnyMuscleShortestPath Muscle2 = {</span>
 <span class="gr">    AnyMuscleModel &amp;Model = .SimpleModel;</span>
 <span class="gr">    AnyRefFrame &amp;Orig = .GlobalRef.M2Origin;</span>
 <span class="gr">    AnySurface &amp;srf = .GlobalRef.CylCenter.WrapSurf;</span>
@@ -323,7 +323,7 @@ cylinder even though it also has a via point:</p>
 </pre></div>
 </div>
 <p>The definition of the two muscle types is very similar, so we only had
-to change the type from AnyViaPointMuscle to AnyShortestPathMuscle and
+to change the type from AnyMuscleViaPoint to AnyMuscleShortestPath and
 insert the wrapping surface and the StringMesh specification. This gives
 us the following result:</p>
 <p><img alt="wrap cylinder two muscles" src="../_images/image46.jpeg" /></p>
@@ -358,7 +358,7 @@ way to do this is to specify one or more so-called initial wrapping
 vectors. These are really points that the muscle initially should pass
 through. You can specify as many of these points as you like. In the
 example below we have used two:</p>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyShortestPathMuscle</span> <span class="n">Muscle2</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">AnyMuscleShortestPath</span> <span class="n">Muscle2</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M2Origin</span><span class="p">;</span>
   <span class="kt">AnySurface</span> <span class="o">&amp;</span><span class="n">srf</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">CylCenter</span><span class="p">.</span><span class="n">WrapSurf</span><span class="p">;</span>
@@ -498,7 +498,7 @@ another important and interesting topic, <a class="reference internal" href="les
         <li class="right" >
           <a href="lesson3.html" title="Lesson 3: Via-point Muscles"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">10. </span>Muscle Modeling</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 4: Wrapping Muscles</a></li> 

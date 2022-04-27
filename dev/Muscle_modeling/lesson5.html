@@ -23,7 +23,7 @@
   
 <meta property="og:image:alt" content="chart view: muscle1.L" />
   
-    <title>Lesson 5: Muscle Models &#8212; AnyBody Tutorials v7.3.4-dev</title>
+    <title>Lesson 5: Muscle Models &#8212; AnyBody Tutorials v7.4.0-dev</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -77,7 +77,7 @@
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Wrapping Muscles"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">10. </span>Muscle Modeling</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 5: Muscle Models</a></li> 
@@ -243,7 +243,7 @@ muscle model:</p>
 <p>The parameters here are more or less random. In a moment we
 shall explain the ones that are less random, but first we must assign
 the new model to Muscle1:</p>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyShortestPathMuscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">AnyMuscleShortestPath</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="gr">.Model2</span><span class="p">;</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M1Origin</span><span class="p">;</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Via</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">ViaPoint</span><span class="p">;</span>
@@ -601,7 +601,7 @@ reasonable values for Muscle2 and study their influences:</p>
 variation of Muscle2. This is important because it gives the muscle a
 reasonable chance of spanning the origin-insertion length.</p>
 <p>We also have to associate Muscle2 with the new muscle model:</p>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyShortestPathMuscle</span> <span class="n">Muscle2</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">AnyMuscleShortestPath</span> <span class="n">Muscle2</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="gr">Model3</span><span class="p">;</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M2Origin</span><span class="p">;</span>
   <span class="kt">AnySurface</span> <span class="o">&amp;</span><span class="n">srf</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">CylCenter</span><span class="p">.</span><span class="n">WrapSurf</span><span class="p">;</span>
@@ -1043,7 +1043,7 @@ modeling, namely General Muscles. They are the topic of the next lesson,
         <li class="right" >
           <a href="lesson4.html" title="Lesson 4: Wrapping Muscles"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4-dev</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0-dev</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">10. </span>Muscle Modeling</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 5: Muscle Models</a></li> 
