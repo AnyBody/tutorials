@@ -22,7 +22,7 @@
   
 <meta property="og:image:alt" content="Chart view BicepsLong.Ft" />
   
-    <title>Lesson 7: Calibration &#8212; AnyBody Tutorials v7.3.4</title>
+    <title>Lesson 7: Calibration &#8212; AnyBody Tutorials v7.4.0</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -74,7 +74,7 @@
         <li class="right" >
           <a href="lesson6.html" title="Lesson 6: Composite Recruitment Criteria"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">8. </span>Inverse Dynamics of Muscle Systems</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 7: Calibration</a></li> 
@@ -94,7 +94,7 @@
 <p class="admonition-title">Note</p>
 <p>The following tutorial will explain how to set up your simple
 calibration study. Calibration is already built into the AMMR,
-<a class="reference external" href="https://anyscript.org/ammr-doc/index.html" title="(in AMMR v2.3)"><span class="xref std std-doc">see the AMMR documentation</span></a> for more details.</p>
+<a class="reference external" href="https://anyscript.org/ammr-doc/index.html" title="(in AMMR v2.4)"><span class="xref std std-doc">see the AMMR documentation</span></a> for more details.</p>
 </div>
 <p>One of the challenges in body modeling is that models must be able to change
 size to reflect individuals of different statures. Even if you are working on a
@@ -168,7 +168,7 @@ muscle model:</p>
 <span class="gr">  }; // End of BicepsLongModel</span>
 
   <span class="c1">//---------------------------------</span>
-  <span class="kt">AnyViaPointMuscle</span> <span class="n">Brachialis</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">AnyMuscleViaPoint</span> <span class="n">Brachialis</span> <span class="o">=</span> <span class="p">{</span>
 </pre></div>
 </div>
 <p>As you can see from the comments, the muscle has many parameters you
@@ -177,7 +177,7 @@ the muscle modeling tutorial. For this model to take effect, we must
 assign it to the biceps long muscle. It is a little further down in the
 file, where the red line must be changed:</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//---------------------------------</span>
-<span class="kt">AnyViaPointMuscle</span> <span class="n">BicepsLong</span> <span class="o">=</span> <span class="p">{</span>
+<span class="n">AnyMuscleViaPoint</span> <span class="n">BicepsLong</span> <span class="o">=</span> <span class="p">{</span>
   <span class="gr">AnyMuscleModel &amp;MusMdl = .BicepsLongModel;</span>
   <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">Org</span> <span class="o">=</span> <span class="p">..</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">BicepsLong</span><span class="p">;</span>
   <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">Ins</span> <span class="o">=</span> <span class="p">..</span><span class="n">Segs</span><span class="p">.</span><span class="n">ForeArm</span><span class="p">.</span><span class="n">Biceps</span><span class="p">;</span>
@@ -469,7 +469,7 @@ elongated by the calibration.</p>
         <li class="right" >
           <a href="lesson6.html" title="Lesson 6: Composite Recruitment Criteria"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">8. </span>Inverse Dynamics of Muscle Systems</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 7: Calibration</a></li> 

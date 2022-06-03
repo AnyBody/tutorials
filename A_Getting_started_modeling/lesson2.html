@@ -22,7 +22,7 @@
   
 <meta property="og:image:alt" content="AnyScript Tutorials" />
   
-    <title>Lesson 2: Adjusting the Human Model &#8212; AnyBody Tutorials v7.3.4</title>
+    <title>Lesson 2: Adjusting the Human Model &#8212; AnyBody Tutorials v7.4.0</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -74,7 +74,7 @@
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: Starting with a New Model"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">3. </span>Getting Started with Modeling</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 2: Adjusting the Human Model</a></li> 
@@ -107,32 +107,41 @@ The configuration process is described in greater detail in this <a class="refer
 <li><p>The left leg segments will be excluded.</p></li>
 <li><p>There will be no muscles in the right leg.</p></li>
 </ul>
-<p>This is implemented by declaring the corresponding BM statements just before
-the inclusion of the “HumanModel.any” file.</p>
+<p>This is implemented by declaring a number of <code class="docutils literal notranslate"><span class="pre">BM_*</span></code> configuraiton statements.</p>
+<p>These can be included anywhere before the inclusion of the <code class="docutils literal notranslate"><span class="pre">HumanModel.any</span></code> file. But it is good practize to collect them in a single place so we will add them to the file <code class="docutils literal notranslate"><span class="pre">Model/BodyModelConfiguration.any</span></code>.</p>
 <div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
 
   <span class="c1">// Body Model configuration:</span>
-  <span class="cp">#include</span> <span class="s">&quot;Model/BodyModelConfiguration.any&quot;</span>
-  <span class="c1">// Using your own Mannequin.any file in the Model folder of your model</span>
-  <span class="cp">#include</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
+<span class="hll">  <span class="cp">#include</span> <span class="s">&quot;Model/BodyModelConfiguration.any&quot;</span>
+</span></pre></div>
+</div>
+<p>Dobble click the line  <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;Model/BodyModelConfiguration.any&quot;</span></code> to quickly open the file.</p>
+<p>Then add the BM configurations marked in red.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#path</span> <span class="n">__BM_PLUGIN_FILE__</span> <span class="s">&quot;BodyModelConfiguration.any&quot;</span>
+<span class="cp">#define</span> <span class="n">BM_CONFIG_PLUGIN</span> <span class="n">__BM_PLUGIN_FILE__</span>
 
-  <span class="c1">//--&gt;BM statements</span>
-  <span class="c1">// Excluding the muscles in the trunk segments</span>
-  <span class="gr">#define BM_TRUNK_MUSCLES _MUSCLES_NONE_</span>
-  <span class="c1">// Excluding the left arm segments</span>
-  <span class="gr">#define BM_ARM_LEFT OFF</span>
-  <span class="c1">// Excluding the right arm segments</span>
-  <span class="gr">#define BM_ARM_RIGHT OFF</span>
-  <span class="c1">// Excluding the left leg segments</span>
-  <span class="gr">#define BM_LEG_LEFT OFF</span>
-  <span class="c1">// Using the right leg as &#39;TLEM&#39; model</span>
-  <span class="gr">#define BM_LEG_RIGHT _LEG_MODEL_TLEM1_</span>
-  <span class="c1">// Excluding the muscles in the right leg segments</span>
-  <span class="gr">#define BM_LEG_MUSCLES_RIGHT _MUSCLES_NONE_</span>
-  <span class="c1">//&lt;--</span>
+<span class="c1">// -----------------------------------------------------------------------------------</span>
+<span class="c1">// The BodyModel configuration can be modified using BodyModel GUI plugin</span>
+<span class="c1">// or by manually editing this file.</span>
+<span class="c1">//</span>
+<span class="c1">// Please see this this file for more information on the options:</span>
+<span class="c1">// #path HTML_DOC &quot;&lt;AMMR_PATH_DOC&gt;/bm_config/index.html&quot;</span>
+<span class="c1">// -----------------------------------------------------------------------------------</span>
 
-  <span class="c1">// Include default human model</span>
-  <span class="cp">#include</span> <span class="s">&quot;&lt;ANYBODY_PATH_BODY&gt;\HumanModel.any&quot;</span>
+<span class="c1">// Enable the TLEM2 lower extremity model</span>
+<span class="cp">#define</span> <span class="x x-Statements">BM_LEG_MODEL</span> <span class="x x-Options">_LEG_MODEL_TLEM2_</span>
+
+
+<span class="c1">// Excluding the muscles in the trunk segments</span>
+<span class="gr">#define BM_TRUNK_MUSCLES OFF</span>
+<span class="c1">// Excluding the left arm segments</span>
+<span class="gr">#define BM_ARM_LEFT OFF</span>
+<span class="c1">// Excluding the right arm segments</span>
+<span class="gr">#define BM_ARM_RIGHT OFF</span>
+<span class="c1">// Excluding the left leg segments</span>
+<span class="gr">#define BM_LEG_LEFT OFF</span>
+<span class="c1">// Excluding the muscles in the right leg segments</span>
+<span class="gr">#define BM_LEG_MUSCLES_RIGHT OFF</span>
 </pre></div>
 </div>
 <p>Loading the model (F7 key) should produce the following message:</p>
@@ -254,7 +263,7 @@ This will be the topic of the next lesson.</p>
         <li class="right" >
           <a href="lesson1.html" title="Lesson 1: Starting with a New Model"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">3. </span>Getting Started with Modeling</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 2: Adjusting the Human Model</a></li> 

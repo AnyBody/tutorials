@@ -16,13 +16,13 @@
   
 <meta property="og:site_name" content="AnyScript Tutorials" />
   
-<meta property="og:description" content="Although the name of the muscle class we have used so far is AnyViaPointMuscle, the example has only shown the muscle passing in a straight line between two points. Real muscles in the body rarely ..." />
+<meta property="og:description" content="Although the name of the muscle class we have used so far is AnyMuscleViaPoint, the example has only shown the muscle passing in a straight line between two points. Real muscles in the body rarely ..." />
   
 <meta property="og:image" content="https://anyscript.org/_images/image16.jpeg" />
   
 <meta property="og:image:alt" content="Old leg Muscle wrapping" />
   
-    <title>Lesson 3: Via-point Muscles &#8212; AnyBody Tutorials v7.3.4</title>
+    <title>Lesson 3: Via-point Muscles &#8212; AnyBody Tutorials v7.4.0</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -74,7 +74,7 @@
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Controlling Muscle Drawing"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">10. </span>Muscle Modeling</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 3: Via-point Muscles</a></li> 
@@ -91,19 +91,19 @@
   <section class="tex2jax_ignore mathjax_ignore" id="lesson-3-via-point-muscles">
 <h1>Lesson 3: Via-point Muscles<a class="headerlink" href="#lesson-3-via-point-muscles" title="Permalink to this headline">¶</a></h1>
 <p>Although the name of the muscle class we have used so far is
-AnyViaPointMuscle, the example has only shown the muscle passing in a
+AnyMuscleViaPoint, the example has only shown the muscle passing in a
 straight line between two points. Real muscles in the body rarely do so.
 They are usually constrained by various obstacles on their way from
 origin to insertion, either by connective tissues or by the contact with
 bone surfaces.</p>
 <p>In the former case, the muscle tends to pass as a piecewise straight
 line between the constrained points, and this is relatively easy to
-accomplish by means of an AnyViaPointMuscle. In the latter case, the
+accomplish by means of an AnyMuscleViaPoint. In the latter case, the
 muscle may engage and release contact with the bone surfaces it
 encounters. This wrapping over bones is a problem of contact mechanics
 and optimization. It requires a different muscle class and it is
 computationally much more demanding. In this lesson we shall look at
-AnyViaPointMuscles and postpone the discussion of wrapping to the next
+AnyMuscleViaPoints and postpone the discussion of wrapping to the next
 lesson.</p>
 <p>Anatomically, via point muscles are mostly found in the lower
 extremities and in the spine, while the arms and shoulders almost
@@ -177,7 +177,7 @@ as the via point:</p>
 </div>
 <p>We can then introduce the new point in the sequence of points defining
 the muscle:</p>
-<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyViaPointMuscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">AnyMuscleViaPoint</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
   <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
   <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M1Origin</span><span class="p">;</span>
  <span class="gr">AnyRefFrame &amp;Via = .Arm.ViaPoint;</span>
@@ -313,7 +313,7 @@ computationally. Wrapping muscles is the subject of <a class="reference internal
         <li class="right" >
           <a href="lesson2.html" title="Lesson 2: Controlling Muscle Drawing"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.3.4</a> &#187;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">10. </span>Muscle Modeling</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Lesson 3: Via-point Muscles</a></li> 
