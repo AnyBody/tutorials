@@ -1,0 +1,1410 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="noindex" name="robots" />
+
+<meta property="og:title" content="Optimization Studies" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/Parameter_studies_and_optimization/lesson2.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="The parameter study introduced in the preceding lesson provides a complete overview of the design space, but the study is only feasible when the problem has few independent parameters, preferably o..." />
+  
+<meta property="og:image" content="https://anyscript.org/_images/image13.gif" />
+  
+<meta property="og:image:alt" content="AnyScript Tutorials" />
+  
+    <title>Optimization Studies &#8212; AnyBody Tutorials v7.4.0-dev</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Optimization Studies in Python" href="lesson3.html" />
+    <link rel="prev" title="Defining a Parameter Study" href="lesson1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/AnyBodyTutorials2.svg" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../A_Getting_started/index.html">
+   1. First steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started/lesson1.html">
+     Lesson 1: Creating a Standing Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started/lesson2.html">
+     Lesson 2: Controlling the Posture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started/lesson3.html">
+     Lesson 3: Reviewing Analysis Results
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../A_Getting_started_anyscript/index.html">
+   2. How to write AnyScript
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/lesson1.html">
+     Lesson 1: Basic Concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/lesson2.html">
+     Lesson 2: Defining Segments and Displaying Objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/lesson3.html">
+     Lesson 3: Connecting Segments by Joints
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/lesson4.html">
+     Lesson 4: Imparting movement with Drivers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/lesson5.html">
+     Lesson 5: Definition of Muscles and External Forces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/lesson6.html">
+     Lesson 6: Adding Real Bone Geometries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../A_Getting_started_modeling/index.html">
+   3. Modelling the Human body
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_modeling/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_modeling/lesson1.html">
+     Lesson 1: Starting with a New Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_modeling/lesson2.html">
+     Lesson 2: Adjusting the Human Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_modeling/lesson3.html">
+     Lesson 3: Making Ends Meet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_modeling/lesson4.html">
+     Lesson 4: Kinetics - Computing Forces
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../A_Getting_started_AMMR/index.html">
+   4. The AnyBody Model Repository
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://anyscript.org/ammr-doc/creating_model_from_scratch.html">
+     Creating a Human Model from scratch
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson1.html">
+     Scaling: Joint to joint scaling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson2.html">
+     Scaling: External Body Measurements
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson3.html">
+     Scaling: Segmental scaling factors
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tutorials
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../A_study_of_studies/index.html">
+   A Study of Studies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_study_of_studies/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_study_of_studies/lesson1.html">
+     Lesson1: Mechanical System Information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_study_of_studies/lesson2.html">
+     Lesson2: Initial Conditions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_study_of_studies/lesson3.html">
+     Lesson 3: Kinematic Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_study_of_studies/lesson4.html">
+     Lesson 4: Inverse Dynamics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Making_things_move/index.html">
+   Making things move
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Making_things_move/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Making_things_move/lesson1.html">
+     Lesson1: Simple drivers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Making_things_move/lesson2.html">
+     Lesson 2: Using motion capture data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Making_things_move/lesson3.html">
+     Lesson3: Noise and filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Making_things_move/lesson4.html">
+     Lesson 4: Parameter identification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Making_things_move/lesson5.html">
+     Lesson 5: Using real data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Making_things_move/lesson6.html">
+     Lesson 6: Troubleshooting C3D files
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../MuscleRecruitment/index.html">
+   Inverse Dynamics of Muscle Systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson1.html">
+     Lesson 1: The Basics of Muscle Recruitment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson2.html">
+     Lesson 2: Linear Muscle Recruitment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson3.html">
+     Lesson 3: Quadratic Muscle Recruitment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson4.html">
+     Lesson 4: Polynomial Muscle Recruitment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson5.html">
+     Lesson 5: Min/Max Muscle Recruitment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson6.html">
+     Lesson 6: Composite Recruitment Criteria
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson_calibration.html">
+     Lesson 7: Calibration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ForceDependentKinematics/index.html">
+   Force-Dependent Kinematics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/fdk.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/lesson1.html">
+     Lesson 1: The Baseline Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/lesson2.html">
+     Lesson 2: Adding FDK Features
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/lesson3.html">
+     Lesson 3: Results of FDK
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/lesson4.html">
+     Lesson 4: Using Surfaces to Define the Knee Joint
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/lesson5.html">
+     Lesson 5: Using Contact Forces to Replace a Joint in a Human Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/fdkappendix.html">
+     FDK appendix
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Muscle_modeling/index.html">
+   Muscle Modeling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson1.html">
+     Lesson 1: The Basics of Muscle Definition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson2.html">
+     Lesson 2: Controlling Muscle Drawing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson3.html">
+     Lesson 3: Via-point Muscles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson4.html">
+     Lesson 4: Wrapping Muscles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson5.html">
+     Lesson 5: Muscle Models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson6.html">
+     Lesson 6: General Muscles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson7.html">
+     Lesson 7: Ligaments
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../The_mechanical_elements/index.html">
+   The Mechanical Elements
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../The_mechanical_elements/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../The_mechanical_elements/lesson1.html">
+     Lesson 1: Segments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../The_mechanical_elements/lesson2.html">
+     Lesson 2: Joints
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../The_mechanical_elements/lesson3.html">
+     Lesson 3: Drivers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../The_mechanical_elements/lesson4.html">
+     Lesson 4: Kinematic Measures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../The_mechanical_elements/lesson5.html">
+     Lesson 5: Forces
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Finite_element_analysis/index.html">
+   Finite Element Analysis Interfacing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Finite_element_analysis/lesson1.html">
+     Lesson 1: Export of data for FEA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Finite_element_analysis/lesson2.html">
+     Lesson 2: ANSYS Interface
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Finite_element_analysis/lesson3.html">
+     Lesson 3: Abaqus Interface
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">
+   Making Models using SOLIDWORKS
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson1.html">
+     Translating a SOLIDWORKS CAD model to AnyBody
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson2.html">
+     Making the translated AnyScript model move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson3.html">
+     Creating human-machine integrated analysis model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Scaling/index.html">
+   Scaling and Personalizing your model
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../Scaling/lesson3.html">
+     Lesson 1: Scaling based on medical images
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Scaling/lesson3_appendix.html">
+       Lesson 1 appendix
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Scaling/lesson4.html">
+     Lesson 2: Including a custom scaling function into your model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Validation_of_models/index.html">
+   Validation of Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Validation_of_models/intro.html">
+     Introduction to validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Validation_of_models/Kinematic_input.html">
+     Validating Kinematic input
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Parameter Studies and Optimization
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson1.html">
+     Defining a Parameter Study
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Optimization Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson3.html">
+     Optimization Studies in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Posture_and_movement/intro.html">
+   Posture and Movement Prediction
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Internals of AnyBody
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Interface_features/index.html">
+   User interface features
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson1.html">
+     Lesson 1: The Editor Window
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson2.html">
+     Lesson 2: The Model View Window
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson3.html">
+     Lesson 3: The Chart View
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson4.html">
+     Lesson 4: The Model Tree and Object Description
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson5.html">
+     Lesson 5: The Command Line Application
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson6.html">
+     Lesson 6: Modifying the Loaded Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson7.html">
+     Lesson 7: Wrapping the Model with AnyBody Project
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Advanced_script_features/index.html">
+   Advanced Script Features
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Advanced_script_features/lesson1.html">
+     Lesson 1: Using References
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Advanced_script_features/lesson2.html">
+     Lesson 2: Using Include Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Advanced_script_features/lesson3.html">
+     Lesson 3: Mathematical Expressions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Troubleshooting_anyscript/intro.html">
+   Trouble Shooting AnyScript Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Others
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributing.html">
+   Contributing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../legal.html">
+   Legal, Trademarks and Copyrights
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Tutorials by <a href="https://anybodytech.com">AnyBody Technology</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/anybody/anybody-tutorial/issues/new?title=Issue%20on%20page%20%2FParameter_studies_and_optimization/lesson2.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/anybody/anybody-tutorial/edit/master/Parameter_studies_and_optimization/lesson2.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adding-the-optimization-class">
+   Adding the optimization class
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-the-optimization-study">
+   Running the optimization study
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caveat-when-running-optimization-studies">
+   Caveat when running Optimization studies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#constrained-optimization">
+   Constrained optimization
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Optimization Studies</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adding-the-optimization-class">
+   Adding the optimization class
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-the-optimization-study">
+   Running the optimization study
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caveat-when-running-optimization-studies">
+   Caveat when running Optimization studies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#constrained-optimization">
+   Constrained optimization
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="optimization-studies">
+<h1>Optimization Studies<a class="headerlink" href="#optimization-studies" title="Permalink to this headline">#</a></h1>
+<p>The parameter study introduced in the preceding lesson provides a
+complete overview of the design space, but the study is only feasible
+when the problem has few independent parameters, preferably one or two.
+In the previous lesson we considered a problem with two parameters and 10
+steps in each direction of the design space leading to <span class="math notranslate nohighlight">\(5^2 = 25\)</span>
+analyses. If the problem had 10 parameters we would be facing <span class="math notranslate nohighlight">\(5^{10}\)</span> or 9.7
+million analyses, which is an entirely different matter in terms of
+computation times. The truth is that such so-called full factorial
+parameter studies are computationally infeasible when the problem has
+more than very few independent parameters. So what to do?</p>
+<p>The solution is to use a method that picks the combinations to compute
+carefully and only has to evaluate a few of them. One class of such
+methods is optimization. An optimization algorithm systematically
+searches through the design space for the combination of parameters that
+minimizes the value of a function of the parameters, the so-called
+objective function. Some algorithms also allow the definition of
+constraint functions, which are dependent parameters that must be
+maintained below a certain upper limit.</p>
+<p>The AnyBody Modeling System provides a study to handle optimization
+problems. The mathematical definition of the problem it solves is as
+follows:</p>
+<p>Minimize</p>
+<p><span class="math notranslate nohighlight">\(g_0(x_1..x_n)\)</span></p>
+<p>Subject to</p>
+<p><span class="math notranslate nohighlight">\(g_i(x_1..x_n) \leq 0 \\ \text{and} \\L_j \leq x_j \leq U_j\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(g_0\)</span> is called the objective function, <span class="math notranslate nohighlight">\(x_j\)</span>, <span class="math notranslate nohighlight">\(j=1..n\)</span> are the design variables, and <span class="math notranslate nohighlight">\(g_i\)</span>,
+<span class="math notranslate nohighlight">\(i=1..m\)</span> are the constraints. The definition of an optimization
+problem in AnyBody is therefore a question of appointing independent
+parameters as design variables and dependent parameters as the objective
+function and constraints. Please notice that <span class="math notranslate nohighlight">\(m\)</span> could be zero in which
+case we have a problem that is only constrained by the simple bounds on
+the variables.</p>
+<p>In an optimization terminology, the parameter study from the preceding
+lesson could be defined as:</p>
+<p>Minimize</p>
+<blockquote>
+<div><p><em>Metabolic energy consumption</em></p>
+</div></blockquote>
+<p>Subject to</p>
+<blockquote>
+<div><p><em>Saddle height within predefined limits</em>
+<em>Saddle horizontal position within predefined limits</em></p>
+</div></blockquote>
+<p>In fact, this is precisely what we are going to do, but before we
+proceed, let us briefly look at the properties of a typical
+musculoskeletal objective function and how the optimization algorithm
+solves the problem.</p>
+<img alt="../_images/image13.gif" src="../_images/image13.gif" />
+<img alt="../_images/image25.gif" src="../_images/image25.gif" />
+<p>The two pictures above both show the result of a parameter study. The
+picture on the right is the section indicated by the magnifying glass on
+the left amplified by 50 times. As you can see, the seemingly smooth
+objective function has a microscopic jump. In other words the function
+is non-smooth and in fact discontinuous at certain points. Not
+all design measures have such discontinuities, but some do. The figure
+also indicates that the function is smooth in between these
+discontinuities. Optimization algorithms are trying to navigate on
+multi-dimentional hyper-surfaces with such qualities and must
+consequently be robust against a certain amount of non-smoothness. The
+optimization algorithm in AnyBody is indeed capable of doing this in
+most cases. It is a special version of a so-called feasible directions
+algorithm, which seeks out the optimum in two-step loops. The two steps
+are:</p>
+<ol class="arabic simple">
+<li><p>Decide on a search direction.</p></li>
+<li><p>Perform a linear search to find the minimum along the chosen
+direction.</p></li>
+</ol>
+<p>This means that it is only necessary to perform analyses of the function
+values at the points that the algorithm actually visits and not all
+points in a predefined grid as we did in the parameter study. It also
+means that the algorithm depends on the smoothness of the surface when
+it decides on a direction to take in step 1, but once the direction has
+been chosen, the line search in step 2 can be done with methods that do
+not predispose smoothness.</p>
+<section id="adding-the-optimization-class">
+<h2>Adding the optimization class<a class="headerlink" href="#adding-the-optimization-class" title="Permalink to this headline">#</a></h2>
+<p>Now that we know what to expect, we can proceed to the actual definition of the
+optimization study. If you didn’t complete <a class="reference internal" href="lesson1.html"><span class="doc">lesson 1</span></a>, download
+<a class="reference download internal" download="" href="../_downloads/c7b5bfdecf15d3b7d49233fa8a090bf3/OptimBike2-final.zip"><code class="xref download docutils literal notranslate"><span class="pre">the</span> <span class="pre">finished</span> <span class="pre">parameter</span> <span class="pre">study</span> <span class="pre">model</span></code></a> to get started quickly.</p>
+<p>The previous definition of the parameter
+study will help us a lot because an optimization study has almost
+exactly the same structure. So the first step would be to simply copy
+the parameter study:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyParamStudy</span> <span class="n">ParamStudy</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">Analysis</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyOperation</span> <span class="o">&amp;</span><span class="n">Operation</span> <span class="o">=</span> <span class="p">..</span><span class="n">Study</span><span class="p">.</span><span class="n">InverseDynamics</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="n">nStep</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">};</span>
+  <span class="kt">AnyDesVar</span> <span class="n">SaddleHeight</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">BikeParameters</span><span class="p">.</span><span class="n">SaddleHeight</span><span class="p">;</span>
+      <span class="n">Min</span> <span class="o">=</span> <span class="mf">0.61</span><span class="p">;</span>
+      <span class="n">Max</span> <span class="o">=</span> <span class="mf">0.69</span> <span class="cm">/*+ 0.02*/</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDesVar</span> <span class="n">SaddlePos</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">BikeParameters</span><span class="p">.</span><span class="n">SaddlePos</span><span class="p">;</span>
+      <span class="n">Min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.22</span> <span class="cm">/*-0.03*/</span><span class="p">;</span>
+      <span class="n">Max</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDesMeasure</span> <span class="n">MaxAct</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(..</span><span class="n">Study</span><span class="p">.</span><span class="n">MaxAct</span><span class="p">());</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDesMeasure</span> <span class="n">Metab</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="nb">secint</span><span class="p">(..</span><span class="n">Study</span><span class="p">.</span><span class="n">Metabolism</span><span class="p">(),..</span><span class="n">Study</span><span class="p">.</span><span class="n">tArray</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="gr">AnyParamStudy ParamStudy = {</span>
+<span class="gr">  Analysis = {</span>
+<span class="gr">    AnyOperation &amp;Operation = ..Study.InverseDynamics;</span>
+<span class="gr">  };</span>
+<span class="gr">  nStep = {10,10};</span>
+<span class="gr">  AnyDesVar SaddleHeight = {</span>
+<span class="gr">    Val = Main.BikeParameters.SaddleHeight;</span>
+<span class="gr">      Min = 0.61;</span>
+<span class="gr">      Max = 0.69 /*+ 0.02*/;</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyDesVar SaddlePos = {</span>
+<span class="gr">    Val = Main.BikeParameters.SaddlePos;</span>
+<span class="gr">      Min = -0.22 /*-0.03*/;</span>
+<span class="gr">      Max = -0.05;</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyDesMeasure MaxAct = {</span>
+<span class="gr">    Val = max(..Study.MaxAct());</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyDesMeasure Metab = {</span>
+<span class="gr">    Val = secint(..Study.Metabolism(),..Study.tArray);</span>
+<span class="gr">  };</span>
+<span class="gr">};</span>
+</pre></div>
+</div>
+<p>We proceed to change a few parameters:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Any</span><span class="gr">Opt</span><span class="n">Study</span> <span class="gr">Opt</span><span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">Analysis</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyOperation</span> <span class="o">&amp;</span><span class="n">Operation</span> <span class="o">=</span> <span class="p">..</span><span class="n">Study</span><span class="p">.</span><span class="n">InverseDynamics</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDesVar</span> <span class="n">SaddleHeight</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">BikeParameters</span><span class="p">.</span><span class="n">SaddleHeight</span><span class="p">;</span>
+      <span class="n">Min</span> <span class="o">=</span> <span class="mf">0.61</span><span class="p">;</span>
+      <span class="n">Max</span> <span class="o">=</span> <span class="mf">0.69</span> <span class="cm">/*+ 0.02*/</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDesVar</span> <span class="n">SaddlePos</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">BikeParameters</span><span class="p">.</span><span class="n">SaddlePos</span><span class="p">;</span>
+      <span class="n">Min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.22</span> <span class="cm">/*-0.03*/</span><span class="p">;</span>
+      <span class="n">Max</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDesMeasure</span> <span class="n">Metab</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="nb">secint</span><span class="p">(..</span><span class="n">Study</span><span class="p">.</span><span class="n">Metabolism</span><span class="p">(),..</span><span class="n">Study</span><span class="p">.</span><span class="n">tArray</span><span class="p">);</span>
+    <span class="gr">Type = ObjectiveFun;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Please notice that the <code class="docutils literal notranslate"><span class="pre">AnyDesMeasure</span> <span class="pre">MaxAct</span></code> was removed, and so was the
+entire line with the <code class="docutils literal notranslate"><span class="pre">nStep</span></code> specification. The optimization study does
+not use any particular step size but rather adapts its steps
+automatically to find the accurate position of the optimum. This is
+another advantage of optimization over a parameter study. Finally, we
+have added a type specification to the Metab object specifying that this
+is the objective function of the problem.</p>
+<p>This is the definition of an optimization problem that will vary the
+saddle height and horizontal position to minimize the metabolism. Let
+us run it and see what happens. Load the model in and please make sure
+that you have a Model View window open so that you can see the
+difference in the way the seat position is varied compared to the
+parameter study.</p>
+<img alt="../_images/runopt.png" src="../_images/runopt.png" />
+<p>If the model loads you should get a screen picture similar to the one above this
+text.</p>
+</section>
+<section id="running-the-optimization-study">
+<h2>Running the optimization study<a class="headerlink" href="#running-the-optimization-study" title="Permalink to this headline">#</a></h2>
+<p>Select the <code class="docutils literal notranslate"><span class="pre">Main.OptStudy.Optimization</span></code> in the operation dropdown and
+then the Run button. The model starts cycling and after a few rounds you will
+notice the saddle position changing, but not in a systematic grid like in the
+parameters study. What you will see is gradual changes back and forth in
+different directions until the changes wear off and the position converges.</p>
+<p>Every time you see the left-most number changing in the Output window it is
+an indication that the optimizer has picked a new optimization direction to try.
+You should see the number increasing in slow steps up to 4 before the process
+stops and the system announces that it is finished. Please notice that the
+changes of saddle position in the last several steps is very minute, which is
+typical for optimization: the first steps bring large changes and large
+improvements, while the last many steps only improve slightly.</p>
+<p>Now we are going to study the results in more detail using the Chart
+window. Do you still have the Chart window from the previous lesson
+with the Metabolism parameter study open? It should look like this:</p>
+<img alt="../_images/metab100.png" src="../_images/metab100.png" />
+<p>If not, please run the ParamStudy again and plot the surface. When you
+have this surface ready, please open another Chart window by clicking
+<code class="docutils literal notranslate"><span class="pre">View</span></code>-&gt;``Charts``-&gt;``Chart2``.  In the new window, please expand the tree
+down to Main.OptStudy.Output.Metab. Then click the Val variable
+under Metab. This produces a simple 2-D graph showing the development of
+the metabolism over the 4 iterations:</p>
+<img alt="../_images/metabcon2.png" src="../_images/metabcon2.png" />
+<p>The graph confirms that the vast majority of the improvement is obtained
+in a couple of iterations and the final iteration contributes only by a
+minor, almost insignificant adjustment. Such iterations
+with insignificant improvements occur due to the convergence criterion,
+i.e., the criterion that stops the optimization process. The optimizer
+does not detect mathemtically that the objective function has an optimum
+value; it merely detects that the changes of the found solution are
+small from one iteration to the next. Therefore, the optimization
+process will always end with one (or more) steps with insignificant
+changes.</p>
+<p>The optimal solution in the Model View looks like this:</p>
+<img alt="../_images/bikeopt2.png" src="../_images/bikeopt2.png" />
+<p>Just above the <code class="docutils literal notranslate"><span class="pre">Metab</span></code> variable in the tree you can find the two
+independent variables, <code class="docutils literal notranslate"><span class="pre">SaddleHeight</span></code> and <code class="docutils literal notranslate"><span class="pre">SaddlePos</span></code>, and they can be
+graphed the same way revealing that their convergence is less monotone
+over the iterations. This is also quite usual for optimization
+processes.</p>
+<p>An interesting way to investigate the convergence is to plot it in the
+variable/objective space rather than over the iterations. This is what
+we need the window with the parameter study surface for. At the top of
+this window you will find panels listing series and data to be plotted.
+Please right-click in the series window and select “New”:</p>
+<img alt="../_images/newseries.png" src="../_images/newseries.png" />
+<p>This will give you a blank “Series 1”. When you highlight it by clicking
+with the mouse you will see the list of Selected Objects in the
+right-hand pane is empty. We are going to fill in the <code class="docutils literal notranslate"><span class="pre">SaddleHeight</span></code> and
+<code class="docutils literal notranslate"><span class="pre">SaddlePos</span></code> variables from the OptStudy as Abscissa and Abscissa2,
+respectively.  This is done by selecting Abscissa and Abscissa2 in turn
+and then expanding the <code class="docutils literal notranslate"><span class="pre">OptStudy</span></code> branch until the <code class="docutils literal notranslate"><span class="pre">SaddleHeight.Val</span></code> and
+<code class="docutils literal notranslate"><span class="pre">SaddlePos.Val</span></code>, respectively, can be selected:</p>
+<img alt="../_images/selectheight.png" src="../_images/selectheight.png" />
+<p>Finally, in the <code class="docutils literal notranslate"><span class="pre">Value</span></code> field select <code class="docutils literal notranslate"><span class="pre">OptStudy.Metab.Val</span></code> and look carefully
+at the plot. You will see that an additional polyline has been added. It
+originates approximately at the middle of the surface and shows the path
+the optimization process has taken through the design space to the
+minimum point. You can change the color of the line by clicking the second
+leftmost button (<img alt="chartsettings.png" src="../_images/chartsettings1.png" />) in the toolbar directly over the graphics
+pane. This gives you access to all the settings and lets you control the
+appearance of graphs in detail. In the picture below we have selected
+<code class="docutils literal notranslate"><span class="pre">RGB</span> <span class="pre">=</span> <span class="pre">{1,0,0}</span></code>, i.e. red, for <code class="docutils literal notranslate"><span class="pre">Series1</span></code> and <code class="docutils literal notranslate"><span class="pre">Thickness</span> <span class="pre">=</span> <span class="pre">4</span></code>:</p>
+<img alt="../_images/optpath2.png" src="../_images/optpath2.png" />
+</section>
+<section id="caveat-when-running-optimization-studies">
+<h2>Caveat when running Optimization studies<a class="headerlink" href="#caveat-when-running-optimization-studies" title="Permalink to this headline">#</a></h2>
+<p>This plot illustrates the convergence history in the “landscape” of the
+objective function. Here we can see the reasons for the convergence
+being as it is. Actually, the optimum value lies in a relatively flat
+region and therefore the exact mathematical location of the optimum may
+be of a more academic importance than practical relevance since we can
+find many design point with almost the same objective function value.</p>
+<p>“A flat optimum”, like this, can occasionally cause problems for the
+optimization process to provide exact convergence because it is
+difficult to distinguish between insignificant changes due to flatness
+or convergence. Furthermore, one more obstacle for finding the exact
+optimum is present in the given case. The objective function is not as
+smooth as the parameter study with the relative crude grid indicates.
+Below you see the result of a parameter study, we have prepared for a
+small 2 by 2 mm design area in the vicinity of the end-point of the fist
+optimization step.</p>
+<img alt="../_images/metabzoom2.png" src="../_images/metabzoom2.png" />
+<p>This reveals a distinct (local) valley of
+the objective function. Minor changes of the input to the optimization
+process, whether it be the starting point or design variable bounds, can
+actually make the optimization process dive into this local valley and
+get stuck in there.</p>
+<p>An optimization process that gets stuck in this local minimum could have
+a convergence history like in the plots shown below</p>
+<p><img alt="metabcon2_no_converge.gif" src="../_images/image111.gif" /></p>
+<p><img alt="optpath2_no_converge.gif" src="../_images/image121.gif" /></p>
+<p>Notice how  how only the first
+iteration out of 7 provides significant improvement of the objective
+function. This step brings the design value down into to the valley. The
+remaining iterations zigzags in the bottom of the valley without being
+able to get up and out and without providing any visible improvement.
+Finally, the convergence criterion is fulfilled. It can be mentioned
+that the convergence criterion requires both objective and design
+changes to be small.</p>
+</section>
+<section id="constrained-optimization">
+<span id="optimization-contraint"></span><h2>Constrained optimization<a class="headerlink" href="#constrained-optimization" title="Permalink to this headline">#</a></h2>
+<p>In the beginning of this lesson, we mentioned that the optimization
+problem formulation also handles constraints. They can be used for all
+sorts of purposes. For instance we notice that the optimal solution is a
+rather low saddle position, cf. the picture above. Suppose that for some
+reason, this position is too low. We, therefore, want to ensure that the
+distance between the crank and the seat is not too small, for instance
+larger than 0.66 m. This can be formulated very nicely as a constraint
+like this:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyDesMeasure</span> <span class="n">Metab</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">Val</span> <span class="o">=</span> <span class="nb">secint</span><span class="p">(..</span><span class="n">Study</span><span class="p">.</span><span class="n">Metabolism</span><span class="p">(),..</span><span class="n">Study</span><span class="p">.</span><span class="n">tArray</span><span class="p">);</span>
+  <span class="n">Type</span> <span class="o">=</span> <span class="kp">ObjectiveFun</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="gr">AnyDesMeasure SeatDist = {</span>
+<span class="gr">  Val = (.SaddleHeight.Val^2+.SaddlePos.Val^2)^0.5 - 0.66;</span>
+<span class="gr">  Type = GreaterThanZero;</span>
+<span class="gr">};</span>
+</pre></div>
+</div>
+<p>Notice that constraints are defined as <code class="docutils literal notranslate"><span class="pre">AnyDesMeasures</span></code> of type
+<code class="docutils literal notranslate"><span class="pre">LessThanZero</span></code> or <code class="docutils literal notranslate"><span class="pre">GreaterThanZero</span></code>. In the mathematical formulation of the
+optimization problem stated in the beginning of this lesson, we have
+only less-than-or-equal-to constraints, but there is only a minus sign
+in difference of making a greater-than-or-equal-to into a
+less-than-or-equal-to constraint. You can put this minus sign manually
+or you can use Type = <code class="docutils literal notranslate"><span class="pre">GreaterThanZero</span></code>, which is equivalent. Notice that
+equality constraints are in principle also a possibility, but currently
+the optimization solvers in AnyBody do not handle this type of
+constraints. Moreover, it is most often possible to handle equality
+constraints by means of inequality constraints, because the objective
+function’s gradient will put pressure on the constraint from one side;
+thus, it is merely a matter of determining the proper type of inequality
+constraint.</p>
+<p>Notice also that the constraint is just an <code class="docutils literal notranslate"><span class="pre">AnyDesMeasure</span></code>, so anything
+you could conceivably use as an objective function can also be a
+constraint. In this case, the constraint is a simple mathematical
+combination of variables, but in general it can also be properties such
+as muscle forces, joint reactions, point locations, segment velocities,
+and any other model property that the system can compute.</p>
+<p>Enough talk; let’s try the optimization with the constraint added.
+Please load the model again, select the <code class="docutils literal notranslate"><span class="pre">Main.OptStudy.Optimization</span></code> operation, and
+click the run button. The optimization process will have the following
+convergence picture:</p>
+<img alt="../_images/metab2_constrained.png" src="../_images/metab2_constrained.png" />
+<p>If you alo re-run the parameter study, you can get this picture of the
+convergence:</p>
+<img alt="../_images/optpath2_constrained.png" src="../_images/optpath2_constrained.png" />
+<p>We see that the result is indeed a compromise since the objective
+function value cannot be reduced as much as in the unconstrained
+case. The path of the design values bounces off the constraint and
+finally it gets stuck on the constraint even though the objective
+function still has a downwards inclination. The constraint lies like a
+wall through the design space. We can see the convergence path along the
+constraint by plot the constraint value, i.e., the <code class="docutils literal notranslate"><span class="pre">SeatDist.Val</span></code>. This
+looks like:</p>
+<img alt="../_images/SeatDist2_constrained.png" src="../_images/SeatDist2_constrained.png" />
+<p>where it is obvious how the optimizer hits the constraint, bounces off,
+hits again, etc. and finally it converges. At no point in time, the
+constraint value becomes negative, which was exactly what we prescribed
+in its definition.</p>
+<p>A final look at the result could be the picture of the model after this
+constained optimization, which shows a visible difference compared to
+the unconstrained solution: The hip position is now higher, i.e., longer
+from the crank and to achieve this it is further forward, see the
+picture below:</p>
+<img alt="../_images/BikeOpt2_constrained.png" src="../_images/BikeOpt2_constrained.png" />
+<p>This completes the introduction to optimization studies.</p>
+<div class="without-title admonition seealso">
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Optimization Studies in Python</span></a>. We will look at how to use external (3rd. party) optimizers with
+AnyBody. In particular we will show how to use the Python programming language to run the
+same optimizations as we have done in this Tutorial.</p>
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="lesson1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Defining a Parameter Study</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lesson3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Optimization Studies in Python</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By AnyBody Technology<br/>
+  
+      &copy; Copyright 2022, AnyBody Technology.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
