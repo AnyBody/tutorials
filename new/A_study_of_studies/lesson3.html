@@ -937,11 +937,6 @@ title="Edit this page"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-long-explanation">
-   The long explanation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#running-kinematic-analysis">
    Running kinematic analysis
   </a>
@@ -970,11 +965,6 @@ title="Edit this page"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-long-explanation">
-   The long explanation
-  </a>
- </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#running-kinematic-analysis">
    Running kinematic analysis
@@ -1006,14 +996,19 @@ subjected to the Kinematics operation. However, it does have to be
 kinematically determinate, but that concept is definitely a part of the
 longer explanation.</p>
 <p>So, brace yourself, and let’s venture on to…</p>
-<section class="html-toggle" id="the-long-explanation">
-<h2>The long explanation<a class="headerlink" href="#the-long-explanation" title="Permalink to this headline">#</a></h2>
-<p>An AnyBody model is really a collection of rigid segments. You can think
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<strong>The long explanation</strong><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">An AnyBody model is really a collection of rigid segments. You can think
 of them as a bunch of potatoes floating around in space. Technically,
 each potato is called a “rigid body”, but the term “body” can be
 misinterpreted in the context of a body modeling system like AnyBody, so
 we call them “segments”.</p>
-<p>When a segment flows around in space, it can move in six different
+<p class="sd-card-text">When a segment flows around in space, it can move in six different
 directions. We call them degrees of freedom and usually think of them as
 movement along the three coordinate axes and rotation about the same
 axes. We call these movement directions “degrees of freedom” and an
@@ -1025,7 +1020,7 @@ all times, and this requires 6n pieces of information about the
 positions to resolve the 6n degrees of freedom. The pieces of
 information are mathematically speaking equations. So kinematic analysis
 is about solving 6n equations with 6n unknowns.</p>
-<p>A usual way of constraining degrees of freedom (or adding equations to
+<p class="sd-card-text">A usual way of constraining degrees of freedom (or adding equations to
 the system) is to add joints to the model. When you join two segments
 they lose some of their freedom to move independently. They become
 constrained to each other. Consider two segments joined at their ends by
@@ -1033,7 +1028,7 @@ a ball-and-socket joint. They are now under the constraints that the x,
 y and z coordinates of the joined points must be the same. In other
 words, a ball-and-socket joint adds three constraints or three equations
 to the system.</p>
-<p>If you add enough joints to the system to provide all 6n constraints,
+<p class="sd-card-text">If you add enough joints to the system to provide all 6n constraints,
 then it might be mathematically possible to solve the equations and find
 the position of all the segments. But the result would not be very
 exciting because the system would not be able to move. Usually a body
@@ -1047,7 +1042,7 @@ the AnyBody Modeling System performs the Kinematics operation, these
 drivers are taken through their sequences of values, and the positions
 of all the segments are resolved for each time step by solving the 6n
 equations.</p>
-<p>When the model is set up in such a way that it has 6n equations and
+<p class="sd-card-text">When the model is set up in such a way that it has 6n equations and
 these equations can be solved, then it is said to be kinematically
 determinate. Usually this is necessary to perform the kinematic
 analysis. We say “usually” because there are a few exceptions where the
@@ -1055,22 +1050,22 @@ system can be solved even when the number of equations is different from
 6n. There are also some cases where the system cannot be solved even
 though there are 6n equations available. Both cases are connected with
 redundant constraints.</p>
-<p>If you define two or more constraints that in some way constrain exactly
+<p class="sd-card-text">If you define two or more constraints that in some way constrain exactly
 the same degrees of freedom in the same way, then they are redundant.
 For instance, you might by mistake repeat the definition of a joint. You
 will then have two joints that work exactly the same, and the equations
 provided by those two joints will be redundant. You will see them when
 you count constraints, but they will not have much effect.</p>
-<p>The AnyBody Modeling System can sometimes cope with models that have too
+<p class="sd-card-text">The AnyBody Modeling System can sometimes cope with models that have too
 many constraints as long as those constraints are not conflicting, i.e.,
 some of them are redundant. But it is a good rule to make sure that you
 have the same number of degrees-of-freedom and constraints.</p>
-<p>If you have too many constraints and they are incompatible, then the
+<p class="sd-card-text">If you have too many constraints and they are incompatible, then the
 system is kinematically over-determinate. If you have too few
 constraints, or some of the constraints are redundant, then the system
 may be kinematically indeterminate. Both cases are likely to prevent the
 Kinematics operation to complete.</p>
-<p>Actually, even when you have a kinematically indeterminate system, the
+<p class="sd-card-text">Actually, even when you have a kinematically indeterminate system, the
 Kinematics operation can fail. This is actually very easy to picture.
 Sometimes the segments of the model may be configured such that they
 cannot reach each other, or in such a way that they interlock. The real
@@ -1079,8 +1074,8 @@ refuse to close, locks that will not unlock, or stacked glasses that
 wedge inseparably into each other. Computer systems that model the real
 world will have them too, and just like the real world it can sometimes
 be difficult to find out what the problem is.</p>
-</section>
-<section id="running-kinematic-analysis">
+</div>
+</details><section id="running-kinematic-analysis">
 <h2>Running kinematic analysis<a class="headerlink" href="#running-kinematic-analysis" title="Permalink to this headline">#</a></h2>
 <p>Now that you know the basics of kinematic analysis, let us look at how
 it is performed. We need an example to work on, and this one will serve
@@ -1132,10 +1127,6 @@ model grabs something with both hands.</p>
 <p>Although the kinematic analysis is useful in its own right for lots of
 purposes, it is also the first step of the InverseDynamics operation,
 the subject of <a class="reference internal" href="lesson4.html"><span class="doc">the next lesson</span></a>.</p>
-<div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson4.html"><span class="doc">Lesson 4: Inverse Dynamics</span></a>.</p>
-</div>
 </section>
 </section>
 
