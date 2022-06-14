@@ -1,0 +1,512 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Lesson 4: Wrapping Muscles" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/Muscle_modeling/lesson4.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="Many muscles in the body are wrapped over bones and slide on the bony surfaces when the body moves. This means that the contact forces between the bone and the muscle are always perpendicular to th..." />
+  
+<meta property="og:image" content="https://anyscript.org/_images/image17.jpeg" />
+  
+<meta property="og:image:alt" content="wrapcylinder" />
+  
+    <title>Lesson 4: Wrapping Muscles &#8212; AnyBody Tutorials v7.4.0</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 5: Muscle Models" href="lesson5.html" />
+    <link rel="prev" title="Lesson 3: Via-point Muscles" href="lesson3.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson5.html" title="Lesson 5: Muscle Models"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: Via-point Muscles"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">10. </span>Muscle Modeling</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 4: Wrapping Muscles</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-4-wrapping-muscles">
+<h1>Lesson 4: Wrapping Muscles<a class="headerlink" href="#lesson-4-wrapping-muscles" title="Permalink to this headline">¶</a></h1>
+<p>Many muscles in the body are wrapped over bones and slide on the bony
+surfaces when the body moves. This means that the contact forces between
+the bone and the muscle are always perpendicular to the bone surface,
+and the muscle may in fact release the contact with the bone and resume
+the contact later depending on the movement of the body. Via point
+muscles are not capable of modeling this type of situation, so the
+AnyBody Modeling System has a special muscle object for this purpose.</p>
+<p>A wrapping muscle is presumed to have an origin and an insertion just
+like the via point muscle. However, instead of interior via points it
+passes a set of surfaces. If the surfaces are blocking the way then the
+muscles finds the shortest geodetic path around the surface. For that reason, the
+name of the class is AnyMuscleShortestPath. The fact that the muscle
+always uses the shortest path means that it slides effortlessly on the
+surfaces, and hence there is no friction between the muscle and the
+surface.</p>
+<p>Enough talk! Let us prepare for addition of a wrapping muscle to our
+model. If for some reason you do not have a working model from the
+previous lessons, <a class="reference download internal" download="" href="../_downloads/c02f78f79dd2b62bc9b2929d7a830740/MuscleDemo.4.any"><code class="xref download docutils literal notranslate"><span class="pre">you</span> <span class="pre">can</span> <span class="pre">download</span> <span class="pre">onehere</span></code></a>.</p>
+<p>A wrapping muscle needs one or several surfaces to wrap on, so the first
+thing to do is to define a surface. For convenience we shall attach the
+surface to the global reference frame, but such wrapping surfaces can be
+attached to any reference frame in the system, including segments. To be
+able to play around with the position of the surface, we initially
+define a point on GlobalRef for the purpose:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Global Reference Frame</span>
+<span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="kt">AnyRefNode</span> <span class="n">M1Origin</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="p">};</span>
+
+<span class="gr"> AnyRefNode CylCenter = {</span>
+<span class="gr">    sRel = {0, 0, -0.2};</span>
+<span class="gr">  };</span>
+
+<span class="p">};</span>  <span class="c1">// Global reference frame</span>
+</pre></div>
+</div>
+<p>Having defined the point, we can proceed to create a surface. The
+wrapping algorithm in AnyBody will in principle work with any sort of
+surface including real bone surfaces, but for the time being only
+parametric surfaces are used. The reason is that the bony surfaces are
+really a lot of small planar triangles, and the corners and edges of the
+triangles will cause the muscles to slide discontinuously over the
+surface, which disturbs the analysis result. The parametric surfaces
+currently available are cylinders and ellipsoids. Let us try our luck
+with a cylinder. Go to the class tree, locate the class AnySurfCylinder,
+and insert an instance into the newly defined node on GlobalRef.
+Then define the name of the cylinder, add an AnyDrawParamSurf
+statement, and change the cylinder parameters as shown below:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="kt">AnyRefNode</span> <span class="n">CylCenter</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">};</span>
+
+   <span class="gr">AnySurfCylinder WrapSurf = {</span>
+<span class="gr">      Radius = 0.15;</span>
+<span class="gr">      Length = 0.4;</span>
+<span class="gr">      //CapRatio = 0.1;</span>
+<span class="gr">      //CapRatio2 = 0.1;</span>
+<span class="gr">      AnyDrawParamSurf drw = {};</span>
+<span class="gr">    };</span>
+  <span class="p">};</span>
+
+<span class="p">};</span>  <span class="c1">// Global reference frame</span>
+</pre></div>
+</div>
+<p>Most of this should be self explanatory. However, notice that we inserted a
+<code class="docutils literal notranslate"><span class="pre">AnyDrawParamSurf</span> <span class="pre">drw</span> <span class="pre">=</span> <span class="pre">{};</span></code> to visualize the surface. Also please notice that the
+insertion point of the cylinder is at {0, 0, 0.2} corresponding exactly
+to half of the length of the cylinder of 0.4. This causes the cylinder
+to be inserted symmetrically about the xy plane as illustrated below:</p>
+<p><img alt="wrapcylinder" src="../_images/image17.jpeg" /></p>
+<p>The cylinder direction is always z in the coordinate direction of the
+object that the cylinder is inserted into. So, if the cylinder does not
+have the orientation you want, then the key to rotate it correctly is to
+control the direction of the AnyRefNode that it is inserted into. In
+fact, let us rotate it just a little bit to make things a bit more
+interesting:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="n">CylCenter</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">};</span>
+ <span class="gr">ARel = RotMat(20*pi/180,y);</span>
+
+  <span class="kt">AnySurfCylinder</span> <span class="n">WrapSurf</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Radius</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">;</span>
+    <span class="n">Length</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">;</span>
+    <span class="c1">//CapRatio = 0.1;</span>
+    <span class="c1">//CapRatio2 = 0.1;</span>
+    <span class="kt">AnyDrawParamSurf</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p> Which causes the cylinder to rotate 20 degrees about the y axis.</p>
+<p><img alt="wrap cylinder rotated" src="../_images/image25.jpeg" /></p>
+<p>There are a couple of things to notice about the cylinder: First of all
+the graphics looks like the cylinder is faceted. This is not really the
+case. Graphically it is displayed with facets out of consideration of
+the efficiency of the graphics display, but from the point-of-view of
+the muscle it is a perfect cylinder. The second thing to notice is that
+the ends are capped in such a way that the edges are rounded. You can
+control the curvature of this cap by means of the CapRatio variable that
+is currently commented out in the cylinder object definition. If you
+play a bit around with different values of the cap ratio then you will
+quickly get a feel for the effect of the variable. The caps allow you to
+let the muscle wrap over the edge of the cylinder if necessary.</p>
+<p>The next step is to define a wrapping muscle. We shall create one point
+on the global reference frame and one point on the arm, and we can then
+articulate the joint and study the behavior of the wrapping algorithm.
+The point on the global reference frame is added like this:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Global Reference Frame</span>
+<span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="kt">AnyRefNode</span> <span class="n">M1Origin</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="p">};</span>
+
+<span class="gr"> AnyRefNode M2Origin = {</span>
+<span class="gr">    sRel = {0.0, 0.15, -0.05};</span>
+<span class="gr">  };</span>
+</pre></div>
+</div>
+<p>Similarly we add a point to the arm:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define one simple segment</span>
+<span class="kt">AnySeg</span> <span class="n">Arm</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.500000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">};</span>
+  <span class="n">Mass</span> <span class="o">=</span> <span class="mf">1.000000</span><span class="p">;</span>
+  <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.100000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">}</span><span class="o">*</span><span class="mf">0.1</span><span class="p">;</span>
+  <span class="kt">AnyRefNode</span> <span class="n">Jnt</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="kt">AnyRefNode</span> <span class="n">M1Insertion</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="p">};</span>
+ <span class="gr">AnyRefNode M2Insertion = {</span>
+<span class="gr">    sRel = {-0.2, 0.05, 0.05};</span>
+<span class="gr">  };</span>
+</pre></div>
+</div>
+<p>Notice that we have given the origin and insertion points a bit of
+offset in the z direction to make the problem a bit more exciting. The
+offset will cause the muscles to cross the cylinder in a
+non-perpendicular path to the cylinder axis such as for instance the
+pronator muscles of the human forearm do.</p>
+<p>It is now possible to define the muscle wrapping over the cylinder. The
+easiest way to do it is to make a copy of the via point muscle, Muscle1,
+and then make the necessary changes:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="n">AnyMuscleViaPoint</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
+    <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M1Origin</span><span class="p">;</span>
+    <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Via</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">ViaPoint</span><span class="p">;</span>
+    <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Ins</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">M1Insertion</span><span class="p">;</span>
+    <span class="kt">AnyDrawMuscle</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="c1">//RGB = {0.554688, 0.101563, 0.117188};</span>
+      <span class="c1">//Opacity = 0.2;</span>
+      <span class="c1">//DrawOnOff = 1;</span>
+      <span class="n">Bulging</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+      <span class="n">ColorScale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="c1">//RGBColorScale = {0.957031, 0.785156, 0.785156};</span>
+      <span class="n">MaxStress</span> <span class="o">=</span> <span class="mi">250000</span><span class="p">;</span>
+    <span class="p">};</span>
+  <span class="p">};</span>
+
+<span class="gr">AnyMuscleShortestPath Muscle2 = {</span>
+<span class="gr">    AnyMuscleModel &amp;Model = .SimpleModel;</span>
+<span class="gr">    AnyRefFrame &amp;Orig = .GlobalRef.M2Origin;</span>
+<span class="gr">    AnySurface &amp;srf = .GlobalRef.CylCenter.WrapSurf;</span>
+<span class="gr">    AnyRefFrame &amp;Ins = .Arm.M2Insertion;</span>
+<span class="gr">    SPLine.StringMesh = 20;</span>
+<span class="gr">    AnyDrawMuscle drw = {</span>
+<span class="gr">      Bulging = 2;</span>
+<span class="gr">      ColorScale = 1;</span>
+<span class="gr">      MaxStress = 250000;</span>
+<span class="gr">    };</span>
+<span class="gr">  };</span>
+</pre></div>
+</div>
+<p>The two muscles are very similar in their definitions. They both have an
+origin and an insertion, and they are both displayed on the screen by
+means of the same type of drawing object. Notice that if you have many
+muscles in a model and you want to have an easy way of controlling the
+display of all of them, then you can define the drawing object in an
+<code class="docutils literal notranslate"><span class="pre">#include</span></code> file, and include that same file in the definition of all the
+muscles. This way, when you change the display definition in the include
+file, it influences all the muscles simultaneously.</p>
+<p>The difference between the two definitions is that the via point of
+Muscle1 has been replaced by a wrapping surface in Muscle2. Shortest
+path muscles can have any number of wrapping surfaces specified in
+sequence just like via point muscles can have any number of via points.
+In fact, a shortest path muscle can also have via points as we shall see
+later.</p>
+<p>There is one additional specification necessary for a shortest path
+muscle. The line:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">SPLine</span><span class="p">.</span><span class="n">StringMesh</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This line generates a sequence of 20 equidistant points on the shortest
+path muscle, and these are the points that are actually in contact with
+the wrapping surface(s). More points will give you a more accurate
+solution, but they also require more computation time. For shortest path
+muscles the computation time can be an important issue. Solving the
+shortest path problem is a matter of contact mechanics, and with many
+muscles in the model this is easily the more computationally demanding
+operation of all the stuff that the system does during an analysis. If
+you have too few points and a complex case of wrapping, the system may
+sometimes fail to solve the wrapping problem and exit with an error. In
+that case the solution is to increase the number of points.</p>
+<p>It is time to see what we have done. If you load the model and run the
+InverseDynamics analysis (and have done everything right), you will see
+the model moving through a sequence of positions like this:</p>
+<p><img alt="wrap cylinder with via point sequence" src="../_images/image33.jpeg" /></p>
+<p>As mentioned above, wrapping muscles can also have via points. In fact,
+we can easily change the via point muscle, Muscle1,  to wrap over the
+cylinder even though it also has a via point:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Any</span><span class="gr">ShortestPath</span><span class="n">Muscle</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
+  <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M1Origin</span><span class="p">;</span>
+  <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Via</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">ViaPoint</span><span class="p">;</span>
+<span class="gr"> AnySurface &amp;srf = .GlobalRef.CylCenter.WrapSurf;</span>
+  <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Ins</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">M1Insertion</span><span class="p">;</span>
+ <span class="gr">SPLine.StringMesh = 20;</span>
+  <span class="kt">AnyDrawMuscle</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Bulging</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">ColorScale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">MaxStress</span> <span class="o">=</span> <span class="mi">250000</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The definition of the two muscle types is very similar, so we only had
+to change the type from AnyMuscleViaPoint to AnyMuscleShortestPath and
+insert the wrapping surface and the StringMesh specification. This gives
+us the following result:</p>
+<p><img alt="wrap cylinder two muscles" src="../_images/image46.jpeg" /></p>
+<p>As you can see, both muscles are now wrapping over the cylinder, and we
+can run the InverseDynamics analysis. It seems to work, but the system
+provides the following warning:</p>
+<p><code class="docutils literal notranslate"><span class="pre">WARNING</span> <span class="pre">-</span> <span class="pre">Via-point</span> <span class="pre">'Main.MyModel.GlobalRef.M1Origin'</span> <span class="pre">on</span> <span class="pre">'Main.MyModel.Muscle1.SPLine'</span></code>
+<code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">located</span> <span class="pre">below</span> <span class="pre">the</span> <span class="pre">wrapping</span> <span class="pre">surface</span> <span class="pre">'Main.MyModel.GlobalRef.CylCenter.WrapSurf'.</span></code></p>
+<p>This is a warning that you will see rather frequently when working with
+complex models with wrapping. The warning comes when one of the end
+points or a via point is located below the surface over which the muscle
+is supposed to wrap. This means that it is impossible for the muscle to
+pass through the via point without penetrating the wrapping surface. In
+this case the system chooses to let the muscle pass through the via
+point and come back to the wrapping surface as soon as possible. In the
+present case, the origin point of Muscle1 is only slightly below the
+cylinder surface, so the problem can be rectified by a small offset on
+the origin point:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRefNode</span> <span class="n">M1Origin</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="gr">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>If you are analytically inclined, you may be thinking that the muscles
+might equally well pass on the other side of the cylinder. And you are
+quite right. The reason why both muscle pass over the cylinder rather
+than under is that this is the side that is the closest to the muscles’
+paths before the wrapping is resolved. This means that we can make a
+muscle wrap on another side of a wrapping surface by making sure that
+its initial position is closer to the side we want it to wrap on. The
+way to do this is to specify one or more so-called initial wrapping
+vectors. These are really points that the muscle initially should pass
+through. You can specify as many of these points as you like. In the
+example below we have used two:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">AnyMuscleShortestPath</span> <span class="n">Muscle2</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
+  <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Orig</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">M2Origin</span><span class="p">;</span>
+  <span class="kt">AnySurface</span> <span class="o">&amp;</span><span class="n">srf</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">.</span><span class="n">CylCenter</span><span class="p">.</span><span class="n">WrapSurf</span><span class="p">;</span>
+  <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">Ins</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">M2Insertion</span><span class="p">;</span>
+  <span class="n">SPLine</span><span class="p">.</span><span class="n">StringMesh</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+ <span class="gr">SPLine.InitWrapPosVectors = {{-0.2, -0.2, 0}, {-0.05, -0.2, 0}};</span>
+  <span class="kt">AnyDrawMuscle</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Bulging</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">ColorScale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">MaxStress</span> <span class="o">=</span> <span class="mi">250000</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Notice that the InitWrapPosVectors like the StringMesh is part of an
+object called SPLine. This is an object in its own right that gets
+defined automatically inside a shortest path muscle. It is a special
+kind of <a class="reference internal" href="../The_mechanical_elements/lesson4.html"><span class="doc">kinematic measure</span></a> that is
+really a string that wraps just like a muscle but does nothing else than
+measure its own length. These objects can be used outside the muscle
+definition for various purposes in the model, for instance for
+definition of springs or rubber bands.</p>
+<p>After you load the model with the added InitWrapVectors, try using the
+Step button rather than the run button. This will show you how the
+system uses the InitWrapVectors to pull the muscle to the other side of
+the cylinder:</p>
+<p><img alt="wrap cylinder Init wrap vectors" src="../_images/image53.jpeg" /></p>
+<p>If you keep pressing the step button you will see how the muscle now
+wraps on the other side of the cylinder.</p>
+<p>With the kinematics of muscles well under control, we can proceed to
+another important and interesting topic, <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Muscle models</span></a>.</p>
+<div class="without-title admonition seealso">
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5: Muscle Models</span></a>.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">10. Muscle Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: The Basics of Muscle Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Controlling Muscle Drawing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Via-point Muscles</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 4: Wrapping Muscles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html">Lesson 5: Muscle Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: General Muscles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson7.html">Lesson 7: Ligaments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</div><h3>Found a problem?</h3>
+
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Muscle_modeling/lesson4.md">
+    <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+</p>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson5.html" title="Lesson 5: Muscle Models"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: Via-point Muscles"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">10. </span>Muscle Modeling</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 4: Wrapping Muscles</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, AnyBody Technology.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

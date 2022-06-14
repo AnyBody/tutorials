@@ -1,0 +1,283 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Lesson 3: Reviewing Analysis Results" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/A_Getting_started/lesson3.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="Introducing chart view: You can plot simulation results as graphs by using the Chart View, which can be opened by clicking the “Chart 1” tab in the Model View window. To open Chart views manually g..." />
+  
+<meta property="og:image" content="https://anyscript.org/_images/image12.png" />
+  
+<meta property="og:image:alt" content="AnyScript Tutorials" />
+  
+    <title>Lesson 3: Reviewing Analysis Results &#8212; AnyBody Tutorials v7.4.0</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Getting started: AnyScript Programming" href="../A_Getting_started_anyscript/index.html" />
+    <link rel="prev" title="Lesson 2: Controlling the Posture" href="lesson2.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../A_Getting_started_anyscript/index.html" title="2. Getting started: AnyScript Programming"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Controlling the Posture"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">1. </span>Getting Started</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 3: Reviewing Analysis Results</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-3-reviewing-analysis-results">
+<h1>Lesson 3: Reviewing Analysis Results<a class="headerlink" href="#lesson-3-reviewing-analysis-results" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introducing-chart-view">
+<span id="chart-view"></span><h2>Introducing chart view<a class="headerlink" href="#introducing-chart-view" title="Permalink to this headline">¶</a></h2>
+<p>You can plot simulation results as graphs by using the Chart View, which can be opened by clicking the “Chart 1” tab in the Model View window. To
+open Chart views manually go to View -&gt; Charts.</p>
+<p><strong>Not all variables in your model tree are necessarily simulation outputs. The chart view therefore presents a
+filtered down version of the model tree, which only contains simulation outputs that can be plotted.</strong></p>
+<p>One of the first nodes you encounter in this tree is the MaxMuscleActivity variable:</p>
+<img alt="../_images/image12.png" src="../_images/image12.png" />
+<p>Selecting MaxMuscleActivity plots this variable vs time. The plot is a flat line
+due to the static posture of the model.</p>
+<p><img alt="..." src="../_images/image21.png" /></p>
+<p>If you want to see details of the actual values being plotted, click this
+button <img alt="../_images/image31.png" src="../_images/image31.png" />. It adds a table with values below the chart:</p>
+<p><img alt="..." src="../_images/image4.png" /></p>
+<p><strong>This chart shows you that when standing upright, the most active muscle in model is using about 12%
+of that particular muscle’s maximum strength.</strong></p>
+</div>
+<div class="section" id="hip-forces-standing-posture">
+<h2>Hip forces – Standing posture<a class="headerlink" href="#hip-forces-standing-posture" title="Permalink to this headline">¶</a></h2>
+<p>Many biomechanical researchers want to see joint reactions forces, joint
+moments (generated by muscles) and muscle activations. For your convenience, the
+so-called SelectedOutput folder contains all those representative
+values. You will find the folder in the tree here:</p>
+<p><img alt="..." src="../_images/image5.png" /></p>
+<p><strong>Navigate to the “Right.Leg.JointReactionForce” folder
+by expanding the tree view like this</strong>:</p>
+<p><img alt="..." src="../_images/image6.png" /></p>
+<p>If you select the ‘Hip_ProximoDistalForce’, you will see its value vs time in
+the Chart View.</p>
+<p><img alt="..." src="../_images/image7.png" /></p>
+<p>From this chart, we can see that there is about 558N force at the
+right hip joint in the proximodistal direction.</p>
+<p><strong>It is possible to select and plot several outputs simultaneously
+by using the asterisk character</strong> (<code class="docutils literal notranslate"><span class="pre">*</span></code>). <strong>If you double-click
+the “Value” property towards the top of your Chart View, it becomes editable. Let us
+edit the last “Hip_ProximoDistalForce” term to “Hip_*”. This
+plots all variables in the “JointReactionForce” folder that beging with “Hip_”.</strong></p>
+<p><img alt="..." src="../_images/image8.png" /></p>
+<p>Now you will see the ‘Hip_MediolateralForce’, ‘Hip_ProximoDistalForce’
+and ‘Hip_AnteroPosteriorForce’ in the same Chart View.</p>
+</div>
+<div class="section" id="hip-forces-bent-posture">
+<h2>Hip forces - Bent posture<a class="headerlink" href="#hip-forces-bent-posture" title="Permalink to this headline">¶</a></h2>
+<p>The final step of this chapter is to change the posture of the human
+model to see what happens to the hip joint reaction force.</p>
+<p>To adjust the posture of the human model, open your Mannequin.any
+file and change the PelvisThoraxExtension value from 0 to -60.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="n">Posture</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="p">...</span>
+
+        <span class="gr">PelvisThoraxExtension=-60; </span>
+        <span class="n">PelvisThoraxLateralBending</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">PelvisThoraxRotation</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+        <span class="p">...</span>
+</pre></div>
+</div>
+<p>Press the F7 button to reload the model and run the “RunApplication”
+operation again. This will show the modified posture of the
+human model in the Model View.</p>
+<p><img alt="..." src="../_images/image9.png" /></p>
+<p>Next, we will check the changes in the right hip joint reaction forces.</p>
+<p><img alt="..." src="../_images/image10.png" /></p>
+<p>In the above Chart View, the largest hip joint reaction
+force component is the “ProximoDistalForce” at about 1263N.
+So compared to the normal standing posture model, the value has more than
+doubled. The forces of the “Mediolateral” and “AnteroPosterior” directions have also
+increased.</p>
+<p>Congratulations! You have just completed your first biomechanical
+analysis with the AnyBody Modeling System. Try changing the posture in the “Mannequin.any” file and investigate the new
+results.</p>
+<p>You may also want to check our <a class="reference external" href="https://www.anybodytech.com/anybody.html?fwd=webcasts">library of previous
+webcasts</a>
+for topics of particular interest to you.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: Creating a Standing Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Controlling the Posture</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 3: Reviewing Analysis Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</div><h3>Found a problem?</h3>
+
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_Getting_started/lesson3.md">
+    <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+</p>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../A_Getting_started_anyscript/index.html" title="2. Getting started: AnyScript Programming"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: Controlling the Posture"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">1. </span>Getting Started</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 3: Reviewing Analysis Results</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, AnyBody Technology.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

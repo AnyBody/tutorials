@@ -1,0 +1,518 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Lesson 3: Abaqus Interface" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/Finite_element_analysis/lesson3.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="This chapter shows how forces calculated in AnyBody can be applied as boundary conditions to a FE Models generated for Abaqus. Below you see the flowchart from the introduction of this tutorial ext..." />
+  
+<meta property="og:image" content="https://anyscript.org/_images/image115.png" />
+  
+<meta property="og:image:alt" content="clavicula ref frame" />
+  
+    <title>Lesson 3: Abaqus Interface &#8212; AnyBody Tutorials v7.4.0</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="14. Making Models using SOLIDWORKS" href="../AnyExp4SOLIDWORKS/index.html" />
+    <link rel="prev" title="Lesson 2: ANSYS Interface" href="lesson2.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../AnyExp4SOLIDWORKS/index.html" title="14. Making Models using SOLIDWORKS"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: ANSYS Interface"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">13. </span>Finite Element Analysis Interfacing</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 3: Abaqus Interface</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-3-abaqus-interface">
+<h1>Lesson 3: Abaqus Interface<a class="headerlink" href="#lesson-3-abaqus-interface" title="Permalink to this headline">¶</a></h1>
+<p>This chapter shows how forces calculated in AnyBody can be applied as
+boundary conditions to a FE Models generated for Abaqus.</p>
+<p>Below you see the flowchart from the introduction of this tutorial
+extended with a converter step that converts the AnyFE output file to a
+format readable by Abaqus. This step is carried out by a small tool,
+called AnyFE2Abaqus.exe, which is available at <a class="reference external" href="https://www.anybodytech.com/resources/customer-downloads#fe-interface-tools">AnyBody Technology webpage</a>.</p>
+<p>The model we will have a look at is a model of the claviclebone. We will
+analyze the muscle forces acting on the clavicle during lifting an arm
+and compute the stresses in the bone. The standard Standing model taken
+from the AMMR will be used (Notice, this tutorial was authored with
+AMMRV1.3.1. It should run equally well with newer versions of the AMMR,
+but the results may vary due to updates of the models).</p>
+<p>We shall focus on the interfacing between AnyBody and Abaqus and
+therefore we will use a bone mesh derived from the standard scaled
+(=un-scaled) AnyBody model. Thereby, we can skip the step to do any
+scaling according to the subject data and in particular the bone
+geometry. This would have been needed if the bone model was derived from
+scanned data coming from another, significantly different, person than
+generic AnyBody model.</p>
+<p>Let’s start with the AnyBody model. We have to make sure the FE and
+AnyBody models are aligned. The idea is to include local reference
+frames in both systems which will be used for all further data transfer.
+Open the Standing model from the AMMR, or better make a copy of the
+whole model folder and use this one. For convenience we will reduce the
+model detail by excluding the left arm and switching off the muscles in
+all body parts, except the right arm. This is done in the
+BodyPartsSetup.any file.</p>
+<p>Next we define the local ref frame on the clavicle. All forces will be
+later exported with respect to this coordinate system. You can either
+use a pre-defined reference system in the AMS or create a new one. The
+following lines create a new node located in the Sternoclavicular joint:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="o">&amp;</span><span class="n">RiArm</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">ShoulderArm</span><span class="p">.</span><span class="n">Seg</span><span class="p">.</span><span class="n">Clavicula</span><span class="p">;</span>
+<span class="n">RiArm</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyRefNode</span> <span class="n">localrefframe</span><span class="o">=</span> <span class="p">{</span>
+        <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+        <span class="c1">// ARel = RotMat(0.5*pi,x);</span>
+        <span class="kt">AnyDrawRefFrame</span> <span class="n">drws</span> <span class="o">=</span> <span class="p">{</span><span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span><span class="o">*</span><span class="mf">0.3</span><span class="p">;</span><span class="n">RGB</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">};};</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Include them e.g. in the Environment file. After reload of the model the
+reference frame is shown</p>
+<p><img alt="clavicula ref frame" src="../_images/image115.png" /></p>
+<p>Download the prepared Abaqus file <a class="reference download internal" download="" href="../_downloads/591e0a352b179354933064180ab125f3/clavicula.inp"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a> and
+save it in your working directory. Please note that this FE model of
+clavicle was created in the same reference frame as the clavicle model
+in the AnyBody model, since we have actually used the STL exported from
+AMMR for this bone. Therefore, ‘localrefframe’ does not have to be
+displaced in order to match with the coordinate system of the FE mesh,
+but had the FE mesh been generated based on scanned data, the
+registration between AnyBody model’s clavicle and the FE mesh can be
+entered using <code class="docutils literal notranslate"><span class="pre">localrefframe</span></code>’s sRel and Arel members.</p>
+<p>In a similar manner one could define a local reference frame in Abaqus
+by means of the <code class="docutils literal notranslate"><span class="pre">*SYSTEM</span></code> keyword; however, this is not advisable because
+the AnyFE Converter does not handle the <code class="docutils literal notranslate"><span class="pre">*SYSTEM</span></code> keyword in the supplied
+mesh file. We shall return to the issue of aligning the coordinate
+systems for the AnyBody forces and the mesh later, and so far we
+consider <code class="docutils literal notranslate"><span class="pre">localrefframe</span></code> to be aligned with the mesh coordinate system.</p>
+<p><img alt="Clavicula mesh" src="../_images/image212.png" /></p>
+<p>This figure above shows the clavicle bone mesh used for this example.
+This bone is modeled with a reduced stiffness, which can be interpreted
+as an osteoporotic bone.</p>
+<p>Next we want to analyze the behavior of the bone subjected to the forces
+computed in the AMS. First, change the Mannequin file to create the
+desired physical activity. We want to analyze a simple lifting case, so
+all we specify is flexion in the shoulder joint. Open the Mannequin file
+and look for the PostureVel folder. Change the Glenohumeral flexion
+value to 50/<code class="docutils literal notranslate"><span class="pre">Main.Study.tEnd</span></code>, this determines the joint velocity
+necessary to reach 50 degree flexion taking into account the simulation
+time.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//Arm</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularProtraction</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularAxialRotation</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">GlenohumeralFlexion</span> <span class="o">=</span><span class="mi">50</span><span class="o">/</span><span class="n">Main</span><span class="p">.</span><span class="n">Study</span><span class="p">.</span><span class="n">tEnd</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>We also want to alter the initial starting position for the motion,
+enter the Posture position folder and make the changes indicated below.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//Arm</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularProtraction</span><span class="o">=-</span><span class="mi">23</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mf">11.5</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">SternoClavicularAxialRotation</span><span class="o">=-</span><span class="mi">20</span><span class="p">;</span> <span class="c1">//This value is not used for initial position</span>
+    <span class="kt">AnyVar</span> <span class="n">GlenohumeralFlexion</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">GlenohumeralAbduction</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">GlenohumeralExternalRotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">ElbowFlexion</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>
+    <span class="kt">AnyVar</span> <span class="n">ElbowPronation</span> <span class="o">=</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>We want this motion to be done in 10 seconds and analyze 5 time steps.
+This is set in the main file. Search the Study folder and change the end
+time of the study to 10 seconds and the number of time steps to 5.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
+    <span class="n">tEnd</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
+    <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+    <span class="n">nStep</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now we have to specify which forces we want to export to the FE model.
+For this we make use of the Class inserter. Place you cursor in the
+Study folder in the main file, below the code shown above and select the
+Classes tab on the left side of the main file window. Search for the
+class named AnyMechOutputFileForceExport right click on it and choose
+<em>Insert class template.</em> This will insert the class necessary for force
+export.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyMechOutputFileForceExport</span> <span class="o">&lt;</span><span class="n">ObjectName</span><span class="o">&gt;</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+    <span class="cm">/*NumberFormat =</span>
+<span class="cm">    {</span>
+<span class="cm">        Digits = 15;</span>
+<span class="cm">        Width = 22;</span>
+<span class="cm">        Style = ScientificNumber;</span>
+<span class="cm">        FormatStr = &quot;&quot;;</span>
+<span class="cm">    };*/</span>
+    <span class="c1">//UseRefFrameOnOff = Off;</span>
+    <span class="c1">//AllSegmentsInStudyOnOff = Off;</span>
+    <span class="c1">//XMLformatOnOff = Off;</span>
+    <span class="c1">//AnyRefFrame &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
+    <span class="c1">//AnySeg &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Create a folder in your Standing model folder named <code class="docutils literal notranslate"><span class="pre">files_in</span></code> and one
+called <code class="docutils literal notranslate"><span class="pre">files_out</span></code>. This will be used to store the FE files. Change the
+<code class="docutils literal notranslate"><span class="pre">FE_out</span></code> object as shown below. These definitions specify that all forces
+acting on the segment Clavicula will be written in the xml file
+clavload. It is important to use the xml format, since the AnyFE
+converter only reads this format.</p>
+<p>The UseRefFrameOnOff option enables specification of a reference frame
+in which all forces and positions are reported. Switch this option on
+and name the ref frame (the one we created before). You can find the
+path to the ref frame by browsing the model tree on the left side of the
+main file window to the right clavicle and right click <em>Insert object
+name.</em></p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyMechOutputFileForceExport</span> <span class="n">FE_out</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;files_in/clavload.xml&quot;</span><span class="p">;</span>
+    <span class="n">UseRefFrameOnOff</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
+    <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">ref1</span> <span class="o">=</span>
+    <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">ShoulderArm</span><span class="p">.</span><span class="n">Seg</span><span class="p">.</span><span class="n">Clavicula</span><span class="p">.</span><span class="n">localrefframe</span><span class="p">;</span>
+    <span class="n">AllSegmentsInStudyOnOff</span> <span class="o">=</span> <span class="kp">Off</span><span class="p">;</span>
+    <span class="n">XMLformatOnOff</span> <span class="o">=</span> <span class="kp">On</span><span class="p">;</span>
+    <span class="c1">//AllSegmentsInStudyOnOff = Off;</span>
+    <span class="kt">AnySeg</span> <span class="o">&amp;</span><span class="n">clav</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">ShoulderArm</span><span class="p">.</span><span class="n">Seg</span><span class="p">.</span><span class="n">Clavicula</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This object will write all the muscle and joint forces for all time
+steps in one xml file.</p>
+<p>We are now ready to execute the AnyFE converter and transform the
+generic AnyFE XML file to an Abaqus readable INP file. The AneFE
+converter tool is available at
+the <a class="reference external" href="https://www.anybodytech.com/resources/customer-downloads#fe-interface-tools">AnyBody Technology webpage</a>. Unpack
+the files in your model folder. These files include the AnyFE converter,
+which is an executable called AnyFE2Abq.exe. It can convert the xml code
+to Abaqus keyword sequence and combine it with the FE model.</p>
+<p>The AnyFE converter is a command line tool with options controlled by
+program arguments. Running the program with the <code class="docutils literal notranslate"><span class="pre">–h</span></code>, i.e.
+<code class="docutils literal notranslate"><span class="pre">AnyFE2Abq.exe</span> <span class="pre">–h</span></code>. We shall briefly go through the important options
+here.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">–i</span></code> and <code class="docutils literal notranslate"><span class="pre">–o</span></code> options specify the input AnyFE xml file
+(<code class="docutils literal notranslate"><span class="pre">-i</span></code>) and the output file (<code class="docutils literal notranslate"><span class="pre">-o</span></code>), respectively. The <code class="docutils literal notranslate"><span class="pre">–m</span></code>
+option is used to specify a FE model without boundary conditions. This
+Abaqus INP file, containing the mesh only, will be included in the
+converter output INP file by means of an include-statement.</p>
+<p>Another significant option is <code class="docutils literal notranslate"><span class="pre">–e</span></code>, which is the radius of
+muscle/ligament attachment area. This radius (default value is 1 cm) is
+used for the construction of coupling constraint between a loaded point
+and the surface of the bone. Please note that this radius is used on all
+loads applied, not only muscles and ligaments, but also joint reactions,
+applied loads, etc. This parameter is not a physiological parameter.
+Please also note that in case of complex concave geometries these
+constraints may select wrong parts of the bone surface and may require
+some manual adjustment.</p>
+<p>You can call the converter either from a shell prompt or from inside the
+AnyBody system. The latter can be done by using the following class:
+AnyOperationShellExec. The names for the executable, its working
+directory and the options for the call of the exe file have to be given.
+Please adjust the path corresponding to your setup and insert this code
+below the study folder:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyOperationShellExec</span> <span class="n">ConvertToAbq</span><span class="o">=</span><span class="p">{</span>
+    <span class="n">Show</span><span class="o">=</span><span class="kp">On</span><span class="p">;</span>
+    <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;AnyFE2Abq.exe&quot;</span><span class="p">;</span>
+    <span class="n">Arguments</span> <span class="o">=</span> <span class="s">&quot;-i ..</span><span class="se">\f</span><span class="s">iles_in\clavload.xml -o ..</span><span class="se">\f</span><span class="s">iles_out\output.inp -m .\clavicula.inp&quot;</span><span class="p">;</span>
+    <span class="n">WorkDir</span><span class="o">=</span><span class="s">&quot;.\ &quot;</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This will enter an operation called ‘ ConvertToAbq’ into the model and
+running this will execute the AnyFE converter. From the shell prompt you
+write the following to get the same result:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp
+</pre></div>
+</div>
+<p>At this point, let us return to the issue of the coordinate systems that
+we have used so far and an alternative option. In the example we have
+exported all the positions and forces with reference to a given manually
+defined system attached to the clavicle, i.e. the ‘localrefframe’. The
+AnyFE converter will by default will transfer all positions and forces
+directly, i.e., in the same coordinate system as exported the AnyFE XML
+file. In the above, we have therefore considered ‘localrefframe’ to be
+the coordinate system of the FE model, which is also the CT/MRI scan
+system. Notice that in the given case, the segment reference and the
+output reference are aligned since the FE mesh was based on the original
+bone geometry from the AnyBody model, i.e. <code class="docutils literal notranslate"><span class="pre">sRel=</span> <span class="pre">{0,</span> <span class="pre">0,</span> <span class="pre">0}</span></code>.</p>
+<p>As an alternatively, you can export the AnyFE XML file in another
+reference frame, even the global system in AnyBody
+(UseRefFrameOnOff=Off) for that matter. This implies that the data of
+the AnyFE XML file may or may not contain motion of the bone and it will
+probably.not be aligned with the FE mesh/CT/MRI scan system. If you
+chose this an option, the AnyFE Converter can remove the rigid body
+motion by using the <code class="docutils literal notranslate"><span class="pre">–r</span></code> option equal to ‘segment’:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp –r segment
+</pre></div>
+</div>
+<p>This makes all AnyFE data from the AnyFE Converter being transformed to
+the local frame of the segment, here the clavicle segment, before
+applied to the FE model and outputted.</p>
+<p>If the reference frame of the segment is not identical to the one of the
+FE mesh, one can apply a constant transformation to all data
+accommodating for this misalignment. The <code class="docutils literal notranslate"><span class="pre">–t</span></code> option allows you to
+enter the transformation as a string containing space separated numbers.
+The command line will look like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>AnyFE2Abq.exe -i ..\files_in\clavload.xml -o ..\files_out\output.inp -m .\clavicula.inp –r segment –t &quot;a11 a12 a13 a21 a22 a23 a31 a32 a33 dx dy dz&quot;
+</pre></div>
+</div>
+<p>The transformation may contain either 9 or 12 numbers. The first nine,
+aij, must be the orthogonal rotational transformation matrix and the
+latter optional three, dx, dy, and dz, are the translations.</p>
+<p>These options allow you to handle the coordinate systems differences
+using the AnyFE Converter, i.e., outside AnyBody. For instance this
+implies that you do not have to redo simulations just to apply the same
+forces to another FE mesh with another local frame; this can all be done
+with adjustment of the parameters for the AnyFE converter.</p>
+<p>Now we have looked at how to execute the AnyFE converter properly, so
+let us have a look at what it does.</p>
+<p>Please notice that the AnyFE Converter is reading Abaqus input file
+(INP) and it is only expecting a simple mesh specification. This reader
+is not fully compatible with the INP keyword language for Abaqus.
+Basically, it only reads in the first block of nodes (<code class="docutils literal notranslate"><span class="pre">*NODE</span></code> section)
+and it does not accept commands that may interfere with the
+interpretation of this node section. This implies that many Abaqus
+keywords are not allowed in front of the first node section. This also
+implies that subsequent node sections are not read and therefore, not
+used for application of forces.</p>
+<p>The AnyFE Converter performs the following actions:</p>
+<ul class="simple">
+<li><p>Maps all AnyBody exported forces, i.e., joint reactions, muscle
+forces and applied forces to the provided FE mesh. Mass related
+forces are neglected, i.e., gravitational and acceleration equivalent
+forces.</p>
+<ul>
+<li><p>Defines nodes in the positions from the AnyFE output file, i.e.
+the position of all loads (this includes muscle/ligament
+attachment nodes)</p></li>
+<li><p>Defines amplitudes for each force/moment component in the AnyFE
+output file</p></li>
+<li><p>Defines concentrated loads (<code class="docutils literal notranslate"><span class="pre">*CLOAD</span></code>) in each of these nodes</p></li>
+<li><p>Defines coupling constraints between the created nodes and a part
+of the surface of the bone</p></li>
+</ul>
+</li>
+<li><p>The mesh in included</p></li>
+<li><p>Adds inertia relief loads (<code class="docutils literal notranslate"><span class="pre">*INERTIA</span> <span class="pre">RELIEF</span></code>)</p></li>
+</ul>
+<p>Please note that the inertia relief loads will automatically be added to
+the model in order to provide a full set of boundary conditions.
+However, these loads require a density value in the material definition
+section. Absence of this density value will result in the error during
+the FE analysis. In case when additional constraints are present in the
+model, e.g. environment support, contact with another bone, etc., the
+inertia loads can be suppressed or removed.</p>
+<p>Now we are ready to run the analysis and convert the data. Reload the
+model in the AMS. Select RunApplication in the Operations tree. This
+will automatically run the Calibration and InverseDynamics studies. Next
+select ConvertToAbq operation and run it. This will create a new Abaqus
+input file in the <code class="docutils literal notranslate"><span class="pre">files_out</span></code> folder.</p>
+<p>Open Abaqus and import the input file from the output directory. This
+will load the clavicle mesh model, apply the boundary conditions. Next
+step is to make your custom final adjustments, run the FE solver, and
+when finished, post-process the results. The image below shows the
+results of running the model without any custom adjustments, however in
+the following we shall consider modification of the load application
+regions.</p>
+<p><img alt="Clavicula stresses" src="../_images/image311.png" /></p>
+<p>On the following picture, you can see the muscle attachments nodes and
+coupling constraints that are applied to the finite element model.</p>
+<p><img alt="Clavicula force application points" src="../_images/image49.png" /></p>
+<p>Bear in mind that the muscle attachment area is considered to have a
+constant radius, however, in many cases these areas are elongated and
+have irregular pattern. Let us assume that the area for the
+sternocleidomastoid muscle has to be changed to fit better the user’s
+expectations, for example, to be more physiological. That can be done by
+defining the desired muscle attachment area as a new surface in the FE
+model and changing the relevant coupling constraint to refer to this
+surface. In our example, we create a surface on the posteriormedial side
+of the clavicle as it shown on the following pictures. Please note that
+you will also need to set the influence radius option to ´To outermost
+point of the region´ in order to make sure that you now make the
+coupling to the whole surface.</p>
+<p><img alt="Clavicula contraint region" src="../_images/image57.png" /> <img alt="Edit constraint dialog" src="../_images/image63.png" /></p>
+<p>The following picture shows how the modified constraint looks like; the
+sternocleidomastoid muscle attachment patch is now spread on the surface
+elements of the clavicle mesh.</p>
+<p><img alt="Clavicula closeup constraint region" src="../_images/image72.png" /></p>
+<p>We can run the solver again and inspect the results, see the image
+below. In the crude model, we have worked with in this case, we do not
+see significant changes due to the modification in the overall picture.</p>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">13. Finite Element Analysis Interfacing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: Export of data for FEA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: ANSYS Interface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 3: Abaqus Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</div><h3>Found a problem?</h3>
+
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Finite_element_analysis/lesson3.md">
+    <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+</p>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../AnyExp4SOLIDWORKS/index.html" title="14. Making Models using SOLIDWORKS"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson 2: ANSYS Interface"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">13. </span>Finite Element Analysis Interfacing</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 3: Abaqus Interface</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, AnyBody Technology.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

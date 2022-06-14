@@ -1,0 +1,270 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Lesson 6: Modifying the Loaded Model" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/Interface_features/lesson6.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="In this lesson, we shall take a look at the facilities that allows modifying the model after it had been loaded (without changing the AnyScript) Setting values: If you right click on an object in t..." />
+  
+<meta property="og:image" content="https://anyscript.org/_images/image125.png" />
+  
+<meta property="og:image:alt" content="Operations menu" />
+  
+    <title>Lesson 6: Modifying the Loaded Model &#8212; AnyBody Tutorials v7.4.0</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 7: Wrapping the Model with AnyBody Project" href="lesson7.html" />
+    <link rel="prev" title="Lesson 5: The Command Line Application" href="lesson5.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson7.html" title="Lesson 7: Wrapping the Model with AnyBody Project"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson5.html" title="Lesson 5: The Command Line Application"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">5. </span>User interface features</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 6: Modifying the Loaded Model</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-6-modifying-the-loaded-model">
+<h1>Lesson 6: Modifying the Loaded Model<a class="headerlink" href="#lesson-6-modifying-the-loaded-model" title="Permalink to this headline">¶</a></h1>
+<p>In this lesson, we shall take a look at the facilities that allows
+modifying the model after it had been loaded (without changing the
+AnyScript)</p>
+<div class="section" id="setting-values">
+<h2>Setting values<a class="headerlink" href="#setting-values" title="Permalink to this headline">¶</a></h2>
+<p>If you right click on an object in the Model Tree with the
+<strong>(Editable)</strong> written in next to it, the context menu provides an
+option called “Set Value”. Selecting this displays a dialog box where
+you can edit the object’s value.</p>
+<p>However, there may be other model parameters that depend on this object
+value, and these aren’t automatically updated. Objects having such
+dependents are marked with an <strong>(Editable*)</strong>. The procedure for
+re-computing these dependencies is described in the next section.</p>
+<p>“Set Value” is a Class Operation, which means that it can be summoned
+from the console application if needed, as defined in the <a class="reference internal" href="lesson5.html"><span class="doc">previous chapter</span></a>.</p>
+</div>
+<div class="section" id="resetting-values">
+<h2>Resetting values<a class="headerlink" href="#resetting-values" title="Permalink to this headline">¶</a></h2>
+<p>To reset all values to those described in AnyScript, right-click on the
+“Main” object in the Model Tree and select “Reset Values”, which will
+reset all values in the model. This action is also available from the
+menu Operations &gt; Reset All Values.</p>
+<p>“Reset values” is a Class Operation, which means that it can be summoned
+from the console application if needed, as defined in the <a class="reference internal" href="lesson5.html"><span class="doc">previous chapter</span></a>.</p>
+<p><img alt="Operations menu" src="../_images/image125.png" /></p>
+</div>
+<div class="section" id="updating-dependent-values">
+<h2>Updating dependent values<a class="headerlink" href="#updating-dependent-values" title="Permalink to this headline">¶</a></h2>
+<p>As explained in the “Setting values” section above, all dependencies of
+the updated object are not automatically updated. right-click on the
+“Main” object in the Model Tree and select “Update Values”, which will
+update all dependent values in the model.</p>
+<p>Moreover, it is also available from the menu Operations-&gt;Update All
+Values (see also the image above). “Update values” is a Class Operation,
+which means that it can be summoned from the console application if
+needed, as defined in the previous chapter.</p>
+</div>
+<div class="section" id="storing-modified-values-saving-and-loading-values">
+<h2>Storing Modified Values – Saving and Loading Values<a class="headerlink" href="#storing-modified-values-saving-and-loading-values" title="Permalink to this headline">¶</a></h2>
+<p>Modified values are not saved back into the AnyScript source code, and
+in the general case, this is not possible. However, the Main folder is
+equipped with two Class Operations, one for saving (“Save Values”) and
+one for loading values (“Load Values”). These functions are also
+available from the menu Operations-&gt;Save Modified Values and
+Operations-&gt;Load Modified Values, respectively. The saving operation
+saves all values that are marked as modified to a file. It is a simple
+text-based file that can be opened and modified in a text/AnyScript
+editor. Also, it can be included in the model source, at least if the
+values are not initialized in the original code (or this initialization
+is removed).</p>
+<p>The file can later be read into the same model (or a similar model)
+using the loading operation. This operation will load all the values in
+the same objects (by using the complete name), and it will mark all
+these value objects as modified. It will basically be as if you apply
+“Set Value” manually to all the value-objects in question. This means
+that no automatic updating is carried out by the loading operation.</p>
+<div class="without-title admonition seealso">
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson7.html"><span class="doc">Lesson 7: Wrapping the Model with AnyBody Project</span></a>.</p>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. User interface features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: The Editor Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: The Model View Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: The Chart View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: The Model Tree and Object Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html">Lesson 5: The Command Line Application</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 6: Modifying the Loaded Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson7.html">Lesson 7: Wrapping the Model with AnyBody Project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</div><h3>Found a problem?</h3>
+
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Interface_features/lesson6.md">
+    <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+</p>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson7.html" title="Lesson 7: Wrapping the Model with AnyBody Project"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson5.html" title="Lesson 5: The Command Line Application"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">5. </span>User interface features</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 6: Modifying the Loaded Model</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, AnyBody Technology.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

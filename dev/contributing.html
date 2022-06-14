@@ -1,0 +1,342 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Contributing" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/contributing.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="We highly appreciate any contributions to Tutorials! If you find typos, missing links or anything else wrong, don’t hesitate to fix it. It is as easy as forking the repository on GitHub, making you..." />
+  
+<meta property="og:image" content="https://anyscript.org/tutorials/_static/anybody_tutorials_logo.png" />
+  
+<meta property="og:image:alt" content="AnyScript Tutorials" />
+  
+    <title>Contributing &#8212; AnyBody Tutorials v7.4.0</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Getting Started" href="A_Getting_started/index.html" />
+    <link rel="prev" title="AnyBody Tutorials!" href="index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="A_Getting_started/index.html" title="1. Getting Started"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="AnyBody Tutorials!"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">AnyBody Tutorials!</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Contributing</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
+<p>We highly appreciate any contributions to Tutorials!</p>
+<p>If you find typos, missing links or anything else wrong, don’t hesitate to fix it.</p>
+<p>It is as easy as forking <a class="reference external" href="https://github.com/AnyBody/anybody-tutorial">the repository on GitHub</a> , making your changes, and
+issuing a pull request.  If you have any questions about this process don’t
+hesitate to ask.</p>
+<div class="section" id="building-the-tutorials">
+<h2>Building the tutorials<a class="headerlink" href="#building-the-tutorials" title="Permalink to this headline">¶</a></h2>
+<p>The tutorials are created using <a class="reference external" href="http://www.sphinx-doc.org/">sphinx</a>, a tool for software
+documentation. Sphinx converts markup text files into html, pdf or other
+formats.</p>
+<p>All tutorials are written in Markdown, which are simple text files with extra markup to define headers
+and formating. Having the tutorials as Markdown makes it easy to control
+changes to the documents and ensure consistent style.</p>
+<p>The tutorials are automatically build with sphinx when commits are
+pushed to the github repository. The process is handle by
+<a class="reference external" href="https://github.com/AnyBody/anybody-tutorial/actions">Github Actions, here</a>.
+If the build fails, for example because of
+wrong syntax etc, the Pull Request can not be merged.</p>
+<p>Once the pull request is accepted on Github and the changes are merged to the
+master branch the tutorials becomes availble online.</p>
+<p>The newest released version of the tutorials are available at:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://anyscript.org/tutorials">https://anyscript.org/tutorials</a></p></li>
+</ul>
+<p>The newest development version (current master branch) is availble at:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://anyscript.org/tutorials/dev">https://anyscript.org/tutorials/dev</a></p></li>
+</ul>
+<div class="section" id="building-the-tutorials-locally">
+<h3>Building the tutorials locally<a class="headerlink" href="#building-the-tutorials-locally" title="Permalink to this headline">¶</a></h3>
+<p>Even though the tutorials are build automatically, it is also possible to build
+them locally to view the layout and see results before pushing changes to the
+server. It is often not necesssary when making small fixes to existing
+tutorials. But when writing major new sections it nice to view how things look.</p>
+<p>The easiest way to install needed packages tools, is to have the <a class="reference external" href="https://www.continuum.io/downloads">Anaconda Python distribution</a>.</p>
+<p>Then run the following commands to install the necesssary packages.</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; conda env create -f  environment.yaml</span>
+</pre></div>
+</div>
+<p>afterwards activate the environment where the sphinx has been installed:</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; conda activate sphinx</span>
+</pre></div>
+</div>
+<p>Now you can run the command to build the tutorial files.</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>c<span class="p">:</span><span class="nl">\path\to\anybody_tutorials</span><span class="c1">&gt; make html</span>
+</pre></div>
+</div>
+<p>Once complete open the file: <code class="file docutils literal notranslate"><span class="pre">_build/html/index.html</span></code> in a browser to view
+the result.</p>
+</div>
+</div>
+<div class="section" id="short-markdown-guide">
+<h2>Short Markdown guide<a class="headerlink" href="#short-markdown-guide" title="Permalink to this headline">¶</a></h2>
+<p>There are plenty of guides on Markdown available on Google. The tutorials uses a flavor of
+markdown called MySt designed for techincal documentaiton and publishing.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The detailed documenation on <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/syntax/syntax.html">Markedly Structured Text (MySt)</a></p>
+</div>
+<p>So here is just a quick run through over some of the markdown concepts which are important for the tutorials.</p>
+<div class="section" id="paragraphs">
+<h3>Paragraphs<a class="headerlink" href="#paragraphs" title="Permalink to this headline">¶</a></h3>
+<p>Any block of text is a paragraph. Paragraphs must be separated by one
+or more blank lines. Identation matters in markdown, so lines of the same
+paragraph must be left aligned to the same indentation.</p>
+<ul class="simple">
+<li><p>one asterisk: <code class="docutils literal notranslate"><span class="pre">*text*</span></code> for emphasis (italics),</p></li>
+<li><p>two asterisks: <code class="docutils literal notranslate"><span class="pre">**text**</span></code> for strong emphasis (boldface), and</p></li>
+<li><p>backquotes: <code class="docutils literal notranslate"> <span class="pre">\</span></code>text` ` for code samples.</p></li>
+</ul>
+<p>There are also options for <sub>subscript</sub> and <sup>superscript</sup> plus more:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>{subscript}`subscript` and {superscript}`superscript`
+</pre></div>
+</div>
+</div>
+<div class="section" id="headers">
+<h3>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Chapter header</span>
+
+<span class="gu">## Section header</span>
+
+<span class="gu">### Subsection header</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lists-and-quote-like">
+<h3>Lists and Quote-like<a class="headerlink" href="#lists-and-quote-like" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">-</span> A bullet list item
+<span class="k">-</span> Second item
+
+  <span class="k">-</span> A sub item
+
+<span class="k">1.</span> Numbered list
+<span class="k">2.</span> It has two items
+</pre></div>
+</div>
+<p>Quotes are just paragraph preseed with a <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> character.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>This is an ordinary paragraph, introducing a block quote.
+
+&gt; &quot;Don&#39;t panic&quot;
+&gt; &gt; -- HG2G
+</pre></div>
+</div>
+</div>
+<div class="section" id="highlighting-code">
+<h3>Highlighting code<a class="headerlink" href="#highlighting-code" title="Permalink to this headline">¶</a></h3>
+<p>Highlighting AnyScript code snippets is also supported, using the <code class="docutils literal notranslate"><span class="pre">pygments_anyscript</span></code>
+extension to pygments.</p>
+<p>AnyScript highlighting is started using the <code class="docutils literal notranslate"><span class="pre">code-block</span></code>
+directive and specifing <code class="docutils literal notranslate"><span class="pre">AnyScriptDoc</span></code> as the highlighting language.</p>
+<style> .red {color:red} </style><p>The <code class="docutils literal notranslate"><span class="pre">AnyScriptDoc</span></code> is highlighter specifically for the documentation in sphinx.
+It can highlight AnyScript code even if the syntax is not correct, and any code
+fenced with <strong>§</strong> is <span class="red">§marked in red§</span>.</p>
+<p>Here is an example</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+```AnyScriptDoc
+
+AnyBodyStudy Study = {
+    AnyFolder &amp;Model = .Model;
+    Gravity = {0.0, §-9.81§, 0.0};
+}; // End of study
+```
+
+</pre></div>
+</div>
+<p>Which gives the following:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>
+    <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="gr">-9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+<span class="p">};</span> <span class="c1">// End of study</span>
+</pre></div>
+</div>
+<p>Valid values for the highlighting languages are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">none</span></code>: no highlighting</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AnyScript</span></code>: AnyScript (Syntax must be valid)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AnyBodyDoc</span></code> AnyScript (Allows invalid syntax)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python/c++/ruby</span></code> Different known programming languages</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">markdown</span></code> Markdown</p></li>
+<li><p>… and any other <a class="reference external" href="http://pygments.org/docs/lexers/">lexer alias that Pygments supports</a>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="index.html" title="index">
+          <img class="logo" src="_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="contents.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="A_Getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</div><h3>Found a problem?</h3>
+
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/contributing.md">
+    <img src="_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+</p>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="A_Getting_started/index.html" title="1. Getting Started"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="AnyBody Tutorials!"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >AnyBody Tutorials!</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Contributing</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, AnyBody Technology.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
