@@ -6,8 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta property="og:title" content="Lesson 5: Forces" />
   
 <meta property="og:type" content="website" />
@@ -23,13 +22,13 @@
 <meta property="og:image:alt" content="Simple arm model with force" />
   
     <title>Lesson 5: Forces &#8212; AnyBody Tutorials v7.4.0</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -88,7 +87,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section class="tex2jax_ignore mathjax_ignore" id="lesson-5-forces">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-5-forces">
 <h1>Lesson 5: Forces<a class="headerlink" href="#lesson-5-forces" title="Permalink to this headline">¶</a></h1>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
@@ -110,7 +109,7 @@ empty folder named Loads:</p>
 <span class="p">};</span> <span class="c1">// ArmModel</span>
 </pre></div>
 </div>
-<section id="anyforce3d-external-forces">
+<div class="section" id="anyforce3d-external-forces">
 <h2>AnyForce3D: External forces<a class="headerlink" href="#anyforce3d-external-forces" title="Permalink to this headline">¶</a></h2>
 <p>External forces on a mechanical system are usualy perceived as vectors
 with some point of attack, and this is indeed one of the ways you can
@@ -283,8 +282,8 @@ show the force now changing direction with the movement of the arm but
 maintaining its direction perpendicular to the forearm, i.e. in the
 negative <em>y</em> axis of the PalmNode reference system to which it is attached.</p>
 <p><img alt="Arm model with force 2" src="../_images/image234.png" /></p>
-</section>
-<section id="anyforce-internal-forces-sort-of">
+</div>
+<div class="section" id="anyforce-internal-forces-sort-of">
 <h2>AnyForce: Internal forces (sort of)<a class="headerlink" href="#anyforce-internal-forces-sort-of" title="Permalink to this headline">¶</a></h2>
 <p>Many applications in biomechanics deal with some notion of joint moment.
 Let us imagine we wanted to apply a given joint moment to the elbow and
@@ -396,8 +395,8 @@ and if an AnyForce is applied to this measure, that force will be
 predefined in the muscle. Please notice, that the system may decide to
 recruit muscle force beyond what you have applied unless the muscle has
 been set to zero strength.</p>
-</section>
-<section id="further-studies">
+</div>
+<div class="section" id="further-studies">
 <h2>Further studies:<a class="headerlink" href="#further-studies" title="Permalink to this headline">¶</a></h2>
 <p>The following two examples illustrate more of the features of forces in
 AnyBody.</p>
@@ -411,8 +410,8 @@ sections above it shows forces defined directly as interpolated values a
 set of measured data points, for instance from a force platform.</p>
 <p>The second example illustrates among other things how forces acting on a
 segment can be summed up.</p>
-</section>
-</section>
+</div>
+</div>
 
 
             <div class="clearer"></div>
@@ -428,7 +427,7 @@ segment can be summed up.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>

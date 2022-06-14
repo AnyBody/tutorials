@@ -6,8 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta property="og:title" content="Lesson 2: Including a custom scaling function into your model" />
   
 <meta property="og:type" content="website" />
@@ -23,13 +22,13 @@
 <meta property="og:image:alt" content="Scaling options in model tree" />
   
     <title>Lesson 2: Including a custom scaling function into your model &#8212; AnyBody Tutorials v7.4.0</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -88,7 +87,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section class="tex2jax_ignore mathjax_ignore" id="lesson-2-including-a-custom-scaling-function-into-your-model">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-2-including-a-custom-scaling-function-into-your-model">
 <h1>Lesson 2: Including a custom scaling function into your model<a class="headerlink" href="#lesson-2-including-a-custom-scaling-function-into-your-model" title="Permalink to this headline">¶</a></h1>
 <p>This lesson explains how we can use our own custom scaling function,
 which we designed in Lesson 3 and combine it with the overall human body scaling laws.</p>
@@ -96,7 +95,7 @@ which we designed in Lesson 3 and combine it with the overall human body scaling
 <p class="admonition-title">See also</p>
 <p>The section on scaling in the AMMR documentation.</p>
 </div>
-<section id="preparing-for-subject-specific-scaling">
+<div class="section" id="preparing-for-subject-specific-scaling">
 <h2>Preparing for subject-specific scaling<a class="headerlink" href="#preparing-for-subject-specific-scaling" title="Permalink to this headline">¶</a></h2>
 <p>When creating a musculoskeletal model, we have to decide on the
 dimensions of the body parts. The Scaling section in the AMMR
@@ -112,8 +111,8 @@ let us improve it using a subject-specific scaling for the femur.</p>
 <p>First of all, let us prepare a model matching the standard size man to
 be the basis for further subject-specific improvements. Therefore we use the <a class="reference external" href="https://anyscript.org/ammr-doc/auto_examples/Other/plot_StandingModelScalingDisplay.html#sphx-glr-auto-examples-other-plot-standingmodelscalingdisplay-py" title="(in AMMR v2.4)"><span class="xref myst">StandingModelScalingDisplay</span></a> from the AnyBody Managed Model Repository (AMMR), with the <code class="docutils literal notranslate"><span class="pre">_SCALING_STANDARD_</span></code>, option. This is well suited to show how
 to use subject-specific geometry in a model.</p>
-</section>
-<section id="including-custom-scaling-for-a-single-segment">
+</div>
+<div class="section" id="including-custom-scaling-for-a-single-segment">
 <h2>Including custom scaling for a single segment<a class="headerlink" href="#including-custom-scaling-for-a-single-segment" title="Permalink to this headline">¶</a></h2>
 <p>Let us configure this example to use ScalingStandard. We need to define
 <code class="docutils literal notranslate"><span class="pre">BM_SCALING</span></code> as <code class="docutils literal notranslate"><span class="pre">_SCALING_STANDARD_</span></code> and out-comment all other parts of
@@ -281,8 +280,8 @@ that the body is symmetric, which is only true up to a certain extent.
 So let us include a similar scaling for the corresponding mirrored pair.
 In the next section we will describe how to introduce mirroring to our
 scaling functions.</p>
-</section>
-<section id="introducing-a-mirrored-custom-scaling-function">
+</div>
+<div class="section" id="introducing-a-mirrored-custom-scaling-function">
 <h2>Introducing a mirrored custom scaling function<a class="headerlink" href="#introducing-a-mirrored-custom-scaling-function" title="Permalink to this headline">¶</a></h2>
 <p>We start by making a copy of MyScalingFunction.any that will be used to
 construct the mirrored transform and call it <code class="docutils literal notranslate"><span class="pre">MyScalingFunction_Mirrored.any</span></code>.
@@ -375,8 +374,8 @@ changed from the standard scaling case (left) to the custom scaling one (right):
 <p>This concludes the subject-specific scaling tutorial. The modifications
 utilized for the mirrored transformed model can be downloaded from here:
 <a class="reference download internal" download="" href="../_downloads/79a11bba1b858f4f0891909e65b7004c/MyScalingFunction_Mirrored.final.any"><code class="xref download docutils literal notranslate"><span class="pre">Downloads/MyScalingFunction_Mirrored.final.any</span></code></a></p>
-</section>
-</section>
+</div>
+</div>
 
 
             <div class="clearer"></div>
@@ -392,7 +391,7 @@ utilized for the mirrored transformed model can be downloaded from here:
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>

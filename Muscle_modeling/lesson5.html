@@ -6,8 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta property="og:title" content="Lesson 5: Muscle Models" />
   
 <meta property="og:type" content="website" />
@@ -23,18 +22,18 @@
 <meta property="og:image:alt" content="chart view: muscle1.L" />
   
     <title>Lesson 5: Muscle Models &#8212; AnyBody Tutorials v7.4.0</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
 
     
     
@@ -90,7 +89,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section class="tex2jax_ignore mathjax_ignore" id="lesson-5-muscle-models">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-5-muscle-models">
 <h1>Lesson 5: Muscle Models<a class="headerlink" href="#lesson-5-muscle-models" title="Permalink to this headline">¶</a></h1>
 <p>Muscle model is a description of how a muscle behaves under different
 operating conditions. There are two schools of thought within this area.</p>
@@ -144,7 +143,7 @@ of the different muscle models and muscle model calibration.
 The AnyScript model from the previous lesson will suffice very nicely.
 You can download a functional version
 of the model here: <a class="reference download internal" download="" href="../_downloads/5c1c2668d850dc6f114593e4f3d56587/MuscleDemo.5.any"><code class="xref download docutils literal notranslate"><span class="pre">MuscleDemo.5.any</span></code></a>.</p>
-<section id="anymusclemodel2elin">
+<div class="section" id="anymusclemodel2elin">
 <h2>AnyMuscleModel2ELin<a class="headerlink" href="#anymusclemodel2elin" title="Permalink to this headline">¶</a></h2>
 <p>Right-click and save the file to your local disk, and subsequently open
 the model in the AnyBody Modeling System. We have already seen the
@@ -486,8 +485,8 @@ real muscles it also fails to reflect important parts of muscle
 physiology, so it should be applied with care. In particular it does not
 model passive elasticity. The following section presents a full-blown
 Hill-type model, which does not have these shortcomings.</p>
-</section>
-<section id="anymusclemodel3e">
+</div>
+<div class="section" id="anymusclemodel3e">
 <h2>AnyMuscleModel3E<a class="headerlink" href="#anymusclemodel3e" title="Permalink to this headline">¶</a></h2>
 <p>So far we have been focusing our attention on Muscle1 in the demo model
 and left Muscle2 with the simple muscle model. Let us briefly study what
@@ -821,8 +820,8 @@ to do some work. Let us systematically investigate the output:</p>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="calibration">
+</div>
+<div class="section" id="calibration">
 <h2>Calibration<a class="headerlink" href="#calibration" title="Permalink to this headline">¶</a></h2>
 <p><strong>Note:</strong> This section describes calibration of muscle-tendon units briefly; for more details and more examples, please refer to <a class="reference internal" href="../MuscleRecruitment/lesson_calibration.html"><span class="doc">Inverse Dyanmics of Muscle Systems: Calibration</span></a>.</p>
 <p>One of the practical challenges in working with detailed muscle models
@@ -865,7 +864,7 @@ This method requires input about two specific points of the muscles’ operation
 <p>For details, please visit <a class="reference internal" href="../MuscleRecruitment/lesson_calibration.html"><span class="doc">Inverse Dyanmics of Muscle Systems: Calibration</span></a>.</p>
 <p>In the following, we demonstrate calibration by examples using the tendon-length calibration, i.e. calibrating Lt0.
 In the following two sections, we disucss two calibration strategies: “Cheap and dirty” and “Detailed” calibration.</p>
-<section id="cheap-and-dirty-calibration">
+<div class="section" id="cheap-and-dirty-calibration">
 <h3>“Cheap and dirty” calibration<a class="headerlink" href="#cheap-and-dirty-calibration" title="Permalink to this headline">¶</a></h3>
 <p>The <em>cheap and dirty</em> solution is of course easily available but also
 not recommended for accurate analysis.</p>
@@ -910,8 +909,8 @@ of the joints in the model.</p>
 <p>Please notice that the tendon lengths specified in the AnyScript model
 are not altered by this method. Every time you reload the model you must
 run the FiberAndTendonAdjustment again.</p>
-</section>
-<section id="detailed-calibration">
+</div>
+<div class="section" id="detailed-calibration">
 <h3>Detailed calibration<a class="headerlink" href="#detailed-calibration" title="Permalink to this headline">¶</a></h3>
 <p>There is a more accurate and detailed way of calibrating tendons, but it
 requires additional information. More precisely it calibrates the tendon
@@ -933,12 +932,12 @@ modeling, namely General Muscles. They are the topic of the next lesson,
 <p class="admonition-title">See also</p>
 <p><strong>Next lesson:</strong> <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: General Muscles</span></a>.</p>
 </div>
-</section>
-</section>
-<section id="references">
+</div>
+</div>
+<div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-</section>
-</section>
+</div>
+</div>
 
 
             <div class="clearer"></div>
@@ -954,7 +953,7 @@ modeling, namely General Muscles. They are the topic of the next lesson,
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>

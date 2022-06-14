@@ -6,8 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta property="og:title" content="Lesson 6: Adding Real Bone Geometries" />
   
 <meta property="og:type" content="website" />
@@ -23,13 +22,13 @@
 <meta property="og:image:alt" content="oldleg1" />
   
     <title>Lesson 6: Adding Real Bone Geometries &#8212; AnyBody Tutorials v7.4.0</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -88,7 +87,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section class="tex2jax_ignore mathjax_ignore" id="lesson-6-adding-real-bone-geometries">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-6-adding-real-bone-geometries">
 <h1>Lesson 6: Adding Real Bone Geometries<a class="headerlink" href="#lesson-6-adding-real-bone-geometries" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -100,7 +99,7 @@ However realistic bone geometries can improve both aesthetics and
 visual comprehension of a model’s anatomy, as illustrated
 by the two pictures below.</p>
 <p><img alt="oldleg1" src="../_images/image1.jpeg" /> <img alt="oldleg2" src="../_images/image2.jpeg" /></p>
-<section id="file-formats-for-visualization-objects">
+<div class="section" id="file-formats-for-visualization-objects">
 <h2>File formats for visualization objects<a class="headerlink" href="#file-formats-for-visualization-objects" title="Permalink to this headline">¶</a></h2>
 <p>3-D Geometric models for model components such as bones can be specified using files
 of the STL ASCII format.</p>
@@ -109,8 +108,8 @@ triangles. Virtually all CAD systems can export an object in the STL format. So 
 STEP, DXF etc. formats, load them in your favorite CAD system and convert to STL.</p>
 <p>STL files come in two varieties: ASCII and binary. AnyBody needs an ASCII file, so please make sure to choose that
 option during the export process.</p>
-</section>
-<section id="importing-a-stl-file">
+</div>
+<div class="section" id="importing-a-stl-file">
 <h2>Importing a STL file<a class="headerlink" href="#importing-a-stl-file" title="Permalink to this headline">¶</a></h2>
 <p>Since the bone models shown in the above tutorial may be a bit too elaborate for a
 basic tutorial, we will demonstrate this by adding an STL file for the dumbbel in the arm model.</p>
@@ -137,8 +136,8 @@ We will therefore scale the dumbbell model down a 1000 times, in the following w
 <p>Post re-loading, your model should resemble the figure below.The dumbbell is visible now and has the right size, but
 it is sitting at the center of mass of the lower arm rather than at the hand, and is not oriented correctly.</p>
 <p><img alt="ModelView dumbbell1" src="../_images/image3.jpeg" /></p>
-</section>
-<section id="relocating-your-stl-object">
+</div>
+<div class="section" id="relocating-your-stl-object">
 <h2>Relocating your STL object<a class="headerlink" href="#relocating-your-stl-object" title="Permalink to this headline">¶</a></h2>
 <p>When you attach something to a segment, it is by default positioned
 at the segment’s origin which is also its center of mass. (This was discussed earlier <a class="reference internal" href="lesson2.html#class-inserter"><span class="std std-ref">over here</span></a>)</p>
@@ -160,8 +159,8 @@ from the “ForeArm” folder to the “PalmNode” subfolder. Cut-paste the ent
 <p>Upon reloading, we see that the dumbbell attached to the
 right location, but is still not oriented correctly.</p>
 <p><img alt="ModelView dumbbell2" src="../_images/image4.jpeg" /></p>
-</section>
-<section id="reorienting-your-stl-object">
+</div>
+<div class="section" id="reorienting-your-stl-object">
 <h2>Reorienting your STL object<a class="headerlink" href="#reorienting-your-stl-object" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -197,8 +196,8 @@ ARel (optinal property) which will orient “PalmNode” w.r.t “ForeArm”.</s
 <p><img alt="ModelView dumbbell3" src="../_images/image5.jpeg" /></p>
 <p>This completes the Getting Started with AnyScript tutorial. The final
 result of your efforts is in <a class="reference download internal" download="" href="../_downloads/e2b529ca3b68acc64c35ebe686bcc367/demo.arm2d.any"><code class="xref download docutils literal notranslate"><span class="pre">demo.arm2d.any</span></code></a>.</p>
-</section>
-</section>
+</div>
+</div>
 
 
             <div class="clearer"></div>
@@ -214,7 +213,7 @@ result of your efforts is in <a class="reference download internal" download="" 
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>

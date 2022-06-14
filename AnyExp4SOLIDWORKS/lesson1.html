@@ -6,8 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta property="og:title" content="Translating a SOLIDWORKS CAD model to AnyBody" />
   
 <meta property="og:type" content="website" />
@@ -23,13 +22,13 @@
 <meta property="og:image:alt" content="SolidWorks fitnessmachine" />
   
     <title>Translating a SOLIDWORKS CAD model to AnyBody &#8212; AnyBody Tutorials v7.4.0</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -88,7 +87,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section class="tex2jax_ignore mathjax_ignore" id="translating-a-solidworks-cad-model-to-anybody">
+  <div class="tex2jax_ignore mathjax_ignore section" id="translating-a-solidworks-cad-model-to-anybody">
 <h1>Translating a SOLIDWORKS CAD model to AnyBody<a class="headerlink" href="#translating-a-solidworks-cad-model-to-anybody" title="Permalink to this headline">¶</a></h1>
 <p>Start by downloading the <a class="reference download internal" download="" href="../_downloads/9300eac0ad492ca0137f018ecf4a3d4c/FitnessMachine_SolidWorks.zip"><code class="xref download docutils literal notranslate"><span class="pre">example</span> <span class="pre">SOLIDWORKS</span> <span class="pre">CAD</span> <span class="pre">assembly</span></code></a></p>
 <p>After having downloaded and opened this model in your SOLIDWORKS
@@ -146,7 +145,7 @@ are:</p>
 file, color)</p></li>
 <li><p>Mate information between the different parts in the assemblies</p></li>
 </ul>
-<section id="solidworks-assembly-model-structure">
+<div class="section" id="solidworks-assembly-model-structure">
 <h2>SOLIDWORKS assembly model structure<a class="headerlink" href="#solidworks-assembly-model-structure" title="Permalink to this headline">¶</a></h2>
 <p>Let us compare the SOLIDWORKS Feature Tree and the AnyBody Model Tree.</p>
 <p><img alt="SOLIDWORKS properties" src="../_images/lesson1_image6.png" />  <img alt="ANYBODY model tree" src="../_images/lesson1_image7.PNG" /></p>
@@ -157,8 +156,8 @@ entities such as origin and planes are converted into AnyFixedRefFrame
 or AnyRefNode objects depending on whether they are fixed or attached to
 movable parts. Finally, there is an AnyFolder object named ‘Mates’,
 which contains all converted mate information.</p>
-</section>
-<section id="part-information-mass-property-initial-position-and-stl-geometry-file">
+</div>
+<div class="section" id="part-information-mass-property-initial-position-and-stl-geometry-file">
 <h2>Part information (mass property, initial position and STL geometry file)<a class="headerlink" href="#part-information-mass-property-initial-position-and-stl-geometry-file" title="Permalink to this headline">¶</a></h2>
 <p>If you look at the information about the
 ‘Main.FitnessMachine.MainBase___1’ AnySeg object, you will see the
@@ -193,8 +192,8 @@ following piece of code.</p>
 </div>
 <p>As you can see here, mass properties, initial position &amp; rotation and
 geometry information (STL file) were translated into AnyScript.</p>
-</section>
-<section id="mate-information">
+</div>
+<div class="section" id="mate-information">
 <h2>Mate information<a class="headerlink" href="#mate-information" title="Permalink to this headline">¶</a></h2>
 <p>Generally, all mate information in a CAD assembly model can be regarded
 as kinematic constraints. Based on these constraints, you can move the
@@ -256,8 +255,8 @@ now let us go to the next <a class="reference internal" href="lesson2.html"><spa
 <p class="admonition-title">See also</p>
 <p><strong>Next lesson:</strong> <a class="reference internal" href="lesson2.html"><span class="doc">Making the translated AnyScript model move</span></a>.</p>
 </div>
-</section>
-</section>
+</div>
+</div>
 
 
             <div class="clearer"></div>
@@ -273,7 +272,7 @@ now let us go to the next <a class="reference internal" href="lesson2.html"><spa
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>

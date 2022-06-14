@@ -6,8 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta property="og:title" content="Making the translated AnyScript model move" />
   
 <meta property="og:type" content="website" />
@@ -23,13 +22,13 @@
 <meta property="og:image:alt" content="SolidWorks components" />
   
     <title>Making the translated AnyScript model move &#8212; AnyBody Tutorials v7.4.0</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -88,12 +87,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section class="tex2jax_ignore mathjax_ignore" id="making-the-translated-anyscript-model-move">
+  <div class="tex2jax_ignore mathjax_ignore section" id="making-the-translated-anyscript-model-move">
 <h1>Making the translated AnyScript model move<a class="headerlink" href="#making-the-translated-anyscript-model-move" title="Permalink to this headline">¶</a></h1>
 <p>If you did not finish the previous lesson, you can download the finished
 AnyScript model file here:
 <a class="reference download internal" download="" href="../_downloads/6f1ce74563d63cb5734cb59acc275bb2/FitnessMachine_Mate_Config1.zip"><code class="xref download docutils literal notranslate"><span class="pre">FitnessMachine\_Mate\_Config1.zip</span></code></a></p>
-<section id="add-an-anybodystudy-object-and-a-kinematic-motion-driver">
+<div class="section" id="add-an-anybodystudy-object-and-a-kinematic-motion-driver">
 <h2>Add an AnyBodyStudy object and a kinematic motion driver<a class="headerlink" href="#add-an-anybodystudy-object-and-a-kinematic-motion-driver" title="Permalink to this headline">¶</a></h2>
 <p>As previously mentioned, the exported model comes out of SOLIDWORKS and
 into AnyBody with one degree-of-freedom. In this lesson, we add a driver
@@ -272,8 +271,8 @@ engineering design decisions properly into your models.</p>
 <p>There are two ways to approach this task: editing your AnyScript model
 directly or editing your mate definitions in SOLIDWORKS and re-exporting
 it. We shall here adopt the latter approach.</p>
-</section>
-<section id="removing-redundant-mates-in-solidworks-before-doing-the-translation">
+</div>
+<div class="section" id="removing-redundant-mates-in-solidworks-before-doing-the-translation">
 <h2>Removing redundant mates in SOLIDWORKS before doing the translation<a class="headerlink" href="#removing-redundant-mates-in-solidworks-before-doing-the-translation" title="Permalink to this headline">¶</a></h2>
 <p>If your SOLIDWORKS CAD model has a very complex structure, then it may
 be difficult to modify the AnyScript model to remove the redundant
@@ -444,8 +443,8 @@ Lesson 1.</p>
 <p>We prefer the solution in ‘Mate_Config3’, since this approach is closer
 to concepts we normally use with AnyBody, but ‘Mate_Config2’ and
 ‘Mate_Config3’ are mechanically equivalent.</p>
-</section>
-<section id="translate-a-solidworks-assembly-which-doesnt-have-any-redundant-mates">
+</div>
+<div class="section" id="translate-a-solidworks-assembly-which-doesnt-have-any-redundant-mates">
 <h2>Translate a SOLIDWORKS assembly which doesn’t have any redundant mates<a class="headerlink" href="#translate-a-solidworks-assembly-which-doesnt-have-any-redundant-mates" title="Permalink to this headline">¶</a></h2>
 <p>Let us translate the assembly under the ‘Mate_Config3’ configuration
 into an AnyScript model by using AnyExp4SOLIDWORKS like you did in
@@ -493,8 +492,8 @@ human to the model in the final <a class="reference internal" href="lesson3.html
 <p class="admonition-title">See also</p>
 <p><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Creating human-machine integrated analysis model</span></a>.</p>
 </div>
-</section>
-</section>
+</div>
+</div>
 
 
             <div class="clearer"></div>
@@ -510,7 +509,7 @@ human to the model in the final <a class="reference internal" href="lesson3.html
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>

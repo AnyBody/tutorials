@@ -6,8 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta property="og:title" content="Lesson 2: The Model View Window" />
   
 <meta property="og:type" content="website" />
@@ -23,13 +22,13 @@
 <meta property="og:image:alt" content="Open model view windows" />
   
     <title>Lesson 2: The Model View Window &#8212; AnyBody Tutorials v7.4.0</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -88,7 +87,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section class="tex2jax_ignore mathjax_ignore" id="lesson-2-the-model-view-window">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-2-the-model-view-window">
 <h1>Lesson 2: The Model View Window<a class="headerlink" href="#lesson-2-the-model-view-window" title="Permalink to this headline">¶</a></h1>
 <p>The Model View is a graphical representation of your AnyBody model. You
 can open up to four Model Views open at the time, and you can enable
@@ -98,7 +97,7 @@ these additional windows from View-&gt;Model Views.</p>
 “Draw Objects” which are inserted into AnyScript definitions of
 segments, muscles, nodes, surfaces, etc. For example, see the AnyDrawSeg
 object used to visualize a segment in this tutorial**.**</p>
-<section id="introduction-to-model-view">
+<div class="section" id="introduction-to-model-view">
 <h2>Introduction to Model View<a class="headerlink" href="#introduction-to-model-view" title="Permalink to this headline">¶</a></h2>
 <p>The Model View displays and updates the model as the simulation
 operation proceeds. These updates can involve movements, shapes or
@@ -109,8 +108,8 @@ View and values in the Model Tree will be instantly updated.</p>
 <p>The Model View allows you to save individual image frames which can
 subsequently be used to make a video animation playing a speed of your
 choice.</p>
-</section>
-<section id="running-a-simulation">
+</div>
+<div class="section" id="running-a-simulation">
 <h2>Running a Simulation<a class="headerlink" href="#running-a-simulation" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p>Switch to the Operations tab. Select the RunApplication in the tree
@@ -125,7 +124,7 @@ Model View changes<img alt="Replay slider toolbarb" src="../_images/image315.png
 </ol>
 <p>If you have run several operations, you can replay them individually by
 changing the selected operation in the tree.</p>
-<section id="the-toolbar">
+<div class="section" id="the-toolbar">
 <h3>The Toolbar<a class="headerlink" href="#the-toolbar" title="Permalink to this headline">¶</a></h3>
 <p>The Model View has its own toolbar with the following buttons:</p>
 <p><img alt="Model view toolbar" src="../_images/image412.png" /></p>
@@ -151,15 +150,15 @@ Explained in more detail below.</p></li>
 recording.</p></li>
 <li><p><strong>Snapshot:</strong> Takes a single snapshot of the model.</p></li>
 </ul>
-</section>
-<section id="model-view-properties">
+</div>
+<div class="section" id="model-view-properties">
 <h3>Model View Properties<a class="headerlink" href="#model-view-properties" title="Permalink to this headline">¶</a></h3>
 <p>The Model View properties contain four groups and should be displayed as
 a tree in a separate tab. To learn, click on any of the properties with
 the <img alt="Folder icon" src="../_images/image510.png" /> symbol and hit the F1 key. This should open the
 AnyScript Reference Manual where sub-properties are defined.</p>
-</section>
-<section id="recording-video">
+</div>
+<div class="section" id="recording-video">
 <h3>Recording video<a class="headerlink" href="#recording-video" title="Permalink to this headline">¶</a></h3>
 <p>The allows you to save individual image frames of a motion for
 subsequent processing into a video animation.</p>
@@ -190,8 +189,8 @@ process these files into an AVI, MPEG or similar video file format, but
 many third-party utilities are available for this purpose. For more
 details, please see
 <a class="reference external" href="https://anyscript.org/tips-n-tricks/creating-videos-from-your-simulations/">https://anyscript.org/tips-n-tricks/creating-videos-from-your-simulations/</a></p>
-</section>
-<section id="working-with-the-model-view-contents">
+</div>
+<div class="section" id="working-with-the-model-view-contents">
 <h3>Working with the Model View contents<a class="headerlink" href="#working-with-the-model-view-contents" title="Permalink to this headline">¶</a></h3>
 <p>We have already mentioned that Model View shows draw objects in the
 model and that there are two types of these objects:</p>
@@ -211,8 +210,8 @@ pleasing views that suit your presentation needs.</p>
 <p>These states you can control while the model is loaded, either directly
 from Model View or from the Model Tree. We shall return to this in a
 moment.</p>
-</section>
-<section id="model-view-state-actions">
+</div>
+<div class="section" id="model-view-state-actions">
 <h3>Model View State Actions<a class="headerlink" href="#model-view-state-actions" title="Permalink to this headline">¶</a></h3>
 <p>Let us take a look at how you can interact with the states of Model View
 draw objects. Right-clicking an object in Model View will bring up its
@@ -224,8 +223,8 @@ be either visible or invisible depending on the object. The more
 “complex looking” options at the bottom of the menu help you navigate to
 the relevant portions of the Model Tree. Try them out, they are quite
 intuitive to understand and may help you further on!</p>
-</section>
-<section id="selections-in-the-model-view">
+</div>
+<div class="section" id="selections-in-the-model-view">
 <h3>Selections in the Model View<a class="headerlink" href="#selections-in-the-model-view" title="Permalink to this headline">¶</a></h3>
 <p>Graphical objects in the Model View can be selected by single-clicking
 them with the left mouse button. Doing so will visually mark the object
@@ -235,16 +234,16 @@ selected object again will remove it from the current selection. The
 currently selected objects can be deselected by either left-clicking
 somewhere in the background, or by using the “Deselect all” option in
 the right-click context menu.</p>
-</section>
-<section id="setting-the-model-view-from-the-model-tree">
+</div>
+<div class="section" id="setting-the-model-view-from-the-model-tree">
 <h3>Setting the Model View from the Model Tree<a class="headerlink" href="#setting-the-model-view-from-the-model-tree" title="Permalink to this headline">¶</a></h3>
 <p>The context menu options for setting Model View state action for draw
 objects is also available from the Model Tree. The context menu in the
 Model Tree has a Model View item, which includes exactly the same
 sub-menu we looked at above, please see the image below.</p>
 <p><img alt="Model tree right click menu" src="../_images/image83.png" /></p>
-</section>
-<section id="draw-groups">
+</div>
+<div class="section" id="draw-groups">
 <h3>Draw groups<a class="headerlink" href="#draw-groups" title="Permalink to this headline">¶</a></h3>
 <p>You can change the state of a group of drawing objects simultaneously by
 using “draw groups” that can be created by the class AnyDrawGroup.
@@ -254,9 +253,9 @@ usage.</p>
 <p class="admonition-title">See also</p>
 <p><strong>Next lesson:</strong> <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: The Chart View</span></a>.</p>
 </div>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
             <div class="clearer"></div>
@@ -272,7 +271,7 @@ usage.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>

@@ -6,8 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta property="og:title" content="Introduction to Validation" />
   
 <meta property="og:type" content="website" />
@@ -23,13 +22,13 @@
 <meta property="og:image:alt" content="AnyScript Tutorials" />
   
     <title>Introduction to Validation &#8212; AnyBody Tutorials v7.4.0</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -88,7 +87,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-validation">
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-validation">
 <h1>Introduction to Validation<a class="headerlink" href="#introduction-to-validation" title="Permalink to this headline">¶</a></h1>
 <p>Somewhere on the way to the decision of using a biomechanical model you
 have probably asked yourself the question: Will I be able to trust the
@@ -110,7 +109,7 @@ More precisely, you can expect to find the following in this tutorial:</p>
 webcasts</a> have
 presented validation studies and results, the most recent one was
 “Seated Human Model Validation”.</p>
-<section id="what-can-go-wrong">
+<div class="section" id="what-can-go-wrong">
 <h2>What Can Go Wrong?<a class="headerlink" href="#what-can-go-wrong" title="Permalink to this headline">¶</a></h2>
 <p>Well, lots, actually. But it is helpful to try to categorize the matter
 into a few sources of error.</p>
@@ -119,8 +118,8 @@ into a few sources of error.</p>
 <li><p>Errors sources in the basic assumptions</p></li>
 <li><p>Errors sources in the software</p></li>
 </ul>
-</section>
-<section id="errors-sources-in-the-model">
+</div>
+<div class="section" id="errors-sources-in-the-model">
 <h2>Errors Sources in the Model<a class="headerlink" href="#errors-sources-in-the-model" title="Permalink to this headline">¶</a></h2>
 <p>An AnyScript model contains a lot of data, and they are all infested
 with some degree of inaccuracy: Geometry and mass properties of
@@ -133,7 +132,7 @@ instance fiber lengths and pennation angles. Another consideration is
 the level of subject-specific accuracy. Is the purpose of the model to
 simulate a particular individual, or should it reflect a cross section
 of the population?</p>
-<section id="model-data-uncertainties">
+<div class="section" id="model-data-uncertainties">
 <h3>Model Data Uncertainties<a class="headerlink" href="#model-data-uncertainties" title="Permalink to this headline">¶</a></h3>
 <p>In general, the models in the <a class="reference external" href="https://www.anybodytech.com/software/ammr/">AnyScript Managed Model
 Repository</a>
@@ -170,8 +169,8 @@ the joint to work more than they are supposed to. Please notice that
 AnyBody has facilities for calibrating tendon lengths. <a class="reference internal" href="../Muscle_modeling/intro.html"><span class="doc">The muscle modeling tutorial</span></a> has
 in-depth information about these issues.</p></li>
 </ul>
-</section>
-<section id="boundary-conditions">
+</div>
+<div class="section" id="boundary-conditions">
 <h3>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">¶</a></h3>
 <p>Input to inverse dynamics is movement and boundary conditions, and these
 can have more influence on the result than most inexperienced modelers
@@ -186,8 +185,8 @@ However, hands have limited strength to hold on with, and handle
 surfaces have limited friction to offer. If the model contrary to
 reality offers an effortless connection between the hand and the handle,
 then the model is likely to exploit this as we shall see later.</p>
-</section>
-<section id="movement-data">
+</div>
+<div class="section" id="movement-data">
 <h3>Movement Data<a class="headerlink" href="#movement-data" title="Permalink to this headline">¶</a></h3>
 <p>Recorded movement input such as motion capture data is usually in the
 form of positions over time. But inertia forces in the model are derived
@@ -195,9 +194,9 @@ from accelerations, and to obtain accelerations, the positional data
 must be differentiated twice thus increasing noise and inaccuracies by
 two orders of magnitude. This is the topic of the first lesson of this
 tutorial, starting at the bottom of this page.</p>
-</section>
-</section>
-<section id="errors-sources-in-the-basic-assumptions">
+</div>
+</div>
+<div class="section" id="errors-sources-in-the-basic-assumptions">
 <h2>Errors Sources in the Basic Assumptions<a class="headerlink" href="#errors-sources-in-the-basic-assumptions" title="Permalink to this headline">¶</a></h2>
 <p>As mentioned a couple of times already, the AnyBody Modeling System is
 based on inverse dynamics. This means that - for a given point in time -
@@ -231,8 +230,8 @@ optimal muscle recruitment most likely requires that the movement is
 skilled and that the required changes of muscle activation are not
 faster than the electro-chemical process of muscle contraction can
 accommodate.</p>
-</section>
-<section id="errors-in-the-software">
+</div>
+<div class="section" id="errors-in-the-software">
 <h2>Errors in the Software<a class="headerlink" href="#errors-in-the-software" title="Permalink to this headline">¶</a></h2>
 <p>All software has bugs, and very probably this is also the case for the
 AnyBody Modeling System. However, in terms of muscle recruitment, the
@@ -251,8 +250,8 @@ deviating results due to round-off errors.</p>
 <p>When compared to the modeling errors and approximations due to the
 recruitment assumptions, errors in the software are much less likely to
 disturb the result of the computation significantly.</p>
-</section>
-<section id="methods-of-validation">
+</div>
+<div class="section" id="methods-of-validation">
 <h2>Methods of Validation<a class="headerlink" href="#methods-of-validation" title="Permalink to this headline">¶</a></h2>
 <p>The expression ‘garbage in - garbage out’ is very much valid for
 biomechanical simulation. The quality of the output can never be better
@@ -273,8 +272,8 @@ smoothing with a low-pass filter.</p>
 <p class="admonition-title">See also</p>
 <p><strong>Next lesson:</strong> <a class="reference internal" href="Kinematic_input.html"><span class="doc">Kinematic input validation</span></a>.</p>
 </div>
-</section>
-</section>
+</div>
+</div>
 
 
             <div class="clearer"></div>
@@ -290,7 +289,7 @@ smoothing with a low-pass filter.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>
