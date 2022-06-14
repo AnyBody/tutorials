@@ -1,12 +1,12 @@
 
-
-
 <!DOCTYPE html>
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="noindex" name="robots" />
+
 <meta property="og:title" content="Lesson 5: Muscle Models" />
   
 <meta property="og:type" content="website" />
@@ -21,76 +21,1037 @@
   
 <meta property="og:image:alt" content="chart view: muscle1.L" />
   
-    <title>Lesson 5: Muscle Models &#8212; AnyBody Tutorials v7.4.0</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <title>Lesson 5: Muscle Models &#8212; AnyBody Tutorials v7.4.0-dev</title>
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=e29d1d5dcac6d41e1d5489fedd7eec00fae8909a" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
-
-    
-    
-     
-        <script src="../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script src="../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script src="../_static/cloud.js"></script>
-    
-
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lesson 6: General Muscles" href="lesson6.html" />
-    <link rel="prev" title="Lesson 4: Wrapping Muscles" href="lesson4.html" /> 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head><body>
-    <div class="relbar-top">
-        
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
-             accesskey="C">toc</a> &nbsp; &nbsp;</li>
-        <li class="right" >
-          <a href="lesson6.html" title="Lesson 6: General Muscles"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
-        <li class="right" >
-          <a href="lesson4.html" title="Lesson 4: Wrapping Muscles"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
+    <link rel="prev" title="Lesson 4: Wrapping Muscles" href="lesson4.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">10. </span>Muscle Modeling</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Lesson 5: Muscle Models</a></li> 
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/AnyBodyTutorials2.svg" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../GettingStarted.html">
+   <strong>
+    Getting Started
+   </strong>
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../A_Getting_started/index.html">
+     Getting Started - First steps
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started/intro.html">
+       Getting Started Tutorial
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started/lesson1.html">
+       Lesson 1: Creating a Standing Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started/lesson2.html">
+       Lesson 2: Controlling the Posture
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started/lesson3.html">
+       Lesson 3: Reviewing Analysis Results
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../A_Getting_started_anyscript/index.html">
+     How to write AnyScript
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started_anyscript/intro.html">
+       Introduction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started_anyscript/lesson1.html">
+       Lesson 1: Basic Concepts
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started_anyscript/lesson2.html">
+       Lesson 2: Defining Segments and Displaying Objects
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started_anyscript/lesson3.html">
+       Lesson 3: Connecting Segments by Joints
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started_anyscript/lesson4.html">
+       Lesson 4: Imparting movement with Drivers
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started_anyscript/lesson5.html">
+       Lesson 5: Definition of Muscles and External Forces
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started_anyscript/lesson6.html">
+       Lesson 6: Adding Real Bone Geometries
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../A_Getting_started_modeling/index.html">
+     Modelling the Human body
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started_modeling/intro.html">
+       Introduction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started_modeling/lesson1.html">
+       Lesson 1: Starting with a New Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started_modeling/lesson2.html">
+       Lesson 2: Adjusting the Human Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started_modeling/lesson3.html">
+       Lesson 3: Making Ends Meet
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_Getting_started_modeling/lesson4.html">
+       Lesson 4: Kinetics - Computing Forces
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../A_Getting_started_AMMR/index.html">
+     The AnyBody Model Repository
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference external" href="https://anyscript.org/ammr-doc/creating_model_from_scratch.html">
+       Creating a Human Model from scratch
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson1.html">
+       Scaling: Joint to joint scaling
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson2.html">
+       Scaling: External Body Measurements
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson3.html">
+       Scaling: Segmental scaling factors
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../Tutorials.html">
+   <strong>
+    Tutorials
+   </strong>
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../A_study_of_studies/index.html">
+     A Study of Studies
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_study_of_studies/intro.html">
+       Introduction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_study_of_studies/lesson1.html">
+       Lesson1: Mechanical System Information
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_study_of_studies/lesson2.html">
+       Lesson2: Initial Conditions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_study_of_studies/lesson3.html">
+       Lesson 3: Kinematic Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../A_study_of_studies/lesson4.html">
+       Lesson 4: Inverse Dynamics
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../Making_things_move/index.html">
+     Making things move
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Making_things_move/intro.html">
+       Introduction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Making_things_move/lesson1.html">
+       Lesson1: Simple drivers
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Making_things_move/lesson2.html">
+       Lesson 2: Using motion capture data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Making_things_move/lesson3.html">
+       Lesson3: Noise and filters
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Making_things_move/lesson4.html">
+       Lesson 4: Parameter identification
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Making_things_move/lesson5.html">
+       Lesson 5: Using real data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Making_things_move/lesson6.html">
+       Lesson 6: Troubleshooting C3D files
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../MuscleRecruitment/index.html">
+     Inverse Dynamics of Muscle Systems
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">
+       Introduction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../MuscleRecruitment/lesson1.html">
+       Lesson 1: The Basics of Muscle Recruitment
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../MuscleRecruitment/lesson2.html">
+       Lesson 2: Linear Muscle Recruitment
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../MuscleRecruitment/lesson3.html">
+       Lesson 3: Quadratic Muscle Recruitment
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../MuscleRecruitment/lesson4.html">
+       Lesson 4: Polynomial Muscle Recruitment
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../MuscleRecruitment/lesson5.html">
+       Lesson 5: Min/Max Muscle Recruitment
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../MuscleRecruitment/lesson6.html">
+       Lesson 6: Composite Recruitment Criteria
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../MuscleRecruitment/lesson_calibration.html">
+       Lesson 7: Calibration
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="index.html">
+     Muscle Modeling
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="intro.html">
+       Introduction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="lesson1.html">
+       Lesson 1: The Basics of Muscle Definition
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="lesson2.html">
+       Lesson 2: Controlling Muscle Drawing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="lesson3.html">
+       Lesson 3: Via-point Muscles
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="lesson4.html">
+       Lesson 4: Wrapping Muscles
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Lesson 5: Muscle Models
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="lesson6.html">
+       Lesson 6: General Muscles
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="lesson7.html">
+       Lesson 7: Ligaments
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../The_mechanical_elements/index.html">
+     The Mechanical Elements
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../The_mechanical_elements/intro.html">
+       Introduction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../The_mechanical_elements/lesson1.html">
+       Lesson 1: Segments
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../The_mechanical_elements/lesson2.html">
+       Lesson 2: Joints
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../The_mechanical_elements/lesson3.html">
+       Lesson 3: Drivers
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../The_mechanical_elements/lesson4.html">
+       Lesson 4: Kinematic Measures
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../The_mechanical_elements/lesson5.html">
+       Lesson 5: Forces
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../ForceDependentKinematics/index.html">
+     Force-Dependent Kinematics
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ForceDependentKinematics/fdk.html">
+       Introduction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ForceDependentKinematics/lesson1.html">
+       Lesson 1: The Baseline Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ForceDependentKinematics/lesson2.html">
+       Lesson 2: Adding FDK Features
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ForceDependentKinematics/lesson3.html">
+       Lesson 3: Results of FDK
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ForceDependentKinematics/lesson4.html">
+       Lesson 4: Using Surfaces to Define the Knee Joint
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ForceDependentKinematics/lesson5.html">
+       Lesson 5: Using Contact Forces to Replace a Joint in a Human Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ForceDependentKinematics/fdkappendix.html">
+       FDK appendix
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../Parameter_studies_and_optimization/index.html">
+     Parameter Studies and Optimization
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Parameter_studies_and_optimization/intro.html">
+       Introduction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Parameter_studies_and_optimization/lesson1.html">
+       Defining a Parameter Study
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Parameter_studies_and_optimization/lesson2.html">
+       Optimization Studies
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Parameter_studies_and_optimization/lesson3.html">
+       Optimization Studies in Python
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../Finite_element_analysis/index.html">
+     Finite Element Analysis Interfacing
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Finite_element_analysis/lesson1.html">
+       Lesson 1: Export of data for FEA
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Finite_element_analysis/lesson2.html">
+       Lesson 2: ANSYS Interface
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Finite_element_analysis/lesson3.html">
+       Lesson 3: Abaqus Interface
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">
+     Making Models using SOLIDWORKS
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson1.html">
+       Translating a SOLIDWORKS CAD model to AnyBody
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson2.html">
+       Making the translated AnyScript model move
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson3.html">
+       Creating human-machine integrated analysis model
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../Scaling/index.html">
+     Scaling and Personalizing your model
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../Scaling/lesson3.html">
+       Lesson 1: Scaling based on medical images
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../Scaling/lesson3_appendix.html">
+         Lesson 1 appendix
+        </a>
+       </li>
       </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Scaling/lesson4.html">
+       Lesson 2: Including a custom scaling function into your model
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Posture_and_movement/intro.html">
+     Posture and Movement Prediction
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../Interface_features/index.html">
+     User interface features
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+    <label for="toctree-checkbox-18">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Interface_features/intro.html">
+       Introduction
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Interface_features/lesson1.html">
+       Lesson 1: The Editor Window
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Interface_features/lesson2.html">
+       Lesson 2: The Model View Window
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Interface_features/lesson3.html">
+       Lesson 3: The Chart View
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Interface_features/lesson4.html">
+       Lesson 4: The Model Tree and Object Description
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Interface_features/lesson5.html">
+       Lesson 5: The Command Line Application
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Interface_features/lesson6.html">
+       Lesson 6: Modifying the Loaded Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Interface_features/lesson7.html">
+       Lesson 7: Wrapping the Model with AnyBody Project
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../Advanced_script_features/index.html">
+     Advanced Script Features
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Advanced_script_features/lesson1.html">
+       Lesson 1: Using References
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Advanced_script_features/lesson2.html">
+       Lesson 2: Using Include Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Advanced_script_features/lesson3.html">
+       Lesson 3: Mathematical Expressions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Troubleshooting_anyscript/intro.html">
+     Trouble Shooting AnyScript Models
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../Validation_of_models/index.html">
+     Validation of Models
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+    <label for="toctree-checkbox-20">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Validation_of_models/intro.html">
+       Introduction to validation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Validation_of_models/Kinematic_input.html">
+       Validating Kinematic input
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about.html">
+   <strong>
+    About
+   </strong>
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+  <label for="toctree-checkbox-21">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributing.html">
+     Help improve tutorials
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../legal.html">
+     Legal, Trademarks and Copyrights
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
     </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Tutorials by <a href="https://anybodytech.com">AnyBody Technology</a>
+            </div>
+            
+        </div>
     </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
   
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-5-muscle-models">
-<h1>Lesson 5: Muscle Models<a class="headerlink" href="#lesson-5-muscle-models" title="Permalink to this headline">¶</a></h1>
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/anybody/anybody-tutorial/issues/new?title=Issue%20on%20page%20%2FMuscle_modeling/lesson5.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/anybody/anybody-tutorial/edit/master/Muscle_modeling/lesson5.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anymusclemodel2elin">
+   AnyMuscleModel2ELin
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anymusclemodel3e">
+   AnyMuscleModel3E
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calibration">
+   Calibration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cheap-and-dirty-calibration">
+     “Cheap and dirty” calibration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#detailed-calibration">
+     Detailed calibration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lesson 5: Muscle Models</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anymusclemodel2elin">
+   AnyMuscleModel2ELin
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anymusclemodel3e">
+   AnyMuscleModel3E
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calibration">
+   Calibration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cheap-and-dirty-calibration">
+     “Cheap and dirty” calibration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#detailed-calibration">
+     Detailed calibration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-5-muscle-models">
+<h1>Lesson 5: Muscle Models<a class="headerlink" href="#lesson-5-muscle-models" title="Permalink to this headline">#</a></h1>
 <p>Muscle model is a description of how a muscle behaves under different
 operating conditions. There are two schools of thought within this area.</p>
 <ul class="simple">
@@ -143,8 +1104,8 @@ of the different muscle models and muscle model calibration.
 The AnyScript model from the previous lesson will suffice very nicely.
 You can download a functional version
 of the model here: <a class="reference download internal" download="" href="../_downloads/5c1c2668d850dc6f114593e4f3d56587/MuscleDemo.5.any"><code class="xref download docutils literal notranslate"><span class="pre">MuscleDemo.5.any</span></code></a>.</p>
-<div class="section" id="anymusclemodel2elin">
-<h2>AnyMuscleModel2ELin<a class="headerlink" href="#anymusclemodel2elin" title="Permalink to this headline">¶</a></h2>
+<section id="anymusclemodel2elin">
+<h2>AnyMuscleModel2ELin<a class="headerlink" href="#anymusclemodel2elin" title="Permalink to this headline">#</a></h2>
 <p>Right-click and save the file to your local disk, and subsequently open
 the model in the AnyBody Modeling System. We have already seen the
 consequences of using the simple muscle model, so we shall proceed
@@ -172,7 +1133,7 @@ following:</p>
 </pre></div>
 </div>
 <p>Let us briefly review the parameters:</p>
-<table class="colwidths-given docutils align-default">
+<table class="colwidths-given table">
 <colgroup>
 <col style="width: 23%" />
 <col style="width: 77%" />
@@ -281,7 +1242,7 @@ almost nothing as we expected when the muscle contracts.</p>
 <p>Now that we have muscle data available, let us briefly review the
 parameters presented in the Chart View:</p>
 <p><img alt="Muscle parameters" src="../_images/image417.png" /></p>
-<table class="colwidths-given docutils align-default">
+<table class="colwidths-given table">
 <colgroup>
 <col style="width: 23%" />
 <col style="width: 77%" />
@@ -485,9 +1446,9 @@ real muscles it also fails to reflect important parts of muscle
 physiology, so it should be applied with care. In particular it does not
 model passive elasticity. The following section presents a full-blown
 Hill-type model, which does not have these shortcomings.</p>
-</div>
-<div class="section" id="anymusclemodel3e">
-<h2>AnyMuscleModel3E<a class="headerlink" href="#anymusclemodel3e" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="anymusclemodel3e">
+<h2>AnyMuscleModel3E<a class="headerlink" href="#anymusclemodel3e" title="Permalink to this headline">#</a></h2>
 <p>So far we have been focusing our attention on Muscle1 in the demo model
 and left Muscle2 with the simple muscle model. Let us briefly study what
 Muscle2 is actually doing (if you need an updated working model, you can
@@ -717,7 +1678,7 @@ the previously inactive Muscle2 to become active:</p>
 </div>
 <p>With this we can run the InverseDynamics analysis again and get the muscle
 to do some work. Let us systematically investigate the output:</p>
-<table class="colwidths-given docutils align-default">
+<table class="colwidths-given table">
 <colgroup>
 <col style="width: 27%" />
 <col style="width: 53%" />
@@ -736,71 +1697,73 @@ to do some work. Let us systematically investigate the output:</p>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Lmt</span></code></p></td>
 <td><p>The length of the muscle-tendon unit. If you plot this property you will see that it rises almost linearly as the muscle is extended. Closer investigation, however, will reveal that it is offset slightly by the nonlinearity caused by the elongation of the tendon due to the varying force.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image12.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image1210.png" /></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Lm</span></code></p></td>
 <td><p>The length of the contractile element.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image13.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image134.png" /></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Lt</span></code></p></td>
 <td><p>The length of the tendon. This appears to be constant, but the tendon length actually changes slightly over the movement with the changes of muscle force as described above.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image14.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image141.png" /></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LmtDot</span></code></p></td>
 <td><p>The contraction velocity of the muscle-tendon unit. The value is positive because the muscle is getting longer.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image15.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image151.png" /></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LmDot</span></code></p></td>
 <td><p>The contraction velocity of the contractile element of the muscle. The value is positive because the muscle is getting longer.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image15.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image151.png" /></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Activity</span></code></p></td>
 <td><p>This is the muscle activity before correction for the change in muscle length caused by the elastic elongation of the muscle. The complicated variation is caused by the interplay between change of moment arm of the applied force, the passive force in the muscle and the change of muscle strength with the contraction.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image16.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image161.png" /></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Corrected-Activity</span></code></p></td>
 <td><p>This is the muscle activity after correction for the tendon elongation. The difference between this graph and the one above is that the activity toward the end is higher after correction. This can be difficult to understand and illustrates the complexity of muscle modeling. The reason is the following: The force in the muscle decreases towards the end of the movement. When the force is reduced, the tendon contracts, and this means that the muscle must elongate even more. Since the muscle length is already in the interval where further elongation will cause decreased strength, the tendon contraction has the effect of increasing the muscle activity.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image17.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image171.png" /></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Fm</span></code></p></td>
 <td><p>The force in the contractile element is decreasing throughout the movement because the moment arm of the external force is decreasing and also because the passive force in the muscle is contributing more and more to balancing the load.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image18.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image181.png" /></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Ft</span></code></p></td>
 <td><p>The tendon force shows the reduction of the mucle action by virtue of the reduced external force’s moment arm alone. A simplified explanation is that Ft = Fm + Fp, but this is not entirely true because we also have to account for the pennation angle.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image19.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image191.png" /></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Fp</span></code></p></td>
 <td><p>The passive force in the muscle increases as the muscle is stretched.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image20.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image20.png" /></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Strength</span></code></p></td>
 <td><p>This is the strength of the muscle. It is not corrected for the tendon elongation.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image21.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image2110.png" /></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Ft0</span></code></p></td>
 <td><p>The hypothetical force that the tendon would have if the activity of the muscle were zero. The reason why this is slightly different from Fp is that Ft0 acts directly along the action line of the muscle while Fp is diverted by the pennation angle. This property is mostly interesting to scientists involved in detailed modeling of single muscles.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image22.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image228.png" /></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Ft0Grad</span></code></p></td>
 <td><p>The gradient of Ft0 with respect to the muscle activity. For mathematical reasons this is equal to the Strength, and the two graphs are identical. The reason why this property is included under to different names is that the simple muscle model, from which this model is derived, does not have Ft0Grad and hence needs a Strength property.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image23.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image231.png" /></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Pennation-Angle</span></code></p></td>
 <td><p>The pennation angle is the angle between the muscle fiber direction and the muscle line of action. This angle changes when the muscle contracts and elongates, and the model takes this effect into account.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image24.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image241.png" /></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EPOTt</span></code></p></td>
 <td><p>The elastic potential energy stored in the tendon.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image25.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image251.png" /></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">EPOTp</span></code></p></td>
 <td><p>The elastic potential energy stored in the parallel-elastic element of the muscle.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image26.png” alt=””&gt;</p></td>
+<td><img alt="" src="../_images/image261.png" />
+</td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EPOTmt</span></code></p></td>
 <td><p>The elastic potential energy stored in the entire muscle-tendon unit. This can have some practical significance for investigation of movement economy and sports activities in general.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image27.png” alt=””&gt;</p></td>
+<td><img alt="" src="../_images/image271.png" />
+</td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Pt</span></code></p></td>
 <td><p>The rate of change of elastic potential energy in the tendon.</p></td>
@@ -808,21 +1771,21 @@ to do some work. Let us systematically investigate the output:</p>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Pm</span></code></p></td>
 <td><p>The mechanical power of the contractile element.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image14.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image141.png" /></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Pmt</span></code></p></td>
 <td><p>The mechanical power of the entire muscle-tendon unit, i.e. the rate of work performed on the skeleton. Notice that the power is negative because the muscle is extending against the force. Muscles behaving like this in the human body are often termed antagonistic muscles.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image29.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image291.png" /></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Pmet</span></code></p></td>
 <td><p>A crude estimate of the metabolism in the muscle. The estimate is based on presumed efficiencies of the contractile element of 25% for concentric work and -120% for eccentric work. The model does not take the metabolism of isometric force into account.</p></td>
-<td><p>&lt;img src=”_static/lesson5/image30.png”&gt;</p></td>
+<td><p><img alt="..." src="../_images/image30.png" /></p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="calibration">
-<h2>Calibration<a class="headerlink" href="#calibration" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="calibration">
+<h2>Calibration<a class="headerlink" href="#calibration" title="Permalink to this headline">#</a></h2>
 <p><strong>Note:</strong> This section describes calibration of muscle-tendon units briefly; for more details and more examples, please refer to <a class="reference internal" href="../MuscleRecruitment/lesson_calibration.html"><span class="doc">Inverse Dyanmics of Muscle Systems: Calibration</span></a>.</p>
 <p>One of the practical challenges in working with detailed muscle models
 in complex musculoskeletal systems is the dependency on defined fiber and tendon
@@ -864,8 +1827,8 @@ This method requires input about two specific points of the muscles’ operation
 <p>For details, please visit <a class="reference internal" href="../MuscleRecruitment/lesson_calibration.html"><span class="doc">Inverse Dyanmics of Muscle Systems: Calibration</span></a>.</p>
 <p>In the following, we demonstrate calibration by examples using the tendon-length calibration, i.e. calibrating Lt0.
 In the following two sections, we disucss two calibration strategies: “Cheap and dirty” and “Detailed” calibration.</p>
-<div class="section" id="cheap-and-dirty-calibration">
-<h3>“Cheap and dirty” calibration<a class="headerlink" href="#cheap-and-dirty-calibration" title="Permalink to this headline">¶</a></h3>
+<section id="cheap-and-dirty-calibration">
+<h3>“Cheap and dirty” calibration<a class="headerlink" href="#cheap-and-dirty-calibration" title="Permalink to this headline">#</a></h3>
 <p>The <em>cheap and dirty</em> solution is of course easily available but also
 not recommended for accurate analysis.</p>
 <p>You must make an AnyBodyCalibrationStudy, which is the study type
@@ -909,9 +1872,9 @@ of the joints in the model.</p>
 <p>Please notice that the tendon lengths specified in the AnyScript model
 are not altered by this method. Every time you reload the model you must
 run the FiberAndTendonAdjustment again.</p>
-</div>
-<div class="section" id="detailed-calibration">
-<h3>Detailed calibration<a class="headerlink" href="#detailed-calibration" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="detailed-calibration">
+<h3>Detailed calibration<a class="headerlink" href="#detailed-calibration" title="Permalink to this headline">#</a></h3>
 <p>There is a more accurate and detailed way of calibrating tendons, but it
 requires additional information. More precisely it calibrates the tendon
 lengths at user-defined joint postures. So each muscle is associated
@@ -928,130 +1891,58 @@ described in detail in the <a class="reference internal" href="lesson7.html"><sp
 <p>But before we come to ligaments we must cover one last aspect of muscle
 modeling, namely General Muscles. They are the topic of the next lesson,
 <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6</span></a>.</p>
-<div class="without-title admonition seealso">
-<p class="admonition-title">See also</p>
-<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: General Muscles</span></a>.</p>
-</div>
-</div>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+</section>
+</section>
 
 
-            <div class="clearer"></div>
-          </div>
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="lesson4.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lesson 4: Wrapping Muscles</p>
         </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="../index.html" title="index">
-          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
-        </a></p>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
+    </a>
+    <a class='right-next' id="next-link" href="lesson6.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lesson 6: General Muscles</p>
     </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-<script>$('#searchbox').show(0);</script>
-<div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../contents.html">Table of Contents</a></h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
-</ul>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">1. Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">10. Muscle Modeling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: The Basics of Muscle Definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Controlling Muscle Drawing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Via-point Muscles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Wrapping Muscles</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 5: Muscle Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: General Muscles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lesson7.html">Lesson 7: Ligaments</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
-</ul>
-</div><h3>Found a problem?</h3>
-
-<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Muscle_modeling/lesson5.md">
-    <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By AnyBody Technology<br/>
+  
+      &copy; Copyright 2022, AnyBody Technology.<br/>
 </p>
-        </div>
+        </footer>
+    </div>
+    
+</div>
+
+
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
-      <div class="clearer"></div>
     </div>
-    <div class="relbar-bottom">
-        
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../contents.html" title="Table Of Contents"
-             >toc</a> &nbsp; &nbsp;</li>
-        <li class="right" >
-          <a href="lesson6.html" title="Lesson 6: General Muscles"
-             >next</a> &nbsp; &nbsp;</li>
-        <li class="right" >
-          <a href="lesson4.html" title="Lesson 4: Wrapping Muscles"
-             >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">AnyBody Tutorials v7.4.0</a> &#187;</li>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">10. </span>Muscle Modeling</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Lesson 5: Muscle Models</a></li> 
-      </ul>
-    </div>
-    </div>
 
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, AnyBody Technology.
-    </div>
-    <!-- cloud_sptheme 1.4 -->
   </body>
 </html>
