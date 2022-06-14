@@ -1,0 +1,211 @@
+AnyFolder Drivers = 
+{
+  // Aliases for convenient referencing
+  AnyFolder &RefHM = Main.Model.HumanModel;
+    
+  AnyFolder &JntPos= Main.HumanModel.Mannequin.Posture;  
+  AnyFolder &JntVel= Main.HumanModel.Mannequin.PostureVel;  
+  
+  // ************************************
+  // Drivers for the left & right legs
+  // ************************************  
+  
+  AnyStdJoint Left_Foot_Connect = 
+  {
+    AnyRefFrame& base = Main.Model.FitnessMachine._ANY_INTERFACE_.Pedal___1____ANY_TOE2;
+    AnyRefFrame& target = Main.Model.Human_RefNodes.Left_Toe_Node;
+    Constraints.Reaction.Type = {On, NonNegative, On, On, On, On};
+  };
+
+  AnyStdJoint Right_Foot_Connect = 
+  {
+    AnyRefFrame& base = Main.Model.FitnessMachine._ANY_INTERFACE_.Pedal___2____ANY_TOE2;
+    AnyRefFrame& target = Main.Model.Human_RefNodes.Right_Toe_Node;
+    Constraints.Reaction.Type = {On, NonNegative, On, On, On, On};
+  };  
+  
+  AnyKinEqSimpleDriver HipJointRight_Driver=
+  {
+    //AnyKinMeasureOrg &ref1 =...HumanModel.Interface.Right.HipFlexion;
+    //AnyKinMeasureOrg &ref2 =...HumanModel.Interface.Right.HipExternalRotation;
+    AnyKinMeasureOrg &ref3 = Main.HumanModel.BodyModel.Interface.Right.HipAbduction;
+    DriverPos= pi/180*{
+      //.JntPos.Right.HipFlexion,
+      //.JntPos.Right.HipExternalRotation
+      .JntPos.Right.HipAbduction
+    };    
+    DriverVel = pi/180*{
+      //.JntVel.Right.HipFlexion,
+      //.JntVel.Right.HipExternalRotation
+      .JntVel.Right.HipAbduction
+    };    
+    Reaction.Type={Off};
+  };
+  
+  AnyKinEqSimpleDriver HipJointLeft_Driver=
+  {
+    // AnyKinMeasureOrg &ref1 =...HumanModel.Interface.Left.HipFlexion;
+    //AnyKinMeasureOrg &ref2 =...HumanModel.Interface.Left.HipExternalRotation;
+    AnyKinMeasureOrg &ref3 = Main.HumanModel.BodyModel.Interface.Left.HipAbduction;
+    DriverPos= pi/180*{
+      //.JntPos.Left.HipFlexion,
+      //.JntPos.Left.HipExternalRotation
+      .JntPos.Left.HipAbduction
+    };    
+    DriverVel = pi/180*{
+      //.JntVel.Left.HipFlexion,
+      //.JntVel.Left.HipExternalRotation
+      .JntVel.Left.HipAbduction
+    };    
+    Reaction.Type={Off};
+  };
+
+  AnyCylindricalJoint Pelsvis_Driver = 
+  {
+      AnyRefFrame &Base = Main.Model.FitnessMachine._ANY_INTERFACE_.ANY_PELVIS;
+      AnyRefFrame &Target = Main.Model.Human_RefNodes.Pelvis_Node; 
+      Axis = y;
+      Ref = 0;
+      Constraints.Reaction.Type = {Off, Off, Off, Off};
+  };
+  
+  // ************************************
+  // Drivers for the trunk
+  // ************************************
+    
+  //Thorax pelvis rotation driver
+  AnyKinEqSimpleDriver PelvisThorax_Driver =
+  {
+    AnyKinMeasureOrg &Ref2 = Main.HumanModel.BodyModel.Interface.Trunk.PelvisThoraxLateralBending;        
+    AnyKinMeasureOrg &Ref3 = Main.HumanModel.BodyModel.Interface.Trunk.PelvisThoraxRotation;   
+    AnyKinMeasureOrg &Ref1 = Main.HumanModel.BodyModel.Interface.Trunk.PelvisThoraxExtension;
+    
+    DriverPos = pi/180*{
+      .JntPos.PelvisThoraxLateralBending,
+      .JntPos.PelvisThoraxRotation,
+      .JntPos.PelvisThoraxExtension
+    };
+    DriverVel = pi/180*{
+      .JntVel.PelvisThoraxLateralBending,
+     .JntVel.PelvisThoraxRotation,
+      .JntVel.PelvisThoraxExtension
+    };
+    Reaction.Type = {Off,Off,Off};  
+
+  }; 
+    
+  //Neck driver 
+  AnyKinEqSimpleDriver NeckJntDriver = {
+    AnyKinMeasure &lb = Main.HumanModel.BodyModel.Interface.Trunk.SkullThoraxLateralBending;
+    AnyKinMeasure &ar = Main.HumanModel.BodyModel.Interface.Trunk.SkullThoraxRotation;
+    AnyKinMeasure &fe = Main.HumanModel.BodyModel.Interface.Trunk.SkullThoraxFlexion;
+    DriverPos = pi/180*{.JntPos.NeckLateralBending, .JntPos.NeckRotation, .JntPos.NeckExtension};
+    DriverVel = pi/180*{.JntVel.NeckLateralBending, .JntVel.NeckRotation, .JntVel.NeckExtension};
+    Reaction.Type = {Off, Off, Off};
+  };
+  
+  // ************************************
+  // Drivers for the left & right arms
+  // ************************************
+  
+  //Sterno clavicular joint driver
+  #if BM_ARM_LEFT & (BM_ARM_SHOULDER_RHYTHM == 0)
+  AnyKinEqSimpleDriver SCDriverLeft_Driver =
+  {
+    AnyKinMeasureOrg &ref1 =Main.HumanModel.BodyModel.Interface.Left.SternoClavicularProtraction;
+    AnyKinMeasureOrg &ref2 =Main.HumanModel.BodyModel.Interface.Left.SternoClavicularElevation;
+    
+    DriverPos = pi/180*
+    {
+      .JntPos.Left.SternoClavicularProtraction,
+      .JntPos.Left.SternoClavicularElevation
+    };
+    
+    DriverVel = pi/180*
+    {
+      .JntVel.Left.SternoClavicularProtraction,
+      .JntVel.Left.SternoClavicularElevation
+    };
+    
+    Reaction.Type = {Off,Off};
+  };
+  #endif  
+  
+  //Sterno clavicular joint driver
+  #if BM_ARM_RIGHT & (BM_ARM_SHOULDER_RHYTHM == 0)
+  AnyKinEqSimpleDriver SCDriverRight_Driver =
+  {
+    AnyKinMeasureOrg &ref1 =Main.HumanModel.BodyModel.Interface.Right.SternoClavicularProtraction;
+    AnyKinMeasureOrg &ref2 =Main.HumanModel.BodyModel.Interface.Right.SternoClavicularElevation;
+    DriverPos = pi/180*
+    {
+      .JntPos.Right.SternoClavicularProtraction,
+      .JntPos.Right.SternoClavicularElevation
+    };
+    DriverVel = pi/180*
+    {
+      .JntVel.Right.SternoClavicularProtraction,
+      .JntVel.Right.SternoClavicularElevation
+    };
+    Reaction.Type = {Off,Off};
+  };
+  #endif
+  
+  
+  //Glenohumeral joint driver
+  AnyKinEqSimpleDriver GHDriverLeft_Driver =
+  {
+    AnyKinMeasureOrg &ref1 = Main.HumanModel.BodyModel.Interface.Left.GlenohumeralAbduction;
+    //AnyKinMeasureOrg &ref2 = Main.Model.HumanModel.Interface.Left.GlenohumeralFlexion;
+    //AnyKinMeasureOrg &ref3 = Main.Model.HumanModel.Interface.Left.GlenohumeralExternalRotation;
+    DriverPos = pi/180*
+    {
+      .JntPos.Left.GlenohumeralAbduction  //GH joint
+      //.JntPos.Left.GlenohumeralFlexion,  //GH joint
+      //.JntPos.Left.GlenohumeralExternalRotation  //GH joint
+    };    
+    DriverVel = pi/180*
+    {
+      .JntVel.Left.GlenohumeralAbduction  //GH joint
+      //.JntVel.Left.GlenohumeralFlexion,  //GH joint
+      //.JntVel.Left.GlenohumeralExternalRotation  //GH joint
+    };    
+    Reaction.Type = {Off};
+  };  
+  
+  //Glenohumeral joint driver
+  AnyKinEqSimpleDriver GHDriverRight_Driver = 
+  {
+    AnyKinMeasureOrg &ref1 = Main.HumanModel.BodyModel.Interface.Right.GlenohumeralAbduction;
+    //AnyKinMeasureOrg &ref2 = Main.Model.HumanModel.Interface.Right.GlenohumeralFlexion;
+    //AnyKinMeasureOrg &ref3 = Main.Model.HumanModel.Interface.Right.GlenohumeralExternalRotation;
+    DriverPos = pi/180*
+    {
+      .JntPos.Right.GlenohumeralAbduction  //GH joint
+      //.JntPos.Right.GlenohumeralFlexion,  //GH joint
+      //.JntPos.Right.GlenohumeralExternalRotation  //GH joint
+    };    
+    DriverVel = pi/180*{
+      .JntVel.Right.GlenohumeralAbduction  //GH joint
+      //.JntVel.Right.GlenohumeralFlexion,  //GH joint
+      //.JntVel.Right.GlenohumeralExternalRotation  //GH joint
+    };    
+    Reaction.Type = {Off};
+  };
+    
+  AnyStdJoint Left_Hand_Connect = 
+  {
+    AnyRefFrame& base = Main.Model.FitnessMachine._ANY_INTERFACE_.ANY_LEFT_HAND2;
+    AnyRefFrame& target = Main.Model.Human_RefNodes.Left_Palm_Node;
+    Constraints.Reaction.Type = {On, On, On, On, On, On};
+  };
+  
+  AnyStdJoint Right_Hand_Connect = 
+  {
+    AnyRefFrame& base = Main.Model.FitnessMachine._ANY_INTERFACE_.ANY_RIGHT_HAND2;
+    AnyRefFrame& target = Main.Model.Human_RefNodes.Right_Palm_Node;    
+    Constraints.Reaction.Type = {On, On, On, On, On, On};
+  };    
+    
+};//Drivers
+

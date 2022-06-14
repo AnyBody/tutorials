@@ -1,0 +1,583 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="noindex" name="robots" />
+
+<meta property="og:title" content="Lesson 4: Imparting movement with Drivers" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/A_Getting_started_anyscript/lesson4.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="If you have completed the three previous lessons, you should have a model with an upper arm grounded at the shoulder joint and connected to a forearm by the elbow. What we want to do now is to make..." />
+  
+<meta property="og:image" content="https://anyscript.org/_images/image15.png" />
+  
+<meta property="og:image:alt" content="ModelView Arm2D initial load" />
+  
+    <title>Lesson 4: Imparting movement with Drivers &#8212; AnyBody Tutorials v7.4.0-dev</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 5: Definition of Muscles and External Forces" href="lesson5.html" />
+    <link rel="prev" title="Lesson 3: Connecting Segments by Joints" href="lesson3.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../GettingStarted.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../Tutorials.html">
+  AnyBody Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../about.html">
+  About
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/anybody/anybody-tutorial/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../A_Getting_started/index.html">
+   1. Getting Started - First steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started/intro.html">
+     Getting Started Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started/lesson1.html">
+     Lesson 1: Creating a Standing Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started/lesson2.html">
+     Lesson 2: Controlling the Posture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started/lesson3.html">
+     Lesson 3: Reviewing Analysis Results
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   2. How to write AnyScript
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson1.html">
+     Lesson 1: Basic Concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson2.html">
+     Lesson 2: Defining Segments and Displaying Objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson3.html">
+     Lesson 3: Connecting Segments by Joints
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lesson 4: Imparting movement with Drivers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson5.html">
+     Lesson 5: Definition of Muscles and External Forces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson6.html">
+     Lesson 6: Adding Real Bone Geometries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../A_Getting_started_modeling/index.html">
+   3. Modelling the Human body
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_modeling/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_modeling/lesson1.html">
+     Lesson 1: Starting with a New Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_modeling/lesson2.html">
+     Lesson 2: Adjusting the Human Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_modeling/lesson3.html">
+     Lesson 3: Making Ends Meet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_modeling/lesson4.html">
+     Lesson 4: Kinetics - Computing Forces
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../A_Getting_started_AMMR/index.html">
+   4. The AnyBody Model Repository
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://anyscript.org/ammr-doc/creating_model_from_scratch.html">
+     Creating a Human Model from scratch
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson1.html">
+     Scaling: Joint to joint scaling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson2.html">
+     Scaling: External Body Measurements
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson3.html">
+     Scaling: Segmental scaling factors
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measures-drivers">
+   Measures &amp; drivers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-constant-velocity-joint-motion">
+   Creating a constant velocity joint motion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-a-kinematic-simulation">
+   Running a kinematic simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#replaying-a-simulation">
+   Replaying a simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#viewing-simulation-outputs">
+   Viewing simulation outputs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-simulation-results">
+   Plotting simulation results
+  </a>
+ </li>
+</ul>
+
+</nav>
+    </div>
+    
+    <div class="toc-item">
+      
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/anybody/anybody-tutorial/edit/master/./A_Getting_started_anyscript/lesson4.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-4-imparting-movement-with-drivers">
+<h1>Lesson 4: Imparting movement with Drivers<a class="headerlink" href="#lesson-4-imparting-movement-with-drivers" title="Permalink to this headline">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here’s an AnyScript file to start on if you have not completed the
+previous lesson: <a class="reference download internal" download="" href="../_downloads/8132b5b0668432944bb7d60fa3e578de/demo.lesson4.any"><code class="xref download docutils literal notranslate"><span class="pre">demo.lesson4.any</span></code></a>.</p>
+</div>
+<p>If you have completed the three previous lessons, you should have a
+model with an upper arm grounded at the shoulder joint and connected to
+a forearm by the elbow. What we want to do now is to make the arm move.</p>
+<p><img alt="ModelView Arm2D initial load" src="../_images/image15.png" /></p>
+<p><strong>Can an arm without muscles move? Well, in reality no, but AnyBody simulations use
+the inverse dynamics technique, where we prescribe motion first and then deduce
+the values of muscle forces which produce the motion.</strong></p>
+<section id="measures-drivers">
+<span id="measures-and-drivers"></span><h2>Measures &amp; drivers<a class="headerlink" href="#measures-drivers" title="Permalink to this headline">#</a></h2>
+<p>We need to specify the motion for two degrees of freedom (DOF) of our arm mechanism, because it has hinge joints at the
+shoulder and at the elbow.</p>
+<ul class="simple">
+<li><p><strong>Measures</strong> are AnyBody objects which literally measure the value of a user-specified DOF within the model.</p></li>
+<li><p><strong>Drivers</strong> are AnyBody objects which constrain the value of a measure to a constant value or a mathematical function of time. Drivers essentially assemble and impart motion to your mechanisms.</p></li>
+</ul>
+<p>In this model, we therefore need two drivers, to specify motions for the two DOF. We therefore also need two measures,
+which we will chose to be measures of the shoulder and elbow joint angle values.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>It is only important that the constrained measures represent independent DOFs of the model. The exact measures themselves are your choice</strong>.</p>
+<p>Eg: For this arm model with 2 remaining DOFs, we can either apply motion drivers to the shoulder (1 DOF) and elbow joints (+1 DOF) OR the X (1 DOF) and Y (+1 DOF) coordinates
+of the end-point of the ForeArm segment (the wrist).</p>
+<p>Creating more than 2 driver constraints will over-constrain the model and lead to errors.</p>
+</div>
+</section>
+<section id="creating-a-constant-velocity-joint-motion">
+<span id="anykineqsimpledriver"></span><h2>Creating a constant velocity joint motion<a class="headerlink" href="#creating-a-constant-velocity-joint-motion" title="Permalink to this headline">#</a></h2>
+<p>Let’s create a new folder and define two drivers:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">};</span> <span class="c1">// Jnts folder</span>
+
+<span class="gr">AnyFolder Drivers = {</span>
+<span class="gr">  //---------------------------------</span>
+<span class="gr">  AnyKinEqSimpleDriver ShoulderMotion = {</span>
+<span class="gr">    AnyRevoluteJoint &amp;Jnt = ..Jnts.Shoulder;</span>
+<span class="gr">    DriverPos = {-100*pi/180};</span>
+<span class="gr">    DriverVel = {30*pi/180};</span>
+<span class="gr">  }; // Shoulder driver</span>
+<span class="gr">  //---------------------------------</span>
+<span class="gr">  AnyKinEqSimpleDriver ElbowMotion = {</span>
+<span class="gr">    AnyRevoluteJoint &amp;Jnt = ..Jnts.Elbow;</span>
+<span class="gr">    DriverPos = {90*pi/180};</span>
+<span class="gr">    DriverVel = {45*pi/180};</span>
+<span class="gr">  }; // Elbow driver</span>
+<span class="gr">}; // Driver folder</span>
+</pre></div>
+</div>
+<p>The folder contains two objects named “ShoulderMotion” and “ElbowMotion”, belonging to the
+<code class="docutils literal notranslate"><span class="pre">AnyKinEqSimpleDriver</span></code> class.</p>
+<p><strong>All AnyBody drivers only work on the measures that are supplied to them. The</strong> <code class="docutils literal notranslate"><span class="pre">AnyKinEqSimpleDriver</span></code> <strong>class used in this case, constrains
+the supplied measure’s positions to a given value at time = 0 (“DriverPos”) and changes this position at constant velocity thereon (“DriverVel”).</strong></p>
+<p>Since the measures supplied to the above drivers are rotational joints, the drivers produce joint rotation.
+But the same driver class could be used to drive translations, for instance a sliding joint.</p>
+<p>The following lines assign the shoulder and elbow joint angle measures to the respective drivers.
+Standard AnyBody joints created using classes such as <code class="docutils literal notranslate"><span class="pre">AnyRevoluteJoint</span></code>, <code class="docutils literal notranslate"><span class="pre">AnySphericalJoint</span></code> etc. automatically function as measures.
+More customized measures can be created using classes such as <code class="docutils literal notranslate"><span class="pre">AnyKinLinear</span></code>, <code class="docutils literal notranslate"><span class="pre">AnyKinRotational</span></code> etc.
+(see <a class="reference internal" href="../The_mechanical_elements/lesson4.html"><span class="doc">this lesson</span></a>).:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>and</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Elbow</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Since the measures constrained by these drivers are angles, the units
+of “DriverPos” and “DriverVel” are radians and radians/sec respectively.</p>
+<p>Just like in <a class="reference internal" href="lesson3.html#reference-objects"><span class="std std-ref">Lesson 3</span></a>, these lines also
+use the reference operator <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> to point the local variable “Jnt” towards the
+actual shoulder/elbow joint objects existing in a different folder</p>
+<p>Since “Jnt” is a reference, it will automatically update as the joint angles change during motion.</p>
+</section>
+<section id="running-a-kinematic-simulation">
+<h2>Running a kinematic simulation<a class="headerlink" href="#running-a-kinematic-simulation" title="Permalink to this headline">#</a></h2>
+<p>Re-load the model by hitting F7, and you should see the message “Loaded successfully” with NO
+warning messages about the lack of kinematic constraints. You’re now ready to get this model moving.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The object named “ArmModelStudy” (of <code class="docutils literal notranslate"><span class="pre">AnyBodyStudy</span></code> class) creates simulations to run your model through. “ArmModelStudy”
+contains a reference object (created with a <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>) pointing to the “ArmModel” folder.</p>
+<p>This allows you to create
+multiple <code class="docutils literal notranslate"><span class="pre">AnyBodyStudy</span></code> objects, each of which contains a reference to same mechanical model, and a second reference object pointing to a folder with motion drivers,
+that are specific to that study.</p>
+</div>
+<p><strong>You must now run the “Main.ArmModelStudy.Kinematics” operation. If you need to refer back to how this is done, look at</strong>
+<a class="reference internal" href="../A_Getting_started/lesson2.html#running-analysis"><span class="std std-ref">this prior tutorial</span></a>.</p>
+<p>Since we have no muscles so far, a kinematic analysis is really all that
+makes sense. With a kinematic analysis, you can investigate positions, velocities, and
+accelerations. But force, power, energy or other such things are not computed. These properties are calculated by the
+“InverseDynamics” study.</p>
+</section>
+<section id="replaying-a-simulation">
+<h2>Replaying a simulation<a class="headerlink" href="#replaying-a-simulation" title="Permalink to this headline">#</a></h2>
+<p>While the analysis is running, you can see the model move in the Model View window.</p>
+<p>When the analysis in finished, you can use the replay panel to replay
+the motion as you would in a movie player.</p>
+<p><img alt="Replay toolbar" src="../_images/image53.png" /></p>
+</section>
+<section id="viewing-simulation-outputs">
+<h2>Viewing simulation outputs<a class="headerlink" href="#viewing-simulation-outputs" title="Permalink to this headline">#</a></h2>
+<p>If you look at the “ArmModelStudy” object in the AnyScript window, start/end times and the
+number of simulation steps (time frames) are not specified. These are actually optional parameters
+when using the <code class="docutils literal notranslate"><span class="pre">AnyBodyStudy</span></code> class, which by default creates an analysis of 100 steps and spanning 1 second.</p>
+<p><strong>To view the output variables of the study that was run, open the “ArmModelStudy” folder in the model tree and expand the “Output” folder.</strong></p>
+<p>Since the “ArmModelStudy” contained a reference object (“Model”) pointing to the “ArmModel” folder, the “Output”
+folder contains the instantaneous values of all the time varying variables (including variables in sub-folders) within “ArmModel”.</p>
+<p>In “ArmModelStudy.Output.Model.Segs.ForeArm” in the model tree, you find all the nodes on the segment. Within the “HandNode”
+sub-folder, you will find <code class="docutils literal notranslate"><span class="pre">r</span></code> - the position vector of the node. Clicking on <code class="docutils literal notranslate"><span class="pre">r</span></code>
+shows the hand position vector (w.r.t global) for each time instant in the Information Window.</p>
+</section>
+<section id="plotting-simulation-results">
+<h2>Plotting simulation results<a class="headerlink" href="#plotting-simulation-results" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The chart view contains a filtered down version of the model tree, which only displays “AnyBodyStudy” objects. This
+tree can also be used for plotting purposes.</p>
+</div>
+<p>Let us say, you want to plot the position vector of the hand node over the course of movement.</p>
+<p>You need to find and plot the variable “…..ForeArm.HandNode.r” in the chart view. If you need help with the chart view,
+refer to <a class="reference internal" href="../A_Getting_started/lesson3.html#chart-view"><span class="std std-ref">this prior tutorial on plotting</span></a>.</p>
+<p>If you’re having trouble finding the correct output variable in the chart view’s filtered model tree, refer to the figure below.</p>
+<p><img alt="Chart view HandNod" src="../_images/image61.png" /></p>
+</section>
+</section>
+
+
+              </article>
+              
+
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="lesson3.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Lesson 3: Connecting Segments by Joints</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="lesson5.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Lesson 5: Definition of Muscles and External Forces</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+              </footer>
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, AnyBody Technology.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

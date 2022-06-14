@@ -1,0 +1,588 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="noindex" name="robots" />
+
+<meta property="og:title" content="Lesson 1: Starting with a New Model" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/A_Getting_started_modeling/lesson1.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="In this tutorial, we will create a model of a single leg stepping on a pedal. Creating a model from templates: The toolbar button “Template” will generate a pop-up menu that looks like the image be..." />
+  
+<meta property="og:image" content="https://anyscript.org/_images/image25.png" />
+  
+<meta property="og:image:alt" content="New template model button" />
+  
+    <title>Lesson 1: Starting with a New Model &#8212; AnyBody Tutorials v7.4.0-dev</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 2: Adjusting the Human Model" href="lesson2.html" />
+    <link rel="prev" title="Introduction: Getting Started with Modeling" href="intro.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../GettingStarted.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../Tutorials.html">
+  AnyBody Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../about.html">
+  About
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/anybody/anybody-tutorial/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../A_Getting_started/index.html">
+   1. Getting Started - First steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started/intro.html">
+     Getting Started Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started/lesson1.html">
+     Lesson 1: Creating a Standing Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started/lesson2.html">
+     Lesson 2: Controlling the Posture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started/lesson3.html">
+     Lesson 3: Reviewing Analysis Results
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../A_Getting_started_anyscript/index.html">
+   2. How to write AnyScript
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/lesson1.html">
+     Lesson 1: Basic Concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/lesson2.html">
+     Lesson 2: Defining Segments and Displaying Objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/lesson3.html">
+     Lesson 3: Connecting Segments by Joints
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/lesson4.html">
+     Lesson 4: Imparting movement with Drivers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/lesson5.html">
+     Lesson 5: Definition of Muscles and External Forces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_Getting_started_anyscript/lesson6.html">
+     Lesson 6: Adding Real Bone Geometries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   3. Modelling the Human body
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lesson 1: Starting with a New Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson2.html">
+     Lesson 2: Adjusting the Human Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson3.html">
+     Lesson 3: Making Ends Meet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson4.html">
+     Lesson 4: Kinetics - Computing Forces
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../A_Getting_started_AMMR/index.html">
+   4. The AnyBody Model Repository
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://anyscript.org/ammr-doc/creating_model_from_scratch.html">
+     Creating a Human Model from scratch
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson1.html">
+     Scaling: Joint to joint scaling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson2.html">
+     Scaling: External Body Measurements
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson3.html">
+     Scaling: Segmental scaling factors
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-model-from-templates">
+   Creating a model from templates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-model-structure">
+   The model structure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-pedal-segment">
+   Add pedal segment
+  </a>
+ </li>
+</ul>
+
+</nav>
+    </div>
+    
+    <div class="toc-item">
+      
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/anybody/anybody-tutorial/edit/master/./A_Getting_started_modeling/lesson1.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-1-starting-with-a-new-model">
+<h1>Lesson 1: Starting with a New Model<a class="headerlink" href="#lesson-1-starting-with-a-new-model" title="Permalink to this headline">#</a></h1>
+<p>In this tutorial, we will create a model of a single leg stepping on a
+pedal.</p>
+<section id="creating-a-model-from-templates">
+<h2>Creating a model from templates<a class="headerlink" href="#creating-a-model-from-templates" title="Permalink to this headline">#</a></h2>
+<p>The toolbar button “Template” will generate a pop-up menu that looks like the image below.
+Select the “Human” template, set the “Target Folder” as per your convenience, but you must set the target name as “MyPedal”:</p>
+<p><img alt="New template model button" src="../_images/image25.png" /></p>
+<p><img alt="New Template dialog" src="../_images/image34.png" /></p>
+<p>If you press the OK button, it will open an editor window of
+“MyPedal.main.any” file that includes the following lines:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;libdef.any&quot;</span>
+
+<span class="n">Main</span> <span class="o">=</span> 
+<span class="p">{</span>  
+
+  <span class="c1">// Body Model configuration:</span>
+  <span class="cp">#include</span> <span class="s">&quot;Model/BodyModelConfiguration.any&quot;</span>
+
+  <span class="c1">// Using your own Mannequin.any file in the Model folder of your model</span>
+  <span class="cp">#include</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
+
+  <span class="c1">// Include default human model</span>
+  <span class="cp">#include</span> <span class="s">&quot;&lt;ANYBODY_PATH_BODY&gt;\HumanModel.any&quot;</span>
+
+  <span class="kt">AnyFolder</span> <span class="n">Model</span> <span class="o">=</span> 
+  <span class="p">{</span>
+    <span class="c1">// A link to the human model</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">BodyModel</span> <span class="o">=</span> <span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">;</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">DefaultMannequinDrivers</span> <span class="o">=</span> <span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">DefaultMannequinDrivers</span><span class="p">;</span>
+ 
+    <span class="c1">// Environment files are used to include objects surrounding human</span>
+    <span class="cp">#include</span> <span class="s">&quot;Model\Environment.any&quot;</span>   
+ 
+    <span class="kt">AnyFolder</span> <span class="n">ModelEnvironmentConnection</span> <span class="o">=</span> 
+    <span class="p">{</span>
+      <span class="c1">//&#39;JointsAndDrivers.any&#39; file can include all kinematic constraints such as joints and drivers</span>
+      <span class="cp">#include</span> <span class="s">&quot;Model\JointsAndDrivers.any&quot;</span>
+      <span class="c1">// Additional reactions which are required to run the inverse dynamics analysis</span>
+      <span class="cp">#include</span> <span class="s">&quot;Model\Reactions.any&quot;</span>
+    <span class="p">};</span>
+  <span class="p">};</span>
+ 
+  <span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> 
+  <span class="p">{</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>  
+    
+    <span class="n">Gravity</span><span class="o">=</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+    <span class="n">nStep</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="c1">// Overdeterminate solver is needed while using the </span>
+    <span class="c1">// soft default mannequin drivers.</span>
+    <span class="n">Kinematics</span><span class="p">.</span><span class="n">SolverType</span> <span class="o">=</span> <span class="kp">KinSolOverDeterminate</span><span class="p">;</span>
+    <span class="n">InitialConditions</span><span class="p">.</span><span class="n">SolverType</span> <span class="o">=</span> <span class="n">Kinematics</span><span class="p">.</span><span class="n">SolverType</span> <span class="p">;</span>
+  <span class="p">};</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;Model\RunAppSequence.any&quot;</span>
+<span class="p">};</span> <span class="c1">//Main</span>
+</pre></div>
+</div>
+<p>When you load the model, you should see the following image in your model view:</p>
+<p><img alt="Model view Full body" src="../_images/image43.png" />    ```</p>
+<p>Double-clicking the following line:,:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="cp">#include</span> <span class="s">&quot;Model\Environment.any&quot;</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>Opens up the “Environment.any” file which is created by the Human template.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//This is a place holder for the modeling of the environment.</span>
+<span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span> 
+<span class="p">{</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>For this model, the only environment objects will be the global reference frame (i.e. ground),
+and the pedal which the foot will be stepping on. You can define the global reference frame within the
+environment folder as follows:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//This is a place holder for the modeling of the environment.</span>
+<span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="gr">AnyFixedRefFrame GlobalRef =</span>
+<span class="gr">  {</span>
+<span class="gr">   viewRefFrame.Visible=On;</span>
+<span class="gr">   viewRefFrame.ScaleXYZ = 0.5*{1,1,1};</span>
+<span class="gr">  };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Click the “Save” button or Ctrl-S to save what you have typed in this Environment.any file and reload the model.</p>
+</section>
+<section id="the-model-structure">
+<span id="model-structure"></span><h2>The model structure<a class="headerlink" href="#the-model-structure" title="Permalink to this headline">#</a></h2>
+<p>Let us first review the structure of the model in slightly more
+detail. This structure creates a clear division between the human body parts
+and the applications we hook them up to.</p>
+<p><img alt="ModelTree" src="../_images/image17.png" /></p>
+<p><strong>Just below “Main”, you see the “HumanModel” folder which holds all the body
+parts that are imported from the AMMR, such as segments (bones), joints, muscles etc.</strong></p>
+<p>Information for scaling the size of the default human model is also stored here.
+In general, you won’t need to modify this information directly.</p>
+<p>The “Model” folder comes next this holds information specific to the application you’re creating.
+In this case, this is the pedal model. The “Model” folder is sub-divided into three sub-folders:</p>
+<ul class="simple">
+<li><p><strong>HumanModel</strong> - This is a local reference to the “Main.HumanModel”, located within the “Model” folder.
+<a class="reference internal" href="../A_Getting_started_anyscript/lesson3.html#reference-objects"><span class="std std-ref">This section</span></a> can help you recollect what reference objects are.</p></li>
+<li><p><strong>Environment</strong> - This contains external hardware such as chairs,
+bicycles, tools, or, in the present case, a pedal.</p></li>
+<li><p><strong>ModelEnvironmentConnection</strong> - This holds the measures and drivers that link the body model together to the environment.</p></li>
+</ul>
+</section>
+<section id="add-pedal-segment">
+<h2>Add pedal segment<a class="headerlink" href="#add-pedal-segment" title="Permalink to this headline">#</a></h2>
+<p>The pedal will be hinged at one end, with the foot pushing down at the other.
+We will define the pedal segment and the hinge in the “Environment.any” file:</p>
+<p>This is achieved by the following lines:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span>
+  <span class="p">{</span>
+   <span class="n">viewRefFrame</span><span class="p">.</span><span class="n">Visible</span><span class="o">=</span><span class="kp">On</span><span class="p">;</span>
+   <span class="n">viewRefFrame</span><span class="p">.</span><span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="gr">AnySeg Pedal = {</span>
+<span class="gr">    viewInertia.Visible = On;</span>
+<span class="gr">    Mass = 2;</span>
+<span class="gr">    Jii = {0.05, 0.001, 0.05};</span>
+<span class="gr">    AnyRefNode Hinge = {</span>
+<span class="gr">      sRel = {0, -0.15, 0};</span>
+<span class="gr">    };</span>
+<span class="gr">    AnyRefNode FootNode = {</span>
+<span class="gr">      sRel = {0, 0.15, 0};</span>
+<span class="gr">    };</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyRevoluteJoint HingeJoint = {</span>
+<span class="gr">    Axis = z;</span>
+<span class="gr">    AnyFixedRefFrame &amp;Ground = .GlobalRef;</span>
+<span class="gr">    AnyRefNode &amp;Pedal = .Pedal.Hinge;</span>
+<span class="gr">  };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>If you reload the model, you will see the new segment in the model:</p>
+<p><img alt="Model view new segment" src="../_images/image55.png" /></p>
+<p>In the next lesson, we shall look at how you can customize the human model to fit the purpose of your
+simulation using AnyBody.</p>
+</section>
+</section>
+
+
+              </article>
+              
+
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Introduction: Getting Started with Modeling</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="lesson2.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Lesson 2: Adjusting the Human Model</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+              </footer>
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, AnyBody Technology.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

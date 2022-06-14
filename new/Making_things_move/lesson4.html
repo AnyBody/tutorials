@@ -1,0 +1,1330 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="noindex" name="robots" />
+
+<meta property="og:title" content="Lesson 4: Parameter identification" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/Making_things_move/lesson4.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="In this lesson we shall consider a source of uncertainty on motion capture experiments and musculoskeletal modeling in general that is completely different from the noise of the preceding section. ..." />
+  
+<meta property="og:image" content="https://anyscript.org/_images/image12.jpeg" />
+  
+<meta property="og:image:alt" content="pendulum 1" />
+  
+    <title>Lesson 4: Parameter identification &#8212; AnyBody Tutorials v7.4.0-dev</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 5: Using real data" href="lesson5.html" />
+    <link rel="prev" title="Lesson3: Noise and filters" href="lesson3.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../GettingStarted.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../Tutorials.html">
+  AnyBody Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../about.html">
+  About
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/anybody/anybody-tutorial/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Core tutorials
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../A_study_of_studies/index.html">
+   A Study of Studies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_study_of_studies/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_study_of_studies/lesson1.html">
+     Lesson1: Mechanical System Information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_study_of_studies/lesson2.html">
+     Lesson2: Initial Conditions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_study_of_studies/lesson3.html">
+     Lesson 3: Kinematic Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../A_study_of_studies/lesson4.html">
+     Lesson 4: Inverse Dynamics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Making things move
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson1.html">
+     Lesson1: Simple drivers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson2.html">
+     Lesson 2: Using motion capture data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson3.html">
+     Lesson3: Noise and filters
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lesson 4: Parameter identification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson5.html">
+     Lesson 5: Using real data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lesson6.html">
+     Lesson 6: Troubleshooting C3D files
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../MuscleRecruitment/index.html">
+   Inverse Dynamics of Muscle Systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson1.html">
+     Lesson 1: The Basics of Muscle Recruitment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson2.html">
+     Lesson 2: Linear Muscle Recruitment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson3.html">
+     Lesson 3: Quadratic Muscle Recruitment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson4.html">
+     Lesson 4: Polynomial Muscle Recruitment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson5.html">
+     Lesson 5: Min/Max Muscle Recruitment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson6.html">
+     Lesson 6: Composite Recruitment Criteria
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../MuscleRecruitment/lesson_calibration.html">
+     Lesson 7: Calibration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Muscle_modeling/index.html">
+   Muscle Modeling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson1.html">
+     Lesson 1: The Basics of Muscle Definition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson2.html">
+     Lesson 2: Controlling Muscle Drawing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson3.html">
+     Lesson 3: Via-point Muscles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson4.html">
+     Lesson 4: Wrapping Muscles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson5.html">
+     Lesson 5: Muscle Models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson6.html">
+     Lesson 6: General Muscles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Muscle_modeling/lesson7.html">
+     Lesson 7: Ligaments
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../The_mechanical_elements/index.html">
+   The Mechanical Elements
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../The_mechanical_elements/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../The_mechanical_elements/lesson1.html">
+     Lesson 1: Segments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../The_mechanical_elements/lesson2.html">
+     Lesson 2: Joints
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../The_mechanical_elements/lesson3.html">
+     Lesson 3: Drivers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../The_mechanical_elements/lesson4.html">
+     Lesson 4: Kinematic Measures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../The_mechanical_elements/lesson5.html">
+     Lesson 5: Forces
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ForceDependentKinematics/index.html">
+   Force-Dependent Kinematics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/fdk.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/lesson1.html">
+     Lesson 1: The Baseline Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/lesson2.html">
+     Lesson 2: Adding FDK Features
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/lesson3.html">
+     Lesson 3: Results of FDK
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/lesson4.html">
+     Lesson 4: Using Surfaces to Define the Knee Joint
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/lesson5.html">
+     Lesson 5: Using Contact Forces to Replace a Joint in a Human Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ForceDependentKinematics/fdkappendix.html">
+     FDK appendix
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Parameter_studies_and_optimization/index.html">
+   Parameter Studies and Optimization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Parameter_studies_and_optimization/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Parameter_studies_and_optimization/lesson1.html">
+     Defining a Parameter Study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Parameter_studies_and_optimization/lesson2.html">
+     Optimization Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Parameter_studies_and_optimization/lesson3.html">
+     Optimization Studies in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Special topics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Finite_element_analysis/index.html">
+   Finite Element Analysis Interfacing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Finite_element_analysis/lesson1.html">
+     Lesson 1: Export of data for FEA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Finite_element_analysis/lesson2.html">
+     Lesson 2: ANSYS Interface
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Finite_element_analysis/lesson3.html">
+     Lesson 3: Abaqus Interface
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">
+   Making Models using SOLIDWORKS
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson1.html">
+     Translating a SOLIDWORKS CAD model to AnyBody
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson2.html">
+     Making the translated AnyScript model move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson3.html">
+     Creating human-machine integrated analysis model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Scaling/index.html">
+   Scaling and Personalizing your model
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../Scaling/lesson3.html">
+     Lesson 1: Scaling based on medical images
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../Scaling/lesson3_appendix.html">
+       Lesson 1 appendix
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Scaling/lesson4.html">
+     Lesson 2: Including a custom scaling function into your model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Posture_and_movement/intro.html">
+   Posture and Movement Prediction
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Internals of AnyBody
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Interface_features/index.html">
+   User interface features
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson1.html">
+     Lesson 1: The Editor Window
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson2.html">
+     Lesson 2: The Model View Window
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson3.html">
+     Lesson 3: The Chart View
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson4.html">
+     Lesson 4: The Model Tree and Object Description
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson5.html">
+     Lesson 5: The Command Line Application
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson6.html">
+     Lesson 6: Modifying the Loaded Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Interface_features/lesson7.html">
+     Lesson 7: Wrapping the Model with AnyBody Project
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Advanced_script_features/index.html">
+   Advanced Script Features
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Advanced_script_features/lesson1.html">
+     Lesson 1: Using References
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Advanced_script_features/lesson2.html">
+     Lesson 2: Using Include Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Advanced_script_features/lesson3.html">
+     Lesson 3: Mathematical Expressions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Troubleshooting_anyscript/intro.html">
+   Trouble Shooting AnyScript Models
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Validation_of_models/index.html">
+   Validation of Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Validation_of_models/intro.html">
+     Introduction to validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Validation_of_models/Kinematic_input.html">
+     Validating Kinematic input
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+
+<nav id="bd-toc-nav">
+    
+</nav>
+    </div>
+    
+    <div class="toc-item">
+      
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/anybody/anybody-tutorial/edit/master/./Making_things_move/lesson4.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-4-parameter-identification">
+<h1>Lesson 4: Parameter identification<a class="headerlink" href="#lesson-4-parameter-identification" title="Permalink to this headline">#</a></h1>
+<p>In this lesson we shall consider a source of uncertainty on motion
+capture experiments and musculoskeletal modeling in general that is
+completely different from the noise of the preceding section.</p>
+<p>The issue is that a musculoskeletal model contains assumptions
+about the model dimensions that we really cannot know in advance. A femur, for
+instance, is attached to the hip joint located rather deeply inside the lower
+abdomen and we cannot palpate it or measure its location without advanced
+imaging techniques.</p>
+<p>For a musculoskeletal model of a given individual, properties as basic as the
+length of the femur and the location of the hip joint center are always somewhat
+uncertain. In this section, we are going to see how the data in a C3D file can
+help us automatically determine these parameters with good accuracy.</p>
+<p>Please download and save the file
+<a class="reference download internal" download="" href="../_downloads/b6bf8a9eaccea3f689dea0a09bf7f810/multiple.c3d"><code class="xref download docutils literal notranslate"><span class="pre">multiple.c3d</span></code></a>.</p>
+<p>Then close all open windows in AnyBody and create a new Main file by
+clicking the ‘M’ tool button in the upper left hand corner of the main
+frame. This give you a dialog to create an empty model into which you can insert an
+<code class="docutils literal notranslate"><span class="pre">AnyInputC3D</span></code> object, refer to the <code class="file docutils literal notranslate"><span class="pre">multiple.c3d</span></code> file and specify the
+filter as we did before:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+  <span class="c1">// The actual body model goes in this folder</span>
+  <span class="kt">AnyFolder</span> <span class="n">MyModel</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// Global Reference Frame</span>
+    <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// Todo: Add points for grounding of the model here</span>
+    <span class="p">};</span>  <span class="c1">// Global reference frame</span>
+
+    <span class="kt">AnyInputC3D</span> <span class="gr">C3D</span> <span class="o">=</span>
+    <span class="p">{</span>
+      <span class="n">FileName</span> <span class="o">=</span> <span class="gr">&quot;multiple.c3d&quot;</span><span class="p">;</span>
+      <span class="c1">//ReadAllDataOnOff = On;</span>
+      <span class="c1">//TruncateExtraCharsInNamesOnOff = On;</span>
+      <span class="c1">//MakeNameUniqueStr = &quot;_&quot;;</span>
+      <span class="c1">//PointsScaleFactor = 1.0;</span>
+      <span class="c1">//ConstructModelOnOff = On;</span>
+      <span class="gr">ConstructChartOnOff = Off;</span>
+      <span class="c1">//ConstructWeightFunUsingResidualOnOff = Off;</span>
+      <span class="c1">//GapFillUsingResidualsOnOff = Off;</span>
+      <span class="c1">//MarkerUseAllPointsOnOff = Off;</span>
+      <span class="c1">//MarkerUseCamMaskOnOff = On;</span>
+      <span class="c1">//MarkerIndices = ;</span>
+      <span class="c1">//MarkerLabels = ;</span>
+      <span class="c1">//MarkerFilterIndex = 0;</span>
+      <span class="c1">//ProcessedDataFilterIndex = 0;</span>
+      <span class="c1">//AnalogFilterIndex = -1;</span>
+      <span class="gr">Filter =</span>
+<span class="gr">      {</span>
+<span class="gr">        AutomaticInitialConditionOnOff = On;</span>
+<span class="gr">        FilterForwardBackwardOnOff = On;</span>
+<span class="gr">        N = 2;</span>
+<span class="gr">        Fc = {3};</span>
+<span class="gr">        Type = LowPass;</span>
+<span class="gr">      };</span>
+      <span class="c1">//WeightThreshold = 0.0;</span>
+      <span class="c1">//WeightOutput = {{0.0, 1.0}, {0.0, 1.0}, {0.0, 1.0}};</span>
+      <span class="c1">//WeightTransitionTime = 0.1;</span>
+      <span class="c1">//SearchAndReplace = ;</span>
+      <span class="c1">//WriteMarkerDataToFilesOnOff = Off;</span>
+      <span class="c1">//MarkerScaleXYZ = {0.025, 0.025, 0.025};</span>
+      <span class="gr">MarkerRGB = {0, 0, 1};</span>
+      <span class="c1">//MarkerDrawOnOff = On;</span>
+      <span class="c1">//MarkerInterPolType = Bspline;</span>
+      <span class="c1">//MarkerBsplineOrder = 4;</span>
+    <span class="p">};</span>
+</pre></div>
+</div>
+<p>Notice that we have also colored the markers blue with the <code class="docutils literal notranslate"><span class="pre">MarkerRGB</span></code>
+property and disabled the plot of the 3D trajectories with the
+<code class="docutils literal notranslate"><span class="pre">ConstructChartOnOff</span></code> property. We also set the duration of the movement
+to automatically fit the C3D file as we have done before:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
+<span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
+  <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+  <span class="gr">AnyIntVar FirstFrame = Main.MyModel.C3D.Header.FirstFrameNo;</span>
+<span class="gr">  AnyIntVar LastFrame = Main.MyModel.C3D.Header.LastFrameNo;</span>
+<span class="gr">  tStart = FirstFrame/Main.MyModel.C3D.Header.VideoFrameRate+2*Kinematics.ApproxVelAccPerturb;</span>
+<span class="gr">  tEnd = LastFrame/Main.MyModel.C3D.Header.VideoFrameRate-2*Kinematics.ApproxVelAccPerturb;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Now you should be able to load and run the model and see three blue
+markers travel through space in a motion that bears some resemblance to
+a football kick. The three markers are located on the same segment, and
+we happen to know that this segment is hinged in its upper end just like
+the pendulum in the previous lesson, but we do not know exactly where.</p>
+<p>Three markers per segment are typical for many motion capture marker
+protocols. A segment with no other constraints, i.e. floating freely in
+space, has six degrees of freedom.</p>
+<p>Although each marker provides three constraints, two markers are not enough to
+determine the location of the segment uniquely. The subtle explanation is that
+the markers are not independent because they are located on the same segment and
+therefore have their mutual distance given. In short, three non-collinear
+markers is the minimal set necessary to determine the location in space of an
+otherwise unconstrained segment.</p>
+<p>Three markers then provide a total of nine constraints where the segment
+only has six DoFs, and the additional information from these markers can
+be used to determine other unknown factors in the model.</p>
+<p>Let us initially define a segment and some guesses of where the three
+markers may be located on it:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+  <span class="c1">// The actual body model goes in this folder</span>
+  <span class="kt">AnyFolder</span> <span class="n">MyModel</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// Global Reference Frame</span>
+    <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="c1">// Todo: Add points for grounding of the model here</span>
+    <span class="p">};</span>  <span class="c1">// Global reference frame</span>
+
+    <span class="gr">AnySeg Leg = {</span>
+<span class="gr">      Mass = 1;</span>
+<span class="gr">      Jii = {1, 0.01, 1}/15;</span>
+<span class="gr">      AnyRefNode R1 = {</span>
+<span class="gr">        sRel = {0.038, 0.18, 0.022};</span>
+<span class="gr">      };</span>
+<span class="gr">      AnyRefNode R2 = {</span>
+<span class="gr">        sRel = {-0.015, -0.104, 0.028};</span>
+<span class="gr">      };</span>
+<span class="gr">      AnyRefNode R3 = {</span>
+<span class="gr">        sRel = {-0.022, -0.403, -0.023};</span>
+<span class="gr">      };</span>
+<span class="gr">      AnyDrawSeg drw = {};</span>
+<span class="gr">    };</span>
+
+    <span class="kt">AnyInputC3D</span> <span class="n">C3D</span> <span class="o">=</span>
+    <span class="p">{</span>
+      <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;multiple.c3d&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now we just need to use AnyKinDriverMarker objects to tie the marker
+trajectories to the three points we have defined on the segment and
+select the solvers for over-determinate problems exactly as we did in
+the previous lesson (don’t forget to also select the over-determinate
+kinematics solver in the study section):</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span>  <span class="gr">AnyKinDriverMarker C3Dmotion1 = {</span>
+<span class="gr">    AnyRefFrame &amp;Marker = .Leg.R1;</span>
+<span class="gr">    AnyParamFun &amp;Trajectory=</span>
+<span class="gr">    Main.MyModel.C3D.Points.Markers.L000.PosInterpol;</span>
+<span class="gr">    AnyDrawKinMeasure drw = {</span>
+<span class="gr">      Label = Off;Size = 0.03;Line = Off;</span>
+<span class="gr">    };</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyKinDriverMarker C3Dmotion2 = {</span>
+<span class="gr">    AnyRefFrame &amp;Marker = .Leg.R2;</span>
+<span class="gr">    AnyParamFun &amp;Trajectory =</span>
+<span class="gr">    Main.MyModel.C3D.Points.Markers.L001.PosInterpol;</span>
+<span class="gr">    AnyDrawKinMeasure drw = {</span>
+<span class="gr">      Label = Off;Size = 0.03;Line = Off;</span>
+<span class="gr">    };</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyKinDriverMarker C3Dmotion3 = {</span>
+<span class="gr">    AnyRefFrame &amp;Marker = .Leg.R3;</span>
+<span class="gr">    AnyParamFun &amp;Trajectory =</span>
+<span class="gr">    Main.MyModel.C3D.Points.Markers.L002.PosInterpol;</span>
+<span class="gr">    AnyDrawKinMeasure drw = {</span>
+<span class="gr">      Label = Off;Size = 0.03;Line = Off;</span>
+<span class="gr">    };</span>
+<span class="gr">  };</span>
+<span class="p">};</span> <span class="c1">// MyModel</span>
+
+<span class="c1">// The study: Operations to be performed on the model</span>
+  <span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
+    <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+    <span class="kt">AnyIntVar</span> <span class="n">FirstFrame</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">C3D</span><span class="p">.</span><span class="n">Header</span><span class="p">.</span><span class="n">FirstFrameNo</span><span class="p">;</span>
+    <span class="kt">AnyIntVar</span> <span class="n">LastFrame</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">C3D</span><span class="p">.</span><span class="n">Header</span><span class="p">.</span><span class="n">LastFrameNo</span><span class="p">;</span>
+    <span class="n">tStart</span> <span class="o">=</span> <span class="n">FirstFrame</span><span class="o">/</span><span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">C3D</span><span class="p">.</span><span class="n">Header</span><span class="p">.</span><span class="n">VideoFrameRate</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">Kinematics</span><span class="p">.</span><span class="n">ApproxVelAccPerturb</span><span class="p">;</span>
+    <span class="n">tEnd</span> <span class="o">=</span> <span class="n">LastFrame</span><span class="o">/</span><span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">C3D</span><span class="p">.</span><span class="n">Header</span><span class="p">.</span><span class="n">VideoFrameRate</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">Kinematics</span><span class="p">.</span><span class="n">ApproxVelAccPerturb</span><span class="p">;</span>
+    <span class="gr">InitialConditions.SolverType = KinSolOverDeterminate;</span>
+<span class="gr">    Kinematics.SolverType = KinSolOverDeterminate;</span>
+  <span class="p">};</span>
+</pre></div>
+</div>
+<p>Now that we have created the AnyDrawKinMeasure objects, it is no longer
+necessary to have the points drawn in the C3D object. So let us get rid
+of them:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyInputC3D</span> <span class="n">C3D</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;multiple.c3d&quot;</span><span class="p">;</span>
+  <span class="c1">//ReadAllDataOnOff = On;</span>
+  <span class="c1">//TruncateExtraCharsInNamesOnOff = On;</span>
+  <span class="c1">//MakeNameUniqueStr = &quot;_&quot;;</span>
+  <span class="c1">//PointsScaleFactor = 1.0;</span>
+  <span class="gr">ConstructModelOnOff = Off;</span>
+  <span class="n">ConstructChartOnOff</span> <span class="o">=</span> <span class="kp">Off</span><span class="p">;</span>
+  <span class="c1">//ConstructWeightFunUsingResidualOnOff = Off;</span>
+  <span class="c1">//GapFillUsingResidualsOnOff = Off;</span>
+  <span class="c1">//MarkerUseAllPointsOnOff = Off;</span>
+</pre></div>
+</div>
+<p>It is now possible to run the Kinematics operation and see the leg
+segment move with the markers. The actual markers are not visible
+because they disappear inside the segment, but if we make the segment
+semi-transparent, they become visible:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Leg</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">Mass</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span><span class="o">/</span><span class="mi">15</span><span class="p">;</span>
+  <span class="kt">AnyRefNode</span> <span class="n">R1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.038</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.022</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="kt">AnyRefNode</span> <span class="n">R2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.015</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.104</span><span class="p">,</span> <span class="mf">0.028</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="kt">AnyRefNode</span> <span class="n">R3</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.022</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.403</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.023</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDrawSeg</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="gr">Opacity = 0.5;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>We will also add a a drawing for the global reference frame, to better visualize the movement.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="gr">AnyDrawRefFrame drw = {};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><img alt="pendulum 1" src="../_images/image12.jpeg" /></p>
+<p>The animation reveals that the leg seems to rotate about the origin of
+the global reference frame, although we have not explicitly defined any
+joint. The point must obviously correspond to some point on the leg
+segment, but we do not know exactly where that is.</p>
+<p>Let us define a joint point at an approximate location on the leg:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">Leg</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">Mass</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span><span class="o">/</span><span class="mi">15</span><span class="p">;</span>
+  <span class="gr">AnyRefNode Joint = {</span>
+<span class="gr">    sRel = {0, 0.45, 0};</span>
+<span class="gr">  };</span>
+  <span class="kt">AnyRefNode</span> <span class="n">R1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.038</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.022</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="kt">AnyRefNode</span> <span class="n">R2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.015</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.104</span><span class="p">,</span> <span class="mf">0.028</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="kt">AnyRefNode</span> <span class="n">R3</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.022</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.403</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.023</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDrawSeg</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span><span class="n">Opacity</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>If you reload and re-run the model, you will see that the new point is
+approximately but not exactly the point the leg appears to rotate about.
+We could probably improve the location manually, but let us accept the
+location for now.</p>
+<p>The next step is to create a revolute joint between the new point and
+the origin of the global reference frame:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyRevoluteJoint Joint = {</span>
+<span class="gr">  AnyRefFrame &amp;Ground = .GlobalRef;</span>
+<span class="gr">  AnyRefFrame &amp;Pendulum = .Leg.Joint;</span>
+<span class="gr">};</span>
+
+<span class="kt">AnyInputC3D</span> <span class="n">C3D</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;multiple.c3d&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>A reload and re-run will reveal that the point is now forced to coincide
+exactly with the origin of the coordinate system. This is because, as
+opposed to <code class="docutils literal notranslate"><span class="pre">AnyKinDriverMarker</span></code> objects, joints by default contain hard
+constraints that must be exactly fulfilled. The consequence is that the
+blue marker dots inside the leg segment points now seem to deviate a bit
+further from the center of the points.</p>
+<p><img alt="pendulum 2" src="../_images/image23.jpeg" /></p>
+<p>There seems to be some unknown location of the joint center on the leg
+and possibly also of the marker points on the segment that we could
+either find by experimenting manually with the local coordinates of the
+points on the leg segment or, alternatively, ask AnyBody to find for us.</p>
+<p>We are going to do the latter, and we shall employ a special study that
+AnyBody has implemented for the purpose. Please click on the Classes tab
+in the Tree View on the right side of the screen, expand the
+Class List, and scroll down to find the <code class="docutils literal notranslate"><span class="pre">AnyOptKinStudy</span></code>. Place the cursor
+after the end brace of the existing AnyBody Study, right-click the
+<code class="docutils literal notranslate"><span class="pre">AnyOptKinStudy</span></code> in the Class Tree, and insert a template of the class:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
+  <span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
+    <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+    <span class="kt">AnyIntVar</span> <span class="n">FirstFrame</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">C3D</span><span class="p">.</span><span class="n">Header</span><span class="p">.</span><span class="n">FirstFrameNo</span><span class="p">;</span>
+    <span class="kt">AnyIntVar</span> <span class="n">LastFrame</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">C3D</span><span class="p">.</span><span class="n">Header</span><span class="p">.</span><span class="n">LastFrameNo</span><span class="p">;</span>
+    <span class="n">tStart</span> <span class="o">=</span> <span class="n">FirstFrame</span><span class="o">/</span><span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">C3D</span><span class="p">.</span><span class="n">Header</span><span class="p">.</span><span class="n">VideoFrameRate</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">Kinematics</span><span class="p">.</span><span class="n">ApproxVelAccPerturb</span><span class="p">;</span>
+    <span class="n">tEnd</span> <span class="o">=</span> <span class="n">LastFrame</span><span class="o">/</span><span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">C3D</span><span class="p">.</span><span class="n">Header</span><span class="p">.</span><span class="n">VideoFrameRate</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">Kinematics</span><span class="p">.</span><span class="n">ApproxVelAccPerturb</span><span class="p">;</span>
+    <span class="n">InitialConditions</span><span class="p">.</span><span class="n">SolverType</span> <span class="o">=</span> <span class="kp">KinSolOverDeterminate</span><span class="p">;</span>
+    <span class="n">Kinematics</span><span class="p">.</span><span class="n">SolverType</span> <span class="o">=</span> <span class="kp">KinSolOverDeterminate</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="gr">AnyOptKinStudy &lt;ObjectName&gt; =</span>
+<span class="gr">  {</span>
+<span class="gr">    //LogFile = &quot;&quot;;</span>
+<span class="gr">    /*Analysis =</span>
+<span class="gr">    {</span>
+<span class="gr">    Settings =</span>
+<span class="gr">    {</span>
+<span class="gr">    Echo = On;</span>
+<span class="gr">    ModelSceneUpdate = On;</span>
+<span class="gr">    };</span>
+<span class="gr">    //AnyOperation &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
+<span class="gr">    };*/</span>
+<span class="gr">    //MaxIterationStep = 100;</span>
+<span class="gr">    AnyDesMeasure &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">    //AnyDesMeasure &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
+<span class="gr">    //AnyDesVar &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
+<span class="gr">  };</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">AnyOptKinStudy</span></code>’s structure is very similar to the general optimization
+class <code class="docutils literal notranslate"><span class="pre">AnyOptStudy</span></code>, but it contains an algorithm specially made for kinematic
+parameter optimization and several of the necessary definitions are implicit, so
+the study is simple to use. All we have to do is to specify the unknown
+parameters in the model and the location of the kinematic analysis necessary to
+evaluate them.</p>
+<p>We begin with the latter and make the following changes:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyOptKinStudy</span> <span class="gr">OptKinStudy</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="gr">Analysis = {</span>
+<span class="gr">     AnyOperation &amp;Operation= ..MyStudy.Kinematics;</span>
+<span class="gr">  };</span>
+  <span class="c1">//MaxIterationStep = 100;</span>
+  <span class="kt">AnyDesMeasure</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span> <span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Now we have specified that we want to optimize parameters to fit the
+experimental data used in the Kinematics analysis of the original study,
+i.e. the C3D data.</p>
+<p>The next step is to specify which parameters to
+optimize. In this case, we are uncertain about the precise location of
+the revolute joint in the upper end of the segment. Its location is
+defined by the local coordinates to the <code class="docutils literal notranslate"><span class="pre">AnyRefNode</span></code> ‘Joint’ on the leg
+segment:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyOptKinStudy</span> <span class="n">OptKinStudy</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="n">Analysis</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="kt">AnyOperation</span> <span class="o">&amp;</span><span class="n">Operation</span><span class="o">=</span> <span class="p">..</span><span class="n">MyStudy</span><span class="p">.</span><span class="n">Kinematics</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="c1">//MaxIterationStep = 100;</span>
+  <span class="gr">AnyDesVar Jointx = {</span>
+<span class="gr">    Val = Main.MyModel.Leg.Joint.sRel[0];</span>
+<span class="gr">  };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This specifies that the zero’th coordinate, i.e. the local x coordinate
+of the Joint node on the Leg segment is a variable in the problem.</p>
+<p>Similarly, we can add the y and z coordinates:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyOptKinStudy</span> <span class="n">OptKinStudy</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="n">Analysis</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="kt">AnyOperation</span> <span class="o">&amp;</span><span class="n">Operation</span><span class="o">=</span> <span class="p">..</span><span class="n">MyStudy</span><span class="p">.</span><span class="n">Kinematics</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="c1">//MaxIterationStep = 100;</span>
+  <span class="kt">AnyDesVar</span> <span class="n">Jointx</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">Joint</span><span class="p">.</span><span class="n">sRel</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="p">};</span>
+  <span class="gr">AnyDesVar Jointy = {</span>
+<span class="gr">    Val = Main.MyModel.Leg.Joint.sRel[1];</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyDesVar Jointz = {</span>
+<span class="gr">    Val = Main.MyModel.Leg.Joint.sRel[2];</span>
+<span class="gr">  };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Now we can reload the model and a new set of operations will have
+appeared:</p>
+<p><img alt="image2" src="../_images/image320.png" /></p>
+<p>Pick the <code class="docutils literal notranslate"><span class="pre">ParameterOptimization</span></code> and click the <em>Run</em> button.</p>
+<p>If you have a Model View open, you will see the pendulum starting to move and
+messages about the convergence of the process will appear in the Report View at
+the bottom of the screen.</p>
+<p>Pay close attention to the location of the small blue markers inside the larger
+yellow dots on the segment. The blue dots should move considerably closer to the
+centers of the yellow balls as a consequence of the optimization as shown below,
+where the left picture is the location of the markers before the joint location
+optimization, and the right picture shows the situation after optimization.</p>
+<p><img alt="before opt" src="../_images/image23.jpeg" /> <img alt="after opt" src="../_images/image43.jpeg" /></p>
+<p>This notion is confirmed by opening opening the chart view and plotting the
+development of the objective function of the problem:</p>
+<p><img alt="opt history" src="../_images/image512.png" /></p>
+<p>The graph shows that the norm of the difference between the measured
+marker positions and the corresponding nodes on the segment over the
+entire motion was reduced from about 0.27 to about 0.01.</p>
+<p>Now that we have identified a better location of the joint node on the
+segment, we might want to save it for later use.</p>
+<p>This is done by right-clicking the <code class="docutils literal notranslate"><span class="pre">OptKinStudy</span></code> in the operations tree on the
+left hand side of the mainframe and selecting “Save design” from the context
+menu. This opens a file manager dialogue. Please navigate to the directory where
+you keep the model and specify a name for the new file, for instance
+<code class="file docutils literal notranslate"><span class="pre">Opt1.txt</span></code>.</p>
+<p>If you open the new file you can see the saved values:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Jointx 1.574794116583949e-002
+Jointy 4.907819352974447e-001
+Jointz 6.507036792142549e-004
+</pre></div>
+</div>
+<p>You can easily load these values into your model from the same context
+menu every time you have reloaded the model.</p>
+<p>Of course, to have the
+coordinates of the Joint node permanently updated, you can also simply
+copy and paste them into the sRel value directly in the Leg segment
+definition in your AnyScript file. Don’t do it yet, though. We are going
+to play a little more with the possibilities.</p>
+<p>The optimization we have just completed has presumed that we know well
+where the markers are located on the segment but are in doubt about the
+location of the joint, such as would often be the case in a gait
+analysis involving a hip joint.</p>
+<p>However, even if we use a marker
+protocol that places most markers on well-defined bony landmarks in the
+model, there may still be doubt about the precise locations of some or
+all the markers, and the result of the joint location optimization also
+shows that especially the first marker location deviates somewhat from
+its corresponding AnyRefNode. This indicates that there are other
+sources of error in the model, than the joint location, and indeed the
+recent relocation of the joint may be influenced by errors that are not
+associated with the joint location.</p>
+<p>This is the reason why it was
+advised to not permanently update the joint location. When the
+optimization is redefined to also comprise the marker positions. It is
+better to simultaneously optimize the joint position and marker
+locations.</p>
+<p>The marker node position is included in the optimization in the same way
+as the Joint node:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyOptKinStudy</span> <span class="n">OptKinStudy</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="n">Analysis</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="kt">AnyOperation</span> <span class="o">&amp;</span><span class="n">Operation</span><span class="o">=</span> <span class="p">..</span><span class="n">MyStudy</span><span class="p">.</span><span class="n">Kinematics</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="c1">//MaxIterationStep = 100;</span>
+  <span class="kt">AnyDesVar</span> <span class="n">Jointx</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">Joint</span><span class="p">.</span><span class="n">sRel</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDesVar</span> <span class="n">Jointy</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">Joint</span><span class="p">.</span><span class="n">sRel</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDesVar</span> <span class="n">Jointz</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">Joint</span><span class="p">.</span><span class="n">sRel</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+  <span class="p">};</span>
+  <span class="gr">AnyDesVar R1x = {</span>
+<span class="gr">    Val = Main.MyModel.Leg.R1.sRel[0];</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyDesVar R1y = {</span>
+<span class="gr">    Val = Main.MyModel.Leg.R1.sRel[1];</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyDesVar R1z = {</span>
+<span class="gr">    Val = Main.MyModel.Leg.R1.sRel[2];</span>
+<span class="gr">  };</span>
+</pre></div>
+</div>
+<p>Please reload and re-run the <code class="docutils literal notranslate"><span class="pre">Main.OptKinStudy.ParameterOptimization</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To speed up the optimization study, try to disable Model View by clicking the “On/Off” button in the Model view toolbar.</p>
+</div>
+<p>The convergence should be quite fast in such a small model, and you arrive at the following solution:</p>
+<p><img alt="Pendulum final" src="../_images/image6.jpeg" /></p>
+<p>The solution appears to be bull’s eye in terms of placing the markers in
+the center of the yellow nodes. This is confirmed by the optimized value
+of the objective function: the residual of the distance between markers
+and nodes is now less than 0.001.</p>
+<p>It appears that we have obtained an almost perfect solution, but why not
+include all the marker nodes in the optimization? Well, we can try
+adding another one:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyOptKinStudy</span> <span class="n">OptKinStudy</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="n">Analysis</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="kt">AnyOperation</span> <span class="o">&amp;</span><span class="n">Operation</span><span class="o">=</span> <span class="p">..</span><span class="n">MyStudy</span><span class="p">.</span><span class="n">Kinematics</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="c1">//MaxIterationStep = 100;</span>
+  <span class="kt">AnyDesVar</span> <span class="n">Jointx</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">Joint</span><span class="p">.</span><span class="n">sRel</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDesVar</span> <span class="n">Jointy</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">Joint</span><span class="p">.</span><span class="n">sRel</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDesVar</span> <span class="n">Jointz</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">Joint</span><span class="p">.</span><span class="n">sRel</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDesVar</span> <span class="n">R1x</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">R1</span><span class="p">.</span><span class="n">sRel</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDesVar</span> <span class="n">R1y</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">R1</span><span class="p">.</span><span class="n">sRel</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+  <span class="p">};</span>
+  <span class="kt">AnyDesVar</span> <span class="n">R1z</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">Leg</span><span class="p">.</span><span class="n">R1</span><span class="p">.</span><span class="n">sRel</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+  <span class="p">};</span>
+  <span class="gr">AnyDesVar R2x = {</span>
+<span class="gr">    Val = Main.MyModel.Leg.R2.sRel[0];</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyDesVar R2y = {</span>
+<span class="gr">    Val = Main.MyModel.Leg.R2.sRel[1];</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyDesVar R2z = {</span>
+<span class="gr">    Val = Main.MyModel.Leg.R2.sRel[2];</span>
+<span class="gr">  };</span>
+</pre></div>
+</div>
+<p>When you reload the model and re-run the ParameterOptimization, you will
+find that the optimization takes much more time, the convergence is much
+less stable, the segment moves far away from the marker nodes in the
+process, and eventually the algorithm gives up with the error message:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Optimization failed : Failed to solve position analysis
+</pre></div>
+</div>
+<p>You can understand the reason for this behavior if you look at the
+figure of the previous result above and imagine that we make all four
+visible points variable, i.e. in a sense cut them loose from the segment
+in the optimization problem. Then the segment can float freely in space
+while the nodes are free to fall exactly on top of their respective
+markers and the joint at the origin of the global reference frame.</p>
+<p>In other words, such a problem has infinitely many perfect solutions and the
+location of the segment cannot be determined from the optimization problem. In
+other words, for a problem like this to be well-posed, some points have to be
+fixed.</p>
+<p>When we add the second marker position to the optimization problem, we
+leave the model with only two fixed nodes, namely the third marker node and the
+joint node. This leaves the segment the opportunity to rotate freely about an
+axis through the two fixed points, and the optimization problem is ill-posed
+because it does not determine the rotation of the segment.</p>
+<p>Obviously, in a practical case you would select as the invariable marker
+nodes those that are physiologically well-determined, for instance from
+easily accessible bony landmarks.</p>
+<p>Hopefully, this simple, bottom-up example has demonstrated how the
+technology works.</p>
+<p>Now, let us change our focus to a top-down approach
+and see what the technology can do with real motion capture data. That
+will be the subject of <a class="reference internal" href="lesson5.html"><span class="doc">Lesson 5</span></a>.</p>
+</section>
+
+
+              </article>
+              
+
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="lesson3.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Lesson3: Noise and filters</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="lesson5.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Lesson 5: Using real data</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+              </footer>
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, AnyBody Technology.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>
