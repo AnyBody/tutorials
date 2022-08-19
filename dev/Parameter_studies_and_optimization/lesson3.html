@@ -36,7 +36,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=e29d1d5dcac6d41e1d5489fedd7eec00fae8909a" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -55,7 +55,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=532d1baf3f03eb73f2f50828f8c27430120b156d"></script>
     <script src="../_static/design-tabs.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -1198,7 +1198,7 @@ test it and investigate the results:</p>
 take a list of design values as input and return the objective function value.
 In <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2</span></a> the objective function was the time integral of the
 metabolism variable. So we will do the same here with Scipy’s
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.trapz.html#numpy.trapz" title="(in NumPy v1.22)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.trapz()</span></code></a>: function.</p>
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.trapz.html#numpy.trapz" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.trapz()</span></code></a>: function.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">23</span> <span class="k">def</span> <span class="nf">objfun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="linenos">24</span>     <span class="n">saddle_height</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="linenos">25</span>     <span class="n">saddle_pos</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -1245,7 +1245,7 @@ for the design variables.</p>
 <span class="linenos">44</span> <span class="n">initial_guess</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.68</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The documentation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.8.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a> has more information on how to define bounds, contraints, tolerances, etc.</p>
+<p>The documentation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.9.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a> has more information on how to define bounds, contraints, tolerances, etc.</p>
 <p>Finally, we call the <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code> function run the optimizer. In this case we used the
 <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-slsqp.html#optimize-minimize-slsqp">SLSQP</a> algorithm.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">46</span> <span class="n">solution</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span>
@@ -1271,7 +1271,7 @@ for the design variables.</p>
 </pre></div>
 </div>
 <p>And there we have it!
-We can now take advantage of the many different algorithms and settings available for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.8.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a>.
+We can now take advantage of the many different algorithms and settings available for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.9.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a>.
 We could also use a different package or customize our own algorithm, constraints etc.</p>
 <p>The possibilities are practically endless. The full example from this tutorial can be
 <a class="reference download internal" download="" href="../_downloads/afc20018b23faa853085a37337242a7e/python-optimize.zip"><code class="xref download docutils literal notranslate"><span class="pre">downloaded</span> <span class="pre">here</span></code></a>.</p>
