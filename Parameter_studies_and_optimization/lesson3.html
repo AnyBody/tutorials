@@ -173,7 +173,7 @@ Secondly, we will go through and explain the different sections in the file.</p>
 
 
  <span class="k">def</span> <span class="nf">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-     <span class="sd">&quot;&quot;&quot;Run the AnyBody model and return the metabolism results&quot;&quot;&quot;</span>
+<span class="w">     </span><span class="sd">&quot;&quot;&quot;Run the AnyBody model and return the metabolism results&quot;&quot;&quot;</span>
      <span class="n">macro</span> <span class="o">=</span> <span class="p">[</span>
          <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;BikeModel2D.main.any&quot;</span><span class="p">),</span>
          <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddleHeight&quot;</span><span class="p">,</span> <span class="n">saddle_height</span><span class="p">),</span>
@@ -188,7 +188,7 @@ Secondly, we will go through and explain the different sections in the file.</p>
 
 
  <span class="k">def</span> <span class="nf">objfun</span><span class="p">(</span><span class="n">designvars</span><span class="p">):</span>
-     <span class="sd">&quot;&quot;&quot;Calculate the objective function value&quot;&quot;&quot;</span>
+<span class="w">     </span><span class="sd">&quot;&quot;&quot;Calculate the objective function value&quot;&quot;&quot;</span>
      <span class="n">saddle_height</span> <span class="o">=</span> <span class="n">designvars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
      <span class="n">saddle_pos</span> <span class="o">=</span> <span class="n">designvars</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
      <span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -202,7 +202,7 @@ Secondly, we will go through and explain the different sections in the file.</p>
 
 
  <span class="k">def</span> <span class="nf">seat_distance_constraint</span><span class="p">(</span><span class="n">designvars</span><span class="p">):</span>
-     <span class="sd">&quot;&quot;&quot;Compute contraint value which must be larger than zero&quot;&quot;&quot;</span>
+<span class="w">     </span><span class="sd">&quot;&quot;&quot;Compute contraint value which must be larger than zero&quot;&quot;&quot;</span>
      <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">designvars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">designvars</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.66</span>
 
 
@@ -261,7 +261,7 @@ just show how the code looks and not discuss the details.</p>
 <span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span> <span class="k">def</span> <span class="nf">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Run the AnyBody model and return the metabolism results&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the AnyBody model and return the metabolism results&quot;&quot;&quot;</span>
     <span class="n">macro</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;BikeModel2D.main.any&quot;</span><span class="p">),</span>
         <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddleHeight&quot;</span><span class="p">,</span> <span class="n">saddle_height</span><span class="p">),</span>
@@ -364,7 +364,7 @@ for the design variables.</p>
 <span class="normal">42</span>
 <span class="normal">43</span>
 <span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span> <span class="k">def</span> <span class="nf">seat_distance_constraint</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-     <span class="sd">&quot;&quot;&quot; Compute contraint value which must be larger than zero&quot;&quot;&quot;</span>
+<span class="w">     </span><span class="sd">&quot;&quot;&quot; Compute contraint value which must be larger than zero&quot;&quot;&quot;</span>
      <span class="k">return</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.66</span><span class="p">)</span>
 
 
@@ -373,7 +373,7 @@ for the design variables.</p>
  <span class="n">initial_guess</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.68</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">)</span>
 </pre></div></td></tr></table></div>
 </div>
-<p>The documentation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.8.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a> has more information on how to define bounds, contraints, tolerances, etc.</p>
+<p>The documentation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.10.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a> has more information on how to define bounds, contraints, tolerances, etc.</p>
 <p>Finally, we call the <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code> function run the optimizer. In this case we used the
 <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-slsqp.html#optimize-minimize-slsqp">SLSQP</a> algorithm.</p>
 <div class="highlight-python notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">46</span>
@@ -401,7 +401,7 @@ for the design variables.</p>
 </pre></div>
 </div>
 <p>And there we have it!
-We can now take advantage of the many different algorithms and settings available for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.8.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a>.
+We can now take advantage of the many different algorithms and settings available for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.10.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a>.
 We could also use a different package or customize our own algorithm, constraints etc.</p>
 <p>The possibilities are practically endless. The full example from this tutorial can be
 <a class="reference download internal" download="" href="../_downloads/afc20018b23faa853085a37337242a7e/python-optimize.zip"><code class="xref download docutils literal notranslate"><span class="pre">downloaded</span> <span class="pre">here</span></code></a>.</p>
@@ -517,7 +517,7 @@ You can also check out this <a class="reference external" href="https://www.yout
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, AnyBody Technology.
+        &#169; Copyright 2023, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

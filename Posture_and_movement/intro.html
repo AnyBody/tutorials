@@ -254,7 +254,7 @@ smooth motion.</p>
 <span class="gr">//</span><span class="c1">      Reaction.Type = {Off};</span>
 <span class="gr">//</span><span class="c1">      AnyRevoluteJoint &amp;Joint = .Hip;</span>
 <span class="gr">//</span><span class="c1">    };</span>
-<span class="gr">//</span><span class="c1"></span>
+<span class="gr">//</span>
 <span class="gr">//</span><span class="c1">    AnyKinEqSimpleDriver KneeDriver = {</span>
 <span class="gr">//</span><span class="c1">      DriverPos = {-90*pi/180};</span>
 <span class="gr">//</span><span class="c1">      DriverVel = {90*pi/180}/..MyStudy.tEnd;</span>
@@ -441,7 +441,7 @@ indicating an improvement of the ball velocity from 9 to 12 m/s.</p>
   <span class="n">Val</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">MyModel</span><span class="p">.</span><span class="n">KneeDriver</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
   <span class="n">Min</span> <span class="o">=</span> <span class="n">Val</span> <span class="o">-</span> <span class="p">.</span><span class="n">slack</span><span class="p">;</span>
   <span class="n">Max</span> <span class="o">=</span> <span class="n">Val</span> <span class="o">+</span> <span class="p">.</span><span class="n">slack</span><span class="p">;</span>
-<span class="p">};</span><span class="gr"></span>
+<span class="p">};</span>
 <span class="gr">AnyDesVar Knee4 = {</span>
 <span class="gr">  Val = Main.MyModel.KneeDriver.Data[0][3];</span>
 <span class="gr">  Min = Val - .slack;</span>
@@ -574,7 +574,7 @@ to capture the features of the body’s function that we are looking for.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, AnyBody Technology.
+        &#169; Copyright 2023, AnyBody Technology.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>
