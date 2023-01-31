@@ -1,0 +1,400 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Lesson1: Mechanical System Information" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/A_study_of_studies/lesson1.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="In this lesson we are presuming that you have the arm2d.any file loaded into AnyBody. If you do not have the model on file, please download and save a copy from this link: arm2d.any. It should look..." />
+  
+<meta property="og:image" content="https://anyscript.org/_images/image111.png" />
+  
+<meta property="og:image:alt" content="Dumbbel" />
+  
+    <title>Lesson1: Mechanical System Information &#8212; AnyBody Tutorials v7.4.2</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson2: Initial Conditions" href="lesson2.html" />
+    <link rel="prev" title="Introduction: A Study of Studies" href="intro.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson2: Initial Conditions"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction: A Study of Studies"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">6. </span>A Study of Studies</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson1: Mechanical System Information</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson1-mechanical-system-information">
+<h1>Lesson1: Mechanical System Information<a class="headerlink" href="#lesson1-mechanical-system-information" title="Permalink to this headline">¶</a></h1>
+<p>In this lesson we are presuming that you have the arm2d.any file loaded
+into AnyBody. If you do not have the model on file, please download and
+save a copy from this link: <a class="reference download internal" download="" href="../_downloads/da9180937f7e266ce0946df3120747ff/arm2d.zip"><code class="xref download docutils literal notranslate"><span class="pre">arm2d.any</span></code></a>. It should look like this when
+you have loaded the model, run InitialConditions operation, and opened a
+Model View:</p>
+<p><img alt="Dumbbel" src="../_images/image111.png" /></p>
+<p>The mechanics of this model is fairly simple in the sense that it only
+has two segments and two revolute joints. However, in more realistic
+models with dozens of segments connected by many joints of different
+types it can be very difficult to maintain the overview of the model.
+Making a model move requires a balance between the number of kinematic
+degrees of freedom and the number of constraints, and it can be
+difficult to get it completely right.</p>
+<p>This is where the systematic model information becomes important.
+Mechanical studies are equipped with a mechanical system description.
+This is included in the study’s Objects Description, which is found by
+double-clicking the objects in any Model Tree View. Double-click the
+ArmModel study folder in the loaded model and you will find a System
+description like this:</p>
+<p><img alt="Study object description" src="../_images/image28.png" /></p>
+<p>The Mechanical System Information is comprised of four sections: 0)
+Contents, 1) List of segments, 2) List of joints and kinematic
+constraints, and 3) List of reaction forces.</p>
+<p>In a simple model like arm2d where all the segments are defined next to
+each other, it might seem a little unnecessary to list all the segments,
+but larger models typically have the segment definitions divided over
+many different folders and files, and it can be helpful to see a
+compiled list of all of them.</p>
+<p>AnyBody models are always defined in three dimensions and a rigid
+segment in three dimensional space has six degrees of freedom, i.e.,
+three spatial movements and three rotations. Thus, the Mechanical System
+Information multiplies the number of segments by 6 and reports the total
+number of rigid-body degrees of freedom, in this case 2 x 6 = 12. To
+enable the system to figure out where everything is in space we must
+provide 12 constraints. This is what section 2) in the Mechanical System
+Information is useful for. This section counts the kinematic
+constraints. The sum of constraints must add up to the number of degrees
+of freedom in the model, i.e., 12. You can see in the last line of the
+section that this indeed the case. Further up we can see how the 12
+constraints come about. 2 x 5 = 10 of them come from the two revolute
+joints in the model for the shoulder and elbow. A revolute joint leaves
+only one degree of freedom between the two reference frames it connects,
+so it has five constraints. With two of these we have two degrees of
+freedom left in the model because 12 - 2 x 5 = 2. These remaining
+degrees of freedom after the joints have been added are also called the
+joint coordinates. The remaining part of the section must specify this
+number of additional constraints.</p>
+<p>The usual way of providing constraints for the joint degrees of freedom
+is by means of drivers. In our case we have simply added two drivers
+directly to the two joints as the list shows. However, it does not have
+to be like that. We have to provide as many constraints as we have joint
+coordinates but the constraints need no address the joint coordinates
+directly. For instance, we could also have driven the x and y
+coordinates of a point on the forearm.</p>
+<p>There is also a section called “Other”. This is for constraints that are
+neither any of the predefined joint types nor driver functions. Such
+constraints are very frequent in more complex models because the
+AnyScript language allows for user-defined joints and other constraints
+to mimic complex behaviors movement patterns between different
+joints. This, however, is an advanced topic that we shall postpone for
+now.</p>
+<p>The final section 3) lists the reaction forces. The fact that
+the reaction and driver forces add up to the same number as the joints
+and kinemaic constraints is no coincidence. In a straightforward model
+like this one, joints usually provide the same number of reactions as
+kinematic constraints. This is also how it is in real life in most
+cases, because the mechanical joints we have in our surroundings enforce
+their kinematic constraints by reaction forces. But it is not always
+like that in the body. A knee, for instance, can roughly be approximated
+as a hinge joint (many physiologists will disagree here) but the
+internal load-carrying mechanisms in the knee are not like they are in a
+mechanical hinge. Instead knee reactions are provided by a complicated
+interplay between unilateral joint surfaces, ligaments, and muscles. So
+AnyBody allows for the definition of joints that only provide kinematic
+constraints but not the associated reaction forces. In fact, the system
+also allows the opposite: Reaction forces without kinematic constraints.
+For an in-depth discussion of some of these issues, please refer to the
+<a class="reference internal" href="../The_mechanical_elements/intro.html"><span class="doc">tutorial on mechanical  elements</span></a>. For now, the
+bottom line is that counting reactions can sometimes be tricky, and the
+Mechanical System Information in Object Description is helpful in this
+respect.</p>
+<p>A few special cases are:</p>
+<ol class="arabic simple">
+<li><p>The number of reaction and driver forces is less than the number of
+rigid body degrees of freedom in the model as it is the case here.
+This leaves some reactions to be provided by other elements, and
+these elements are usually the muscles in the model.</p></li>
+<li><p>If the number of reaction and driver forces is equal to the number of
+rigid body degrees of freedom, then the model is (usually) capable of
+balancing itself, and there is no use for muscles. In fact, if you
+add muscles to such a mechanism, the muscles will end up doing
+nothing.</p></li>
+<li><p>If the model has more reaction and driver forces than rigid body
+degrees of freedom then it is statically indeterminate. This usually
+means that there is something wrong with the model. Mechanically it
+is equivalent to the model having multiple different ways of
+balancing itself and having no way of determining which the correct
+one is. Even though AnyBody is capable of computing the forces in
+such a model you will often find the solutions oscillating between
+the infinitely many possibilities between time steps. Models like
+these should in general be avoided.</p></li>
+</ol>
+<p>Let us investigate what happens if we make some changes in the model.
+Let us initially remove one of the drivers in the model leaving it
+kinematically indeterminate:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Drivers</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="c1">//---------------------------------</span>
+    <span class="gr">//      AnyKinEqSimpleDriver ShoulderMotion = {</span>
+<span class="gr">    //        AnyRevoluteJoint &amp;Jnt = ..Jnts.Shoulder;</span>
+<span class="gr">    //        DriverPos = {-100*pi/180};</span>
+<span class="gr">    //        DriverVel = {30*pi/180};</span>
+<span class="gr">    //        Reaction.Type = {Off};</span>
+<span class="gr">    //      }; // Shoulder driver</span>
+
+    <span class="c1">//---------------------------------</span>
+    <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ElbowMotion</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Elbow</span><span class="p">;</span>
+        <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">90</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+        <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">45</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+        <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="kp">Off</span><span class="p">};</span>
+    <span class="p">};</span> <span class="c1">// Elbow driver</span>
+<span class="p">};</span> <span class="c1">// Driver folder</span>
+</pre></div>
+</div>
+<p>When you load the model again you will see the message:</p>
+<p>Model Warning: Study ‘Main.ArmStudy’ contains too few kinematic
+constraints to be kinematically determinate.</p>
+<p>When you load the model, the system automatically discovers that there
+seems to be less kinematic constraints than required. In this situation
+it might not be possible to assemble the mechanism and it is almost
+certainly not possible to run a kinematic analysis. Opening the Object
+Description window, by double-clicking the ArmStudy folder, produces
+this output:</p>
+<p><img alt="Object description, number of constraints" src="../_images/image37.png" /></p>
+<p>The Mechanical System Information allows you to investigate in detail
+how many constraints are missing and which ones they may be. Let us
+shift the missing driver back in:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">//---------------------------------</span>
+<span class="gr">AnyKinEqSimpleDriver ShoulderMotion = {</span>
+<span class="gr">  AnyRevoluteJoint &amp;Jnt = ..Jnts.Shoulder;</span>
+<span class="gr">  DriverPos = {-100*pi/180};</span>
+<span class="gr">  DriverVel = {30*pi/180};</span>
+<span class="gr">  Reaction.Type = {Off};</span>
+<span class="gr">}; // Shoulder driver</span>
+
+<span class="c1">//---------------------------------</span>
+<span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ElbowMotion</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Elbow</span><span class="p">;</span>
+  <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">90</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">45</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="kp">Off</span><span class="p">};</span>
+<span class="p">};</span> <span class="c1">// Elbow driver</span>
+</pre></div>
+</div>
+<p>… and try something else:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//---------------------------------</span>
+<span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ShoulderMotion</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
+  <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">100</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">30</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="gr">On</span><span class="p">};</span>
+<span class="p">};</span> <span class="c1">// Shoulder driver</span>
+
+<span class="c1">//---------------------------------</span>
+<span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ElbowMotion</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Elbow</span><span class="p">;</span>
+  <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">90</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">45</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="gr">On</span><span class="p">};</span>
+<span class="p">};</span> <span class="c1">// Elbow driver</span>
+</pre></div>
+</div>
+<p>What we have done here is to switch the reaction forces in the two joint
+drivers on. This is equivalent to imbedding motors into the joints, and
+it means that the system will obtain enough reaction forces to carry the
+loads without help from any muscles, corresponding to the statically
+determinate situation 2 listed above. Loading the model does not bring
+about any warnings, but if you run the InverseDynamics operation you
+will get the following message for each time-step</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;ArmStudy&#39;:  The muscles in the model are not loaded due to kinetically over-constrained mechanical system.
+</pre></div>
+</div>
+<p>And the Object Description window will give the following feedback:</p>
+<p><img alt="Object description, list of reaction forces" src="../_images/image46.png" /></p>
+<p>indicating that the model is precisely statically determinate with 12 reactions
+corresponding to the 12 rigid body degrees of freedom.</p>
+<p>Having familiarized ourselves with the Mechanical System Information in
+the Object Description of the study, let us proceed to Initial
+Conditions in the <a class="reference internal" href="lesson2.html"><span class="doc">next lesson</span></a>.</p>
+<div class="without-title admonition seealso">
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson2.html"><span class="doc">Lesson2: Initial Conditions</span></a>.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. A Study of Studies</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson1: Mechanical System Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson2: Initial Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Kinematic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Inverse Dynamics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</div><h3>Found a problem?</h3>
+
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_study_of_studies/lesson1.md">
+    <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+</p>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson2.html" title="Lesson2: Initial Conditions"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction: A Study of Studies"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">6. </span>A Study of Studies</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson1: Mechanical System Information</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, AnyBody Technology.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

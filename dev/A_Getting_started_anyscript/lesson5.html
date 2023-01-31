@@ -1,0 +1,469 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Lesson 5: Definition of Muscles and External Forces" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/A_Getting_started_anyscript/lesson5.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="The model so far has been capable of motion despite lacking muscles. This is because a kinematic analysis that does not consider forces. Skeletal muscles produce movement by pulling on our bones. M..." />
+  
+<meta property="og:image" content="https://anyscript.org/_images/image16.png" />
+  
+<meta property="og:image:alt" content="AnyScript Tutorials" />
+  
+    <title>Lesson 5: Definition of Muscles and External Forces &#8212; AnyBody Tutorials v7.4.2</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 6: Adding Real Bone Geometries" href="lesson6.html" />
+    <link rel="prev" title="Lesson 4: Imparting movement with Drivers" href="lesson4.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson6.html" title="Lesson 6: Adding Real Bone Geometries"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="Lesson 4: Imparting movement with Drivers"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">2. </span>Getting started: AnyScript Programming</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 5: Definition of Muscles and External Forces</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-5-definition-of-muscles-and-external-forces">
+<h1>Lesson 5: Definition of Muscles and External Forces<a class="headerlink" href="#lesson-5-definition-of-muscles-and-external-forces" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here’s an AnyScript file to start on if you have not completed the
+previous lesson: <a class="reference download internal" download="" href="../_downloads/628a7964e66950ecc0165fa528b935e3/demo.lesson5.any"><code class="xref download docutils literal notranslate"><span class="pre">demo.lesson5.any</span></code></a>.</p>
+</div>
+<p>The model so far has been capable of motion despite lacking muscles.
+This is because a kinematic analysis that does not consider forces.</p>
+<p>Skeletal muscles produce movement by pulling on our bones. Muscle actions
+are coordinated in complicated patterns determined by our central nervous system.</p>
+<p><strong>AnyBody helps you predict realistic muscle activation patterns for a given movement and external load.</strong></p>
+<div class="section" id="creating-a-muscle-model">
+<h2>Creating a muscle model<a class="headerlink" href="#creating-a-muscle-model" title="Permalink to this headline">¶</a></h2>
+<p>The exact behaviour of muscle tissue is a widely researched (and debated) topic.</p>
+<p>AnyBody offers several models of varying sophistication, for modelling muscle behaviour. A detailed introduction
+to muscle modeling can be found here <a class="reference internal" href="../Muscle_modeling/intro.html"><span class="doc">its own tutorial</span></a>.</p>
+<p>Here, we will create a very simple muscle model and use it to model our arm model muscles. We start by creating a folder for the muscles:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyFolder Muscles = {</span>
+<span class="gr"> }; // Muscles folder</span>
+</pre></div>
+</div>
+<p>The next step is to create a muscle model that defines the properties that will be assumed common for all the muscles.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since properties such as Max muscle strength, fiber length etc. differ between muscles, realistic AMMR human body models
+define unique muscle models for each muscle element.</p>
+</div>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Muscles</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="gr">// Simple muscle model with constant strength = 400 Newton</span>
+<span class="gr">  AnyMuscleModel MusMdl = {</span>
+<span class="gr">    F0 = 400;</span>
+<span class="gr">  };</span>
+<span class="p">};</span> <span class="c1">// Muscles folder</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-a-muscle">
+<h2>Creating a muscle<a class="headerlink" href="#creating-a-muscle" title="Permalink to this headline">¶</a></h2>
+<p>Since muscles can only pull, we need to define at least one
+muscle on each side of every revolute joint.</p>
+<p>When working with models containing three-dimensional spherical joints, you may need more muscles.
+It can be quite difficult to figure out the minimum number of muscles required
+to drive a complex body model.</p>
+<p>Let’s add just one muscle to start with, the elbow-flexor muscle named Brachialis:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span> <span class="kt">AnyFolder</span> <span class="n">Muscles</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="c1">// Simple muscle model with constant strength = 300 Newton</span>
+   <span class="kt">AnyMuscleModel</span> <span class="n">MusMdl</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="n">F0</span> <span class="o">=</span> <span class="mi">400</span><span class="p">;</span>
+   <span class="p">};</span>
+
+   <span class="gr">//---------------------------------</span>
+<span class="gr">   AnyMuscleViaPoint Brachialis = {</span>
+<span class="gr">     AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
+<span class="gr">     AnyRefNode &amp;Org = ..Segs.UpperArm.Brachialis;</span>
+<span class="gr">     AnyRefNode &amp;Ins = ..Segs.ForeArm.Brachialis;</span>
+<span class="gr">     AnyDrawMuscle DrwMus = {};</span>
+<span class="gr">  };</span>
+<span class="p">};</span> <span class="c1">// Muscles folder</span>
+</pre></div>
+</div>
+<p><strong>This muscle is created by the</strong> <code class="docutils literal notranslate"><span class="pre">AnyMuscleViaPoint</span></code> <strong>class. These are muscles which begin at
+an origin point, pass through a number of pre-defined via points, and finally terminate
+at the insertion.</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">Org</span></code> <strong>and</strong> <code class="docutils literal notranslate"><span class="pre">Ins</span></code> <strong>are the origin and insertion of the Brachialis. They are reference objects,
+pointing to reference nodes named “Brachialis” that have already been created on the “UpperArm” and “ForeArm”</strong></p>
+<p>The Brachialis muscle in our model lacks via-points. However if a muscle has via points, we must insert
+reference objects to respective via-point nodes in the lines between <code class="docutils literal notranslate"><span class="pre">Org</span></code> and <code class="docutils literal notranslate"><span class="pre">Ins</span></code>, in the correct order.</p>
+<p>The physiological behavior of the muscle is defined by the first line:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">MusMdl</span> <span class="o">=</span> <span class="p">..</span><span class="n">Muscles</span><span class="p">.</span><span class="n">MusMdl</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You can see that it points right back to the muscle model we have already created (<a class="reference internal" href="lesson3.html#relative-folder-path"><span class="std std-ref">Notice the two leading dots</span></a>). Finally, the following line displays the muscle in your model view window:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyDrawMuscle</span> <span class="n">DrwMus</span> <span class="o">=</span> <span class="p">{};</span>
+</pre></div>
+</div>
+<p>Upon re-loading the model, you should see a thick, red line connecting the muscle’s origin and
+insertion points. There are other ways to visualize muscles, and these are described here in a <a class="reference internal" href="../Muscle_modeling/intro.html"><span class="doc">dedicated muscletutorial</span></a>.</p>
+<p>The muscle path may appear strange because the mechanism hasn’t been assembled by a kinematic analysis.</p>
+</div>
+<div class="section" id="adding-more-muscles">
+<h2>Adding more muscles<a class="headerlink" href="#adding-more-muscles" title="Permalink to this headline">¶</a></h2>
+<p>All the other muscles are defined in the same way. Your model should resemble the image seen further below:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//---------------------------------</span>
+<span class="n">AnyMuscleViaPoint</span> <span class="n">Brachialis</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">MusMdl</span> <span class="o">=</span> <span class="p">..</span><span class="n">Muscles</span><span class="p">.</span><span class="n">MusMdl</span><span class="p">;</span>
+  <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">Org</span> <span class="o">=</span> <span class="p">..</span><span class="n">Segs</span><span class="p">.</span><span class="n">UpperArm</span><span class="p">.</span><span class="n">Brachialis</span><span class="p">;</span>
+  <span class="kt">AnyRefNode</span> <span class="o">&amp;</span><span class="n">Ins</span> <span class="o">=</span> <span class="p">..</span><span class="n">Segs</span><span class="p">.</span><span class="n">ForeArm</span><span class="p">.</span><span class="n">Brachialis</span><span class="p">;</span>
+  <span class="kt">AnyDrawMuscle</span> <span class="n">DrwMus</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="p">};</span>
+
+<span class="gr">//---------------------------------</span>
+<span class="gr">AnyMuscleViaPoint DeltodeusA = {</span>
+<span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
+<span class="gr">  AnyRefNode &amp;Org = ..GlobalRef.DeltodeusA;</span>
+<span class="gr">  AnyRefNode &amp;Ins = ..Segs.UpperArm.DeltodeusA;</span>
+<span class="gr">  AnyDrawMuscle DrwMus = {};</span>
+<span class="gr">};</span>
+
+<span class="gr">//---------------------------------</span>
+<span class="gr">AnyMuscleViaPoint DeltodeusB = {</span>
+<span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
+<span class="gr">  AnyRefNode &amp;Org = ..GlobalRef.DeltodeusB;</span>
+<span class="gr">  AnyRefNode &amp;Ins = ..Segs.UpperArm.DeltodeusB;</span>
+<span class="gr">  AnyDrawMuscle DrwMus = {};</span>
+<span class="gr">};</span>
+
+<span class="gr">//---------------------------------</span>
+<span class="gr">AnyMuscleViaPoint Brachioradialis = {</span>
+<span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
+<span class="gr">  AnyRefNode &amp;Org = ..Segs.UpperArm.Brachioradialis;</span>
+<span class="gr">  AnyRefNode &amp;Ins = ..Segs.ForeArm.Brachioradialis;</span>
+<span class="gr">  AnyDrawMuscle DrwMus = {};</span>
+<span class="gr">};</span>
+
+<span class="gr">//---------------------------------</span>
+<span class="gr">AnyMuscleViaPoint BicepsShort = {</span>
+<span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
+<span class="gr">  AnyRefNode &amp;Org = ..Segs.UpperArm.BicepsShort;</span>
+<span class="gr">  AnyRefNode &amp;Ins = ..Segs.ForeArm.Biceps;</span>
+<span class="gr">  AnyDrawMuscle DrwMus = {};</span>
+<span class="gr">};</span>
+
+<span class="gr">//---------------------------------</span>
+<span class="gr">AnyMuscleViaPoint TricepsShort = {</span>
+<span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
+<span class="gr">  AnyRefNode &amp;Org = ..Segs.UpperArm.TricepsShort;</span>
+<span class="gr">  AnyRefNode &amp;Ins = ..Segs.ForeArm.Triceps;</span>
+<span class="gr">  AnyDrawMuscle DrwMus = {};</span>
+<span class="gr">};</span>
+
+<span class="gr">//---------------------------------</span>
+<span class="gr">AnyMuscleViaPoint BicepsLong = {</span>
+<span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
+<span class="gr">  AnyRefNode &amp;Org = ..GlobalRef.BicepsLong;</span>
+<span class="gr">  AnyRefNode &amp;Ins = ..Segs.ForeArm.Biceps;</span>
+<span class="gr">  AnyDrawMuscle DrwMus = {};</span>
+<span class="gr">};</span>
+
+<span class="gr">//---------------------------------</span>
+<span class="gr">AnyMuscleViaPoint TricepsLong = {</span>
+<span class="gr">  AnyMuscleModel &amp;MusMdl = ..Muscles.MusMdl;</span>
+<span class="gr">  AnyRefNode &amp;Org = ..GlobalRef.TricepsLong;</span>
+<span class="gr">  AnyRefNode &amp;Ins = ..Segs.ForeArm.Triceps;</span>
+<span class="gr">  AnyDrawMuscle DrwMus = {};</span>
+<span class="gr">};</span>
+</pre></div>
+</div>
+<img alt="../_images/image16.png" src="../_images/image16.png" />
+</div>
+<div class="section" id="the-initialconditions-analysis">
+<h2>The InitialConditions analysis<a class="headerlink" href="#the-initialconditions-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Your model (in the image above) doesn’t appear to be connected properly at the elbow because AnyBody only enforces the
+joint constraints during a simulation.</p>
+<p>Use the operation drop down menu to run the “InitialConditions” operation. If you don’t remember
+how this is done, refer to <a class="reference internal" href="../A_Getting_started/lesson2.html#running-analysis"><span class="std std-ref">this prior tutorial</span></a>.</p>
+<p>The assembled model should resemble the following figure.</p>
+<img alt="../_images/image24.png" src="../_images/image24.png" />
+</div>
+<div class="section" id="switching-off-driver-reactions-when-muscles-do-the-job-important">
+<span id="driver-reactions"></span><h2>Switching off driver reactions when muscles do the job (Important!)<a class="headerlink" href="#switching-off-driver-reactions-when-muscles-do-the-job-important" title="Permalink to this headline">¶</a></h2>
+<p>Even though you haven’t added any external forces to your model, the model still
+requires some assistive force to hold up its own weight. Note that you’ve specified
+a gravity vector in the “ArmModelStudy” object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A kinematic constraint needs to be enforced by an accompanying constraint force.
+For example, when you lean on a table, the normal reaction force on your hand maintains the
+surface-surface constraint between hand and table. Were it not for the force you would have fallen, with your hand
+passing through the table surface. Similarly motion constraints such as joint angle motions need a driving
+force to maintain the specified trajectory.</p>
+</div>
+<p>By default, all drivers in your model apply the necessary constraint forces (also called driver reactions) for their respective kinematic constraints.</p>
+<p><strong>The constraint “force” is actually a generalized force i.e. whether it is actually a force or torque
+depends on the type of measure that a driver constrains. For example, a driver on a rotational measure, will apply torques, while one on
+a linear measure will apply forces. AnyBody reports all of these simply as “forces”, and it is up to you to interpret them.</strong></p>
+<p><strong>The drivers for shoulder and elbow motion thus default to applying the required constraint reaction torques to sustain the joint motions.
+This is problematic, since we wish the muscles forces to be causing the motion instead. The default driver reactions must therefore be
+switched off by setting the “Reaction.Type” property.</strong></p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ShoulderMotion</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Shoulder</span><span class="p">;</span>
+  <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">100</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">30</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="gr">Reaction.Type = {Off};</span>
+<span class="p">};</span> <span class="c1">// Shoulder driver</span>
+
+<span class="c1">//---------------------------------</span>
+<span class="kt">AnyKinEqSimpleDriver</span> <span class="n">ElbowMotion</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">..</span><span class="n">Jnts</span><span class="p">.</span><span class="n">Elbow</span><span class="p">;</span>
+  <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">90</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">45</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="gr">Reaction.Type = {Off};</span>
+<span class="p">};</span> <span class="c1">// Elbow driver</span>
+</pre></div>
+</div>
+<p>On the other hand, the driver reactions come in handy in models under development, while you are still adding
+muscles or other force elements to enforce the constraints. The driver reactions will allow you to successfully run
+inverse dynamic simulations at the intermediate model stages, by ensuring dynamic consistency.</p>
+<p>The single <code class="docutils literal notranslate"><span class="pre">Off</span></code> is encapsulated in braces, <code class="docutils literal notranslate"><span class="pre">{Off}</span></code> because it is a vector.
+A driver can theoretically have any number of total DOF from all the measures
+that it drives. Therefore all data in a driver are vector quantities, even when it is a 1 DOF driver .</p>
+</div>
+<div class="section" id="the-inversedynamicanalysis-and-plotting-muscle-forces">
+<h2>The InverseDynamicAnalysis and plotting muscle forces<a class="headerlink" href="#the-inversedynamicanalysis-and-plotting-muscle-forces" title="Permalink to this headline">¶</a></h2>
+<p>Run the the <strong>InverseDynamicAnalysis</strong> operation from the operations drop-down menu.
+In this analysis, the AnyBody system computes all muscle, joint forces and much more.</p>
+<p>Review the instructions from <a class="reference internal" href="../A_Getting_started/lesson3.html#chart-view"><span class="std std-ref">this prior tutorial</span></a> on plotting simulation results.</p>
+<p>To plot the muscle forces in the brachialis muscle, open
+“Main.Study.Output.Model.Muscles.Brachialis” in the chart view’s model tree, and plot the variable named <code class="docutils literal notranslate"><span class="pre">Fm</span></code>.
+You should get a curve that looks like the one below.</p>
+<img alt="../_images/image33.png" src="../_images/image33.png" />
+<p>The drop in muscle force with movement progression is due to the decreasing moment arm of the
+gravity vector about the elbow joint, as the elbow flexes. Therefore lesser the muscle force.</p>
+<p>If you look at the muscle force in the BicepsLong, you see a different pattern:</p>
+<img alt="../_images/image42.png" src="../_images/image42.png" />
+<p>This muscle’s force increases during the movement because this muscle supports both, the shoulder and the
+elbow. In addition, it collaborates both with DeltoidusA on shoulder
+flexion, and with the other elbow flexors, and all these muscles have to
+adjust their work in relation to each other.</p>
+</div>
+<div class="section" id="creating-external-loads">
+<h2>Creating external loads<a class="headerlink" href="#creating-external-loads" title="Permalink to this headline">¶</a></h2>
+<p>You may want to investigate the model’s behavior in different loading situations, such as when the hand
+is carrying a dumbbell. Let us imagine that the model is performing a dumbbell curl.</p>
+<p>We start by creating a node on the forearm at the location of the palm. Add this within the curly braces of the “ForeArm” object:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyRefNode PalmNode = {</span>
+<span class="gr">   sRel = {0.27,0,0};</span>
+<span class="gr"> };</span>
+</pre></div>
+</div>
+<p>The next step is to add an external force. We make a new sub-folder for this purpose, within ArmModel:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">AnyFolder Loads = {</span>
+
+<span class="gr">  //---------------------------------</span>
+<span class="gr">  AnyForce3D Dumbbell = {</span>
+<span class="gr">    AnyRefNode &amp;PalmNode = ..Segs.ForeArm.PalmNode;</span>
+<span class="gr">    F = {0,-100,0}; // Force in Newton</span>
+<span class="gr">  };</span>
+<span class="gr">};  // Loads folder</span>
+</pre></div>
+</div>
+<p>Now you can reload the model and re-run inverse dynamics to analyze how the model reacts
+to a downward force of 100 N (approximately 10 kg dumbbell weight). The BicepsLong force again, you
+should see this:</p>
+<img alt="../_images/image54.png" src="../_images/image54.png" />
+<p>The muscle force is obviously much larger than before, and the
+development is also different. It now reaches a maximum during the
+movement and drops off again.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Applied forces do not have to be constant. They can change with time
+and other properties in the model.  Please refer to the <a class="reference internal" href="../The_mechanical_elements/intro.html"><span class="doc">tutorial onforces</span></a> for more
+details.</p>
+</div>
+<p><strong>The model you’ve built here was anatomically simplified, and it can be a
+difficult job to define a realistic body model from scratch. We recommend that users
+start out with the body models available in the</strong> <a class="reference external" href="https://www.anybodytech.com/software/ammr/">AnyBody Managed Model
+Repository</a>.</p>
+<div class="without-title admonition seealso">
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> Now, let’s continue to <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Adding real bone geometrics</span></a></p>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Getting started: AnyScript Programming</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: Basic Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: Defining Segments and Displaying Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Connecting Segments by Joints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: Imparting movement with Drivers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 5: Definition of Muscles and External Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: Adding Real Bone Geometries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</div><h3>Found a problem?</h3>
+
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_Getting_started_anyscript/lesson5.md">
+    <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+</p>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson6.html" title="Lesson 6: Adding Real Bone Geometries"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="Lesson 4: Imparting movement with Drivers"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">2. </span>Getting started: AnyScript Programming</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 5: Definition of Muscles and External Forces</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, AnyBody Technology.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

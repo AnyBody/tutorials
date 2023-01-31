@@ -1,0 +1,260 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Parameter Studies and Optimization" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/Parameter_studies_and_optimization/intro.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="The AnyBody Modeling System has a nice mechanism that allows you to perform investigations of the model’s reaction to its parameters and even to automatically find the set of parameters that causes..." />
+  
+<meta property="og:image" content="https://anyscript.org/_images/image12.gif" />
+  
+<meta property="og:image:alt" content="AnyScript Tutorials" />
+  
+    <title>Parameter Studies and Optimization &#8212; AnyBody Tutorials v7.4.2</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Defining a Parameter Study" href="lesson1.html" />
+    <link rel="prev" title="17. Parameter Studies and Optimization" href="index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Defining a Parameter Study"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="17. Parameter Studies and Optimization"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">17. </span>Parameter Studies and Optimization</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Parameter Studies and Optimization</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="parameter-studies-and-optimization">
+<h1>Parameter Studies and Optimization<a class="headerlink" href="#parameter-studies-and-optimization" title="Permalink to this headline">¶</a></h1>
+<p>The AnyBody Modeling System has a nice mechanism that allows you to
+perform investigations of the model’s reaction to its parameters and
+even to automatically find the set of parameters that causes a given
+behavior of the model. Some examples of applications are:</p>
+<ul class="simple">
+<li><p>Systematic investigations of the model’s sensitivity to a group of
+parameters such as a muscle insertion point, muscle strength, or
+external support point.</p></li>
+<li><p>Posture and movement prediction.</p></li>
+<li><p>Optimization of muscular strength for a particular sports
+performance.</p></li>
+<li><p>Optimization of the layout of a bicycle for a particular person.</p></li>
+<li><p>Answering research questions such as: Could a T-rex jump? With
+optimization you can find the movement pattern that maximizes, for
+instance, the jump height given the body weight and limitations on
+muscular strength.</p></li>
+</ul>
+<blockquote>
+<div><img alt="../_images/image12.gif" src="../_images/image12.gif" />
+<p>Parameter study: Metabolic efficiency of a bicycle as a function of
+seat height and seat horizontal position.</p>
+</div></blockquote>
+<p>This functionality is provided through two complementary
+<a class="reference internal" href="../A_study_of_studies/intro.html"><span class="doc">studies</span></a>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AnyParamStudy</span></code> performs an exhaustive search of the variable
+space computing the model’s reaction to every combination of the
+variables within a given interval. For instance, a parameter study could
+investigate the metabolic efficiency of a bicycle depending on the
+horizontal and vertical position of the saddle. The advantage of this
+study is that it gives you the ultimate overview of the system’s
+behavior. The disadvantage is that the number of computations grows
+exponentially with the number of parameters. A two-parameter problem
+with five values of each parameter leads to 5 x 5 = 25 analyses, which
+is usually no problem to do, while a five parameter problem will lead to
+5^5 = 3125 analyses, which obviously is a more time-consuming
+undertaking, at least for larger models.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AnyOptStudy</span></code> performs a systematic search within a parameter
+space using optimization techniques of solutions that fulfill certain
+criteria. For instance, you could ask the study to find the saddle
+position that maximizes the metabolic efficiency of the bicycle while
+keeping the maximum muscle activity below a certain upper limit. The
+advantage of this study is that it does not need to compute al
+combinations of the parameters and therefore can handle spaces with
+multiple parameters within a reasonable time. The disadvantage is that
+it does not provide the overview of the design space that you get from a
+parameter study.</p>
+<p>This tutorial devotes one lesson to each of the two study types:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="lesson1.html"><span class="doc">Defining a parameter study</span></a></p></li>
+<li><p><a class="reference internal" href="lesson2.html"><span class="doc">Optimization studies</span></a></p></li>
+</ol>
+<div class="without-title admonition seealso">
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson1.html"><span class="doc">Defining a Parameter Study</span></a>.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">17. Parameter Studies and Optimization</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Defining a Parameter Study</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Optimization Studies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Optimization Studies in Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</div><h3>Found a problem?</h3>
+
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Parameter_studies_and_optimization/intro.md">
+    <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+</p>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Defining a Parameter Study"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="17. Parameter Studies and Optimization"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">17. </span>Parameter Studies and Optimization</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Parameter Studies and Optimization</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, AnyBody Technology.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

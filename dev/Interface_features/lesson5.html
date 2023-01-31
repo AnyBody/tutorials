@@ -1,0 +1,519 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Lesson 5: The Command Line Application" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/Interface_features/lesson5.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="The AnyBody Modeling System comes with a command line application named AnyBodyCon.exe; sometimes referred to as the AnyBody Console Application. You will find this .exe file in the AnyBody install..." />
+  
+<meta property="og:image" content="https://anyscript.org/_images/image124.png" />
+  
+<meta property="og:image:alt" content="AnyBodyCon window" />
+  
+    <title>Lesson 5: The Command Line Application &#8212; AnyBody Tutorials v7.4.2</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 6: Modifying the Loaded Model" href="lesson6.html" />
+    <link rel="prev" title="Lesson 4: The Model Tree and Object Description" href="lesson4.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson6.html" title="Lesson 6: Modifying the Loaded Model"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="Lesson 4: The Model Tree and Object Description"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">5. </span>User interface features</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 5: The Command Line Application</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-5-the-command-line-application">
+<h1>Lesson 5: The Command Line Application<a class="headerlink" href="#lesson-5-the-command-line-application" title="Permalink to this headline">¶</a></h1>
+<p>The AnyBody Modeling System comes with a command line application named
+AnyBodyCon.exe; sometimes referred to as the AnyBody Console
+Application. You will find this .exe file in the AnyBody installation
+directory.</p>
+<p>While lacking a graphical interface, it has the full functionality of
+the GUI version and is helpful for batch processing of models from
+Matlab, Python, Java and JavaScript or C++.</p>
+<p><img alt="AnyBodyCon window" src="../_images/image124.png" /></p>
+<p>It is not possible to build models using the console application but
+gives faster performance running operations on existing model. The
+console application can be used manually, or it can take input from a
+macro file containing commands.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference external" href="https://github.com/AnyBody-Research-Group/AnyPyTools">AnyPyTools</a> Python library
+developed at Aalborg University. It greatly simplifies working with the console application.</p>
+</div>
+<div class="section" id="interactive-mode">
+<h2>Interactive mode<a class="headerlink" href="#interactive-mode" title="Permalink to this headline">¶</a></h2>
+<p>We need a model to work on, so please download and save
+<a class="reference download internal" download="" href="../_downloads/85067cc57cd7d262f85b39ce776fc53a/Demo.OutputFile.any"><code class="xref download docutils literal notranslate"><span class="pre">Demo.OutputFile.any</span></code></a> in a working directory.</p>
+<p><strong>Important:</strong> To start the console application:</p>
+<ol class="arabic">
+<li><p>Launch the command prompt and change directory to where you have saved
+<code class="docutils literal notranslate"><span class="pre">Demo.outputfile.any</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">anybodycon.exe</span></code> using its full path,</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\path\to\model</span><span class="c1">&gt;&quot;C:\Program Files\AnyBody Technology\AnyBody.7.1\AnyBodyCon.exe&quot;</span>
+
+AnyBody Console Application
+AnyBodyCon.exe version : 7. 1. 1. 6004 (64-bit version)
+Build : 17585.48300
+Copyright (c) 1999 - 2018 AnyBody Technology A/S
+
+
+Current path: C:\path\to\model
+&gt;
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="console-commands">
+<h2>Console commands<a class="headerlink" href="#console-commands" title="Permalink to this headline">¶</a></h2>
+<p>It only understands eight different commands. You can always get help by
+using the ‘help’ command or by calling AnyBodyCon with an /? argument.
+The table below contains a description of the commands accepted by the
+AnyBody console.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Command name</strong></p></th>
+<th class="head"><p><strong>Functionality</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>load “&lt;filename&gt;”</p></td>
+<td><p>Loads an AnyScript model into the system and compiles it.Example: <code class="docutils literal notranslate"><span class="pre">load</span> <span class="pre">&quot;demo.outputfile.any&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>operation &lt;<a class="reference external" href="http://op.name">op.name</a>&gt;</p></td>
+<td><p>This command sets the active operation. This must be the first thing you do after loading.&gt; Example:</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">operation</span> <span class="pre">Main.ArmStudy.InverseDynamics</span></code> |
+| Run                  | Runs the active operation.Example: <code class="docutils literal notranslate"><span class="pre">run</span></code>                                                                                                            |
+| Runmacro             | This command loads and executes an anymcr file.Example: <code class="docutils literal notranslate"><span class="pre">runmacro</span> <span class="pre">&quot;filename.anymcr&quot;</span></code>                                                                |
+| Step                 | Solves a single time step of the active operation.Example: <code class="docutils literal notranslate"><span class="pre">step</span></code>                                                                                   |
+| Reset                | Resets the active operation.Example: <code class="docutils literal notranslate"><span class="pre">reset</span></code>                                                                                                        |
+| print &lt;object&gt;      | Prints the value of a single object.Example: <code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">Main.ArmModel.Jnts.Shoulder.Pos</span></code>                                                                |
+| printdown &lt;object&gt;  | Recursively prints the values of all elements in an object folder.Example: <code class="docutils literal notranslate"><span class="pre">printdown</span> <span class="pre">Main.ArmModel.Jnts</span></code>                                           |
+| exit                 | Exits and returns to the command prompt.Example: <code class="docutils literal notranslate"><span class="pre">exit</span></code>                                                                                             |</p>
+</div></blockquote>
+</div>
+<div class="section" id="using-the-console-application">
+<h2>Using the console application<a class="headerlink" href="#using-the-console-application" title="Permalink to this headline">¶</a></h2>
+<p>Start AnyBodyCon.exe from the command prompt and issue the command
+sequence</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
+operation Main.ArmStudy.InverseDynamics
+run
+exit
+</pre></div>
+</div>
+<p>When the operation has finished, we are left with no idea of what the
+simulation results are! But wait, the model has been programmed to write
+some output files.</p>
+<p>For understanding how open demo.outputfile.any model in the GUI Windows
+version of AnyBody Modeling System. You will notice two
+<code class="docutils literal notranslate"><span class="pre">AnyOutputFile</span></code> objects inside the ArmStudy.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// The study: Operations to be performed on the model</span>
+<span class="kt">AnyBodyStudy</span> <span class="n">ArmStudy</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">ArmModel</span><span class="p">;</span>
+  <span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="kp">MR_MinMaxStrict</span><span class="p">;</span>
+  <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+
+  <span class="kt">AnyOutputFile</span> <span class="n">OutFile1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;out1.csv&quot;</span><span class="p">;</span>
+
+    <span class="kt">AnyVar</span> <span class="n">MaxAct</span> <span class="o">=</span> <span class="p">.</span><span class="n">MaxMuscleActivity</span><span class="p">;</span>
+
+    <span class="kt">AnyFloat</span> <span class="n">TestTensorConst</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span>
+      <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="kt">AnyFloat</span> <span class="n">TestTensor</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="p">{</span>
+       <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span>
+       <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span>
+       <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span>
+       <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span><span class="o">*</span><span class="n">MaxAct</span>
+     <span class="p">},</span>
+     <span class="p">{</span>
+       <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span>
+       <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span>
+       <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span>
+       <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span><span class="o">*</span><span class="n">MaxAct</span>
+     <span class="p">}</span>
+    <span class="p">};</span>
+  <span class="p">};</span>
+
+  <span class="kt">AnyOutputFile</span> <span class="n">OutFile2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;out2.csv&quot;</span><span class="p">;</span>
+    <span class="n">Search</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;ArmModel.Muscles.*.Act*&quot;</span><span class="p">,</span> <span class="s">&quot;ArmModel.Muscles.*.Ft&quot;</span><span class="p">};</span>
+    <span class="n">SepSign</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>If you open a file manager and look at the directory where you are
+running the model, you will notice that two new comma-separated value
+files have been generated: out1.csv and out2.csv. The semicolon
+separator between numbers was defined in the AnyOutputFile above.</p>
+<p>You can open these files in Microsoft Excel, where each column of data
+corresponds to the variables defined in the AnyOutputFile command.</p>
+<p>You can also save the output when using the GUI version by
+right-clicking on the Output subfolder of the Study folder in the Model
+Tree and choosing “Save Data”. We can replicate this in the console as
+follows</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
+operation Main.ArmStudy.InverseDynamics
+run
+classoperation Main.ArmStudy.Output &quot;Save data&quot; --file=&quot;myoutput.anydata.h5&quot; --type=Deep
+exit
+</pre></div>
+</div>
+<p>The full model output (as opposed to select variables shown in the
+AnyOutputFile) will be saved in h5 format in the working directory.
+These results can either be read into MATLAB or Python or be re-loaded
+into AnyBody GUI (Right click the output sub-folder of the study, and
+select “Load Data”) for review.</p>
+<div class="section" id="using-define-and-path-statements-for-loading-a-model">
+<h3>Using define and path statements for loading a model<a class="headerlink" href="#using-define-and-path-statements-for-loading-a-model" title="Permalink to this headline">¶</a></h3>
+<p>If you are firstly unfamiliar with these statements, you can find an
+introduction in the tutorial Getting started: AnyScript Programming.
+They give us some limited control over modifying the model from the
+command line application. As a simple example, let us use a #define to
+change the number of time steps in our operation.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="gr">#ifndef NOSTEPS</span>
+<span class="gr">#define NOSTEPS 100</span>
+<span class="gr">#endif</span>
+
+<span class="c1">// The study: Operations to be performed on the model</span>
+
+<span class="kt">AnyBodyStudy</span> <span class="n">ArmModelStudy</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">ArmModel</span><span class="p">;</span>
+
+    <span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="kp">MR_MinMaxStrict</span><span class="p">;</span>
+
+    <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+
+    <span class="gr">nStep = NOSTEPS;</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>If we now exchange</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
+</pre></div>
+</div>
+<p>from our operation sequence with</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot; –def NOSTEPS=50
+</pre></div>
+</div>
+<p>we will see that our model will only to 50 timesteps now.</p>
+</div>
+</div>
+<div class="section" id="non-interactive-mode">
+<h2>Non-interactive Mode<a class="headerlink" href="#non-interactive-mode" title="Permalink to this headline">¶</a></h2>
+<p>One of the main strengths of the console application is that it can be
+executed by other software such as Matlab, Visual Basic or Python. You
+can store the commands for such executions of the console in a macro
+file having the extension “.anymcr”.</p>
+<p>As with the interactive mode, we can use #define- and #path statements
+for purposes like changing the output file name, which may need to be
+different each time the console application is called. For this, we
+first need to modify the AnyScript file with an OUTPUTFILE argument:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef</span> <span class="n">NOSTEPS</span>
+
+<span class="cp">#define</span> <span class="n">NOSTEPS</span> <span class="mi">100</span>
+
+<span class="cp">#endif</span>
+
+<span class="gr">#ifndef OUTPUTFILE</span>
+
+<span class="gr">#define OUTPUTFILE &quot;armoutput.anydata.h5&quot;</span>
+
+<span class="gr">#endif</span>
+
+<span class="gr">AnyOperationSequence RunApplication = {</span>
+
+<span class="gr">// This operation is the inverse dynamic analysis</span>
+
+<span class="gr">AnyOperation &amp;InvAnal=Main.ArmModelStudy.InverseDynamics;</span>
+
+<span class="gr">// This operation saves the output of the study to an h5 file in the</span>
+<span class="gr">Output folder</span>
+
+<span class="gr">AnyOperationMacro save = {</span>
+
+<span class="gr">MacroStr={ &quot;classoperation Main.ArmModelStudy.Output &quot; + strquote(&quot;Save data&quot;) + &quot; --file=&quot; + strquote(OUTPUTFILE) + &quot; --type=Deep&quot;};</span>
+
+<span class="gr">};</span>
+
+<span class="gr">};</span>
+
+<span class="c1">// The study: Operations to be performed on the model</span>
+
+<span class="kt">AnyBodyStudy</span> <span class="n">ArmModelStudy</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">ArmModel</span><span class="p">;</span>
+
+<span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="kp">MR_MinMaxStrict</span><span class="p">;</span>
+
+<span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+
+<span class="n">nStep</span> <span class="o">=</span> <span class="n">NOSTEPS</span><span class="p">;</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Further we create an .anymcr file which we can call ‘runarm.anymcr’. It
+contains the following operations</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>load &quot;demo.outputfile.any&quot;
+operation RunApplication
+run
+exit
+</pre></div>
+</div>
+<p>We can now execute the macro file by calling</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.1\AnyBodyCon.exe&quot; /m “runarm.anymcr”</span>
+</pre></div>
+</div>
+<p>from the folder where we saved our model and the macro
+file. It will create an output file called ‘armoutput.anydata.h5’ which
+we specified in the .any file.</p>
+<p>To change the name of the output file, we can call the macro again with
+a #define statement for the file name</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\AnyBody Technology\AnyBody.7.1\AnyBodyCon.exe&quot; /m runarm.anymcr /def OUTPUTFILE=---&quot;\&quot;myoutput.anydata.h5\&quot;&quot;</span>
+</pre></div>
+</div>
+<p>What the construction <code class="docutils literal notranslate"><span class="pre">—“\”</span> <span class="pre">…</span> <span class="pre">\””</span></code> is doing, in this case,
+is that it will define a quoted string for the #define statement similar
+to the definition in the .any file. As a result we see that the output
+is written to the file ‘myoutput.anydata.h5’.</p>
+<p>You are now ready to let the command line application be part of a
+system for biomechanical data processing of your own design.</p>
+</div>
+<div class="section" id="path-specification">
+<h2>Path specification<a class="headerlink" href="#path-specification" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned earlier, you can add the path of AnyBodyCon.exe to the PATH
+environmental variable for your command prompt to ease the call to
+AnyBodyCon.exe from anywhere. This you can do from the command prompt
+with a statement such as:</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">path</span> <span class="nv">%path%</span>;C:\Program Files\AnyBody Technology\AnyBody.7.1;
+</pre></div>
+</div>
+<p>It will add AnyBodyCon.exe’s path to the existing path
+definition. Notice that there cannot be any space between <code class="docutils literal notranslate"><span class="pre">;</span></code> and the
+following path <code class="docutils literal notranslate"><span class="pre">c:\...</span></code> and that you can see the resulting path by
+simply calling the internal path command again without arguments.</p>
+<p>These statements will only take effect until the current command prompt
+is closed, but you can also add the path of AnyBodyCon.exe permanently
+to the path for all command prompts. In Windows XP for instance, you do
+this from Control Panel -&gt; System under the Advanced tab. You should,
+however, be aware that multiple versions of AnyBody may be installed on
+the computer at the same time, and therefore, multiple versions of
+<code class="docutils literal notranslate"><span class="pre">AnyBodyCon.exe</span></code> may exist in different locations. Thus, your path
+specification not only makes it easy to call <code class="docutils literal notranslate"><span class="pre">AnyBodyCon.exe</span></code>; it will
+also specify which version that will be used. This can make it unclear
+which version you are actually using if you need several of them.</p>
+<p>To be in full control of multiple AnyBody installations, you can define
+aliases by the following procedure:</p>
+<ol class="arabic simple">
+<li><p>Make a directory with .bat files or shortcuts to the AnyBodyCon.exe
+version you will need. Name the bat-files so you can recognize the
+different versions, e.g. AnyBodyCon61.bat and AnyBodyCon70.bat. The
+bat files contain a single statement, the call of AnyBodyCon.exe with
+its full path.</p></li>
+<li><p>Add this directory to the permanent path of the command prompt.</p></li>
+<li><p>You can now call the different versions of AnyBodyCon via the bat
+files, so the bat file names are working as aliases for the real .exe
+files.</p></li>
+</ol>
+<div class="without-title admonition seealso">
+<p class="admonition-title">See also</p>
+<p><strong>Next lesson:</strong> <a class="reference internal" href="lesson6.html"><span class="doc">Lesson 6: Modifying the Loaded Model</span></a>.</p>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. User interface features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: The Editor Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: The Model View Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: The Chart View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: The Model Tree and Object Description</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 5: The Command Line Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: Modifying the Loaded Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson7.html">Lesson 7: Wrapping the Model with AnyBody Project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</div><h3>Found a problem?</h3>
+
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Interface_features/lesson5.md">
+    <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+</p>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson6.html" title="Lesson 6: Modifying the Loaded Model"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson4.html" title="Lesson 4: The Model Tree and Object Description"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">5. </span>User interface features</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 5: The Command Line Application</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, AnyBody Technology.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

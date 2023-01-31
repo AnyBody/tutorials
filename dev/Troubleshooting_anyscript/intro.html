@@ -1,0 +1,376 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="18. Trouble Shooting AnyScript Models" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/Troubleshooting_anyscript/intro.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="If you think mechanics is simple, it’s probably just because you haven’t worked with three-dimensional space yet. The laws of mechanics are pretty easy to comprehend as long as stuff is moving on a..." />
+  
+<meta property="og:image" content="https://anyscript.org/tutorials/_static/anybody_tutorials_logo.png" />
+  
+<meta property="og:image:alt" content="AnyScript Tutorials" />
+  
+    <title>18. Trouble Shooting AnyScript Models &#8212; AnyBody Tutorials v7.4.2</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="19. Posture and Movement Prediction" href="../Posture_and_movement/intro.html" />
+    <link rel="prev" title="Optimization Studies in Python" href="../Parameter_studies_and_optimization/lesson3.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Posture_and_movement/intro.html" title="19. Posture and Movement Prediction"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Parameter_studies_and_optimization/lesson3.html" title="Optimization Studies in Python"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">18. </span>Trouble Shooting AnyScript Models</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="trouble-shooting-anyscript-models">
+<h1><span class="section-number">18. </span>Trouble Shooting AnyScript Models<a class="headerlink" href="#trouble-shooting-anyscript-models" title="Permalink to this headline">¶</a></h1>
+<p>If you think mechanics is simple, it’s probably just because you haven’t
+worked with three-dimensional space yet. The laws of mechanics are
+pretty easy to comprehend as long as stuff is moving on a
+one-dimensional line. When you go to two dimensions, complications such
+as rotational inertia and centrifugal forces start to play a role, but
+the equations are still not very difficult. The third dimension is what
+complicates things enormously and even to the point that mere kinematics
+becomes a matter for university scholars. It is quite literally rocket
+science.</p>
+<p>A system like AnyBody is a tremendous help in this situation because it
+sets up and handles all the equations inside the system and relieves you
+of the task of actually handling the mathematics. But the system does
+not prevent you from creating models where the syntax or semantics of
+the model is invalid, where segments cannot reach their joints, where
+the kinematics is undefined, or where there are not enough muscles to
+balance the forces in the system. You are likely to run into all these
+problems.</p>
+<p>More precisely, you can get the following types of errors:</p>
+<ul class="simple">
+<li><p>Load-time errors - when the AnyScript model is syntactically
+erroneous</p></li>
+<li><p>Run-time errors - when a successfully loaded model refuses to be
+analyzed.</p></li>
+</ul>
+<div class="section" id="load-time-errors">
+<h2>Load-time errors<a class="headerlink" href="#load-time-errors" title="Permalink to this headline">¶</a></h2>
+<p>A load-time error occurs when you load a model by pressing F7 or the
+M&lt;-S icon on top of each window. This causes the system to attempt a
+compilation of the model you have in the window, and any errors
+occurring in this respect are load-time errors.</p>
+<p>Load-time errors are problems with the syntax of the AnyScript model you
+have authored. Such a model must honor a number of very formal semantic
+rules to be valid, and if it fails the test of any of those, you will
+get a load-time error.</p>
+<p>Each possible error that can occur is associated with an error message,
+and the system will print the message in the message window at the
+bottom of the screen, for instance like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ERROR : C:\MyDocuments\AnyScripts\Main.any(42) : AnyVar : unexpected</span>
+</pre></div>
+</div>
+<p>or like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ERROR : C:\MyDocuments\AnyScripts\Main.any(45) : cannot open file : DrawSetting.any</span>
+</pre></div>
+</div>
+<p>or this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ERROR : C:\MyDocuments\AnyScripts\Main.any(133) : EOF : unexpected</span>
+</pre></div>
+</div>
+<p>As you can see, error messages adhere to a certain structure. The first
+part after ERROR is the file in which the system encountered the error.
+Notice that this may be a different file from the one you were loading
+because the main file may spawn to include files during the loading of
+the model.</p>
+<p>After the file name you find a number in parenthesis. This is the number
+of the line where the error occurred. If you double-click the file name
+or the number, the file opens, and the cursor is placed at the line in
+question. Be sure to click the file name or line number and not the
+error message.</p>
+<p>After the line number comes the actual specification of the error. With
+good descriptive error messages and easy access to the error location
+you should have the problem fixed in no time. Unfortunately things are
+not always that nice. First of all, the error messages are not always
+very descriptive. This is a problem the AnyBody Modeling System shares
+with any other computer language compiler in the market. It is not
+because programmers specifically want to bother their users. The problem
+is simply that error messages are generated by a very formal semantic
+analysis. This makes them very different from the natural human
+expression of the problem, and they can be difficult for the user to
+understand. But you can get used to them and people have been known to
+even grow fond of their conciseness.</p>
+<p>The second and more serious problem is that the error may occur in a
+totally different location from where it really is. Let’s take an
+example: Suppose by mistake you have included the wrong file like this:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;TheWrongFile.any&quot;</span>
+</pre></div>
+</div>
+<p>somewhere in the model. When the compiler spawns to the wrong file it is
+likely to meet statements or references to objects that do not exist.
+The compiler will report en error in WrongFile.any, but the real error
+is in the file that included WrongFile.any.</p>
+<p>Here are some typical errors and their consequences:</p>
+<div class="section" id="forgotten-semicolon">
+<h3>Forgotten semicolon<a class="headerlink" href="#forgotten-semicolon" title="Permalink to this headline">¶</a></h3>
+<p>Every statement in AnyScript must be terminated by a semicolon, and it is easy
+to forget. The consequence is that the compiler will proceed to the next line
+and probably report that it has encountered something unexpected there. By
+closer investigation, the next line may be fully in order, and you get confused.
+The problem was really on the former line.</p>
+<p>Notice also that end braces must also have a semicolon after them.</p>
+</div>
+<div class="section" id="unbalanced-braces">
+<h3>Unbalanced braces<a class="headerlink" href="#unbalanced-braces" title="Permalink to this headline">¶</a></h3>
+<p>Braces <code class="docutils literal notranslate"><span class="pre">{}</span></code> are used to group things together in AnyScript. They must be coherent
+and balanced, and if you have one too few or one too many it can completely
+change the structure of the code, and you can get strange error messages. The
+best remedy is to use consistent indentations in the code. This makes it easy to
+follow the brace level and spot mistakes.</p>
+<p>The AnyScript editor can indent your code automatically. If you select all the
+text and press Alt-F8, all lines are indented according to the brace level, and
+this often makes it much easier to see where the problem is. Beware that the
+missing brace can be in an include file.</p>
+</div>
+<div class="section" id="mix-up-of-decimal-points-and-commas">
+<h3>Mix-up of decimal points and commas<a class="headerlink" href="#mix-up-of-decimal-points-and-commas" title="Permalink to this headline">¶</a></h3>
+<p>Some nationalities use decimal commas, and some use decimal points. The AnyBody
+Modeling System consistently uses decimal points regardless of the nationality
+settings in your computer. If you type a comma in place of a decimal point, you
+will get a syntax error.</p>
+</div>
+<div class="section" id="mix-up-of-of-letters">
+<h3>Mix-up of of letters<a class="headerlink" href="#mix-up-of-of-letters" title="Permalink to this headline">¶</a></h3>
+<p>Beware that there is a difference between the letter ‘O’ and the digit zero, ‘0’, and the letter ‘l’ and the digit one, ‘1’.</p>
+</div>
+<div class="section" id="inconsistent-use-of-capitals">
+<h3>Inconsistent use of capitals<a class="headerlink" href="#inconsistent-use-of-capitals" title="Permalink to this headline">¶</a></h3>
+<p>AnyScript is case-sensitive, so these two statements refer to different variables:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">MyVariable</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">Myvariable</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This also means that predefined class names such as AnyVar or AnyFolder must be written with correct capitalization.</p>
+</div>
+<div class="section" id="missing-reference-operator">
+<h3>Missing reference operator<a class="headerlink" href="#missing-reference-operator" title="Permalink to this headline">¶</a></h3>
+<p>If by mistake you assign two folders to each other:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>you will get the error message:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Folder assignment expected for this object.</span>
+</pre></div>
+</div>
+<p>What the message means is that this type of assignment is not allowed. You may
+argue that the error message is misleading because ‘=’ is indeed an assignment
+operator. However, operators in AnyScript are polymorphic, and they are
+interpreted in the context of the variables they operate on, and for two folders
+no proper assignment operator exists. So, while rhetorically correct, what the
+statement really means is that you are missing an ampersand, ‘&amp;’. Assignment of
+folders to each other must be by reference like this.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">MyFolderCopy</span> <span class="o">=</span> <span class="n">MyFolder</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="missing-expected-members">
+<h3>Missing expected members<a class="headerlink" href="#missing-expected-members" title="Permalink to this headline">¶</a></h3>
+<p>Some classes in AnyScript have members that must be initialized. For instance,
+this declaration</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">arm</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Mass</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>will produce the error:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Obligatory initialization of member : AnyVec3 Jii is missing.</span>
+</pre></div>
+</div>
+<p>The reason is that AnySeg has a property called Jii which must be given a value
+before the definition is complete. Similarly, some objects have properties that
+are untouchable. This declaration:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnySeg</span> <span class="n">arm</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>also causes an error:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">t : Initialization denied.</span>
+</pre></div>
+</div>
+<p>because t is a protected variable. It is set automatically by the system and
+cannot be assigned a value by the user.</p>
+</div>
+</div>
+<div class="section" id="run-time-errors">
+<h2>Run-time errors<a class="headerlink" href="#run-time-errors" title="Permalink to this headline">¶</a></h2>
+<p>Run-time errors occur during analysis of a successfully loaded model.
+Their nature and remedies are completely dependent on the nature of the
+study. Please refer to the tutorial “<a class="reference internal" href="../A_study_of_studies/intro.html"><span class="doc">A study of studies</span></a>” for further
+information.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</div><h3>Found a problem?</h3>
+
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Troubleshooting_anyscript/intro.md">
+    <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+</p>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Posture_and_movement/intro.html" title="19. Posture and Movement Prediction"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Parameter_studies_and_optimization/lesson3.html" title="Optimization Studies in Python"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">18. </span>Trouble Shooting AnyScript Models</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, AnyBody Technology.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

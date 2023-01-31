@@ -1,0 +1,318 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Lesson 2: Controlling the Posture" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/A_Getting_started/lesson2.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="The Standing Model’s posture is defined by the angles at the anatomical joints. These specifications have been collected in one of the model files, “Mannequin.any”. Scroll down to the line which sa..." />
+  
+<meta property="og:image" content="https://anyscript.org/_images/image11.png" />
+  
+<meta property="og:image:alt" content="..." />
+  
+    <title>Lesson 2: Controlling the Posture &#8212; AnyBody Tutorials v7.4.2</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 3: Reviewing Analysis Results" href="lesson3.html" />
+    <link rel="prev" title="Lesson 1: Creating a Standing Model" href="lesson1.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: Reviewing Analysis Results"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: Creating a Standing Model"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">1. </span>Getting Started</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 2: Controlling the Posture</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-2-controlling-the-posture">
+<h1>Lesson 2: Controlling the Posture<a class="headerlink" href="#lesson-2-controlling-the-posture" title="Permalink to this headline">¶</a></h1>
+<p>The Standing Model’s posture is defined by the angles at the anatomical joints.</p>
+<p>These specifications have been collected in one of the model files, “Mannequin.any”. Scroll
+down to the line which says <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;Model\Mannequin.any&quot;</span></code>.</p>
+<div class="section" id="mannequin-file-structure">
+<h2>Mannequin file structure<a class="headerlink" href="#mannequin-file-structure" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+
+<span class="c1">// Define desired posture or movement of the model</span>
+<span class="cp">#include</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
+
+<span class="p">...</span>
+</pre></div>
+</div>
+<p><strong>This line means that your model will include the “Mannequin.any” file located in the Model folder,
+within the main file.</strong></p>
+<p>Double-clicking the file name in the editor window after loading
+your model opens the mannequin file in a new tab. Then you see the
+following structure. (In the interest of legibility we have removed many
+of the lines):</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Default mannequin position values</span>
+<span class="n">HumanModel</span><span class="p">.</span><span class="n">Mannequin</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">Posture</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">};</span>
+    <span class="n">Left</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">};</span>
+  <span class="p">};</span>
+
+  <span class="n">PostureVel</span><span class="o">=</span> <span class="p">{</span>
+    <span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">};</span>
+    <span class="n">Left</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">};</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>The section between each pair of braces creates a Folder, with all variables defined within forming the folder contents.</strong></p>
+<p>Once the loading process is complete, you can see this folder structure being replicated in “Model tree” on the left of your screen. All contents of this file
+can be seen by expanding the “Mannequin” folder icon in the tree.</p>
+<p><img alt="..." src="../_images/image11.png" /></p>
+<p>There are sub-folders for postural joint angles (in degrees) and angular velocities (in degrees/second),
+for the right and left halves of the body.</p>
+<p>Changing any of the joint angles and reloading the model, will change the model’s posture at load time. To start with, ensure that the contents of the “Right”
+and “Left” sub-folders are as follows.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="n">Right</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//Arm </span>
+    <span class="n">SternoClavicularProtraction</span><span class="o">=-</span><span class="mi">23</span><span class="p">;</span>   <span class="c1">//This value is not used for initial position</span>
+    <span class="n">SternoClavicularElevation</span><span class="o">=</span><span class="mf">11.5</span><span class="p">;</span>    <span class="c1">//This value is not used for initial position</span>
+    <span class="n">SternoClavicularAxialRotation</span><span class="o">=-</span><span class="mi">20</span><span class="p">;</span> <span class="c1">///&lt; Only used when the clavicular axial rotation rhythm is diabled</span>
+      
+    <span class="n">GlenohumeralFlexion</span> <span class="o">=-</span><span class="mi">0</span><span class="p">;</span> 
+    <span class="n">GlenohumeralAbduction</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> 
+    <span class="n">GlenohumeralExternalRotation</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> 
+      
+    <span class="n">ElbowFlexion</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span> 
+    <span class="n">ElbowPronation</span> <span class="o">=</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">;</span>
+      
+    <span class="n">WristFlexion</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">WristAbduction</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+            
+    <span class="c1">//Leg</span>
+    <span class="n">HipFlexion</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> 
+    <span class="n">HipAbduction</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span> 
+    <span class="n">HipExternalRotation</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+      
+    <span class="n">KneeFlexion</span> <span class="o">=</span> <span class="mf">4.0</span><span class="p">;</span>
+      
+    <span class="n">AnklePlantarFlexion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span> 
+    <span class="n">SubTalarEversion</span> <span class="o">=</span><span class="mf">0.0</span><span class="p">;</span> 
+
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>If you scroll down, you’ll see that the contents of “Left” folder are set to be equal
+to those from the “Right” folder, in order to create a symmetric posture.</p>
+<p><strong>This is an important feature of the AnyScript language. Instead of numbers, you can create references to other variables or write
+mathematical expressions wherever necessary.</strong></p>
+<p>To create a non-symmetric posture, you would have to replace some of the expressions in the “Left” folder with numbers of your choice.</p>
+<p>Scrolling further below, you will find the “PosturVel folder”. This is organized exactly like Posture, but the numbers here specify
+joint angular velocities in degrees per second. For now, please leave all the values in this folder as zero.</p>
+</div>
+<div class="section" id="running-a-simulation-analysis">
+<span id="running-analysis"></span><h2>Running a simulation analysis<a class="headerlink" href="#running-a-simulation-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Simulation based analyses in AnyBody are termed “Studies”.</p>
+<p><strong>Step 1</strong>: Click on the operations drop-down menu at the top (see figure). Select “Main.RunApplication”</p>
+<p>“RunApplication” is a readymade package of some pre-processing steps and the “InverseDynamics” analysis. Other drop-down operations include:</p>
+<ul class="simple">
+<li><p><strong>Kinematics</strong>: Runs Kinematic analysis</p></li>
+<li><p><strong>InverseDynamics</strong>: Runs Inverse dynamic analysis</p></li>
+<li><p><strong>InitialConditions</strong>: Runs only the first time step of Kinematics. Useful for testing and debugging.</p></li>
+<li><p><strong>Replay</strong>: Replays the last operation that was run.</p></li>
+</ul>
+<img alt="../_images/image2.png" src="../_images/image2.png" />
+<p><strong>Step 2</strong>: Click the “Run Operation” button on the Execute toolbar. This toolbar is next to the drop-down menu, and contains three buttons:</p>
+<p><img alt="..." src="../_images/image3.png" /></p>
+<ul class="simple">
+<li><p><strong>Run operation</strong>: Starts or pauses the chosen operation. Shortcut
+F5.</p></li>
+<li><p><strong>Step operation</strong>: Advances to next step of operation, typically a
+time step. Shortcut F6.</p></li>
+<li><p><strong>Stop operation</strong>: Sets the operation back to its initial position.
+You must reset before you start a new analysis that was previously
+aborted. Shortcut F4</p></li>
+</ul>
+<p>You will see the model move slightly into position and you are finally
+awarded the following message:</p>
+<p>1.0) Inverse dynamic analysis…</p>
+<p>1.10) …Inverse dynamic analysis completed</p>
+<p>You have just completed your first analysis with an AnyBody model. In the
+next lesson, we will examine the effects of posture on the results</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: Creating a Standing Model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 2: Controlling the Posture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: Reviewing Analysis Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Interface_features/index.html">5. User interface features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</div><h3>Found a problem?</h3>
+
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/A_Getting_started/lesson2.md">
+    <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+</p>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson3.html" title="Lesson 3: Reviewing Analysis Results"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson1.html" title="Lesson 1: Creating a Standing Model"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">1. </span>Getting Started</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 2: Controlling the Posture</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, AnyBody Technology.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,772 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Lesson 7: Wrapping the Model with AnyBody Project" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://anyscript.org/Interface_features/lesson7.html" />
+  
+<meta property="og:site_name" content="AnyScript Tutorials" />
+  
+<meta property="og:description" content="“AnyBody Project” or just AnyProject, since it is defined with this class name, is a data structure aimed at wrapping a model and bringing its important features to the surface in AnyBody GUI and t..." />
+  
+<meta property="og:image" content="https://anyscript.org/tutorials/_static/anybody_tutorials_logo.png" />
+  
+<meta property="og:image:alt" content="AnyScript Tutorials" />
+  
+    <title>Lesson 7: Wrapping the Model with AnyBody Project &#8212; AnyBody Tutorials v7.4.2</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. A Study of Studies" href="../A_study_of_studies/index.html" />
+    <link rel="prev" title="Lesson 6: Modifying the Loaded Model" href="lesson6.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../A_study_of_studies/index.html" title="6. A Study of Studies"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson6.html" title="Lesson 6: Modifying the Loaded Model"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">5. </span>User interface features</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 7: Wrapping the Model with AnyBody Project</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-7-wrapping-the-model-with-anybody-project">
+<h1>Lesson 7: Wrapping the Model with AnyBody Project<a class="headerlink" href="#lesson-7-wrapping-the-model-with-anybody-project" title="Permalink to this headline">¶</a></h1>
+<p>“AnyBody Project” or just AnyProject, since it is defined with this
+class name, is a data structure aimed at wrapping a model and bringing
+its important features to the surface in AnyBody GUI and thereby closer
+to the user.</p>
+<p>The objective is to ease execution of important model’s operations and
+related actions and collect these in a dedicated and intuitive place.
+This is equally aimed at the experienced and advanced user doing
+repetitive work with many models or many data sets, users working with
+models prepared by others, and the less experienced users who need to
+work with a model for processing data, but who does not have to develop
+it or understand it’s every detail.</p>
+<p>The AnyProject functions can be summarized by</p>
+<ul class="simple">
+<li><p>Model View Definitions that provide features for defining particular
+views of the model and user interface for activating the views.</p></li>
+<li><p>Task definitions that wrap the important operations of the model with
+a user interface for execution. A Model View Definition can be
+associated with a given task.</p></li>
+<li><p>All project objects are equipped with descriptions that can be used
+for explaining the task or view to new users.</p></li>
+<li><p>Project file information is automatically found by the system and can
+be supplemented by the user.</p></li>
+<li><p>“Send to” function for exporting the model and all of its resources
+to a new location</p></li>
+</ul>
+<p>An AnyBody project is defined in the model, in principle as any other
+objects of the model using the AnyProject class. The main difference to
+most objects is that project objects do not provide new information by
+themselves, but merely collect information to the AnyBody Modeling
+System GUI about what is important in the particular model.</p>
+<p>In this lesson, we shall make an AnyBody Project wrapper of the very
+simple planar arm model (<a class="reference download internal" download="" href="../_downloads/0432b163c1580c61f44aaf29cdc77bfb/demo.arm2d.any"><code class="xref download docutils literal notranslate"><span class="pre">Demo.arm2d.any</span></code></a>
+using <a class="reference download internal" download="" href="../_downloads/80dfe342a1200fc86cfc64c3e5f4857e/dumbbell.stl"><code class="xref download docutils literal notranslate"><span class="pre">dumbbell.stl</span></code></a>) that we have used in
+previous lessons. The final example file we shall build in this lesson
+is <a class="reference download internal" download="" href="../_downloads/21c52e1a94a45c6eee473d71bcf92df7/AnyProject.any"><code class="xref download docutils literal notranslate"><span class="pre">AnyProject.any</span></code></a> using
+<a class="reference download internal" download="" href="../_downloads/2826baafa47452c19feeac6c6a98a748/DrawGroups.any"><code class="xref download docutils literal notranslate"><span class="pre">DrawGroups.any</span></code></a> in addition.</p>
+<p>We include the model file in our new main file, and we create an empty
+project called ArmProject.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
+
+    <span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="p">};</span>
+
+<span class="p">};</span> <span class="c1">// Main</span>
+</pre></div>
+</div>
+<div class="section" id="project-files">
+<h2>Project Files<a class="headerlink" href="#project-files" title="Permalink to this headline">¶</a></h2>
+<p>Firstly, we add some file information to the project. This is done in
+the AnyProject Files folder, which is a predefined folder. Here we set
+two files, the MainFile and the SetValueFile.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
+
+    <span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="n">Files</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="n">MainFile</span> <span class="o">=</span> <span class="s">&quot;AnyProject.any&quot;</span><span class="p">;</span>
+
+            <span class="n">SetValueFile</span> <span class="o">=</span> <span class="s">&quot;values.anyset&quot;</span><span class="p">;</span>
+
+        <span class="p">};</span>
+
+    <span class="p">};</span>
+
+<span class="p">};</span> <span class="c1">// Main</span>
+</pre></div>
+</div>
+<p>The MainFile indicates simply which file is the main file for this
+project. It may seem a bit redundant, but this information also serves
+to determine whether the project is active or not. Multiple projects can
+in principle exist in the model, but only the one(s) having the correct
+main file is considered active by the system.</p>
+<p>This implies that we can include a file that is actually a Main file by
+itself (as in this case with Demo.arm2d.any), and this main file could,
+in fact, have a project (AnyProject) of its own, but it would only be
+active if we actually load the arm2d.any. In the given example we have
+only one AnyProject.</p>
+<p>The SetValueFile is a file used by the project for storing modified
+values. It is automatically saved when closing the model and
+automatically loaded, although only upon user acceptance when loading
+the model. Apart from this, it is saved and loaded exactly like the
+manual execution of the Main folder’s Class Operations, “Save Values”
+and “Load Values”, respectively.</p>
+<p>The SetValueFile needs not to be specified, and it will only be managed
+by active projects, i.e. projects with a MainFile specification matching
+the loaded Main file.</p>
+<p>The Files folder also contains some file-objects for storing project
+file information. These are automatically filled during loading. Their
+information can, of course, be accessed or just inspected by the user,
+but it is also used during “Send to” export operations on the model
+(Class Operation of Main). It should, however, be noticed that the “Send
+to” Class Operation to some extent is functional for models without
+project information too.</p>
+</div>
+<div class="section" id="model-view-definitions">
+<h2>Model View Definitions<a class="headerlink" href="#model-view-definitions" title="Permalink to this headline">¶</a></h2>
+<p>Model View Definitions are basically a set of view actions applied to a
+number of drawing groups. In order to set up some standard views for the
+model, we shall, therefore, define some drawing groups:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="p">...</span>
+
+    <span class="kt">AnyFolder</span> <span class="n">DrawGroups</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="kt">AnyDrawGroup</span> <span class="n">AllSegments</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="n">Objects</span> <span class="o">=</span> <span class="nb">ObjSearch</span><span class="p">(</span><span class="s">&quot;Main.ArmModel.Segs.*&quot;</span><span class="p">);</span>
+
+        <span class="p">};</span>
+
+        <span class="kt">AnyDrawGroup</span> <span class="n">AllMuscles</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="n">Objects</span> <span class="o">=</span> <span class="nb">ObjSearch</span><span class="p">(</span><span class="s">&quot;Main.ArmModel.Muscles.*&quot;</span><span class="p">);</span>
+
+        <span class="p">};</span>
+
+        <span class="kt">AnyDrawGroup</span> <span class="n">AllDeltoidMuscles</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="n">Objects</span> <span class="o">=</span> <span class="nb">ObjSearch</span><span class="p">(</span><span class="s">&quot;Main.ArmModel.Muscles.Del*.DrwMus&quot;</span><span class="p">);</span>
+
+        <span class="p">};</span>
+
+        <span class="kt">AnyDrawGroup</span> <span class="n">All</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="n">Objects</span> <span class="o">=</span> <span class="nb">ObjSearchRecursive</span><span class="p">(</span><span class="s">&quot;Main.ArmModel&quot;</span><span class="p">,</span><span class="s">&quot;*&quot;</span><span class="p">);</span>
+
+        <span class="p">};</span>
+
+    <span class="p">};</span>
+
+<span class="p">...</span>
+
+<span class="p">};</span> <span class="c1">// Main</span>
+</pre></div>
+</div>
+<p>In the final example files, this is actually done in a separate file,
+<a class="reference download internal" download="" href="../_downloads/2826baafa47452c19feeac6c6a98a748/DrawGroups.any"><code class="xref download docutils literal notranslate"><span class="pre">DrawGroups.any</span></code></a>, so we now have</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;DrawGroups.any&quot;</span>
+
+    <span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="n">Files</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="n">MainFile</span> <span class="o">=</span> <span class="s">&quot;AnyProject.any&quot;</span><span class="p">;</span>
+
+            <span class="n">SetValueFile</span> <span class="o">=</span> <span class="s">&quot;values.anyset&quot;</span><span class="p">;</span>
+
+        <span class="p">};</span>
+
+    <span class="p">};</span>
+
+<span class="p">};</span> <span class="c1">// Main</span>
+</pre></div>
+</div>
+<p>Having defined the draw groups we need, we can return to the project
+definition and define our view</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
+
+<span class="cp">#include</span> <span class="s">&quot;DrawGroups.any&quot;</span>
+
+<span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="n">Views</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="kt">AnyProjectModelViewDefinition</span> <span class="n">View_Misc</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="n">DrawGroupSequence</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="o">&amp;</span><span class="n">Main</span><span class="p">.</span><span class="n">DrawGroups</span><span class="p">.</span><span class="n">AllSegments</span><span class="p">,</span>
+                <span class="o">&amp;</span><span class="n">Main</span><span class="p">.</span><span class="n">DrawGroups</span><span class="p">.</span><span class="n">AllMuscles</span><span class="p">,</span>
+                <span class="o">&amp;</span><span class="n">Main</span><span class="p">.</span><span class="n">DrawGroups</span><span class="p">.</span><span class="n">AllDeltoidMuscles</span>
+            <span class="p">};</span>
+
+            <span class="n">Reset</span> <span class="o">=</span> <span class="p">{</span><span class="kp">Off</span><span class="p">,</span> <span class="kp">Off</span><span class="p">,</span> <span class="kp">Off</span><span class="p">};</span> <span class="c1">//Same behavior as not defining Reset.</span>
+            <span class="n">Hide</span> <span class="o">=</span> <span class="p">{</span><span class="kp">Off</span><span class="p">,</span> <span class="kp">Off</span><span class="p">,</span> <span class="kp">Off</span><span class="p">};</span> <span class="c1">//Same behavior as not defining Hide.</span>
+            <span class="n">ShowModelDefined</span> <span class="o">=</span> <span class="p">{</span><span class="kp">On</span><span class="p">,</span> <span class="kp">Off</span><span class="p">,</span> <span class="kp">On</span><span class="p">};</span>
+            <span class="n">ShowAutoGenerated</span> <span class="o">=</span> <span class="p">{</span><span class="kp">Off</span><span class="p">,</span> <span class="kp">On</span><span class="p">,</span> <span class="kp">Off</span><span class="p">};</span> <span class="c1">//Same behavior as {Off, On}.</span>
+            <span class="n">Transparent</span> <span class="o">=</span> <span class="p">{</span><span class="kp">On</span><span class="p">,</span> <span class="kp">Off</span><span class="p">,</span> <span class="kp">On</span><span class="p">};</span>
+            <span class="n">Select</span> <span class="o">=</span> <span class="p">{</span><span class="kp">Off</span><span class="p">,</span> <span class="kp">Off</span><span class="p">,</span> <span class="kp">Off</span><span class="p">};</span> <span class="c1">//Same behavior as not defining Select.</span>
+
+        <span class="p">};</span>
+
+    <span class="p">};</span>
+
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>This view we define using three draw groups, all segments, all muscles
+and the deltoid muscles. We want to show the model-defined segments and
+deltoid muscle being transparent and the rest of the muscles will just
+show their default drawing.</p>
+<p>In the final example model you can download, we have defined three other
+views, just to show how it works. For further information on how to
+define Model View Definitions, please refer to the Reference Manual.</p>
+</div>
+<div class="section" id="project-tasks">
+<h2>Project Tasks<a class="headerlink" href="#project-tasks" title="Permalink to this headline">¶</a></h2>
+<p>Firstly, we define two simple tasks that execute the two important
+operations of our main (our only) study. It executes the setting of
+initial positions and inverse dynamics. These tasks are created by
+defining two AnyProjectTaskOperation objects that point to the
+particular operations in ArmModelStudy.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;DrawGroups.any&quot;</span>
+
+    <span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="n">Tasks</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_Initial_Conditions</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">Title</span> <span class="o">=</span> <span class="s">&quot;Initial Conditions of Arm Model&quot;</span><span class="p">;</span>
+                <span class="n">BodyText</span> <span class="o">=</span> <span class="s">&quot;This task sets the initial conditions.&quot;</span><span class="p">;</span>
+                <span class="n">Tooltip</span> <span class="o">=</span> <span class="s">&quot;Sets Initial Conditions&quot;</span><span class="p">;</span>
+                <span class="n">Files</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;dumbbell.stl&quot;</span><span class="p">,</span><span class="s">&quot;values.anyset&quot;</span><span class="p">};</span>
+            <span class="p">};</span>
+
+            <span class="n">Operation</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Main</span><span class="p">.</span><span class="n">ArmModelStudy</span><span class="p">.</span><span class="n">InitialConditions</span><span class="p">;</span>
+
+        <span class="p">};</span>
+
+        <span class="kt">AnyProjectTaskOperation</span> <span class="n">Run_Inverse_Dynamics</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">Title</span> <span class="o">=</span> <span class="s">&quot;Inverse Dynamcis of Arm Model&quot;</span><span class="p">;</span>
+                <span class="n">BodyText</span> <span class="o">=</span> <span class="s">&quot;This task executes the inverse dynamics analysis of the arm model.&quot;</span><span class="p">;</span>
+                <span class="n">Tooltip</span> <span class="o">=</span> <span class="s">&quot;Inverse Dynamics Simulation&quot;</span><span class="p">;</span>
+            <span class="p">};</span>
+
+            <span class="n">Operation</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Main</span><span class="p">.</span><span class="n">ArmModelStudy</span><span class="p">.</span><span class="n">InverseDynamics</span><span class="p">;</span>
+        <span class="p">};</span>
+    <span class="p">};</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>Each task is accompanied by a description consisting of a title, a body
+text, and a tooltip string. All strings will appear in the AnyBody GUI
+in the Projects pane. Additionally, the description can hold a list of
+files. Here we have just added links to some file that are already part
+of the model, but a more relevant case could be to make links to
+external documentation related to the given task and model.</p>
+<p>In addition to these options for executing the model, we want to equip
+the model with tasks for saving and loading the simulated output. This
+can be done by declaring an AnyOperationMacro object that calls the
+Class Operations for “Save data” and “Load data” on the output folder
+for MainArmModel.Study. All this, we do inside the task folder
+definition because it is not part of the original model, see the
+following code:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
+
+<span class="cp">#include</span> <span class="s">&quot;DrawGroups.any&quot;</span>
+
+<span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="n">Tasks</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="p">...</span>
+
+        <span class="kt">AnyProjectTaskOperation</span> <span class="n">Save_Output_Data</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">Title</span> <span class="o">=</span> <span class="s">&quot;Saving output data from the simulation&quot;</span><span class="p">;</span>
+                <span class="n">BodyText</span> <span class="o">=</span> <span class="s">&quot;This task saves the output for the simulation, e.g. executed by task &quot;</span>
+                            <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span> <span class="nb">AnyBodyLinkOf</span><span class="p">(</span><span class="o">&amp;</span><span class="p">..</span><span class="n">Run_Inverse_Dynamics</span><span class="p">)</span> <span class="p">)</span>
+                            <span class="o">+</span> <span class="s">&quot; to file &quot;</span>
+                            <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span> <span class="nb">strlink</span><span class="p">(.</span><span class="n">filename</span><span class="p">)</span> <span class="p">);</span>
+                <span class="n">Tooltip</span> <span class="o">=</span> <span class="s">&quot;Saving output data&quot;</span><span class="p">;</span>
+                <span class="n">Files</span> <span class="o">=</span> <span class="p">.</span><span class="n">filename</span><span class="p">;</span>
+            <span class="p">};</span>
+
+            <span class="n">Operation</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Opr</span><span class="p">;</span>
+
+            <span class="kt">AnyFileVar</span> <span class="n">filename</span> <span class="o">=</span> <span class="nb">FileNameOf</span><span class="p">(..</span><span class="n">Files</span><span class="p">.</span><span class="n">MainFile</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.anydata.h5&quot;</span><span class="p">;</span>
+
+            <span class="kt">AnyOperationMacro</span> <span class="n">Opr</span> <span class="o">=</span> <span class="p">{</span>
+
+                <span class="n">MacroStr</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="p">(</span><span class="s">&quot;classoperation Main.ArmStudy1.Output&quot;</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="s">&quot;Save data&quot;</span><span class="p">)</span>
+                    <span class="o">+</span> <span class="s">&quot; --file=&quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="nb">FilePathCompleteOf</span><span class="p">(.</span><span class="n">filename</span><span class="p">))</span> <span class="o">+</span> <span class="s">&quot; --type=Deep&quot;</span><span class="p">)</span>
+                <span class="p">};</span>
+            <span class="p">};</span>
+        <span class="p">};</span>
+
+        <span class="kt">AnyProjectTaskOperation</span> <span class="n">Load_Output_Data</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">Title</span> <span class="o">=</span> <span class="s">&quot;Loading output data from a previous simulation&quot;</span><span class="p">;</span>
+            <span class="n">BodyText</span> <span class="o">=</span> <span class="s">&quot;This task load output saved by the task &quot;</span>
+                        <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span> <span class="nb">AnyBodyLinkOf</span><span class="p">(</span><span class="o">&amp;</span><span class="p">..</span><span class="n">Save_Output_Data</span><span class="p">)</span> <span class="p">)</span>
+                        <span class="o">+</span> <span class="s">&quot; from file &quot;</span>
+                        <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span> <span class="nb">strlink</span><span class="p">(.</span><span class="n">filename</span><span class="p">)</span> <span class="p">);</span>
+            <span class="n">Tooltip</span> <span class="o">=</span> <span class="s">&quot;Loading output data&quot;</span><span class="p">;</span>
+            <span class="c1">//Files = .filename;</span>
+            <span class="p">};</span>
+
+            <span class="n">Operation</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Opr</span><span class="p">;</span>
+
+            <span class="kt">AnyFileVar</span> <span class="n">filename</span> <span class="o">=</span> <span class="p">.</span><span class="n">Save_Output_Data</span><span class="p">.</span><span class="n">filename</span><span class="p">;</span>
+
+            <span class="kt">AnyOperationMacro</span> <span class="n">Opr</span> <span class="o">=</span> <span class="p">{</span>
+
+                <span class="n">MacroStr</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s">&quot;classoperation Main.ArmStudy1.Output&quot;</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="s">&quot;Load data&quot;</span><span class="p">)</span>
+                    <span class="o">+</span> <span class="s">&quot; --file=&quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="nb">FilePathCompleteOf</span><span class="p">(.</span><span class="n">filename</span><span class="p">))</span>
+                <span class="p">};</span>
+            <span class="p">};</span>
+
+        <span class="p">};</span>
+
+    <span class="p">...</span>
+
+    <span class="p">};</span>
+
+    <span class="p">...</span>
+</pre></div>
+</div>
+<p>Finally, a special task is demonstrated, namely AnyProjectTaskLoadModel.
+It can load models and here, we shall indeed make an operation that
+loads the model without any project definition. In other words, we
+create an AnyProjectTaskLoadModel that loads the Demo.arm2d.any, but
+without the AnyProject.any master file.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;DrawGroups.any&quot;</span>
+
+    <span class="kt">AnyProject</span> <span class="n">ArmProject</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="n">Tasks</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="p">...</span>
+
+            <span class="kt">AnyProjectTaskLoadModel</span> <span class="n">Load_the_model_without_project</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">MainFile</span> <span class="o">=</span> <span class="s">&quot;Demo.arm2d.any&quot;</span><span class="p">;</span>
+            <span class="p">};</span>
+
+        <span class="p">};</span>
+
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>The practical relevance of this particular load task may be hard to see,
+but it illustrates the option of loading another model from one already
+loaded.</p>
+<p>A more relevant case could have been to share the project source code
+between two or more different Main file so that loading another Main
+file would leave the project information, such as Tasks and Views, more
+or less unaffected, even though the loaded model is shifted. This way a
+Task flow that requires more than one model can in principle be bound
+together in the same user interface.</p>
+</div>
+<div class="section" id="html-based-interaction-in-anyproject">
+<h2>HTML-based interaction in AnyProject<a class="headerlink" href="#html-based-interaction-in-anyproject" title="Permalink to this headline">¶</a></h2>
+<p>From AnyBody version 5.1, the windows displaying AnyProject are now
+capable of using HTML-based contents. This opens new possibilities for
+user interaction with the model from AnyProject, and it also makes it
+possible to have user-defined, dynamically updated, and nicely formatted
+views in the AnyProject. In this section, we shall add simple examples
+of both HTML-based and dynamically updated content as well as a
+hyperlink for user interaction with the model to the AnyProject model we
+have been creating above.</p>
+</div>
+<div class="section" id="adding-html-content-to-an-anyproject-anydescription">
+<h2>Adding HTML content to an AnyProject AnyDescription<a class="headerlink" href="#adding-html-content-to-an-anyproject-anydescription" title="Permalink to this headline">¶</a></h2>
+<p>We have already seen that the various types of AnyProject tasks all have
+an AnyDescription member, which is used to describe the purpose and
+functionality of the task. The AnyDescription can be used to display
+HTML contents through two new optional member variables. We will start
+by adding a new AnyProject task, which contains an AnyDescription with
+some simple HTML. For this, we use the BodyHTML member, which is a
+string-value object that is one option of entering the body text of the
+description view.</p>
+<p>Please add the following AnyProject task to the <code class="docutils literal notranslate"><span class="pre">Tasks</span></code> folder in the
+example:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_value_example</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="n">BodyHTML</span> <span class="o">=</span> <span class="s">&quot;&lt;b&gt;Setting values in the model through AnyProject&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;&quot;</span>
+                   <span class="o">+</span><span class="s">&quot;This task demonstrates how we can use special AHTML links in HTML text to interact with a model in AnyBody&quot;</span><span class="p">;</span>
+
+    <span class="p">};</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>After reloading the model and viewing the new AnyProject Task, we see
+that the content of <code class="docutils literal notranslate"><span class="pre">BodyHTML</span></code> is now being used for displaying the
+description of the task. When <code class="docutils literal notranslate"><span class="pre">BodyHTML</span></code> is defined in the script, it
+will take precedence over any defined <code class="docutils literal notranslate"><span class="pre">Title</span></code> and <code class="docutils literal notranslate"><span class="pre">BodyText</span></code> in the
+AnyDescription.</p>
+<p>Please note that this AnyProject Task doesn’t actually have any
+operation defined, and because of this, there is no “execute task”
+button shown for it. In order to actually interact with the model from
+this AnyProject task, we will be using some special HTML links, through
+which we can pass commands to the AnyBody Modeling System.</p>
+<p>Modify the newly created <code class="docutils literal notranslate"><span class="pre">Set_value_example</span></code> task to look like this:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_value_example</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">BodyHTML</span> <span class="o">=</span> <span class="s">&quot;&lt;b&gt;Setting values in the model through AnyProject&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;&quot;</span>
+                    <span class="o">+</span><span class="s">&quot;This task demonstrates how we can use special AHTML links in HTML text to interact with a model in AnyBody.&lt;br/&gt;&lt;br/&gt;&quot;</span>
+                    <span class="o">+</span><span class="s">&quot;This link opens the &lt;a href=&quot;</span><span class="o">+</span><span class="nb">strquote</span><span class="p">()</span>
+                    <span class="o">+</span><span class="s">&quot;Anybody -ob Main.ArmModel.Segs.LowerArm.HandNode&quot;</span>
+                    <span class="o">+</span><span class="nb">strquote</span><span class="p">()</span><span class="o">+</span><span class="s">&quot;&gt;HandNode&lt;/a&gt; in the modeltree.&lt;br/&gt;&quot;</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The new HTML link defined in the <code class="docutils literal notranslate"><span class="pre">BodyHTML</span></code> is formatted like this:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;about:anybody -command argument&quot;</span><span class="p">&gt;</span>linktext<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">about:anybody</span></code> (or just <code class="docutils literal notranslate"><span class="pre">anybody</span></code>) beginning of the href-value
+indicates to AnyBody that the link is an internal link and the <em>command
+argument</em> tells what to do. In this case, we make a link to an object,
+i.e., a link that takes us to the Model Tree of AMS.</p>
+<p>Please note that in order to make the <code class="docutils literal notranslate"><span class="pre">BodyHTML</span></code> contain the quote
+characters, we have to use the <code class="docutils literal notranslate"><span class="pre">strquote()</span></code> function to add “ to the
+text string we create; we cannot enter quote characters directly, since
+the AnyScript parser will see any second quote as the end of the entire
+string leading to a syntax error for the rest of the string.</p>
+<p>Next, we want to use another type of internal command link to actually
+edit a value in the loaded model. The way we can do this is by using a
+command for calling an AnyBody macro defined elsewhere in the AnyScript
+code. We start by creating a new macro command.</p>
+<p>Please modify the beginning of the AnyProject file to look like this:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;DrawGroups.any&quot;</span>
+
+    <span class="kt">AnyFolder</span> <span class="n">Macros</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="kt">AnyStringVar</span> <span class="n">SetValueSRel</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;classoperation Main.ArmModel.Segs.LowerArm.HandNode.sRel&quot;</span>
+                                    <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="s">&quot;Set Value&quot;</span><span class="p">));</span>
+
+    <span class="p">};</span>
+    <span class="p">...</span>
+</pre></div>
+</div>
+<p>This adds a new <code class="docutils literal notranslate"><span class="pre">Macros</span></code> AnyFolder, which currently contains a single
+string, defining a macro which calls the “Set Value” Class Operation on
+the <code class="docutils literal notranslate"><span class="pre">HandNode</span></code> of the model. We now have to use this new string in our
+AnyDescription <code class="docutils literal notranslate"><span class="pre">BodyHTML</span></code>. We do this by adding a new HTML link to the
+BodyHTML, where we use a special command argument that interprets and
+executes this string as a macro.</p>
+<p>Please modify the AnyProject Task from earlier to look like this:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Set_value_example</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">BodyHTML</span> <span class="o">=</span>
+            <span class="s">&quot; &lt;b&gt;Setting values in the model through AnyProject&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;&quot;</span>
+            <span class="o">+</span> <span class="s">&quot;This task demonstrates how we can use special AHTML links in HTML text to interact with a model in AnyBody.&lt;br/&gt;&lt;br/&gt;&quot;</span>
+            <span class="o">+</span> <span class="s">&quot;This link opens the &lt;a href=&quot;</span><span class="o">+</span><span class="nb">strquote</span><span class="p">()</span>
+            <span class="o">+</span> <span class="s">&quot;about:Anybody -ob Main.ArmModel.Segs.LowerArm.HandNode&quot;</span>
+            <span class="o">+</span> <span class="nb">strquote</span><span class="p">()</span><span class="o">+</span><span class="s">&quot;&gt;HandNode&lt;/a&gt; in the modeltree.&lt;br/&gt;&lt;br/&gt;&quot;</span>
+            <span class="o">+</span> <span class="s">&quot;This link calls the &lt;a href=&quot;</span><span class="o">+</span><span class="nb">strquote</span><span class="p">()</span>
+            <span class="o">+</span> <span class="s">&quot;about:Anybody -mc Main.Macros.SetValueSRel&quot;</span>
+            <span class="o">+</span> <span class="nb">strquote</span><span class="p">()</span><span class="o">+</span><span class="s">&quot;&gt;Set Value&lt;/a&gt; class operation on the HandNode&#39;s sRel.&lt;br/&gt;&quot;</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>For a full list of the available AHTML commands, please refer to the
+AnyBody Reference Manual (Introduction-&gt;How to write AnyScript-&gt;Section:
+HTML-based Descriptions).</p>
+</div>
+<div class="section" id="using-external-html-files">
+<h2>Using external HTML files<a class="headerlink" href="#using-external-html-files" title="Permalink to this headline">¶</a></h2>
+<p>We have seen that HTML content can be written directly in an
+AnyDescription’s <code class="docutils literal notranslate"><span class="pre">BodyHTML</span></code> member, but for larger HTML pages this can
+become very cumbersome. It is therefore also possible to use external
+HTML files as AnyDescription HTML sources. This is done by setting the
+AnyDescription’s <code class="docutils literal notranslate"><span class="pre">HTMLURL</span></code> member to the address of an external HTML
+resource. This URL can point to a file in the local file system as well
+as to a location on the Internet.</p>
+<p>In this example, we will use an external HTML file to display a table
+showing the <code class="docutils literal notranslate"><span class="pre">r</span></code> value of the <code class="docutils literal notranslate"><span class="pre">Handnode</span></code> and having the information
+updated while an operation is being run on the model. We do this by
+transferring the dynamic data to the external HTML file along with the
+URL and then using JavaScript in the HTML file for inserting the data in
+the right place. The data is transferred through the URL by encoding it
+in the URL’s query string.</p>
+<p>We will use a previously prepared external HTML file called
+<a class="reference download internal" download="" href="../_downloads/23cd0eab7edc1492e5a23751214367ce/AnyHTML_argument.htm"><code class="xref download docutils literal notranslate"><span class="pre">AnyHTML_argument.htm</span></code></a>.</p>
+<p>We create a new AnyProject Task in the tasks folder for displaying this
+HTML file and sending data to it:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyProjectTaskOperation</span> <span class="n">Watch_value</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="n">Description</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="kt">AnyFile</span> <span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;AnyHTML_argument.htm&quot;</span><span class="p">;</span>
+        <span class="n">HTMLURL</span> <span class="o">=</span>
+            <span class="s">&quot;file:///&quot;</span><span class="o">+</span><span class="nb">FilePathCompleteOf</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s">&quot;?name=&quot;</span><span class="o">+</span><span class="nb">CompleteNameOf</span><span class="p">(</span><span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Segs</span><span class="p">.</span><span class="n">LowerArm</span><span class="p">.</span><span class="n">HandNode</span><span class="p">.</span><span class="n">r</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s">&quot;&amp;value=&quot;</span><span class="o">+</span><span class="nb">strval</span><span class="p">(</span><span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Segs</span><span class="p">.</span><span class="n">LowerArm</span><span class="p">.</span><span class="n">HandNode</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">&quot;%4g&quot;</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s">&quot;, &quot;</span><span class="o">+</span><span class="nb">strval</span><span class="p">(</span><span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Segs</span><span class="p">.</span><span class="n">LowerArm</span><span class="p">.</span><span class="n">HandNode</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s">&quot;%4g&quot;</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s">&quot;, &quot;</span><span class="o">+</span><span class="nb">strval</span><span class="p">(</span><span class="n">Main</span><span class="p">.</span><span class="n">ArmModel</span><span class="p">.</span><span class="n">Segs</span><span class="p">.</span><span class="n">LowerArm</span><span class="p">.</span><span class="n">HandNode</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s">&quot;%4g&quot;</span><span class="p">);</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>In this example we use the query-string of the URL to transfer both the
+complete name and value to the HTML file. How we actually use the data
+passed through the query-string is determined entirely by the contents
+of the external HTML file.</p>
+<p>Please also note that we use a local AnyFile variable to specify the
+HTML file path without defining its absolute location in the script. The
+AnyFile variable resolves the path of the AnyScript file, and we can get
+the absolute file location through the <code class="docutils literal notranslate"><span class="pre">FilePathCompleteOf</span></code> function.
+This is necessary because the <code class="docutils literal notranslate"><span class="pre">HTMLURL</span></code> has to be a complete absolute
+URL and not a relative URL.</p>
+<p>If we try loading the model now, we will see the HTML page, but it is
+not being updated when we run the, for instance, InverseDynamics
+operation in the model. This is because the AnyDescription containing
+the <code class="docutils literal notranslate"><span class="pre">HTMLURL</span></code> is not part of the study, and therefore, the <code class="docutils literal notranslate"><span class="pre">HTMLURL</span></code>
+expression is not re-evaluated.</p>
+<p>In order to enable this, we add the AnyDescription for this new task to
+the <code class="docutils literal notranslate"><span class="pre">ArmModelStudy</span></code> by modifying the beginning of the AnyProject file to
+look like this:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;Demo.arm2d.any&quot;</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;DrawGroups.any&quot;</span>
+
+    <span class="kt">AnyFolder</span> <span class="n">Macros</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="kt">AnyStringVar</span> <span class="n">SetValueSRel</span> <span class="o">=</span>
+            <span class="p">(</span><span class="s">&quot;classoperation Main.ArmModel.Segs.LowerArm.HandNode.sRel&quot;</span> <span class="o">+</span> <span class="s">&quot; &quot;</span>
+             <span class="o">+</span> <span class="nb">strquote</span><span class="p">(</span><span class="s">&quot;Set Value&quot;</span><span class="p">));</span>
+    <span class="p">};</span>
+
+    <span class="n">ArmModelStudy</span><span class="o">=</span><span class="p">{</span>
+        <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">ArmModelStudyUpdateHTMLURLarg</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">ArmProject</span><span class="p">.</span><span class="n">Tasks</span><span class="p">.</span><span class="n">Watch_value</span><span class="p">.</span><span class="n">Description</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="p">...</span>
+</pre></div>
+</div>
+<p>If we reload the model and run the <code class="docutils literal notranslate"><span class="pre">InverseDynamics</span></code> operation now while
+viewing the new AnyProject task, we will see that the displayed value
+for <code class="docutils literal notranslate"><span class="pre">r</span></code> is being updated dynamically as the values change in the model.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/anybody_tutorials_logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial overview</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started/index.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">2. Getting started: AnyScript Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_modeling/index.html">3. Getting Started with Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">4. Getting started: The Model Repository</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. User interface features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson1.html">Lesson 1: The Editor Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson2.html">Lesson 2: The Model View Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson3.html">Lesson 3: The Chart View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson4.html">Lesson 4: The Model Tree and Object Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson5.html">Lesson 5: The Command Line Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson6.html">Lesson 6: Modifying the Loaded Model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lesson 7: Wrapping the Model with AnyBody Project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../A_study_of_studies/index.html">6. A Study of Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Making_things_move/index.html">7. Making things move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MuscleRecruitment/index.html">8. Inverse Dynamics of Muscle Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ForceDependentKinematics/index.html">9. Force-Dependent Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Muscle_modeling/index.html">10. Muscle Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../The_mechanical_elements/index.html">11. The Mechanical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced_script_features/index.html">12. Advanced Script Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finite_element_analysis/index.html">13. Finite Element Analysis Interfacing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">14. Making Models using SOLIDWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scaling/index.html">15. Personalizing Your Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Validation_of_models/index.html">16. Validation of Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">17. Parameter Studies and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">18. Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Posture_and_movement/intro.html">19. Posture and Movement Prediction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</div><h3>Found a problem?</h3>
+
+<p><a href="https://github.com/AnyBody/anybody-tutorial/blob/master/Interface_features/lesson7.md">
+    <img src="../_static/mark-github.svg"></img> Fix it your self </a> or <a href="https://github.com/AnyBody/anybody-tutorial/issues/">report it </a>
+</p>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contents.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../A_study_of_studies/index.html" title="6. A Study of Studies"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lesson6.html" title="Lesson 6: Modifying the Loaded Model"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">AnyBody Tutorials v7.4.2</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">5. </span>User interface features</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 7: Wrapping the Model with AnyBody Project</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, AnyBody Technology.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
