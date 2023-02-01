@@ -1,0 +1,934 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="noindex" name="robots" />
+<meta property="og:title" content="Lesson 1: The Basics of Muscle Definition" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://anyscript.org/Muscle_modeling/lesson1.html" />
+<meta property="og:site_name" content="AnyScript Tutorials" />
+<meta property="og:description" content="The key to understanding muscles in the AnyBody Modeling System is to realize that they mechanically consist of two separate computational models: The kinematic model, which determines the muscle’s..." />
+<meta property="og:image" content="https://anyscript.org/_images/image14.jpeg" />
+<meta property="og:image:alt" content="simple model" />
+<meta name="description" content="The key to understanding muscles in the AnyBody Modeling System is to realize that they mechanically consist of two separate computational models: The kinematic model, which determines the muscle’s..." />
+
+    <title>Lesson 1: The Basics of Muscle Definition &#8212; AnyBody Tutorials v7.4.3-dev</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=7ab92a51a5495e97401ebce935f72df2445e26b3" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=720741f5ee25ed36d7e8b46c508e20dac74c35bf"></script>
+    <script src="../_static/js/custom.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Muscle_modeling/lesson1';</script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 2: Controlling Muscle Drawing" href="lesson2.html" />
+    <link rel="prev" title="Introduction to Muscle Modeling" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="" aria-label="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../GettingStarted.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../Tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../about.html">
+                        About
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../GettingStarted.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../Tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../about.html">
+                        About
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="" aria-label="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../GettingStarted.html"><strong>Getting Started</strong></a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started - First steps</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started Tutorial</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/lesson1.html">Lesson 1: Creating a Standing Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/lesson2.html">Lesson 2: Controlling the Posture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/lesson3.html">Lesson 3: Reviewing Analysis Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">How to write AnyScript</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson1.html">Lesson 1: Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson2.html">Lesson 2: Defining Segments and Displaying Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson3.html">Lesson 3: Connecting Segments by Joints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson4.html">Lesson 4: Imparting movement with Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson5.html">Lesson 5: Definition of Muscles and External Forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson6.html">Lesson 6: Adding Real Bone Geometries</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Modelling the Human body</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/lesson1.html">Lesson 1: Starting with a New Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/lesson2.html">Lesson 2: Adjusting the Human Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/lesson3.html">Lesson 3: Making Ends Meet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/lesson4.html">Lesson 4: Kinetics - Computing Forces</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">The AnyBody Model Repository</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/creating_model_from_scratch.html">Creating a Human Model from scratch</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson1.html">Scaling: Joint to joint scaling</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson2.html">Scaling: External Body Measurements</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson3.html">Scaling: Segmental scaling factors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Tutorials.html"><strong>Tutorials</strong></a><input checked class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson1.html">Lesson1: Mechanical System Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson2.html">Lesson2: Initial Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson3.html">Lesson 3: Kinematic Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson4.html">Lesson 4: Inverse Dynamics</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson1.html">Lesson1: Simple drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson2.html">Lesson 2: Using motion capture data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson3.html">Lesson3: Noise and filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson4.html">Lesson 4: Parameter identification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson5.html">Lesson 5: Using real data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson6.html">Lesson 6: Troubleshooting C3D files</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson1.html">Lesson 1: The Basics of Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson2.html">Lesson 2: Linear Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson3.html">Lesson 3: Quadratic Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson4.html">Lesson 4: Polynomial Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson5.html">Lesson 5: Min/Max Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson6.html">Lesson 6: Composite Recruitment Criteria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson_calibration.html">Lesson 7: Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Muscle Modeling</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Lesson 1: The Basics of Muscle Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson2.html">Lesson 2: Controlling Muscle Drawing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson3.html">Lesson 3: Via-point Muscles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson4.html">Lesson 4: Wrapping Muscles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson5.html">Lesson 5: Muscle Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson6.html">Lesson 6: General Muscles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson7.html">Lesson 7: Ligaments</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson1.html">Lesson 1: Segments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson2.html">Lesson 2: Joints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson3.html">Lesson 3: Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson4.html">Lesson 4: Kinematic Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson5.html">Lesson 5: Forces</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson1.html">Lesson 1: The Baseline Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson2.html">Lesson 2: Adding FDK Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson3.html">Lesson 3: Results of FDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson4.html">Lesson 4: Using Surfaces to Define the Knee Joint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson5.html">Lesson 5: Using Contact Forces to Replace a Joint in a Human Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/fdkappendix.html">FDK appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Parameter_studies_and_optimization/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Parameter_studies_and_optimization/lesson1.html">Defining a Parameter Study</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Parameter_studies_and_optimization/lesson2.html">Optimization Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Parameter_studies_and_optimization/lesson3.html">Optimization Studies in Python</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Finite_element_analysis/lesson1.html">Lesson 1: Export of data for FEA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Finite_element_analysis/lesson2.html">Lesson 2: ANSYS Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Finite_element_analysis/lesson3.html">Lesson 3: Abaqus Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson1.html">Translating a SOLIDWORKS CAD model to AnyBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson2.html">Making the translated AnyScript model move</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson3.html">Creating human-machine integrated analysis model</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Scaling/index.html">Scaling and Personalizing your model</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../Scaling/lesson3.html">Lesson 1: Scaling based on medical images</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Scaling/lesson3_appendix.html"> Lesson 1 appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Scaling/lesson4.html">Lesson 2: Including a custom scaling function into your model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Interface_features/index.html">User interface features</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson1.html">Lesson 1: The Editor Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson2.html">Lesson 2: The Model View Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson3.html">Lesson 3: The Chart View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson4.html">Lesson 4: The Model Tree and Object Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson5.html">Lesson 5: The Command Line Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson6.html">Lesson 6: Modifying the Loaded Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson7.html">Lesson 7: Wrapping the Model with AnyBody Project</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Advanced_script_features/lesson1.html">Lesson 1: Using References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Advanced_script_features/lesson2.html">Lesson 2: Using Include Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Advanced_script_features/lesson3.html">Lesson 3: Mathematical Expressions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Validation_of_models/intro.html">Introduction to validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Validation_of_models/Kinematic_input.html">Validating Kinematic input</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../about.html"><strong>About</strong></a><input checked class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html">Help improve tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/anybody/anybody-tutorial/issues/new?title=Issue%20on%20page%20%2FMuscle_modeling/lesson1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/anybody/anybody-tutorial/edit/master/Muscle_modeling/lesson1.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Edit this page"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">suggest edit</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lesson 1: The Basics of Muscle Definition</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-1-the-basics-of-muscle-definition">
+<h1>Lesson 1: The Basics of Muscle Definition<a class="headerlink" href="#lesson-1-the-basics-of-muscle-definition" title="Permalink to this heading">#</a></h1>
+<p>The key to understanding muscles in the AnyBody Modeling System is to
+realize that they mechanically consist of two separate computational
+models:</p>
+<ol class="arabic simple">
+<li><p>The kinematic model, which determines the muscle’s path from origin
+to insertion depending on the posture of the body. This also entails
+finding the length and contraction velocity of the muscle.</p></li>
+<li><p>The strength model which determines the muscle’s strength and
+possibly its passive elastic force depending on the kinematic state
+of the muscle.</p></li>
+</ol>
+<p>This would be a sad excuse for a tutorial if we did not have an example
+to work on. So let us quickly construct a very simple example that will
+enable us to examine the properties of muscles.</p>
+<p>Here’s an extremely simple <a class="reference download internal" download="" href="../_downloads/9af3630b4dbbac2bbce8b07ecadb06e3/MuscleDemo.Ini.any"><code class="xref download docutils literal notranslate"><span class="pre">one-degree-of-freedom</span> <span class="pre">model</span></code></a>.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// This is a very simple model for demonstration of muscle modeling</span>
+<span class="n">Main</span> <span class="o">=</span> <span class="p">{</span>
+
+   <span class="kt">AnyFolder</span> <span class="n">MyModel</span> <span class="o">=</span> <span class="p">{</span>
+
+     <span class="c1">// Global Reference Frame</span>
+     <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+       <span class="p">};</span>
+     <span class="p">};</span>  <span class="c1">// Global reference frame</span>
+
+     <span class="c1">// Define one simple segment</span>
+     <span class="kt">AnySeg</span> <span class="n">Arm</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="n">r0</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.500000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">};</span>
+       <span class="n">Mass</span> <span class="o">=</span> <span class="mf">1.000000</span><span class="p">;</span>
+       <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.100000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">}</span><span class="o">*</span><span class="mf">0.035</span><span class="p">;</span>
+       <span class="kt">AnyRefNode</span> <span class="n">Jnt</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+       <span class="p">};</span>
+       <span class="kt">AnyDrawSeg</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{};</span>
+     <span class="p">};</span>
+
+     <span class="c1">// Attach the segment to ground by a revolute joint</span>
+     <span class="kt">AnyRevoluteJoint</span> <span class="n">Jnt</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">ref1</span> <span class="o">=</span> <span class="p">.</span><span class="n">GlobalRef</span><span class="p">;</span>
+       <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="n">ref2</span> <span class="o">=</span> <span class="p">.</span><span class="n">Arm</span><span class="p">.</span><span class="n">Jnt</span><span class="p">;</span>
+       <span class="n">Axis</span> <span class="o">=</span> <span class="kp">z</span><span class="p">;</span>
+     <span class="p">};</span>
+
+     <span class="c1">// Drive the revolute joint at constant velocity</span>
+     <span class="kt">AnyKinEqSimpleDriver</span> <span class="n">Drv</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+       <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">40</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+       <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">.</span><span class="n">Jnt</span><span class="p">;</span>
+       <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+     <span class="p">};</span>
+
+   <span class="p">};</span> <span class="c1">// MyModel</span>
+
+   <span class="c1">// The study: Operations to be performed on the model</span>
+   <span class="kt">AnyBodyStudy</span> <span class="n">MyStudy</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">MyModel</span><span class="p">;</span>
+     <span class="n">InverseDynamics</span><span class="p">.</span><span class="n">Criterion</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="kp">MR_MinMaxStrict</span><span class="p">;</span>
+     <span class="n">Gravity</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+   <span class="p">};</span>
+ <span class="p">};</span>  <span class="c1">// Main</span>
+</pre></div>
+</div>
+<p>When you load the model, open a model view window, and run the
+SetInitialConditions operation, you should get the following picture:</p>
+<p><img alt="simple model" src="../_images/image14.jpeg" /></p>
+<p>The model has a driver, so you can run the kinematic analysis and see
+the movement. The arm flexes about the origin of the red reference
+frame. If you try to run the InverseDynamicAnalysis, you will get an
+error:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ERROR(OBJ1) :   C:/../MuscleDemo.Ini.any(43)  :   MyStudy.InverseDynamics  :  No solution found :  There are fewer unknown forces (muscles and reactions) than dynamic equations.
+</pre></div>
+</div>
+<p>This is because the model does not have any muscles to balance the arm
+against the downward pull of gravity. Let us define the simplest
+possible muscle to carry the load. As mentioned above, a muscle has two
+basic components: a kinematic model, and a strength model. We shall
+begin with the latter, and for the time being define the simplest
+possible version.</p>
+<p>If you pick the Classes tab in the right-hand side of the window, then
+you will get access to the class tree. Expand the tree as shown in the
+picture until you get to the AnyMuscleModel.</p>
+<p><img alt="class tree" src="../_images/image226.png" /></p>
+<p>Notice that this class has three derived classes. These are more
+advanced muscle models, and we shall get to those later. However for the
+time being, place the cursor in the Editor View on an empty line just
+after the end brace of the driver definition, right-click the
+AnyMuscleModel class in the tree, and select “Insert Class
+Template”.This causes an instance of the AnyMuscleModel class to be
+inserted into the model (new code marked with red):</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Drive the revolute joint at constant velocity</span>
+<span class="kt">AnyKinEqSimpleDriver</span> <span class="n">Drv</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">DriverPos</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="n">DriverVel</span> <span class="o">=</span> <span class="p">{</span><span class="mi">40</span><span class="o">*</span><span class="kp">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">};</span>
+  <span class="kt">AnyRevoluteJoint</span> <span class="o">&amp;</span><span class="n">Jnt</span> <span class="o">=</span> <span class="p">.</span><span class="n">Jnt</span><span class="p">;</span>
+  <span class="n">Reaction</span><span class="p">.</span><span class="n">Type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="p">};</span>
+
+<span class="gr">AnyMuscleModel &lt;ObjectName&gt; = {</span>
+<span class="gr">  F0 = 0.0;</span>
+<span class="gr">  //Lf0 = 0.0;</span>
+<span class="gr">  //Vol0 = 0.0;</span>
+<span class="gr">};</span>
+</pre></div>
+</div>
+<style> .red {color:red} .green {color:green}</style><p>This is the simplest type of muscle model the system provides, and it is
+simply a specification of strength corresponding to the assumed maximum
+voluntary contraction of the muscle. A muscle with this type of model
+does not have any dependency on length or contraction velocity, and it
+does not take the passive elasticity of the tissue into account. Despite
+this simplicity, it is used with considerable success for many studies
+where the movements or postures are within the normal range of the
+involved joints, and where contraction velocities are small.</p>
+<p>There are two optional parameters for this model. Vol0 can be used in muscle
+recruitment to form a muscle volume weighted sum of muscle activations; see e.g.
+[^cite_happee-van-der-hel-1995]. <code class="docutils literal notranslate"><span class="pre">Lf0</span></code> can be tuned in a calibration study; then
+using <code class="docutils literal notranslate"><span class="pre">Vol0</span></code>, modified physiological cross sectional area (<code class="docutils literal notranslate"><span class="pre">PCSA</span></code>) of the
+muscle can be computed by the user (e.g. as <code class="docutils literal notranslate"><span class="pre">PCSA=Vol0/Lf0</span></code>), which can be
+used afterwards to modify the value for <code class="docutils literal notranslate"><span class="pre">F0</span></code>.</p>
+<p>Let us perform the necessary modifications to make the model useful to
+us:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyMuscleModel</span> <span class="gr">SimpleModel</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">F0</span> <span class="o">=</span> <span class="gr">100</span><span class="p">;</span>
+  <span class="c1">//Lf0 = 0.0;</span>
+  <span class="c1">//Vol0 = 0.0;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The next step is to define a muscle that can use the model. This is
+actually the first of the two elements mentioned above: Muscle
+kinematics.</p>
+<p>Again, the AnyBody Modeling System provides a number of choices, and we
+shall start by picking the simplest one. It is instructive to once again
+use the tree to insert a template of the muscle object, because the tree
+reveals the class dependency. A muscle resolves kinematical information
+in the sense that it has a certain path from origin to insertion, and it
+also provides force. These two properties are reflected in the way the
+muscle classes are derived from a kinematic measure as well as force
+classes.</p>
+<p>The simplest type of muscle is the AnyViaPoint muscle. It spans the path
+between origin and insertion by passing through any number of via points
+on the way. The via points are fixed to segments or to the global
+reference frame. It is a simple and convenient way to define many of the
+simpler muscles of the body, primarily those in the extremities and the
+spine. You can, in fact, make a pretty decent model of the legs entirely
+with via point muscles.</p>
+<p>Place the cursor right after the end brace of the musle model,
+right-click the AnyMuscleViaPoint class in the tree, and insert an
+instance of it:</p>
+<p><img alt="class tree AnyMuscleViaPoint" src="../_images/image326.png" /></p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyMuscleModel</span> <span class="n">SimpleModel</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">F0</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+      <span class="c1">//Lf0 = 0;</span>
+      <span class="c1">//Vol0 = 0;</span>
+   <span class="p">};</span>
+
+   <span class="gr"> AnyMuscleViaPoint &lt;ObjectName&gt; = {</span>
+<span class="gr">      //RefFrames = ;</span>
+<span class="gr">      //Surfaces = ;</span>
+<span class="gr">      AnyMuscleModel &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">      AnyRefFrame &amp;&lt;Insert name0&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">      AnyRefFrame &amp;&lt;Insert name1&gt; = &lt;Insert object reference (or full object definition)&gt;;</span>
+<span class="gr">      //AnyRefFrame &amp;&lt;Insert name2&gt; = &lt;Insert object reference (or full object definition)&gt;; You can make any number of these objects!</span>
+<span class="gr">    };</span>
+</pre></div>
+</div>
+<p>Let us start by filling out what we can and removing what we have no use
+for:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">AnyMuscleViaPoint</span> <span class="gr">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="gr">Model</span> <span class="o">=</span> <span class="gr">.SimpleModel</span><span class="p">;</span>
+  <span class="kt">AnyRefFrame</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name0</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span> <span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="kt">AnyRefFrame</span> <span class="o">&amp;&lt;</span><span class="n">Insert</span> <span class="n">name1</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Insert</span> <span class="n">object</span> <span class="n">reference</span> <span class="p">(</span><span class="n">or</span> <span class="n">full</span> <span class="n">object</span> <span class="n">definition</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Notice that we have left only two points in the list of via points. This
+is obviously the minimal requirement and will create a muscle in a
+single line from origin to insertion. But before we proceed with the
+definition of the muscle we must define the necessary points on the
+model to attach the muscle to. We shall define the origin on the global
+reference frame and the insertion on the segment:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">// Global Reference Frame</span>
+<span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">AnyDrawRefFrame</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">RGB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="gr">AnyRefNode M1Origin = {</span>
+<span class="gr">    sRel = {0.0, 0.1, 0};</span>
+<span class="gr">  };</span>
+<span class="p">};</span>  <span class="c1">// Global reference frame</span>
+
+<span class="c1">// Define one simple segment</span>
+<span class="kt">AnySeg</span> <span class="n">Arm</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.500000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">};</span>
+  <span class="n">Mass</span> <span class="o">=</span> <span class="mf">1.000000</span><span class="p">;</span>
+  <span class="n">Jii</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.100000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">}</span><span class="o">*</span><span class="mf">0.1</span><span class="p">;</span>
+  <span class="kt">AnyRefNode</span> <span class="n">Jnt</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sRel</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="p">};</span>
+ <span class="gr"> AnyRefNode M1Insertion = {</span>
+<span class="gr">    sRel = {0.0, 0.1, 0};</span>
+<span class="gr">  };</span>
+  <span class="kt">AnyDrawSeg</span> <span class="n">drw</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p> With these two points, we can complete the definition of the muscle:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="n">AnyMuscleViaPoint</span> <span class="n">Muscle1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kt">AnyMuscleModel</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">SimpleModel</span><span class="p">;</span>
+    <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="gr">Orig = .GlobalRef.M1Origin</span><span class="p">;</span>
+    <span class="kt">AnyRefFrame</span> <span class="o">&amp;</span><span class="gr">Ins = .Arm.M1Insertion</span><span class="p">;</span>
+    <span class="gr">AnyDrawMuscle drw = {};</span>
+  <span class="p">};</span>
+</pre></div>
+</div>
+<p>Notice that we have added an AnyDrawMuscle object to the definition.
+Like other classes in AnyScript, muscles are not drawn in the Model View
+window unless you specifically ask for it. When you load the model and
+run the SetInitialConditions study you will get the following picture
+(if your model does not load, and you cannot find the error, <a class="reference download internal" download="" href="../_downloads/3ebc5ee20f120bb58af25ec7bbe0b0a1/MuscleDemo.1.any"><code class="xref download docutils literal notranslate"><span class="pre">clickhere</span> <span class="pre">to</span> <span class="pre">download</span> <span class="pre">a</span> <span class="pre">model</span> <span class="pre">that</span> <span class="pre">works</span></code></a>):</p>
+<p><img alt="simple model with muscle" src="../_images/image44.jpeg" /></p>
+<p>Notice that the muscle is now able to balance the gravity, and we are
+able to run the InverseDynamicAnalysis. If you try it out and
+subsequently open a chart view, you are able to plot the muscle force:</p>
+<p><img alt="muscle force" src="../_images/image515.png" /></p>
+<p>The muscle force is the item Fm in the list of properties you can plot
+for a muscle. As you can see, lots of other properties are available,
+but if you try to plot them you will find that many of them are zero.
+This is because they are not relevant for this very simple type of
+muscle. We shall return to the significance of the different properties
+later in this tutorial.</p>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+</section>
+</section>
+
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Introduction to Muscle Modeling</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="lesson2.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Lesson 2: Controlling Muscle Drawing</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By AnyBody Technology
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023, AnyBody Technology.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>

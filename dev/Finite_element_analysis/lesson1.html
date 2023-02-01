@@ -1,0 +1,1127 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="noindex" name="robots" />
+<meta property="og:title" content="Lesson 1: Export of data for FEA" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://anyscript.org/Finite_element_analysis/lesson1.html" />
+<meta property="og:site_name" content="AnyScript Tutorials" />
+<meta property="og:description" content="FEA tutorial Fish tank In this example we want to shed some light on an important issue for all aquarium owners: What’s the magnitude of stress in the lumbar vertebra L5 during lifting of a 10 kg a..." />
+<meta property="og:image" content="https://anyscript.org/_images/image11.jpeg" />
+<meta property="og:image:alt" content="FEA tutorial Fish tank" />
+<meta name="description" content="FEA tutorial Fish tank In this example we want to shed some light on an important issue for all aquarium owners: What’s the magnitude of stress in the lumbar vertebra L5 during lifting of a 10 kg a..." />
+
+    <title>Lesson 1: Export of data for FEA &#8212; AnyBody Tutorials v7.4.3-dev</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=7ab92a51a5495e97401ebce935f72df2445e26b3" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=720741f5ee25ed36d7e8b46c508e20dac74c35bf"></script>
+    <script src="../_static/js/custom.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Finite_element_analysis/lesson1';</script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 2: ANSYS Interface" href="lesson2.html" />
+    <link rel="prev" title="Finite Element Analysis Interfacing" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="" aria-label="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../GettingStarted.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../Tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../about.html">
+                        About
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../GettingStarted.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../Tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../about.html">
+                        About
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="" aria-label="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../GettingStarted.html"><strong>Getting Started</strong></a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started - First steps</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started Tutorial</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/lesson1.html">Lesson 1: Creating a Standing Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/lesson2.html">Lesson 2: Controlling the Posture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/lesson3.html">Lesson 3: Reviewing Analysis Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">How to write AnyScript</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson1.html">Lesson 1: Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson2.html">Lesson 2: Defining Segments and Displaying Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson3.html">Lesson 3: Connecting Segments by Joints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson4.html">Lesson 4: Imparting movement with Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson5.html">Lesson 5: Definition of Muscles and External Forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson6.html">Lesson 6: Adding Real Bone Geometries</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Modelling the Human body</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/lesson1.html">Lesson 1: Starting with a New Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/lesson2.html">Lesson 2: Adjusting the Human Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/lesson3.html">Lesson 3: Making Ends Meet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/lesson4.html">Lesson 4: Kinetics - Computing Forces</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">The AnyBody Model Repository</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/creating_model_from_scratch.html">Creating a Human Model from scratch</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson1.html">Scaling: Joint to joint scaling</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson2.html">Scaling: External Body Measurements</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson3.html">Scaling: Segmental scaling factors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Tutorials.html"><strong>Tutorials</strong></a><input checked class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson1.html">Lesson1: Mechanical System Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson2.html">Lesson2: Initial Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson3.html">Lesson 3: Kinematic Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson4.html">Lesson 4: Inverse Dynamics</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson1.html">Lesson1: Simple drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson2.html">Lesson 2: Using motion capture data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson3.html">Lesson3: Noise and filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson4.html">Lesson 4: Parameter identification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson5.html">Lesson 5: Using real data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson6.html">Lesson 6: Troubleshooting C3D files</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson1.html">Lesson 1: The Basics of Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson2.html">Lesson 2: Linear Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson3.html">Lesson 3: Quadratic Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson4.html">Lesson 4: Polynomial Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson5.html">Lesson 5: Min/Max Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson6.html">Lesson 6: Composite Recruitment Criteria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson_calibration.html">Lesson 7: Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson1.html">Lesson 1: The Basics of Muscle Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson2.html">Lesson 2: Controlling Muscle Drawing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson3.html">Lesson 3: Via-point Muscles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson4.html">Lesson 4: Wrapping Muscles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson5.html">Lesson 5: Muscle Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson6.html">Lesson 6: General Muscles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson7.html">Lesson 7: Ligaments</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson1.html">Lesson 1: Segments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson2.html">Lesson 2: Joints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson3.html">Lesson 3: Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson4.html">Lesson 4: Kinematic Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson5.html">Lesson 5: Forces</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson1.html">Lesson 1: The Baseline Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson2.html">Lesson 2: Adding FDK Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson3.html">Lesson 3: Results of FDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson4.html">Lesson 4: Using Surfaces to Define the Knee Joint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson5.html">Lesson 5: Using Contact Forces to Replace a Joint in a Human Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/fdkappendix.html">FDK appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Parameter_studies_and_optimization/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Parameter_studies_and_optimization/lesson1.html">Defining a Parameter Study</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Parameter_studies_and_optimization/lesson2.html">Optimization Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Parameter_studies_and_optimization/lesson3.html">Optimization Studies in Python</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Finite Element Analysis Interfacing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Lesson 1: Export of data for FEA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson2.html">Lesson 2: ANSYS Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson3.html">Lesson 3: Abaqus Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson1.html">Translating a SOLIDWORKS CAD model to AnyBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson2.html">Making the translated AnyScript model move</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson3.html">Creating human-machine integrated analysis model</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Scaling/index.html">Scaling and Personalizing your model</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../Scaling/lesson3.html">Lesson 1: Scaling based on medical images</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Scaling/lesson3_appendix.html"> Lesson 1 appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Scaling/lesson4.html">Lesson 2: Including a custom scaling function into your model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Interface_features/index.html">User interface features</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson1.html">Lesson 1: The Editor Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson2.html">Lesson 2: The Model View Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson3.html">Lesson 3: The Chart View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson4.html">Lesson 4: The Model Tree and Object Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson5.html">Lesson 5: The Command Line Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson6.html">Lesson 6: Modifying the Loaded Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson7.html">Lesson 7: Wrapping the Model with AnyBody Project</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Advanced_script_features/lesson1.html">Lesson 1: Using References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Advanced_script_features/lesson2.html">Lesson 2: Using Include Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Advanced_script_features/lesson3.html">Lesson 3: Mathematical Expressions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Validation_of_models/intro.html">Introduction to validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Validation_of_models/Kinematic_input.html">Validating Kinematic input</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../about.html"><strong>About</strong></a><input checked class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html">Help improve tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/anybody/anybody-tutorial/issues/new?title=Issue%20on%20page%20%2FFinite_element_analysis/lesson1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/anybody/anybody-tutorial/edit/master/Finite_element_analysis/lesson1.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Edit this page"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">suggest edit</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lesson 1: Export of data for FEA</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-the-fe-model">
+   Building the FE-model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-the-model-preprocessing">
+     Building the model - preprocessing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solve-and-postprocessing">
+     Solve and postprocessing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-1-export-of-data-for-fea">
+<h1>Lesson 1: Export of data for FEA<a class="headerlink" href="#lesson-1-export-of-data-for-fea" title="Permalink to this heading">#</a></h1>
+<p><img alt="FEA tutorial Fish tank" src="../_images/image11.jpeg" /></p>
+<p>In this example we want to shed some light on an important issue for all
+aquarium owners: What’s the magnitude of stress in the lumbar vertebra
+L5 during lifting of a 10 kg aquarium?</p>
+<p>First we need a model to work on.</p>
+<p>With the AnyBody Modeling System you already have a repository of models
+available, for details please see the AnyBody Assistant available from
+the menu. This tutorial has been written using the AnyBody Managed Model
+Repository Ver. 1.6 (AMMRV1.6) if you see differences between the
+tutorial text and your own results please [report or help fix it here] ](<a class="github reference external" href="https://github.com/anybody/anybody-tutorial/">anybody/anybody-tutorial</a>)</p>
+<p>The starting point for this tutorial is the model:</p>
+<p><code class="file docutils literal notranslate"><span class="pre">Applications/Examples/StandingLift/StandingLiftFEA.main.any</span></code></p>
+<p>However, this model internally reuses the code of <code class="file docutils literal notranslate"><span class="pre">StandingLift.main.any</span></code>. Please
+find the model and load it by pushing F7 and open a Model View. You
+should see something similar to the picture to the right. The vertebral
+body we want to analyze is marked with a circle on the zoomed-in
+picture.</p>
+<p><img alt="L5 L4 joint" src="../_images/image21.jpeg" /></p>
+<p>As mentioned before this model is based on the “StandingLift” model of
+the AMMR Repository. It is a full body model lifting a box of 10 kg and
+therefore also imposing forces on the spine. In this tutorial we will be
+using a more basic representation of the L5 vertebra than the one
+included in the repository model. Our tutorial model lacks the pedicles
+and facets joints, consisting just of the vertebral body. This is done
+in order to simplify the FEA related processes which will be discussed
+later.</p>
+<p>Another simplification will be that we only use the model with joint
+generating muscles; this will keep the force output files small.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifdef</span> <span class="n">FEA_OUTPUT</span>
+<span class="c1">// switch the muscles off for simplicity</span>
+<span class="cp">#define</span> <span class="x x-Statements">BM_LEG_MUSCLES_BOTH</span> <span class="x x-Options">_MUSCLES_NONE_</span>
+<span class="cp">#define</span> <span class="x x-Statements">BM_ARM_MUSCLES_BOTH</span> <span class="x x-Options">_MUSCLES_NONE_</span>
+<span class="cp">#define</span> <span class="x x-Statements">BM_TRUNK_MUSCLES</span> <span class="x x-Options">_MUSCLES_NONE_</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>In order to export the forces acting on the vertebra we had to include
+the output function. This modification can be found inside of the
+Study folder of the main file:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef</span> <span class="n">FEA_OUTPUT</span>
+<span class="c1">// default values for the StandingLift example</span>
+<span class="n">tEnd</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+<span class="n">nStep</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+<span class="cp">#else</span>
+<span class="c1">// single step for the StandingLiftFEA example</span>
+<span class="n">tStart</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="n">tEnd</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="n">nStep</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kt">AnyMechOutputFileForceExport</span> <span class="n">ForceOutput</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="n">FileName</span> <span class="o">=</span> <span class="s">&quot;Output/ForceL5.txt&quot;</span><span class="p">;</span>
+  <span class="cm">/*NumberFormat =</span>
+<span class="cm">  {</span>
+<span class="cm">  Digits = 15;</span>
+<span class="cm">  Width = 22;</span>
+<span class="cm">  Style = ScientificNumber;</span>
+<span class="cm">  FormatStr = &quot;&quot;;</span>
+<span class="cm">  };*/</span>
+  <span class="n">AllSegmentsInStudyOnOff</span> <span class="o">=</span> <span class="kp">Off</span><span class="p">;</span>
+  <span class="kt">AnySeg</span> <span class="o">&amp;</span><span class="n">L5Seg</span> <span class="o">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">.</span><span class="n">Trunk</span><span class="p">.</span><span class="n">SegmentsLumbar</span><span class="p">.</span><span class="n">L5Seg</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>The AllSegmentsInStudyOnOff switch decides if only the forces of the
+listed segments will be exported or data from all segments in the
+study. Usually you will only use a selected amount of data to keep the
+file manageable. The following segment points to the L5 segment which
+is the one we like to analyze. You can fill in the path by browsing
+the Model tab to the L5 segment, right-click it and choose “Insert
+Object Name” in the drop down menu.</p>
+<p>That’s all you have to do for the force export. Please reload the
+model by pressing F7. Open the Study tree in the Operation tab in the
+left side of the main window and choose “InverseDynamicsAnalysis”.
+Press the “Run” button. The model will analyze one timestep and write
+the FEAoutput.txt file which we have specified before. Let’s have a
+closer look on the Output file. It is located inside your Application
+folder in the Output subfolder. You can open it either directly in
+AnyBody or in any text editor of your choice.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Environment:
+ReferenceFrame=Global Model Frame;
+Gravity=0.000000000000000e+000;-9.810000000000001e+000;0.000000000000000e+000;
+Segments(1):
+Segment[0]=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+TimeSamples:
+===================== Start of time-step =====================
+TimeSample[0]:
+t=5.000000000000000e-001;
+Segment[0]:
+Name=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+m=2.085000000000000e+000;
+Jmatrix=1.168885000000000e-003,-9.570149999999998e-004,0.000000000000000e+000;
+9.570149999999998e-004,6.423084999999999e-003,0.000000000000000e+000;0.000000000000000e+000,0.000000000000000e+000,6.591969999999999e-003;
+rCoM=9.304468810912125e-003;1.152365939883446e+000;-2.512564662125113e-004;
+r=-4.169135847448037e-002;1.143342897337054e+000;-1.497543262871901e-004;
+Axes=9.999998595357809e-001,-4.628389924807490e-004,-2.582798583545108e-004;4.660838626013818e-004,9.999191410444162e-001,1.270803442038980e-002;2.523772002673721e-004,-1.270815301543968e-002,9.999192163133404e-001;
+rDot=5.402776176443577e-003;2.261042200066284e-004;1.171200924865143e-004;
+Omega=9.939274896600235e-003;2.020125288690530e-004;-5.443536252847692e-003;
+rDDot=4.170565551642487e-003;1.189711201114273e-004;-3.295768681950899e-003;
+OmegaDot=-2.796914968367631e-001;-5.738778418435273e-003;-4.224839525429824e-003;
+
+Forces(17):
+Force[0]:
+Name=Main.HumanModel.BodyModel.Trunk.JointMuscles.L5SacrumJnt.Extension.dof0.Muscle.PosMuscle;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyGeneralMuscle;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=1.310949680520611e-003;1.138363343237923e+000;-7.536134159849472e-005;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(1):
+F[0]=0.000000000000000e+000;0.000000000000000e+000;0.000000000000000e+000;
+M[0]=-7.751477527937135e-003;2.185362573696517e-001;7.232168716222537e+001;
+...
+</pre></div>
+</div>
+<p>It starts with information on the included segment. All the
+geometrical entries are listed. One nice feature here is that all
+coordinates stated in this file are given in the same (global)
+coordinate system. In the following all forces acting on the segment
+are listed. In this case one of the artificial joint moment generating
+muscles is shown. The position of the force is given as well as all of
+its components from AnyBody. Depending on the nature of the underlying
+AnyForce class, which you can see in the “Class” entry, there are a
+different number of forces and moments listed. An AnyForce may have
+any number of components, which may be a physical force or a torque,
+but it may also be a more generalized load, not measured in Newton or
+Newton-meter. Basically these force components are related to the
+underlying kinematic measure, so that force times kinematic
+displacement becomes work/energy; in other words the kinematic measure
+decides the unit of the force component. Anyway, these occasionally
+somewhat artificial force measures present in the AnyBody model are
+converted to real point forces and point torques, when outputted to
+the AnyFE output file. Therefore, we find <code class="docutils literal notranslate"><span class="pre">F[i]</span></code> and <code class="docutils literal notranslate"><span class="pre">M[i]</span></code> in the AnyFE,
+which are the point force and the point torque associated the <em>i</em>’th
+component of the given AnyForce object. The total force acting in the
+global direction at a point can be found by simply adding all the
+components forces, i.e. summing <code class="docutils literal notranslate"><span class="pre">F[i]</span></code> for all <em>i</em> at that location.</p>
+<p>In many cases, the components are indeed simple such that component <code class="docutils literal notranslate"><span class="pre">i=0</span></code>
+for instance is <code class="docutils literal notranslate"><span class="pre">Fx</span></code> as could be expected, but since this <code class="docutils literal notranslate"><span class="pre">Fx</span></code> may refer to
+a local coordinate system of a particular segment, a joint attachment
+node, or the like, <code class="docutils literal notranslate"><span class="pre">F[i]</span></code> and <code class="docutils literal notranslate"><span class="pre">M[i]</span></code> may still have three non-zero values
+when exported to the AnyFE file. This is because the data is tansformed
+while being exported so that the AnyFE is referring to a single
+coordinate system for all of the exported data; this system is often (by
+default) the global coordinate system or it can be a local coordinate
+system.</p>
+<p>Let us have a look at the following entry which basically gives the
+joint constraints in the L5-Sacrum joint:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Force[12]:
+Name=Main.HumanModel.BodyModel.Trunk.JointsLumbar.L5SacrumJnt.Constraints.Reaction;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnySphericalJoint.AnyKinEq.AnyReacForce;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=1.310949680520611e-003;1.138363343237923e+000;-7.536134159849472e-005;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(3):
+F[0]=1.438514108411654e+001;4.422244295289277e-001;2.055265396354515e-004;
+M[0]=-4.993754918704412e-017;-4.993754918704412e-017;-4.993754918704412e-017;
+F[1]=-1.447931608403369e+001;4.709990755658955e+002;-1.424781629621639e+000;
+M[1]=1.926516762214523e-017;1.926516762214523e-017;1.926516762214523e-017;
+F[2]=-1.526868368696591e-004;4.304677367488389e-003;1.424576103082109e+000;
+M[2]=4.217476399426685e-020;4.217476399426685e-020;4.217476399426685e-020;
+</pre></div>
+</div>
+<p>You can see the three moments have practically zero values. This is
+due to the fact that this joint is discretized as a spherical joint
+which therefore cannot take up moments. In the same manner all other
+joints are handled.</p>
+<p>Next we need an object where we can apply our exported forces. This is
+also quite simple. A facility is built in the system (from Version
+3.1) which allows the export of all .anysurf and .stl geometries from
+your application in the .stl format. The function will export the
+geometry in its actual position, so please make sure that your model
+has not been reloaded since the force export otherwise run the
+InverseDynamicAnalysis again to bring it to right position. Of course
+it also involves all scaling which has been applied to the bones.
+Browse through the model tree to the L5Seg
+<code class="docutils literal notranslate"><span class="pre">Main/HumanModel/BodyModel/Trunk.SegmentsLumbar/L5Seg</span></code> in order
+to export the L5 segment. Inside this folder you find the DrawSTL
+folder. Right-click the folder and choose “Export Surface”. Choose a
+convenient place to store the file and give it the name “L5.stl”. A
+dialog box will appear which allows you to specify a scale value for
+the output file. The scaling can be useful to switch from one units
+system to another. In our case we have m as units in the AMS, but want
+to have mm for the FE geometry. So choose as scale factor 1000. From
+the AnyBody point of view, that’s all we have to do. Please note that
+not all bones which are right now in the Repository may be suitable
+for a FEA. As the main intention is to have graphical representation
+of the body it may appear that some bone are simply to coarse for a
+detailed analysis. But of course you are free to import your own .stl
+file into the AnyBody Modeling System to substitute existing bones.
+You will have to tweak your CAD file a bit in order to make it fit.
+<a class="reference external" href="mailto:support&#37;&#52;&#48;anybodytech&#46;com">Donation of better quality CAD files of bones to the models is most
+welcome<span>&#46;</span></a></p>
+<p>Based on the exported forces and <code class="docutils literal notranslate"><span class="pre">.stl</span></code> file we can now build and analyze
+a FE model. Below we shall build an FE model applying the loads and
+other boundary conditions manually using non-commercially available
+software. However please notice that in the following lessons, we
+consider more smooth integration with selected commercial software by
+means of small converter software tools provided by AnyBody Technology.
+These tools automatically convert the AnyFE output file from AnyBody to
+input files for the particular FE software.</p>
+<p>The following section will show some results that were achieved using
+previous versions of the AMMR.</p>
+<p>After building a FE model based on this data the internal stress in
+the bone tissue can be evaluated. Below are some von-Mises stress
+plots showing approximately the middle cross section of the vertebral
+body.</p>
+<p><img alt="FEA tutorial von Mises" src="../_images/image31.jpeg" /></p>
+<p>With a stress level of approx. 0.5 MPa in the cancellous bone we are
+pretty far away from the yield strength, so we can conclude that it
+appears to be ok for aquarium owners to lift their pets in an
+aquarium of this size. But of course we did some generous shortcuts to achieve this goal and
+neglected a lot of detail which is provided by the AnyBody Modeling
+System.</p>
+<section id="building-the-fe-model">
+<h2>Building the FE-model<a class="headerlink" href="#building-the-fe-model" title="Permalink to this heading">#</a></h2>
+<p>In this section a short description of how to build a Finite Element
+model using AnyBody data is given. If you are an experienced FE user
+you may want to skip this section.</p>
+<p>As this should be by no means a Finite Element tutorial we will use
+some shortcuts to achieve our goal: We already restricted the analyses
+to one time step. Further, we will only take the joint reaction forces
+into account. How one can handle muscle forces will be discussed
+below. And finally the used geometry was simplified. Basically only
+the vertebral body is used. The main reason for this is to avoid
+getting lost in the jungle of meshing.</p>
+<p>In the following, we will make use of two freely available tools.
+Preprocessing (meshing and applying boundary conditions) is done using
+<a class="reference external" href="http://www.ccad.uiowa.edu/mimx">IA-FEMesh</a> provided by the
+University of Iowa. <a class="reference external" href="http://www.calculix.de">Calculix</a> is used as
+solver and post-processor. This fine piece of software is written and
+maintained by Guido Dhondt and Klaus Wittig. Calculix v1.8 and
+IA-FEMesh v1.0 are used in this tutorial. So things may slightly
+change with updates on the programs. Please note that neither of these
+programs is in related to AnyBody Technology.</p>
+<p>Please follow the links shown above, download and install the two
+programs if you want to do some hands-on FEA.</p>
+<section id="building-the-model-preprocessing">
+<h3>Building the model - preprocessing<a class="headerlink" href="#building-the-model-preprocessing" title="Permalink to this heading">#</a></h3>
+<p>A file with the finished model is provided below, in case you do not
+want to go through the entire model building process.</p>
+<dl class="simple myst">
+<dt>Open IA-FEMesh and press the “Surface” tab to load your (earlier</dt><dd><p>exported) <code class="docutils literal notranslate"><span class="pre">.stl</span></code> file. After successful loading we have to define a
+building block. The building block is a prerequisite to the mesh
+generation and its surfaces will be meshed and further projected on
+the bone. For reasons of simplicity it has been prepared. Please press
+the “Block” tab and chose “Load”. Browse to the folder “FEA” which is
+inside the “StandingLiftFE” application folder. Choose the file
+<code class="docutils literal notranslate"><span class="pre">L5_block.vtk</span></code>. Some boxes around the vertebral body will appear.</p>
+</dd>
+</dl>
+<p><img alt="FEA tutorial Mesh" src="../_images/image41.jpeg" /></p>
+<p>In the next step, we will have a look at the local mesh density and
+mesh the structure.</p>
+<p>Press the “Mesh” tab and choose “Assign/Edit Mesh Seeds”. By
+activating the “Color Code Mesh Seeds” you can review the settings for
+the mesh density which was set in the predefined block. Just click on
+the different wireframes and see the number of divisions per line. The
+density is slightly increased in the regions of the vertebral
+endplates.</p>
+<p>Next is to generate the actual mesh. Open again the “Mesh” tab and
+press “Create”. Fill in “n” for node label and “e” for element label,
+make sure that the volumetric mesh is chosen and the “perform
+smoothing” option is checked. “Apply” will generate a nicely meshed
+vertebral body (right)</p>
+<p>After this we have to assign material properties to the elements. Go
+to the “Materials” tab and select “User-Defined”. You can simply give
+in the Young’s modulus for the whole set of elements and the Poisson’s
+ratio. Reasonable values may be an average 1000 (MPa) for the modulus
+and 0.3 for the ratio. But of course you may also want to model the
+bone in more detail, separating the cortical shell and the cancellous
+bone or even base the material properties on density data. But this is
+surely not within the scope of this tutorial.</p>
+<p>In this example we will apply only the joint forces on the endplates.
+Therefore we will not make explicit use of all the information given
+by the AnyBody force export file. <img alt="../_images/image51.jpeg" src="../_images/image51.jpeg" /></p>
+<p>We have to select two node sets to apply the boundary condition. This
+is done by pressing the “Load/BC” tab and the “STEP-Load/BC
+Assignments” choose “Node Set Definition” and use the appearing tools
+to define the node sets on both endplates. You should use the option
+“Visible surface nodes” and the + and – tool to select the set. You
+have to hold the Ctrl button to select nodes and confirm your
+selection by right clicking on the selected nodes. (In this case it is
+a rather good approximation to select just a set of nodes on the
+endplates as force application points. This may not be so easy for
+other cases; in these the given information on the coordinates of the
+forces is essential to apply the force in the right way.)</p>
+<p>After the definition of a node set on both endplates we have to
+provide the boundary conditions. For this we need our force export
+file. Please open the file (it should be located in your
+StandingLiftFEA application folder) in an editor and scroll down to
+Force[12]. This force is the joint reaction on the L5-Sacrum joint.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Force[12]:
+Name=Main.HumanModel.BodyModel.Trunk.JointsLumbar.L5SacrumJnt.Constraints.Reaction;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnySphericalJoint.AnyKinEq.AnyReacForce;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=1.310949680520611e-003;1.138363343237923e+000;-7.536134159849472e-005;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(3):
+F[0]=1.438514108411654e+001;4.422244295289277e-001;2.055265396354515e-004;
+M[0]=-4.993754918704412e-017;-4.993754918704412e-017;-4.993754918704412e-017;
+F[1]=-1.447931608403369e+001;4.709990755658955e+002;-1.424781629621639e+000;
+M[1]=1.926516762214523e-017;1.926516762214523e-017;1.926516762214523e-017;
+F[2]=-1.526868368696591e-004;4.304677367488389e-003;1.424576103082109e+000;
+M[2]=4.217476399426685e-020;4.217476399426685e-020;4.217476399426685e-020;
+</pre></div>
+</div>
+<p>By summing up the rows for the forces <code class="docutils literal notranslate"><span class="pre">F[0]</span></code>, <code class="docutils literal notranslate"><span class="pre">F[1]</span></code>, and <code class="docutils literal notranslate"><span class="pre">F[2]</span></code> we get the
+resulting components for the joint reaction load. This can be directly
+used in the force definition as they are given in the same coordinate
+system. In this case only the Y-force component is of interest as all
+other forces are pretty small. Choose “Force” and your defined node
+set for the lower endplate. Specify the Y-force to 471 (N). Make sure
+to confirm with “Apply”. Select the node-set on the opposite endplate
+and set the displacement to be 0 in all direction, confirm again with
+“Apply”. (Next also the moment generating muscles could be taken into
+account in a similar manner, but this will be skipped here.)</p>
+<p>The model is now finished. Now we have to export the model. This
+export can be found under “Load/BC”. Choose “Export ABAQUS File”. This
+will write an ABAQUS style input file for a FE-Solver. This is the
+format Calculix can read. Press “Apply” and name the file “L5FEA” and
+save.</p>
+<p>There is one more thing that has to be defined preliminary to the FEA
+- the desired output. Please open a text editor and load the L5FEA.inp
+file. In this file the whole analysis is defined, using a reference to
+the node and elements file.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>**=========================================================================
+**                          HISTORY DATA                                 **
+**=========================================================================
+**------------------------------------------------------------STEP 1
+*STEP, INC=100, NLGEOM=YES, UNSYMM=YES
+*STATIC
+1.0, 1.0
+**
+*BOUNDARY, OP=NEW
+unten, 1, 1, 0
+unten, 2, 2, 0
+unten, 3, 3, 0
+**
+*CLOAD
+EndplateB, 2, 2.2488
+**
+**------- Output Requests  ---&gt;
+**
+
+*NODE FILE
+U
+*EL FILE
+S,
+
+**
+**
+**
+*END STEP
+</pre></div>
+</div>
+<p>Please include the Output Requests (see red lines above). This will
+make sure we get some results to look at. Save the file and close the
+editor.</p>
+</section>
+<section id="solve-and-postprocessing">
+<h3>Solve and postprocessing<a class="headerlink" href="#solve-and-postprocessing" title="Permalink to this heading">#</a></h3>
+<p>If you have somehow screwed up your model or simply didn’t want to go
+through the model building process, you can find a working model here:
+<code class="docutils literal notranslate"><span class="pre">StandingLift\Input\FEA\L5FEABackup.inp</span></code>. (In this model also
+different materials for the cortical shell (E = 12000 MPa) and the
+cancellous bone structure (E = 200 MPa) have been assigned.</p>
+<p>If you want to use this model instead of your own build, please change
+the following comments involving”L5FEA” to “L5FEABackup”.)</p>
+<p>Open up the Calculix command shell and browse to the directory where
+you placed the L5FEA.inp file. Now type</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ccx L5FEA
+</pre></div>
+</div>
+<p>and press return. This will push the model forward to the solver and
+start the analysis. Within a few seconds a nice JOB FINISHED should
+appear. Now, let’s have look at the results: Therefore, type</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cgx L5FEA.frd
+</pre></div>
+</div>
+<p>This will call the Calculix (pre- and) postprocessor. A graphical
+window showing the vertebrae will appear. Clicking on the left side
+will give you a panel to visualize the results. First you have to
+choose the dataset you want to access. For example click on
+Datasets&gt;Stress to activate the stress dataset. After this you can
+choose the desired Entry, e.g. Mises Stress. You can assess the
+results in more detail using different Viewing settings (Please have a
+look at the Calculix help file for more information on this). Here are
+two examples for the von-Mises stresses in the middle of the cross
+section of the vertebral body:</p>
+<blockquote>
+<div><p><img alt="FEA tutorial von-Mises 2" src="../_images/image31.jpeg" /></p>
+</div></blockquote>
+<p>This completes Lesson 1.</p>
+<p>In the following lessons, we show somewhat more automatic interfaces to
+selected commercial FE packages using small interface tools</p>
+<p>Click here to continue to</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2: ANSYS interface</span></a>. - <a class="reference internal" href="lesson3.html"><span class="doc">Lesson 3: ABAQUS interface</span></a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Finite Element Analysis Interfacing</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="lesson2.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Lesson 2: ANSYS Interface</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-the-fe-model">
+   Building the FE-model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-the-model-preprocessing">
+     Building the model - preprocessing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solve-and-postprocessing">
+     Solve and postprocessing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By AnyBody Technology
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023, AnyBody Technology.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
