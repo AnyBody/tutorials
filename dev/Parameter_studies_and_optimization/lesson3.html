@@ -1,0 +1,836 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="noindex" name="robots" />
+<meta property="og:title" content="Optimization Studies in Python" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://anyscript.org/Parameter_studies_and_optimization/lesson3.html" />
+<meta property="og:site_name" content="AnyScript Tutorials" />
+<meta property="og:description" content="The optimization study introduced in the preceding lesson used AnyBody’s builtin facilities for optimizing. Sometimes that is not enough, either because the objective functions depends on data that..." />
+<meta property="og:image" content="https://anyscript.org/tutorials/_static/anybody_tutorials_logo.png" />
+<meta property="og:image:alt" content="AnyScript Tutorials" />
+<meta name="description" content="The optimization study introduced in the preceding lesson used AnyBody’s builtin facilities for optimizing. Sometimes that is not enough, either because the objective functions depends on data that..." />
+
+    <title>Optimization Studies in Python &#8212; AnyBody Tutorials v7.4.3-dev</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Parameter_studies_and_optimization/lesson3';</script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Finite Element Analysis Interfacing" href="../Finite_element_analysis/index.html" />
+    <link rel="prev" title="Optimization Studies" href="lesson2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder=""
+         aria-label=""
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder=""
+         aria-label=""
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../GettingStarted.html"><strong>Getting Started</strong></a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started - First steps</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started Tutorial</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/lesson1.html">Lesson 1: Creating a Standing Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/lesson2.html">Lesson 2: Controlling the Posture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/lesson3.html">Lesson 3: Reviewing Analysis Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">How to write AnyScript</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson1.html">Lesson 1: Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson2.html">Lesson 2: Defining Segments and Displaying Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson3.html">Lesson 3: Connecting Segments by Joints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson4.html">Lesson 4: Imparting movement with Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson5.html">Lesson 5: Definition of Muscles and External Forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson6.html">Lesson 6: Adding Real Bone Geometries</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started_modeling/index.html">Modelling the Human body</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/lesson1.html">Lesson 1: Starting with a New Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/lesson2.html">Lesson 2: Adjusting the Human Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/lesson3.html">Lesson 3: Making Ends Meet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_modeling/lesson4.html">Lesson 4: Kinetics - Computing Forces</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">The AnyBody Model Repository</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/creating_model_from_scratch.html">Creating a Human Model from scratch</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson1.html">Scaling: Joint to joint scaling</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson2.html">Scaling: External Body Measurements</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson3.html">Scaling: Segmental scaling factors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Tutorials.html"><strong>Tutorials</strong></a><input checked class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson1.html">Lesson1: Mechanical System Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson2.html">Lesson2: Initial Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson3.html">Lesson 3: Kinematic Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson4.html">Lesson 4: Inverse Dynamics</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson1.html">Lesson1: Simple drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson2.html">Lesson 2: Using motion capture data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson3.html">Lesson3: Noise and filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson4.html">Lesson 4: Parameter identification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson5.html">Lesson 5: Using real data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson6.html">Lesson 6: Troubleshooting C3D files</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson1.html">Lesson 1: The Basics of Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson2.html">Lesson 2: Linear Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson3.html">Lesson 3: Quadratic Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson4.html">Lesson 4: Polynomial Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson5.html">Lesson 5: Min/Max Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson6.html">Lesson 6: Composite Recruitment Criteria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson_calibration.html">Lesson 7: Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson1.html">Lesson 1: The Basics of Muscle Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson2.html">Lesson 2: Controlling Muscle Drawing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson3.html">Lesson 3: Via-point Muscles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson4.html">Lesson 4: Wrapping Muscles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson5.html">Lesson 5: Muscle Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson6.html">Lesson 6: General Muscles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson7.html">Lesson 7: Ligaments</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson1.html">Lesson 1: Segments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson2.html">Lesson 2: Joints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson3.html">Lesson 3: Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson4.html">Lesson 4: Kinematic Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson5.html">Lesson 5: Forces</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson1.html">Lesson 1: The Baseline Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson2.html">Lesson 2: Adding FDK Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson3.html">Lesson 3: Results of FDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson4.html">Lesson 4: Using Surfaces to Define the Knee Joint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson5.html">Lesson 5: Using Contact Forces to Replace a Joint in a Human Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/fdkappendix.html">FDK appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Parameter Studies and Optimization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson1.html">Defining a Parameter Study</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson2.html">Optimization Studies</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Optimization Studies in Python</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Finite_element_analysis/lesson1.html">Lesson 1: Export of data for FEA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Finite_element_analysis/lesson2.html">Lesson 2: ANSYS Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Finite_element_analysis/lesson3.html">Lesson 3: Abaqus Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson1.html">Translating a SOLIDWORKS CAD model to AnyBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson2.html">Making the translated AnyScript model move</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson3.html">Creating human-machine integrated analysis model</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Scaling/index.html">Scaling and Personalizing your model</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../Scaling/lesson3.html">Lesson 1: Scaling based on medical images</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Scaling/lesson3_appendix.html"> Lesson 1 appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Scaling/lesson4.html">Lesson 2: Including a custom scaling function into your model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Interface_features/index.html">User interface features</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson1.html">Lesson 1: The Editor Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson2.html">Lesson 2: The Model View Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson3.html">Lesson 3: The Chart View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson4.html">Lesson 4: The Model Tree and Object Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson5.html">Lesson 5: The Command Line Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson6.html">Lesson 6: Modifying the Loaded Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson7.html">Lesson 7: Wrapping the Model with AnyBody Project</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Advanced_script_features/lesson1.html">Lesson 1: Using References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Advanced_script_features/lesson2.html">Lesson 2: Using Include Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Advanced_script_features/lesson3.html">Lesson 3: Mathematical Expressions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Validation_of_models/intro.html">Introduction to validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Validation_of_models/Kinematic_input.html">Validating Kinematic input</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../about.html"><strong>About</strong></a><input checked class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html">Help improve tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/anybody/anybody-tutorial/edit/main/Parameter_studies_and_optimization/lesson3.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/anybody/anybody-tutorial/issues/new?title=Issue%20on%20page%20%2FParameter_studies_and_optimization/lesson3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Optimization Studies in Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-python-script">Example Python script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-the-necessary-libraries">Importing the necessary libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-model-from-python">Running a model from Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-objective-function">Defining the objective function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-optimization-study">Setting up the optimization study</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="optimization-studies-in-python">
+<h1>Optimization Studies in Python<a class="headerlink" href="#optimization-studies-in-python" title="Permalink to this heading">#</a></h1>
+<p>The optimization study introduced in the preceding lesson used AnyBody’s builtin
+facilities for optimizing. Sometimes that is not enough, either because the
+objective functions depends on data that is not easily included in AnyBody, or
+because a different solver is needed.</p>
+<p>In this tutorial we use an external optimizer together with AnyBody. The example
+is based on the model from the <a class="reference internal" href="lesson2.html"><span class="doc">previous lesson</span></a> but uses an
+optimizer from the <a class="reference external" href="https://scipy.org/">Scipy</a> python library. The same
+could also have been achived with other optimization frameworks (like <a class="reference external" href="https://nlopt.readthedocs.io/en/latest/">NLopt</a>, or languages (like <a class="reference external" href="https://www.mathworks.com/products/matlab.html">MatLab</a>).</p>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">#</a></h2>
+<p>Before we begin you need to install the Python and some libraries. Using the <code class="docutils literal notranslate"><span class="pre">conda</span></code> package manager, makes this much easier.
+You can download the Anaconda Python distribution from here, which comes with most libraries pre-installed.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.anaconda.com/download#downloads">Download and install Anaconda Python Distribution</a></p></li>
+</ul>
+<p>We also need one additional Python library (AnyPyTools) which will make it
+easier to work with AnyBody from Python. <a class="reference external" href="https://anybody-research-group.github.io/anypytools-docs/">AnyPyTools</a> can be easily
+installed from the command prompt. Open the Anaconda command prompt and type:</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>conda config --add channels conda-forge
+conda install anypytools
+</pre></div>
+</div>
+</section>
+<section id="example-python-script">
+<h2>Example Python script<a class="headerlink" href="#example-python-script" title="Permalink to this heading">#</a></h2>
+<p>First we show the full Python program used in this tutorial.
+Secondly, we will go through and explain the different sections in the file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="kn">import</span> <span class="nn">math</span>
+<span class="linenos"> 2</span> <span class="kn">import</span> <span class="nn">scipy</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span> <span class="kn">from</span> <span class="nn">anypytools</span> <span class="kn">import</span> <span class="n">AnyPyProcess</span>
+<span class="linenos"> 5</span> <span class="kn">from</span> <span class="nn">anypytools.macro_commands</span> <span class="kn">import</span> <span class="n">Load</span><span class="p">,</span> <span class="n">OperationRun</span><span class="p">,</span> <span class="n">Dump</span><span class="p">,</span> <span class="n">SetValue</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span> <span class="k">def</span> <span class="nf">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="linenos"> 9</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Run the AnyBody model and return the metabolism results&quot;&quot;&quot;</span>
+<span class="linenos">10</span>     <span class="n">macro</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">11</span>         <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;BikeModel2D.main.any&quot;</span><span class="p">),</span>
+<span class="linenos">12</span>         <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddleHeight&quot;</span><span class="p">,</span> <span class="n">saddle_height</span><span class="p">),</span>
+<span class="linenos">13</span>         <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddlePos&quot;</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">),</span>
+<span class="linenos">14</span>         <span class="n">OperationRun</span><span class="p">(</span><span class="s2">&quot;Main.Study.InverseDynamics&quot;</span><span class="p">),</span>
+<span class="linenos">15</span>         <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Pmet_total&quot;</span><span class="p">),</span>
+<span class="linenos">16</span>         <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Abscissa.t&quot;</span><span class="p">),</span>
+<span class="linenos">17</span>     <span class="p">]</span>
+<span class="linenos">18</span>     <span class="n">app</span> <span class="o">=</span> <span class="n">AnyPyProcess</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="n">silent</span><span class="p">)</span>
+<span class="linenos">19</span>     <span class="n">results</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">start_macro</span><span class="p">(</span><span class="n">macro</span><span class="p">)</span>
+<span class="linenos">20</span>     <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span> <span class="k">def</span> <span class="nf">objfun</span><span class="p">(</span><span class="n">designvars</span><span class="p">):</span>
+<span class="linenos">24</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Calculate the objective function value&quot;&quot;&quot;</span>
+<span class="linenos">25</span>     <span class="n">saddle_height</span> <span class="o">=</span> <span class="n">designvars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">26</span>     <span class="n">saddle_pos</span> <span class="o">=</span> <span class="n">designvars</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">27</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>     <span class="k">if</span> <span class="s2">&quot;ERROR&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+<span class="linenos">30</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Failed to run model&quot;</span><span class="p">)</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span>     <span class="n">pmet</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Pmet_total&quot;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;Abscissa.t&quot;</span><span class="p">])</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span>     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">pmet</span><span class="p">)</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span> <span class="k">def</span> <span class="nf">seat_distance_constraint</span><span class="p">(</span><span class="n">designvars</span><span class="p">):</span>
+<span class="linenos">38</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Compute contraint value which must be larger than zero&quot;&quot;&quot;</span>
+<span class="linenos">39</span>     <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">designvars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">designvars</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.66</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span> <span class="n">constaints</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ineq&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">:</span> <span class="n">seat_distance_constraint</span><span class="p">}</span>
+<span class="linenos">43</span> <span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.61</span><span class="p">,</span> <span class="mf">0.69</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.22</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">)]</span>
+<span class="linenos">44</span> <span class="n">initial_guess</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.68</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">)</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span> <span class="n">solution</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span>
+<span class="linenos">47</span>     <span class="n">objfun</span><span class="p">,</span> <span class="n">initial_guess</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constaints</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;SLSQP&quot;</span>
+<span class="linenos">48</span> <span class="p">)</span>
+<span class="linenos">49</span>
+<span class="linenos">50</span> <span class="nb">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A copy of the file can be <a class="reference download internal" download="" href="../_downloads/1dd190eb9f65d49b03ff4cfae7ea4c48/optimize.py"><code class="xref download docutils literal notranslate"><span class="pre">downloaded</span> <span class="pre">here.</span></code></a>
+For now you can place the <code class="docutils literal notranslate"><span class="pre">optimize.py</span></code> next to your main file <code class="docutils literal notranslate"><span class="pre">BikeModel2D.main.any</span></code>.
+If you didn’t complete the model from <a class="reference internal" href="lesson2.html"><span class="doc">lesson 2</span></a>, you can download the
+<a class="reference download internal" download="" href="../_downloads/fbca451b371702004e01a16461206a2a/OptimBike2-lesson3.zip"><code class="xref download docutils literal notranslate"><span class="pre">finshed</span> <span class="pre">model</span> <span class="pre">here</span></code></a>.</p>
+</section>
+<section id="importing-the-necessary-libraries">
+<h2>Importing the necessary libraries<a class="headerlink" href="#importing-the-necessary-libraries" title="Permalink to this heading">#</a></h2>
+<p>The first part of the code is the <code class="code highlight python docutils literal highlight-python"><span class="kn">import</span></code> statements. They include the
+libraries which is used by the code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="kn">import</span> <span class="nn">math</span>
+<span class="linenos">2</span> <span class="kn">import</span> <span class="nn">scipy</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span> <span class="kn">from</span> <span class="nn">anypytools</span> <span class="kn">import</span> <span class="n">AnyPyProcess</span>
+<span class="linenos">5</span> <span class="kn">from</span> <span class="nn">anypytools.macro_commands</span> <span class="kn">import</span> <span class="n">Load</span><span class="p">,</span> <span class="n">OperationRun</span><span class="p">,</span> <span class="n">Dump</span><span class="p">,</span> <span class="n">SetValue</span>
+</pre></div>
+</div>
+</section>
+<section id="running-a-model-from-python">
+<h2>Running a model from Python<a class="headerlink" href="#running-a-model-from-python" title="Permalink to this heading">#</a></h2>
+<p>For the external optimizers to work, we need a way to run AnyBody models from
+Python and record the results of the simulations, so we need to create a
+function to do this. There are more information on how to do this in the
+<a class="reference external" href="https://anybody-research-group.github.io/anypytools-docs/">documentaion for AnyPyTools</a>. So here we will
+just show how the code looks and not discuss the details.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 8</span> <span class="k">def</span> <span class="nf">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the AnyBody model and return the metabolism results&quot;&quot;&quot;</span>
+<span class="linenos">10</span>    <span class="n">macro</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">11</span>        <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;BikeModel2D.main.any&quot;</span><span class="p">),</span>
+<span class="linenos">12</span>        <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddleHeight&quot;</span><span class="p">,</span> <span class="n">saddle_height</span><span class="p">),</span>
+<span class="linenos">13</span>        <span class="n">SetValue</span><span class="p">(</span><span class="s2">&quot;Main.BikeParameters.SaddlePos&quot;</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">),</span>
+<span class="linenos">14</span>        <span class="n">OperationRun</span><span class="p">(</span><span class="s2">&quot;Main.Study.InverseDynamics&quot;</span><span class="p">),</span>
+<span class="linenos">15</span>        <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Pmet_total&quot;</span><span class="p">),</span>
+<span class="linenos">16</span>        <span class="n">Dump</span><span class="p">(</span><span class="s2">&quot;Main.Study.Output.Abscissa.t&quot;</span><span class="p">),</span>
+<span class="linenos">17</span>    <span class="p">]</span>
+<span class="linenos">18</span>    <span class="n">app</span> <span class="o">=</span> <span class="n">AnyPyProcess</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="n">silent</span><span class="p">)</span>
+<span class="linenos">19</span>    <span class="n">results</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">start_macro</span><span class="p">(</span><span class="n">macro</span><span class="p">)</span>
+<span class="linenos">20</span>    <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span> <span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="mf">0.66</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">)</span>
+<span class="linenos">23</span> <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Main.Study.Output.Pmet_total&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The function <code class="code highlight python docutils literal highlight-python"><span class="n">run_model</span><span class="p">()</span></code> takes <code class="code highlight python docutils literal highlight-python"><span class="n">saddle_height</span></code> and <code class="code highlight python docutils literal highlight-python"><span class="n">saddle_pos</span></code> as input
+and return the <code class="docutils literal notranslate"><span class="pre">Pmet</span></code> metabolism output from AnyBody.</p>
+<p>If you use an interactive Python environment (like <a class="reference external" href="https://ipython.org/">IPython</a>) you could try calling the function directly to to
+test it and investigate the results:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="mf">0.66</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">)</span>
+<span class="go">[****************100%******************]  1 of 1 completeTotal time: 0.8 seconds</span>
+
+<span class="gp">In [5]: </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="go">odict_keys([&#39;Main.Study.Output.Pmet_total&#39;, &#39;Main.Study.Output.Abscissa.t&#39;])</span>
+
+<span class="gp">In [6]: </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Main.Study.Output.Pmet_total&quot;</span><span class="p">])</span>
+<span class="go">[  17.20903341   73.49291834  209.58490241  379.67002659  559.57715608</span>
+<span class="go">  736.92126247  901.88875426 1045.75303378 1162.65470516 1248.32088806</span>
+<span class="go"> 1299.79539032 1315.38241529 1294.6947524  1238.68684947 1149.59584772</span>
+<span class="go"> 1030.78784505  886.60667952  722.43408728  547.1840971   368.64175002</span>
+<span class="go">  198.07134668   53.41928909   25.84379129   30.60376508   23.17442367</span>
+<span class="go">   24.30809055  139.3209062   292.35610808  469.73382854  649.02576552</span>
+<span class="go">  821.74094457  977.02863522 1108.05435136 1209.79739513 1278.65973442</span>
+<span class="go"> 1312.31195028 1309.70451022 1271.1212895  1198.17227557 1093.68215448</span>
+<span class="go">  961.51890402  806.51623776  634.74029158  458.00117565  280.40563034</span>
+<span class="go">  121.30841553   21.54859903   28.97200722   26.82989147   17.2090334 ]</span>
+</pre></div>
+</div>
+<p>As we expected the output contains the <code class="docutils literal notranslate"><span class="pre">Main.Study.Output.Pmet_total</span></code> value for each timestep in our model.</p>
+</section>
+<section id="defining-the-objective-function">
+<h2>Defining the objective function<a class="headerlink" href="#defining-the-objective-function" title="Permalink to this heading">#</a></h2>
+<p>The next step is to define the objective function. The objective function should
+take a list of design values as input and return the objective function value.
+In <a class="reference internal" href="lesson2.html"><span class="doc">Lesson 2</span></a> the objective function was the time integral of the
+metabolism variable. So we will do the same here with Scipy’s
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.trapz.html#numpy.trapz" title="(in NumPy v1.24)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.trapz()</span></code></a>: function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">23</span> <span class="k">def</span> <span class="nf">objfun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="linenos">24</span>     <span class="n">saddle_height</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">25</span>     <span class="n">saddle_pos</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">26</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">saddle_height</span><span class="p">,</span> <span class="n">saddle_pos</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span>     <span class="k">if</span> <span class="s2">&quot;ERROR&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+<span class="linenos">29</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Failed to run model&quot;</span><span class="p">)</span>
+<span class="linenos">30</span>     <span class="c1"># Integrate Pmet_total</span>
+<span class="linenos">31</span>     <span class="n">pmet</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Pmet_total&quot;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;Abscissa.t&quot;</span><span class="p">])</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span>     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">pmet</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The function also checks the results for errors reported
+by AnyBody and raises a <a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#ValueError" title="(in Python v3.7)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> exception if that happens.
+There could be ways of handle error without failing but it is important to
+handle model failures, otherwise they may go unnoticed or mess with the
+optimization results.</p>
+</div>
+<p>Again, we can run this function interactively to test it:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">pmet</span> <span class="o">=</span> <span class="n">objfun</span><span class="p">([</span><span class="mf">0.66</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">])</span>
+
+<span class="gp">In [10]: </span><span class="nb">print</span><span class="p">(</span><span class="n">pmet</span><span class="p">)</span>
+<span class="go">505.329399532772</span>
+</pre></div>
+</div>
+<p>Now we get the time integral of the <code class="docutils literal notranslate"><span class="pre">Pmet_total</span></code> variable as as single value,
+and we are now ready to define the optimization process.</p>
+</section>
+<section id="setting-up-the-optimization-study">
+<h2>Setting up the optimization study<a class="headerlink" href="#setting-up-the-optimization-study" title="Permalink to this heading">#</a></h2>
+<p>We wrap things up by creating a function, <a class="reference internal" href="lesson2.html#optimization-contraint"><span class="std std-ref">similar to what we did in AnyBody</span></a>,
+as well as defining the bounds and initial guess
+for the design variables.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">37</span> <span class="k">def</span> <span class="nf">seat_distance_constraint</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="linenos">38</span><span class="w">     </span><span class="sd">&quot;&quot;&quot; Compute contraint value which must be larger than zero&quot;&quot;&quot;</span>
+<span class="linenos">39</span>     <span class="k">return</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.66</span><span class="p">)</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span> <span class="n">constaints</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ineq&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">:</span> <span class="n">seat_distance_constraint</span><span class="p">}</span>
+<span class="linenos">43</span> <span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.61</span><span class="p">,</span> <span class="mf">0.69</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.22</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">)]</span>
+<span class="linenos">44</span> <span class="n">initial_guess</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.68</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The documentation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.10.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a> has more information on how to define bounds, contraints, tolerances, etc.</p>
+<p>Finally, we call the <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code> function run the optimizer. In this case we used the
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-slsqp.html#optimize-minimize-slsqp">SLSQP</a> algorithm.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">46</span> <span class="n">solution</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span>
+<span class="linenos">47</span>     <span class="n">objfun</span><span class="p">,</span> <span class="n">initial_guess</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constaints</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;SLSQP&quot;</span>
+<span class="linenos">48</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>Let us try to do this interactively and look at the results.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">solution</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span>
+<span class="go">    ...:     objfun, initial_guess, constraints=constaints, bounds=bounds, method=&quot;SLSQP&quot;</span>
+<span class="go">    ...: )</span>
+
+<span class="gp">In [12]: </span><span class="nb">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+<span class="go">     fun: 503.57634385063113</span>
+<span class="go">     jac: array([39.43954086, -6.95677948])</span>
+<span class="go"> message: &#39;Optimization terminated successfully.&#39;</span>
+<span class="go">    nfev: 56</span>
+<span class="go">     nit: 12</span>
+<span class="go">    njev: 12</span>
+<span class="go">  status: 0</span>
+<span class="go"> success: True</span>
+<span class="go">       x: array([ 0.65010304, -0.11386853])</span>
+</pre></div>
+</div>
+<p>And there we have it!
+We can now take advantage of the many different algorithms and settings available for <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" title="(in SciPy v1.10.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code></a>.
+We could also use a different package or customize our own algorithm, constraints etc.</p>
+<p>The possibilities are practically endless. The full example from this tutorial can be
+<a class="reference download internal" download="" href="../_downloads/afc20018b23faa853085a37337242a7e/python-optimize.zip"><code class="xref download docutils literal notranslate"><span class="pre">downloaded</span> <span class="pre">here</span></code></a>.</p>
+<p>For more information regarding the <code class="docutils literal notranslate"><span class="pre">AnyPyTools</span></code> python package follow <a class="reference external" href="https://anybody-research-group.github.io/anypytools-docs/">this link.</a>
+You can also check out this <a class="reference external" href="https://www.youtube.com/results?search_query=anybody+webcast+batch">webcast.</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lesson2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Optimization Studies</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Finite_element_analysis/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Finite Element Analysis Interfacing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-python-script">Example Python script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-the-necessary-libraries">Importing the necessary libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-model-from-python">Running a model from Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-objective-function">Defining the objective function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-optimization-study">Setting up the optimization study</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By AnyBody Technology
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, AnyBody Technology.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

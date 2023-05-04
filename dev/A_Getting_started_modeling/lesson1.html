@@ -1,0 +1,744 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="noindex" name="robots" />
+<meta property="og:title" content="Lesson 1: Starting with a New Model" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://anyscript.org/A_Getting_started_modeling/lesson1.html" />
+<meta property="og:site_name" content="AnyScript Tutorials" />
+<meta property="og:description" content="In this tutorial, we will create a model of a single leg stepping on a pedal. Creating a model from templates: The toolbar button “Template” will generate a pop-up menu that looks like the image be..." />
+<meta property="og:image" content="https://anyscript.org/_images/image25.png" />
+<meta property="og:image:alt" content="New template model button" />
+<meta name="description" content="In this tutorial, we will create a model of a single leg stepping on a pedal. Creating a model from templates: The toolbar button “Template” will generate a pop-up menu that looks like the image be..." />
+
+    <title>Lesson 1: Starting with a New Model &#8212; AnyBody Tutorials v7.4.3-dev</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'A_Getting_started_modeling/lesson1';</script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 2: Adjusting the Human Model" href="lesson2.html" />
+    <link rel="prev" title="Introduction: Getting Started with Modeling" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder=""
+         aria-label=""
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/AnyBodyTutorials2.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder=""
+         aria-label=""
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../GettingStarted.html"><strong>Getting Started</strong></a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started/index.html">Getting Started - First steps</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/intro.html">Getting Started Tutorial</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/lesson1.html">Lesson 1: Creating a Standing Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/lesson2.html">Lesson 2: Controlling the Posture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started/lesson3.html">Lesson 3: Reviewing Analysis Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started_anyscript/index.html">How to write AnyScript</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson1.html">Lesson 1: Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson2.html">Lesson 2: Defining Segments and Displaying Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson3.html">Lesson 3: Connecting Segments by Joints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson4.html">Lesson 4: Imparting movement with Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson5.html">Lesson 5: Definition of Muscles and External Forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_Getting_started_anyscript/lesson6.html">Lesson 6: Adding Real Bone Geometries</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Modelling the Human body</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Lesson 1: Starting with a New Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson2.html">Lesson 2: Adjusting the Human Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson3.html">Lesson 3: Making Ends Meet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson4.html">Lesson 4: Kinetics - Computing Forces</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_Getting_started_AMMR/index.html">The AnyBody Model Repository</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/creating_model_from_scratch.html">Creating a Human Model from scratch</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson1.html">Scaling: Joint to joint scaling</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson2.html">Scaling: External Body Measurements</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://anyscript.org/ammr-doc/Scaling/lesson3.html">Scaling: Segmental scaling factors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Tutorials.html"><strong>Tutorials</strong></a><input checked class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../A_study_of_studies/index.html">A Study of Studies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson1.html">Lesson1: Mechanical System Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson2.html">Lesson2: Initial Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson3.html">Lesson 3: Kinematic Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../A_study_of_studies/lesson4.html">Lesson 4: Inverse Dynamics</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Making_things_move/index.html">Making things move</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson1.html">Lesson1: Simple drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson2.html">Lesson 2: Using motion capture data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson3.html">Lesson3: Noise and filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson4.html">Lesson 4: Parameter identification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson5.html">Lesson 5: Using real data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Making_things_move/lesson6.html">Lesson 6: Troubleshooting C3D files</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../MuscleRecruitment/index.html">Inverse Dynamics of Muscle Systems</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/Inverse_dynamics.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson1.html">Lesson 1: The Basics of Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson2.html">Lesson 2: Linear Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson3.html">Lesson 3: Quadratic Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson4.html">Lesson 4: Polynomial Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson5.html">Lesson 5: Min/Max Muscle Recruitment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson6.html">Lesson 6: Composite Recruitment Criteria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MuscleRecruitment/lesson_calibration.html">Lesson 7: Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Muscle_modeling/index.html">Muscle Modeling</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson1.html">Lesson 1: The Basics of Muscle Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson2.html">Lesson 2: Controlling Muscle Drawing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson3.html">Lesson 3: Via-point Muscles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson4.html">Lesson 4: Wrapping Muscles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson5.html">Lesson 5: Muscle Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson6.html">Lesson 6: General Muscles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Muscle_modeling/lesson7.html">Lesson 7: Ligaments</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../The_mechanical_elements/index.html">The Mechanical Elements</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson1.html">Lesson 1: Segments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson2.html">Lesson 2: Joints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson3.html">Lesson 3: Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson4.html">Lesson 4: Kinematic Measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../The_mechanical_elements/lesson5.html">Lesson 5: Forces</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ForceDependentKinematics/index.html">Force-Dependent Kinematics</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/fdk.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson1.html">Lesson 1: The Baseline Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson2.html">Lesson 2: Adding FDK Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson3.html">Lesson 3: Results of FDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson4.html">Lesson 4: Using Surfaces to Define the Knee Joint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/lesson5.html">Lesson 5: Using Contact Forces to Replace a Joint in a Human Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ForceDependentKinematics/fdkappendix.html">FDK appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Parameter_studies_and_optimization/index.html">Parameter Studies and Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Parameter_studies_and_optimization/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Parameter_studies_and_optimization/lesson1.html">Defining a Parameter Study</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Parameter_studies_and_optimization/lesson2.html">Optimization Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Parameter_studies_and_optimization/lesson3.html">Optimization Studies in Python</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Finite_element_analysis/index.html">Finite Element Analysis Interfacing</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Finite_element_analysis/lesson1.html">Lesson 1: Export of data for FEA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Finite_element_analysis/lesson2.html">Lesson 2: ANSYS Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Finite_element_analysis/lesson3.html">Lesson 3: Abaqus Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../AnyExp4SOLIDWORKS/index.html">Making Models using SOLIDWORKS</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson1.html">Translating a SOLIDWORKS CAD model to AnyBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson2.html">Making the translated AnyScript model move</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AnyExp4SOLIDWORKS/lesson3.html">Creating human-machine integrated analysis model</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Scaling/index.html">Scaling and Personalizing your model</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../Scaling/lesson3.html">Lesson 1: Scaling based on medical images</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Scaling/lesson3_appendix.html"> Lesson 1 appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Scaling/lesson4.html">Lesson 2: Including a custom scaling function into your model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Posture_and_movement/intro.html">Posture and Movement Prediction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Interface_features/index.html">User interface features</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson1.html">Lesson 1: The Editor Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson2.html">Lesson 2: The Model View Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson3.html">Lesson 3: The Chart View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson4.html">Lesson 4: The Model Tree and Object Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson5.html">Lesson 5: The Command Line Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson6.html">Lesson 6: Modifying the Loaded Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Interface_features/lesson7.html">Lesson 7: Wrapping the Model with AnyBody Project</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Advanced_script_features/index.html">Advanced Script Features</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Advanced_script_features/lesson1.html">Lesson 1: Using References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Advanced_script_features/lesson2.html">Lesson 2: Using Include Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Advanced_script_features/lesson3.html">Lesson 3: Mathematical Expressions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Troubleshooting_anyscript/intro.html">Trouble Shooting AnyScript Models</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Validation_of_models/index.html">Validation of Models</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Validation_of_models/intro.html">Introduction to validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Validation_of_models/Kinematic_input.html">Validating Kinematic input</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../about.html"><strong>About</strong></a><input checked class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html">Help improve tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../legal.html">Legal, Trademarks and Copyrights</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/anybody/anybody-tutorial/edit/main/A_Getting_started_modeling/lesson1.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/anybody/anybody-tutorial/issues/new?title=Issue%20on%20page%20%2FA_Getting_started_modeling/lesson1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lesson 1: Starting with a New Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-model-from-templates">Creating a model from templates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model-structure">The model structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-pedal-segment">Add pedal segment</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-1-starting-with-a-new-model">
+<h1>Lesson 1: Starting with a New Model<a class="headerlink" href="#lesson-1-starting-with-a-new-model" title="Permalink to this heading">#</a></h1>
+<p>In this tutorial, we will create a model of a single leg stepping on a
+pedal.</p>
+<section id="creating-a-model-from-templates">
+<h2>Creating a model from templates<a class="headerlink" href="#creating-a-model-from-templates" title="Permalink to this heading">#</a></h2>
+<p>The toolbar button “Template” will generate a pop-up menu that looks like the image below.
+Select the “Human” template, set the “Target Folder” as per your convenience, but you must set the target name as “MyPedal”:</p>
+<p><img alt="New template model button" src="../_images/image25.png" /></p>
+<p><img alt="New Template dialog" src="../_images/image34.png" /></p>
+<p>If you press the OK button, it will open an editor window of
+“MyPedal.main.any” file that includes the following lines:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="s">&quot;libdef.any&quot;</span>
+
+<span class="n">Main</span> <span class="o">=</span> 
+<span class="p">{</span>  
+
+  <span class="c1">// Body Model configuration:</span>
+  <span class="cp">#include</span> <span class="s">&quot;Model/BodyModelConfiguration.any&quot;</span>
+
+  <span class="c1">// Using your own Mannequin.any file in the Model folder of your model</span>
+  <span class="cp">#include</span> <span class="s">&quot;Model\Mannequin.any&quot;</span>
+
+  <span class="c1">// Include default human model</span>
+  <span class="cp">#include</span> <span class="s">&quot;&lt;ANYBODY_PATH_BODY&gt;\HumanModel.any&quot;</span>
+
+  <span class="kt">AnyFolder</span> <span class="n">Model</span> <span class="o">=</span> 
+  <span class="p">{</span>
+    <span class="c1">// A link to the human model</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">BodyModel</span> <span class="o">=</span> <span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">BodyModel</span><span class="p">;</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">DefaultMannequinDrivers</span> <span class="o">=</span> <span class="p">.</span><span class="n">HumanModel</span><span class="p">.</span><span class="n">DefaultMannequinDrivers</span><span class="p">;</span>
+ 
+    <span class="c1">// Environment files are used to include objects surrounding human</span>
+    <span class="cp">#include</span> <span class="s">&quot;Model\Environment.any&quot;</span>   
+ 
+    <span class="kt">AnyFolder</span> <span class="n">ModelEnvironmentConnection</span> <span class="o">=</span> 
+    <span class="p">{</span>
+      <span class="c1">//&#39;JointsAndDrivers.any&#39; file can include all kinematic constraints such as joints and drivers</span>
+      <span class="cp">#include</span> <span class="s">&quot;Model\JointsAndDrivers.any&quot;</span>
+      <span class="c1">// Additional reactions which are required to run the inverse dynamics analysis</span>
+      <span class="cp">#include</span> <span class="s">&quot;Model\Reactions.any&quot;</span>
+    <span class="p">};</span>
+  <span class="p">};</span>
+ 
+  <span class="kt">AnyBodyStudy</span> <span class="n">Study</span> <span class="o">=</span> 
+  <span class="p">{</span>
+    <span class="kt">AnyFolder</span> <span class="o">&amp;</span><span class="n">Model</span> <span class="o">=</span> <span class="p">.</span><span class="n">Model</span><span class="p">;</span>  
+    
+    <span class="n">Gravity</span><span class="o">=</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
+    <span class="n">nStep</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="c1">// Overdeterminate solver is needed while using the </span>
+    <span class="c1">// soft default mannequin drivers.</span>
+    <span class="n">Kinematics</span><span class="p">.</span><span class="n">SolverType</span> <span class="o">=</span> <span class="kp">KinSolOverDeterminate</span><span class="p">;</span>
+    <span class="n">InitialConditions</span><span class="p">.</span><span class="n">SolverType</span> <span class="o">=</span> <span class="n">Kinematics</span><span class="p">.</span><span class="n">SolverType</span> <span class="p">;</span>
+  <span class="p">};</span>
+
+    <span class="cp">#include</span> <span class="s">&quot;Model\RunAppSequence.any&quot;</span>
+<span class="p">};</span> <span class="c1">//Main</span>
+</pre></div>
+</div>
+<p>When you load the model, you should see the following image in your model view:</p>
+<p><img alt="Model view Full body" src="../_images/image43.png" />    ```</p>
+<p>Double-clicking the following line:,:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="cp">#include</span> <span class="s">&quot;Model\Environment.any&quot;</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>Opens up the “Environment.any” file which is created by the Human template.</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//This is a place holder for the modeling of the environment.</span>
+<span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span> 
+<span class="p">{</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>For this model, the only environment objects will be the global reference frame (i.e. ground),
+and the pedal which the foot will be stepping on. You can define the global reference frame within the
+environment folder as follows:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="c1">//This is a place holder for the modeling of the environment.</span>
+<span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="gr">AnyFixedRefFrame GlobalRef =</span>
+<span class="gr">  {</span>
+<span class="gr">   viewRefFrame.Visible=On;</span>
+<span class="gr">   viewRefFrame.ScaleXYZ = 0.5*{1,1,1};</span>
+<span class="gr">  };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Click the “Save” button or Ctrl-S to save what you have typed in this Environment.any file and reload the model.</p>
+</section>
+<section id="the-model-structure">
+<span id="model-structure"></span><h2>The model structure<a class="headerlink" href="#the-model-structure" title="Permalink to this heading">#</a></h2>
+<p>Let us first review the structure of the model in slightly more
+detail. This structure creates a clear division between the human body parts
+and the applications we hook them up to.</p>
+<p><img alt="ModelTree" src="../_images/image17.png" /></p>
+<p><strong>Just below “Main”, you see the “HumanModel” folder which holds all the body
+parts that are imported from the AMMR, such as segments (bones), joints, muscles etc.</strong></p>
+<p>Information for scaling the size of the default human model is also stored here.
+In general, you won’t need to modify this information directly.</p>
+<p>The “Model” folder comes next this holds information specific to the application you’re creating.
+In this case, this is the pedal model. The “Model” folder is sub-divided into three sub-folders:</p>
+<ul class="simple">
+<li><p><strong>HumanModel</strong> - This is a local reference to the “Main.HumanModel”, located within the “Model” folder.
+<a class="reference internal" href="../A_Getting_started_anyscript/lesson3.html#reference-objects"><span class="std std-ref">This section</span></a> can help you recollect what reference objects are.</p></li>
+<li><p><strong>Environment</strong> - This contains external hardware such as chairs,
+bicycles, tools, or, in the present case, a pedal.</p></li>
+<li><p><strong>ModelEnvironmentConnection</strong> - This holds the measures and drivers that link the body model together to the environment.</p></li>
+</ul>
+</section>
+<section id="add-pedal-segment">
+<h2>Add pedal segment<a class="headerlink" href="#add-pedal-segment" title="Permalink to this heading">#</a></h2>
+<p>The pedal will be hinged at one end, with the foot pushing down at the other.
+We will define the pedal segment and the hinge in the “Environment.any” file:</p>
+<p>This is achieved by the following lines:</p>
+<div class="highlight-AnyScriptDoc notranslate"><div class="highlight"><pre><span></span><span class="kt">AnyFolder</span> <span class="n">Environment</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="kt">AnyFixedRefFrame</span> <span class="n">GlobalRef</span> <span class="o">=</span>
+  <span class="p">{</span>
+   <span class="n">viewRefFrame</span><span class="p">.</span><span class="n">Visible</span><span class="o">=</span><span class="kp">On</span><span class="p">;</span>
+   <span class="n">viewRefFrame</span><span class="p">.</span><span class="n">ScaleXYZ</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
+  <span class="p">};</span>
+  <span class="gr">AnySeg Pedal = {</span>
+<span class="gr">    viewInertia.Visible = On;</span>
+<span class="gr">    Mass = 2;</span>
+<span class="gr">    Jii = {0.05, 0.001, 0.05};</span>
+<span class="gr">    AnyRefNode Hinge = {</span>
+<span class="gr">      sRel = {0, -0.15, 0};</span>
+<span class="gr">    };</span>
+<span class="gr">    AnyRefNode FootNode = {</span>
+<span class="gr">      sRel = {0, 0.15, 0};</span>
+<span class="gr">    };</span>
+<span class="gr">  };</span>
+<span class="gr">  AnyRevoluteJoint HingeJoint = {</span>
+<span class="gr">    Axis = z;</span>
+<span class="gr">    AnyFixedRefFrame &amp;Ground = .GlobalRef;</span>
+<span class="gr">    AnyRefNode &amp;Pedal = .Pedal.Hinge;</span>
+<span class="gr">  };</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>If you reload the model, you will see the new segment in the model:</p>
+<p><img alt="Model view new segment" src="../_images/image55.png" /></p>
+<p>In the next lesson, we shall look at how you can customize the human model to fit the purpose of your
+simulation using AnyBody.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction: Getting Started with Modeling</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lesson2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lesson 2: Adjusting the Human Model</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-model-from-templates">Creating a model from templates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model-structure">The model structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-pedal-segment">Add pedal segment</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By AnyBody Technology
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, AnyBody Technology.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
