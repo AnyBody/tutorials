@@ -45,7 +45,7 @@ jobs:
         with:
           environment-file: environment.yaml
 
-      #- run: sphinx-build -M linkcheck . _build -W --keep-going -a -q 
+      - run: sphinx-build -M linkcheck . _build -W --keep-going -a -q 
       
 
   link-check-last-tagged:
@@ -62,7 +62,7 @@ jobs:
         with:
           environment-file: environment.yaml
 
-      #- run: sphinx-build -M linkcheck . _build -W --keep-going -a -q 
+      - run: sphinx-build -M linkcheck . _build -W --keep-going -a -q 
           
     
   build:
