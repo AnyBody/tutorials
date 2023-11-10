@@ -81,6 +81,7 @@ html[data-theme="dark"] .highlight .c1 { color: #777777; font-style: italic } /*
 html[data-theme="dark"] .highlight .cs { color: #777777; font-style: italic } /* Comment.Special */
 html[data-theme="dark"] .highlight .gd { color: #cccccc } /* Generic.Deleted */
 html[data-theme="dark"] .highlight .ge { color: #cccccc } /* Generic.Emph */
+html[data-theme="dark"] .highlight .ges { color: #cccccc } /* Generic.EmphStrong */
 html[data-theme="dark"] .highlight .gr { color: #cccccc } /* Generic.Error */
 html[data-theme="dark"] .highlight .gh { color: #cccccc } /* Generic.Heading */
 html[data-theme="dark"] .highlight .gi { color: #cccccc } /* Generic.Inserted */
