@@ -189,7 +189,7 @@ project = "AnyBody Tutorials"
 copyright = f"{current_year}, AnyBody Technology"
 author = "AnyBody Technology"
 
-github_doc_root = "https://github.com/AnyBody/anybody-tutorial/tree/master"
+github_doc_root = "https://github.com/AnyBody/tutorials/tree/master"
 
 
 # The version info for the project you're documenting, acts as replacement for
@@ -244,7 +244,7 @@ pydata_html_theme_options = {
     #         "name": "AMMR Documentation",
     #     },
     # ],
-    "github_url": "https://github.com/anybody/anybody-tutorial/",
+    "github_url": "https://github.com/anybody/tutorials/",
     # "logo": {
     #     "text": "PyData Theme",
     #     "image_dark": "logo-dark.svg",
@@ -269,7 +269,7 @@ myst_heading_anchors = 2
 
 html_context = {
     "github_user": "anybody",
-    "github_repo": "anybody-tutorial",
+    "github_repo": "tutorials",
     "github_version": "master",
     "doc_path": ".",
 }
@@ -277,7 +277,7 @@ html_context = {
 html_theme_options = {
     # "logo_only": True,
     
-    "repository_url": "https://github.com/anybody/anybody-tutorial",
+    "repository_url": "https://github.com/anybody/tutorials",
     "use_repository_button": False,
     # "extra_navbar": 'Tutorials by <a href="https://anybodytech.com">AnyBody Technology</a>',
     "home_page_in_toc": False,

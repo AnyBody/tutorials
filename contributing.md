@@ -4,7 +4,7 @@ We highly appreciate any contributions to the Tutorials!
 
 If you find typos, missing links or anything else wrong, don't hesitate to fix it.
 
-It is as easy as forking [the repository on GitHub](https://github.com/AnyBody/anybody-tutorial) , making your changes, and
+It is as easy as forking [the repository on GitHub](https://github.com/AnyBody/tutorials) , making your changes, and
 issuing a pull request.  If you have any questions about this process don’t
 hesitate to ask.
 
@@ -21,7 +21,7 @@ changes to the documents and ensure consistent style.
 
 The tutorials are automatically build with sphinx when commits are
 pushed to the github repository. The process is handle by
-[Github Actions, here](https://github.com/AnyBody/anybody-tutorial/actions).
+[Github Actions, here](https://github.com/AnyBody/tutorials/actions).
 If the build fails, for example because of
 wrong syntax etc, the Pull Request can not be merged.
 
