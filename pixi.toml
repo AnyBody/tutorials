@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Add a short description here"
 authors = ["Morten Enemark Lund <mel@anybodytech.com>"]
 channels = ["conda-forge"]
-platforms = ["win-64"]
+platforms = ["win-64","linux-64"]
 
 [tasks]
 linkcheck = "sphinx-build -M linkcheck . _build"
@@ -33,3 +33,4 @@ jinja2 = ">=3.1.2,<3.2"
 tomli = ">=2.0.1,<2.1"
 sphinx-book-theme = ">=1.0.1,<1.1"
 make = ">=4.3,<5"
+sphinx-autobuild = ">=2021.3.14,<2021.4"
