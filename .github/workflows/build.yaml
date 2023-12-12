@@ -7,12 +7,7 @@ on:
     tags: ["*"]
   pull_request:
     branches: [ master ]
-  workflow_dispatch:
-    inputs:
-      run_deploy:
-        description: 'Should newest tag be deployed?'
-        required: false
-        default: ""
+
 
 jobs:
 
@@ -60,7 +55,7 @@ jobs:
           cache-write: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
   
       - if: steps.pixisetup.outcome == 'success'
-        run: pixi sphinx-build -M linkcheck . _build -W --keep-going -a -q 
+        run: pixi run sphinx-build -M linkcheck . _build -W --keep-going -a -q 
           
       - name: Install mamba
         if: steps.pixisetup.outcome == 'failure'
