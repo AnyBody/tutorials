@@ -4,10 +4,9 @@ channels:
   - conda-forge
 dependencies:
   - python
-  - pip
-  - sphinx<6
-  - myst-parser>=0.18
-  - pydata-sphinx-theme>=0.13
+  - sphinx<7
+  - myst-parser
+  - pydata-sphinx-theme
   - make
   - sphinx-togglebutton
   - pygments_anyscript
@@ -17,7 +16,7 @@ dependencies:
   - tomli
   - sphinx-copybutton
   - sphinxext-opengraph
-  - sphinx-book-theme>=1.0
+  - sphinx-book-theme
   - sphinx-design
   - sphinxcontrib-youtube
 
