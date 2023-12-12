@@ -264,7 +264,7 @@ getting lost in the jungle of meshing.
 
 In the following, we will make use of two freely available tools.
 Preprocessing (meshing and applying boundary conditions) is done using
-[IA-FEMesh](http://www.ccad.uiowa.edu/mimx) provided by the
+[IA-FEMesh](https://ctpr.github.io/IA-FEMesh/) provided by the
 University of Iowa. [Calculix](http://www.calculix.de) is used as
 solver and post-processor. This fine piece of software is written and
 maintained by Guido Dhondt and Klaus Wittig. Calculix v1.8 and
