@@ -1,4 +1,6 @@
 _build/
 .vscode/
 *.docx
-*.pyc
+*.pyc# pixi environments
+.pixi
+

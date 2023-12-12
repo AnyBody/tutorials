@@ -119,6 +119,7 @@ exclude_patterns = [
     ".github",
     "README.md",
     "galleries/*",
+    ".pixi",
 ]
 
 
@@ -276,7 +277,6 @@ html_context = {
 
 html_theme_options = {
     # "logo_only": True,
-    
     "repository_url": "https://github.com/anybody/tutorials",
     "use_repository_button": False,
     # "extra_navbar": 'Tutorials by <a href="https://anybodytech.com">AnyBody Technology</a>',
@@ -288,9 +288,7 @@ html_theme_options = {
     "show_navbar_depth": 2,
     "search_bar_text": "",
     "pygment_light_style": "AnyScript",
-    "pygment_dark_style": "stata-dark"
-
-
+    "pygment_dark_style": "stata-dark",
 }
 
 
@@ -442,9 +440,9 @@ linkcheck_ignore = [
     "https://doi.org/10.1115/1.4052115",  # asme.org prevents the linkcheck
     "https://dx.doi.org/10.1115/1.4001678",  # asme.org prevents the linkcheck
     "https://dx.doi.org/10.1115/1.4029258",  # asme.org prevents the linkcheck
-    "https://doi.org/10.1080/10255840802459412", # tandfonline sometimes blocks linkcheck
-    "https://doi.org/10.1080/23335432.2014.993706", # tandfonline sometimes blocks linkcheck
-    "https://anyscript.org/tutorials/dev/", # The dev sides can sometimes be missing.
+    "https://doi.org/10.1080/10255840802459412",  # tandfonline sometimes blocks linkcheck
+    "https://doi.org/10.1080/23335432.2014.993706",  # tandfonline sometimes blocks linkcheck
+    "https://anyscript.org/tutorials/dev/",  # The dev sides can sometimes be missing.
 ]
 
 linkcheck_allowed_redirects = {
@@ -457,4 +455,4 @@ linkcheck_allowed_redirects = {
 
 
 def setup(app):
-    ... 
+    ...
