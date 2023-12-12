@@ -14,11 +14,6 @@ on:
         required: false
         default: ""
 
-defaults:
-  run:
-    shell: bash -leo pipefail {0} {0}
-
-
 jobs:
 
   find-tag:
@@ -40,12 +35,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Install mamba
-        uses: mamba-org/setup-micromamba@v1
+      - uses: prefix-dev/setup-pixi@v0.4.1
         with:
-          environment-file: environment.yaml
-
-      - run: sphinx-build -M linkcheck . _build -W --keep-going -a -q 
+          cache: true
+          cache-write: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
+        
+      - run: pixi run sphinx-build -M linkcheck . _build -W --keep-going -a -q 
       
 
   link-check-last-tagged:
@@ -57,15 +52,30 @@ jobs:
         with:
           ref: ${{ needs.find-tag.outputs.latest-tag }}
       
+      - uses: prefix-dev/setup-pixi@v0.4.1
+        continue-on-error: true
+        id: pixisetup
+        with:
+          cache: true
+          cache-write: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
+  
+      - if: steps.pixisetup.outcome == 'success'
+        run: pixi sphinx-build -M linkcheck . _build -W --keep-going -a -q 
+          
       - name: Install mamba
+        if: steps.pixisetup.outcome == 'failure'
         uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: environment.yaml
+            
+      - name: build with mamba
+        if: steps.pixisetup.outcome == 'failure'
+        shell: bash -leo pipefail {0} {0}
+        run: sphinx-build -M linkcheck . _build -W --keep-going -a -q 
 
-      - run: sphinx-build -M linkcheck . _build -W --keep-going -a -q 
-          
+
     
-  build:
+  build-latest:
 
     runs-on: ubuntu-latest
     needs: [find-tag, link-check]
@@ -75,41 +85,80 @@ jobs:
         with:
           fetch-depth: 0
     
+      - uses: prefix-dev/setup-pixi@v0.4.1
+        with:
+          cache: true
+          cache-write: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
+  
+      - name: Build Documentation
+        run: pixi run sphinx-build -M html . _build -W --keep-going -a -t draft
+    
+      - uses: actions/upload-artifact@v3
+        with:
+          name: beta-version
+          path: _build/html
+
+
+  build-tagged:
+
+    runs-on: ubuntu-latest
+    needs: [find-tag, link-check]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.find-tag.outputs.latest-tag }}
+          fetch-depth: 0
+
+      - uses: prefix-dev/setup-pixi@v0.4.1
+        continue-on-error: true
+        id: pixisetup
+        with:
+          cache: true
+          cache-write: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
+    
+      - name: Build Documentation
+        if: steps.pixisetup.outcome == 'success'
+        run: pixi run sphinx-build -M html . _build -W --keep-going -a
+            
+
       - name: Install mamba
+        if: steps.pixisetup.outcome == 'failure'
         uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: environment.yaml
+            
+      - name: build with mamba
+        if: steps.pixisetup.outcome == 'failure'
+        shell: bash -leo pipefail {0} {0}
+        run: sphinx-build -M html . _build -W --keep-going -a
 
-      - name: Build Documentation
-        run:  |
-          sphinx-build -M html . _build-beta -W --keep-going -a -t draft
-    
-      - name: Checkout last tagged
-        run: |
-          git checkout ${{ needs.find-tag.outputs.latest-tag }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: tagged-version
+          path: _build/html
 
-      - name: Build environment for last tagged version
-        run: micromamba create -n tutorial-tagged -y -f environment.yaml
-
-      - name: Build last tagged version
-        run: |
-          micromamba activate tutorial-tagged
-          sphinx-build -M html . _build -W --keep-going -a
-
-      - name: Prepare html for upload
-        run: | 
-          mkdir -p gh-pages/beta
-          cp -rT _build-beta/html gh-pages/beta
-          cp -rT _build/html gh-pages
-
+  prepare-pages:
+    needs: [build-latest, build-tagged]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: tagged-version
+          path: public
+      - uses: actions/download-artifact@v3
+        with:
+          name: beta-version
+          path: public/beta
       - uses: actions/upload-pages-artifact@v2
         with: 
-          path: gh-pages
+          path: public
+          
 
 
   deploy:
-    needs: [build, link-check-last-tagged]
-    if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')
+    needs: prepare-pages
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     permissions:
       pages: write    
@@ -124,5 +173,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
                   
-        
-
+     
