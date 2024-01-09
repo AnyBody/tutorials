@@ -1,7 +1,5 @@
 # Posture and Movement Prediction
 
-{{ caution_old_tutorial }}
-
 Just about every example you find in these tutorials is based on the
 concept of inverse dynamics, which in some sense is the opposite of
 forward dynamics. To understand the difference between these two
@@ -94,11 +92,13 @@ that the leg performs a kick.
 
 The system also gives you the following warning:
 
-*MyStudy* : The muscles in the model are not loaded due to kinetically
+```none
+MyStudy : The muscles in the model are not loaded due to kinetically
 over-constrained mechanical system.
 
-*MyStudy.InverseDynamics* : No muscles in the model. 49) ...Inverse
-dynamic analysis completed
+MyStudy.InverseDynamics : No muscles or other recruited actuators in the model.
+49) ...Inversedynamic analysis completed
+```
 
 We get this message because the model has no muscles and the necessary
 joint torques to produce the movement are provided by the drivers. We
@@ -110,7 +110,7 @@ muscles" to the hip and knee joints representing realistic strengths. We
 are going to need such joint muscles for flexion and extension
 respectively for both of the two joints. The red lines below add such
 muscles with realistic joint strengths in Newton-meter. For an
-explanation of the use of the AnyGeneralMuscle class, please refer to
+explanation of the use of the AnyMuscleGeneric class, please refer to
 the {doc}`muscle modeling tutorial </Muscle_modeling/intro>`.
 
 ```AnyScriptDoc
@@ -120,27 +120,33 @@ AnyKinEqSimpleDriver KneeDriver = {
   AnyRevoluteJoint &Joint = .Knee;
 };
 §// Hip joint muscles
-AnyGeneralMuscle HipFlex = {
-  AnyMuscleModel Model = {F0 = 232;};
-  ForceDirection = 1;
-  AnyRevoluteJoint &Joint = .Hip;
+AnyMuscleGeneric HipFlex = {
+    MuscleModel = &MusMdl;
+    Type = NonNegative;
+    AnyRevoluteJoint &Joint = .Hip;
+    AnyMuscleModel MusMdl = {F0 = 232;};
 };
-AnyGeneralMuscle HipExtend = {
-  AnyMuscleModel Model = {F0 = 251;};
-  ForceDirection = -1;
-  AnyRevoluteJoint &Joint = .Hip;
+
+AnyMuscleGeneric HipExtend = {
+    MuscleModel = &MusMdl;
+    Type = NonPositive;
+    AnyRevoluteJoint &Joint = .Hip;
+    AnyMuscleModel MusMdl = {F0 = 251;};
 };
 
 // Knee joint muscles
-AnyGeneralMuscle KneeExtend = {
-  AnyMuscleModel Model = {F0 = 554;};
-  ForceDirection = 1;
-  AnyRevoluteJoint &Joint = .Knee;
+AnyMuscleGeneric KneeExtend = {
+    MuscleModel = &MusMdl;
+    Type = NonNegative;
+    AnyRevoluteJoint &Joint = .Knee;
+    AnyMuscleModel MusMdl = {F0 = 554;};
 };
-AnyGeneralMuscle KneeFlex = {
-  AnyMuscleModel Model = {F0 = 236;};
-  ForceDirection = -1;
-  AnyRevoluteJoint &Joint = .Knee;
+
+AnyMuscleGeneric KneeFlex = {
+    MuscleModel = &MusMdl;
+    Type = NonPositive;
+    AnyRevoluteJoint &Joint = .Knee;
+    AnyMuscleModel MusMdl = {F0 = 236;};
 };§
 ```
 
@@ -220,7 +226,7 @@ A fast reload and run of the model will show that the movement is
 somewhat different now, and plotting the joint rotation velocities will
 also show that the initial velocity is now zero for both joints. This is
 ensured by using similar values for the first two points in each
-interpolation, for instance -30 and -30 degrees in the HipDriver. Now we
+interpolation, for instance -30 and -30 degrees in the `HipDriver`. Now we
 could generate infinitely many different motions simply by inserting
 different angle values into these interpolation drivers. Among them will
 be the motion that generates the fastest kick without overloading the
@@ -232,8 +238,8 @@ making these variations.
 ## The Optimization Problem
 
 We already have some data now that can be used in the definition of our
-optimization problem. The first question is: What do we actually want to
-optimize? Given that the mass of the foot and football are given in
+optimization problem. The first question is: *What do we actually want to
+optimize?* Given that the mass of the foot and football are given in
 advance we can presume that maximising the velocity of the football
 after the impact is equivalent to maximizing the velocity of the foot
 before the impact. In fact, the law of conservation of momentum says
@@ -248,13 +254,12 @@ We can write this formula directly into the model like this:
  // The study: Operations to be performed on the model
  AnyBodyStudy MyStudy = {
    AnyFolder &Model = .MyModel;
-   RecruitmentSolver = MinMaxSimplex;
+   InverseDynamics.Criterion.Type = MR_MinMaxStrict;
    Gravity = {0.0, -9.81, 0.0};
    nStep = 50;
    tEnd = 0.2;
    §AnyOutputFun BallVel= {
-     Val =
-1.5*Main.MyModel.Shank.Mass*Main.MyModel.Shank.rDot[0]/(0.2+Main.MyModel.Shank.Mass);
+     Val = 1.5*Main.MyModel.Shank.Mass*Main.MyModel.Shank.rDot[0]/(0.2+Main.MyModel.Shank.Mass);
    };§
  };
 ```
@@ -262,7 +267,7 @@ We can write this formula directly into the model like this:
 &#160;Please load and run the model again, and then go to the Chart window
 and plot the new output function. You should see this:
 
-![kickvel1.gif](_static/intro/image3.gif)
+![kickvel1](_static/intro/image3.png)
 
 The function shows the predicted post-impact velocity of the ball if the
 foot were to hit is at any time during the imposed movement. As
@@ -277,13 +282,12 @@ purpose:
  // The study: Operations to be performed on the model
  AnyBodyStudy MyStudy = {
    AnyFolder &Model = .MyModel;
-   RecruitmentSolver = MinMaxSimplex;
+   InverseDynamics.Criterion.Type = MR_MinMaxStrict;
    Gravity = {0.0, -9.81, 0.0};
    nStep = 50;
    tEnd = 0.2;
    AnyOutputFun BallVel= {
-     Val =
-1.5*Main.MyModel.Shank.Mass*Main.MyModel.Shank.rDot[0]/(0.2+Main.MyModel.Shank.Mass);
+     Val = 1.5*Main.MyModel.Shank.Mass*Main.MyModel.Shank.rDot[0]/(0.2+Main.MyModel.Shank.Mass);
    };
    §AnyOutputFun MaxAct = {
      Val = .MaxMuscleActivity;
@@ -301,7 +305,7 @@ AnyOptStudy OptStudy = {
   MaxIterationStep = 25;
 
   Analysis = {
-    AnyOperation &op = ..MyStudy.InverseDynamicAnalysis;
+    AnyOperation &op = ..MyStudy.InverseDynamics;
   };
 
   // Constraint: All muscle activities below 100%
@@ -320,7 +324,7 @@ AnyOptStudy OptStudy = {
 
 Please copy and paste those lines into the model right after the end of
 MyStudy but before the final ending brace of the model. The study
-contains two AnyDesMeasures of which the first is the maximum activity
+contains two `AnyDesMeasures` of which the first is the maximum activity
 minus one. The actual constraint is
 
 max(Activity) \< 100%
@@ -330,7 +334,7 @@ constraints, it is defined on the form
 
 max(Activity) - 1\< 0
 
-The second AnyDesMeasure, KickVel, is defined as minus the maximum of
+The second AnyDesMeasure, `KickVel`, is defined as minus the maximum of
 the ball velocity. This is because AnyBody's optimizer is set up to
 always perform minimization where we want to maximize the velocity. So
 we simply minimize the negative velocity instead. The max value is
@@ -373,7 +377,7 @@ with the single variable. Open the OptStudy branch of the tree on the
 left hand side of the screen, highlight "Optimization", and click "Run.
 After a few moments the process will converge to a better kick. You can
 see how much better by going to the Chart view, openeing the OptStudy
-section and plotting "Main.OptStudy.Output.KickVel.Val". You will see
+section and plotting `Main.OptStudy.Output.KickVel.Val`. You will see
 that the optimization decreased the value from about -9 to about -12,
 indicating an improvement of the ball velocity from 9 to 12 m/s.
 
@@ -381,7 +385,7 @@ Let us quickly add some more variables:
 
 ```AnyScriptDoc
 AnyVar slack = 60*pi/180;
-AnyDesVar Hip3 = {
+§AnyDesVar Hip3 = {
   Val = Main.MyModel.HipDriver.Data[0][2];
   Min = -30*pi/180;
   Max = Val + .slack;
@@ -413,7 +417,7 @@ Running the optimization at this stage will make the problem converge in
 a few interations to an optimized ball velocity of a little over 13 m/s.
 If we plot the two joint accelerations we get:
 
-![kickacc1.gif](_static/intro/image4.gif)
+![kickacc1](_static/intro/image4.png)
 
 The movement shows subtle signs of a whiplash action in the sense that
 the movement is initiated by a knee acceleration, which is taken over by
