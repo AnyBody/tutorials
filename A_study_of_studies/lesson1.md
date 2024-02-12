@@ -99,20 +99,18 @@ kinematically indeterminate:
 ```AnyScriptDoc
 AnyFolder Drivers = {
 
-    //---------------------------------
-    §//      AnyKinEqSimpleDriver ShoulderMotion = {
+   //---------------------------------
+    §//      AnyKinMotion ShoulderMotion = {
     //        AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
     //        DriverPos = {-100*pi/180};
     //        DriverVel = {30*pi/180};
-    //        Reaction.Type = {Off};
     //      }; // Shoulder driver§
 
-    //---------------------------------
-    AnyKinEqSimpleDriver ElbowMotion = {
+   //---------------------------------
+   AnyKinMotion ElbowMotion = {
         AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
         DriverPos = {90*pi/180};
         DriverVel = {45*pi/180};
-        Reaction.Type = {Off};
     }; // Elbow driver
 }; // Driver folder
 ```
@@ -127,32 +125,27 @@ constraints to be kinematically determinate.
 
 
 This means that when you open the model, the system automatically detects that there 
-
 might be too few kinematic constraints for the model. This can make it impossible to assemble the mechanism and very unlikely to run a kinematic analysis. If you double-click the ArmStudy folder to open the Object Description window, you will see this output:
 
 ![Object description, number of constraints](_static/lesson1/image3.png)
 
 The Mechanical System Information lets you examine closely how many
-
- constraints are not there and what kind they might be. Let us move
-
- the missing driver back into place:
+constraints are not there and what kind they might be. Let us move
+the missing driver back into place:
 
 ```AnyScriptDoc
 §//---------------------------------
-AnyKinEqSimpleDriver ShoulderMotion = {
+AnyKinMotion ShoulderMotion = {
   AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
   DriverPos = {-100*pi/180};
   DriverVel = {30*pi/180};
-  Reaction.Type = {Off};
 }; // Shoulder driver§
 
 //---------------------------------
-AnyKinEqSimpleDriver ElbowMotion = {
+AnyKinMotion ElbowMotion = {
   AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
   DriverPos = {90*pi/180};
   DriverVel = {45*pi/180};
-  Reaction.Type = {Off};
 }; // Elbow driver
 ```
 
@@ -160,23 +153,26 @@ AnyKinEqSimpleDriver ElbowMotion = {
 
 ```AnyScriptDoc
 //---------------------------------
-AnyKinEqSimpleDriver ShoulderMotion = {
+AnyKinMotion ShoulderMotion = {
   AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
   DriverPos = {-100*pi/180};
   DriverVel = {30*pi/180};
-  Reaction.Type = {§On§};
 }; // Shoulder driver
 
 //---------------------------------
-AnyKinEqSimpleDriver ElbowMotion = {
+AnyKinMotion ElbowMotion = {
   AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
   DriverPos = {90*pi/180};
   DriverVel = {45*pi/180};
-  Reaction.Type = {§On§};
 }; // Elbow driver
+
+§AnyReacForce ExtraReactionForces = {
+  AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
+  AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
+};§
 ```
 
-Here, we have activated the reaction forces in the two joint drivers. This is like putting motors into the joints, and
+Here, we have added extra reaction forces to the two joints. This is like putting motors into the joints, and
 it means that the system will get enough reaction forces to support the
 loads without needing any muscles, which matches the statically
 determinate case 2 above. Loading the model does not cause any warnings, but if you run the InverseDynamics operation you will see the following message for each time-step.
