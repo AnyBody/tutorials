@@ -5,25 +5,15 @@ This lesson assumes that you have the `arm2d.any` file ready in AnyBody. If you 
 ![Dumbbel](_static/lesson1/image1.png)
 
 This model is relatively simple in how it works, because it only has
-
 two parts and two rotating joints. But, in more complex models with many
-
 parts joined by different kinds of joints, it can be hard to keep track of the
-
 model. To make a model move, you need to balance the kinematic degrees
-
 of freedom and the constraints, and this can be challenging to do perfectly.
-
 The systematic model information is important in this case.
-
 Mechanical studies have a description of the mechanical system.
-
 You can find this in the Objects Description of the study, which you can see by
-
 double-clicking the objects in any Model Tree View. If you double-click the
-
 ArmModel study folder in the model that is loaded, you will see a System
-
 description like this:
 
 ![Study object description](_static/lesson1/image2.png)
@@ -60,17 +50,11 @@ A common way of containing the movement of the joints is by using drivers. As th
 
 
 Another section is called "Other". This is for constraints that are
-
 not one of the predefined joint types or driver functions. These
-
 constraints are common in more complex models because the
-
 AnyScript language lets users create their own joints and other constraints
-
- to simulate complex movements patterns between different
-
+to simulate complex movements patterns between different
 joints. But this is an advanced topic that we will leave for
-
 later.
 
 The last section 3 shows the reaction forces. It is not by chance that
@@ -136,10 +120,7 @@ AnyFolder Drivers = {
 When you open the model again, you will get this message:
 
 ```
-
-
 Model Warning: Study 'Main.ArmStudy' does not have enough kinematic
-
 constraints to be kinematically determinate.
 ```
 
