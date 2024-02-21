@@ -20,13 +20,15 @@ AnyFolder SliderCrank = {
   // Basic Reference Frames
   // -----------------------------------------------------
   AnyFixedRefFrame GlobalRef = {
-    AnyDrawRefFrame DrwGlobalRef = { RGB={0,0,1};};
+    viewRefFrame.Visible = On;
+    viewRefFrame.RGB = {0,0,1};
   };
 
   AnyFixedRefFrame SliderRef = {
     Origin = {1.0,3.5,0};
     Axes = {{0.8,0.2,0},{-0.2,0.8,0},{0,0,1}};
-    AnyDrawRefFrame DrwGlobalRef = { RGB={0,0,1};};
+    viewRefFrame.Visible = On;
+    viewRefFrame.RGB = {0,0,1};
   };
 
 
@@ -37,37 +39,45 @@ AnyFolder SliderCrank = {
 
     //---------------------------------
     AnySeg Crank = {
-      Mass = 5.0;
-      Jii = {1,0.5,1};
+      Mass = 7.0;
+      Jii = {1,0.1,1};
+      sCoM = {0,0.75,0};
+      JaboutCoMOnOff = On;
       AnyRefNode Tip = {
         sRel = {0,1.5,0};
-        AnyDrawRefFrame DrwNode = {};
+        viewRefFrame.Visible = On;
       };
-      AnyDrawSeg DrwSeg= {};
+      viewInertia.Visible = On;
+      viewInertia.Opacity = 0.3;
+
     };
 
     //---------------------------------
     AnySeg Coupler = {
       r0 = {0,2.5,0};
-      Mass = 5.0;
-      Jii = {1,0.5,1};
+      Mass = 7.0;
+      Jii = {1,0.1,1};
+      viewInertia.Visible = On;
+      viewInertia.Opacity = 0.3;
+
+      
       AnyRefNode CrankNode = {
         sRel = {0,-1,0};
-        AnyDrawRefFrame DrwNode = {};
+        viewRefFrame.Visible = On;
       };
       AnyRefNode SliderNode = {
         sRel = {0,1,0};
-        AnyDrawRefFrame DrwNode = {};
+        viewRefFrame.Visible = On;
       };
-      AnyDrawSeg DrwSeg= {};
     };
 
     //---------------------------------
     AnySeg Slider = {
       r0 = {0,3.5,0};
-      Mass = 5.0;
-      Jii = {1,0.5,1};
-      AnyDrawSeg DrwSeg= {};
+      Mass = 10.0;
+      Jii = {1,0.2,1};
+      viewInertia.Visible = On;
+      viewInertia.Opacity = 0.3;
     };
 
 
@@ -83,6 +93,7 @@ AnyFolder SliderCrank = {
       Axis = x;
       AnyFixedRefFrame& Ground = Main.SliderCrank.GlobalRef;
       AnySeg &Crank = Main.SliderCrank.Segs.Crank;
+      viewJoint.Visible = On;
     };
 
     //---------------------------------
@@ -91,12 +102,14 @@ AnyFolder SliderCrank = {
       Axis2 = x;
       AnyRefNode &CrankNode = Main.SliderCrank.Segs.Crank.Tip;
       AnyRefNode &CouplerNode = Main.SliderCrank.Segs.Coupler.CrankNode;
+      viewJoint.Visible = On;
     };
 
     //---------------------------------
     AnySphericalJoint Ball = {
       AnyRefNode &CouplerNode = Main.SliderCrank.Segs.Coupler.SliderNode;
       AnySeg &Slider = Main.SliderCrank.Segs.Slider;
+      viewJoint.Visible = On;
     };
 
     //---------------------------------
@@ -104,6 +117,7 @@ AnyFolder SliderCrank = {
       Axis = y;
       AnyFixedRefFrame& Ground = Main.SliderCrank.SliderRef;
       AnySeg &Slider = Main.SliderCrank.Segs.Slider;
+      viewJoint.Visible = On;
     };
 
 
@@ -124,8 +138,9 @@ AnyFolder SliderCrank = {
 // =======================================================
 // The mechanical study
 // =======================================================
-AnyMechStudy MechStudy = {
-
+AnyKinStudy MechStudy = {
+  tEnd = 2;
+  nStep = 500;
   AnyFolder& Model = Main.SliderCrank;
   Gravity = {0.0, -9.81, 0.0};
 
