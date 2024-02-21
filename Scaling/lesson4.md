@@ -135,11 +135,11 @@ using `..` and `...` prefixes to the variables.:
   {
     Points0 = §..TSeg2ScaleFrame(§
     {{0.0138187,0.00136731,0.0273618},    // fovea capitis
--->8--
+    ...
       {0.0368766,-0.393677,0.0266919}}§)§;    // medial posterior condyle
     Points1 =
     {{0.289913,0.420538,0.0138931},    // fovea capitis
--->8--
+    ...
   AnyFunTransform3DRBF RBFTransform =
   {
     PreTransforms = {&.AffineTransform};
@@ -150,10 +150,10 @@ using `..` and `...` prefixes to the variables.:
     };
     Points0 = §..TSeg2ScaleFrame(§{
       { 0.0138, 0.0014, 0.0274},
--->8--
+      ...
       { 0.0010, 0.0013, 0.0069}
     }§)§;
--->8--
+    ...
   AnyFunTransform3DSTL STLTransform =
   {
     PreTransforms = {&.RBFTransform};
@@ -179,22 +179,17 @@ insert the following lines as shown below into the file
 
 ```AnyScriptDoc
 HumanModel.Scaling.GeometricalScaling = {
-§#define CUSTOM_SCALING_Left_Thigh
-Left.Thigh = {
-  #include "MyScalingFunction.any"
-  AnyFunTransform3D &ScaleFunction = MyScalingFunction.Transform;
-};§
+  §Left.Thigh = {
+    #include "MyScalingFunction.any"
+    ScaleFunction.Custom = &MyScalingFunction.Transform;
+  };§
 };
 ```
-
-In this modification, we added a pre-processor command (`#define`) that
-notifies the model assembling block that the default anthropometric scaling
-for the left thigh segment should be excluded. To process other body
-parts you will need to add a similar definition, but utilize actual
-bone segment, e.g. `#define CUSTOM_SCALING_<Side>_<SegmentName>` for
-different sides or `CUSTOM_SCALING_<SegmentName>` for parts of the
-body that do not have sides. You can find a list of segments by
-browsing the scaling law in the Model tab:
+In this modification, we simply replaced the default anthropometric scaling function of the left 
+thigh with the custom function from `MyScalingFunction.any`. To process other body
+parts you will need to do a similar redefinition. You can find a list of segments by
+browsing the scaling law in the Model tab (See below). Each folder will contain 
+`ScaleFunction.Custom` object, which can be reassigned to something else:
 
 <img src="_static/lesson4/image1.png" alt="Scaling options in model tree">
 
@@ -238,20 +233,20 @@ AnyFolder MyScalingFunction§_Mirrored§ = {
     {0,1,0},
     {0,0,-1}
   };§
--->8--
+  ...
   AnyFunTransform3DLin2 AffineTransform =
   {
     Points0 = ..TSeg2ScaleFrame({...} §* .AMirroring§);
     Points1 = {...} §* .AMirroring§;
     Mode = VTK_LANDMARK_AFFINE;
   };
--->8--
+  ...
   AnyFunTransform3DRBF RBFTransform =
   {
-    -->8--
+    ...
     Points0 = ..TSeg2ScaleFrame({...} §* .AMirroring§);
     Points1 = {...} §* .AMirroring§;
-    -->8--
+    ...
   };
 };  // MyScalingFunction§_Mirrored§
 ```
@@ -299,15 +294,13 @@ Finally, we have to include the mirrored scaling into the model exactly
 the same way the left thigh scaling was included:
 
 ```AnyScriptDoc
-#define CUSTOM_SCALING_Left_Thigh
-§#define CUSTOM_SCALING_Right_Thigh§
 Left.Thigh = {
   #include "MyScalingFunction.any"
-  AnyFunTransform3D &ScaleFunction = MyScalingFunction.Transform;
+  ScaleFunction.Custom = &MyScalingFunction.Transform;
 };
 § Right.Thigh = {
   #include "MyScalingFunction_Mirrored.any"
-  AnyFunTransform3D &ScaleFunction = MyScalingFunction_Mirrored.Transform;
+  ScaleFunction.Custom = &MyScalingFunction_Mirrored.Transform;
 };§
 ```
 
