@@ -6,7 +6,9 @@ link: {download}`arm2d.any <Downloads/arm2d.zip>`. It should look like this when
 you have loaded the model, run InitialConditions operation, and opened a Model
 View:
 
-![Dumbbel](_static/lesson1/image1.png)
+```{figure} _static/lesson1/image1.png
+:alt: Dumbbel
+```
 
 This model is relatively simple in how it works, because it only has
 two parts and two rotating joints. But, in more complex models with many
@@ -21,16 +23,14 @@ ArmModel study folder in the model that is loaded, you will see a System
 description like this:
 
 
-```{image} _static/lesson1/image2.png
+```{figure} _static/lesson1/image2.png
 :alt: Study object description
 :scale: 50%
 ```
 
 The Mechanical System Information consists of four parts: 
-
 ```{image} _static/lesson1/four-parts.png
 :alt: Four parts
-:class: bg-primary
 :scale: 50%
 ```
 
@@ -166,7 +166,7 @@ impossible to assemble the mechanism and very unlikely to run a kinematic
 analysis. If you double-click the `ArmStudy` folder to open the Object Description
 window, you will see this output:
 
-```{image} _static/lesson1/image3.png
+```{figure} _static/lesson1/image3.png
 :alt: Object description, number of constraints
 :scale: 50%
 ```
@@ -230,7 +230,7 @@ WARNING(OBJ.MCH.MUS1) :   arm2d.any(227)  :   ArmStudy  :  The muscles in the mo
 
 And the Object Description window will give the following feedback:
 
-```{image} _static/lesson1/image4.png
+```{figure} _static/lesson1/image4.png
 :alt: Object description, list of reaction forces
 :scale: 50%
 ```
