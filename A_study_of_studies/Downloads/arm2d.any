@@ -221,6 +221,7 @@ Main = {
   AnyBodyStudy ArmStudy = {
     AnyFolder &Model = .ArmModel;
     Gravity = {0.0, -9.81, 0.0};
+    InitialConditions.Settings.DisplayPriority = PriorityNormal;
   };
   
 };  // Main
