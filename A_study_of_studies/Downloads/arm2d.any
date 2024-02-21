@@ -32,7 +32,7 @@ Main = {
     // Segments
     AnyFolder Segs = {
       AnySeg UpperArm = {
-        r0 = {0, 0.3, 0};
+        r0 = {0, -0.20, 0};
         Axes0 =RotMat(-90*pi/180, z);
         Mass = 2;
         Jii = {0.001, 0.01, 0.01};
@@ -65,7 +65,7 @@ Main = {
       };  // UpperArm
       
       AnySeg ForeArm = {
-        r0 = {0.3, 0, 0};        
+        r0 = {0.3, -0.40, 0};        
         Mass = 2.0;
         Jii = {0.001,0.01,0.01};
         AnyRefNode ElbowNode = {
