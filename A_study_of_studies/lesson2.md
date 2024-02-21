@@ -39,7 +39,7 @@ correctly assembled arm:
 
 :::{figure} _static/lesson2/image2.png
 :alt: After initial conditions
-:scale: 100 %
+:scale: 50 %
 
 The arm correctly assembled at the elbow by SetInitialConditions.
 :::
