@@ -2,7 +2,7 @@
 
 Before we look at the InitialConditions operation, let us just notice
 that when the model is loaded, the segments of the model are positioned
-in space according to their definition in terms of the r0 and Axes0
+in space according to their definition in terms of the `r0` and `Axes0`
 properties in each segment's definition. These are called the load-time
 positions.
 
