@@ -192,11 +192,12 @@ AnySeg SourceFemur =
 <img src="_static/lesson3/image3.png" alt="Original and scaled source bone" width="60%">
 
 
-Looking at the Model View, we can see that the femur is now scaled, it
-became shorter and now aligns with the original source femur position.
+Looking at the Model View, we can see that the femur is now scaled. It
+became longer and now aligns with the original source femur position.
 From the previous picture, we also know that geometry is matching the
-target quite well too (and if you want to convince yourself you can superimpose the
-target geometry using the MyTransform2 registration transformation).
+target quite well too (and if you want to convince yourself, you can superimpose the
+target geometry using the MyTransform2 reverse registration transformation
+in the visualization of the target surface).
 
 With this example, we have shown how to morph the source into the target
 with a full affine scaling and subsequently applying a reverse
@@ -210,10 +211,10 @@ however stay with the concept we presented so far.
 
 If the morphing accuracy is sufficient for your task you can proceed
 with your modeling and stop at this step. However, for the purpose of
-this tutorial the desired accuracy have not been reached - some local
-features still do not match the target's ones, e.g. the lesser and the
+this tutorial, the desired accuracy has not been reached - some local
+features still do not match the target features, e.g. the lesser and the
 greater trochanter. The following steps explain how to capture more
-details and improved morphing for even better match.
+details and improve morphing for even better match.
 
 ## Incorporating landmark-based nonlinearities into the scaling function
 
