@@ -1,51 +1,57 @@
 # Lesson 4: Inverse Dynamics
 
-The inverse dynamic analysis in AnyBodyStudy is at the heart of what the
-AnyBody Modeling System does. An InverseDynamics operation is like the
-Kinematics operation, except it is augmented with calculation of forces
-in the system, i.e. kinetic or dynamic analysis.
+In this lesson we will briefly touch the heart of the AnyBody Modeling
+System: the `AnyBodyStudy` class and its `InverseDynamics` operation. This
+operation is similar to the `Kinematics` operation we've discussed before, but
+it goes a step further by calculating the forces in the system. This is also
+known as kinetic or dynamic analysis.
 
-Computing forces in a rigid body mechanical system is more difficult
-than it may seem. In principle, resolving forces is a question of
-setting up the equilibrium equations and solving them. But in mechanism
-analysis in general and biomechanics in particular, there are several
-complications. The system may very easily become statically
-indeterminate, which means that there are not enough equilibrium
-equations available to resolve the forces in the system. Another
-complication is caused by the muscles in the system because they can
-only pull. This constrains the space of possible solutions and adds a
-fair bit of mathematical complexity to the problem.
+:::{image} _static/lesson4/AnyBodyStudy.png
+:alt: AnyBodyStudy
+:scale: 50 %
+:::
 
-In AnyBodyStudy, these complexities are handled with algorithms that
-assume that the mechanical system is a musculoskeletal system. The
-inverse dynamic solver basically deals with
+
+
+You might think that calculating forces in a rigid body mechanical system is
+straightforward. After all, isn't it just about setting up equilibrium equations
+and solving them? Well, it's a bit more complex than that, especially when it
+comes to biomechanics.
+
+In biomechanics, we often deal with statically indeterminate systems. This means
+we don't have enough equilibrium equations to resolve the forces in the system.
+Plus, we have to consider the muscles, which can only pull, not push. This adds
+another layer of complexity to the problem.
+
+But don't worry! The `AnyBodyStudy` class is designed to handle these
+complexities. It uses algorithms that are tailored for musculoskeletal systems.
+These algorithms deal with the two fundamental challenges of musculoskeltal systems:
 
 - The statical indeterminacy of the musculoskeletal system
 - Unilateral forces elements.
 
-The class called AnyMechStudy does also contain an InverseDynamics
-operation. This operations is far more simple and does not deal with
-either of these problems. It simply solves the very basic inverse
-dynamics problem of a general simple mechanical system, namely to solve
-the dynamic equilibrium equations for a equal amount of unknown forces,
-the so-called reaction forces.
+There's also the `AnyMechStudy` class, which contains a simpler
+`InverseDynamics` operation. This operation doesn't deal with the complexities
+of musculoskeletal systems. Instead, it solves the basic inverse dynamics
+problem for a simple mechanical system, finding the reaction forces that balance
+the system.
 
-To conclude this tutorial, please try InverseDynamics operations in the
-arm model, {download}`arm2d.any <Downloads/arm2d.zip>`, and the slider crank
-mechanism,
-{download}`demo.SliderCrank3D.any <Downloads/Demo.SliderCrank3D.any>`. In both
-case, you will now see forces being calculated, i.e. forces that are
-non-zero in the output. But please also notice how the slider crank
-study is defined with simpler AnyMechStudy whereas the arm model uses
-AnyBodyStudy.
+To wrap up this tutorial on studies, let's put what we've learned into practice.
+Try running the `InverseDynamics` operations in the arm model,
+{download}`arm2d.any <Downloads/arm2d.zip>`, and the slider crank mechanism,
+{download}`demo.SliderCrank3D.any <Downloads/Demo.SliderCrank3D.any>`. You'll
+see forces being calculated in both cases. Notice how the slider crank study
+uses the simpler `AnyMechStudy`, while the arm model uses `AnyBodyStudy`.
 
-If you use AnyMechStudy in the arm model, the analysis will stop with a
-failure, because it cannot balance the mechanism. This is because the
-AnyMechStudy does not recognize the muscles as unknown forces. It
-regards them as applied (known) forces (which will be zero because their
-value is not defined anywhere) and therefore there are no forces to
-balance the moments exerted about the elbow and shoulder joints by the
-external load.
+:::{image} _static/lesson4/AnyBodyStudy-tree.png
+:alt: AnyBodyStudy model tree
+:scale: 50 %
+:::
 
-Much more details about inverse dynamics of musculoskeletal systems are
-found {doc}`the special tutorial on the topic <../MuscleRecruitment/Inverse_dynamics>`.
+If you try to use `AnyMechStudy` in the arm model, the analysis will fail. This
+is because `AnyMechStudy` doesn't recognize the muscles as unknown forces. It
+treats them as known forces, which leads to an imbalance in the moments exerted
+about the elbow and shoulder joints by the external load.
+
+For more details on inverse dynamics of musculoskeletal systems, check out our
+{doc}`special tutorial on the topic <../MuscleRecruitment/Inverse_dynamics>`.

@@ -82,67 +82,53 @@ sometimes be difficult to identify the problem.
 
 ::::
 
-## Running kinematic analysis
+## Running a Kinematic Analysis
 
-Now that you know the basics of kinematic analysis, let us look at how
-it is performed. We need an example to work on, and this one will serve
-the purpose:
+In this section, we'll delve into the process of performing a kinematic analysis. To illustrate this, we'll use the following example:
 
 {download}`demo.SliderCrank3D.any <Downloads/Demo.SliderCrank3D.any>`
 
-![demo.SliderCrank3D.any](_static/lesson3/image1.png)
 
-When you load it and look at the {doc}`Model View <../Interface_features/lesson3>` you will see that
-this is a very simple mechanism comprising only three segments. They are
-not yet connected correctly at their joints, but they will be if you run
-the Kinematics operation. Go to the Study tree, pick Kinematics and
-click the run button. You will see the model assemble and start moving.
 
-The Kinematics operation is precisely an analysis. It assembles data
-when it runs, and you can subsequently investigate those results in the
-{doc}`Chart view <../Interface_features/lesson3>`. The kind of results you can get from
-the Kinematics study is everything that has to do with positions,
-velocities, and accelerations. You may expand the tree until you reach
-the Slider segment, and you can chart its acceleration by choosing the
-rDDot property.
+:::{figure} _static/lesson3/image1.png
+:alt: demo.SliderCrank3D.any
+:scale: 50 %
+:::
 
-![Chart view Acceleration](_static/lesson3/image2.png)
+Upon loading the `demo.SliderCrank3D.any` file and examining the {doc}`Model View <../Interface_features/lesson3>`, you'll notice a simple mechanism consisting of three segments. Initially, these segments are not correctly connected at their joints. However, running the Kinematics operation will rectify this, resulting in a fully assembled and operational model.
 
-Notice the naming of the positional properties: r is position, rDot is
-velocity, and rDDot is acceleration. "Dot" or "DDot" are reflections of
-the mathematical custom of designating differentiation with respect to
-time by a dot over the symbol. So velocity would be 'r' with a dot over,
-and acceleration would be 'r' with two dots. Try browsing around the
-tree and look up the various available data.
+:::{figure} _static/lesson3/image1a.png
+:alt: demo.SliderCrank3D.any with kinematic solved
+:scale: 50 %
+:::
 
-You may encounter some strange looking results like this one:
+The Kinematics operation is essentially an analysis tool. It stores data during its run, allowing you to explore the results in the {doc}`Chart view <../Interface_features/lesson3>`. The data you can extract from the Kinematics study includes positions, velocities, and accelerations. 
 
-![Shaft acceleration](_static/lesson3/image3.png)
+To view these results, expand the tree until you reach the Slider segment. Here, you can chart its acceleration by selecting the `rDDot` property.
 
-Why would anything in a smoothly running model behave like this? The
-answer lies in the ordinate axis. You will notice that it has no values
-on it, and if you hold the mouse over a point on the curve a small
-window will pop up and show you the value:
+:::{figure} _static/lesson3/image2.png
+:alt: Chart view Acceleration
+:scale: 50 %
+:::
 
-![Shaft acc details](_static/lesson3/image4.png)
+Take note of how the positional properties are named: `r` stands for position, `rDot` for velocity, and `rDDot` for acceleration. The terms "Dot" and "DDot" are derived from mathematical conventions, where a dot above a symbol indicates differentiation with respect to time. Hence, velocity is represented as $\dot{r}$, and acceleration as $\ddot{r}$. Feel free to explore the tree and familiarize yourself with the various data available.
 
-You can see that the value is 4.45e-14. For all practical purposes this
-is zero, and this is also why there are no values on the ordinate axis.
-What you see here is really zero augmented by numerical round-off
+You might come across some results that seem unusual, like the one below:
+
+:::{figure} _static/lesson3/image3.png
+:alt: Shaft acceleration
+:scale: 50 %
+:::
+You might be wondering why a smoothly running model would show such behavior.
+The key to understanding this lies in the y-axis. Notice that the values are
+around 1e-14, which is essentially zero. What you're seeing here is not a
+significant value, but rather, it's zero affected by tiny numerical rounding
 errors.
 
 ## Final remarks
 
-Notice that kinematic analysis determines velocities and accelerations
-in addition to positions. The position analysis is by far the more
-challenging because the equations are nonlinear, whereas solution for
-velocity and acceleration involves linear equations once the positions
-have been determined. Please notice also that due to the very general
-approach used by the AnyBody Modeling System, it handles closed
-kinematic chains. This is crucial in biomechanics where closed chains
-occur very frequently, for instance in bicycling, gait, and whenever the
-model grabs something with both hands.
+Remember, kinematic analysis doesn't just find positions, it also calculates velocities and accelerations. Figuring out the positions is the trickiest part because it involves nonlinear equations. Once we have the positions, finding velocities and accelerations is easier because we're dealing with linear equations.
 
-Although the kinematic analysis is useful in its own right for lots of
-purposes, it is also the first step of the InverseDynamics operation,
-the subject of {doc}`the next lesson <lesson4>`.
+One of the unique things about the AnyBody Modeling System is its ability to handle closed kinematic chains. This is super important in biomechanics, where these chains pop up all the time. Think about activities like cycling, walking, or grabbing an object with both hands.
+
+While kinematic analysis is a powerful tool on its own, it's also the first step in the InverseDynamics operation. We'll dive into that in our {doc}`next lesson <lesson4>`.
