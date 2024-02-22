@@ -133,30 +133,29 @@ using `..` and `...` prefixes to the variables.:
   AnyFunTransform3DLin2 AffineTransform =
   {
     Points0 = §..TSeg2ScaleFrame(§
-    {{0.0138187,0.00136731,0.0273618},    // fovea capitis
+    {{-0.00906139,    0.36453,  0.0175591},      // fovea capitis
     ...
-      {0.0368766,-0.393677,0.0266919}}§)§;    // medial posterior condyle
+     {-0.0320739, -0.00877602,  0.0244234}}§)§;// medial posterior condyle
     Points1 =
     {{0.289913,0.420538,0.0138931},    // fovea capitis
     ...
   AnyFunTransform3DRBF RBFTransform =
   {
     PreTransforms = {&.AffineTransform};
-    RBFDef =
-    {
-      Type = RBF_ThinPlate;
-      Param = 1;
-    };
+    PolynomDegree = 1;
+    RBFDef.Type = RBF_Triharmonic;
+
     Points0 = §..TSeg2ScaleFrame(§{
-      { 0.0138, 0.0014, 0.0274},
+      {-0.00920594,  0.36459700,  0.0174376},  // fovea capitis
       ...
-      { 0.0010, 0.0013, 0.0069}
+      {-0.00431680,  0.35912600,  0.0036940}   // femoral COR
     }§)§;
     ...
   AnyFunTransform3DSTL STLTransform =
   {
     PreTransforms = {&.RBFTransform};
-    RBFDef.Type = RBF_ThinPlate;
+    PolynomDegree = 1;
+    RBFDef.Type = RBF_Triharmonic;
     AnyFixedRefFrame Input = {
       AnySurfSTL SourceSurf = {
         FileName = "SourceFemur.stl";
