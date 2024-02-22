@@ -143,14 +143,15 @@ can see that these bones are now merged. It will produce the following picture.
 
 
 The source bone is now transformed, i.e., translated, scaled and
-skewed to match the target bone. To make that clear, let us add a new
-`AnyFunTransform3DLin2` called MyTransform2 to the model which we place
-after MyTransform. The intention is to construct a rigid-body
+skewed to match the target bone. To clearly view the difference between
+the transformed and the original source surface, let us add a new
+`AnyFunTransform3DLin2` called MyTransform2 to the model that we place
+after MyTransform. The intention is to construct a reverse rigid-body
 registration transform between target and source surface. Please note,
 the roles of the source points Points0 and target points Points1 are swapped,
 and the transformation mode is set to `VTK_LANDMARK_RIGIDBODY`.
 
-Additionally to that, a combination transform, containing forward affine
+Additionally to that, a combination transform, containing the forward affine
 and back registration transforms, is added:
 
 ```AnyScriptDoc
