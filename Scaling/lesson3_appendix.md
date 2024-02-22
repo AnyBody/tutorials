@@ -106,7 +106,7 @@ part of the transform that is being constructed. The pre-transforms will
 be applied on both, source landmarks, Points0, and on the object that
 will be processed using this transform.
 
-The Points0 variable is a $3\times k$ matrix of the source
+The Points0 variable is a $k\times 3$ matrix of the source
 landmark coordinates, where k is the number of source points. Points1 is
 the matrix of target landmarks of the same size. These two entities
 alone define a 3D RBF transform.
