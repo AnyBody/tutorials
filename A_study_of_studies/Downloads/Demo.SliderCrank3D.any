@@ -45,29 +45,24 @@ AnyFolder SliderCrank = {
       JaboutCoMOnOff = On;
       AnyRefNode Tip = {
         sRel = {0,1.5,0};
-        viewRefFrame.Visible = On;
       };
       viewInertia.Visible = On;
-      viewInertia.Opacity = 0.3;
 
     };
 
     //---------------------------------
     AnySeg Coupler = {
       r0 = {0,2.5,0};
-      Mass = 7.0;
-      Jii = {1,0.1,1};
+      Mass = 5.0;
+      Jii = {1,0.08,1};
       viewInertia.Visible = On;
-      viewInertia.Opacity = 0.3;
 
       
       AnyRefNode CrankNode = {
         sRel = {0,-1,0};
-        viewRefFrame.Visible = On;
       };
       AnyRefNode SliderNode = {
         sRel = {0,1,0};
-        viewRefFrame.Visible = On;
       };
     };
 
@@ -75,7 +70,7 @@ AnyFolder SliderCrank = {
     AnySeg Slider = {
       r0 = {0,3.5,0};
       Mass = 10.0;
-      Jii = {1,0.2,1};
+      Jii = {0.6,0.1,0.6};
       viewInertia.Visible = On;
       viewInertia.Opacity = 0.3;
     };
@@ -138,7 +133,7 @@ AnyFolder SliderCrank = {
 // =======================================================
 // The mechanical study
 // =======================================================
-AnyKinStudy MechStudy = {
+AnyMechStudy MechStudy = {
   tEnd = 2;
   nStep = 500;
   AnyFolder& Model = Main.SliderCrank;
