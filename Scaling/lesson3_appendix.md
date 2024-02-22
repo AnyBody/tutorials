@@ -174,8 +174,7 @@ transform.
 ## Nonlinear surface based scaling transform
 
 > The previous section describes an interpolation and extrapolation
->
-> : transform that works on discrete points in space. However, often the
+>  transform that works on discrete points in space. However, often the
 >   selection of these landmarks is unintuitive and we may require an
 >   automated tool to assist us in this task. A surface-based RBF class,
 >   AnyFunTransform3DSTL, was developed for this purpose:
