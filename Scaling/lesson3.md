@@ -229,13 +229,13 @@ simplicity, we use a preselected set of femoral landmarks and RBF settings.
 We start with the model from the previous steps to introduce the landmark-based
 nonlinear scaling. Several tranformations will build up into a pipeline, where
 pre-transforms will be used to inherit obtained accuracy throughout different steps.
-A complete model can you find here: {download}`lesson3b.Main.any <Downloads/lesson3b.Main.any>`.
+You can find the complete model here: {download}`lesson3b.Main.any <Downloads/lesson3b.Main.any>`.
 The following tutorial shows how to add an RBF transform with the recommended settings
 into the previously created model.
 
-First of all let us configure the visualization of the transformation.
+First of all, let us configure the visualization of the transformation.
 Now that we know how to compare source and scaled geometries as well as
-reverse registration, so we can switch off the registration step.
+reverse registration, we can switch off the registration step.
 
 ```AnyScriptDoc
 AnyFunTransform3DIdentity MyTransform3 =
@@ -363,7 +363,7 @@ mouse-over in the Model
 View helps to see the name of the object.
 :::
 
-However, it still possible to improve the fitting of the femur surfaces and, thus,
+However, it is still possible to improve the fitting of the femur surfaces and, thus,
 improve the accuracy of the model. Looking at the Model View you can notice that
 the red and yellow surfaces are slightly different, e.g. at the femoral head region.
 This is caused by the nature of the interpolation and a low number of control points.
@@ -373,7 +373,7 @@ construction of an improved scaling law.
 ## Incorporating surface based nonlinearities into the scaling function
 
 In this section, next improvement to the morphing is added by utilizing
-surface information. The surfaces will be requested to morphed into each
+surface information. The surfaces will be requested to be morphed into each
 other, which will at the same time deform all related soft tissue attachment
 points accordingly. The `AnyFunTransform3DSTL` class is used for this purpose.
 This class constructs an RBF transformation similarly to the `AnyFunTransform3DRBF`
@@ -389,8 +389,8 @@ triangles and each neighbor and vertices represent the same features on both sur
 For the latter option, we require an acceptable pre-registration
 transform, e.g. the RBF transform that was described previously, in
 order for the closest point search to make sense. Due to the implementation
-specifics most of the RBF recommendations apply to this class as well.
-More details about how to create this kind of transforms are described in {doc}`appendix tutorial <lesson3_appendix>`. However, for this example the
+specifics, most of the RBF recommendations apply to this class as well.
+More details about how to create this kind of transforms are described in {doc}`appendix tutorial <lesson3_appendix>`. However, for this example, the
 recommended settings mentioned before will be used again.
 
 Let us repeat the step from the previous section by adding one more
