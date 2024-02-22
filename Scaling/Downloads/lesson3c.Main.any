@@ -14,13 +14,14 @@ Main = {
     
     // Todo. Add the model elements such as
     //       segments, joints, and muscles here.
+    
     AnySeg SourceFemur = 
     {
       Mass = 0; Jii = {0, 0, 0};
       AnyDrawSurf Surface = 
       {
         FileName = "SourceFemur.stl";
-        RGB={0,1,0};
+        RGB = {222,202,176}/256;
       };
       AnyDrawSurf SurfaceMorphed = 
       {

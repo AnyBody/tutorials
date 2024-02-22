@@ -22,7 +22,6 @@ Main = {
       {
         FileName = "SourceFemur.stl";
         RGB = {222,202,176}/256;
-        Opacity=0.3;
       };
       AnyDrawSurf SurfaceMorphed =
       {
