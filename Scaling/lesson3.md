@@ -137,8 +137,7 @@ AnySeg SourceFemur =
 ```
 
 Reloading the model and looking at the bones shown in the Model View, we
-can see that these bones are now merged. To highlight the differences,
-we select one of them. This will produce the following picture.
+can see that these bones are now merged. It will produce the following picture.
 
 <img src="_static/lesson3/image2.png" alt="Target and scaled source bone" width="60%">
 
