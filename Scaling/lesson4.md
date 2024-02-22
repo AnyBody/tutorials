@@ -132,6 +132,7 @@ using `..` and `...` prefixes to the variables.:
 
   AnyFunTransform3DLin2 AffineTransform =
   {
+    //PreTransforms = {};
     Points0 = §..TSeg2ScaleFrame(§
     {{-0.00906139,    0.36453,  0.0175591},      // fovea capitis
     ...
@@ -234,6 +235,7 @@ AnyFolder MyScalingFunction§_Mirrored§ = {
   ...
   AnyFunTransform3DLin2 AffineTransform =
   {
+    //PreTransforms = {};
     Points0 = ..TSeg2ScaleFrame({...} §* .AMirroring§);
     Points1 = {...} §* .AMirroring§;
     Mode = VTK_LANDMARK_AFFINE;
