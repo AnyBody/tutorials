@@ -24,7 +24,7 @@ let us improve it using a subject-specific scaling for the femur.
 First of all, let us prepare a model matching the standard size man to
 be the basis for further subject-specific improvements. Therefore we use the 
 {ref}`StandingModelScalingDisplay <ammr:sphx_glr_auto_examples_Other_plot_StandingModelScalingDisplay.py>`
-from the AnyBody Managed Model Repository (AMMR), with the `_SCALING_STANDARD_`, option. This is well suited to show how
+from the **A**nyBody **M**anaged **M**odel **R**epository (AMMR), with the `_SCALING_STANDARD_`, option. This is well suited to show how
 to use subject-specific geometry in a model.
 
 ## Including custom scaling for a single segment
@@ -36,10 +36,9 @@ the generic size.
 
 ```AnyScriptDoc
 /*------------- SCALING CONFIGURATION SECTION --------------------*/
-// Actual scaling law
-§ #define BM_SCALING _SCALING_STANDARD_§
-
 // Scaling laws using joint to joint measures
+§ #define BM_SCALING _SCALING_STANDARD_§
+//  #define BM_SCALING _SCALING_NONE_
 //  #define BM_SCALING _SCALING_UNIFORM_
 //  #define BM_SCALING _SCALING_LENGTHMASS_
 //  #define BM_SCALING _SCALING_LENGTHMASS_FAT_
@@ -65,7 +64,7 @@ In case you want to personalize your own model - just copy {file}`CustomScaling.
 file into the Model folder and follow the instructions from this tutorial.
 :::
 
-If we open this file (by a double click it), we can see that a common place
+If we open this file (by a double clicking on it), we can see that a common place
 to make modifications has already been prepared. Further, we can find
 an access point to the geometrical scaling law folder, which will be
 used to specify individual scaling laws.
@@ -92,7 +91,7 @@ Now, we need to make several
 small adjustments to the scaling law for smooth incorporation into the
 model structure.
 
-In the **A**nyBody **M**anaged **M**odel **R**epository (AMMR) scaling functions are
+In the AMMR, scaling functions are
 implemented in the anatomical reference frames. We will call this frame
 a scaling reference frame, since there might be several definitions of
 anatomical reference frames. In general, the segmental frame can be
@@ -111,8 +110,8 @@ In our scaling law (MyScalingFunction.any) the source entities are
 - MyScalingFunction.RBFTransform.Points0,
 - MyScalingFunction.STLTransform.Input.SourceSurf.
 
-In the **AMMR** such transformations will be segment dependent.  It is only be needed for right and left shank and femur as well as for
-the pelvis. For all other segments this transform can be defined as an
+In the AMMR, such transformations will be segment dependent.  It is only needed for right and left shank and femur as well as for
+the pelvis. For all other segments, this transform can be defined as an
 identity transformation or does not have to be applied to the source
 entities. The following transforms can be referenced as `TSeg2ScaleFrame` (**T**ransform **Seg**mental **2** to **Scale**ling **Frame**). That name that will be used further:
 
