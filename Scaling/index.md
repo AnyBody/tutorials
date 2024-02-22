@@ -8,8 +8,8 @@ in the AMMR. It allows the usage of built-in, user-defined anthropometric scalin
 laws as well as individual segment morphing.
 
 :::{seealso}
-The AMMR documentation for instructions how to configure the model to
-use built-in scaling laws and provide general anthropometric information.
+The AMMR documentation for instructions on how to configure the model to
+use the built-in scaling laws and provide general anthropometric information.
 :::
 
 This tutorial introduces an advanced procedure of model personalization by means of
