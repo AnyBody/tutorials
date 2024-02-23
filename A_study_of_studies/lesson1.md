@@ -112,7 +112,7 @@ A few special cases are:
    these elements are usually the muscles in the model.
 
 2. If the number of reaction and driver forces matches the number of
-   degrees of freedom for the rigid bodies, then the model can (usually
+   degrees of freedom for the rigid bodies, then the model can usually
    balance itself, and there is no need for muscles. In fact, if you
    add muscles to such a mechanism, the muscles will not do anything.
 
