@@ -220,7 +220,7 @@ putting motors into the joints, and it means that the system will get enough
 reaction forces to support the loads without needing any muscles, which matches
 the statically determinate case 2 above. Loading the model does not cause any
 warnings, but if you run the InverseDynamics operation you will see the
-following message for each time-step.
+following message.
 
 
 ```{code-block}
