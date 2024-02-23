@@ -1,160 +1,134 @@
 # Lesson 3: Kinematic Analysis
 
-The Kinematics operation has a short and a very long explanation. The
-short explanation is that it makes the model perform whichever movement
-you have imposed on it by the drivers you have defined in the model. And
-it only does the movement. There is no calculation of forces involved,
-and the system does not even have to be properly balanced to be
-subjected to the Kinematics operation. However, it does have to be
-kinematically determinate, but that concept is definitely a part of the
-longer explanation.
+The `Kinematics` operation can be explained in two ways: a brief overview and a
+detailed deep dive. The brief overview is that it enables your model to execute
+the movements you've defined using drivers, focusing solely on the movement
+without involving any force calculations. Even if the system isn't perfectly
+balanced, it can still undergo the `Kinematics` operation. However, the model
+must be kinematically determinate, a concept we'll explore in the detailed
+explanation.
 
-So, brace yourself, and let's venture on to...
+So, get ready, and let's dive deeper into...
 
-::::{dropdown} **The long explanation**
 
-An AnyBody model is really a collection of rigid segments. You can think
-of them as a bunch of potatoes floating around in space. Technically,
-each potato is called a "rigid body", but the term "body" can be
-misinterpreted in the context of a body modeling system like AnyBody, so
-we call them "segments".
+::::{dropdown} The long explanation -- *tl;dr*
+:open:
 
-When a segment flows around in space, it can move in six different
-directions. We call them degrees of freedom and usually think of them as
-movement along the three coordinate axes and rotation about the same
-axes. We call these movement directions "degrees of freedom" and an
-unconstrained segment in space has six degrees of freedom. If we have n
-segments in the model, the model will have a total of 6n degrees of
-freedom unless some of them are constrained somehow. The purpose of the
-kinematic analysis is to determine the position of all the segments at
-all times, and this requires 6n pieces of information about the
-positions to resolve the 6n degrees of freedom. The pieces of
-information are mathematically speaking equations. So kinematic analysis
-is about solving 6n equations with 6n unknowns.
+:::{note}
+:class: margin 
+The physics term "rigid body" is called a "segment" in
+AnyBody to avoid confusion with the layman/physiological term for "body". 
+::: 
 
-A usual way of constraining degrees of freedom (or adding equations to
-the system) is to add joints to the model. When you join two segments
-they lose some of their freedom to move independently. They become
-constrained to each other. Consider two segments joined at their ends by
-a ball-and-socket joint. They are now under the constraints that the x,
-y and z coordinates of the joined points must be the same. In other
-words, a ball-and-socket joint adds three constraints or three equations
-to the system.
+An AnyBody model is essentially a collection of rigid segments, which you can
+visualize as potatoes floating in space. In the context of AnyBody, we refer to
+these "rigid bodies" as "segments".
 
-If you add enough joints to the system to provide all 6n constraints,
-then it might be mathematically possible to solve the equations and find
-the position of all the segments. But the result would not be very
-exciting because the system would not be able to move. Usually a body
-model will have enough joints to keep the segments together but few
-enough to let the model move. After all, movement is what most higher
-organisms do. So where do the remaining constraints or equations come
-from? They are the drivers. When the joints have eaten up their part of
-the degrees-of-freedom, enough drivers must be added to resolve the
-remaining unknowns in the system up to the required number of 6n. When
-the AnyBody Modeling System performs the Kinematics operation, these
-drivers are taken through their sequences of values, and the positions
-of all the segments are resolved for each time step by solving the 6n
-equations.
+Each segment can move in six different directions, or degrees of freedom: three
+movements along the coordinate axes and three rotations about the same axes. If
+we have $n$ segments in the model, the model will have a total of $6n$ degrees
+of freedom, unless some are constrained. The goal of kinematic analysis is to
+determine the position of all segments at all times, which requires $6n$ pieces
+of information, or equations, to resolve the $6n$ degrees of freedom.
 
-When the model is set up in such a way that it has 6n equations and
-these equations can be solved, then it is said to be kinematically
-determinate. Usually this is necessary to perform the kinematic
-analysis. We say "usually" because there are a few exceptions where the
-system can be solved even when the number of equations is different from
-6n. There are also some cases where the system cannot be solved even
-though there are 6n equations available. Both cases are connected with
-redundant constraints.
+One common way to constrain degrees of freedom (or add equations) is to add
+joints to the model. When two segments are joined, they lose some of their
+freedom to move independently. For example, two segments joined at their ends by
+a ball-and-socket joint are constrained such that the $x$, $y$, and $z$
+coordinates of the joined points must be the same, adding three constraints or
+equations to the system.
 
-If you define two or more constraints that in some way constrain exactly
-the same degrees of freedom in the same way, then they are redundant.
-For instance, you might by mistake repeat the definition of a joint. You
-will then have two joints that work exactly the same, and the equations
-provided by those two joints will be redundant. You will see them when
-you count constraints, but they will not have much effect.
+If you add enough joints to provide all $6n$ constraints, it might be
+mathematically possible to solve the equations and find the position of all the
+segments. However, the result would be static, as the system would not be able
+to move. Typically, a body model will have enough joints to keep the segments
+together but few enough to allow the model to move. The remaining constraints or
+equations come from the drivers. After the joints have consumed their share of
+the degrees of freedom, enough drivers must be added to resolve the remaining
+unknowns in the system up to the required number of $6n$. During the Kinematics
+operation, these drivers are taken through their sequences of values, and the
+positions of all the segments are resolved for each time step by solving the
+$6n$ equations.
 
-The AnyBody Modeling System can sometimes cope with models that have too
-many constraints as long as those constraints are not conflicting, i.e.,
-some of them are redundant. But it is a good rule to make sure that you
-have the same number of degrees-of-freedom and constraints.
+A model is said to be kinematically determinate when it has $6n$ equations that
+can be solved. This is usually necessary for the kinematic analysis. However,
+there are exceptions where the system can be solved even when the number of
+equations differs from $6n$, or when the system cannot be solved even though
+there are $6n$ equations available. Both cases involve redundant constraints.
 
-If you have too many constraints and they are incompatible, then the
-system is kinematically over-determinate. If you have too few
-constraints, or some of the constraints are redundant, then the system
-may be kinematically indeterminate. Both cases are likely to prevent the
-Kinematics operation to complete.
+Redundant constraints are those that constrain the same degrees of freedom in
+the same way. For example, if you accidentally define a joint twice, the
+equations provided by those two joints will be redundant. They will appear when
+you count constraints, but they won't have much effect.
 
-Actually, even when you have a kinematically indeterminate system, the
-Kinematics operation can fail. This is actually very easy to picture.
-Sometimes the segments of the model may be configured such that they
-cannot reach each other, or in such a way that they interlock. The real
-world is full of that sort of mechanisms: Car doors that get stuck or
-refuse to close, locks that will not unlock, or stacked glasses that
-wedge inseparably into each other. Computer systems that model the real
-world will have them too, and just like the real world it can sometimes
-be difficult to find out what the problem is.
+The AnyBody Modeling System can sometimes handle models with too many
+constraints, as long as those constraints are not conflicting, i.e., some of
+them are redundant. However, it's a good practice to ensure that the number of
+degrees of freedom matches the number of constraints.
+
+If you have too many conflicting constraints, the system is kinematically
+over-determinate. If you have too few constraints, or some of the constraints
+are redundant, the system may be kinematically indeterminate. Both cases are
+likely to prevent the Kinematics operation from completing.
+
+Even with a kinematically determinate system, the Kinematics operation can
+fail. This can occur when the segments of the model are configured such that
+they cannot reach each other, or they interlock. Real-world examples include car
+doors that get stuck or refuse to close, locks that won't unlock, or stacked
+glasses that wedge inseparably into each other. Computer systems that model the
+real world will have similar issues, and just like in the real world, it can
+sometimes be difficult to identify the problem.
+
 
 ::::
 
-## Running kinematic analysis
+## Running a Kinematic Analysis
 
-Now that you know the basics of kinematic analysis, let us look at how
-it is performed. We need an example to work on, and this one will serve
-the purpose:
+In this section, we'll delve into the process of performing a kinematic analysis. To illustrate this, we'll use the following example:
+
 {download}`demo.SliderCrank3D.any <Downloads/Demo.SliderCrank3D.any>`
 
-![demo.SliderCrank3D.any](_static/lesson3/image1.png)
 
-When you load it and open a {doc}`Model View <../Interface_features/lesson3>` you will see that
-this is a very simple mechanism comprising only three segments. They are
-not yet connected correctly at their joints, but they will be if you run
-the Kinematics operation. Go to the Study tree, pick Kinematics and
-click the run button. You will see the model assemble and start moving.
 
-The Kinematics operation is precisely an analysis. It assembles data
-when it runs, and you can subsequently investigate those results in the
-{doc}`Chart view <../Interface_features/lesson3>`. The kind of results you can get from
-the Kinematics study is everything that has to do with positions,
-velocities, and accelerations. You may expand the tree until you reach
-the Slider segment, and you can chart its acceleration by choosing the
-rDDot property.
+:::{figure} _static/lesson3/image1.png
+:alt: demo.SliderCrank3D.any
+:scale: 50 %
+:::
 
-![Chart view Acceleration](_static/lesson3/image2.png)
+Upon loading the `demo.SliderCrank3D.any` file and examining the {doc}`Model View <../Interface_features/lesson3>`, you'll notice a simple mechanism consisting of three segments. Initially, these segments are not correctly connected at their joints. However, running the Kinematics operation will rectify this, resulting in a fully assembled and operational model.
 
-Notice the naming of the positional properties: r is position, rDot is
-velocity, and rDDot is acceleration. "Dot" or "DDot" are reflections of
-the mathematical custom of designating differentiation with respect to
-time by a dot over the symbol. So velocity would be 'r' with a dot over,
-and acceleration would be 'r' with two dots. Try browsing around the
-tree and look up the various available data.
+:::{figure} _static/lesson3/image1a.png
+:alt: demo.SliderCrank3D.any with kinematic solved
+:scale: 50 %
+:::
 
-You may encounter some strange looking results like this one:
+The Kinematics operation is essentially an analysis tool. It stores data during its run, allowing you to explore the results in the {doc}`Chart view <../Interface_features/lesson3>`. The data you can extract from the Kinematics study includes positions, velocities, and accelerations. 
 
-![Shaft acceleration](_static/lesson3/image3.png)
+To view these results, expand the tree until you reach the Slider segment. Here, you can chart its acceleration by selecting the `rDDot` property.
 
-Why would anything in a smoothly running model behave like this? The
-answer lies in the ordinate axis. You will notice that it has no values
-on it, and if you hold the mouse over a point on the curve a small
-window will pop up and show you the value:
+:::{figure} _static/lesson3/image2.png
+:alt: Chart view Acceleration
+:scale: 50 %
+:::
 
-![Shaft acc details](_static/lesson3/image4.png)
+Take note of how the positional properties are named: `r` stands for position, `rDot` for velocity, and `rDDot` for acceleration. The terms "Dot" and "DDot" are derived from mathematical conventions, where a dot above a symbol indicates differentiation with respect to time. Hence, velocity is represented as $\dot{r}$, and acceleration as $\ddot{r}$. Feel free to explore the tree and familiarize yourself with the various data available.
 
-You can see that the value is 4.45e-14. For all practical purposes this
-is zero, and this is also why there are no values on the ordinate axis.
-What you see here is really zero augmented by numerical round-off
+You might come across some results that seem unusual, like the one below:
+
+:::{figure} _static/lesson3/image3.png
+:alt: Shaft acceleration
+:scale: 50 %
+:::
+You might be wondering why a smoothly running model would show such behavior.
+The key to understanding this lies in the y-axis. Notice that the values are
+around 1e-14, which is essentially zero. What you're seeing here is not a
+significant value, but rather, it's zero affected by tiny numerical rounding
 errors.
 
 ## Final remarks
 
-Notice that kinematic analysis determines velocities and accelerations
-in addition to positions. The position analysis is by far the more
-challenging because the equations are nonlinear, whereas solution for
-velocity and acceleration involves linear equations once the positions
-have been determined. Please notice also that due to the very general
-approach used by the AnyBody Modeling System, it handles closed
-kinematic chains. This is crucial in biomechanics where closed chains
-occur very frequently, for instance in bicycling, gait, and whenever the
-model grabs something with both hands.
+Remember, kinematic analysis doesn't just find positions, it also calculates velocities and accelerations. Figuring out the positions is the trickiest part because it involves nonlinear equations. Once we have the positions, finding velocities and accelerations is easier because we're dealing with linear equations.
 
-Although the kinematic analysis is useful in its own right for lots of
-purposes, it is also the first step of the InverseDynamics operation,
-the subject of {doc}`the next lesson <lesson4>`.
+One of the unique things about the AnyBody Modeling System is its ability to handle closed kinematic chains. This is super important in biomechanics, where these chains pop up all the time. Think about activities like cycling, walking, or grabbing an object with both hands.
+
+While kinematic analysis is a powerful tool on its own, it's also the first step in the InverseDynamics operation. We'll dive into that in our {doc}`next lesson <lesson4>`.

@@ -32,7 +32,7 @@ Main = {
     // Segments
     AnyFolder Segs = {
       AnySeg UpperArm = {
-        r0 = {0, 0.3, 0};
+        r0 = {0, -0.20, 0};
         Axes0 =RotMat(-90*pi/180, z);
         Mass = 2;
         Jii = {0.001, 0.01, 0.01};
@@ -65,7 +65,7 @@ Main = {
       };  // UpperArm
       
       AnySeg ForeArm = {
-        r0 = {0.3, 0, 0};        
+        r0 = {0.3, -0.40, 0};        
         Mass = 2.0;
         Jii = {0.001,0.01,0.01};
         AnyRefNode ElbowNode = {
@@ -121,19 +121,17 @@ Main = {
     AnyFolder Drivers = {
       
       //---------------------------------
-      AnyKinEqSimpleDriver ShoulderMotion = {
+      AnyKinMotion ShoulderMotion = {
         AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-        DriverPos = {-100*pi/180};
-        DriverVel = {30*pi/180};
-        Reaction.Type = {Off};
+        DriverPos0 = {-100*pi/180};
+        DriverVel0 = {30*pi/180};
       }; // Shoulder driver
       
       //---------------------------------
-      AnyKinEqSimpleDriver ElbowMotion = {
+      AnyKinMotion ElbowMotion = {
         AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-        DriverPos = {90*pi/180};
-        DriverVel = {45*pi/180};
-        Reaction.Type = {Off};
+        DriverPos0 = {90*pi/180};
+        DriverVel0 = {45*pi/180};
       }; // Elbow driver
     }; // Driver folder
     
@@ -148,7 +146,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..Segs.UpperArm.Brachialis;
         AnyRefNode &Ins = ..Segs.ForeArm.Brachialis;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -156,7 +154,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..GlobalRef.DeltodeusA;
         AnyRefNode &Ins = ..Segs.UpperArm.DeltodeusA;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -164,7 +162,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..GlobalRef.DeltodeusB;
         AnyRefNode &Ins = ..Segs.UpperArm.DeltodeusB;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -172,7 +170,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..Segs.UpperArm.Brachioradialis;
         AnyRefNode &Ins = ..Segs.ForeArm.Brachioradialis;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -180,7 +178,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..Segs.UpperArm.BicepsShort;
         AnyRefNode &Ins = ..Segs.ForeArm.Biceps;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -188,7 +186,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..Segs.UpperArm.TricepsShort;
         AnyRefNode &Ins = ..Segs.ForeArm.Triceps;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -196,7 +194,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..GlobalRef.BicepsLong;
         AnyRefNode &Ins = ..Segs.ForeArm.Biceps;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -204,7 +202,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..GlobalRef.TricepsLong;
         AnyRefNode &Ins = ..Segs.ForeArm.Triceps;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
     }; // Muscles folder
     
@@ -223,6 +221,7 @@ Main = {
   AnyBodyStudy ArmStudy = {
     AnyFolder &Model = .ArmModel;
     Gravity = {0.0, -9.81, 0.0};
+    InitialConditions.Settings.DisplayPriority = PriorityNormal;
   };
   
 };  // Main
