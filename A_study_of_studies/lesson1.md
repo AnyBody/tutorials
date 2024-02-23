@@ -151,7 +151,7 @@ AnyFolder Drivers = {
    }; // Driver folder
 ```
 
-When you open the model again, you will get this message:
+When you load the model again, you will get this message:
 
 ```{code-block}
 :class: full-width
@@ -160,7 +160,7 @@ Model Warning: Study 'Main.ArmStudy' contains too few kinematic constraints to b
 ```
 
 
-This means that when you open the model, the system automatically detects that
+This means that when you load the model, the system automatically detects that
 there might be too few kinematic constraints for the model. This can make it
 impossible to assemble the mechanism and very unlikely to run a kinematic
 analysis. If you double-click the `ArmStudy` folder to open the Object Description
