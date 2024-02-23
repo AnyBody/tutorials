@@ -120,6 +120,7 @@ exclude_patterns = [
     "README.md",
     "galleries/*",
     ".pixi",
+    "EXLCLUDED_*",
 ]
 
 

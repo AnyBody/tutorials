@@ -63,7 +63,6 @@ Posture_and_movement/intro
 :titlesonly: true
 
 Interface_features/index
-Advanced_script_features/index
 Troubleshooting_anyscript/intro
 Validation_of_models/index
 ```
