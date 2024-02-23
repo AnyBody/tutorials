@@ -146,7 +146,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..Segs.UpperArm.Brachialis;
         AnyRefNode &Ins = ..Segs.ForeArm.Brachialis;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -154,7 +154,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..GlobalRef.DeltodeusA;
         AnyRefNode &Ins = ..Segs.UpperArm.DeltodeusA;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -162,7 +162,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..GlobalRef.DeltodeusB;
         AnyRefNode &Ins = ..Segs.UpperArm.DeltodeusB;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -170,7 +170,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..Segs.UpperArm.Brachioradialis;
         AnyRefNode &Ins = ..Segs.ForeArm.Brachioradialis;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -178,7 +178,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..Segs.UpperArm.BicepsShort;
         AnyRefNode &Ins = ..Segs.ForeArm.Biceps;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -186,7 +186,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..Segs.UpperArm.TricepsShort;
         AnyRefNode &Ins = ..Segs.ForeArm.Triceps;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -194,7 +194,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..GlobalRef.BicepsLong;
         AnyRefNode &Ins = ..Segs.ForeArm.Biceps;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
       
       //---------------------------------
@@ -202,7 +202,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..GlobalRef.TricepsLong;
         AnyRefNode &Ins = ..Segs.ForeArm.Triceps;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
     }; // Muscles folder
     
