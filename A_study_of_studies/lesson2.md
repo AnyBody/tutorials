@@ -27,7 +27,7 @@ the forearm and upper arm do not meet correctly at the elbow joint.\*
 :::
 
 When you run the `InitialConditions` operation, it will attempt to put the
-model in the position is has at `time = tStart`. This may or may not be
+model in the position it has at `time = tStart`. This may or may not be
 possible, and in the development stages of a model, when the joints and
 drivers are not yet fully defined, it is definitely not possible, and
 this is the reason why the system does not run `InitialConditions` automatically when you

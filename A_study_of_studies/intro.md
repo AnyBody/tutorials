@@ -182,7 +182,7 @@ The easiest way to execute an operatin is to find it in the operations drop-down
 in the toolbar. If the operation is not avilable here you can always find in the 
 model tree. 
 
-Once an operatin is selected you visible in the toolbar, you can press the 
+Once an operation is selected in the toolbar, you can press the 
 buttons to start/stop/reset the operations. 
 
 
