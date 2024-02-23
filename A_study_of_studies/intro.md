@@ -11,7 +11,7 @@ according to the function of the specific operation.
 Why does AnyBody have studies? You might expect that you could just load
 a model and then operations would simply be available in the AnyBody
 interface. But why are studies then defined as special classes? Why do
-you need to declare then manually in the model?
+you need to declare them manually in the model?
 
 The reason to have studies as a special class is basically that you can
 have multiple studies in the same model. Since studies become objects in
@@ -47,19 +47,19 @@ AnyBody's family of study classes looks like this:
 In this tutorial, we shall focus on time varying studies and in
 particular mechanical studies that deal with the analysis of mechanical
 system. The other major branch of studies are design studies that deal
-with variations of design parameters for instance as parameter studies
-and even optimization. A special tutorial is however devoted to this
-topic typically design studies will build on top of the analyses
+with variations of design parameters, for instance, parameter studies
+and even optimization. A special tutorial is, however, devoted to this
+topic. Typically, design studies will build on top of the analyses
 performed by other studies, such as mechanical studies.
 
 The mechanical studies (derived from AnyMechStudyBase) are all very
 similar, except that they contain different sets of available
-operations. The base class is empty; AnyKinStudy extents this with
-functionality for kinematic analysis. AnyMechStudy further extents this
+operations. The base class is empty; AnyKinStudy extends this with
+functionality for kinematic analysis. AnyMechStudy further extends this
 with kinetic (dynamic) analysis of basic mechanical systems.
 
-AnyBodyStudy is the must frequently used study by AnyBody users, since
-this study extents the kinematic analysis functions with operations for
+AnyBodyStudy is the most frequently used study by AnyBody users, since
+this study extends the kinematic analysis functions with operations for
 kinetic (dynamic) analysis of musculoskeletal systems, i.e., the core
 functionality of the AnyBody Modeling System. AnyBodyCalibrationStudy
 contains assisting functionality in this regard.
