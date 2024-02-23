@@ -24,6 +24,6 @@ be constructed.
 ```{toctree}
 :maxdepth: 1
 
-Lesson 1: Scaling based on medical images <lesson3>
-Lesson 2: Including a custom scaling function into your model <lesson4>
+Lesson 1: Scaling based on medical images <lesson1>
+Lesson 2: Including a custom scaling function into your model <lesson2>
 ```
