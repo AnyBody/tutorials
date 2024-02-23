@@ -88,7 +88,7 @@ equal to the number of kinematic constraints. This reflects most real-life
 situations, because the mechanical joints we encounter in our environment apply
 their kinematic constraints through reaction forces. But the body is not always
 like that. For example, a knee can be roughly modeled as a hinge joint (many
-physiologists will object here but the internal mechanisms that carry loads in
+physiologists will object here) but the internal mechanisms that carry loads in
 the knee are not like those in a mechanical hinge. Instead, knee reactions
 result from a complex combination of unilateral joint surfaces, ligaments, and
 muscles. 
