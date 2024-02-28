@@ -7,4 +7,4 @@ myst:
 
 # Redirecting to lesson 1 appendix
 
-This page has moved to [lesson 1 appendix](lesson1_appendix.html).
+This page has moved to [lesson 1 appendix](lesson1_appendix).

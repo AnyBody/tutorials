@@ -7,4 +7,4 @@ myst:
 
 # Redirecting to lesson 2
 
-This page has moved to [lesson 2](lesson2.html).
+This page has moved to [lesson 2](lesson2).

@@ -8,7 +8,7 @@ platforms = ["win-64","linux-64"]
 
 [tasks]
 clean = "rm -rf _build"
-linkcheck = {cmd="sphinx-build -M linkcheck . _build", depends_on = ["clean"]}
+linkcheck = {cmd="sphinx-build -M linkcheck . _build -q", depends_on = ["clean"]}
 build-pdf = "sphinx-build -M simplepdf . _build"
 build-html = "sphinx-build -M html . _build"
 build-html-all = "sphinx-build -M html . _build -a"
