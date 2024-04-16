@@ -120,6 +120,7 @@ exclude_patterns = [
     "README.md",
     "galleries/*",
     ".pixi",
+    "EXLCLUDED_*",
 ]
 
 
@@ -433,6 +434,8 @@ ogp_site_name = "AnyScript Tutorials"
 ogp_image = "https://anyscript.org/tutorials/_static/anybody_tutorials_logo.png"
 ogp_use_first_image = True  # if not found defaults to 'ogp_image'
 
+
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
 linkcheck_ignore = [
     r".*linkcheck_ignore",

@@ -7,17 +7,18 @@ channels = ["conda-forge"]
 platforms = ["win-64","linux-64"]
 
 [tasks]
-linkcheck = "sphinx-build -M linkcheck . _build"
+clean = "rm -rf _build"
+linkcheck = {cmd="sphinx-build -M linkcheck . _build -q", depends_on = ["clean"]}
 build-pdf = "sphinx-build -M simplepdf . _build"
 build-html = "sphinx-build -M html . _build"
 build-html-all = "sphinx-build -M html . _build -a"
-html = {cmd= 'explorer .\Docs\_build\html\index.html', depends_on = ["build-html-all"]}
-pdf = {cmd= 'explorer .\Docs\_build\simplepdf\Agada-Documentation.pdf', depends_on = ["build-pdf"]}
+html = {cmd= 'explorer .\_build\html\index.html', depends_on = ["build-html-all"]}
+pdf = {cmd= 'explorer .\_build\simplepdf\Agada-Documentation.pdf', depends_on = ["build-pdf"]}
 livehtml = "sphinx-autobuild . _build --port=0  --open-browser -j=4"
 
 
 [dependencies]
-sphinx = "<7"
+sphinx = ">=6.2,<7"
 python = ">=3.11.6,<3.12"
 sphinxext-opengraph = ">=0.9.0,<0.10"
 sphinx-copybutton = ">=0.5.2,<0.6"

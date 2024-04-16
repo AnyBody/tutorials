@@ -11,7 +11,7 @@ The following elements of the AnyScript language make such templating easier:
 - Include files - Which aid templating and sharing model components across different applications
 - Body model parameters - For customizing the default AMMR body models
 
-The AMMR installation folder also contains a library of [demo applications](https://anyscript.org/ammr/auto_examples/index.html)
+The AMMR installation folder also contains a library of [demo applications](https://anyscript.org/ammr/Applications/index.html)
 such as MoCap gait, cycling, leg-press exercises etc. If any of these applications are similar to your end goal, you can copy the
 application's model files and then modify them as required.
 
