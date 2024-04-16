@@ -10,7 +10,7 @@ However realistic bone geometries can improve both aesthetics and
 visual comprehension of a model's anatomy, as illustrated
 by the two pictures below.
 
-![oldleg1](_static/lesson6/image1.jpeg) ![oldleg2](_static/lesson6/image2.jpeg)
+![oldleg1](_static/lesson6/image1.jpeg) ![oldleg2](_static/lesson6/image2.jpg)
 
 
 ## File formats for visualization objects

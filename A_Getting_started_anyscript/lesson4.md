@@ -26,12 +26,12 @@ shoulder and at the elbow.
 - **Drivers** are AnyBody objects which constrain the value of a measure to a constant value or a mathematical function of time. Drivers essentially assemble and impart motion to your mechanisms.
 
 In this model, we therefore need two drivers, to specify motions for the two DOF. We therefore also need two measures,
-which we will chose to be measures of the shoulder and elbow joint angle values.
+which we will choose to be measures of the shoulder and elbow joint angle values.
 
 :::{note}
-**It is only important that the constrained measures represent independent DOFs of the model. The exact measures themselves are your choice**.
+**It is only important that the constrained measures represent independent DOF of the model. The exact measures themselves are your choice**.
 
-Eg: For this arm model with 2 remaining DOFs, we can either apply motion drivers to the shoulder (1 DOF) and elbow joints (+1 DOF) OR the X (1 DOF) and Y (+1 DOF) coordinates
+Eg: For this arm model with 2 remaining DOF, we can either apply motion drivers to the shoulder (1 DOF) and elbow joints (+1 DOF) OR the X (1 DOF) and Y (+1 DOF) coordinates
 of the end-point of the ForeArm segment (the wrist).
 
 Creating more than 2 driver constraints will over-constrain the model and lead to errors.

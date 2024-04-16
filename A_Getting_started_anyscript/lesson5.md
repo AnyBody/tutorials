@@ -251,7 +251,27 @@ inverse dynamic simulations at the intermediate model stages, by ensuring dynami
 
 The single `Off` is encapsulated in braces, `{Off}` because it is a vector.
 A driver can theoretically have any number of total DOF from all the measures
-that it drives. Therefore all data in a driver are vector quantities, even when it is a 1 DOF driver .
+that it drives. Therefore all data in a driver are vector quantities, even when it is a 1 DOF driver.
+
+However, there is another kinematic driver class called `AnyKinMotion`, that is basically identical to the general `AnyKinDriver`, except that all constraint reaction forces are switched off. This implies that this driver only specifies motion but not a mechanical actuator that produce the motion, which means that the driver's reactions are off.
+
+Then, we can rewrite the code as below:
+
+```AnyScriptDoc
+AnyKinMotion ShoulderMotion = {
+  AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
+  DriverPos0 = {-100*pi/180};
+  DriverVel0 = {30*pi/180};
+}; // Shoulder driver
+
+//---------------------------------
+AnyKinMotion ElbowMotion = {
+  AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
+  DriverPos0 = {90*pi/180};
+  DriverVel0 = {45*pi/180};
+}; // Elbow driver
+```
+Since we usually define drivers for DOF where the force is handled by muscles, it is advisable to use `AnyKinMotion` to ensure that reaction forces are already excluded.
 
 ## The InverseDynamicAnalysis and plotting muscle forces
 
