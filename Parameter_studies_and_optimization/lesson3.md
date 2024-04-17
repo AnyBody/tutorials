@@ -13,16 +13,14 @@ could also have been achived with other optimization frameworks (like [NLopt](ht
 ## Requirements
 
 Before we begin you need to install the Python and some libraries. Using the `conda` package manager, makes this much easier.
-You can download the Anaconda Python distribution from here, which comes with most libraries pre-installed.
 
-- [Download and install Anaconda Python Distribution](https://www.anaconda.com/download#downloads)
+- [Download and install the conda-forge package manager](https://conda-forge.org/)
 
 We also need one additional Python library (AnyPyTools) which will make it
 easier to work with AnyBody from Python. [AnyPyTools](https://anybody-research-group.github.io/anypytools-docs/) can be easily
 installed from the command prompt. Open the Anaconda command prompt and type:
 
 ```bat
-conda config --add channels conda-forge
 conda install anypytools
 ```
 
