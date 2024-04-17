@@ -1,6 +1,12 @@
 # Lesson 6: General Muscles
 
-Physiological muscles are incredible machines. Despite numerous attempts, it has been challenging to create technical actuators that are as lightweight and efficient as natural muscles. Additionally, mathematical modeling of muscles is a complex task. However, once the modeling is complete, we can leverage certain muscle properties to our advantage. We aim to develop "muscles" with a more versatile formulation compared to physiological muscles, which are limited to acting along strings.
+Physiological muscles are incredible machines. Despite numerous attempts, it has
+been challenging to create technical actuators that are as lightweight and
+efficient as natural muscles. Additionally, mathematical modeling of muscles is
+a complex task. However, once the modeling is complete, we can leverage certain
+muscle properties to our advantage. We aim to develop "muscles" with a more
+versatile formulation compared to physiological muscles, which are limited to
+acting along strings.
 
 
 :::{seealso}
@@ -13,11 +19,21 @@ classes representing anything you can measure on a model..
 
 For example:
 
-* A recruited actuator that works on a distance measure between two points acts as a linear force provider or a reaction provider, meaning that the force is not predetermined but will adjust to achieve equilibrium.
-* A recruited actuator that works on an angular measure, such as a joint angle, acts as a torque provider.
-* A recruited actuator that works on a Center of Mass measure acts as an abstract force that affects all segments of the body contributing to the center of mass.
+* A recruited actuator that works on a distance measure between two points acts
+  as a linear force provider or a reaction provider, meaning that the force is
+  not predetermined but will adjust to achieve equilibrium.
+* A recruited actuator that works on an angular measure, such as a joint angle,
+  acts as a torque provider.
+* A recruited actuator that works on a Center of Mass measure acts as an
+  abstract force that affects all segments of the body contributing to the
+  center of mass.
 
-Both classes are similar, but `AnyRecruitedActuator` is used for non-physiological elements like boundary conditions, contact forces, and residual forces. On the other hand, AnyMuscleGeneric is used for forces and moments that still represent the effect of real muscles, such as joint torques. The activity of `AnyMuscleGeneric` is included in the 'MaxMuscleActivity' output variable of the model.
+Both classes are similar, but `AnyRecruitedActuator` is used for
+non-physiological elements like boundary conditions, contact forces, and
+residual forces. On the other hand, `AnyMuscleGeneric` is used for forces and
+moments that still represent the effect of real muscles, such as joint torques.
+The activity of `AnyMuscleGeneric` is included in the 'MaxMuscleActivity' output
+variable of the model.
 
 In this lesson, we will demonstrate how recruited actuators (and generic muscles) can be used for various modeling tasks.
 
@@ -36,11 +52,18 @@ will use the class `AnyMuscleGeneric` instead of `AnyRecruitedActuator`.
 :::
 
 
-Here's a simplified version of your text:
+You can perform joint torque inverse dynamics by using a generic muscle
+(`AnyMuscleGeneric`). This replaces the body's natural muscles at the joints.
+The "muscle forces" that the generic muscles calculate will be the same as the
+joint torques.
 
-You can perform joint torque inverse dynamics by using a generic muscle (`AnyMuscleGeneric`). This replaces the body's natural muscles at the joints. The "muscle forces" that the generic muscles calculate will be the same as the joint torques.
-
-The previous examples aren't ideal for exploring joint torques. So, you should [download a new example](Downloads/MuscleDemo.6.any) to start with. This example is a simplified version of the simple arm example from the "Getting Started with AnyScript" tutorial, but with the muscles removed. The model consists of two segments - an upper arm and a forearm. It's attached to the global reference frame at the shoulder and has a 100 N vertical load acting downwards at the hand.
+The previous examples aren't ideal for exploring joint torques. So, you should
+[download a new example](Downloads/MuscleDemo.6.any) to start with. This example
+is a simplified version of the simple arm example from the "Getting Started with
+AnyScript" tutorial, but with the muscles removed. The model consists of two
+segments - an upper arm and a forearm. It's attached to the global reference
+frame at the shoulder and has a 100 N vertical load acting downwards at the
+hand.
 
 
 ![Arm 2D](_static/lesson6/image1.jpeg)
@@ -122,7 +145,8 @@ AnyMuscleModel §MusModel§ = {
   §F0 = 100.0;§
 };```
 
-Note that the simple muscle model class has the optional memebers (parameters) of `Lf0` and `Vol0` that are usually left out for use with `AnyMuscleGeneric`.
+Note that the simple muscle model class has the optional memebers (parameters) of `Lf0` and 
+`Vol0` that are usually left out for use with `AnyMuscleGeneric`.
 
 We shall associate the muscle with the shoulder joint:
 
@@ -325,9 +349,14 @@ The previous two joint angle drivers have been disabled to avoid making the
 system kinematically over-determined. The new driver now controls the two
 degrees of freedom that were previously managed by the disabled drivers.
 
-The line `Reaction.Type = {Off, Off};` indicates that the wall currently doesn't provide any reaction forces to the arm.
+The line `Reaction.Type = {Off, Off};` indicates that the wall currently doesn't
+provide any reaction forces to the arm.
 
-When you plot the `MaxMuscleActivity`, you'll see that the muscle activity remains fairly constant. This is because the moment arms are also constant. The gravity and the applied load of 100 N are both vertical. You might think that a horizontal support wouldn't make much of a difference. But let's test this by turning on the horizontal support of the driver.
+When you plot the `MaxMuscleActivity`, you'll see that the muscle activity
+remains fairly constant. This is because the moment arms are also constant. The
+gravity and the applied load of 100 N are both vertical. You might think that a
+horizontal support wouldn't make much of a difference. But let's test this by
+turning on the horizontal support of the driver.
 
 
 ![no reaction MaxMuscleActivity plot](_static/lesson6/image4.gif)
@@ -384,7 +413,9 @@ Two things to note here:
    in the opposite direction of the Kinematic measure, i.e., in the negative
    global x direction, just like a contact force with the wall would.
 
-When you run the `InverseDynamics` operation again and plot the two joint torques, you'll see the following graph. You can plot them simultaneously with the specification line `Main.ArmStudy.Output.Model.*Torque.Fm`:
+When you run the `InverseDynamics` operation again and plot the two joint
+torques, you'll see the following graph. You can plot them simultaneously with
+the specification line `Main.ArmStudy.Output.Model.*Torque.Fm`:
 
 
 ![Joint torques plot](_static/lesson6/image6.gif)
