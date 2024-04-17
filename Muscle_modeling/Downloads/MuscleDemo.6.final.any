@@ -65,15 +65,28 @@ Main = {
       }; // Elbow joint
 
     }; // Jnts folder
+    
+    
+    AnyKinLinear HandPos = {
+       AnyRefFrame &ref1 = .GlobalRef.Shoulder;
+       AnyRefFrame &ref2 = .Segs.LowerArm.PalmNode;
+     };
 
-    AnyFolder Drivers = {
-
+        AnyFolder Drivers = {
+     AnyKinEqSimpleDriver HandDriver = {
+       AnyKinLinear &Measure = ..HandPos;
+       MeasureOrganizer = {0,1};
+       DriverPos = {0.45, -0.6};
+       DriverVel = {0, 0.5};
+       Reaction.Type = {Off, Off};
+     };
+        /*
       //---------------------------------
       AnyKinEqSimpleDriver ShoulderMotion = {
         AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
         DriverPos = {-1.7};
         DriverVel = {0.4};
-        Reaction.Type = {Off};
+        Reaction.Type = {0};
       }; // Shoulder driver
 
       //---------------------------------
@@ -81,10 +94,43 @@ Main = {
         AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
         DriverPos = {1.5};
         DriverVel = {0.7};
-        Reaction.Type = {Off};
+        Reaction.Type = {0};
       }; // Elbow driver
+      
+        */ 
+      
     }; // Driver folder
-
+  
+  
+   AnyRecruitedActuator WallReaction = {
+      Type = NonNegative;
+      Volume = 1e-6; // Ignore this value. Only used in special volume weighted recruitement
+      Strength = 10000;
+      AnyKinMeasureOrg Org = {
+        AnyKinMeasure &wall = ..HandPos;
+        MeasureOrganizer = {0};
+      };
+    };  
+    
+    AnyMuscleModel MusModel = {
+      F0 = 100.0;
+    };
+   
+    AnyMuscleGeneric ShoulderTorque = 
+    {
+      //viewForce.Visible = Off;
+      Type = NonNegative;
+      AnyMuscleModel &Model = .MusModel;
+      AnyKinMeasure &Angle = .Jnts.Shoulder;
+    };
+    
+    AnyMuscleGeneric ElbowTorque = 
+    {
+      //viewForce.Visible = Off;
+      Type = NonNegative;
+      AnyMuscleModel &Model = .MusModel;
+      AnyKinMeasure &Angle = .Jnts.Elbow;
+    };
     AnyFolder Loads = {
 
       //---------------------------------
@@ -102,8 +148,8 @@ Main = {
   // The study: Operations to be performed on the model
   AnyBodyStudy ArmStudy = {
     AnyFolder &Model = .ArmModel;
-//    InverseDynamics.Criterion.Type = MR_MinMaxStrict;
-InverseDynamics.Criterion.Type = MR_Quadratic;
+    // InverseDynamics.Criterion.Type = MR_MinMaxStrict;
+    InverseDynamics.Criterion.Type = MR_Quadratic;
     Gravity = {0.0, -9.81, 0.0};
   };
 

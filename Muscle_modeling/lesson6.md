@@ -9,27 +9,34 @@ properties of muscles to our advantage. We would like these "muscles" to
 be able to have a slightly more general formulation than physiological
 muscles, which are confined to acting along strings.
 
-The solution is the AnyGeneralMuscle class. This type of muscle is
-capable of acting on *Kinematic Measures*. *Kinematic Measures* is an
-abstract class representing anything you can measure on a model, and
-there is in fact {doc}`an entire tutorial lesson devoted to the subject <../The_mechanical_elements/lesson4>` in the
-section on {doc}`The Mechanical Elements <../The_mechanical_elements/intro>`. Some
-examples are:
+:::{seealso}
+:class: margin
+There is an  {doc}`an entire tutorial lesson <../The_mechanical_elements/lesson4>` devoted to the subject *Kinematic Measures* in the
+section on {doc}`The Mechanical Elements <../The_mechanical_elements/intro>`. 
+:::
 
-- A general muscle working on a distance measure between two points
+The solution is two classes `AnyRecruitedActuator` and `AnyMuscleGeneric`. They
+are classes capable of acting on *Kinematic Measures*, which is an abstract
+class representing anything you can measure on a model.
+
+Some examples are:
+
+- A recruited actuator working on a distance measure between two points
   becomes simply a linear force provider, or in fact a reaction
   provider in the sense that the force is not predetermined but will
   become whatever equilibrium requires.
-- A general muscle working on an angular measure, for instance a joint
+- A recruited actuator working on an angular measure, for instance a joint
   angle, becomes a torque provider.
-- A general muscle working on a Center of Mass measure becomes an
+- A recruited actuator working on a Center of Mass measure becomes an
   abstract force working on all segments of the body contributing to
   the center of mass.
 
-This lesson demonstrates how general muscles can be used for a variety
+The two classes are similar, but `AnyRecruitedActuator` are for things which are non-physiological like boundry conditions, contact forces, residual forces etc. The other `AnyMuscleGeneric` is for forces and moments which still represent the effect of real muscles. This could for example be joint torques, and the activity of this class will still be part of the 'MaxMuscleActivity' output variable of the model.
+
+This lesson demonstrates how recruited actuator can be used for a variety
 of modeling tasks.
 
-## Muscles as joint torque providers
+## Recruited joint torque providers
 
 One of the purposes of the AnyBody Modeling System is to be able to
 model the musculoskeletal system to a realistic level of detail.
@@ -39,9 +46,13 @@ joint torques. This type of analysis can provide important information
 about the function of limbs and joints, and it is extremely numerically
 efficient.
 
-Joint torque inverse dynamics can be accomplished by adding general
-muscles to the joints to replace the physiological muscles of the body.
-This way, the "muscle forces" computed in the general muscles will
+:::{note}
+Since we imagine the joint torques is the sum of our real muscle contributions we 
+will use the class `AnyMuscleGeneric` instead of `AnyRecruitedActuator`.
+:::
+
+Joint torque inverse dynamics can be accomplished by adding a generic muscle (`AnyMuscleGeneric`) to the joints to replace the physiological muscles of the body.
+This way, the "muscle forces" computed in the generic muscles will
 simply be the joint torques.
 
 The example from the preceding lessons is not well suited to play with joint
@@ -64,128 +75,165 @@ ERROR(OBJ1): MuscleDemo.6.any(103): ArmStudy.InverseDynamics: No solution found:
 
 which is a mathematical way of stating that the model cannot be balanced
 in the absence of muscles. In this case we are not going to add real
-muscles. Instead we shall add general muscles to the revolute joints.
-The best way to introduce a general muscle is to insert it from the
+muscles. Instead we shall add a generic muscles to the revolute joints.
+The best way to introduce a generic muscle is to insert it from the
 class tree. Place the cursor after the Drivers folder, locate the
 AnyGeneralMuscle in the class tree, and insert a template:
 
 ```AnyScriptDoc
   AnyFolder Drivers = {
 
-   //---------------------------------
-   AnyKinEqSimpleDriver ShoulderMotion = {
-     AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-     DriverPos = {-1.7};
-     DriverVel = {0.4};
-     Reaction.Type = {0};
-   }; // Shoulder driver
+   //---------------------------------
+   AnyKinEqSimpleDriver ShoulderMotion = {
+     AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
+     DriverPos = {-1.7};
+     DriverVel = {0.4};
+     Reaction.Type = {0};
+   }; // Shoulder driver
 
-   //---------------------------------
-   AnyKinEqSimpleDriver ElbowMotion = {
-     AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-     DriverPos = {1.5};
-     DriverVel = {0.7};
-     Reaction.Type = {0};
-   }; // Elbow driver
+   //---------------------------------
+   AnyKinEqSimpleDriver ElbowMotion = {
+     AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
+     DriverPos = {1.5};
+     DriverVel = {0.7};
+     Reaction.Type = {0};
+   }; // Elbow driver
  }; // Driver folder
 
-§AnyGeneralMuscle <ObjectName> = {
-   //ForceDirection = -1;
-   AnyKinMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
-   AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
- };§
+§AnyMuscleGeneric <ObjectName> = 
+    {
+      //viewForce.Visible = Off;
+      //MetabModel = Global.Null;
+      //FatigueModel = Global.Null;
+      //MuscleModel = Global.Null;
+      //Type = NonPositive;
+      AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
+      AnyKinMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
+    };§
 ```
 
-Just as normal muscles, general muscles must be associated with a muscle
+Just as normal muscles, generic muscles must be associated with a muscle
 model. Let us insert a simple one:
 
 ```AnyScriptDoc
 §AnyMuscleModel <ObjectName> = {
-   F0 = 0;
+   F0 = 0;
    //Lf0 = 0;
    //Vol0 = 0;
  };§
 
-AnyGeneralMuscle <ObjectName> = {
-   //ForceDirection = -1.000000;
-   AnyKinMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
-   AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
- };
+AnyMuscleGeneric <ObjectName> = 
+{
+  //viewForce.Visible = Off;
+  //MetabModel = Global.Null;
+  //FatigueModel = Global.Null;
+  //MuscleModel = Global.Null;
+  //Type = NonPositive;
+  AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
+  AnyKinMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
+};
+
 ```
 
 The empty fields in the muscle model must be filled in:
 
 ```AnyScriptDoc
-AnyMuscleModel §MusModel§ = {
-    §F0 = 100.0;§
-  };
-```
+AnyMuscleModel §MusModel§ = {
+  §F0 = 100.0;§
+};```
 
-Note that the simple muscle model class has the optional memebers (parameters) of Lf0 and Vol0 that are usually left out for use with AnyGeneralMuscle.
+Note that the simple muscle model class has the optional memebers (parameters) of Lf0 and Vol0 that are usually left out for use with `AnyMuscleGeneric`.
 
 We shall associate the muscle with the shoulder joint:
 
 ```AnyScriptDoc
-AnyMuscleModel MusModel = {
-    F0 = 100.0;
-  };
+AnyMuscleModel MusModel = {
+  F0 = 100.0;
+};
 
-  AnyGeneralMuscle §ShoulderTorque§ = {
-    //ForceDirection = -1;
-    AnyKinMeasure &§Angle = .Jnts.Shoulder§;
-    AnyMuscleModel &§Model = .MusModel§;
-  };
+AnyMuscleGeneric §ShoulderTorque§ = 
+{
+  //viewForce.Visible = Off;
+  //Type = NonPositive;
+  AnyMuscleModel §&Model = .MusModel§;
+  AnyKinMeasure §&Angle = .Jnts.Shoulder§;
+};
+
 ```
 
 Providing a torque for the shoulder is not enough. We also need a torque
 in the elbow:
 
 ```AnyScriptDoc
- AnyGeneralMuscle ShoulderTorque = {
-   //ForceDirection = -1;
-   AnyKinMeasure &Angle = .Jnts.Shoulder;
-   AnyMuscleModel &Model = .MusModel;
- };
+AnyMuscleGeneric ShoulderTorque = 
+{
+  //viewForce.Visible = Off;
+  //Type = NonPositive;
+  AnyMuscleModel &Model = .MusModel;
+  AnyKinMeasure &Angle = .Jnts.Shoulder;
+};
 
-§AnyGeneralMuscle ElbowTorque = {
-   //ForceDirection = -1;
-   AnyKinMeasure &Angle = .Jnts.Elbow;
-   AnyMuscleModel &Model = .MusModel;
- };§
+§AnyMuscleGeneric ElbowTorque = 
+{
+  //viewForce.Visible = Off;
+  //Type = NonPositive;
+  AnyMuscleModel &Model = .MusModel;
+  AnyKinMeasure &Angle = .Jnts.Elbow;
+};§
 ```
 
-Having provided torques for the shoulder and elbow it should be possible
-to run the inverse dynamic analysis. However, attempting to do so will
-provide the same depressing error message as before. The reason is that
-general muscles share the ability to be unilateral with normal muscles.
-The direction of action is controlled by the variable ForceDirection. If
-the muscle acts in the positive direction of the joint angle, then it
-direction should be set = 1, and if it is in the negative joint angle
-direction it should be -1. In the present case the external load tends
+Having provided torques for the shoulder and elbow we can try to run the 
+inverse dynamic analysis again. 
+
+However, attempting to do so will give a new error message.
+
+```
+ERROR(OBJ.MCH.MUS4) :   MuscleDemo.6.any(122)  :   ArmStudy.InverseDynamics  :  Muscle recruitment solver :  infeasible problem with upper bounds
+```
+
+
+The reason is that
+generic muscles share the ability to be unilateral with normal muscles.
+The direction of action is controlled by the variable `Type`. If
+the muscle acts in the positive direction of the joint angle, then its type 
+should be `Type = NonNegative`, and if it is in the negative joint angle
+direction it should be `Type = NonPositive`. 
+
+:::{note}
+The terms `NonNegative`/`NonPositive` can be confusing and will be changed in future versions of the software.
+The reason for the current terminology was to convey the fact that the force/moment can also be zero. I.e. the is zero or positive/negative. 
+:::
+
+In the present case the external load tends
 to work in the negative angle direction for the shoulder as well as the
 elbow, and hence the muscles should counteract in the positive
 direction:
 
 ```AnyScriptDoc
- AnyGeneralMuscle ShoulderTorque = {
-  §ForceDirection = 1§;
-   AnyKinMeasure &Angle = .Jnts.Shoulder;
-   AnyMuscleModel &Model = .MusModel;
- };
+AnyMuscleGeneric ShoulderTorque = 
+{
+  //viewForce.Visible = Off;
+  §Type = NonNegative;§
+  AnyMuscleModel &Model = .MusModel;
+  AnyKinMeasure &Angle = .Jnts.Shoulder;
+};
 
-AnyGeneralMuscle ElbowTorque = {
-  §ForceDirection = 1§;
-   AnyKinMeasure &Angle = .Jnts.Elbow;
-   AnyMuscleModel &Model = .MusModel;
- };
+AnyMuscleGeneric ElbowTorque = 
+{
+  //viewForce.Visible = Off;
+  §Type = NonNegative;§
+  AnyMuscleModel &Model = .MusModel;
+  AnyKinMeasure &Angle = .Jnts.Elbow;
+};
+
 ```
 
 Now the InverseDynamics operation can be run. Having done so, we can
-open a new Chart View and look up the two joint torques as the Fm
+open a new Chart View and look up the two joint torques as the `Fm`
 property of the general muscles. We can plot both of them simultaneously
 using an asterix as shown below:
 
-![Chart view, Torques](_static/lesson6/image2.gif)
+![Chart view, Torques](_static/lesson6/image2.png)
 
 Notice that in this case we have used the same strength (muscle model)
 for both joints. However, the maximum joint torque in physiological
@@ -198,7 +246,9 @@ situation. You can also define different strengths of extension and
 flexion muscles in a given joint and thereby take for instance the
 difference in strength in the knee in these two directions into account.
 
-`Important Remark:` Another useful property of the general muscles used as joint torque
+:::{admonition} **Important Remark:**
+:class: tip  
+Another useful property of the generic muscles used as joint torque
 providers is that you can handle **closed loops** and other statically
 indeterminate situations, which are not treatable by traditional inverse
 dynamics because the equilibrium equations do not have a unique
@@ -206,6 +256,8 @@ solution. The muscle recruitment algorithm will then distribute the load
 between joints according to their individual strengths, and it is
 therefore important to have reasonable estimates of joint strengths for
 this type of situation.
+
+::: 
 
 ## Contact and other boundary conditions
 
@@ -235,9 +287,9 @@ surface, a smaller limit for friction tangentially to the surface, and
 no reaction available in tension. Mathematically and mechanically this
 is very much how muscles work, and the conditions therefore affect the
 mechanics of the entire system much like muscles do and can be mimicked
-by means of general muscles.
+by means of a recruited actuator.
 
-![Simple arm wall](_static/lesson6/image3.jpeg)
+![Simple arm wall](_static/lesson6/image3.png)
 
 We are going to make a couple of changes to the simple arm model to
 investigate contact in more detail. We shall imagine that the hand of
@@ -249,51 +301,53 @@ the hand move vertically, so we drive the hand directly instead.
 ```AnyScriptDoc
  AnyFolder Jnts = {
 
-   //---------------------------------
-   AnyRevoluteJoint Shoulder = {
-     Axis = z;
-     AnyRefNode &GroundNode = ..GlobalRef.Shoulder;
-     AnyRefNode &UpperArmNode = ..Segs.UpperArm.ShoulderNode;
-   }; // Shoulder joint
+   //---------------------------------
+   AnyRevoluteJoint Shoulder = {
+     Axis = z;
+     AnyRefNode &GroundNode = ..GlobalRef.Shoulder;
+     AnyRefNode &UpperArmNode = ..Segs.UpperArm.ShoulderNode;
+   }; // Shoulder joint
 
-   AnyRevoluteJoint Elbow = {
-     Axis = z;
-     AnyRefNode &UpperArmNode = ..Segs.UpperArm.ElbowNode;
-     AnyRefNode &LowerArmNode = ..Segs.LowerArm.ElbowNode;
-   }; // Elbow joint
+   AnyRevoluteJoint Elbow = {
+     Axis = z;
+     AnyRefNode &UpperArmNode = ..Segs.UpperArm.ElbowNode;
+     AnyRefNode &LowerArmNode = ..Segs.LowerArm.ElbowNode;
+   }; // Elbow joint
 
  }; // Jnts folder
 
 §AnyKinLinear HandPos = {
-   AnyRefFrame &ref1 = .GlobalRef.Shoulder;
-   AnyRefFrame &ref2 = .Segs.LowerArm.PalmNode;
+   AnyRefFrame &ref1 = .GlobalRef.Shoulder;
+   AnyRefFrame &ref2 = .Segs.LowerArm.PalmNode;
  };§
 
+ 
+
  AnyFolder Drivers = {
-  §AnyKinEqSimpleDriver HandDriver = {
-     AnyKinLinear &Measure = ..HandPos;
-     MeasureOrganizer = {0,1};
-     DriverPos = {0.45, -0.6};
-     DriverVel = {0, 0.5};
-     Reaction.Type = {0, 0};
-   };§
+  §AnyKinEqSimpleDriver HandDriver = {
+     AnyKinLinear &Measure = ..HandPos;
+     MeasureOrganizer = {0,1};
+     DriverPos = {0.45, -0.6};
+     DriverVel = {0, 0.5};
+     Reaction.Type = {Off, Off};
+   };§
 
  § /*§
-   //---------------------------------
-   AnyKinEqSimpleDriver ShoulderMotion = {
-      AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-      DriverPos = {-1.7};
-      DriverVel = {0.4};
-      Reaction.Type = {0};
-   }; // Shoulder driver
+   //---------------------------------
+   AnyKinEqSimpleDriver ShoulderMotion = {
+      AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
+      DriverPos = {-1.7};
+      DriverVel = {0.4};
+      Reaction.Type = {Off};
+   }; // Shoulder driver
 
-   //---------------------------------
-   AnyKinEqSimpleDriver ElbowMotion = {
-      AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-      DriverPos = {1.5};
-      DriverVel = {0.7};
-      Reaction.Type = {0};
-   }; // Elbow driver
+   //---------------------------------
+   AnyKinEqSimpleDriver ElbowMotion = {
+      AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
+      DriverPos = {1.5};
+      DriverVel = {0.7};
+      Reaction.Type = {Off};
+   }; // Elbow driver
 
  §*/§
 
@@ -307,7 +361,7 @@ exactly to the two drivers we have disabled. Finally, please notice the
 line
 
 ```AnyScriptDoc
-Reaction.Type = {0, 0};
+Reaction.Type = {Off, Off};
 ```
 
 which means that the wall presently provides no reaction forces to the
@@ -323,7 +377,7 @@ a quick test by simply switching on the horizontal support of the
 driver:
 
 ```AnyScriptDoc
-Reaction.Type = {§1§, 0};
+Reaction.Type = {§On§, Off};
 ```
 
 This produces immediate proof that mechanics is usually more complicated
@@ -339,40 +393,36 @@ horizontal reaction force to their advantage depending on the posture of
 the mechanism.
 
 Walls in general do not work like that; they can only provide reaction
-pressure but no tension. This we can mimic with general a muscle. We
+pressure but no tension. This we can mimic with a Recruited Actuator. We
 first switch the reaction off again:
 
 ```AnyScriptDoc
-Reaction.Type = {§0§, 0};
+Reaction.Type = {§Off§, Off};
 ```
 
-Subsequently we define a general muscle:
+Subsequently we define a Recruited Actator:
 
 ```AnyScriptDoc
- AnyMuscleModel MusModel = {
-   F0 = 100.0;
- };
-
-§AnyMuscleModel ReacModel = {
-   F0 = 10000.0;
- };
-
- AnyGeneralMuscle WallReaction = {
-   ForceDirection = -1;
-   AnyKinMeasureOrg Org = {
-     AnyKinMeasure &wall = ..HandPos;
-     MeasureOrganizer = {0};
-   };
-   AnyMuscleModel &Model = .ReacModel;
+      
+ }; // Driver folder
+  
+ §AnyRecruitedActuator WallReaction = {
+   Type = NonPositive;
+   Volume = 1e-6; // Ignore this value. Only used in special volume weighted recruitement
+   Strength = 10000;
+   AnyKinMeasureOrg Org = {
+     AnyKinMeasure &wall = ..HandPos;
+     MeasureOrganizer = {0};
+   };
  };§
 ```
 
 There are two things to notice here
 
-1. The muscle model for the reaction, ReacModel, is much stronger than
+1. The strength of the recruited actuator is much higher than
    the joint muscles. This is because the wall is presumed to be very
    strong.
-2. The ForceDirection property equals -1. This means that the force is
+2. The ForceDirection/Type property is `NonPositive`. This means that the force is
    working in the opposite direction of the Kinematic measure, i.e. in
    the negative global x direction, just like a contact force with the
    wall would do.
@@ -397,14 +447,15 @@ force the other way like if the hand could pull against the far side of
 the wall:
 
 ```AnyScriptDoc
-AnyGeneralMuscle WallReaction = {
-  ForceDirection = §1§;
-  AnyKinMeasureOrg Org = {
-    AnyKinMeasure &wall = ..HandPos;
-    MeasureOrganizer = {0};
-  };
-  AnyMuscleModel &Model = .ReacModel;
-};
+AnyRecruitedActuator WallReaction = {
+   Type = §NonNegative§;
+   Volume = 1e-6; // Ignore this value. Only used in special volume weighted recruitement
+   Strength = 10000;
+   AnyKinMeasureOrg Org = {
+     AnyKinMeasure &wall = ..HandPos;
+     MeasureOrganizer = {0};
+   };
+ };
 ```
 
 If you run the model again and plot the same graphs, you will see this:
