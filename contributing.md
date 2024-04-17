@@ -43,28 +43,20 @@ them locally to view the layout and see results before pushing changes to the
 server. It is often not necesssary when making small fixes to existing
 tutorials. But when writing major new sections it nice to view how things look.
 
-The easiest way to install needed packages tools, is to have the [Anaconda Python distribution](https://www.anaconda.com/download#downloads).
+The easiest way to install needed packages tools, is to have the [pixi package manger](https://www.anaconda.com/download#downloads) installed.
 
 Then run the following commands to install the necesssary packages.
 
 ```bat
-c:\path\to\anybody_tutorials> conda env create -f  environment.yaml
+c:\path\to\anybody_tutorials> pixi run html
 ```
 
-afterwards activate the environment where the sphinx has been installed:
+:::{tip}
+See the `pixi.toml` fil for a list of the predefined build commands you can use to build the tutorials.
+:::
 
-```bat
-c:\path\to\anybody_tutorials> conda activate sphinx
-```
 
-Now you can run the command to build the tutorial files.
-
-```bat
-c:\path\to\anybody_tutorials> make html
-```
-
-Once complete open the file: {file}`_build/html/index.html` in a browser to view
-the result.
+Once the build is complete it should automatically open the file: {file}`_build/html/index.html` in a browser to view the result.
 
 ## Short Markdown guide
 
