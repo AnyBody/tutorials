@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 1: The Basics of Muscle Definition
 
 The key to understanding muscles in the AnyBody Modeling System is to

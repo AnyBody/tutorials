@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 (making-things-move-move-real-mocap)=
 
 # Lesson 5: Using real data

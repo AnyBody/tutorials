@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Getting Started Tutorial
 
 :::{note}

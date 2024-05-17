@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 5: Forces
 
 {{ caution_old_tutorial }}

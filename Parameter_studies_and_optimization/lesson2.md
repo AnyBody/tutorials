@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Optimization Studies
 
 The parameter study introduced in the preceding lesson provides a

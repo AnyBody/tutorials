@@ -4,6 +4,9 @@
 ```{highlight} none
 ```
 
+::: {rst-class} break
+:::
+
 # Lesson 1: Export of data for FEA
 
 ![FEA tutorial Fish tank](_static/lesson1/image1.jpeg)

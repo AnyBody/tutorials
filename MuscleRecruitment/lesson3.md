@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 3: Quadratic Muscle Recruitment
 
 {{ caution_old_tutorial }}

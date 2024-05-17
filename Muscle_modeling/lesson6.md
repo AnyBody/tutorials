@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 6: General Muscles
 
 Physiological muscles are truly amazing machines, and despite many

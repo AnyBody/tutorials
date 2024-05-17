@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 1: Personalizing individual segments based on geometric data from medical images
 
 This tutorial presumes that you have read the AMMR documentation and know

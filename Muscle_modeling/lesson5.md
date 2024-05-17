@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 5: Muscle Models
 
 Muscle model is a description of how a muscle behaves under different

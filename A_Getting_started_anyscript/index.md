@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # How to write AnyScript
 
 This tutorial introduces the AnyScript modeling language, which is used
@@ -12,8 +15,10 @@ Once you feel confident with these concepts you should move on to the next
 chapter [Getting Started with Modeling](A_Getting_started_modeling) to create a more anatomically realistic
 model using the full body model in the AMMR.
 
+::::{if-builder:: html
 ```{rubric} Tutorial content
 ```
+::::
 
 ```{toctree}
 :maxdepth: 1

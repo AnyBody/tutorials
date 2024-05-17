@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 2: Adding FDK Features
 
 {{ caution_old_tutorial }}

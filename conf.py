@@ -1,9 +1,8 @@
 import os
 import re
-import sys
 import subprocess
+import sys
 from datetime import datetime
-
 
 sys.path.insert(0, os.path.abspath("exts"))
 
@@ -64,6 +63,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_togglebutton",
     "sphinxcontrib.youtube",
+    "sphinx_simplepdf",
 ]
 
 myst_enable_extensions = [

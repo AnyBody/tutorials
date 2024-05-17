@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 2: Linear Muscle Recruitment
 
 {{ caution_old_tutorial }}

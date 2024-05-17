@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Scaling and Personalizing your model
 
 Musculoskeletal models must be adaptable to sizes and anatomy of various individuals
@@ -18,8 +21,10 @@ to take a subject-specific shape. In this example, bone geometries segmented fro
 images will be used to demonstrate how geometrically accurate subject-specific models can
 be constructed.
 
+::::{if-builder:: html
 ```{rubric} Tutorial content
 ```
+::::
 
 ```{toctree}
 :maxdepth: 1

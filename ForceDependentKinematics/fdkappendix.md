@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Appendix: Cleaning and Preparing STL Surfaces for Contact Calculation
 
 To use the AnyForceSurfaceContact, it is necessary that the STL- or

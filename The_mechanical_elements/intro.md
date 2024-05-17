@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # The Mechanical Elements
 
 {{ caution_old_tutorial }}

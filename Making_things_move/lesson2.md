@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 2: Using motion capture data
 
 In biomechanics, we often want to make our models move as we have measured in

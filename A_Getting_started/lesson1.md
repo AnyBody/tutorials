@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 1: Creating a Standing Model
 
 The standing model can be found in the AMMR folder under

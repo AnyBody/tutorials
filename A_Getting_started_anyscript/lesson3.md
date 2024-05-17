@@ -5,6 +5,8 @@ myst:
         ```{image} _static/lesson3/image1.png
         ```
 ---
+::: {rst-class} break
+:::
 
 # Lesson 3: Connecting Segments by Joints
 

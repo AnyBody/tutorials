@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Force-Dependent Kinematics
 
 {{ caution_old_tutorial }}
@@ -11,8 +14,10 @@ ligaments, surfaces, etc.
 FDK is particularly useful for modeling non-conforming joints and it also has
 important applications for other types of models.
 
+::::{if-builder:: html
 ```{rubric} Tutorial content
 ```
+::::
 
 ```{toctree}
 :maxdepth: 1

@@ -9,6 +9,9 @@ myst:
 
 ---
 
+::: {rst-class} break
+:::
+
 # Lesson 2: Defining Segments and Displaying Objects
 
 :::{note}

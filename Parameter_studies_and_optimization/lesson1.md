@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Defining a Parameter Study
 
 A parameter study is a systematic way to vary several model

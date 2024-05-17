@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Translating a SOLIDWORKS CAD model to AnyBody
 
 Start by downloading the {download}`example SOLIDWORKS CAD assembly<Downloads/FitnessMachine_SolidWorks.zip>`

@@ -18,6 +18,9 @@ myst:
       ```
 ---
 
+::: {rst-class} break
+:::
+
 # Lesson 5: Definition of Muscles and External Forces
 
 :::{note}

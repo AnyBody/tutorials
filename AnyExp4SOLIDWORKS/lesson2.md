@@ -11,6 +11,10 @@ myst:
       <img src="_static/lesson2/lesson2_image5.png" alt="Matetype 4">
 ---
 
+::: {rst-class} break
+:::
+
+
 # Making the translated AnyScript model move
 
 If you did not finish the previous lesson, you can download the finished

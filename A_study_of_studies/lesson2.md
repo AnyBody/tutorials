@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson2: Initial Conditions
 
 Before we look at the InitialConditions operation, let us just notice

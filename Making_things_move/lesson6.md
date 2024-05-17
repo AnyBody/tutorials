@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 6: Troubleshooting C3D files
 
 Occasionally you may experience problems reading C3D files and some of

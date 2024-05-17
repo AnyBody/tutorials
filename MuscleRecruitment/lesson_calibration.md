@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 7: Calibration
 
 :::{note}

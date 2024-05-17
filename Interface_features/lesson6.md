@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 6: Modifying the Loaded Model
 
 In this lesson, we shall take a look at the facilities that allows

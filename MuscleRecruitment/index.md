@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Inverse Dynamics of Muscle Systems
 
 {{ caution_old_tutorial }}
@@ -7,8 +10,10 @@ This tutorial introduces what muscle recruitment is and demonstrates the
 different types of recruitment solvers available in the AnyBody Modeling
 System.
 
+::::{if-builder:: html
 ```{rubric} Tutorial content
 ```
+::::
 
 ```{toctree}
 :maxdepth: 1

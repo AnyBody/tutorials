@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Kinematic Input Validation
 
 The picture below shows the thorax position variation over time recorded
