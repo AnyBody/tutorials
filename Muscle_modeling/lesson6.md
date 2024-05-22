@@ -1,4 +1,4 @@
-# Lesson 6: General Muscles
+# Lesson 6: Generalizing muscles as recruited actuators
 
 Physiological muscles are incredible machines. Despite numerous attempts, it has
 been challenging to create technical actuators that are as lightweight and
