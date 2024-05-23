@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 5: Using Contact Forces to Replace a Joint in a Human Model
 
 {{ caution_old_tutorial }}

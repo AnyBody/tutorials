@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 2: Including a custom scaling function into your model
 
 This lesson explains how we can use our own custom scaling function,

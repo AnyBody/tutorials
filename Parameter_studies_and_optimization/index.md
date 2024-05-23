@@ -1,11 +1,16 @@
+::: {rst-class} break
+:::
+
 # Parameter Studies and Optimization
 
 This tutorial introduces parameter and optimization studies, which are
 used to investigate the influence of model parameters and optimize them
 to obtain a desired model behavior.
 
+::::{if-builder:: html
 ```{rubric} Tutorial content
 ```
+::::
 
 ```{toctree}
 :maxdepth: 1

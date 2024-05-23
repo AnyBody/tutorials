@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 3: Via-point Muscles
 
 Although the name of the muscle class we have used so far is

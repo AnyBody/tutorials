@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 7: Ligaments
 
 Ligaments are passive structures that connect articulating bones and

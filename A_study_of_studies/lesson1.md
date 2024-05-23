@@ -1,4 +1,7 @@
-﻿# Lesson1: Mechanical System Information
+﻿::: {rst-class} break
+:::
+
+# Lesson1: Mechanical System Information
 
 This lesson assumes that you have the `arm2d.any` file ready in AnyBody. If you
 do not have the model on your computer, please get and save a copy from this

@@ -1,6 +1,7 @@
 ---
 sd_hide_title: true
 ---
+:::::::::{if-builder} html
 
 # **Tutorials**
 
@@ -20,7 +21,7 @@ You can find the available tutorials in the sidebar. The tutorials are ordered i
 :::{include} special-topics-descriptions.txt
 :::
 
-
+:::::::::
 
 
 ```{toctree}

@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Creating human-machine integrated analysis model
 
 If you did not finish the previous lesson, please download the
@@ -217,7 +220,7 @@ spend too much time positioning the human model in this tutorial, we
 will use the file {download}`Mannequin.any <Downloads/Mannequin.any>`. Copy the file to the Model subfolder
 to overwrite it.
 
-When we now load the model and run the Kinematics, we will see that out
+When we now load the model and run the Kinematics, we will see that our
 human is located on the fitness machine and the machine is moving. Now,
 the only thing missing is to connect our body model to the machine.
 

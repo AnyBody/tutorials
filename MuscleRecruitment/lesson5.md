@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 5: Min/Max Muscle Recruitment
 
 {{ caution_old_tutorial }}

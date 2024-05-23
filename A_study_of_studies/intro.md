@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Introduction: Understanding Studies in AnyBody
 
 In AnyBody, studies and operations are the mechanisms used to specify tasks to

@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 4: Using Surfaces to Define the Knee Joint
 
 {{ caution_old_tutorial }}

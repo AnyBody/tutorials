@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 5: The Command Line Application
 
 The AnyBody Modeling System comes with a command line application named

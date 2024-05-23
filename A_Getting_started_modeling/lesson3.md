@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 3: Making Ends Meet
 
 Your model still lacks the the full specifications of how the human and

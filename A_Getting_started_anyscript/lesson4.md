@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 4: Imparting movement with Drivers
 
 :::{note}

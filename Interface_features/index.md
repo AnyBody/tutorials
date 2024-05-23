@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # User interface features
 
 The objective of this tutorial is to give an overview of the different
@@ -9,8 +12,10 @@ Most of this tutorial is about the Graphical User Interface (GUI) of AnyBody
 (AnyBody.exe), but the console application interface (AnyBodyCon.exe) is also
 considered briefly.
 
+::::{if-builder:: html
 ```{rubric} Tutorial content
 ```
+::::
 
 ```{toctree}
 :maxdepth: 1

@@ -1,9 +1,8 @@
 import os
 import re
-import sys
 import subprocess
+import sys
 from datetime import datetime
-
 
 sys.path.insert(0, os.path.abspath("exts"))
 
@@ -18,15 +17,14 @@ except ImportError:
 def tagged_commit():
     """Check if we are on a tagged commit"""
     try:
-        subprocess.check_call(
+        output = subprocess.check_output(
             ["git", "describe", "--tags", "--exact-match", "HEAD"],
-            stdout=subprocess.DEVNULL,
+            text=True,
             stderr=subprocess.DEVNULL,
         )
     except subprocess.CalledProcessError:
         return False
-    else:
-        return True
+    return output.strip()
 
 
 if tags.has("offline"):
@@ -64,6 +62,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_togglebutton",
     "sphinxcontrib.youtube",
+    "sphinx_simplepdf",
 ]
 
 myst_enable_extensions = [
@@ -201,10 +200,11 @@ github_doc_root = "https://github.com/AnyBody/tutorials/tree/master"
 # The short X.Y version.
 version = ams_version_short
 # The full version, including alpha/beta/rc tags.
-release = ams_version
 
-if tags.has("draft"):
-    release = release + "-dev"
+release = "Dev"
+if current_tag := tagged_commit():
+    if current_tag.startswith("tutorials-"):
+        release = current_tag.split("-", 1)[1]
 
 
 # -- Options for HTML output ----------------------------------------------

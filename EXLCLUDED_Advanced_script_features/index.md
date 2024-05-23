@@ -9,8 +9,10 @@ often come at the cost of complexity, and there are some advanced topics
 you must grasp to fully realize the potential of the language. This
 section presents some of those topics.
 
+::::{if-builder:: html
 ```{rubric} Tutorial content
 ```
+::::
 
 ```{toctree}
 :maxdepth: 1

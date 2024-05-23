@@ -6,6 +6,9 @@ myst:
       ```
 ---
 
+::: {rst-class} break
+:::
+
 # Lesson 2: Adjusting the Human Model
 
 The next step is to configure the anatomy of your human model. The body model is divided into individual

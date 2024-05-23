@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 6: Generalizing muscles as recruited actuators
 
 Physiological muscles are incredible machines. Despite numerous attempts, it has

@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 1: The Editor Window
 
 Let us have a closer look at the Editor Window.

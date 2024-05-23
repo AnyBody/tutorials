@@ -1,6 +1,7 @@
 ---
 sd_hide_title: true
 ---
+:::::::::{if-builder} html
 # **Getting Started**
 
 ```{rubric} Getting Started Tutorials
@@ -36,7 +37,7 @@ these tutorials you will be better suited for working with your own projects.
 :::{include} getting-started-descriptions.txt
 :::
 
-
+:::::::::
 
 ```{toctree}
 :caption: Getting Started

@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 4: Parameter identification
 
 In this lesson we shall consider a source of uncertainty on motion

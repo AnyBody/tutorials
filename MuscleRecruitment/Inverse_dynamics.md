@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Inverse Dynamics of Muscle Systems
 
 {{ caution_old_tutorial }}

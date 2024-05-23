@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Finite Element Analysis Interfacing
 
 This tutorial introduces the interface between the AnyBody Modeling System and
@@ -8,8 +11,10 @@ boundary conditions of a finite element model. Special interface are available
 for Ansys and Abaqus, but the generic output available to interface with other
 system is also considered.
 
+::::{if-builder:: html
 ```{rubric} Tutorial content
 ```
+::::
 
 ```{toctree}
 :maxdepth: 1

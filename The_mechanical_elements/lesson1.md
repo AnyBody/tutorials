@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 1: Segments
 
 {{ caution_old_tutorial }}

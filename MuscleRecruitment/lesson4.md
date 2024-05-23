@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 4: Polynomial Muscle Recruitment
 
 {{ caution_old_tutorial }}

@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 3: Kinematic Analysis
 
 The `Kinematics` operation can be explained in two ways: a brief overview and a

@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 6: Composite Recruitment Criteria
 
 {{ caution_old_tutorial }}
