@@ -1,87 +1,90 @@
 ::: {rst-class} break
 :::
 
-# Lesson 6: General Muscles
+# Lesson 6: Generalizing muscles as recruited actuators
 
-Physiological muscles are truly amazing machines, and despite many
-attempts it has not been possible to make technical actuators that are
-as light and efficient as natural muscles. As you may have seen in the
-preceding sections, the mathematical modeling of muscles is not an easy
-task either. But once it has been done, we can use some of the
-properties of muscles to our advantage. We would like these "muscles" to
-be able to have a slightly more general formulation than physiological
-muscles, which are confined to acting along strings.
+Physiological muscles are incredible machines. Despite numerous attempts, it has
+been challenging to create technical actuators that are as lightweight and
+efficient as natural muscles. Additionally, mathematical modeling of muscles is
+a complex task. However, once the modeling is complete, we can leverage certain
+muscle properties to our advantage. We aim to develop "muscles" with a more
+versatile formulation compared to physiological muscles, which are limited to
+acting along strings.
+
 
 :::{seealso}
 :class: margin
 There is an  {doc}`an entire tutorial lesson <../The_mechanical_elements/lesson4>` devoted to the subject *Kinematic Measures* in the
 section on {doc}`The Mechanical Elements <../The_mechanical_elements/intro>`. 
 :::
+The solution to our problem involves two classes: `AnyRecruitedActuator` and `AnyMuscleGeneric`. These classes can act on *Kinematic Measures*, which are an abstract 
+classes representing anything you can measure on a model..
 
-The solution is two classes `AnyRecruitedActuator` and `AnyMuscleGeneric`. They
-are classes capable of acting on *Kinematic Measures*, which is an abstract
-class representing anything you can measure on a model.
+For example:
 
-Some examples are:
+* A recruited actuator that works on a distance measure between two points acts
+  as a linear force provider or a reaction provider, meaning that the force is
+  not predetermined but will adjust to achieve equilibrium.
+* A recruited actuator that works on an angular measure, such as a joint angle,
+  acts as a torque provider.
+* A recruited actuator that works on a Center of Mass measure acts as an
+  abstract force that affects all segments of the body contributing to the
+  center of mass.
 
-- A recruited actuator working on a distance measure between two points
-  becomes simply a linear force provider, or in fact a reaction
-  provider in the sense that the force is not predetermined but will
-  become whatever equilibrium requires.
-- A recruited actuator working on an angular measure, for instance a joint
-  angle, becomes a torque provider.
-- A recruited actuator working on a Center of Mass measure becomes an
-  abstract force working on all segments of the body contributing to
-  the center of mass.
+Both classes are similar, but `AnyRecruitedActuator` is used for
+non-physiological elements like boundary conditions, contact forces, and
+residual forces. On the other hand, `AnyMuscleGeneric` is used for forces and
+moments that still represent the effect of real muscles, such as joint torques.
+The activity of `AnyMuscleGeneric` is included in the 'MaxMuscleActivity' output
+variable of the model.
 
-The two classes are similar, but `AnyRecruitedActuator` are for things which are non-physiological like boundry conditions, contact forces, residual forces etc. The other `AnyMuscleGeneric` is for forces and moments which still represent the effect of real muscles. This could for example be joint torques, and the activity of this class will still be part of the 'MaxMuscleActivity' output variable of the model.
-
-This lesson demonstrates how recruited actuator can be used for a variety
-of modeling tasks.
+In this lesson, we will demonstrate how recruited actuators (and generic muscles) can be used for various modeling tasks.
 
 ## Recruited joint torque providers
 
-One of the purposes of the AnyBody Modeling System is to be able to
-model the musculoskeletal system to a realistic level of detail.
-However, there is a place in the world for traditional inverse dynamics,
-where the muscles are disregarded and the body is balanced entirely by
-joint torques. This type of analysis can provide important information
-about the function of limbs and joints, and it is extremely numerically
-efficient.
+One of the goals of the AnyBody Modeling System is to create detailed models of
+the musculoskeletal system. However, there are cases where traditional inverse
+dynamics analysis is useful. In this type of analysis, the muscles are not
+considered and the body is balanced solely by joint torques. This approach can
+provide valuable insights into the function of limbs and joints, and it is
+computationally efficient.
 
 :::{note}
 Since we imagine the joint torques is the sum of our real muscle contributions we 
 will use the class `AnyMuscleGeneric` instead of `AnyRecruitedActuator`.
 :::
 
-Joint torque inverse dynamics can be accomplished by adding a generic muscle (`AnyMuscleGeneric`) to the joints to replace the physiological muscles of the body.
-This way, the "muscle forces" computed in the generic muscles will
-simply be the joint torques.
 
-The example from the preceding lessons is not well suited to play with joint
-torques, so please {download}`download a new example to start on. <Downloads/MuscleDemo.6.any>`
-This is in fact a simplified version of the simple
-arm example from the *Getting Started with AnyScript* tutorial, where the
-muscles have been removed. The model has two segments, an upper arm and a
-forearm, and is attached to the global reference frame at the shoulder. It has a
-100 N vertical load acting downwards at the hand.
+You can perform joint torque inverse dynamics by using a generic muscle
+(`AnyMuscleGeneric`). This replaces the body's natural muscles at the joints.
+The "muscle forces" that the generic muscles calculate will be the same as the
+joint torques.
+
+The previous examples aren't ideal for exploring joint torques. So, you should
+[download a new example](Downloads/MuscleDemo.6.any) to start with. This example
+is a simplified version of the simple arm example from the "Getting Started with
+AnyScript" tutorial, but with the muscles removed. The model consists of two
+segments - an upper arm and a forearm. It's attached to the global reference
+frame at the shoulder and has a 100 N vertical load acting downwards at the
+hand.
+
 
 ![Arm 2D](_static/lesson6/image1.jpeg)
 
-The lack of muscles means that the model cannot currently do an inverse
-dynamics analysis. If you try to run the InverseDynamics operation, you will get the following error message:
+Currently, the model can't perform an inverse dynamics analysis because it lacks
+muscles. If you try to run the InverseDynamics operation, you'll see an error
+message:
 
-```none
+```
 NOTICE(OBJ1): MuscleDemo.6.any(103): ArmStudy.InverseDynamics: No muscles in the model.
 ERROR(OBJ1): MuscleDemo.6.any(103): ArmStudy.InverseDynamics: No solution found: There are fewer unknown forces (muscles and reactions) than dynamic equations.
 ```
 
-which is a mathematical way of stating that the model cannot be balanced
-in the absence of muscles. In this case we are not going to add real
-muscles. Instead we shall add a generic muscles to the revolute joints.
-The best way to introduce a generic muscle is to insert it from the
-class tree. Place the cursor after the Drivers folder, locate the
-AnyGeneralMuscle in the class tree, and insert a template:
+This error message means that the model can't be balanced without muscles. But
+we won't add real muscles. Instead, we'll add generic muscles to the revolute
+joints. The easiest way to add a generic muscle is from the class tree. Just
+place your cursor after the Drivers folder, find the AnyGeneralMuscle in the
+class tree, and insert a template.
 
 ```AnyScriptDoc
   AnyFolder Drivers = {
@@ -145,7 +148,8 @@ AnyMuscleModel §MusModel§ = {
   §F0 = 100.0;§
 };```
 
-Note that the simple muscle model class has the optional memebers (parameters) of Lf0 and Vol0 that are usually left out for use with `AnyMuscleGeneric`.
+Note that the simple muscle model class has the optional memebers (parameters) of `Lf0` and 
+`Vol0` that are usually left out for use with `AnyMuscleGeneric`.
 
 We shall associate the muscle with the shoulder joint:
 
@@ -188,29 +192,27 @@ AnyMuscleGeneric ShoulderTorque =
 Having provided torques for the shoulder and elbow we can try to run the 
 inverse dynamic analysis again. 
 
-However, attempting to do so will give a new error message.
+If you try to run the program now, you'll encounter a new error message:
 
 ```
 ERROR(OBJ.MCH.MUS4) :   MuscleDemo.6.any(122)  :   ArmStudy.InverseDynamics  :  Muscle recruitment solver :  infeasible problem with upper bounds
 ```
 
 
-The reason is that
-generic muscles share the ability to be unilateral with normal muscles.
-The direction of action is controlled by the variable `Type`. If
-the muscle acts in the positive direction of the joint angle, then its type 
-should be `Type = NonNegative`, and if it is in the negative joint angle
-direction it should be `Type = NonPositive`. 
+This error occurs because generic muscles, like normal muscles, can only act in
+one direction. The Type variable controls this direction. If the muscle acts in
+the positive direction of the joint angle, set Type = NonNegative. If it acts in
+the negative direction, set Type = NonPositive.
 
-:::{note}
-The terms `NonNegative`/`NonPositive` can be confusing and will be changed in future versions of the software.
-The reason for the current terminology was to convey the fact that the force/moment can also be zero. I.e. the is zero or positive/negative. 
+:::{note} The terms NonNegative and NonPositive can be confusing. They will be
+changed in future software versions. The current terms were chosen to show that
+the force/moment can also be zero, meaning it can be zero or positive/negative.
 :::
 
-In the present case the external load tends
-to work in the negative angle direction for the shoulder as well as the
-elbow, and hence the muscles should counteract in the positive
-direction:
+In this case, the external load tends to move in the negative angle direction
+for both the shoulder and elbow. So, the muscles should counteract in the
+positive direction.
+
 
 ```AnyScriptDoc
 AnyMuscleGeneric ShoulderTorque = 
@@ -231,75 +233,64 @@ AnyMuscleGeneric ElbowTorque =
 
 ```
 
-Now the InverseDynamics operation can be run. Having done so, we can
-open a new Chart View and look up the two joint torques as the `Fm`
-property of the general muscles. We can plot both of them simultaneously
-using an asterix as shown below:
+Now, you can run the InverseDynamics operation. After running it, open a new
+Chart View. Look up the two joint torques as the Fm property of the general
+muscles. You can plot both of them at the same time using an asterisk (`*`), as
+shown below:
+
 
 ![Chart view, Torques](_static/lesson6/image2.png)
 
-Notice that in this case we have used the same strength (muscle model)
-for both joints. However, the maximum joint torque in physiological
-joints varies a lot. The knee extension strength, for instance is
-significantly larger than the elbow extension strength. If you perform
-this type of modeling you can define joint torque muscles with strengths
-comparable to the available joint torque and the system can give you an
-estimate of how many percent of each joint's strength is used in a given
-situation. You can also define different strengths of extension and
-flexion muscles in a given joint and thereby take for instance the
-difference in strength in the knee in these two directions into account.
+In this example, we used the same strength (muscle model) for both joints. But
+in reality, maximum joint torque varies a lot. For example, knee extension
+strength is much larger than elbow extension strength. If you're modeling this,
+you can define joint torque muscles with strengths similar to the available
+joint torque. This way, the system can estimate how much of each joint's
+strength is used in a given situation. You can also define different strengths
+for extension and flexion muscles in a joint. This can account for the
+difference in strength in the knee in these two directions.
+
 
 :::{admonition} **Important Remark:**
 :class: tip  
-Another useful property of the generic muscles used as joint torque
-providers is that you can handle **closed loops** and other statically
-indeterminate situations, which are not treatable by traditional inverse
-dynamics because the equilibrium equations do not have a unique
-solution. The muscle recruitment algorithm will then distribute the load
-between joints according to their individual strengths, and it is
-therefore important to have reasonable estimates of joint strengths for
-this type of situation.
-
+Another benefit of using generic muscles as joint torque providers is that you
+can handle closed loops and other statically indeterminate situations.
+Traditional inverse dynamics can't treat these because the equilibrium equations
+don't have a unique solution. The muscle recruitment algorithm will distribute
+the load between joints based on their individual strengths. So, it's important
+to have reasonable estimates of joint strengths for this type of situation 
 ::: 
 
 ## Contact and other boundary conditions
 
-One of the characteristics of muscles is that they are unilateral, i.e.
-they can only exert force in one direction. Mathematically this behavior
-creates a significant amount of problems, but many mechanical phenomena
-have the same characteristics, namely any kind of contact phenomenon.
-Biomechanics is full of contact problems:
+Muscles can only exert force in one direction, which is a characteristic shared
+by many mechanical phenomena, especially contact phenomena. Here are some
+examples of contact problems in biomechanics:
+
 
 - The contact between a foot and the floor
-- The contact between the upper thighs and the seat of a chair
-- The contact between two articulating surfaces in a joint.
+- The contact between the upper thighs and a chair seat
+- The contact between two surfaces in a joint
 
-There is another less appreciated similarity between muscle forces and
-contact forces: neither is without limit. Muscle forces are obviously
-limited by the strength of the muscle. Contact forces to the environment
-may seem like they are only limited by the strength of whatever is
-supporting the body, but it can also be limited by friction and by the
-pressure on the contacting tissues; if you have a stone in one shoe you
-will very likely put less weight on that foot than on the other.
+Muscle forces and contact forces both have limits. Muscle forces are limited by
+muscle strength. Contact forces may seem unlimited, but they can be limited by
+friction and pressure on the tissues. For example, if you have a stone in your
+shoe, you'll likely put less weight on that foot.
 
-So the muscles of the body in addition to creating equilibrium are
-constrained by the available contact forces to the environment, and
-these often have different limits in different directions, typically a
-high limit in compression perpendicularly against the supporting
-surface, a smaller limit for friction tangentially to the surface, and
-no reaction available in tension. Mathematically and mechanically this
-is very much how muscles work, and the conditions therefore affect the
-mechanics of the entire system much like muscles do and can be mimicked
-by means of a recruited actuator.
+Muscles create equilibrium and are constrained by available contact forces.
+These forces often have different limits in different directions. For example,
+there's a high limit in compression against a supporting surface, a smaller
+limit for friction, and no reaction in tension. This is similar to how muscles
+work, and these conditions affect the entire system's mechanics.
+
 
 ![Simple arm wall](_static/lesson6/image3.png)
 
-We are going to make a couple of changes to the simple arm model to
-investigate contact in more detail. We shall imagine that the hand of
-the model has a vertical wall to support against. We have to change the
-kinematics to make the arm slide along the wall. It would be really
-difficult to figure out which joint angle variations are needed to make
-the hand move vertically, so we drive the hand directly instead.
+We'll make some changes to the simple arm model to explore contact in more
+detail. Let's imagine that the model's hand has a vertical wall for support. We
+need to change the kinematics so the arm slides along the wall. It's hard to
+figure out the joint angle variations needed for vertical hand movement, so
+we'll drive the hand directly instead.
 
 ```AnyScriptDoc
  AnyFolder Jnts = {
@@ -357,53 +348,50 @@ the hand move vertically, so we drive the hand directly instead.
  }; // Driver folder
 ```
 
-Notice that the previous two joint angle drivers have been disabled.
-Otherwise the system would become kinematically over-determinate. Notice
-also that the new driver drives two degrees of freedom corresponding
-exactly to the two drivers we have disabled. Finally, please notice the
-line
+The previous two joint angle drivers have been disabled to avoid making the
+system kinematically over-determined. The new driver now controls the two
+degrees of freedom that were previously managed by the disabled drivers.
 
-```AnyScriptDoc
-Reaction.Type = {Off, Off};
-```
+The line `Reaction.Type = {Off, Off};` indicates that the wall currently doesn't
+provide any reaction forces to the arm.
 
-which means that the wall presently provides no reaction forces to the
-arm. Plotting the MaxMuscleActivity provides the following result:
+When you plot the `MaxMuscleActivity`, you'll see that the muscle activity
+remains fairly constant. This is because the moment arms are also constant. The
+gravity and the applied load of 100 N are both vertical. You might think that a
+horizontal support wouldn't make much of a difference. But let's test this by
+turning on the horizontal support of the driver.
+
 
 ![no reaction MaxMuscleActivity plot](_static/lesson6/image4.gif)
 
-The muscle activity is rather constant which is the natural consequence
-of the moment arms being rather constant. The gravity as well as the
-applied load of 100 N are vertical, so one might be tempted to think
-that a horizontal support would not make much of a difference. We can do
-a quick test by simply switching on the horizontal support of the
-driver:
+The muscle activity stays fairly constant. This is because the moment arms are
+also constant. Both the gravity and the applied load of 100 N are vertical. You
+might think that a horizontal support wouldn't make much of a difference. But
+let's test this by turning on the horizontal support of the driver:
 
 ```AnyScriptDoc
 Reaction.Type = {§On§, Off};
 ```
 
-This produces immediate proof that mechanics is usually more complicated
-than expected; even this very simple mechanical system behaves
-differently from what we might expect:
+This shows that mechanics can be more complex than expected. Even this simple
+mechanical system behaves differently from what we might anticipate:
 
 ![Full reaction MaxMuscleActivity plot](_static/lesson6/image5.gif)
 
-Notice that the muscle activity is much smaller in the beginning of the
-movement with the reaction switched on and much the same towards the end
-of the movement. It seems like the muscles are able to use the
-horizontal reaction force to their advantage depending on the posture of
-the mechanism.
+You'll see that the muscle activity is much lower at the start of the movement
+when the reaction is on, and it's similar towards the end of the movement. It
+seems like the muscles can use the horizontal reaction force to their advantage,
+depending on the posture of the mechanism.
 
-Walls in general do not work like that; they can only provide reaction
-pressure but no tension. This we can mimic with a Recruited Actuator. We
-first switch the reaction off again:
+However, real walls don't work like that; they can only provide reaction
+pressure, not tension. We can simulate this with a Recruited Actuator. First,
+let's switch the reaction off again:
 
 ```AnyScriptDoc
 Reaction.Type = {§Off§, Off};
 ```
 
-Subsequently we define a Recruited Actator:
+Subsequently we define a `AnyRecruitedActutor` object:
 
 ```AnyScriptDoc
       
@@ -420,34 +408,34 @@ Subsequently we define a Recruited Actator:
  };§
 ```
 
-There are two things to notice here
+Two things to note here:
 
-1. The strength of the recruited actuator is much higher than
-   the joint muscles. This is because the wall is presumed to be very
-   strong.
-2. The ForceDirection/Type property is `NonPositive`. This means that the force is
-   working in the opposite direction of the Kinematic measure, i.e. in
-   the negative global x direction, just like a contact force with the
-   wall would do.
+1. The recruited actuator is much stronger than the joint muscles. This is
+   because we assume the wall is very strong.
+2. The ForceDirection (`Type`) property is `NonPositive`. This means the force works
+   in the opposite direction of the Kinematic measure, i.e., in the negative
+   global x direction, just like a contact force with the wall would.
 
-Running the InverseDynamics operation again and plotting the two joint
-torques provides the following graph (notice they can be plotted
-simultaneously with the specification line
-`Main.ArmStudy.Output.Model.*Torque.Fm`):
+When you run the `InverseDynamics` operation again and plot the two joint
+torques, you'll see the following graph. You can plot them simultaneously with
+the specification line `Main.ArmStudy.Output.Model.*Torque.Fm`:
+
 
 ![Joint torques plot](_static/lesson6/image6.gif)
 
-The red curve is the shoulder joint torque, and the green curve is the
-elbow torque. Notice that the envelope of these two curves is in fact
-identical to the MaxMuscleActivity curve we plotted above for the case
-of no support. You would think that the support would be beneficial in
-the final stages of the movement where the arm could rest a bit against
-the wall. Actually, it is beneficial for the elbow, but the reaction
-force also increases the torque about the shoulder, and since the
-shoulder (red curve) has the higher load of the two, this limits the
-benefit of the support. Let us see what happens if we turn the reaction
-force the other way like if the hand could pull against the far side of
-the wall:
+The red curve represents the shoulder joint torque, and the green curve
+represents the elbow torque. Notice that the envelope of these two curves is
+identical to the MaxMuscleActivity curve we plotted earlier for the case of no
+support.
+
+You might think that the support would be beneficial in the final stages of the
+movement where the arm could rest against the wall. It is beneficial for the
+elbow, but the reaction force also increases the torque about the shoulder.
+Since the shoulder (red curve) has the higher load of the two, this limits the
+benefit of the support.
+
+Let's see what happens if we turn the reaction force the other way, like if the
+hand could pull against the far side of the wall:
 
 ```AnyScriptDoc
 AnyRecruitedActuator WallReaction = {
@@ -461,29 +449,27 @@ AnyRecruitedActuator WallReaction = {
  };
 ```
 
-If you run the model again and plot the same graphs, you will see this:
+When you run the model again and look at the same graphs, you'll see this:
 
 ![Joint torques plot 2](_static/lesson6/image7.gif)
 
-The wall is obviously useful in the initial stages of the movement where
-the torque generated by the reaction force is in the beneficial
-direction for both joints. In the later stages of the movement the
-presence of the wall decreases the envelope of the muscle forces
-slightly, but it has increased the torque in the elbow. The explanation
-is that the elbow can increase its action beyond what is necessary to
-carry the load and generate an additional pressure against the wall,
-which then decreases the torque in the shoulder.
+The wall is helpful in the initial stages of the movement. The torque generated
+by the reaction force benefits both joints. In the later stages, the wall
+slightly reduces the muscle forces, but it increases the elbow torque. This
+happens because the elbow can exert more force than needed to carry the load,
+creating additional pressure against the wall. This, in turn, reduces the
+shoulder torque.
 
-This example shows how complicated the mechanics of the body is. Even
-this very simplified case would have different solutions if the
-parameters of the model were different. For instance if the shoulder
-were much stronger compared to the elbow, then the elbow would not have
-been able to help the shoulder in the latter case because the elbow
-would have the higher load compared to its strength. On the contrary,
-the shoulder would have been able to help the elbow in the former case
-by generating an additional force pushing against the wall.
+This example shows how complex body mechanics can be. Even this very simplified
+case would have different outcomes if the model's parameters were different. For
+example, if the shoulder were much stronger than the elbow, the elbow wouldn't
+be able to help the shoulder in the latter case because the elbow would have a
+higher load compared to its strength. Conversely, the shoulder could help the
+elbow in the former case by generating an additional force pushing against the
+wall.
 
-This completes the part of this tutorial dealing with muscles. But we
-are not completely finished yet. The {doc}`next lesson <lesson7>`
-deals with the important topic of ligament modeling.
+
+This concludes the part of this tutorial dealing with muscles. But we're not
+done yet.  The {doc}`next lesson <lesson7>` deals with the important topic of
+ligament modeling.
 
