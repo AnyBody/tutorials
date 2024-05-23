@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 :::{figure} ammr_bodyparts.png
 :align: center
 :alt: The AnyBody Model Repository
@@ -5,6 +8,8 @@
 
 *The AnyBody Model Repository is a unique open collection of human body parts*.
 :::
+
+
 
 # The AnyBody Model Repository
 

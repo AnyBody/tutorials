@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 2: The Model View Window
 
 The Model View is a graphical representation of your AnyBody model. You

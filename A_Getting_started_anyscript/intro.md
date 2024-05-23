@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Getting started: AnyScript Programming
 
 AnyScript is the model definition language of the AnyBody Modeling

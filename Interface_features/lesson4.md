@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 4: The Model Tree and Object Description
 
 The Model Tree, on left side of the AnyBody screen, provides a quick

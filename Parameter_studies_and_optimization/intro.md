@@ -5,6 +5,9 @@ myst:
       ```{image} _static/intro/image1.gif
       ```
 ---
+::: {rst-class} break
+:::
+
 
 # Parameter Studies and Optimization
 

@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Creating human-machine integrated analysis model
 
 If you did not finish the previous lesson, please download the

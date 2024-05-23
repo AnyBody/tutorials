@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 1: The Basics of Muscle Recruitment
 
 {{ caution_old_tutorial }}

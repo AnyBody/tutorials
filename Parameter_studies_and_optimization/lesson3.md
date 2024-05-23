@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Optimization Studies in Python
 
 The optimization study introduced in the preceding lesson used AnyBody's builtin

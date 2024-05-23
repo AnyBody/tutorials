@@ -1,7 +1,11 @@
 ---
 sd_hide_title: true
 ---
+
+
 # AnyBody Tutorials!
+
+:::::::::{if-builder} html
 
 ::::{grid}
 :reverse:
@@ -44,6 +48,10 @@ Get Started
 
 
 
+
+
+
+
 You can find the available tutorials in the sidebar. The tutorials are ordered in a suitable sequence for
 new users who are unfamiliar with AnyBody, but this sequence may not be optimal
 for you depending on your background and interests.
@@ -83,6 +91,11 @@ Look up the AMMR tutorials if you need help and guides for using the AnyBody Man
 
 ::::
 
+
+:::::::::
+
+
+::::{if-builder} html
 ## Other resources!
 
 
@@ -106,20 +119,29 @@ Look up the AMMR tutorials if you need help and guides for using the AnyBody Man
 [GitHub repositories](https://github.com/anybody)
 : The repositories on Github has large and small models under development. Download cutting edge models and join development.
 
+::::
+
+::::
+::: {rst-class} break
+:::
+
 
 ```{toctree}
 :includehidden: True
 :maxdepth: 2
-:hidden: True
+:hidden:
 :titlesonly: True
 
 GettingStarted
 ```
 
+::: {rst-class} break
+:::
+
 ```{toctree}
 :includehidden: True
 :maxdepth: 2
-:hidden: True
+:hidden:
 :titlesonly: True
 
 
@@ -127,6 +149,9 @@ Tutorials
 about
 ```
 
+
+
+:::::::::{if-builder} html
 
 ```{rubric} Help make tutorials better!
 ```
@@ -145,8 +170,6 @@ it your self or report the problem. Just click the link header bar.
 
 More details are in the {doc}`how to contribute section <contributing>`.
 
-
-
-
+:::::::::
 
 

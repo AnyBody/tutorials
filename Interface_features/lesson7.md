@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 7: Wrapping the Model with AnyBody Project
 
 “AnyBody Project” or just AnyProject, since it is defined with this

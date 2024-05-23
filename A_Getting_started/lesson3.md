@@ -5,6 +5,10 @@ myst:
       <img src="_static/lesson3/image3.png">
 ---
 
+::: {rst-class} break
+:::
+
+
 # Lesson 3: Reviewing Analysis Results
 
 (chart-view)=

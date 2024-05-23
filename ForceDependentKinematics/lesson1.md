@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 1: The Baseline Model
 
 {{ caution_old_tutorial }}

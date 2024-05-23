@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 4: Kinematic Measures
 
 {{ caution_old_tutorial }}

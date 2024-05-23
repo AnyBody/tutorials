@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 4: Wrapping Muscles
 
 Many muscles in the body are wrapped over bones and slide on the bony

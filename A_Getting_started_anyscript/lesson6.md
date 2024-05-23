@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 6: Adding Real Bone Geometries
 
 :::{note}

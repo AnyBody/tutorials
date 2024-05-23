@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 4: Kinetics - Computing Forces
 
 In this lesson, you will compute forces and investigate the ergonomics of the pedal arrangement.

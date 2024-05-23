@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 2: Joints
 
 {{ caution_old_tutorial }}

@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # The Mechanical Elements
 
 {{ caution_old_tutorial }}
@@ -6,8 +9,11 @@ This tutorial demonstrates many of the mechanical objects available in
 AnyScript, such as segments, joints, drivers, forces, and the very
 versatile kinematic measures.
 
+
+::::{if-builder:: html
 ```{rubric} Tutorial content
 ```
+::::
 
 ```{toctree}
 :maxdepth: 1

@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # A Study of Studies
 
 In AnyBody, all types of analysis, whether pure mechanical system
@@ -9,8 +12,10 @@ objective of this tutorial is to explain the sequence of a typical study from
 its mechanical system information, to the initial conditions, kinematics to the
 inverse dynamic analysis.
 
+::::{if-builder:: html
 ```{rubric} Tutorial content
 ```
+::::
 
 ```{toctree}
 :maxdepth: 1

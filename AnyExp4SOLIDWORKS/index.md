@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Making Models using SOLIDWORKS
 
 This tutorial shows how a CAD model designed in SOLIDWORKS can be
@@ -21,8 +24,10 @@ geometry information of all individual parts in your CAD assembly. Also
 all the mate information of your CAD assembly will be translated into
 several corresponding AnyScript constraint objects.
 
+::::{if-builder:: html
 ```{rubric} Tutorial content
 ```
+::::
 
 ```{toctree}
 :maxdepth: 1

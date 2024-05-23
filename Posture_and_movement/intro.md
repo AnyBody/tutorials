@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Posture and Movement Prediction
 
 Just about every example you find in these tutorials is based on the

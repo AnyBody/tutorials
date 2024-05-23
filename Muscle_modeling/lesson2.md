@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 2: Controlling Muscle Drawing
 
 Muscles can be displayed in a variety of fashions depending on the

@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson3: Noise and filters
 
 Let us run the Kinematics operation and investigate the results. After

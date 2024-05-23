@@ -62,6 +62,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_togglebutton",
     "sphinxcontrib.youtube",
+    "sphinx_simplepdf",
 ]
 
 myst_enable_extensions = [

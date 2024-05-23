@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 1: Starting with a New Model
 
 In this tutorial, we will create a model of a single leg stepping on a

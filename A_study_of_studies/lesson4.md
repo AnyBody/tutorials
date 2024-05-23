@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 4: Inverse Dynamics
 
 In this lesson we will briefly touch the heart of the AnyBody Modeling

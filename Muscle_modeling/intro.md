@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Introduction to Muscle Modeling
 
 ![Muscles back](_static/intro/image1.jpeg)

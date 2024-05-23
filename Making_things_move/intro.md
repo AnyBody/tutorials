@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Making things move
 
 Most biomechanical investigations involve some sort of movement, so

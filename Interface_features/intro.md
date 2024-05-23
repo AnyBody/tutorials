@@ -5,6 +5,9 @@ myst:
       ```{image} _static/intro/image3.png
       ```
 ---
+::: {rst-class} break
+:::
+
 
 # Using the AnyBody Modeling System
 

@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 2: Controlling the Posture
 
 The Standing Model's posture is defined by the angles at the anatomical joints.

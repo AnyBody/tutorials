@@ -1,3 +1,6 @@
+::: {rst-class} break
+:::
+
 # Lesson 3: The Chart View
 
 The AnyBody Modeling System has the Chart View for displaying results:
