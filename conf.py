@@ -413,17 +413,17 @@ intersphinx_mapping = {
     "matplotlib": ("https://matplotlib.org/stable", None),
 }
 
-# if tags.has("offline"):
-#     # Todo find a way to get intersphinx working for offline builds
-#     intersphinx_mapping["ammr"] = (
-#         "../../AMMR/Documentation/",
-#         ("../.inv/ammr.inv", "https://anyscript.org/ammr/objects.inv"),
-#     )
-# else:
-#     if tags.has("draft"):
-#         intersphinx_mapping["ammr"] = ("https://anyscript.org/ammr/beta/", None)
-#     else:
-#         intersphinx_mapping["ammr"] = ("https://anyscript.org/ammr/", None)
+if tags.has("offline"):
+    # Todo find a way to get intersphinx working for offline builds
+    intersphinx_mapping["ammr"] = (
+        "../../AMMR/Documentation/",
+        ("../.inv/ammr.inv", "https://anyscript.org/ammr/objects.inv"),
+    )
+else:
+    if tags.has("draft"):
+        intersphinx_mapping["ammr"] = ("https://anyscript.org/ammr/beta/", None)
+    else:
+        intersphinx_mapping["ammr"] = ("https://anyscript.org/ammr/", None)
 
 
 # -- Options for OpenGraph Ext. ----------------------------------------------
