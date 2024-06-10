@@ -60,6 +60,10 @@
 }
 
 
+html[data-theme="dark"] .highlight .gr {
+    color: #CC3333;
+}
+
 /* [data-theme="dark"] .sd-card {
     border-color: #00000000;
 }
