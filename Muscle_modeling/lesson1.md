@@ -144,7 +144,7 @@ involved joints, and where contraction velocities are small.
 
 There are two optional parameters for this model. Vol0 can be used in muscle
 recruitment to form a muscle volume weighted sum of muscle activations; see e.g.
-[^cite_happee-van-der-hel-1995]. `Lf0` can be tuned in a calibration study; then
+[^cite_happee_van_der_hel_1995]. `Lf0` can be tuned in a calibration study; then
 using `Vol0`, modified physiological cross sectional area (`PCSA`) of the
 muscle can be computed by the user (e.g. as `PCSA=Vol0/Lf0`), which can be
 used afterwards to modify the value for `F0`.
