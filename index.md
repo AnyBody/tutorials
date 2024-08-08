@@ -73,7 +73,7 @@ Set of tutorials for new users of AnyBody. Gives a relatively fast introduction 
 :link: Tutorials
 :link-type: doc
 
-Set of tutorials for many different aspects of the Anybody Modeling System. Select the totorials that makes sense for your projects to quickly get up to speed.
+Set of tutorials for many different aspects of the Anybody Modeling System. Select the tutorials that makes sense for your projects to quickly get up to speed.
 +++
 [See more](Tutorials.md)
 :::
