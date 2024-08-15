@@ -157,7 +157,7 @@ caution_old_tutorial = """
 
 :::{admonition} **Old tutorial:**
 :class: caution margin 
-This tutorial has not yet been updated to ver. 7 of the AnyBody Modeling System. Some concepts may have changed.
+This tutorial has not yet been updated to ver. 8 of the AnyBody Modeling System. Some concepts may have changed.
 :::
 """
 
