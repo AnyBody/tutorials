@@ -124,7 +124,7 @@ Main = {
         
     // Muscle
     AnyMuscleShortestPath Quadriceps = {
-      AnyMuscleModel MuscleModel = {
+      AnyMuscleModel MusMdl = {
         F0 = 6000;
       };
       AnyRefFrame &org = .Thigh.Quadriceps;
