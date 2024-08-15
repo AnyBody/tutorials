@@ -117,14 +117,14 @@ Main = {
     
     
     // Muscles
-    AnyMuscleModel MuscleModel = 
+    AnyMuscleModel MusMdl = 
     {
       F0 = 2000;
     };
     
     AnyMuscleViaPoint M1 = 
     {
-      AnyMuscleModel &model = .MuscleModel;
+      AnyMuscleModel &model = .MusMdl;
       AnyRefFrame &org = .UpperArm.Muscle1;
       AnyRefFrame &ins = .LowerArm.Muscle1;
       AnyDrawMuscle drw = {};    
@@ -132,7 +132,7 @@ Main = {
     
     AnyMuscleViaPoint M2 = 
     {
-      AnyMuscleModel &model = .MuscleModel;
+      AnyMuscleModel &model = .MusMdl;
       AnyRefFrame &org = .UpperArm.Muscle2;
       AnyRefFrame &ins = .LowerArm.Muscle2;
       AnyDrawMuscle drw = {};
@@ -140,7 +140,7 @@ Main = {
     
     AnyMuscleViaPoint M3 = 
     {
-      AnyMuscleModel &model = .MuscleModel;
+      AnyMuscleModel &model = .MusMdl;
       AnyRefFrame &org = .UpperArm.Muscle3;
       AnyRefFrame &ins = .LowerArm.Muscle3;
       AnyDrawMuscle drw = {};      
