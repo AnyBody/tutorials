@@ -1,0 +1,41 @@
+  // Todo: Write a small description of your model here
+
+Main = {
+// The actual body model goes in this folder
+AnyFolder ArmModel = {
+
+  // Global Reference Frame
+  AnyFixedRefFrame GlobalRef = {
+    // Todo: Add points for grounding of the model here
+  };
+
+  //# BEGIN SNIPPET 1
+  // Segments
+  AnyFolder Segs = {
+    §AnySeg <ObjectName> = {
+      //viewRefFrame.Visible = Off;
+      //viewNodes.Visible = Off;
+      //r0 = {0.0, 0.0, 0.0};
+      //rDot0 = {0.0, 0.0, 0.0};
+      //Axes0 = {{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
+      //omega0 = {0.0, 0.0, 0.0};
+      Mass = 0.0;
+      Jii = {0.0, 0.0, 0.0};
+      //Jij = {0.0, 0.0, 0.0};
+      //sCoM = {0.0, 0.0, 0.0};
+      //JaboutCoMOnOff = Off;
+      //viewInertia.Visible = Off;
+      //AnyInertia &<Insert name0> = <Insert object reference (or full object definition)>;
+      //AnyInertia &<Insert name1> = <Insert object reference (or full object definition)>; You can make any number of AnyInertia objects!
+    };§
+  }; // Segs folder
+  //# END SNIPPET 1
+
+};
+  // The study: Operations to be performed on the model
+  AnyBodyStudy ArmStudy = {
+    AnyFolder &Model = .ArmModel;
+    Gravity = {0.0, -9.81, 0.0};
+  };
+
+};

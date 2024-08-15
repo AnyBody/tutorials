@@ -31,23 +31,11 @@ the segments are treated as rigid elements which represent human bones as well a
 We shall start by defining a folder for the segments. Please add the
 following text to your model (new text marked in red):
 
-```AnyScriptDoc
-// The actual body model goes in this folder
-AnyFolder ArmModel = {
 
-  // Global Reference Frame
-  AnyFixedRefFrame GlobalRef = {
-
-  // Todo: Add points for grounding
-  // of the model here
-
- }; // Global reference frame
-
-  §// Segments
-  AnyFolder Segs = {
-  }; // Segs folder§
-
-}; // ArmModel
+```{literalinclude} Snippets/lesson2/snip.NewModel.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Load the model by clicking the {{ Load_button_image }} icon or the
@@ -69,21 +57,10 @@ double-click it to insert its template into your text editor.**
 
 You should get this:
 
-```AnyScriptDoc
-// Segments
-AnyFolder Segs = {
-  §AnySeg <ObjectName> =
-  {
-    //r0 = {0, 0, 0};
-    //rDot0 = {0, 0, 0};
-    //Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
-    //omega0 = {0, 0, 0};
-    Mass = 0;
-    Jii = {0, 0, 0};
-    //Jij = {0, 0, 0};
-    //sCoM = {0, 0, 0};
-  };§
-}; // Segs folder
+```{literalinclude} Snippets/lesson2/snip.NewModel.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Every object in AnyBody defined by some properties that are both mandatory (the
@@ -97,13 +74,10 @@ You can however change this by editing the properties `sCoM` and `Jij`. Go to "H
 
 Let us rename the segment as "UpperArm" and set its {literal}`Mass = 2` and {literal}`Jii = {0.001, 0.01, 0.01}`:
 
-```AnyScriptDoc
-AnySeg §UpperArm§ = {
-  //r0 = {0, 0, 0};
-  //Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
-  Mass = §2§;
-  Jii = {§0.001, 0.01, 0.01§};
-}; §//UpperArm§
+```{literalinclude} Snippets/lesson2/snip.NewModel.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Load the model again and notice the warnings you get. Amongst other messages:
@@ -118,19 +92,15 @@ It therefore cannot evaluate the model's kinematics.** We will take care of this
 
 To make something visible in AnyBody, you have to add a drawing object which defines visibility:
 
-```AnyScriptDoc
-AnySeg UpperArm = {
-  //r0 = {0, 0, 0};
-  //Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
-  Mass = 2;
-  Jii = {0.001, 0.01, 0.01};
-  §AnyDrawSeg drw = {};§
-}; // UpperArm
+```{literalinclude} Snippets/lesson2/snip.NewModel.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Reload the model, and look at the Model View (you might have to press
-the {{ Zoom_button_image }} button to locate your segment) . The segment is displayed as an ellipsoid whose dimensions capture the
-mass distribution represented by Jii.  Changing any one component of Jii will alter the shape of the ellipse.
+the {{ Zoom_button_image }} button to locate your segment). The segment is displayed as an ellipsoid whose dimensions capture the
+mass distribution represented by `Jii`.  Changing any one component of `Jii` will alter the shape of the ellipse.
 
 ## Adding point nodes to a segment
 
@@ -142,38 +112,10 @@ nodes defined in most AMMR models.**
 
 For this model, copy and paste the following lines into your file:
 
-```AnyScriptDoc
-AnySeg UpperArm = {
-  //r0 = {0, 0, 0};
-  //Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
-  Mass = 2;
-  Jii = {0.001, 0.01, 0.01};
-  AnyDrawSeg drw = {};
-  §AnyRefNode ShoulderNode = {
-    sRel = {-0.2,0,0};
-  };
-  AnyRefNode ElbowNode = {
-    sRel = {0.2,0,0};
-  };
-  AnyRefNode DeltodeusA = {
-    sRel = {-0.1,0,0.02};
-  };
-  AnyRefNode DeltodeusB = {
-    sRel = {-0.1,0,-0.02};
-  };
-  AnyRefNode Brachialis = {
-    sRel = {0.1,0,0.01};
-  };
-  AnyRefNode BicepsShort = {
-    sRel = {-0.1,0,0.03};
-  };
-  AnyRefNode Brachioradialis = {
-    sRel = {0.05,0,0.02};
-  };
-  AnyRefNode TricepsShort = {
-    sRel = {-0.1,0,-0.01};
-  };§
-}; // UpperArm
+```{literalinclude} Snippets/lesson2/snip.NewModel.main-5.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 ```{image} _static/lesson2/image4.png
@@ -186,32 +128,10 @@ yellow pins.
 
 You will now add a forearm segment to the mechanism by copy-pasting these lines into the "Segs" folder:
 
-```AnyScriptDoc
-    §AnySeg ForeArm = {
-      Mass = 2.0;
-      Jii = {0.001,0.01,0.01};
-      AnyRefNode ElbowNode = {
-        sRel = {-0.2,0,0};
-      };
-      AnyRefNode HandNode = {
-        sRel = {0.2,0,0};
-      };
-      AnyRefNode Brachialis = {
-        sRel = {-0.1,0,0.02};
-      };
-      AnyRefNode Brachioradialis = {
-        sRel = {0.0,0,0.02};
-      };
-      AnyRefNode Biceps = {
-        sRel = {-0.15,0,0.01};
-      };
-      AnyRefNode Triceps = {
-        sRel = {-0.25,0,-0.05};
-      };
-      AnyDrawSeg DrwSeg = {};
-   }; // ForeArm§
-
-}; // Segs folder
+```{literalinclude} Snippets/lesson2/snip.NewModel.main-6.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 **When you reload the model, you may not see the forearm immediately
@@ -223,24 +143,20 @@ r0 (translation w.r.t global frame at load-time) and Axes0 (rotation matrix w.r.
 **Remember that your simulation, will only use these load-time positions as an initial guess, on the way to
 enforcing specified motions and constraints (such as joints between segments). More on this in the next lesson.**
 
-For now, let us first change r0 - the global position of the segment at load-time.
+For now, let us first change `r0` - the global position of the segment at load-time.
 
-```AnyScriptDoc
-AnySeg UpperArm = {
-  §r0 = {0, 0.3, 0};§
-  //Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
-  Mass = 2;
-  Jii = {0.001, 0.01, 0.01};
-  AnyDrawSeg drw = {};
+```{literalinclude} Snippets/lesson2/snip.NewModel.main-7.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 and
 
-```AnyScriptDoc
-AnySeg ForeArm = {
-  §r0 = {0.3, 0, 0};§
-  Mass = 2.0;
-  Jii = {0.001,0.01,0.01};
+```{literalinclude} Snippets/lesson2/snip.NewModel.main-7.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 This will clearly separate the segments in your Model View:
@@ -251,18 +167,18 @@ This will clearly separate the segments in your Model View:
 ## Rotation matrices in AnyBody
 
 To improve the visual impression of the arm segments at load time, we will set
-the Axes0 property, which is really a rotation matrix.
+the `Axes0` property, which is really a rotation matrix.
 
-You UpperArm segment currently looks like this:
+Your UpperArm segment currently looks like this:
 
-```AnyScriptDoc
-AnySeg UpperArm = {
-  r0 = {0, 0.3, 0};
-  §Axes0 = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};§
+```{literalinclude} Snippets/lesson2/snip.NewModel.main-8.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 :::{note}
-Note that matrices in AnyBody are arranged row-wise, so {1, 0, 0} in Axes0 is the
+Note that matrices in AnyBody are arranged row-wise, so {1, 0, 0} in `Axes0` is the
 first row of a 3x3 matrix.
 :::
 
@@ -272,10 +188,10 @@ the exact expressions for all 9 components of the 3x3 Axes0 matrix.
 **An easier solution is to use a standard function named
 "RotMat", which returns a rotation matrix corresponding to a given axis and rotation angle. Therefore, we can specify:**
 
-```AnyScriptDoc
-AnySeg UpperArm = {
-  r0 = {0, 0.3, 0};
-  §Axes0 = RotMat(-90*pi/180, z);§
+```{literalinclude} Snippets/lesson2/snip.NewModel.main-9.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 When you reload again, you will see that the UpperArm rotated

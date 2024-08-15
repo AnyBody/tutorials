@@ -1,0 +1,32 @@
+  // Todo: Write a small description of your model here
+
+Main = {
+// The actual body model goes in this folder
+AnyFolder ArmModel = {
+
+  // Global Reference Frame
+  AnyFixedRefFrame GlobalRef = {
+    // Todo: Add points for grounding of the model here
+  };
+
+
+  // Segments
+  AnyFolder Segs = {
+    //# BEGIN SNIPPET 1
+AnySeg §UpperArm§ = {
+  //r0 = {0.0, 0.0, 0.0};
+  //Axes0 = {{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
+  Mass = §2§;
+  Jii = {§0.001, 0.01, 0.01§};
+}; §//UpperArm§
+    //# END SNIPPET 1
+  }; // Segs folder
+
+};
+  // The study: Operations to be performed on the model
+  AnyBodyStudy ArmStudy = {
+    AnyFolder &Model = .ArmModel;
+    Gravity = {0.0, -9.81, 0.0};
+  };
+
+};

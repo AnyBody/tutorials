@@ -1,0 +1,82 @@
+  // Todo: Write a small description of your model here
+
+Main = {
+// The actual body model goes in this folder
+AnyFolder ArmModel = {
+
+  // Global Reference Frame
+  AnyFixedRefFrame GlobalRef = {
+    // Todo: Add points for grounding of the model here
+  };
+
+
+  // Segments
+  AnyFolder Segs = {
+    AnySeg UpperArm = {
+      //r0 = {0.0, 0.0, 0.0};
+      //Axes0 = {{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
+      Mass = 2;
+      Jii = {0.001, 0.01, 0.01};
+      AnyDrawSeg drw = {};
+      §AnyRefNode ShoulderNode = {
+        sRel = {-0.2,0,0};
+      };
+      AnyRefNode ElbowNode = {
+        sRel = {0.2,0,0};
+      };
+      AnyRefNode DeltodeusA = {
+        sRel = {-0.1,0,0.02};
+      };
+      AnyRefNode DeltodeusB = {
+        sRel = {-0.1,0,-0.02};
+      };
+      AnyRefNode Brachialis = {
+        sRel = {0.1,0,0.01};
+      };
+      AnyRefNode BicepsShort = {
+        sRel = {-0.1,0,0.03};
+      };
+      AnyRefNode Brachioradialis = {
+        sRel = {0.05,0,0.02};
+      };
+      AnyRefNode TricepsShort = {
+        sRel = {-0.1,0,-0.01};
+      };§
+    }; //UpperArm
+
+    //# BEGIN SNIPPET 1
+    §AnySeg ForeArm = {
+      Mass = 2.0;
+      Jii = {0.001,0.01,0.01};
+      AnyRefNode ElbowNode = {
+        sRel = {-0.2,0,0};
+      };
+      AnyRefNode HandNode = {
+        sRel = {0.2,0,0};
+      };
+      AnyRefNode Brachialis = {
+        sRel = {-0.1,0,0.02};
+      };
+      AnyRefNode Brachioradialis = {
+        sRel = {0.0,0,0.02};
+      };
+      AnyRefNode Biceps = {
+        sRel = {-0.15,0,0.01};
+      };
+      AnyRefNode Triceps = {
+        sRel = {-0.25,0,-0.05};
+      };
+      AnyDrawSeg DrwSeg = {};
+    }; // ForeArm§
+
+}; // Segs folder
+  //# END SNIPPET 1
+
+};
+  // The study: Operations to be performed on the model
+  AnyBodyStudy ArmStudy = {
+    AnyFolder &Model = .ArmModel;
+    Gravity = {0.0, -9.81, 0.0};
+  };
+
+};
