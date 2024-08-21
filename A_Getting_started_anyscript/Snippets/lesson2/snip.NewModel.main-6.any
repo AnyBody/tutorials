@@ -7,7 +7,7 @@ AnyFolder ArmModel = {
   // Global Reference Frame
   AnyFixedRefFrame GlobalRef = {
     // Todo: Add points for grounding of the model here
-  };
+  }; 
 
 
   // Segments

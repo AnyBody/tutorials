@@ -120,6 +120,7 @@ exclude_patterns = [
     "galleries/*",
     ".pixi",
     "EXLCLUDED_*",
+    ".pytest_cache",
 ]
 
 

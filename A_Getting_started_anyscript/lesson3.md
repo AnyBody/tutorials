@@ -26,6 +26,7 @@ You can think of joints in two different ways:
 two independent segments in AnyBody, they will have 2 x 6 = 12 degrees of freedom
 in total.
 
+
 Joints in AnyBody take away (or constrain) some of these degrees of freedom with the different joint types (e.g. revolute, spherical, prismatic etc.)
 differing only in the number and type of degrees of freedom they constrain.
 
@@ -34,13 +35,10 @@ differing only in the number and type of degrees of freedom they constrain.
 Every model needs a global reference frame to serve as a ground reference point for measuring positions & orientations from.
 It is already defined in the model template that you originally used, and is shown below:
 
-```AnyScriptDoc
-AnyFixedRefFrame GlobalRef = {
-
-   // Todo: Add points for grounding
-   // of the model here
-
-}; // Global reference frame
+```{literalinclude} Snippets/lesson3/snip.NewModel.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 **Just like with segments, you can add point nodes to the global reference frame for attaching joints and muscles. There is however no
@@ -49,26 +47,10 @@ concept of mass associated with this frame.**
 You will now add some nodes to the global frame by copy-pasting the following lines into your model (Alternatively use the class inserter
 and then copy-paste the class properties alone):
 
-```AnyScriptDoc
- AnyFixedRefFrame GlobalRef = {
-  §AnyDrawRefFrame DrwGlobalRef = {};
-
-   AnyRefNode Shoulder = {
-     sRel = {0,0,0};
-   };
-   AnyRefNode DeltodeusA = {
-     sRel = {0.05,0,0};
-   };
-   AnyRefNode DeltodeusB = {
-     sRel = {-0.05,0,0};
-   };
-   AnyRefNode BicepsLong = {
-     sRel = {0.1,0,0};
-   };
-   AnyRefNode TricepsLong = {
-     sRel = {-0.1,0,0};
-   };§
-}; // Global reference frame
+```{literalinclude} Snippets/lesson3/snip.NewModel.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The first line, "`AnyDrawRefFrame` ..." merely displays the global
@@ -78,11 +60,10 @@ system.
 Let us scale down the display
 size and change its color to distinguish it from the yellow segments:
 
-```AnyScriptDoc
-AnyDrawRefFrame DrwGlobalRef = {
-  §ScaleXYZ = {0.1, 0.1, 0.1};
-  RGB = {0,1,0};§
-};
+```{literalinclude} Snippets/lesson3/snip.NewModel.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 ## Creating a revolute joint
@@ -91,23 +72,10 @@ We can now connect the upper arm to the global reference frame through a shoulde
 For this planar 2-D model, where we simplify the shoulder as a simple revolute joint (also known as a hinge joint).
 We create a new `AnyFolder` object, to contain all joints in the model:
 
-```AnyScriptDoc
-    }; // LowerArm
-  }; // Segs folder
-
-§AnyFolder Jnts = {
-
-    //---------------------------------
-    AnyRevoluteJoint Shoulder = {
-
-      AnyRefNode &GroundNode = ..GlobalRef.Shoulder;
-      AnyRefNode &UpperArmNode = ..Segs.UpperArm.ShoulderNode;
-
-      Axis = z;
-
-    }; // Shoulder joint
-
-}; // Jnts folder§
+```{literalinclude} Snippets/lesson3/snip.NewModel.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The `AnyRevoluteJoint` class creates a revolute joint object connecting two nodes on different segments.
@@ -119,14 +87,15 @@ The `AnyRevoluteJoint` class creates a revolute joint object connecting two node
 The `AnyRevoluteJoint` object named "Shoulder", needs to know which nodes on each segment to connect. For this
 purpose, we have the lines:
 
-```AnyScriptDoc
-AnyRefNode &GroundNode = ..GlobalRef.Shoulder;
-AnyRefNode &UpperArmNode = ..Segs.UpperArm.ShoulderNode;
+```{literalinclude} Snippets/lesson3/snip.NewModel.main-5.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
-**They refer to two nodes that we created earlier, located on the "GlobalRef" and "UpperArm"
+**They refer to two nodes that we created earlier, located on the `GlobalRef` and `UpperArm`
 segments. Notice the two dots in front of the names. They signify that
-the "GlobalRef" and "Segs" folders are defined two levels outside the folder
+the `GlobalRef` and `Segs` folders are defined two levels outside the folder
 we are writing into, in the model tree.**
 
 If you neglected the two dots, then AnyBody would search for the two objects in the "Shoulder" folder and fail
@@ -152,8 +121,10 @@ sure that the definition is correct.
 
 We then have:
 
-```AnyScriptDoc
-Axis = z;
+```{literalinclude} Snippets/lesson3/snip.NewModel.main-6.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 **Every node on a rigid body segment has its own reference frame which moves along with the segment.
@@ -186,21 +157,10 @@ We will next add a revolute elbow joint. While the definition is similar to the 
 you will learn to use a handy tool to define the references. Copy-paste the skeleton of the elbow
 joint as follows:
 
-```AnyScriptDoc
-AnyFolder Jnts = {
-       //---------------------------------
-    AnyRevoluteJoint Shoulder = {
-        Axis = z;
-        AnyRefNode &GroundNode = ..GlobalRef.Shoulder;
-        AnyRefNode &UpperArmNode = ..Segs.UpperArm.ShoulderNode;
-    }; // Shoulder joint
-
-    §AnyRevoluteJoint Elbow = {
-        Axis = z;
-        AnyRefNode &UpperArmNode = ;
-        AnyRefNode &ForeArmNode = ;
-    }; // Elbow joint§
-}; // Jnts folder
+```{literalinclude} Snippets/lesson3/snip.NewModel.main-7.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The node references within "Elbow" are not pointing at
@@ -224,12 +184,10 @@ into the Elbow joint definition where you placed the cursor.**
 Repeat the process to expand the ForeArm segment and insert its ElbowNode in the
 line below to obtain this:
 
-```AnyScriptDoc
-AnyRevoluteJoint Elbow = {
-  Axis = z;
-  AnyRefNode &UpperArmNode = §Main.ArmModel.Segs.UpperArm.ElbowNode§;
-  AnyRefNode &ForeArmNode =  §Main.ArmModel.Segs.ForeArm.ElbowNode§;
-}; // Elbow joint
+```{literalinclude} Snippets/lesson3/snip.NewModel.main-8.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 It seems like everything is connected now, but we still get this
