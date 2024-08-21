@@ -70,11 +70,14 @@ jobs:
           cache: true
           cache-write: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
           environments: test
-          activate-environment: true
+          # activate-environment: true
         
       - name: Test Snippets
-        run: pytest
-  
+        if: ${{ !github.event.pull_request.head.repo.fork && github.repository == 'anybody/tutorials' }}
+        run: pixi run -e test pytest
+        env:
+          RLM_LICENSE: ${{ secrets.LICENSE_TEST_SERVER }}
+          RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_TEST_SERVER_PASSWORD }}
     
   build-latest:
 
