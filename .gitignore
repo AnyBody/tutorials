@@ -3,4 +3,5 @@ _build/
 *.docx
 *.pyc# pixi environments
 .pixi
+__pycache__
 

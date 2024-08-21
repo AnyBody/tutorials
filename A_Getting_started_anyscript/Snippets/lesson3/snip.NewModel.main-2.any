@@ -4,11 +4,28 @@ Main = {
   // The actual body model goes in this folder
   AnyFolder ArmModel = {
   
-    // Global Reference Frame
-    AnyFixedRefFrame GlobalRef = {
-      // Todo: Add points for grounding of the model here
-      
-    }; // Global Reference Frame
+  //# BEGIN SNIPPET 1
+// Global Reference Frame
+AnyFixedRefFrame GlobalRef = {
+  §AnyDrawRefFrame DrwGlobalRef = {};
+
+   AnyRefNode Shoulder = {
+     sRel = {0,0,0};
+   };
+   AnyRefNode DeltodeusA = {
+     sRel = {0.05,0,0};
+   };
+   AnyRefNode DeltodeusB = {
+     sRel = {-0.05,0,0};
+   };
+   AnyRefNode BicepsLong = {
+     sRel = {0.1,0,0};
+   };
+   AnyRefNode TricepsLong = {
+     sRel = {-0.1,0,0};
+   };§ 
+}; // Global Reference Frame
+  //# END SNIPPET 1
 
   // Segments
   AnyFolder Segs = {

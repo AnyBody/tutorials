@@ -3,7 +3,7 @@ name = "anybody-tutorial"
 version = "0.1.0"
 description = "Add a short description here"
 authors = ["Morten Enemark Lund <mel@anybodytech.com>"]
-channels = ["conda-forge"]
+channels = ["conda-forge", "anybody"]
 platforms = ["win-64","linux-64"]
 
 [tasks]
@@ -35,3 +35,17 @@ myst-parser = ">=4.0.0,<5"
 jinja2 = ">=3.1.4,<3.2"
 tomli = ">=2.0.1,<2.1"
 sphinx-book-theme = ">=1.1.3,<2"
+pytest = ">=8.3.2,<9"
+
+
+[feature.test.target.win-64.dependencies]
+pytest = "*"
+anypytools = "*"
+debugpy = "*"
+anybodycon = "8.1.0beta1.docmarker"
+
+[feature.test.target.win-64.tasks]
+pytest = "pytest"
+
+[environments.test]
+features = ["test"]

@@ -6,8 +6,26 @@ Main = {
   
     // Global Reference Frame
     AnyFixedRefFrame GlobalRef = {
-      // Todo: Add points for grounding of the model here
-      
+      AnyDrawRefFrame DrwGlobalRef = {
+        ScaleXYZ = {0.1, 0.1, 0.1};
+        RGB = {0,1,0};
+      };
+
+      AnyRefNode Shoulder = {
+        sRel = {0,0,0};
+      };
+      AnyRefNode DeltodeusA = {
+        sRel = {0.05,0,0};
+      };
+      AnyRefNode DeltodeusB = {
+        sRel = {-0.05,0,0};
+      };
+      AnyRefNode BicepsLong = {
+        sRel = {0.1,0,0};
+      };
+      AnyRefNode TricepsLong = {
+        sRel = {-0.1,0,0};
+      };
     }; // Global Reference Frame
 
   // Segments
@@ -70,12 +88,23 @@ Main = {
         sRel = {-0.25,0,-0.05};
       };
       AnyDrawSeg DrwSeg = {};
-   }; // ForeArm
-   
-   // Todo: Add the model elements such as
-   //       segments, joints, and muscles here.
-   
-  }; // Segs folder
+  }; // ForeArm
+}; // Segs folder
+
+
+// Joints 
+AnyFolder Jnts = {
+
+  //---------------------------------
+  AnyRevoluteJoint Shoulder = {
+
+    AnyRefNode &GroundNode = ..GlobalRef.Shoulder;
+    AnyRefNode &UpperArmNode = ..Segs.UpperArm.ShoulderNode;
+//# BEGIN SNIPPET 1
+Axis = z;
+//# END SNIPPET 1
+  }; // Shoulder joint
+}; // Jnts folder
 
   }; // The study: Operations to be performed on the model
   // ArmModel

@@ -6,8 +6,28 @@ Main = {
   
     // Global Reference Frame
     AnyFixedRefFrame GlobalRef = {
-      // Todo: Add points for grounding of the model here
-      
+      //# BEGIN SNIPPET 1
+AnyDrawRefFrame DrwGlobalRef = {
+  §ScaleXYZ = {0.1, 0.1, 0.1};
+  RGB = {0,1,0};§
+};
+//# END SNIPPET 1
+
+      AnyRefNode Shoulder = {
+        sRel = {0,0,0};
+      };
+      AnyRefNode DeltodeusA = {
+        sRel = {0.05,0,0};
+      };
+      AnyRefNode DeltodeusB = {
+        sRel = {-0.05,0,0};
+      };
+      AnyRefNode BicepsLong = {
+        sRel = {0.1,0,0};
+      };
+      AnyRefNode TricepsLong = {
+        sRel = {-0.1,0,0};
+      };
     }; // Global Reference Frame
 
   // Segments

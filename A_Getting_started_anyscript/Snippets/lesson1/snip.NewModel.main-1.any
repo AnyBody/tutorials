@@ -1,8 +1,9 @@
-  // Todo: Write a small description of your model here
+// Todo: Write a small description of your model here
 
 Main = {
+  //# BEGIN SNIPPET 1
   // The actual body model goes in this folder
-  AnyFolder ArmModel = {
+  AnyFolder §ArmModel§ = {
 
     // Global Reference Frame
     AnyFixedRefFrame GlobalRef = {
@@ -15,6 +16,7 @@ Main = {
     //       segments, joints, and muscles here.
 
   };
+  //# END SNIPPET 1
   // The study: Operations to be performed on the model
   AnyBodyStudy ArmStudy = {
     AnyFolder &Model = .ArmModel;
