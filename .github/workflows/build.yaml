@@ -57,7 +57,7 @@ jobs:
         continue-on-error: true
 
   test-latest:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: [find-tag]
 
     steps:
