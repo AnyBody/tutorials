@@ -44,7 +44,7 @@ anypytools = "*"
 debugpy = "*"
 
 [feature.test.tasks]
-test = "pytest"
+pytest = "pytest"
 
 [environments]
 test = ["test"]
