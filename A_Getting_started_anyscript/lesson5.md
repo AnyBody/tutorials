@@ -45,9 +45,10 @@ to muscle modeling can be found here {doc}`its own tutorial <../Muscle_modeling/
 
 Here, we will create a very simple muscle model and use it to model our arm model muscles. We start by creating a folder for the muscles:
 
-```AnyScriptDoc
-§AnyFolder Muscles = {
- }; // Muscles folder§
+```{literalinclude} Snippets/lesson5/snip.NewModel.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The next step is to create a muscle model that defines the properties that will be assumed common for all the muscles.
@@ -57,13 +58,10 @@ Since properties such as Max muscle strength, fiber length etc. differ between m
 define unique muscle models for each muscle element.
 :::
 
-```AnyScriptDoc
-AnyFolder Muscles = {
-  §// Simple muscle model with constant strength = 400 Newton
-  AnyMuscleModel MusMdl = {
-    F0 = 400;
-  };§
-}; // Muscles folder
+```{literalinclude} Snippets/lesson5/snip.NewModel.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 ## Creating a muscle
@@ -77,21 +75,10 @@ to drive a complex body model.
 
 Let's add just one muscle to start with, the elbow-flexor muscle named Brachialis:
 
-```AnyScriptDoc
- AnyFolder Muscles = {
-   // Simple muscle model with constant strength = 300 Newton
-   AnyMuscleModel MusMdl = {
-     F0 = 400;
-   };
-
-   §//---------------------------------
-   AnyMuscleViaPoint Brachialis = {
-     AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-     AnyRefNode &Org = ..Segs.UpperArm.Brachialis;
-     AnyRefNode &Ins = ..Segs.ForeArm.Brachialis;
-     AnyDrawMuscle DrwMus = {};
-  };§
-}; // Muscles folder
+```{literalinclude} Snippets/lesson5/snip.NewModel.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 **This muscle is created by the** `AnyMuscleViaPoint` **class. These are muscles which begin at
@@ -106,14 +93,18 @@ reference objects to respective via-point nodes in the lines between `Org` and `
 
 The physiological behavior of the muscle is defined by the first line:
 
-```AnyScriptDoc
-AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
+```{literalinclude} Snippets/lesson5/snip.NewModel.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 You can see that it points right back to the muscle model we have already created ({ref}`Notice the two leading dots <relative-folder-path>`). Finally, the following line displays the muscle in your model view window:
 
-```AnyScriptDoc
-AnyDrawMuscle DrwMus = {};
+```{literalinclude} Snippets/lesson5/snip.NewModel.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 Upon re-loading the model, you should see a thick, red line connecting the muscle's origin and
@@ -125,70 +116,10 @@ The muscle path may appear strange because the mechanism hasn't been assembled b
 
 All the other muscles are defined in the same way. Your model should resemble the image seen further below:
 
-```AnyScriptDoc
-//---------------------------------
-AnyMuscleViaPoint Brachialis = {
-  AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-  AnyRefNode &Org = ..Segs.UpperArm.Brachialis;
-  AnyRefNode &Ins = ..Segs.ForeArm.Brachialis;
-  AnyDrawMuscle DrwMus = {};
-};
-
-§//---------------------------------
-AnyMuscleViaPoint DeltodeusA = {
-  AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-  AnyRefNode &Org = ..GlobalRef.DeltodeusA;
-  AnyRefNode &Ins = ..Segs.UpperArm.DeltodeusA;
-  AnyDrawMuscle DrwMus = {};
-};
-
-//---------------------------------
-AnyMuscleViaPoint DeltodeusB = {
-  AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-  AnyRefNode &Org = ..GlobalRef.DeltodeusB;
-  AnyRefNode &Ins = ..Segs.UpperArm.DeltodeusB;
-  AnyDrawMuscle DrwMus = {};
-};
-
-//---------------------------------
-AnyMuscleViaPoint Brachioradialis = {
-  AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-  AnyRefNode &Org = ..Segs.UpperArm.Brachioradialis;
-  AnyRefNode &Ins = ..Segs.ForeArm.Brachioradialis;
-  AnyDrawMuscle DrwMus = {};
-};
-
-//---------------------------------
-AnyMuscleViaPoint BicepsShort = {
-  AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-  AnyRefNode &Org = ..Segs.UpperArm.BicepsShort;
-  AnyRefNode &Ins = ..Segs.ForeArm.Biceps;
-  AnyDrawMuscle DrwMus = {};
-};
-
-//---------------------------------
-AnyMuscleViaPoint TricepsShort = {
-  AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-  AnyRefNode &Org = ..Segs.UpperArm.TricepsShort;
-  AnyRefNode &Ins = ..Segs.ForeArm.Triceps;
-  AnyDrawMuscle DrwMus = {};
-};
-
-//---------------------------------
-AnyMuscleViaPoint BicepsLong = {
-  AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-  AnyRefNode &Org = ..GlobalRef.BicepsLong;
-  AnyRefNode &Ins = ..Segs.ForeArm.Biceps;
-  AnyDrawMuscle DrwMus = {};
-};
-
-//---------------------------------
-AnyMuscleViaPoint TricepsLong = {
-  AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-  AnyRefNode &Org = ..GlobalRef.TricepsLong;
-  AnyRefNode &Ins = ..Segs.ForeArm.Triceps;
-  AnyDrawMuscle DrwMus = {};
-};§
+```{literalinclude} Snippets/lesson5/snip.NewModel.main-5.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 {{ image0 }}
@@ -214,6 +145,7 @@ requires some assistive force to hold up its own weight. Note that you've specif
 a gravity vector in the "ArmModelStudy" object.
 
 :::{note}
+:class: margin
 A kinematic constraint needs to be enforced by an accompanying constraint force.
 For example, when you lean on a table, the normal reaction force on your hand maintains the
 surface-surface constraint between hand and table. Were it not for the force you would have fallen, with your hand
@@ -224,28 +156,19 @@ force to maintain the specified trajectory.
 By default, all drivers in your model apply the necessary constraint forces (also called driver reactions) for their respective kinematic constraints.
 
 **The constraint "force" is actually a generalized force i.e. whether it is actually a force or torque
-depends on the type of measure that a driver constrains. For example, a driver on a rotational measure, will apply torques, while one on
-a linear measure will apply forces. AnyBody reports all of these simply as "forces", and it is up to you to interpret them.**
+depends on the type of measure that a driver constrains.** For example, a driver on a rotational measure, will apply torques, while one on
+a linear measure will apply forces. AnyBody reports all of these simply as "forces", and it is up to you to interpret them.
 
-**The drivers for shoulder and elbow motion thus default to applying the required constraint reaction torques to sustain the joint motions.
-This is problematic, since we wish the muscles forces to be causing the motion instead. The default driver reactions must therefore be
-switched off by setting the "Reaction.Type" property.**
+**The drivers for shoulder and elbow motion thus default to applying the required constraint reaction torques to sustain the joint motions.**
+This is problematic, since we wish the muscles forces to be causing the motion instead.
 
-```AnyScriptDoc
-AnyKinEqSimpleDriver ShoulderMotion = {
-  AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-  DriverPos = {-100*pi/180};
-  DriverVel = {30*pi/180};
-  §Reaction.Type = {Off};§
-}; // Shoulder driver
+**👉**The default driver reactions must therefore be switched off by setting the "Reaction.Type" property.
 
-//---------------------------------
-AnyKinEqSimpleDriver ElbowMotion = {
-  AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-  DriverPos = {90*pi/180};
-  DriverVel = {45*pi/180};
-  §Reaction.Type = {Off};§
-}; // Elbow driver
+
+```{literalinclude} Snippets/lesson5/snip.NewModel.main-6.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 On the other hand, the driver reactions come in handy in models under development, while you are still adding
@@ -288,23 +211,18 @@ is carrying a dumbbell. Let us imagine that the model is performing a dumbbell c
 
 We start by creating a node on the forearm at the location of the palm. Add this within the curly braces of the "ForeArm" object:
 
-```AnyScriptDoc
-§AnyRefNode PalmNode = {
-   sRel = {0.27,0,0};
- };§
+```{literalinclude} Snippets/lesson5/snip.NewModel.main-7.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The next step is to add an external force. We make a new sub-folder for this purpose, within ArmModel:
 
-```AnyScriptDoc
-§AnyFolder Loads = {
-
-  //---------------------------------
-  AnyForce3D Dumbbell = {
-    AnyRefNode &PalmNode = ..Segs.ForeArm.PalmNode;
-    F = {0,-100,0}; // Force in Newton
-  };
-};  // Loads folder§
+```{literalinclude} Snippets/lesson5/snip.NewModel.main-7.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 Now you can reload the model and re-run inverse dynamics to analyze how the model reacts
@@ -313,15 +231,16 @@ should see this:
 
 {{ image4 }}
 
-The muscle force is obviously much larger than before, and the
-development is also different. It now reaches a maximum during the
-movement and drops off again.
-
 :::{note}
+:class: margin
 Applied forces do not have to be constant. They can change with time
 and other properties in the model.  Please refer to the {doc}`tutorial onforces <../The_mechanical_elements/intro>` for more
 details.
 :::
+
+The muscle force is obviously much larger than before, and the
+development is also different. It now reaches a maximum during the
+movement and drops off again.
 
 **The model you've built here was anatomically simplified, and it can be a
 difficult job to define a realistic body model from scratch. We recommend that users

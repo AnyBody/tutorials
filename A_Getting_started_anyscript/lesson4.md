@@ -46,23 +46,10 @@ Creating more than 2 driver constraints will over-constrain the model and lead t
 
 Let's create a new folder and define two drivers:
 
-```AnyScriptDoc
-}; // Jnts folder
-
-§AnyFolder Drivers = {
-  //---------------------------------
-  AnyKinEqSimpleDriver ShoulderMotion = {
-    AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-    DriverPos = {-100*pi/180};
-    DriverVel = {30*pi/180};
-  }; // Shoulder driver
-  //---------------------------------
-  AnyKinEqSimpleDriver ElbowMotion = {
-    AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-    DriverPos = {90*pi/180};
-    DriverVel = {45*pi/180};
-  }; // Elbow driver
-}; // Driver folder§
+```{literalinclude} Snippets/lesson4/snip.NewModel.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The folder contains two objects named "ShoulderMotion" and "ElbowMotion", belonging to the
@@ -79,14 +66,18 @@ Standard AnyBody joints created using classes such as `AnyRevoluteJoint`, `AnySp
 More customized measures can be created using classes such as `AnyKinLinear`, `AnyKinRotational` etc.
 (see {doc}`this lesson <../The_mechanical_elements/lesson4>`).:
 
-```AnyScriptDoc
-AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
+```{literalinclude} Snippets/lesson4/snip.NewModel.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 and
 
-```AnyScriptDoc
-AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
+```{literalinclude} Snippets/lesson4/snip.NewModel.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 Since the measures constrained by these drivers are angles, the units

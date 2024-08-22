@@ -1,3 +1,5 @@
+//expect_errors = ["DrwSTL.FileName", "Model loading skipped"]
+
 // Todo: Write a small description of your model here
 
 Main = {
@@ -88,16 +90,16 @@ Main = {
         };
         AnyRefNode PalmNode = {
           sRel = {0.27,0,0};
-          ARel = RotMat(90*pi/180, y);
-          AnyDrawSTL DrwSTL = {
-            FileName = "dumbbell.stl";
-            ScaleXYZ = {0.001, 0.001, 0.001};
-            RGB = {0.2,0.4,0.5};
-          };
         };
-      AnyDrawSeg DrwSeg = {};
+        AnyDrawSeg DrwSeg = {};
+//# BEGIN SNIPPET 1
+AnyDrawSTL DrwSTL = {
+  FileName = "dumbbell.stl";
+  §ScaleXYZ = {0.001, 0.001, 0.001};§
+};
+//# END SNIPPET 1
     }; // ForeArm
-
+      
     }; // Segs folder
     
     // Joints 
@@ -118,6 +120,7 @@ Main = {
 
     AnyFolder Drivers = {
       //---------------------------------
+
       AnyKinEqSimpleDriver ShoulderMotion = {
         AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
         DriverPos = {-100*pi/180};
@@ -212,7 +215,6 @@ Main = {
         F = {0,-100,0}; // Force in Newton
       };
     }; // Loads folder
-    
   }; // MyModel
 
   // The study: Operations to be performed on the model

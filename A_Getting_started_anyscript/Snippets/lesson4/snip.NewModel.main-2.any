@@ -86,18 +86,9 @@ Main = {
         AnyRefNode Triceps = { 
           sRel = {-0.25,0,-0.05}; 
         };
-        AnyRefNode PalmNode = {
-          sRel = {0.27,0,0};
-          ARel = RotMat(90*pi/180, y);
-          AnyDrawSTL DrwSTL = {
-            FileName = "dumbbell.stl";
-            ScaleXYZ = {0.001, 0.001, 0.001};
-            RGB = {0.2,0.4,0.5};
-          };
-        };
-      AnyDrawSeg DrwSeg = {};
-    }; // ForeArm
-
+        AnyDrawSeg DrwSeg = {};
+      }; // ForeArm
+      
     }; // Segs folder
     
     // Joints 
@@ -119,102 +110,24 @@ Main = {
     AnyFolder Drivers = {
       //---------------------------------
       AnyKinEqSimpleDriver ShoulderMotion = {
-        AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
+//# BEGIN SNIPPET 1
+AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
+//# END SNIPPET 1
         DriverPos = {-100*pi/180};
         DriverVel = {30*pi/180};
-        Reaction.Type = {Off};
       }; // Shoulder driver
-      
       //---------------------------------
       AnyKinEqSimpleDriver ElbowMotion = {
-        AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
+//# BEGIN SNIPPET 2
+AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
+//# END SNIPPET 2
         DriverPos = {90*pi/180};
         DriverVel = {45*pi/180};
-        Reaction.Type = {Off};
       }; // Elbow driver
     }; // Driver folder
-    
-    AnyFolder Muscles = {
-    // Simple muscle model with constant strength = 400 Newton
-      AnyMuscleModel MusMdl = {
-        F0 = 400;
-      };
 
-      //---------------------------------
-      AnyMuscleViaPoint Brachialis = {
-        AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-        AnyRefNode &Org = ..Segs.UpperArm.Brachialis;
-        AnyRefNode &Ins = ..Segs.ForeArm.Brachialis;
-        AnyDrawMuscle DrwMus = {};
-      };
-
-      //---------------------------------
-      AnyMuscleViaPoint DeltodeusA = {
-        AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-        AnyRefNode &Org = ..GlobalRef.DeltodeusA;
-        AnyRefNode &Ins = ..Segs.UpperArm.DeltodeusA;
-        AnyDrawMuscle DrwMus = {};
-      };
-
-      //---------------------------------
-      AnyMuscleViaPoint DeltodeusB = {
-        AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-        AnyRefNode &Org = ..GlobalRef.DeltodeusB;
-        AnyRefNode &Ins = ..Segs.UpperArm.DeltodeusB;
-        AnyDrawMuscle DrwMus = {};
-      };
-
-      //---------------------------------
-      AnyMuscleViaPoint Brachioradialis = {
-        AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-        AnyRefNode &Org = ..Segs.UpperArm.Brachioradialis;
-        AnyRefNode &Ins = ..Segs.ForeArm.Brachioradialis;
-        AnyDrawMuscle DrwMus = {};
-      };
-
-      //---------------------------------
-      AnyMuscleViaPoint BicepsShort = {
-        AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-        AnyRefNode &Org = ..Segs.UpperArm.BicepsShort;
-        AnyRefNode &Ins = ..Segs.ForeArm.Biceps;
-        AnyDrawMuscle DrwMus = {};
-      };
-
-      //---------------------------------
-      AnyMuscleViaPoint TricepsShort = {
-        AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-        AnyRefNode &Org = ..Segs.UpperArm.TricepsShort;
-        AnyRefNode &Ins = ..Segs.ForeArm.Triceps;
-        AnyDrawMuscle DrwMus = {};
-      };
-
-      //---------------------------------
-      AnyMuscleViaPoint BicepsLong = {
-        AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-        AnyRefNode &Org = ..GlobalRef.BicepsLong;
-        AnyRefNode &Ins = ..Segs.ForeArm.Biceps;
-        AnyDrawMuscle DrwMus = {};
-      };
-
-      //---------------------------------
-      AnyMuscleViaPoint TricepsLong = {
-        AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
-        AnyRefNode &Org = ..GlobalRef.TricepsLong;
-        AnyRefNode &Ins = ..Segs.ForeArm.Triceps;
-        AnyDrawMuscle DrwMus = {};
-      };
-    }; // Muscles folder
-
-    AnyFolder Loads = {
-    //---------------------------------
-      AnyForce3D Dumbbell = {
-        AnyRefNode &PalmNode = ..Segs.ForeArm.PalmNode;
-        F = {0,-100,0}; // Force in Newton
-      };
-    }; // Loads folder
-    
   }; // MyModel
-
+  
   // The study: Operations to be performed on the model
   AnyBodyStudy ArmStudy = {
     AnyFolder &Model = .ArmModel;
