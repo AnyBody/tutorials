@@ -13,6 +13,10 @@ which you choose "Basic Main" and provide a "Target Name" (e.g.,
 *NewModel*) and click OK. This is similar to {ref}`this step <model-templates>` from the previous tutorial.
 
 ```{image} _static/lesson1/image2.png
+:alt: Script editor 
+:class: bg-primary
+:width: 100%
+:align: center
 ```
 
 The new file that opens up in the text editor contains a basic skeleton
@@ -127,6 +131,10 @@ in the file.
 Clicking the error code, e.g: `ERROR(SCR.PRS11)` opens a pop-up window with a complete explanation:
 
 ```{image} _static/lesson1/image5.png
+:alt: Error code
+:class: bg-primary
+:width: 100%
+:align: center
 ```
 
 We now assume that you have removed the errors and have loaded the model

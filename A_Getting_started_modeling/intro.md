@@ -21,7 +21,7 @@ application's model files and then modify them as required.
 **But in this tutorial, you will build a model from the bottom-up using the AMMR model templates.**
 
 This tutorial is based on version {{ AMMR_VERSION_SHORT }} of the AnyBody Managed Model
-Repository. This the latest AMMR version and the tutorial may not be fully relevant
+Repository. This is the latest AMMR version and the tutorial may not be fully relevant
 if you are using an AnyBody Modeling System prior to version {{ AMS_VERSION_SHORT }}. 
 
 With that done, please proceed to Lesson 1: {doc}`Starting with a new Model <lesson1>` using a template.

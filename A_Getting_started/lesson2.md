@@ -51,13 +51,17 @@ HumanModel.Mannequin = {
 Once the loading process is complete, you can see this folder structure being replicated in "Model tree" on the left of your screen. All contents of this file
 can be seen by expanding the "Mannequin" folder icon in the tree.
 
-![...](_static/lesson2/image1.png)
+```{image} _static/lesson2/image1.png
+:alt: Folder tree Mannequin
+:class: bg-primary
+:align: center
+```
 
 There are sub-folders for postural joint angles (in degrees) and angular velocities (in degrees/second),
 for the right and left halves of the body.
 
-Changing any of the joint angles and reloading the model, will change the model's posture at load time. To start with, ensure that the contents of the "Right"
-and "Left" sub-folders are as follows.
+Changing any of the joint angles and reloading the model, will change the model's posture at load time. To start with, ensure that the contents of the `Right`
+and `Left` sub-folders are as follows.
 
 ```AnyScriptDoc
 ...
@@ -90,15 +94,15 @@ Right = {
 ...
 ```
 
-If you scroll down, you'll see that the contents of "Left" folder are set to be equal
-to those from the "Right" folder, in order to create a symmetric posture.
+If you scroll down, you'll see that the contents of `Left` folder are set to be equal
+to those from the `Right` folder, in order to create a symmetric posture.
 
 **This is an important feature of the AnyScript language. Instead of numbers, you can create references to other variables or write
 mathematical expressions wherever necessary.**
 
-To create a non-symmetric posture, you would have to replace some of the expressions in the "Left" folder with numbers of your choice.
+To create a non-symmetric posture, you would have to replace some of the expressions in the `Left` folder with numbers of your choice.
 
-Scrolling further below, you will find the "PosturVel folder". This is organized exactly like Posture, but the numbers here specify
+Scrolling further below, you will find the `PosturVel folder`. This is organized exactly like Posture, but the numbers here specify
 joint angular velocities in degrees per second. For now, please leave all the values in this folder as zero.
 
 (running-analysis)=
@@ -117,11 +121,18 @@ Simulation based analyses in AnyBody are termed "Studies".
 - **Replay**: Replays the last operation that was run.
 
 ```{image} _static/lesson2/image2.png
+:alt: Operations drop down menu
+:class: bg-primary
+:align: center
 ```
 
 **Step 2**: Click the "Run Operation" button on the Execute toolbar. This toolbar is next to the drop-down menu, and contains three buttons:
 
-![...](_static/lesson2/image3.png)
+```{image} _static/lesson2/image3.png
+:alt: Run operation
+:class: bg-primary
+:align: center
+```
 
 - **Run operation**: Starts or pauses the chosen operation. Shortcut
   F5.

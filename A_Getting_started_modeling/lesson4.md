@@ -167,13 +167,21 @@ the `Model/BodyModelConfiguration.any` file:
 
 Now, reload the model and run the `RunApplication` operation from the operations drop-down menu:
 
-![InverseDynamics_End](_static/lesson4/image2.png)
+```{image} _static/lesson4/image2.png
+:alt: InverseDynamics_End
+:class: bg-primary
+:align: center
+```
 
 Plot `Main.Study.Output.Model.BodyModel.SelectedOutput.Right.Leg.Muscles.Envelope` (see {ref}`this for help <chart-view>`).
 It expresses the maximum muscle activation level seen across all the muscles
 in the right leg at a given instant:
 
-![Chart view Muscles.Envelope](_static/lesson4/image3.png)
+```{image} _static/lesson4/image3.png
+:alt: Chart view Muscles.Envelope
+:class: bg-primary
+:align: center
+```
 
 Obviously holding the leg out in the air like that without the support
 of a pedal spring and holding up the weight of the pedal as well
@@ -187,7 +195,11 @@ F = §-10§*.HingeJoint.Pos;
 
 This produces the following envelope curve:
 
-![Chart view Muscles.Envelope 2](_static/lesson4/image4.png)
+```{image} _static/lesson4/image4.png
+:alt: Chart view Muscles.Envelope 2
+:class: bg-primary
+:align: center
+```
 
 Obviously, the level is lower now. The envelope is at around 2%, so the
 spring really seems to help. This can make it easier for the operator to

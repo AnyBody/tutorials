@@ -12,11 +12,17 @@ If you have completed the three previous lessons, you should have a
 model with an upper arm grounded at the shoulder joint and connected to
 a forearm by the elbow. What we want to do now is to make the arm move.
 
-![ModelView Arm2D initial load](_static/lesson4/image1.png)
+```{image} _static/lesson4/image1.png
+:alt: Upper and lower arm rotated
+:class: bg-primary
+:align: center
+```
 
-**Can an arm without muscles move? Well, in reality no, but AnyBody simulations use
+:::{note}
+Can an arm without muscles move? Well, in reality no, but AnyBody simulations use
 the inverse dynamics technique, where we prescribe motion first and then deduce
-the values of muscle forces which produce the motion.**
+the values of muscle forces which produce the motion.
+:::
 
 (measures-and-drivers)=
 
@@ -52,11 +58,11 @@ Let's create a new folder and define two drivers:
 :end-before: //# END SNIPPET 1
 ```
 
-The folder contains two objects named "ShoulderMotion" and "ElbowMotion", belonging to the
+The folder contains two objects named `ShoulderMotion` and `ElbowMotion`, belonging to the
 `AnyKinEqSimpleDriver` class.
 
 **All AnyBody drivers only work on the measures that are supplied to them. The** `AnyKinEqSimpleDriver` **class used in this case, constrains
-the supplied measure's positions to a given value at time = 0 ("DriverPos") and changes this position at constant velocity thereon ("DriverVel").**
+the supplied measure's positions to a given value at time = 0 (`DriverPos`) and changes this position at constant velocity thereon (`DriverVel`).**
 
 Since the measures supplied to the above drivers are rotational joints, the drivers produce joint rotation.
 But the same driver class could be used to drive translations, for instance a sliding joint.
@@ -81,13 +87,13 @@ and
 ```
 
 Since the measures constrained by these drivers are angles, the units
-of "DriverPos" and "DriverVel" are radians and radians/sec respectively.
+of `DriverPos` and `DriverVel` are radians and radians/sec respectively.
 
 Just like in {ref}`Lesson 3 <reference-objects>`, these lines also
-use the reference operator `&` to point the local variable "Jnt" towards the
+use the reference operator `&` to point the local variable `Jnt` towards the
 actual shoulder/elbow joint objects existing in a different folder
 
-Since "Jnt" is a reference, it will automatically update as the joint angles change during motion.
+Since `Jnt` is a reference, it will automatically update as the joint angles change during motion.
 
 ## Running a kinematic simulation
 
@@ -118,7 +124,11 @@ While the analysis is running, you can see the model move in the Model View wind
 When the analysis in finished, you can use the replay panel to replay
 the motion as you would in a movie player.
 
-![Replay toolbar](_static/lesson4/image5.png)
+```{image} _static/lesson4/image5.png
+:alt: Replay panel
+:class: bg-primary
+:align: center
+```
 
 ## Viewing simulation outputs
 
@@ -149,5 +159,8 @@ refer to {ref}`this prior tutorial on plotting <chart-view>`.
 
 If you're having trouble finding the correct output variable in the chart view's filtered model tree, refer to the figure below.
 
-![Chart view HandNod](_static/lesson4/image6.png)
-
+```{image} _static/lesson4/image6.png
+:alt: Chart hand movement
+:class: bg-primary
+:align: center
+```

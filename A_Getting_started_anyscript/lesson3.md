@@ -1,10 +1,3 @@
----
-myst:
-  substitutions:
-    Model tree ElbowNode: |-
-        ```{image} _static/lesson3/image1.png
-        ```
----
 ::: {rst-class} break
 :::
 
@@ -107,11 +100,11 @@ other computer operating system.
 
 ## Reference objects and the ‘&’ symbol
 
-You can also see that the Shoulder point on GlobalRef has been given the local name of "GroundNode".
+You can also see that the Shoulder point on GlobalRef has been given the local name of `GroundNode`.
 This means that, within the current folder, we can simply refer to
 the point as "GroundNode" instead of the longer external reference.
 
-**You will also realize that "GroundNode" is merely a reference (a pointer) to "GlobalRef.Shoulder"
+**You will also realize that `GroundNode` is merely a reference (a pointer) to `GlobalRef.Shoulder`
 rather than a copy of it. We denote this by the** {literal}`&` **sign.**
 
 If "Main.ArmModel.GlobalRef.Shoulder" moves around, "Main.ArmModel.Jnts.Shoulder.GroundNode" will keep up with those changes in position. Hit F7 to reload the model again to make
@@ -127,10 +120,12 @@ We then have:
 :end-before: //# END SNIPPET 1
 ```
 
-**Every node on a rigid body segment has its own reference frame which moves along with the segment.
+:::{note}
+Every node on a rigid body segment has its own reference frame which moves along with the segment.
 By default, these coordinate systems are parallel to the segment frame. However, the relative orientations
-between these two frames can be altered by the user. Check the** {literal}`ARel` **property of and AnyRefNode
-object in the AnyScript Reference Manual for more information.**
+between these two frames can be altered by the user. Check the {literal}`ARel` property and AnyRefNode
+object in the AnyScript Reference Manual for more information.
+:::
 
 The AnyBody Modeling System is always three-dimensional, even when our model is
 two dimensional. The property `Axis = z` simply specifies that both
@@ -175,11 +170,15 @@ complex model, this can be difficult. So we use "Absolute folder paths".
 Place the cursor just before the semicolon in the line that reads {literal}`AnyRefNode &UpperArmNode = ;`.
 Open the model tree where the UpperArm folder should expand as shown below.
 
-![Model tree ElbowNode](_static/lesson3/image1.png)
+```{image} _static/lesson3/image1.png
+:alt: Absolute folder path tree
+:class: bg-primary
+:align: center
+```
 
-**Right-click the folder named "ElbowNode", and select "Insert object
+**👉 Now** Right-click the folder named "ElbowNode", and select "Insert object
 name" from the context menu. This writes the full, absolute path of the node
-into the Elbow joint definition where you placed the cursor.**
+into the Elbow joint definition where you placed the cursor.
 
 Repeat the process to expand the ForeArm segment and insert its ElbowNode in the
 line below to obtain this:

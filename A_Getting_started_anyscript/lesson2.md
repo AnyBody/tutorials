@@ -1,13 +1,3 @@
----
-myst:
-  substitutions:
-    Load_button_image: |-
-      <img src="_static/lesson2/image1.png">
-
-    Zoom_button_image: |-
-      <img src="_static/lesson2/image3.png">
-
----
 
 ::: {rst-class} break
 :::
@@ -38,7 +28,7 @@ following text to your model (new text marked in red):
 :end-before: //# END SNIPPET 1
 ```
 
-Load the model by clicking the {{ Load_button_image }} icon or the
+Load the model by clicking the ![Load_button](_static/lesson2/image1.png) icon or the
 F7 key. If you expand the "ArmModel" folder in the tree view, you should
 see a new, empty folder named "Segs".
 
@@ -46,14 +36,17 @@ We are now ready to add a segment to the model, and this would probably be a goo
 the Class Inserter.
 
 ```{image} _static/lesson2/image2.png
+:alt: Class Inserter
+:class: bg-primary
+:align: center
 ```
 
 **The Classes tab on the right edge of your AnyBody
 interface opens a Class List containing all the predefined classes in AnyScript.**
 
-**To insert a segment, start by placing your text cursor within the braces of the newly
-defined "AnyFolder Segs". Then find the class** `AnySeg` **in the Class List and
-double-click it to insert its template into your text editor.**
+**👉 Now** To insert a segment, start by placing your text cursor within the braces of the newly
+defined `AnyFolder Segs`. Then find the class `AnySeg` in the Class List and
+double-click it to insert its template into your text editor.
 
 You should get this:
 
@@ -65,7 +58,7 @@ You should get this:
 
 Every object in AnyBody defined by some properties that are both mandatory (the
 template contains some default values) or optional (these properties are commented out).
-You can delete all optional properties except for r0 and Axes0.
+You can delete all optional properties except for `r0` and `Axes0`.
 
 For an `AnySeg` object `Mass` (segment mass) and `Jii` (diagonal elements of the inertia tensor) are the mandatory properties. Note that by default,
 the segment's coordinate system is located at the center of mass, with its local coordinate system being the principal axes of inertia.
@@ -99,7 +92,7 @@ To make something visible in AnyBody, you have to add a drawing object which def
 ```
 
 Reload the model, and look at the Model View (you might have to press
-the {{ Zoom_button_image }} button to locate your segment). The segment is displayed as an ellipsoid whose dimensions capture the
+the <img src="_static/lesson2/image3.png" alt="Zoom-button" height="1.5em"> button to locate your segment). The segment is displayed as an ellipsoid whose dimensions capture the
 mass distribution represented by `Jii`.  Changing any one component of `Jii` will alter the shape of the ellipse.
 
 ## Adding point nodes to a segment
@@ -107,8 +100,8 @@ mass distribution represented by `Jii`.  Changing any one component of `Jii` wil
 We define some nodes in the local coordinate system of the segment, for eventually attaching muscles, joints, forces etc. to
 the segment.
 
-**Figuring out these node locations for the actual human models can be a laborious task, but you can often use ready-made anatomical
-nodes defined in most AMMR models.**
+Figuring out these node locations for the actual human models can be a laborious task, but you can often use ready-made anatomical
+nodes defined in most AMMR models.
 
 For this model, copy and paste the following lines into your file:
 
@@ -118,15 +111,18 @@ For this model, copy and paste the following lines into your file:
 :end-before: //# END SNIPPET 1
 ```
 
-```{image} _static/lesson2/image4.png
-```
-
 If you reload the model, you should see the newly added nodes connected to the center of gravity by
 yellow pins.
 
+```{image} _static/lesson2/image4.png
+:alt: Upper arm with nodes
+:class: bg-primary
+:align: center
+```
+
 ## Creating a second segment
 
-You will now add a forearm segment to the mechanism by copy-pasting these lines into the "Segs" folder:
+You will now add a forearm segment to the mechanism by copy-pasting these lines into the `Segs` folder:
 
 ```{literalinclude} Snippets/lesson2/snip.NewModel.main-6.any
 :language: AnyScriptDoc
@@ -162,6 +158,9 @@ and
 This will clearly separate the segments in your Model View:
 
 ```{image} _static/lesson2/image5.png
+:alt: Upper and lower arm
+:class: bg-primary
+:align: center
 ```
 
 ## Rotation matrices in AnyBody
@@ -186,7 +185,7 @@ Rotation matrices are a bit difficult to cook up on the fly. If your spatial thi
 the exact expressions for all 9 components of the 3x3 Axes0 matrix.
 
 **An easier solution is to use a standard function named
-"RotMat", which returns a rotation matrix corresponding to a given axis and rotation angle. Therefore, we can specify:**
+`RotMat`, which returns a rotation matrix corresponding to a given axis and rotation angle. Therefore, we can specify:**
 
 ```{literalinclude} Snippets/lesson2/snip.NewModel.main-9.any
 :language: AnyScriptDoc
@@ -195,7 +194,7 @@ the exact expressions for all 9 components of the 3x3 Axes0 matrix.
 ```
 
 When you reload again, you will see that the UpperArm rotated
--90 degrees about the global z axis, as the function arguments indicate. The "RotMat" functions needs
+-90 degrees about the global z axis, as the function arguments indicate. The `RotMat` functions needs
 rotations as radians, hence the multiplication of the 90 degree angle by pi/180. AnyBody identifies the word
 "pi" as 3.14159.
 

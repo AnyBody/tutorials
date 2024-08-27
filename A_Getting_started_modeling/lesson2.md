@@ -1,11 +1,3 @@
----
-myst:
-  substitutions:
-    ModelView_Human_Adjusted: |-
-      ```{image} _static/lesson2/image1.png
-      ```
----
-
 ::: {rst-class} break
 :::
 
@@ -92,7 +84,11 @@ Elapsed Time : 0.511000
 
 The model view should show you the following picture:
 
-{{ ModelView_Human_Adjusted }}
+```{image} _static/lesson2/image1.png
+:alt: Body model configuration
+:class: bg-primary
+:align: center
+```
 
 The message warns about the model containing too few kinematic
 constraints, which means that AnyBody lacks the full information needed to perform movement.

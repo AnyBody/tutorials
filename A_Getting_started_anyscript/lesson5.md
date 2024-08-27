@@ -1,23 +1,3 @@
----
-myst:
-  substitutions:
-    image0: |-
-      ```{image} _static/lesson5/image1.png
-      ```
-    image1: |-
-      ```{image} _static/lesson5/image2.png
-      ```
-    image2: |-
-      ```{image} _static/lesson5/image3.png
-      ```
-    image3: |-
-      ```{image} _static/lesson5/image4.png
-      ```
-    image4: |-
-      ```{image} _static/lesson5/image5.png
-      ```
----
-
 ::: {rst-class} break
 :::
 
@@ -81,12 +61,12 @@ Let's add just one muscle to start with, the elbow-flexor muscle named Brachiali
 :end-before: //# END SNIPPET 1
 ```
 
-**This muscle is created by the** `AnyMuscleViaPoint` **class. These are muscles which begin at
+**This muscle is created by the** `AnyMuscleViaPoint` **class**. These are muscles which begin at
 an origin point, pass through a number of pre-defined via points, and finally terminate
-at the insertion.**
+at the insertion.
 
-`Org` **and** `Ins` **are the origin and insertion of the Brachialis. They are reference objects,
-pointing to reference nodes named "Brachialis" that have already been created on the "UpperArm" and "ForeArm"**
+`Org` **and** `Ins` **are the origin and insertion of the Brachialis**. They are reference objects,
+pointing to reference nodes named "Brachialis" that have already been created on the "UpperArm" and "ForeArm".
 
 The Brachialis muscle in our model lacks via-points. However if a muscle has via points, we must insert
 reference objects to respective via-point nodes in the lines between `Org` and `Ins`, in the correct order.
@@ -122,7 +102,11 @@ All the other muscles are defined in the same way. Your model should resemble th
 :end-before: //# END SNIPPET 1
 ```
 
-{{ image0 }}
+```{image} _static/lesson5/image1.png
+:alt: Upper and lower arm with muscles
+:class: bg-primary
+:align: center
+```
 
 ## The InitialConditions analysis
 
@@ -134,7 +118,11 @@ how this is done, refer to {ref}`this prior tutorial <running-analysis>`.
 
 The assembled model should resemble the following figure.
 
-{{ image1 }}
+```{image} _static/lesson5/image2.png
+:alt: Upper and lower arm initial conditions
+:class: bg-primary
+:align: center
+```
 
 (driver-reactions)=
 
@@ -162,7 +150,7 @@ a linear measure will apply forces. AnyBody reports all of these simply as "forc
 **The drivers for shoulder and elbow motion thus default to applying the required constraint reaction torques to sustain the joint motions.**
 This is problematic, since we wish the muscles forces to be causing the motion instead.
 
-**👉**The default driver reactions must therefore be switched off by setting the "Reaction.Type" property.
+**👉 Now** The default driver reactions must therefore be switched off by setting the "Reaction.Type" property.
 
 
 ```{literalinclude} Snippets/lesson5/snip.NewModel.main-6.any
@@ -190,14 +178,22 @@ To plot the muscle forces in the brachialis muscle, open
 "Main.Study.Output.Model.Muscles.Brachialis" in the chart view's model tree, and plot the variable named `Fm`.
 You should get a curve that looks like the one below.
 
-{{ image2 }}
+```{image} _static/lesson5/image3.png
+:alt: Brachialis muscle force
+:class: bg-primary
+:align: center
+```
 
 The drop in muscle force with movement progression is due to the decreasing moment arm of the
 gravity vector about the elbow joint, as the elbow flexes. Therefore lesser the muscle force.
 
 If you look at the muscle force in the BicepsLong, you see a different pattern:
 
-{{ image3 }}
+```{image} _static/lesson5/image4.png
+:alt: Biceps long muscle force
+:class: bg-primary
+:align: center
+```
 
 This muscle's force increases during the movement because this muscle supports both, the shoulder and the
 elbow. In addition, it collaborates both with DeltoidusA on shoulder
@@ -229,7 +225,11 @@ Now you can reload the model and re-run inverse dynamics to analyze how the mode
 to a downward force of 100 N (approximately 10 kg dumbbell weight). The BicepsLong force again, you
 should see this:
 
-{{ image4 }}
+```{image} _static/lesson5/image5.png
+:alt: Biceps long with added force
+:class: bg-primary
+:align: center
+```
 
 :::{note}
 :class: margin

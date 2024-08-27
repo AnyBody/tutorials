@@ -11,9 +11,17 @@ pedal.
 The toolbar button "Template" will generate a pop-up menu that looks like the image below.
 Select the "Human" template, set the "Target Folder" as per your convenience, but you must set the target name as “MyPedal”:
 
-![New template model button](_static/lesson1/image2.png)
+```{image} _static/lesson1/image2.png
+:alt: New template model button
+:class: bg-primary
+:align: center
+```
 
-![New Template dialog](_static/lesson1/image3.png)
+```{image} _static/lesson1/image3.png
+:alt: New Template dialog
+:class: bg-primary
+:align: center
+```
 
 If you press the OK button, it will open an editor window of
 “MyPedal.main.any” file that includes the following lines:
@@ -69,9 +77,13 @@ Main =
 
 When you load the model, you should see the following image in your model view:
 
-![Model view Full body](_static/lesson1/image4.png)    ```
+```{image} _static/lesson1/image4.png
+:alt: Model view Full body
+:class: bg-primary
+:align: center
+```
 
-Double-clicking the following line:,:
+Double-clicking the following line:
 
 ```AnyScriptDoc
 ...
@@ -115,7 +127,11 @@ Let us first review the structure of the model in slightly more
 detail. This structure creates a clear division between the human body parts
 and the applications we hook them up to.
 
-![ModelTree](_static/lesson1/image1.png)
+```{image} _static/lesson1/image1.png
+:alt: ModelTree
+:class: bg-primary
+:align: center
+```
 
 **Just below “Main”, you see the "HumanModel" folder which holds all the body
 parts that are imported from the AMMR, such as segments (bones), joints, muscles etc.**
@@ -168,7 +184,11 @@ AnyFolder Environment =
 
 If you reload the model, you will see the new segment in the model:
 
-![Model view new segment](_static/lesson1/image5.png)
+```{image} _static/lesson1/image5.png
+:alt: Model view new segment
+:class: bg-primary
+:align: center
+```
 
 In the next lesson, we shall look at how you can customize the human model to fit the purpose of your
 simulation using AnyBody.

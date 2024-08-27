@@ -15,7 +15,6 @@ by the two pictures below.
 
 ![oldleg1](_static/lesson6/image1.jpeg) ![oldleg2](_static/lesson6/image2.jpeg)
 
-
 ## File formats for visualization objects
 
 3-D Geometric models for model components such as bones can be specified using files
@@ -63,8 +62,11 @@ We will therefore scale the dumbbell model down a 1000 times, in the following w
 Post re-loading, your model should resemble the figure below.The dumbbell is visible now and has the right size, but
 it is sitting at the center of mass of the lower arm rather than at the hand, and is not oriented correctly.
 
-![ModelView dumbbell1](_static/lesson6/image3.jpeg)
-
+```{image} _static/lesson6/image3.jpeg
+:alt: Dumbbell inserted
+:class: bg-primary
+:align: center
+```
 
 ## Relocating your STL object
 
@@ -84,8 +86,11 @@ from the "ForeArm" folder to the "PalmNode" subfolder. Cut-paste the entire code
 Upon reloading, we see that the dumbbell attached to the
 right location, but is still not oriented correctly.
 
-![ModelView dumbbell2](_static/lesson6/image4.jpeg)
-
+```{image} _static/lesson6/image4.jpeg
+:alt: Dumbbell attached at Palm
+:class: bg-primary
+:align: center
+```
 
 ## Reorienting your STL object
 
@@ -120,7 +125,11 @@ The dumbbell's color can be changed adding the property RGB to the STL file refe
 
 The RGB property specifies the blend of colors Red, Green, and Blue on a normalized scale of 0 to 1.
 
-![ModelView dumbbell3](_static/lesson6/image5.jpeg)
+```{image} _static/lesson6/image5.jpeg
+:alt: Final dumbbell placement
+:class: bg-primary
+:align: center
+```
 
 :::{warning}
 If the dumbell is invisible, try rotating the model view. Since the weight reflects light in the model, it may become invisible at certain angles.

@@ -23,7 +23,11 @@ Key (modifiable) features of the standing model are:
 
 To create a new standing model using the template model in the AMMR, click the "Create New from template" button ![Model_button](_static/lesson1/image_1.png) in the toolbar:
 
-![ModelLoadButton](_static/lesson1/image_2.png)
+```{image} _static/lesson1/image_2.png
+:alt: Toolbar
+:class: bg-primary
+:align: center
+```
 
 The Template dialogue opens and displays a list of pre-defined templates
 supported in the AMMR.
@@ -35,12 +39,20 @@ which we extracted in the {doc}`introduction <intro>` of this tutorial.
 
 Give the model a name, for example {file}`MyStandingHuman`, and press OK to save.
 
-![TemplateDialog](_static/lesson1/image_3b.png)
+```{image} _static/lesson1/image_3b.png
+:alt: Template
+:class: bg-primary
+:align: center
+```
 
 Your new ‘MyStandingHuman.main.any’ file opens in the script Editor. The
 location of the file is shown in the title bar:
 
-![MyStandingHuman_main_any](_static/lesson1/image_4.png)
+```{image} _static/lesson1/image_4.png
+:alt: Script editor
+:class: bg-primary
+:align: center
+```
 
 :::{warning}
 If you saved your model in an other location be
@@ -60,14 +72,22 @@ key F7. You may also load your model by clicking** ![Load](_static/lesson1/image
 This action will load whatever file is chosen in the text editor. If a file is already loaded, the
 above action will simply reload the file until you give another file loading priority by right-clicking its tab and select “Load Model”.
 
-![Load_model_right_click_menu](_static/lesson1/image_7.png)
+```{image} _static/lesson1/image_7.png
+:alt: Load Model
+:class: bg-primary
+:align: center
+```
 
 ## The model view
 
 When loading is completed, the Model View window opens and shows the
 standing model: (You can open it manually from View -> Model Views).
 
-![Model_View](_static/lesson1/image_5.png)
+```{image} _static/lesson1/image_5.png
+:alt: Model view
+:class: bg-primary
+:align: center
+```
 
 The icons in the toolbar at the top of the Model View window allow you
 to modify the image: zoom, pan, rotate, etc. They should be mostly

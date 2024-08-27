@@ -52,7 +52,7 @@ is one model feature that will make your life easier.
 to the joint angles and velocities set in the "Mannequin.any" file.**
 
 The constraint enforced by the default drivers are defined as ‘soft’
-constraints - constraints that be overridden by the 19 'hard constraints' which we will define.
+constraints - constraints that can be overridden by the 19 'hard constraints' which we will define.
 
 **You can therefore sequentially add the 19 hard drivers on top of the soft default drivers, and deactivate the default
 drivers at the** {ref}`very end of this lesson <kinematically-determined>` **. The advantage is that you have a model whose
@@ -217,7 +217,6 @@ once they are properly defined.
 :width: 300px
 :align: right
 ```
-
 
 ## Step 2: Locking pelvis-thorax rotation
 
@@ -435,7 +434,11 @@ longer complains about the model being kinematically indeterminate.
 Select and run the `Main.Study.Kinematics` operation from the operations dropdown menu ({ref}`more info here <running-analysis>`).
 This will show you the movement of the entire system as the pedal is rotating.
 
-![Operation Result Kinematics](_static/lesson3/image3.png)
+```{image} _static/lesson3/image3.png
+:alt: Operation Result Kinematics
+:class: bg-primary
+:align: center
+```
 
 (kinematically-determined)=
 
@@ -445,11 +448,19 @@ Finally, you will check the number of DOFs and the number of kinematic
 constraints in the simulation from the “Object Description” of your "Study" object.
 You can find this here:
 
-![Operations tree object description](_static/lesson3/image4.png)
+```{image} _static/lesson3/image4.png
+:alt: Operations tree object description
+:class: bg-primary
+:align: center
+```
 
 Then you see the Object Description dialog will open.
 
-![ObjectDescription DOFs](_static/lesson3/image5.png)
+```{image} _static/lesson3/image5.png
+:alt: ObjectDescription DOFs
+:class: bg-primary
+:align: center
+```
 
 **This indicates that the total number of DOFs(degrees of freedom) in your
 model is 132. It makes sense because there are 22 segments in your model
@@ -458,7 +469,11 @@ and each segment has 6 DOFs.**
 If you scroll down this dialog a little bit more, then you can see the
 following section:
 
-![ObjectDescription Constraints1](_static/lesson3/image6.png)
+```{image} _static/lesson3/image6.png
+:alt: ObjectDescription Constraints1
+:class: bg-primary
+:align: center
+```
 
 The last message in the above screenshot lets us know that there are 150
 constraints from the joints and the drivers in the model.
@@ -481,7 +496,11 @@ This is because, these 150 - 132 = 18 "extra" constraints were also "soft" const
 The "DefaultMannequinDrivers" can be found in a subfolder of the “HumanModel” folder, as shown in the figure below.
 These drivers control the human model's posture based on the values in the "Mannequin.any" file.
 
-![Model tree Default manequin drivers](_static/lesson3/image7.png)
+```{image} _static/lesson3/image7.png
+:alt: Model tree Default manequin drivers
+:class: bg-primary
+:align: center
+```
 
 Because these default drivers are defined as “Soft” constraints, they were compromised in
 favour of the "Hard" constraints specified in Steps 1 to 7 in this document.
@@ -509,7 +528,11 @@ the default drivers can now be removed by just adding one more BM statement to t
 Save the main file and press F7 button to reload the model. And try to
 open the Object Description dialog of “Study” object in the Model Tree.
 
-![ObjectDescription Constraints2](_static/lesson3/image8.png)
+```{image} _static/lesson3/image8.png
+:alt: ObjectDescription Constraints2
+:class: bg-primary
+:align: center
+```
 
 You see that now the total number of constraints has been changed to 132
 and this is exactly as same as the total number of DOFs. Of course, you
