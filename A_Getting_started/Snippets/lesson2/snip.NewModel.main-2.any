@@ -1,0 +1,18 @@
+//# BEGIN SNIPPET 1
+// Default mannequin position values
+HumanModel.Mannequin = {
+  Posture = {
+    Right = {
+    };
+    Left = {
+    };
+  };
+  
+  PostureVel= {
+    Right = {
+    };
+    Left = {
+    };
+  };
+};
+//# END SNIPPET 1

@@ -32,7 +32,7 @@ option during the export process.
 Since the bone models shown in the above tutorial may be a bit too elaborate for a
 basic tutorial, we will demonstrate this by adding an STL file for the dumbbel in the arm model.
 
-Download the following model {download}`here(dumbell.stl) <Downloads/dumbbell.stl>`.
+Download the following model {download}`here(dumbbell.stl) <Downloads/dumbbell.stl>`.
 
 The dumbbell STL should be added to the forearm, so add the following code - which imports the STL
 file into AnyBody - within the "ArmModel.Segs.ForeArm" object:
@@ -130,10 +130,6 @@ The RGB property specifies the blend of colors Red, Green, and Blue on a normali
 :class: bg-primary
 :align: center
 ```
-
-:::{warning}
-If the dumbell is invisible, try rotating the model view. Since the weight reflects light in the model, it may become invisible at certain angles.
-:::
 
 This completes the Getting Started with AnyScript tutorial. The final
 result of your efforts is in {download}`demo.arm2d.any <Downloads/demo.arm2d.any>`.

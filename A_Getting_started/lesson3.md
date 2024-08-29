@@ -74,7 +74,7 @@ the Chart View.
 :align: center
 ```
 
-From this chart, we can see that there is about 558N force at the
+From this chart, we can see that there is about 581N force at the
 right hip joint in the proximodistal direction.
 
 **It is possible to select and plot several outputs simultaneously
@@ -100,18 +100,10 @@ model to see what happens to the hip joint reaction force.
 To adjust the posture of the human model, open your Mannequin.any
 file and change the PelvisThoraxExtension value from 0 to -60.
 
-```AnyScriptDoc
-Mannequin = {
-
-    Posture = {
-
-        ...
-
-        §PelvisThoraxExtension=-60; §
-        PelvisThoraxLateralBending=0;
-        PelvisThoraxRotation=0;
-
-        ...
+```{literalinclude} Snippets/lesson3/snip.NewModel.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Press the F7 button to reload the model and run the "RunApplication"
@@ -133,7 +125,7 @@ Next, we will check the changes in the right hip joint reaction forces.
 ```
 
 In the above Chart View, the largest hip joint reaction
-force component is the "ProximoDistalForce" at about 1263N.
+force component is the "ProximoDistalForce" at about 1189N.
 So compared to the normal standing posture model, the value has more than
 doubled. The forces of the "Mediolateral" and "AnteroPosterior" directions have also
 increased.
