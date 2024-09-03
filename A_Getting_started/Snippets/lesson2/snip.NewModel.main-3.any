@@ -1,3 +1,5 @@
+//expect_errors = ["'HumanModel' when 'Main' was expected", "Model loading skipped"]
+
 // Default mannequin position values
 
 HumanModel.Mannequin = {

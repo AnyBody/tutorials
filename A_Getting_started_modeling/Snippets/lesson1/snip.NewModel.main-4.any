@@ -1,0 +1,10 @@
+//# BEGIN SNIPPET 1  
+//This is a place holder for the modeling of the environment.
+AnyFolder Environment = {
+  §AnyFixedRefFrame GlobalRef =
+    {
+    viewRefFrame.Visible=On;
+    viewRefFrame.ScaleXYZ = 0.5*{1,1,1};
+    };§
+};
+//# END SNIPPET 1  

@@ -1,3 +1,5 @@
+//expect_errors = ["Cannot open file", "Model loading skipped"]
+
 #include "libdef.any"
 
 Main = 
@@ -8,6 +10,7 @@ Main =
   
   // Include the Human model from AMMR
   #include "<ANYBODY_PATH_BODY>\HumanModel.any"
+  
 
 //# BEGIN SNIPPET 1
 ...

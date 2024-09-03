@@ -30,18 +30,10 @@ We will therefore create an `AnyForce` object, for applying the spring force.
 Since this is not a part of the human body, it is logical to place it in the `Environment.any` file. Here's what
 to add:
 
-```AnyScriptDoc
-...
-AnyRevoluteJoint HingeJoint = {
-  Axis = z;
-  AnyFixedRefFrame &Ground = .GlobalRef;
-  AnyRefNode &Pedal = .Pedal.Hinge;
-};
-
-§AnyForce Spring = {
-  AnyRevoluteJoint &Hinge = .HingeJoint;
-  F = -0.0*.HingeJoint.Pos;
-};§
+```{literalinclude} Snippets/lesson4/snip.NewModel.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The `AnyForce` object named "Spring" contains a reference to the "HingeJoint". Since HingeJoint
@@ -57,64 +49,10 @@ no spring. The minus sign in the expression means that the spring will always op
 As mentioned in this {ref}`previous section <driver-reactions>`,
 the "Reaction.Type" property for all kinematic drivers that act on muscle-actuated joints must be set to "Off".
 
-```AnyScriptDoc
-AnyFolder Drivers =
-{
-  AnyKinEqSimpleDriver PelvisThoraxDriver =
-  {
-    AnyKinMeasure& ref0 = ...HumanModel.BodyModel.Interface.Trunk.PelvisThoraxExtension;
-    AnyKinMeasure& ref1 = ...HumanModel.BodyModel.Interface.Trunk.PelvisThoraxLateralBending;
-    AnyKinMeasure& ref2 = ...HumanModel.BodyModel.Interface.Trunk.PelvisThoraxRotation;
-
-    DriverPos = pi/180*{0,0,0};
-    DriverVel = pi/180*{0,0,0};
-    §Reaction.Type = {Off, Off, Off};§
-  };
-
-  AnyKinEqSimpleDriver SkullThoraxDriver =
-  {
-    AnyKinMeasure& ref0 = ...HumanModel.BodyModel.Interface.Trunk.SkullThoraxFlexion;
-    AnyKinMeasure& ref1 = ...HumanModel.BodyModel.Interface.Trunk.SkullThoraxLateralBending;
-    AnyKinMeasure& ref2 = ...HumanModel.BodyModel.Interface.Trunk.SkullThoraxRotation;
-
-    DriverPos = pi/180*{0,0,0};
-    DriverVel = pi/180*{0,0,0};
-    §Reaction.Type = {Off, Off, Off};§
-  };
-
-
-  AnyKinEqSimpleDriver AnkleDriver =
-  {
-    AnyKinMeasure& ref0 = ...HumanModel.BodyModel.Interface.Right.AnklePlantarFlexion;
-    AnyKinMeasure& ref1 = ...HumanModel.BodyModel.Interface.Right.SubTalarEversion;
-
-    DriverPos = pi/180*{0, 0};
-    DriverVel = pi/180*{0, 0};
-    §Reaction.Type = {Off, Off};§
-  };
-
-  AnyKinEqSimpleDriver KneeDriver =
-  {
-    AnyKinLinear lin =
-    {
-      AnyRefFrame& ref0 = Main.Model.Environment.GlobalRef;
-      AnyRefFrame& ref1 = Main.HumanModel.BodyModel.Right.Leg.Seg.Thigh.KneeJoint;
-      Ref = 0;
-    };
-    MeasureOrganizer = {2};
-    DriverPos = {0};
-    DriverVel = {0};
-    §Reaction.Type = {Off};§
-  };
-
-  AnyKinEqSimpleDriver PedalDriver =
-  {
-    AnyKinMeasure &ref0 = Main.Model.Environment.HingeJoint;
-    DriverPos = pi/180*{100};
-    DriverVel = pi/180*{45};
-    §Reaction.Type = {Off};§
-  };
-};
+```{literalinclude} Snippets/lesson4/snip.NewModel.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 You should also remove the additional reactions on the pelvis which are
@@ -126,20 +64,10 @@ forces on either both feet or pelvis.
 Since your model has a joint named "SeatPelvis" between ground and pelvis (which will apply the default reaction forces),
 you can comment out “Model\\Reactions.any” in the main file:
 
-```AnyScriptDoc
-...
-AnyFolder Model = {
-    AnyFolder &BodyModel = .HumanModel.BodyModel;
-    AnyFolder &DefaultMannequinDrivers = .HumanModel.DefaultMannequinDrivers;
-
-    #include "Model\Environment.any"
-
-    AnyFolder ModelEnvironmentConnection = {
-      #include "Model\JointsAndDrivers.any"
-      §//§#include "Model\Reactions.any"
-    };
-};
-...
+```{literalinclude} Snippets/lesson4/snip.NewModel.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 ## Adding muscles
@@ -148,19 +76,10 @@ There is one more thing we have to do: The human model has no muscles at
 the moment. This can be corrected by a simple change of BM statements in
 the `Model/BodyModelConfiguration.any` file:
 
-```AnyScriptDoc
-// Excluding the muscles in the trunk segments
-#define BM_TRUNK_MUSCLES §_MUSCLES_SIMPLE_§
-// Excluding the left arm segments
-#define BM_ARM_LEFT OFF
-// Excluding the right arm segments
-#define BM_ARM_RIGHT OFF
-// Excluding the left leg segments
-#define BM_LEG_LEFT OFF
-// Excluding the muscles in the right leg segments
-#define BM_LEG_MUSCLES_RIGHT §_MUSCLES_SIMPLE_§
-//Excluding the default drivers for the human model
-#define BM_MANNEQUIN_DRIVER_DEFAULT OFF
+```{literalinclude} Snippets/lesson4/snip.NewModel.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 ## Investigating results

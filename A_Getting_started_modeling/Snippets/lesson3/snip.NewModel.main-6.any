@@ -1,26 +1,32 @@
-//expect_errors = ["'HumanModel' when 'Main' was expected", "Model loading skipped"]
-
-// Default mannequin position values
+// Default mannequin values
 //# BEGIN SNIPPET 1
 HumanModel.Mannequin = {
   
   Posture = {
+    //This controls the position of the pelvi wrt. to the global reference frame
+    PelvisPosX=§-0.7§;
+    PelvisPosY=§0.5§;
+    PelvisPosZ=0;
 
-    ...
-
-    §PelvisThoraxExtension=-60;§
-    PelvisThoraxLateralBending=0;  
-    PelvisThoraxRotation=0;
-
-    ...    
-        
+...
 //# END SNIPPET 1
+    
+    //This controls the rotation of the pelvis wrt. to the global reference frame
+    PelvisRotX=0;
+    PelvisRotY=0;
+    PelvisRotZ=0;
+    
+    // These variables control the rotation of the thorax wrt the
+    // pelvis    
+    PelvisThoraxExtension=0; 
+    PelvisThoraxLateralBending=0;  
+    PelvisThoraxRotation=0;        
+    
     NeckExtension=0; 
     NeckLateralBending=0;             // not used when neck is switched off
     NeckRotation=0;                   // not used when neck is switched off
     
-//# BEGIN SNIPPET 1
-...
+//# BEGIN SNIPPET 2
 Right = {
   //Arm 
   SternoClavicularProtraction=-23;   //This value is not used for initial position
@@ -28,8 +34,8 @@ Right = {
   SternoClavicularAxialRotation=-20; ///< Only used when the clavicular axial rotation rhythm is diabled
   
   GlenohumeralFlexion =-0; 
-  GlenohumeralAbduction = 4; 
-  GlenohumeralExternalRotation = 2; 
+  GlenohumeralAbduction = 10; 
+  GlenohumeralExternalRotation = 0; 
   
   ElbowFlexion = 0.01; 
   ElbowPronation = -20.0;
@@ -38,53 +44,54 @@ Right = {
   WristAbduction =0;
         
   //Leg
-  HipFlexion = 0.0; 
+  HipFlexion = §110.0§; 
   HipAbduction = 5.0; 
   HipExternalRotation = 0.0;
   
-  KneeFlexion = 4.0;
+  KneeFlexion = §100.0§;
   
   AnklePlantarFlexion =0.0; 
   SubTalarEversion =0.0; 
+
 ...
-//# END SNIPPET 1
+  //# END SNIPPET 2
       
       //Detail Hand
       Finger1 ={
-        CMCDeviation=20;
+        CMCDeviation=-20;
         CMCFlexion=20;
-        MCPFlexion= 10;
+        MCPFlexion= 20;
         MCPDeviation=0;
-        DIPFlexion=0;
+        DIPFlexion=20;
       };
       
       Finger2 ={
-        MCPFlexion=10;
+        MCPFlexion=20;
         PIPFlexion=20;
         DIPFlexion=20;
       };
       
       Finger3 ={
-        MCPFlexion=10;
+        MCPFlexion=20;
         PIPFlexion=20;
         DIPFlexion=20;
       };
       
       Finger4 ={
-        MCPFlexion=10;
+        MCPFlexion=20;
         PIPFlexion=20;
         DIPFlexion=20;
       };
       
       Finger5 ={
-        MCPFlexion=10;
+        MCPFlexion=20;
         PIPFlexion=20;
         DIPFlexion=20;
       };      
     };
     
     Left = {
-      //all positions are set to be equal to the right side values 
+      //all values are set to be equal to the right side values 
       //feel free to change this!
       
       //Arm
@@ -148,7 +155,7 @@ Right = {
   };
   
   PostureVel={  
-    //This controls the position of the pelvis wrt. to the global reference frame
+    //This controls the position of the pelvi wrt. to the global reference frame
     PelvisPosX=0;
     PelvisPosY=0;
     PelvisPosZ=0;
@@ -158,7 +165,7 @@ Right = {
     PelvisRotY=0;
     PelvisRotZ=0;
     
-    // These variables control the rotation of the thorax wrt. the
+    // These variables control the rotation of the thorax wrt the
     // pelvis    
     PelvisThoraxExtension=0; 
     PelvisThoraxLateralBending=0;  
@@ -225,7 +232,8 @@ Right = {
         MCPFlexion=0;
         PIPFlexion=0;
         DIPFlexion=0;
-      };      
+      };         
+      
     };
     
     Left = {
@@ -288,7 +296,8 @@ Right = {
         MCPFlexion=0;
         PIPFlexion=0;
         DIPFlexion=0;
-      };            
+      };       
+
     };
   };
   

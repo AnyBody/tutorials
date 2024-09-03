@@ -1,0 +1,38 @@
+AnyFolder Joints = {
+
+  AnyStdJoint SeatPelvis = {
+    AnyRefFrame& Seat = Main.Model.Environment.GlobalRef.Hpoint;
+    AnyRefFrame& Pelvis = ain.HumanModel.BodyModel.Trunk.SegmentsLumbar.PelvisSeg;
+  };
+
+  AnySphericalJoint PedalFoot = {
+    AnyRefFrame& Pedal = Main.Model.Environment.Pedal.FootNode;
+    AnyRefFrame& Foot = Main.HumanModel.BodyModel.Right.Leg.Seg.Foot.MetatarsalJoint2Node;
+  }; 
+};
+
+//# BEGIN SNIPPET 1
+AnyFolder Drivers = {
+
+  ...
+
+  AnyKinEqSimpleDriver AnkleDriver = {
+    AnyKinMeasure& ref0 = ....HumanModel.BodyModel.Interface.Right.AnklePlantarFlexion;
+    AnyKinMeasure& ref1 = ....HumanModel.BodyModel.Interface.Right.SubTalarEversion;
+
+    DriverPos = pi/180*{0, 0};
+    DriverVel = pi/180*{0, 0};
+   };
+
+  §AnyKinEqSimpleDriver KneeDriver = {
+    AnyKinLinear lin = {
+      AnyRefFrame& ref0 = Main.Model.Environment.GlobalRef;
+      AnyRefFrame& ref1 = Main.HumanModel.BodyModel.Right.Leg.Seg.Thigh.KneeJoint;
+      Ref = 0;
+    };
+    MeasureOrganizer = {2};
+    DriverPos = {0};
+    DriverVel = {0};
+   }; §
+};
+//# END SNIPPET 1

@@ -1,0 +1,13 @@
+//# BEGIN SNIPPET 1
+AnyFolder Joints = {
+
+  AnyStdJoint SeatPelvis = {
+    AnyRefFrame& Seat = Main.Model.Environment.GlobalRef.Hpoint;
+    AnyRefFrame& Pelvis = ain.HumanModel.BodyModel.Trunk.SegmentsLumbar.PelvisSeg;
+  };
+};
+
+AnyFolder Drivers = {
+  
+};
+//# END SNIPPET 1
