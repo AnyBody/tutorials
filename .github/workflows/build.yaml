@@ -73,7 +73,8 @@ jobs:
           ref: master
           path: ammr
       
-      - run: | 
+      - shell: cmd
+        run: | 
             echo #include "%GITHUB_WORKSPACE%/ammr/libdef.any" > libdef.any
 
           
