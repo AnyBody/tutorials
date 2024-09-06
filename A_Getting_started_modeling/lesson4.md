@@ -74,7 +74,7 @@ you can comment out “Model\\Reactions.any” in the main file:
 
 There is one more thing we have to do: The human model has no muscles at
 the moment. This can be corrected by a simple change of BM statements in
-the `Model/BodyModelConfiguration.any` file:
+the `Model/BodyModelConfiguration.any` file. Since the model specifically focuses on the right leg, we can add the following code to add muscles:
 
 ```{literalinclude} Snippets/lesson4/snip.NewModel.main-4.any
 :language: AnyScriptDoc
@@ -102,9 +102,9 @@ in the right leg at a given instant:
 :align: center
 ```
 
-Obviously holding the leg out in the air like that without the support
+Holding the leg out in the air like that without the support
 of a pedal spring and holding up the weight of the pedal as well
-requires about 6% to 9% of the leg’s strength.
+requires about 6.5% to 10.5% of the leg’s strength.
 
 Now, let us study the effect of spring stiffness. In `Environment.any`, we change the spring stiffness:
 
@@ -120,7 +120,7 @@ This produces the following envelope curve:
 :align: center
 ```
 
-Obviously, the level is lower now. The envelope is at around 2%, so the
+Obviously, the level is lower now since the spring supports the leg. The envelope is at around 2%, so the
 spring really seems to help. This can make it easier for the operator to
 control the pedal and thereby enhance the operability.
 

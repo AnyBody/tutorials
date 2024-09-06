@@ -3,7 +3,7 @@ AnyFolder Joints = {
 
   AnyStdJoint SeatPelvis = {
     AnyRefFrame& Seat = §Main.Model.Environment.GlobalRef.Hpoint§;
-    AnyRefFrame& Pelvis = §ain.HumanModel.BodyModel.Trunk.SegmentsLumbar.PelvisSeg§;
+    AnyRefFrame& Pelvis = §Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.PelvisSeg§;
   };
 };
 //# END SNIPPET 1

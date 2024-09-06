@@ -1,15 +1,12 @@
 // Default mannequin values
-//# BEGIN SNIPPET 1
+
 HumanModel.Mannequin = {
   
   Posture = {
-    //This controls the position of the pelvis wrt. to the global reference frame
-    PelvisPosX=§-0.75§;
-    PelvisPosY=§0.5§;
+    //This controls the position of the pelvi wrt. to the global reference frame
+    PelvisPosX=0.046;
+    PelvisPosY=1.16;
     PelvisPosZ=0;
-
-...
-//# END SNIPPET 1
     
     //This controls the rotation of the pelvis wrt. to the global reference frame
     PelvisRotX=0;
@@ -26,35 +23,31 @@ HumanModel.Mannequin = {
     NeckLateralBending=0;             // not used when neck is switched off
     NeckRotation=0;                   // not used when neck is switched off
     
-//# BEGIN SNIPPET 2
-Right = {
-  //Arm 
-  SternoClavicularProtraction=-23;   //This value is not used for initial position
-  SternoClavicularElevation=11.5;    //This value is not used for initial position
-  SternoClavicularAxialRotation=-20; ///< Only used when the clavicular axial rotation rhythm is diabled
-  
-  GlenohumeralFlexion =-0; 
-  GlenohumeralAbduction = 10; 
-  GlenohumeralExternalRotation = 0; 
-  
-  ElbowFlexion = 0.01; 
-  ElbowPronation = -20.0;
-  
-  WristFlexion =0;
-  WristAbduction =0;
-        
-  //Leg
-  HipFlexion = §110.0§; 
-  HipAbduction = 5.0; 
-  HipExternalRotation = 0.0;
-  
-  KneeFlexion = §100.0§;
-  
-  AnklePlantarFlexion =0.0; 
-  SubTalarEversion =0.0; 
-
-...
-  //# END SNIPPET 2
+    Right = {
+      //Arm 
+      SternoClavicularProtraction=-23;   //This value is not used for initial position
+      SternoClavicularElevation=11.5;    //This value is not used for initial position
+      SternoClavicularAxialRotation=-20; ///< Only used when the clavicular axial rotation rhythm is diabled
+      
+      GlenohumeralFlexion =-0; 
+      GlenohumeralAbduction = 10; 
+      GlenohumeralExternalRotation = 0; 
+      
+      ElbowFlexion = 0.01; 
+      ElbowPronation = -20.0;
+      
+      WristFlexion =0;
+      WristAbduction =0;
+            
+      //Leg
+      HipFlexion = 0.0; 
+      HipAbduction = 5.0; 
+      HipExternalRotation = 0.0;
+      
+      KneeFlexion = 0.0;
+      
+      AnklePlantarFlexion =0.0; 
+      SubTalarEversion =0.0; 
       
       //Detail Hand
       Finger1 ={

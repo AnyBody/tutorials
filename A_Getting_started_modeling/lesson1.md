@@ -26,7 +26,7 @@ Select the "Human" template, set the "Target Folder" as per your convenience, bu
 If you press the OK button, it will open an editor window of
 “MyPedal.main.any” file that includes the following lines:
 
-```{literalinclude} Snippets/lesson1/snip.NewModel.main-1.any
+```{literalinclude} Snippets/lesson1/MyPedal-1/MyPedal.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
