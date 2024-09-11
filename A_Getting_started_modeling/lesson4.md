@@ -30,7 +30,7 @@ We will therefore create an `AnyForce` object, for applying the spring force.
 Since this is not a part of the human body, it is logical to place it in the `Environment.any` file. Here's what
 to add:
 
-```{literalinclude} Snippets/lesson4/snip.NewModel.main-1.any
+```{literalinclude} Snippets/lesson4/MyPedal-1/Model/Environment.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -47,9 +47,9 @@ no spring. The minus sign in the expression means that the spring will always op
 ## Turn off default reaction forces
 
 As mentioned in this {ref}`previous section <driver-reactions>`,
-the "Reaction.Type" property for all kinematic drivers that act on muscle-actuated joints must be set to "Off".
+the "Reaction.Type" property for all kinematic drivers that act on muscle-actuated joints must be set to "Off" in `JointsAndDrivers.any`.
 
-```{literalinclude} Snippets/lesson4/snip.NewModel.main-2.any
+```{literalinclude} Snippets/lesson4/MyPedal-1/Model/JointsAndDrivers.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -62,9 +62,9 @@ to run the inverse dynamics if users may not define enough support
 forces on either both feet or pelvis.
 
 Since your model has a joint named "SeatPelvis" between ground and pelvis (which will apply the default reaction forces),
-you can comment out “Model\\Reactions.any” in the main file:
+you can comment out `Model/Reactions.any` in the main file:
 
-```{literalinclude} Snippets/lesson4/snip.NewModel.main-3.any
+```{literalinclude} Snippets/lesson4/MyPedal-1/MyPedal.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -76,7 +76,7 @@ There is one more thing we have to do: The human model has no muscles at
 the moment. This can be corrected by a simple change of BM statements in
 the `Model/BodyModelConfiguration.any` file. Since the model specifically focuses on the right leg, we can add the following code to add muscles:
 
-```{literalinclude} Snippets/lesson4/snip.NewModel.main-4.any
+```{literalinclude} Snippets/lesson4/MyPedal-1/Model/BodyModelConfiguration.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1

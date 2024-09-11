@@ -1,0 +1,24 @@
+#path __BM_PLUGIN_FILE__ "BodyModelConfiguration.any"
+#define BM_CONFIG_PLUGIN __BM_PLUGIN_FILE__
+
+// -----------------------------------------------------------------------------------
+// The BodyModel configuration can be modified using BodyModel GUI plugin
+// or by manually editing this file.
+//
+// Please see this this file for more information on the options:
+// #path HTML_DOC "<AMMR_PATH_DOC>/bm_config/index.html"
+// -----------------------------------------------------------------------------------
+
+// Enable the TLEM2 lower extremity model
+#define BM_LEG_MODEL _LEG_MODEL_TLEM2_
+
+// Excluding the muscles in the trunk segments
+#define BM_TRUNK_MUSCLES OFF
+// Excluding the left arm segments
+#define BM_ARM_LEFT OFF
+// Excluding the right arm segments
+#define BM_ARM_RIGHT OFF
+// Excluding the left leg segments
+#define BM_LEG_LEFT OFF
+// Excluding the muscles in the right leg segments
+#define BM_LEG_MUSCLES_RIGHT OFF

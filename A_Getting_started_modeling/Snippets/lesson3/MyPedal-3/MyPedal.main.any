@@ -1,13 +1,13 @@
-//# BEGIN SNIPPET 1
 #include "libdef.any"
-
 Main = {  
 
   // Body Model configuration:
   #include "Model/BodyModelConfiguration.any"
 
   // Using your own Mannequin.any file in the Model folder of your model
-  #include "Model/Mannequin.any"
+//# BEGIN SNIPPET 1
+#include "Model/Mannequin.any"
+//# END SNIPPET 1
 
   // Include default human model
   #include "<ANYBODY_PATH_BODY>/HumanModel.any"
@@ -18,11 +18,12 @@ Main = {
     AnyFolder &DefaultMannequinDrivers = .HumanModel.DefaultMannequinDrivers;
     
     // Environment files are used to include objects surrounding human
-    #include "Model/Environment.any"  
- 
+    #include "Model/Environment.any" 
+
     AnyFolder ModelEnvironmentConnection = {
       //'JointsAndDrivers.any' file can include all kinematic constraints such as joints and drivers
       #include "Model/JointsAndDrivers.any"
+
       // Additional reactions which are required to run the inverse dynamics analysis
       #include "Model/Reactions.any"
     };
@@ -41,4 +42,3 @@ Main = {
 
     #include "Model/RunAppSequence.any"
 }; //Main
-//# END SNIPPET 1

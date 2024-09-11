@@ -1,7 +1,6 @@
-//# BEGIN SNIPPET 1
 #include "libdef.any"
 
-Main = {  
+Main ={  
 
   // Body Model configuration:
   #include "Model/BodyModelConfiguration.any"
@@ -18,8 +17,8 @@ Main = {
     AnyFolder &DefaultMannequinDrivers = .HumanModel.DefaultMannequinDrivers;
     
     // Environment files are used to include objects surrounding human
-    #include "Model/Environment.any"  
- 
+    #include "Model/Environment.any" 
+
     AnyFolder ModelEnvironmentConnection = {
       //'JointsAndDrivers.any' file can include all kinematic constraints such as joints and drivers
       #include "Model/JointsAndDrivers.any"
@@ -41,4 +40,3 @@ Main = {
 
     #include "Model/RunAppSequence.any"
 }; //Main
-//# END SNIPPET 1

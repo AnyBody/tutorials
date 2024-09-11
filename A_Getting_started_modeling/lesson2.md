@@ -29,8 +29,7 @@ This is implemented by declaring a number of `BM_*` configuraiton statements.
 
 These can be included anywhere before the inclusion of the `HumanModel.any` file. But it is good practize to collect them in a single place so we will add them to the file `Model/BodyModelConfiguration.any`. 
 
-
-```{literalinclude} Snippets/lesson2/snip.NewModel.main-1.any
+```{literalinclude} Snippets/lesson2/MyPedal-1/MyPedal.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -40,7 +39,7 @@ Dobble click the line  `#include "Model/BodyModelConfiguration.any"` to quickly 
 
 Then add the BM configurations marked in red. 
 
-```{literalinclude} Snippets/lesson2/snip.NewModel.main-2.any
+```{literalinclude} Snippets/lesson2/MyPedal-1/Model/BodyModelConfiguration.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1

@@ -42,7 +42,7 @@ When you load the model, you should see the following image in your model view:
 
 Double-clicking the following line:
 
-```{literalinclude} Snippets/lesson1/snip.NewModel.main-2.any
+```{literalinclude} Snippets/lesson1/MyPedal-2/MyPedal.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -50,7 +50,7 @@ Double-clicking the following line:
 
 Opens up the “Environment.any” file which is created by the Human template.
 
-```{literalinclude} Snippets/lesson1/snip.NewModel.main-3.any
+```{literalinclude} Snippets/lesson1/MyPedal-2//Model/Environment.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -60,7 +60,7 @@ For this model, the only environment objects will be the global reference frame 
 and the pedal which the foot will be stepping on. You can define the global reference frame within the
 environment folder as follows:
 
-```{literalinclude} Snippets/lesson1/snip.NewModel.main-4.any
+```{literalinclude} Snippets/lesson1/MyPedal-3//Model/Environment.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -104,7 +104,7 @@ We will define the pedal segment and the hinge in the "Environment.any" file:
 
 This is achieved by the following lines:
 
-```{literalinclude} Snippets/lesson1/snip.NewModel.main-5.any
+```{literalinclude} Snippets/lesson1/MyPedal-4//Model/Environment.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1

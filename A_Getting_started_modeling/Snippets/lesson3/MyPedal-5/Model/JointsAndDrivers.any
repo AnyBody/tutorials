@@ -1,0 +1,21 @@
+AnyFolder Joints = {
+
+  AnyStdJoint SeatPelvis = {
+    AnyRefFrame& Seat = Main.Model.Environment.GlobalRef.Hpoint;
+    AnyRefFrame& Pelvis = Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.PelvisSeg;
+  };
+};
+
+//# BEGIN SNIPPET 1
+AnyFolder Drivers = {
+
+  §AnyKinEqSimpleDriver PelvisThoraxDriver = {
+    AnyKinMeasure& ref0 = ....HumanModel.BodyModel.Interface.Trunk.PelvisThoraxExtension;
+    AnyKinMeasure& ref1 = ....HumanModel.BodyModel.Interface.Trunk.PelvisThoraxLateralBending;
+    AnyKinMeasure& ref2 = ....HumanModel.BodyModel.Interface.Trunk.PelvisThoraxRotation;
+
+    DriverPos = pi/180*{0,0,0};
+    DriverVel = pi/180*{0,0,0};
+  };§
+};
+//# END SNIPPET 1

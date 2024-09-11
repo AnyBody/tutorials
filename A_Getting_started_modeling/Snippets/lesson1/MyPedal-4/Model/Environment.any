@@ -1,0 +1,24 @@
+//# BEGIN SNIPPET 1
+AnyFolder Environment = {
+  AnyFixedRefFrame GlobalRef = {
+    viewRefFrame.Visible=On;
+    viewRefFrame.ScaleXYZ = 0.5*{1,1,1};
+    };
+  §AnySeg Pedal = {
+    viewInertia.Visible = On;
+    Mass = 2;
+    Jii = {0.05, 0.001, 0.05};
+    AnyRefNode Hinge = {
+      sRel = {0, -0.15, 0};
+    };
+    AnyRefNode FootNode = {
+      sRel = {0, 0.15, 0};
+    };
+  };
+  AnyRevoluteJoint HingeJoint = {
+    Axis = z;
+    AnyFixedRefFrame &Ground = .GlobalRef;
+    AnyRefNode &Pedal = .Pedal.Hinge;
+  };§
+};
+//# END SNIPPET 1

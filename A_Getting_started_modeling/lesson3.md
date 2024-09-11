@@ -66,7 +66,7 @@ be displaced by a suitable distance from the origin.
 
 In the `Environment.any` file, add the following within the `GlobalReferenceFrame` object and then reload the model (F7).:
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-1.any
+```{literalinclude} Snippets/lesson3/MyPedal-1/Model/Environment.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -81,7 +81,7 @@ Drivers which connect the human and environment are traditionally placed in a fo
 an `#include` file called "JointsAndDrivers.any". Let’s open this file by
 double-clicking of the following line in the main file:
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-2.any
+```{literalinclude} Snippets/lesson3/MyPedal-1/MyPedal.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -89,7 +89,7 @@ double-clicking of the following line in the main file:
 
 Then you can see the following structure inside:
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-3.any
+```{literalinclude} Snippets/lesson3/MyPedal-1/Model/JointsAndDrivers.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -97,7 +97,7 @@ Then you can see the following structure inside:
 
 Here let’s prepare an `AnyStdJoint` object named "SeatPelvis" for the fixation of pelvis:
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-4.any
+```{literalinclude} Snippets/lesson3/MyPedal-2/Model/JointsAndDrivers.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -117,7 +117,7 @@ to {ref}`this previous section <absolute-folder-path>`.
 
 You should now have the following:
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-5.any
+```{literalinclude} Snippets/lesson3/MyPedal-3/Model/JointsAndDrivers.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -127,15 +127,15 @@ Hit F7 to reload the model. The model still loads in
 the same position as before.
 
 The initial positions are controlled by the mannequin file. Open it up
-by double-clicking the following line, and change the position as shown in red:
+by double-clicking the following line in the , and change the position as shown in red:
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-2.any
+```{literalinclude} Snippets/lesson3/MyPedal-3/MyPedal.main.any
 :language: AnyScriptDoc
-:start-after: //# BEGIN SNIPPET 2
-:end-before: //# END SNIPPET 2
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-6.any
+```{literalinclude} Snippets/lesson3/MyPedal-3/Model/Mannequin.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -146,7 +146,7 @@ pelvis to the coordinates of the `Hpoint` node. It is also a good idea to specif
 in the leg so that the foot is closer to the pedal. This can be done further down
 in the Mannequin file:
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-6.any
+```{literalinclude} Snippets/lesson3/MyPedal-3/Model/Mannequin.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 2
 :end-before: //# END SNIPPET 2
@@ -171,7 +171,7 @@ the leg. So we will set to zero, the angles and velocities of 3 DOF of pelvis-th
 
 We will place the drivers enforcing these constraints in the "Drivers" folder within "JointsAndDrivers.any" (shown below):
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-7.any
+```{literalinclude} Snippets/lesson3/MyPedal-4/Model/JointsAndDrivers.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -182,7 +182,7 @@ You already know how to create model objects from scratch by using the
 the "Class Inserter" ({ref}`described here <class-inserter>`). More details on properties
 such as DriverPos, DriverVel etc. can be ({ref}`found here <anykineqsimpledriver>`) :
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-8.any
+```{literalinclude} Snippets/lesson3/MyPedal-5/Model/JointsAndDrivers.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -193,7 +193,7 @@ such as DriverPos, DriverVel etc. can be ({ref}`found here <anykineqsimpledriver
 The following lines lock all 3 DOFs of rotation between the skull and the thorax (neck). The
 drivers are defined in a manner that is very similar to Step 2.
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-9.any
+```{literalinclude} Snippets/lesson3/MyPedal-6/Model/JointsAndDrivers.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -205,7 +205,7 @@ The foot will be connected to the pedal by a spherical joint. We have assumed
 the connection node on the foot to be the "MetatarsalJoint2Node". The driver is
 defined inside the "JointsAndDrivers.any" file in the following way:
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-9.any
+```{literalinclude} Snippets/lesson3/MyPedal-6/Model/JointsAndDrivers.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 2
 :end-before: //# END SNIPPET 2
@@ -214,9 +214,9 @@ defined inside the "JointsAndDrivers.any" file in the following way:
 ## Step 5: Locking the ankle angles
 
 The ankle has 2 DOFs - AnklePlantarFlexion and SubTarEversion. We will constrain both
-DOFs to always equal zero. Just as in Steps 3 & 4, this will be done using `AnyKinEqSimpleDriver`:
+DOFs to always equal zero. Just as in Steps 3 & 4, this will be done using `AnyKinEqSimpleDriver:
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-10.any
+```{literalinclude} Snippets/lesson3/MyPedal-7/Model/JointsAndDrivers.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -233,7 +233,7 @@ You will now constrain this medio-lateral knee movement in your model.
 This is done using an `AnyKinLinear` measure and a `AnyKinEqSimpleDriver` driver acting on that measure
 ({ref}`read more one measures & drivers here <measures-and-drivers>`):
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-11.any
+```{literalinclude} Snippets/lesson3/MyPedal-8/Model/JointsAndDrivers.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -252,7 +252,7 @@ which is given by the index 2 (0 being X, 1 being Y component) must be constrain
 We will specify motion for the pedal's hinge joint again using the `AnyKinEqSimpleDriver`.
 This resembles what you did in {ref}`this earlier chapter <anykineqsimpledriver>`.
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-12.any
+```{literalinclude} Snippets/lesson3/MyPedal-9/Model/JointsAndDrivers.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -345,7 +345,7 @@ This avoided an over-constrained situation and kinematics could therefore be sol
 Since you could define all necessary “Hard” constraints,
 the default drivers can now be removed by just adding one more BM statement to the file `Model/BodyModelConfiguration.any`:
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-13.any
+```{literalinclude} Snippets/lesson3/MyPedal-9/Model/BodyModelConfiguration.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1

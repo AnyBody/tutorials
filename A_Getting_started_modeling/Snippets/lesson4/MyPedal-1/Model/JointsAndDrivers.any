@@ -1,0 +1,64 @@
+AnyFolder Joints = {
+
+  AnyStdJoint SeatPelvis = {
+    AnyRefFrame& Seat = Main.Model.Environment.GlobalRef.Hpoint;
+    AnyRefFrame& Pelvis = Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.PelvisSeg;
+  };
+
+  AnySphericalJoint PedalFoot = {
+    AnyRefFrame& Pedal = Main.Model.Environment.Pedal.FootNode;
+    AnyRefFrame& Foot = Main.HumanModel.BodyModel.Right.Leg.Seg.Foot.MetatarsalJoint2Node;
+  }; 
+};
+
+//# BEGIN SNIPPET 1
+AnyFolder Drivers = {
+  AnyKinEqSimpleDriver PelvisThoraxDriver = {
+    AnyKinMeasure& ref0 = ....HumanModel.BodyModel.Interface.Trunk.PelvisThoraxExtension;
+    AnyKinMeasure& ref1 = ....HumanModel.BodyModel.Interface.Trunk.PelvisThoraxLateralBending;
+    AnyKinMeasure& ref2 = ....HumanModel.BodyModel.Interface.Trunk.PelvisThoraxRotation;
+
+    DriverPos = pi/180*{0,0,0};
+    DriverVel = pi/180*{0,0,0};
+    §Reaction.Type = {Off, Off, Off};§
+  };
+  
+  AnyKinEqSimpleDriver SkullThoraxDriver = {
+    AnyKinMeasure& ref0 = ....HumanModel.BodyModel.Interface.Trunk.SkullThoraxFlexion;
+    AnyKinMeasure& ref1 = ....HumanModel.BodyModel.Interface.Trunk.SkullThoraxLateralBending;
+    AnyKinMeasure& ref2 = ....HumanModel.BodyModel.Interface.Trunk.SkullThoraxRotation;
+
+    DriverPos = pi/180*{0,0,0};
+    DriverVel = pi/180*{0,0,0};
+    §Reaction.Type = {Off, Off, Off};§
+  };
+
+  AnyKinEqSimpleDriver AnkleDriver = {
+    AnyKinMeasure& ref0 = ....HumanModel.BodyModel.Interface.Right.AnklePlantarFlexion;
+    AnyKinMeasure& ref1 = ....HumanModel.BodyModel.Interface.Right.SubTalarEversion;
+
+    DriverPos = pi/180*{0, 0};
+    DriverVel = pi/180*{0, 0};
+    §Reaction.Type = {Off, Off};§
+   };
+  
+   AnyKinEqSimpleDriver KneeDriver = {
+    AnyKinLinear lin = {
+      AnyRefFrame& ref0 = Main.Model.Environment.GlobalRef;
+      AnyRefFrame& ref1 = Main.HumanModel.BodyModel.Right.Leg.Seg.Thigh.KneeJoint;
+      Ref = 0;
+    };
+    MeasureOrganizer = {2};
+    DriverPos = {0};
+    DriverVel = {0};
+    §Reaction.Type = {Off};§
+   }; 
+  
+   AnyKinEqSimpleDriver PedalDriver = {
+    AnyKinMeasure &ref0 = Main.Model.Environment.HingeJoint;
+    DriverPos = pi/180*{100};
+    DriverVel = pi/180*{45};
+    §Reaction.Type = {Off};§
+  };
+};
+//# END SNIPPET 1
