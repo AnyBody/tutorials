@@ -125,7 +125,7 @@ spring really seems to help. This can make it easier for the operator to
 control the pedal and thereby enhance the operability.
 
 The completed model is available here:
-{download}`PedalModel.zip <Downloads/PedalModel.zip>`.
+{download}`MyPedal.zip <Downloads/MyPedal.zip>`.
 
 The AnyBody Modeling System is all about making this type of
 investigation easy. The mechanical model we have put together in four

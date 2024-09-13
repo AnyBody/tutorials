@@ -44,14 +44,14 @@ to see a combined list of all of them.
 
 
 AnyBody models are 3D, with each rigid segment having six degrees of freedom (3
-spatial movements and 3 rotations). Thus, the "Mechanical System Information"
+translational movements and 3 rotations). Thus, the "Mechanical System Information"
 multiplies the segment count by 6 to get the total degrees of freedom, which is
 12 in this case.
 
 To locate everything in space, we need 12 constraints, which is the role of
 section 2 in the Mechanical System Information. This section tallies the
-kinematic constraints, which must equal the model's degrees of freedom, i.e.,
-12.
+kinematic constraints, which must equal the model's degrees of freedom for the system to be kinematically determined, i.e.,
+12 constraints for this model.
 
 The 12 constraints are derived from the two revolute joints in the model for the
 shoulder and elbow. A revolute joint retains one degree of freedom between the
@@ -104,8 +104,10 @@ So AnyBody allows for the creation of joints that only have kinematic
 constraints but not the corresponding reaction forces. 
 In fact, the system also allows the opposite: Reaction forces without kinematic constraints.
 
-> The main point for now is that it can be difficult to count reactions at times,
-> and the Object Description's "Mechanical System Information" can help with this.
+:::{important}
+The main point for now is that it can be difficult to count reactions at times,
+and the Object Description's "Mechanical System Information" can help with this.
+:::
 
 A few special cases are:
 

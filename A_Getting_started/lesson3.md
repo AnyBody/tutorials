@@ -78,10 +78,10 @@ From this chart, we can see that there is about 581N force at the
 right hip joint in the proximodistal direction.
 
 **It is possible to select and plot several outputs simultaneously
-by using the asterisk character** ({literal}`*`). **If you double-click
+by using the asterisk character ({literal}`*`).** If you double-click
 the "Value" property towards the top of your Chart View, it becomes editable. Let us
 edit the last "Hip_ProximoDistalForce" term to "Hip\_\*". This
-plots all variables in the "JointReactionForce" folder that begin with "Hip\_".**
+plots all variables in the "JointReactionForce" folder that begin with "Hip\_".
 
 ```{image} _static/lesson3/image8.png
 :alt: Chart Hip_ forces

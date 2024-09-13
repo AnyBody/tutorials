@@ -77,7 +77,6 @@ Simulation based analyses in AnyBody are termed "Studies".
 - **Kinematics**: Runs Kinematic analysis
 - **InverseDynamics**: Runs Inverse dynamic analysis
 - **InitialConditions**: Runs only the first time step of Kinematics. Useful for testing and debugging.
-- **Replay**: Replays the last operation that was run.
 
 ```{image} _static/lesson2/image2.png
 :alt: Operations drop down menu
@@ -85,13 +84,7 @@ Simulation based analyses in AnyBody are termed "Studies".
 :align: center
 ```
 
-**Step 2**: Click the "Run Operation" button on the Execute toolbar. This toolbar is next to the drop-down menu, and contains three buttons:
-
-```{image} _static/lesson2/image3.png
-:alt: Run operation
-:class: bg-primary
-:align: center
-```
+**Step 2**: Click the "Execute" button on the Execute toolbar. This toolbar is next to the drop-down menu, and contains three buttons:
 
 - **Run operation**: Starts or pauses the chosen operation. Shortcut
   F5.
