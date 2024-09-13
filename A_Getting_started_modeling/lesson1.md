@@ -50,7 +50,7 @@ Double-clicking the following line:
 
 Opens up the “Environment.any” file which is created by the Human template.
 
-```{literalinclude} Snippets/lesson1/MyPedal-2//Model/Environment.any
+```{literalinclude} Snippets/lesson1/MyPedal-2/Model/Environment.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -60,7 +60,8 @@ For this model, the only environment objects will be the global reference frame 
 and the pedal which the foot will be stepping on. You can define the global reference frame within the
 environment folder as follows:
 
-```{literalinclude} Snippets/lesson1/MyPedal-3//Model/Environment.any
+
+```{literalinclude} Snippets/lesson1/MyPedal-3/Model/Environment.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
