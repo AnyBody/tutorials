@@ -10,7 +10,7 @@ down to the line which says `#include "Model\Mannequin.any"`.
 
 ## Mannequin file structure
 
-```{literalinclude} Snippets/lesson2/MyStandingHuman-1/NewModel.main-1.any
+```{literalinclude} Snippets/lesson2/MyStandingHuman-1/NewModel.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
