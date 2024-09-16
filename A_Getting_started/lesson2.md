@@ -10,7 +10,7 @@ down to the line which says `#include "Model\Mannequin.any"`.
 
 ## Mannequin file structure
 
-```{literalinclude} Snippets/lesson2/snip.NewModel.main-1.any
+```{literalinclude} Snippets/lesson2/MyStandingHuman-1/NewModel.main-1.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -24,7 +24,7 @@ your model opens the mannequin file in a new tab. Then you see the
 following structure. (In the interest of legibility we have removed many
 of the lines):
 
-```{literalinclude} Snippets/lesson2/snip.NewModel.main-2.any
+```{literalinclude} Snippets/lesson2/MyStandingHuman-2/Model/Mannequin.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -47,7 +47,7 @@ for the right and left halves of the body.
 Changing any of the joint angles and reloading the model, will change the model's posture at load time. To start with, ensure that the contents of the `Right`
 and `Left` sub-folders are as follows.
 
-```{literalinclude} Snippets/lesson2/snip.NewModel.main-3.any
+```{literalinclude} Snippets/lesson2/MyStandingHuman-3/Model/Mannequin.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1

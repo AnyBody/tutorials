@@ -1,5 +1,3 @@
-//expect_errors = ["'HumanModel' when 'Main' was expected", "Model loading skipped"]
-
 // Default mannequin position values
 
 HumanModel.Mannequin = {
@@ -26,7 +24,6 @@ HumanModel.Mannequin = {
     NeckRotation=0;                   // not used when neck is switched off
     
 //# BEGIN SNIPPET 1
-...
 Right = {
   //Arm 
   SternoClavicularProtraction=-23;   //This value is not used for initial position
@@ -52,7 +49,6 @@ Right = {
   
   AnklePlantarFlexion =0.0; 
   SubTalarEversion =0.0; 
-...
 //# END SNIPPET 1
       
       //Detail Hand
@@ -299,6 +295,4 @@ Right = {
   };
   
 };
-
-
 

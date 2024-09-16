@@ -1,23 +1,15 @@
-//expect_errors = ["Cannot open file", "Model loading skipped"]
-
 #include "libdef.any"
 
-Main = 
-{
+Main = {
   // BodyModel configuration:
   // Specify which limb segments to include, the type of muscles, joints, scaling etc
   #include "Model/BodyModelConfiguration.any"
   
   // Include the Human model from AMMR
-  #include "<ANYBODY_PATH_BODY>\HumanModel.any"
+  #include "<ANYBODY_PATH_BODY>/HumanModel.any"
   
-
-//# BEGIN SNIPPET 1
-...
-// Define desired posture or movement of the model
-#include "Model\Mannequin.any"
-...
-//# END SNIPPET 1
+  // Define desired posture or movement of the model
+  #include "Model/Mannequin.any" 
  
   // Compose the model used by the study
   AnyFolder Model = 
@@ -47,7 +39,7 @@ Main =
  
     // Environment files are used to include objects surrounding human,
     // e.g. global reference frame
-    #include "Model\Environment.any"   
+    #include "Model/Environment.any"   
     
     AnyFolder ModelEnvironmentConnection = 
     {
@@ -73,7 +65,14 @@ Main =
     InitialConditions.SolverType = Kinematics.SolverType ;
   };
   // This is readymade simulation package including some pre-processing steps and the InverseDynamics analysis
-  #include "Model\RunAppSequence.any"
+  #include "Model/RunAppSequence.any"
+  
+  
+  AnyOperationSequence RunTest = {
+     
+    AnyOperation& RunAnalysis = Main.RunApplication;
+  
+  };
   
 }; //Main
 

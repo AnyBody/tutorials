@@ -100,7 +100,7 @@ model to see what happens to the hip joint reaction force.
 To adjust the posture of the human model, open your Mannequin.any
 file and change the PelvisThoraxExtension value from 0 to -60.
 
-```{literalinclude} Snippets/lesson3/snip.NewModel.main-1.any
+```{literalinclude} Snippets/lesson3/MyStandingHuman-1/Model/Mannequin.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
