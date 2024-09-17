@@ -30,18 +30,10 @@ We will therefore create an `AnyForce` object, for applying the spring force.
 Since this is not a part of the human body, it is logical to place it in the `Environment.any` file. Here's what
 to add:
 
-```AnyScriptDoc
-...
-AnyRevoluteJoint HingeJoint = {
-  Axis = z;
-  AnyFixedRefFrame &Ground = .GlobalRef;
-  AnyRefNode &Pedal = .Pedal.Hinge;
-};
-
-§AnyForce Spring = {
-  AnyRevoluteJoint &Hinge = .HingeJoint;
-  F = -0.0*.HingeJoint.Pos;
-};§
+```{literalinclude} Snippets/lesson4/MyPedal-1/Model/Environment.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The `AnyForce` object named "Spring" contains a reference to the "HingeJoint". Since HingeJoint
@@ -55,66 +47,12 @@ no spring. The minus sign in the expression means that the spring will always op
 ## Turn off default reaction forces
 
 As mentioned in this {ref}`previous section <driver-reactions>`,
-the "Reaction.Type" property for all kinematic drivers that act on muscle-actuated joints must be set to "Off".
+the "Reaction.Type" property for all kinematic drivers that act on muscle-actuated joints must be set to "Off" in `JointsAndDrivers.any`.
 
-```AnyScriptDoc
-AnyFolder Drivers =
-{
-  AnyKinEqSimpleDriver PelvisThoraxDriver =
-  {
-    AnyKinMeasure& ref0 = ...HumanModel.BodyModel.Interface.Trunk.PelvisThoraxExtension;
-    AnyKinMeasure& ref1 = ...HumanModel.BodyModel.Interface.Trunk.PelvisThoraxLateralBending;
-    AnyKinMeasure& ref2 = ...HumanModel.BodyModel.Interface.Trunk.PelvisThoraxRotation;
-
-    DriverPos = pi/180*{0,0,0};
-    DriverVel = pi/180*{0,0,0};
-    §Reaction.Type = {Off, Off, Off};§
-  };
-
-  AnyKinEqSimpleDriver SkullThoraxDriver =
-  {
-    AnyKinMeasure& ref0 = ...HumanModel.BodyModel.Interface.Trunk.SkullThoraxFlexion;
-    AnyKinMeasure& ref1 = ...HumanModel.BodyModel.Interface.Trunk.SkullThoraxLateralBending;
-    AnyKinMeasure& ref2 = ...HumanModel.BodyModel.Interface.Trunk.SkullThoraxRotation;
-
-    DriverPos = pi/180*{0,0,0};
-    DriverVel = pi/180*{0,0,0};
-    §Reaction.Type = {Off, Off, Off};§
-  };
-
-
-  AnyKinEqSimpleDriver AnkleDriver =
-  {
-    AnyKinMeasure& ref0 = ...HumanModel.BodyModel.Interface.Right.AnklePlantarFlexion;
-    AnyKinMeasure& ref1 = ...HumanModel.BodyModel.Interface.Right.SubTalarEversion;
-
-    DriverPos = pi/180*{0, 0};
-    DriverVel = pi/180*{0, 0};
-    §Reaction.Type = {Off, Off};§
-  };
-
-  AnyKinEqSimpleDriver KneeDriver =
-  {
-    AnyKinLinear lin =
-    {
-      AnyRefFrame& ref0 = Main.Model.Environment.GlobalRef;
-      AnyRefFrame& ref1 = Main.HumanModel.BodyModel.Right.Leg.Seg.Thigh.KneeJoint;
-      Ref = 0;
-    };
-    MeasureOrganizer = {2};
-    DriverPos = {0};
-    DriverVel = {0};
-    §Reaction.Type = {Off};§
-  };
-
-  AnyKinEqSimpleDriver PedalDriver =
-  {
-    AnyKinMeasure &ref0 = Main.Model.Environment.HingeJoint;
-    DriverPos = pi/180*{100};
-    DriverVel = pi/180*{45};
-    §Reaction.Type = {Off};§
-  };
-};
+```{literalinclude} Snippets/lesson4/MyPedal-1/Model/JointsAndDrivers.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 You should also remove the additional reactions on the pelvis which are
@@ -124,60 +62,49 @@ to run the inverse dynamics if users may not define enough support
 forces on either both feet or pelvis.
 
 Since your model has a joint named "SeatPelvis" between ground and pelvis (which will apply the default reaction forces),
-you can comment out “Model\\Reactions.any” in the main file:
+you can comment out `Model/Reactions.any` in the main file:
 
-```AnyScriptDoc
-...
-AnyFolder Model = {
-    AnyFolder &BodyModel = .HumanModel.BodyModel;
-    AnyFolder &DefaultMannequinDrivers = .HumanModel.DefaultMannequinDrivers;
-
-    #include "Model\Environment.any"
-
-    AnyFolder ModelEnvironmentConnection = {
-      #include "Model\JointsAndDrivers.any"
-      §//§#include "Model\Reactions.any"
-    };
-};
-...
+```{literalinclude} Snippets/lesson4/MyPedal-1/MyPedal.main.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 ## Adding muscles
 
 There is one more thing we have to do: The human model has no muscles at
 the moment. This can be corrected by a simple change of BM statements in
-the `Model/BodyModelConfiguration.any` file:
+the `Model/BodyModelConfiguration.any` file. Since the model specifically focuses on the right leg, we can add the following code to add muscles:
 
-```AnyScriptDoc
-// Excluding the muscles in the trunk segments
-#define BM_TRUNK_MUSCLES §_MUSCLES_SIMPLE_§
-// Excluding the left arm segments
-#define BM_ARM_LEFT OFF
-// Excluding the right arm segments
-#define BM_ARM_RIGHT OFF
-// Excluding the left leg segments
-#define BM_LEG_LEFT OFF
-// Excluding the muscles in the right leg segments
-#define BM_LEG_MUSCLES_RIGHT §_MUSCLES_SIMPLE_§
-//Excluding the default drivers for the human model
-#define BM_MANNEQUIN_DRIVER_DEFAULT OFF
+```{literalinclude} Snippets/lesson4/MyPedal-1/Model/BodyModelConfiguration.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 ## Investigating results
 
 Now, reload the model and run the `RunApplication` operation from the operations drop-down menu:
 
-![InverseDynamics_End](_static/lesson4/image2.png)
+```{image} _static/lesson4/image2.png
+:alt: InverseDynamics_End
+:class: bg-primary
+:align: center
+```
 
 Plot `Main.Study.Output.Model.BodyModel.SelectedOutput.Right.Leg.Muscles.Envelope` (see {ref}`this for help <chart-view>`).
 It expresses the maximum muscle activation level seen across all the muscles
 in the right leg at a given instant:
 
-![Chart view Muscles.Envelope](_static/lesson4/image3.png)
+```{image} _static/lesson4/image3.png
+:alt: Chart view Muscles.Envelope
+:class: bg-primary
+:align: center
+```
 
-Obviously holding the leg out in the air like that without the support
+Holding the leg out in the air like that without the support
 of a pedal spring and holding up the weight of the pedal as well
-requires about 6% to 9% of the leg’s strength.
+requires about 6.5% to 10.5% of the leg’s strength.
 
 Now, let us study the effect of spring stiffness. In `Environment.any`, we change the spring stiffness:
 
@@ -187,14 +114,18 @@ F = §-10§*.HingeJoint.Pos;
 
 This produces the following envelope curve:
 
-![Chart view Muscles.Envelope 2](_static/lesson4/image4.png)
+```{image} _static/lesson4/image4.png
+:alt: Chart view Muscles.Envelope 2
+:class: bg-primary
+:align: center
+```
 
-Obviously, the level is lower now. The envelope is at around 2%, so the
+Obviously, the level is lower now since the spring supports the leg. The envelope is at around 2%, so the
 spring really seems to help. This can make it easier for the operator to
 control the pedal and thereby enhance the operability.
 
 The completed model is available here:
-{download}`PedalModel.zip <Downloads/PedalModel.zip>`.
+{download}`MyPedal.zip <Downloads/MyPedal.zip>`.
 
 The AnyBody Modeling System is all about making this type of
 investigation easy. The mechanical model we have put together in four

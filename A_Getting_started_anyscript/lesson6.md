@@ -15,7 +15,6 @@ by the two pictures below.
 
 ![oldleg1](_static/lesson6/image1.jpeg) ![oldleg2](_static/lesson6/image2.jpeg)
 
-
 ## File formats for visualization objects
 
 3-D Geometric models for model components such as bones can be specified using files
@@ -33,17 +32,19 @@ option during the export process.
 Since the bone models shown in the above tutorial may be a bit too elaborate for a
 basic tutorial, we will demonstrate this by adding an STL file for the dumbbel in the arm model.
 
-Download the following model {download}`here(dumbell.stl) <Downloads/dumbbell.stl>`.
+Download the following model {download}`here(dumbbell.stl) <Downloads/dumbbell.stl>`.
 
 The dumbbell STL should be added to the forearm, so add the following code - which imports the STL
 file into AnyBody - within the "ArmModel.Segs.ForeArm" object:
 
-```AnyScriptDoc
-  AnyDrawSeg DrwSeg = {};
-  §AnyDrawSTL DrwSTL = {
-    FileName = "dumbbell.stl";
-  };§
-}; // ForeArm
+:::{important}
+The STL-file must be saved in the same folder as the AnyBody script. 
+:::
+
+```{literalinclude} Snippets/lesson6/snip.NewModel.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Re-loading the model will result in a fully gray model view.
@@ -52,18 +53,20 @@ This is because the STL file's units was millimeters, whereas the arm model
 is in meters. This means the dumbbell's STL swallowed up the entire arm model in the model view.
 We will therefore scale the dumbbell model down a 1000 times, in the following way:
 
-```AnyScriptDoc
-AnyDrawSTL DrwSTL = {
-  FileName = "dumbbell.stl";
-  §ScaleXYZ = {0.001, 0.001, 0.001};§
-};
+```{literalinclude} Snippets/lesson6/snip.NewModel.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Post re-loading, your model should resemble the figure below.The dumbbell is visible now and has the right size, but
 it is sitting at the center of mass of the lower arm rather than at the hand, and is not oriented correctly.
 
-![ModelView dumbbell1](_static/lesson6/image3.jpeg)
-
+```{image} _static/lesson6/image3.jpeg
+:alt: Dumbbell inserted
+:class: bg-primary
+:align: center
+```
 
 ## Relocating your STL object
 
@@ -74,24 +77,20 @@ Therfore moving the dumbbell to the hand is as simple as relocating the "DrwSTL"
 from the "ForeArm" folder to the "PalmNode" subfolder. Cut-paste the entire code for the
 "DrwSTL" folder into "PalmNode", as shown below:
 
-```AnyScriptDoc
-  AnyRefNode PalmNode = {
-    sRel = {0.27,0,0};
-    §AnyDrawSTL DrwSTL = {
-      FileName = "dumbbell.stl";
-      ScaleXYZ = {0.001, 0.001, 0.001};
-    };§
-  };
-
-  AnyDrawSeg DrwSeg = {};
-}; // ForeArm
+```{literalinclude} Snippets/lesson6/snip.NewModel.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Upon reloading, we see that the dumbbell attached to the
 right location, but is still not oriented correctly.
 
-![ModelView dumbbell2](_static/lesson6/image4.jpeg)
-
+```{image} _static/lesson6/image4.jpeg
+:alt: Dumbbell attached at Palm
+:class: bg-primary
+:align: center
+```
 
 ## Reorienting your STL object
 
@@ -110,31 +109,27 @@ ARel (optinal property) which will orient "PalmNode" w.r.t "ForeArm".**
 
 You can use the `RotMat` function to generate the 3x3 rotation matrix:
 
-```AnyScriptDoc
-AnyRefNode PalmNode = {
-  sRel = {0.27,0,0};
-  §ARel = RotMat(90*pi/180, y);§
-  AnyDrawSTL DrwSTL = {
-    FileName = "dumbbell.stl";
-    ScaleXYZ = {0.001, 0.001, 0.001};
-  };
-};
+```{literalinclude} Snippets/lesson6/snip.NewModel.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The dumbbell's color can be changed adding the property RGB to the STL file reference:
 
-```AnyScriptDoc
- AnyDrawSTL DrwSTL = {
-   FileName = "dumbbell.stl";
-   ScaleXYZ = {0.001, 0.001, 0.001};
-   §RGB = {0.2,0.4,0.5};§
-};
+```{literalinclude} Snippets/lesson6/snip.NewModel.main-5.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The RGB property specifies the blend of colors Red, Green, and Blue on a normalized scale of 0 to 1.
 
-![ModelView dumbbell3](_static/lesson6/image5.jpeg)
-
+```{image} _static/lesson6/image5.jpeg
+:alt: Final dumbbell placement
+:class: bg-primary
+:align: center
+```
 
 This completes the Getting Started with AnyScript tutorial. The final
 result of your efforts is in {download}`demo.arm2d.any <Downloads/demo.arm2d.any>`.

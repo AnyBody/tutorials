@@ -1,0 +1,36 @@
+//This is a place holder for the modeling of the environment.
+AnyFolder Environment = {
+  AnyFixedRefFrame GlobalRef = {
+    viewRefFrame.Visible=On;
+    viewRefFrame.ScaleXYZ = 0.5*{1,1,1};
+  
+    AnyRefNode Hpoint = {
+      sRel = {-0.75, 0.5, 0};
+    }; 
+  };
+  AnySeg Pedal = {
+    viewInertia.Visible = On;
+    Mass = 2;
+    Jii = {0.05, 0.001, 0.05};
+    AnyRefNode Hinge = {
+      sRel = {0, -0.15, 0};
+    };
+    AnyRefNode FootNode = {
+      sRel = {0, 0.15, 0};
+    };
+  };
+  //# BEGIN SNIPPET 1
+/* ... */
+
+AnyRevoluteJoint HingeJoint = {
+  Axis = z;
+  AnyFixedRefFrame &Ground = .GlobalRef;
+  AnyRefNode &Pedal = .Pedal.Hinge;
+};
+
+§AnyForce Spring = {
+  AnyRevoluteJoint &Hinge = .HingeJoint;
+  F = -0.0*.HingeJoint.Pos;
+};§
+//# END SNIPPET 1
+};

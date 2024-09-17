@@ -43,7 +43,7 @@ following subfolders:
 - **Body** contains models of body parts and collections of body parts such as the lumbar spine model, leg models etc.
   which are used by the applications.
 
-A closer inspection of the Application branch reveals that it has three subfolders:
+A closer inspection of the Application branch reveals that it has four subfolders:
 
 - The **Beta** folder contains models that are unfinished, but may still be useful.
 - The **Examples** folder contains many models of various activities of daily living, and it is likely that you

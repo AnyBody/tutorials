@@ -11,8 +11,11 @@ MAIN_REGEX = re.compile(r"Main\s*=\s*{")
 
 def pytest_collect_file(file_path, parent):
     """ Add hook to collect Snippets files for testing"""
-    if file_path.suffix == ".any":
+    if file_path.suffix == ".any" and file_path.name != "libdef.any":
         if "Snippet" in file_path.parts[-3]:
+            return AnyTestFile.from_parent(parent, path=file_path)
+    if file_path.name.endswith("main.any"): 
+        if "Snippet" in file_path.parts[-4]:
             return AnyTestFile.from_parent(parent, path=file_path)
         # if "Downloads" in file_path.parts[-2]:
         #     content = file_path.read_text()

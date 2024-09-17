@@ -1,0 +1,37 @@
+//# BEGIN SNIPPET 2
+AnyFolder Joints = {
+
+  AnyStdJoint SeatPelvis = {
+    AnyRefFrame& Seat = Main.Model.Environment.GlobalRef.Hpoint;
+    AnyRefFrame& Pelvis = Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.PelvisSeg;
+  };
+
+  §AnySphericalJoint PedalFoot = {
+    AnyRefFrame& Pedal = Main.Model.Environment.Pedal.FootNode;
+    AnyRefFrame& Foot = Main.HumanModel.BodyModel.Right.Leg.Seg.Foot.MetatarsalJoint2Node;
+  }; §
+};
+//# END SNIPPET 2
+
+//# BEGIN SNIPPET 1
+AnyFolder Drivers = {
+
+  AnyKinEqSimpleDriver PelvisThoraxDriver = {
+    AnyKinMeasure& ref0 = ....HumanModel.BodyModel.Interface.Trunk.PelvisThoraxExtension;
+    AnyKinMeasure& ref1 = ....HumanModel.BodyModel.Interface.Trunk.PelvisThoraxLateralBending;
+    AnyKinMeasure& ref2 = ....HumanModel.BodyModel.Interface.Trunk.PelvisThoraxRotation;
+
+    DriverPos = pi/180*{0,0,0};
+    DriverVel = pi/180*{0,0,0};
+  };
+
+  §AnyKinEqSimpleDriver SkullThoraxDriver = {
+    AnyKinMeasure& ref0 = ....HumanModel.BodyModel.Interface.Trunk.SkullThoraxFlexion;
+    AnyKinMeasure& ref1 = ....HumanModel.BodyModel.Interface.Trunk.SkullThoraxLateralBending;
+    AnyKinMeasure& ref2 = ....HumanModel.BodyModel.Interface.Trunk.SkullThoraxRotation;
+
+    DriverPos = pi/180*{0,0,0};
+    DriverVel = pi/180*{0,0,0};
+  };§
+};
+//# END SNIPPET 1

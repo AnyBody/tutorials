@@ -87,22 +87,21 @@ Main = {
           sRel = {-0.25,0,-0.05}; 
         };
         AnyRefNode PalmNode = {
-          sRel = {0.27,0,0}; 
+          sRel = {0.27,0,0};
           ARel = RotMat(90*pi/180, y);
           AnyDrawSTL DrwSTL = {
             FileName = "dumbbell.stl";
             ScaleXYZ = {0.001, 0.001, 0.001};
             RGB = {0.2,0.4,0.5};
-          };          
-        };       
-        AnyDrawSeg DrwSeg = {};
-        
-      }; // ForeArm
-      
+          };
+        };
+      AnyDrawSeg DrwSeg = {};
+    }; // ForeArm
+
     }; // Segs folder
     
+    // Joints 
     AnyFolder Jnts = {
-      
       //---------------------------------
       AnyRevoluteJoint Shoulder = {
         Axis = z;
@@ -115,11 +114,9 @@ Main = {
         AnyRefNode &UpperArmNode = Main.ArmModel.Segs.UpperArm.ElbowNode;
         AnyRefNode &ForeArmNode = Main.ArmModel.Segs.ForeArm.ElbowNode;
       }; // Elbow joint
-      
     }; // Jnts folder
-    
+
     AnyFolder Drivers = {
-      
       //---------------------------------
       AnyKinEqSimpleDriver ShoulderMotion = {
         AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
@@ -138,11 +135,11 @@ Main = {
     }; // Driver folder
     
     AnyFolder Muscles = {
-      // Simple muscle model with constant strength = 300 Newton
+    // Simple muscle model with constant strength = 400 Newton
       AnyMuscleModel MusMdl = {
         F0 = 400;
       };
-      
+
       //---------------------------------
       AnyMuscleViaPoint Brachialis = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
@@ -150,7 +147,7 @@ Main = {
         AnyRefNode &Ins = ..Segs.ForeArm.Brachialis;
         AnyDrawMuscle DrwMus = {};
       };
-      
+
       //---------------------------------
       AnyMuscleViaPoint DeltodeusA = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
@@ -158,7 +155,7 @@ Main = {
         AnyRefNode &Ins = ..Segs.UpperArm.DeltodeusA;
         AnyDrawMuscle DrwMus = {};
       };
-      
+
       //---------------------------------
       AnyMuscleViaPoint DeltodeusB = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
@@ -166,7 +163,7 @@ Main = {
         AnyRefNode &Ins = ..Segs.UpperArm.DeltodeusB;
         AnyDrawMuscle DrwMus = {};
       };
-      
+
       //---------------------------------
       AnyMuscleViaPoint Brachioradialis = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
@@ -174,7 +171,7 @@ Main = {
         AnyRefNode &Ins = ..Segs.ForeArm.Brachioradialis;
         AnyDrawMuscle DrwMus = {};
       };
-      
+
       //---------------------------------
       AnyMuscleViaPoint BicepsShort = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
@@ -182,7 +179,7 @@ Main = {
         AnyRefNode &Ins = ..Segs.ForeArm.Biceps;
         AnyDrawMuscle DrwMus = {};
       };
-      
+
       //---------------------------------
       AnyMuscleViaPoint TricepsShort = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
@@ -190,7 +187,7 @@ Main = {
         AnyRefNode &Ins = ..Segs.ForeArm.Triceps;
         AnyDrawMuscle DrwMus = {};
       };
-      
+
       //---------------------------------
       AnyMuscleViaPoint BicepsLong = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
@@ -198,7 +195,7 @@ Main = {
         AnyRefNode &Ins = ..Segs.ForeArm.Biceps;
         AnyDrawMuscle DrwMus = {};
       };
-      
+
       //---------------------------------
       AnyMuscleViaPoint TricepsLong = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
@@ -207,18 +204,17 @@ Main = {
         AnyDrawMuscle DrwMus = {};
       };
     }; // Muscles folder
-    
+
     AnyFolder Loads = {
-      
-      //---------------------------------
+    //---------------------------------
       AnyForce3D Dumbbell = {
         AnyRefNode &PalmNode = ..Segs.ForeArm.PalmNode;
         F = {0,-100,0}; // Force in Newton
       };
-    };  // Loads folder
+    }; // Loads folder
     
   }; // MyModel
-  
+
   // The study: Operations to be performed on the model
   AnyBodyStudy ArmStudy = {
     AnyFolder &Model = .ArmModel;
@@ -226,6 +222,3 @@ Main = {
   };
   
 };  // Main
-
-
-

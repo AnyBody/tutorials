@@ -6,7 +6,7 @@
 In AnyBody, studies and operations are the mechanisms used to specify tasks to
 be performed on the model. Think of a study as a collector that brings together
 a model definition, the operations that execute the model, and the results to be
-analyzed afterwards. Operations, on the other hand, are the tasks performed on
+analyzed afterwards. Meaning, operations are the tasks performed on
 the model. They can be executed from the AnyBody interface, generating and
 storing output in the study based on the function of the specific operation.
 
@@ -79,7 +79,7 @@ specifications are placed between a pair of braces and become part of the study.
 A study has predefined properties that you can set, must set, or cannot modify.
 
 When you create a new model using `File` -> `New from Template...`, the system
-automatically inserts an AnyBodyStudy for you. It looks like this:
+automatically inserts an AnyBodyStudy in the main file. It looks like this:
 
 ```AnyScriptDoc
 // The study: Operations to be performed on the model
@@ -89,8 +89,7 @@ AnyBodyStudy MyStudy = {
 };
 ```
 
-This study contains all the necessary elements. The last line 
-`Gravity = {0.0, -9.81, 0.0};` assigns a value to the Gravity variable,
+This study contains all the necessary elements. The first word after `AnyBodyStudy` defines the name of the study, which in this case is MyStudy. The last line `Gravity = {0.0, -9.81, 0.0};` assigns a value to the Gravity variable,
 which specifies the gravitational acceleration vector affecting the model.
 
 An `AnyBodyStudy` has many more predefined properties that you can modify. You can
@@ -105,7 +104,7 @@ advanced user features. However, some properties are essential for all users:
 * `tEnd`: The time at which the study ends. This often needs to be set by the user.
 * `nStep`: Specifies how many steps the system should use to go from tStart to tEnd.
 
-## Understanding the Structure of the a Study
+## Understanding the Structure of a Study
 
 Let's take a closer look at the first line of the study:
 
@@ -119,6 +118,16 @@ discussed earlier, this line introduces a new property to the study. This is a
 key aspect of studies: you can add almost anything to a study, and the study
 doesn't need to know its type in advance.
 
+:::{note}
+:class: margin
+You can choose to point to some subfolders of `MyModel` instead of the entire
+model. This means the study would work on just a subset of the model. 
+For example, you might want to compare two nearly identical models. In this case, 
+you can put all common parts in one folder and the distinctive parts in separate 
+folders. Then, you can create two studies that
+reference the common part and their respective distinctive parts.
+:::
+
 This line defines a variable called "Model" and assigns it to `.MyModel`. If you
 look at the start of the AnyScript file, you'll see that MyModel is the folder
 containing the entire model the system has generated for you. The prefix `.`
@@ -131,13 +140,6 @@ familiar with C, C++, or Java programming, you'll recognize this as the concept
 of pointers. If not, think of a pointer as a reference to something defined
 elsewhere. When you access it, you're actually interacting with what it points
 to.
-
-You can choose to point to some subfolders of `MyModel` instead of the entire
-model. This means the study would work on just a subset of the model, which can
-be useful in certain cases. For example, you might want to compare two nearly
-identical models. In this case, you can put all common parts in one folder and
-the distinctive parts in separate folders. Then, you can create two studies that
-reference the common part and their respective distinctive parts.
 
 ## Elements of a Study 
 
@@ -164,14 +166,14 @@ can perform on the model elements that the study points to:
   muscles or motors to drive the model.
 
 When you execute each of these operations, they compile their output in the
-Output section under the study's tree. This allows you to easily access and
+Output section under the study tree. This allows you to easily access and
 analyze the results of each operation.
 
 ## Running operations
 
 Operations can be executed in three ways:
 
-1. Through the model tree
+1. Through the model tree 
 2. Using the operation drop-down in the toolbar
 3. Via the special operations tree view
 
@@ -188,15 +190,14 @@ model tree.
 Once an operation is selected in the toolbar, you can press the 
 buttons to start/stop/reset the operations. 
 
-
-* The "Run" button starts the study, which will continue until it finishes or
+* The "**Run**" button starts the study, which will continue until it finishes or
   encounters an error. Once you press the run button, it changes to "Break", and
   pressing it in this state stops the current analysis process.
-* The "Step" button executes one step at a time. The definition of a "step"
+* The "**Step**" button executes one step at a time. The definition of a "step"
   varies depending on the operation. For Kinematics and InverseDynamics, a step
   is one time step of the movement. For InitialConditions, a step is one of the
   several distinct operations needed to set the model to its initial state.
-* The "Reset" button returns the model to its initial state after it has
+* The "**Reset**" button returns the model to its initial state after it has
   completed a sequence of time steps. You must press "Reset" before you can
   rerun the model.
 

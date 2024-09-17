@@ -1,0 +1,15 @@
+//# BEGIN SNIPPET 1
+AnyFolder Joints = {
+
+  §AnyStdJoint SeatPelvis = {
+    AnyRefFrame& Seat = ;
+    AnyRefFrame& Pelvis = ;
+  };§
+};
+//# END SNIPPET 1
+
+AnyFolder Drivers = {
+  ...
+  
+};
+
