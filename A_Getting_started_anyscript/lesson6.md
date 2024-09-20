@@ -132,4 +132,4 @@ The RGB property specifies the blend of colors Red, Green, and Blue on a normali
 ```
 
 This completes the Getting Started with AnyScript tutorial. The final
-result of your efforts is in {download}`demo.arm2d.any <Downloads/demo.arm2d.any>`.
+result of your efforts is in {download}`demo.arm2d.zip <Downloads/demo.arm2d.zip>`.

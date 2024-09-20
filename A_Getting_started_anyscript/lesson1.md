@@ -12,15 +12,15 @@ To create an AnyScript model from scratch, go to "File menu -> New from template
 which you choose "Basic Main" and provide a "Target Name" (e.g.,
 *NewModel*) and click OK. This is similar to {ref}`this step <model-templates>` from the previous tutorial.
 
+The new file that opens up in the text editor contains a basic skeleton
+for your model, based on a built-in template.
+
 ```{image} _static/lesson1/image2.png
 :alt: Script editor 
 :class: bg-primary
 :width: 100%
 :align: center
 ```
-
-The new file that opens up in the text editor contains a basic skeleton
-for your model, based on a built-in template.
 
 ## What are Classes?
 
@@ -51,8 +51,8 @@ Main = {
 ```
 
 
-What you see is a hierarchy of braces - the outermost pair of braces is named `Main = {`.
-Everything else in the model goes between these braces.
+What you see is a hierarchy of braces - the outermost pair of braces is named `Main = {}`.
+Everything else in the model goes between these braces, and any basic AnyScript must contain this Main folder.
 
 "MyModel" (of class type `AnyFolder`) is simply an
 organizational folder for containing the entire model you are going to
@@ -69,6 +69,10 @@ All changes you need to do in your model will be highlighted in <span style="col
 
 **👉 Now** reename `MyStudy` to `ArmModelStudy`, and replace all occurences of `MyModel` with `ArmModel`.
 
+:::{note}
+Generally, when declaring an object in AnyScript, you typically start with the class type, followed by a chosen object name, and then assign it a value. The value can be a number, a string, or another object. 
+`<ClassName> <objectname> = <value>;`
+:::
 
 
 ## What does this file contain so far?

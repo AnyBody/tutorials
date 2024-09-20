@@ -16,7 +16,7 @@ down to the line which says `#include "Model\Mannequin.any"`.
 :end-before: //# END SNIPPET 1
 ```
 
-**This line means that your model will include the "Mannequin.any" file located in the Model folder,
+**This line means that your model will include the content of the "Mannequin.any" file located in the Model folder,
 within the main file.**
 
 Double-clicking the file name in the editor window after loading
@@ -76,7 +76,8 @@ Simulation based analyses in AnyBody are termed "Studies".
 
 - **Kinematics**: Runs Kinematic analysis
 - **InverseDynamics**: Runs Inverse dynamic analysis
-- **InitialConditions**: Runs only the first time step of Kinematics. Useful for testing and debugging.
+
+To view all available operations in the model, click on "Open Operation Tree" and navigate to "Study" under "Main". For example, the "InitialConditions" operation runs only the first time step of Kinematics, which is useful for testing and debugging.
 
 ```{image} _static/lesson2/image2.png
 :alt: Operations drop down menu
