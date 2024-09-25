@@ -3,10 +3,11 @@
 
 # Lesson 2: Controlling the Posture
 
-The Standing Model's posture is defined by the angles at the anatomical joints.
+The script editor current shows the main file of the model, which has this line of code `Main = {}`. Any basic AnyScript contains a main file, which defines the model's structure and the operations to be performed on the model.
 
-These specifications have been collected in one of the model files, "Mannequin.any". Scroll
-down to the line which says `#include "Model\Mannequin.any"`.
+The file "Mannequin.any" is included in the main file. This file determines the posture of the Standing Model, which is defined by the angles at the anatomical joints.
+
+Scroll down to the line which says `#include "Model\Mannequin.any"`.
 
 ## Mannequin file structure
 

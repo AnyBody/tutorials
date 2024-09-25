@@ -98,8 +98,7 @@ other computer operating system.
 
 :::{seealso}
 :class: dropdown
-**Absolute folder path** is another way to refer to objects in AnyScript. Absolute references are made 
-by the complete name of an object. The complete name specifies all folders from the root, 
+**Absolute folder path** is another way to refer to objects in AnyScript and wil be used later in this tutorial. Absolute references are made by the complete name of an object. The complete name specifies all folders from the root, 
 i.e. from Main, and to the object like for instance:
 `Main.<foldername>.<subfoldername>.<objectname>`
 :::

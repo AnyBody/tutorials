@@ -84,8 +84,6 @@ The last section 3 shows the reaction forces. It is not by chance that the
 reaction and driver forces have the same total as the joints and kinematic
 constraints. 
 
-
-
 In a simple model like this one, the number of reactions from joints is usually
 equal to the number of kinematic constraints. This reflects most real-life
 situations, because the mechanical joints we encounter in our environment apply

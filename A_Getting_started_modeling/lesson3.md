@@ -55,7 +55,7 @@ The constraint enforced by the default drivers are defined as ‘soft’
 constraints - constraints that can be overridden by the 19 'hard constraints' which we will define.
 
 You can therefore sequentially add the 19 hard drivers on top of the soft default drivers, and deactivate the default
-drivers at the** {ref}`very end of this lesson <kinematically-determined>` **. The advantage is that you have a model whose
+drivers at the {ref}`very end of this lesson <kinematically-determined>`. The advantage is that you have a model whose
 kinematics can be tested at every step along the way.
 
 ## Step 1: Fixing the pelvis to ground
@@ -127,7 +127,7 @@ Hit F7 to reload the model. The model still loads in
 the same position as before.
 
 The initial positions are controlled by the mannequin file. Open it up
-by double-clicking the following line in the , and change the position as shown in red:
+by double-clicking the following line in the, and change the position as shown in red:
 
 ```{literalinclude} Snippets/lesson3/MyPedal-3/MyPedal.main.any
 :language: AnyScriptDoc
