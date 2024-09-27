@@ -5,12 +5,14 @@
 
 This lesson assumes that you have the `arm2d.any` file ready in AnyBody. If you
 do not have the model on your computer, please get and save a copy from this
-link: {download}`arm2d.any <Downloads/arm2d.zip>`. It should look like this when
+link: {download}`arm2d.zip <Downloads/arm2d/arm2d.zip>`. It should look like this when
 you have loaded the model, run InitialConditions operation, and opened a Model
 View:
 
-```{figure} _static/lesson1/image1.png
+```{image} _static/lesson1/image1.png
 :alt: Dumbbel
+:class: bg-primary
+:align: center
 ```
 
 This model is relatively simple in how it works, because it only has
@@ -25,16 +27,18 @@ double-clicking the objects in any Model Tree View. If you double-click the
 ArmModel study folder in the model that is loaded, you will see a System
 description like this:
 
-
-```{figure} _static/lesson1/image2.png
+```{image} _static/lesson1/image2.png
 :alt: Study object description
-:scale: 50%
+:class: bg-primary
+:align: center
 ```
 
 The Mechanical System Information consists of four parts: 
+
 ```{image} _static/lesson1/four-parts.png
 :alt: Four parts
-:scale: 50%
+:class: bg-primary
+:align: center
 ```
 
 For a simple model like "arm2d" where all the segments are next to each other, it
@@ -134,24 +138,10 @@ We will explore the effects of modifying the model.
 We will start by taking out one of the drivers in the model, making it
 kinematically indeterminate:
 
-
-```AnyScriptDoc
-AnyFolder Drivers = {
-
-      //---------------------------------
-§//     AnyKinMotion ShoulderMotion = {
-//         AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-//         DriverPos0 = {-100*pi/180};
-//         DriverVel0 = {30*pi/180};
-//      }; // Shoulder driver§
-      
-      //---------------------------------
-      AnyKinMotion ElbowMotion = {
-         AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-         DriverPos0 = {90*pi/180};
-         DriverVel0 = {45*pi/180};
-      }; // Elbow driver
-   }; // Driver folder
+```{literalinclude} Snippets/lesson1/snip.arm2d-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 When you load the model again, you will get this message:
@@ -169,53 +159,28 @@ impossible to assemble the mechanism and very unlikely to run a kinematic
 analysis. If you double-click the `ArmStudy` folder to open the Object Description
 window, you will see this output:
 
-```{figure} _static/lesson1/image3.png
+```{image} _static/lesson1/image3.png
 :alt: Object description, number of constraints
-:scale: 50%
+:class: bg-primary
+:align: center
 ```
-
 
 The Mechanical System Information lets you examine closely how many
 constraints are not there and what kind they might be. Let us move
 the missing driver back into place:
 
-```AnyScriptDoc
-§//---------------------------------
-AnyKinMotion ShoulderMotion = {
-  AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-  DriverPos0 = {-100*pi/180};
-  DriverVel0 = {30*pi/180};
-}; // Shoulder driver§
-
-//---------------------------------
-AnyKinMotion ElbowMotion = {
-  AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-  DriverPos0 = {90*pi/180};
-  DriverVel0 = {45*pi/180};
-}; // Elbow driver
+```{literalinclude} Snippets/lesson1/snip.arm2d-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 ... and try something else:
 
-```AnyScriptDoc
-//---------------------------------
-AnyKinMotion ShoulderMotion = {
-  AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-  DriverPos0 = {-100*pi/180};
-  DriverVel0 = {30*pi/180};
-}; // Shoulder driver
-
-//---------------------------------
-AnyKinMotion ElbowMotion = {
-  AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-  DriverPos0 = {90*pi/180};
-  DriverVel0 = {45*pi/180};
-}; // Elbow driver
-
-§AnyReacForce ExtraReactionForces = {
-  AnyRevoluteJoint &Jnt1 = ..Jnts.Shoulder;
-  AnyRevoluteJoint &Jnt2 = ..Jnts.Elbow;
-};§
+```{literalinclude} Snippets/lesson1/snip.arm2d-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Here, we have added extra reaction forces to the two joints. This is like
@@ -233,10 +198,12 @@ WARNING(OBJ.MCH.MUS1) :   arm2d.any(227)  :   ArmStudy  :  The muscles in the mo
 
 And the Object Description window will give the following feedback:
 
-```{figure} _static/lesson1/image4.png
+```{image} _static/lesson1/image4.png
 :alt: Object description, list of reaction forces
-:scale: 50%
+:class: bg-primary
+:align: center
 ```
+
 indicating that the model is precisely statically determinate with 12 reactions
 corresponding to the 12 rigid body degrees of freedom.
 

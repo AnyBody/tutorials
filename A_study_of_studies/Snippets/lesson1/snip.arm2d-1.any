@@ -32,7 +32,7 @@ Main = {
     // Segments
     AnyFolder Segs = {
       AnySeg UpperArm = {
-        r0 = {0, -0.20, 0};
+        r0 = {0, 0.3, 0};
         Axes0 =RotMat(-90*pi/180, z);
         Mass = 2;
         Jii = {0.001, 0.01, 0.01};
@@ -65,7 +65,7 @@ Main = {
       };  // UpperArm
       
       AnySeg ForeArm = {
-        r0 = {0.3, -0.40, 0};        
+        r0 = {0.3, 0, 0};        
         Mass = 2.0;
         Jii = {0.001,0.01,0.01};
         AnyRefNode ElbowNode = {
@@ -87,7 +87,7 @@ Main = {
           sRel = {-0.25,0,-0.05}; 
         };
         AnyRefNode PalmNode = {
-          sRel = {0.27,0,0}; 
+          sRel = {0.27,0,0};
           ARel = RotMat(90*pi/180, y);
           AnyDrawSTL DrwSTL = {
             FileName = "dumbbell.stl";
@@ -118,22 +118,23 @@ Main = {
       
     }; // Jnts folder
     
-    AnyFolder Drivers = {
-      
-      //---------------------------------
-      AnyKinMotion ShoulderMotion = {
-        AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-        DriverPos0 = {-100*pi/180};
-        DriverVel0 = {30*pi/180};
-      }; // Shoulder driver
-      
-      //---------------------------------
-      AnyKinMotion ElbowMotion = {
-        AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-        DriverPos0 = {90*pi/180};
-        DriverVel0 = {45*pi/180};
-      }; // Elbow driver
-    }; // Driver folder
+//# BEGIN SNIPPET 1 
+AnyFolder Drivers = {
+  //---------------------------------
+  §//AnyKinMotion ShoulderMotion = {
+  //  AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
+  //  DriverPos0 = {-100*pi/180};
+  //  DriverVel0 = {30*pi/180};
+  //}; // Shoulder driver§
+  
+  //---------------------------------
+  AnyKinMotion ElbowMotion = {
+    AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
+    DriverPos0 = {90*pi/180};
+    DriverVel0 = {45*pi/180};
+  }; // Elbow driver
+}; // Driver folder
+//# END SNIPPET 1 
     
     AnyFolder Muscles = {
       // Simple muscle model with constant strength = 300 Newton
@@ -221,7 +222,6 @@ Main = {
   AnyBodyStudy ArmStudy = {
     AnyFolder &Model = .ArmModel;
     Gravity = {0.0, -9.81, 0.0};
-    InitialConditions.Settings.DisplayPriority = PriorityNormal;
   };
   
 };  // Main
