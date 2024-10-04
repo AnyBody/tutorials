@@ -143,9 +143,10 @@ GettingStarted
 :maxdepth: 2
 :hidden:
 :titlesonly: True
+:glob:
 
 
-Tutorials
+Tutorials*
 about
 ```
 
