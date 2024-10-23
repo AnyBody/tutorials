@@ -1,0 +1,33 @@
+########### MACRO #############
+load "BikeModel2D.main.any"
+classoperation Main.BikeParameters.SaddleHeight "Set Value" --value="0.68"
+classoperation Main.BikeParameters.SaddlePos "Set Value" --value="-0.15"
+operation Main.Study.InverseDynamics
+run
+classoperation Main.Study.Output.Pmet_total "Dump"
+classoperation Main.Study.Output.Abscissa.t "Dump"
+
+######### OUTPUT LOG ##########
+
+AnyBody Console Application
+Edition Name : Beta
+AnyBodyCon.exe version : 8. 1. 0. 12263 (64-bit version) 
+Build : 20010.50400 (beta)
+Copyright (c) 1999 - 2024 AnyBody Technology A/S
+
+Current path: C:\Users\jha\Documents\tutorials\Parameter_studies_and_optimization\python-optimize
+#### Macro command > load "BikeModel2D.main.any"
+Loading  Main  :  "C:\Users\jha\Documents\tutorials\Parameter_studies_and_optimization\python-optimize\BikeModel2D.main.any"
+Scanning...
+Parsing...
+Constructing model tree...
+ERROR(SCR.PRS9) :   C:\Users\jha\AppData\Local\Programs\AnyBody Technology\AnyBody.8.1_Beta\AMMR\Body\AAUHuman\drawSettings\MusDrawSettings.any(7)  :   'Visible'  :  Unresolved object
+Model loading skipped
+#### Macro command > classoperation Main.BikeParameters.SaddleHeight "Set Value" --value="0.68"
+#### Macro command > classoperation Main.BikeParameters.SaddlePos "Set Value" --value="-0.15"
+#### Macro command > operation Main.Study.InverseDynamics
+Error : Main.Study.InverseDynamics : Select Operation is not expected or object is not AnyOperation.
+
+Closing model...
+Deleting loaded model...
+...Model deleted.

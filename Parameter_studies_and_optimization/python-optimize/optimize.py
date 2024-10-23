@@ -1,8 +1,13 @@
 import math
+import os
+
 import scipy
 
 from anypytools import AnyPyProcess
 from anypytools.macro_commands import Load, OperationRun, Dump, SetValue
+
+
+os.chdir(os.path.dirname(__file__))
 
 
 def run_model(saddle_height, saddle_pos, silent=False):
