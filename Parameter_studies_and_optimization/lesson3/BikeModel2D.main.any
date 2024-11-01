@@ -1,6 +1,4 @@
-#ifnpathexists "../libdef.any"
-#include "<ANYBODY_PATH_INSTALLDIR>/AMMR/libdef.any"
-#endif
+#include "libdef.any"
 
 /**2-D bicyle model.
 Although this model can be rotated in 3-D space it really is just a saggital
@@ -105,7 +103,7 @@ Main = {
     };
     AnyDesVar SaddlePos = {
       Val = Main.BikeParameters.SaddlePos;
-        Min = -0.22 /*-0.03*/;
+        Min = -0.20 /*-0.03*/;
         Max = -0.05;
     };
     AnyDesMeasure MaxAct = {
@@ -129,7 +127,7 @@ Main = {
     };
     AnyDesVar SaddlePos = {
       Val = Main.BikeParameters.SaddlePos;
-        Min = -0.22 /*-0.03*/;
+        Min = -0.20 /*-0.03*/;
         Max = -0.05;
     };
     AnyDesMeasure Metab = {

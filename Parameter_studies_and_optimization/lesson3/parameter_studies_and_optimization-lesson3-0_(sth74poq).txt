@@ -1,0 +1,19 @@
+########### MACRO #############
+load "BikeModel2D.main.any"
+classoperation Main.BikeParameters.SaddleHeight "Set Value" --value="0.655106471407"
+classoperation Main.BikeParameters.SaddlePos "Set Value" --value="-0.1091263915"
+operation Main.Study.InverseDynamics
+run
+classoperation Main.Study.Output.Pmet_total "Dump"
+classoperation Main.Study.Output.Abscissa.t "Dump"
+
+######### OUTPUT LOG ##########
+
+AnyBody Console Application
+Edition Name : Beta
+AnyBodyCon.exe version : 8. 1. 0. 12263 (64-bit version) 
+Build : 20010.50400 (beta)
+Copyright (c) 1999 - 2024 AnyBody Technology A/S
+
+
+ERROR: AnyPyTools : AnyBodyCon.exe exited unexpectedly. Return code: 15

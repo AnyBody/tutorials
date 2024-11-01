@@ -1,0 +1,45 @@
+########### MACRO #############
+load "BikeModel2D.main.any"
+classoperation Main.BikeParameters.SaddleHeight "Set Value" --value="0.654020840696"
+classoperation Main.BikeParameters.SaddlePos "Set Value" --value="-0.10894489442"
+operation Main.Study.InverseDynamics
+run
+classoperation Main.Study.Output.Pmet_total "Dump"
+classoperation Main.Study.Output.Abscissa.t "Dump"
+
+######### OUTPUT LOG ##########
+
+AnyBody Console Application
+Edition Name : Beta
+AnyBodyCon.exe version : 8. 1. 0. 12263 (64-bit version) 
+Build : 20010.50400 (beta)
+Copyright (c) 1999 - 2024 AnyBody Technology A/S
+
+Current path: C:\Users\jha\Documents\tutorials\Parameter_studies_and_optimization\lesson3
+#### Macro command > load "BikeModel2D.main.any"
+Loading  Main  :  "C:\Users\jha\Documents\tutorials\Parameter_studies_and_optimization\lesson3\BikeModel2D.main.any"
+Scanning...
+Parsing...
+Constructing model tree...
+Linking identifiers...
+Evaluating constants...
+Configuring model...
+Evaluating model...
+Loaded successfully.
+Elapsed Time : 0.166000
+#### Macro command > classoperation Main.BikeParameters.SaddleHeight "Set Value" --value="0.654020840696"
+#### Macro command > classoperation Main.BikeParameters.SaddlePos "Set Value" --value="-0.10894489442"
+#### Macro command > operation Main.Study.InverseDynamics
+#### Macro command > run
+
+***************************************************************************************
+0) InverseDynamics (Operation: Main.Study.InverseDynamics): 
+0.0) PreOperation (Operation: Main.Study.InverseDynamics.PreOperation): 
+0.0.0) InitialConditions (Operation: Main.Study.InitialConditions): 
+0.0.0) ...Design variables have been updated.
+0.0.1) ...Load-time positions have been re-established.
+0.0.2) ...Kinematic analysis completed.
+0.0.3) ...Dependent variables are fully updated.
+0) Inverse dynamic analysis...
+
+ERROR: AnyPyTools : AnyBodyCon.exe exited unexpectedly. Return code: 15

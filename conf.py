@@ -56,13 +56,14 @@ extensions = [
     "IPython.sphinxext.ipython_console_highlighting",
     "sphinx.ext.intersphinx",
     # 'sphinx.ext.autosectionlabel'
-    "myst_parser",
+    # "myst_parser",
     "sphinxext.opengraph",
     "sphinx_design",
     "sphinx_copybutton",
     "sphinx_togglebutton",
     "sphinxcontrib.youtube",
     "sphinx_simplepdf",
+    "myst_nb"
 ]
 
 myst_enable_extensions = [
@@ -118,7 +119,8 @@ exclude_patterns = [
     ".github",
     "README.md",
     "galleries/*",
-    ".pixi",
+    ".pixi/*",
+    "Parameter_studies_and_optimization/python-optimize/.pixi",
     "EXLCLUDED_*",
     ".pytest_cache",
 ]
@@ -172,6 +174,11 @@ myst_substitutions = {
     "CURRENT_YEAR": current_year,
     "caution_old_tutorial": caution_old_tutorial,
 }
+
+
+# Jupyter Notebook Configurations
+nb_execution_timeout = 150
+nb_execution_mode = "auto"
 
 
 no_index = r"""

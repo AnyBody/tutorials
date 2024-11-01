@@ -1,0 +1,8 @@
+load "BikeModel2D.main.any"
+classoperation Main.BikeParameters.SaddleHeight "Set Value" --value="0.654020840696"
+classoperation Main.BikeParameters.SaddlePos "Set Value" --value="-0.108944879519"
+operation Main.Study.InverseDynamics
+run
+classoperation Main.Study.Output.Pmet_total "Dump"
+classoperation Main.Study.Output.Abscissa.t "Dump"
+exit
