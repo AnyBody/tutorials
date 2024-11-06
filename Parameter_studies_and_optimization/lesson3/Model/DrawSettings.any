@@ -12,7 +12,7 @@ Colors = {
    AnyBodyBlue = {82/256,85/256,111/256};   //AnyBody standard blue
    AnyBodyYellow= {235/256,197/256,17/256}; //AnyBody standard yellow
    AnyBodyPaleYellow = {248/256,204/256,115/256}; //AnyBody standard pale yellow
- AnyBodyGrey = {153/256,153/256,153/256};    //AnyBody standard grey
+   AnyBodyGrey = {153/256,153/256,153/256};    //AnyBody standard grey
 
    Nodes = AnyBodyPaleYellow; 
    Segments =  AnyBodyPaleYellow; 
