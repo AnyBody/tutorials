@@ -3,7 +3,7 @@ name = "anybody-tutorial"
 version = "0.1.0"
 description = "Add a short description here"
 authors = ["Morten Enemark Lund <mel@anybodytech.com>"]
-channels = ["conda-forge", "anybody"]
+channels = ["conda-forge", "anybody/label/rc81"]
 platforms = ["win-64","linux-64"]
 
 [tasks]
@@ -11,6 +11,7 @@ clean = "rm -rf _build"
 linkcheck = {cmd="sphinx-build -M linkcheck . _build -q", depends-on = ["clean"]}
 build-pdf = {cmd="sphinx-build -M simplepdf . _build", depends-on = ["clean"]}
 build-html = "sphinx-build -M html . _build"
+build-html-future = "sphinx-build -M html . _build -t future_tutorials"
 build-html-all = "sphinx-build -M html . _build -a"
 html = {cmd= 'explorer .\_build\html\index.html', depends_on = ["build-html-all"]}
 pdf = {cmd= 'explorer .\_build\simplepdf\Agada-Documentation.pdf', depends_on = ["build-pdf"]}
@@ -19,21 +20,21 @@ livehtml = "sphinx-autobuild . _build --port=0  --open-browser -j=4"
 
 [dependencies]
 python = ">=3.11.6,<3.12"
-sphinxext-opengraph = ">=0.9.0,<0.10"
+sphinxext-opengraph = ">=0.9.1,<0.10"
 sphinx-copybutton = ">=0.5.2,<0.6"
-sphinxcontrib-youtube = ">=1.4.1,<1.5"
-linkify-it-py = ">=2.0.0,<2.1"
-ipython = ">=8.18.1,<8.19"
-make = ">=4.3,<5"
-sphinx-autobuild = ">=2021.3.14,<2021.4"
-sphinx-simplepdf = ">=1.6.0,<1.7"
-sphinx = ">=7.3.7,<7.4"
+sphinxcontrib-youtube = ">=1.4.1,<2"
+linkify-it-py = ">=2.0.3,<3"
+ipython = ">=8.29.0,<9"
+make = ">=4.4.1,<5"
+sphinx-autobuild = ">=2024.10.3,<2025"
+sphinx-simplepdf = ">=1.6.0,<2"
+sphinx = ">=8.1.3,<9"
 pygments_anyscript = ">=1.4.0,<2"
 sphinx-togglebutton = ">=0.3.2,<0.4"
 sphinx-design = ">=0.6.1,<0.7"
-jinja2 = ">=3.1.4,<3.2"
+jinja2 = ">=3.1.4,<4"
 tomli = ">=2.0.1,<2.1"
-pytest = ">=8.3.2,<9"
+pytest = ">=8.3.3,<9"
 myst-parser = ">=4.0.0,<5"
 sphinx-book-theme = ">=1.1.3,<2"
 myst-nb = ">=1.1.2,<2"
@@ -47,7 +48,7 @@ ipywidgets = ">=8.1.5,<9"
 pytest = "*"
 anypytools = "*"
 debugpy = "*"
-anybodycon = "8.1.0beta1.docmarker"
+anybodycon = "8.1.0beta1"
 
 [feature.test.target.win-64.tasks]
 pytest = "pytest"

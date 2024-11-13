@@ -17,7 +17,7 @@ Or you may be interested in knowing how the seat height and horizontal
 position influence the muscle effort and metabolism of the rider. This
 is precisely what we shall do in this tutorial. To make life a bit
 easier for you, we have prepared a bicycle model you can download and
-play around with. {download}`Please click here to download the zip file ParamBike.zip <Downloads/paramBike.zip>` and unpack it to some
+play around with. {download}`Please click here to download the zip file ParamBike.zip <Downloads/ParamBike.zip>` and unpack it to some
 pertinent place on your hard disk.
 
 The bicycle model is pretty much the {ref}`2D Bike <ammr:sphx_glr_auto_examples_Sports_plot_BikeModel2D.py>` that you may know from the
@@ -106,7 +106,7 @@ from the class tree. Place the cursor below the definition of the
 AnyParamStudy under Class List, right-click, and insert a template of the class. You
 should get the following result:
 
-```{literalinclude} Snippets\lesson1\2Dbike-1\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson1/2Dbike-1/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -115,7 +115,7 @@ should get the following result:
 As you can see, this requires a bit of additional specifications and
 general tidying up. Change the code to the following:
 
-```{literalinclude} Snippets\lesson1\2Dbike-2\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson1/2Dbike-2/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -135,7 +135,7 @@ study:
 Let us insert the necessary specifications to perform a parameter study
 on the saddle position of the bicycle:
 
-```{literalinclude} Snippets\lesson1\2Dbike-3\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson1/2Dbike-3/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -151,7 +151,7 @@ contain multiple studies and each study contains multiple operations.
 **Defining the parameters:**\
 The next specification deals with the parameters to vary:
 
-```{literalinclude} Snippets\lesson1\2Dbike-4\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson1/2Dbike-4/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -208,7 +208,7 @@ us to refer to computational results before they are actually made. The
 object is of class `AnyOutputFun`, and we shall add it to the existing
 `AnyBodyStudy`:
 
-```{literalinclude} Snippets\lesson1\2Dbike-4\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson1/2Dbike-4/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 2
 :end-before: //# END SNIPPET 2
@@ -228,7 +228,7 @@ We can now use the output function, `MaxAct()`, in our design measure simply
 by calling the function in the assignment of the `Val` member of the
 `AnyDesMeasure`:
 
-```{literalinclude} Snippets\lesson1\2Dbike-5\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson1/2Dbike-5/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -253,7 +253,7 @@ with one component for each `AnyDesVar` in an `AnyParamStudy`. We shall be
 modest at first and choose only five steps in each direction. And so,
 the final `AnyParamStudy` looks like this:
 
-```{literalinclude} Snippets\lesson1\2Dbike-6\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson1/2Dbike-6/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -310,7 +310,7 @@ the behavior of the model. The surface reveals that the highest and most
 backward position results in the lowest muscle activity. Why not try higher and more backward,
 then? It is very simple to do this:
 
-```{literalinclude} Snippets\lesson1\2Dbike-7\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson1/2Dbike-7/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -370,7 +370,7 @@ the sum of the individual muscle metabolisms will give us an estimate of
 the total metabolism involved in the bicycling process. It is fairly
 simple to add up the muscle metabolisms in the AnyBody study:
 
-```{literalinclude} Snippets\lesson1\2Dbike-7\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson1/2Dbike-7/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 2
 :end-before: //# END SNIPPET 2
@@ -393,7 +393,7 @@ first one is an `AnyOutputFun` as we have seen it before. The purpose of
 this function is to make it semantically possible to refer to the output
 of the `Pmet_total` variable before is has actually been computed:
 
-```{literalinclude} Snippets\lesson1\2Dbike-8\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson1/2Dbike-8/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -403,7 +403,7 @@ The second missing element is the actual integration of the function.
 This we perform in the parameter study where we define the
 AnyDesMeasure:
 
-```{literalinclude} Snippets\lesson1\2Dbike-8\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson1/2Dbike-8/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 2
 :end-before: //# END SNIPPET 2

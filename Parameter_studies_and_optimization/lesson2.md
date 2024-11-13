@@ -109,7 +109,7 @@ study will help us a lot because an optimization study has almost
 exactly the same structure. So the first step would be to simply copy
 the parameter study:
 
-```{literalinclude} Snippets\lesson2\2Dbike1\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson2/2Dbike1/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -117,7 +117,7 @@ the parameter study:
 
 We proceed to change a few parameters and delete unnecessary lines:
 
-```{literalinclude} Snippets\lesson2\2Dbike2\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson2/2Dbike2/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -317,7 +317,7 @@ distance between the crank and the seat is not too small, for instance
 larger than 0.66 m. This can be formulated very nicely as a constraint
 like this:
 
-```{literalinclude} Snippets\lesson2\2Dbike3\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson2/2Dbike3/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1

@@ -3,11 +3,14 @@
 
 # Lesson 2: Controlling the Posture
 
-The script editor current shows the main file of the model, which has this line of code `Main = {}`. Any basic AnyScript contains a main file, which defines the model's structure and the operations to be performed on the model.
+The script editor currently shows the main file of the model, which includes the
+line of code `Main = {}`. Any basic AnyScript contains a main file that defines
+the model's structure and the operations to be performed on the model.
 
-The file "Mannequin.any" is included in the main file. This file determines the posture of the Standing Model, which is defined by the angles at the anatomical joints.
+The `Mannequin.any` file, included in the main file, determines the posture of
+the Standing Model by specifying the angles at the anatomical joints.
 
-Scroll down to the line which says `#include "Model\Mannequin.any"`.
+Scroll down to the line that says `#include "Model\Mannequin.any"`.
 
 ## Mannequin file structure
 
@@ -78,7 +81,10 @@ Simulation based analyses in AnyBody are termed "Studies".
 - **Kinematics**: Runs Kinematic analysis
 - **InverseDynamics**: Runs Inverse dynamic analysis
 
-To view all available operations in the model, click on "Open Operation Tree" and navigate to "Study" under "Main". For example, the "InitialConditions" operation runs only the first time step of Kinematics, which is useful for testing and debugging.
+To view all available operations in the model, click the "Open Operation Tree"
+button and navigate to "Main" > "Study". For example, the "InitialConditions"
+operation runs only the first time step of the kinematic analysis, which is
+useful for testing and debugging.
 
 ```{image} _static/lesson2/image2.png
 :alt: Operations drop down menu

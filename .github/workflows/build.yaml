@@ -3,7 +3,6 @@ name: Build Tutorials
 
 on:
   push:
-    branches: [ master ]
     tags: ["*"]
   pull_request:
     branches: [ master ]
@@ -64,16 +63,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        name: Checkout Tutorials
         with:
           fetch-depth: 0
           path: tutorials
       - uses: actions/checkout@v4
+        name: Checkout AMMR
         with:
           repository: anybody/ammr
           ref: master
           path: ammr
       
-      - shell: cmd
+      - name: Link AMMR
+        shell: cmd
         run: | 
             echo #include "%GITHUB_WORKSPACE%/ammr/libdef.any" > libdef.any
 
