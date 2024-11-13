@@ -81,12 +81,10 @@ A study has predefined properties that you can set, must set, or cannot modify.
 When you create a new model using `File` -> `New from Template...`, the system
 automatically inserts an AnyBodyStudy in the main file. It looks like this:
 
-```AnyScriptDoc
-// The study: Operations to be performed on the model
-AnyBodyStudy MyStudy = {
-   AnyFolder &Model = .MyModel;
-   Gravity = {0.0, -9.81, 0.0};
-};
+```{literalinclude} Snippets/introduction/snip.BasicMain-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 This study contains all the necessary elements. The first word after `AnyBodyStudy` defines the name of the study, which in this case is MyStudy. The last line `Gravity = {0.0, -9.81, 0.0};` assigns a value to the Gravity variable,
@@ -108,10 +106,11 @@ advanced user features. However, some properties are essential for all users:
 
 Let's take a closer look at the first line of the study:
 
-```AnyScriptDoc
-AnyFolder &Model = .MyModel;
+```{literalinclude} Snippets/introduction/snip.BasicMain-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
-
 
 Here, "AnyFolder" is a type definition. Unlike the predefined properties we
 discussed earlier, this line introduces a new property to the study. This is a

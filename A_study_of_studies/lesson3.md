@@ -91,37 +91,40 @@ In this section, we'll delve into the process of performing a kinematic analysis
 
 {download}`demo.SliderCrank3D.any <Downloads/Demo.SliderCrank3D.any>`
 
-
-
-:::{figure} _static/lesson3/image1.png
+```{image} _static/lesson3/image1.png
 :alt: demo.SliderCrank3D.any
-:scale: 50 %
-:::
+:class: bg-primary
+:align: center
+```
 
 Upon loading the `demo.SliderCrank3D.any` file and examining the {doc}`Model View <../Interface_features/lesson3>`, you'll notice a simple mechanism consisting of three segments. Initially, these segments are not correctly connected at their joints. However, running the Kinematics operation will rectify this, resulting in a fully assembled and operational model.
 
-:::{figure} _static/lesson3/image1a.png
+```{image} _static/lesson3/image1a.png
 :alt: demo.SliderCrank3D.any with kinematic solved
-:scale: 50 %
-:::
+:class: bg-primary
+:align: center
+```
 
 The Kinematics operation is essentially an analysis tool. It stores data during its run, allowing you to explore the results in the {doc}`Chart view <../Interface_features/lesson3>`. The data you can extract from the Kinematics study includes positions, velocities, and accelerations. 
 
 To view these results, expand the tree until you reach the Slider segment. Here, you can chart its acceleration by selecting the `rDDot` property.
 
-:::{figure} _static/lesson3/image2.png
+```{image} _static/lesson3/image2.png
 :alt: Chart view Acceleration
-:scale: 50 %
-:::
+:class: bg-primary
+:align: center
+```
 
 Take note of how the positional properties are named: `r` stands for position, `rDot` for velocity, and `rDDot` for acceleration. The terms "Dot" and "DDot" are derived from mathematical conventions, where a dot above a symbol indicates differentiation with respect to time. Hence, velocity is represented as $\dot{r}$, and acceleration as $\ddot{r}$. Feel free to explore the tree and familiarize yourself with the various data available.
 
 You might come across some results that seem unusual, like the one below:
 
-:::{figure} _static/lesson3/image3.png
+```{image} _static/lesson3/image3.png
 :alt: Shaft acceleration
-:scale: 50 %
-:::
+:class: bg-primary
+:align: center
+```
+
 You might be wondering why a smoothly running model would show such behavior.
 The key to understanding this lies in the y-axis. Notice that the values are
 around 1e-14, which is essentially zero. What you're seeing here is not a
@@ -130,7 +133,7 @@ errors.
 
 ## Final remarks
 
-Remember, kinematic analysis doesn't just find positions, it also calculates velocities and accelerations. Figuring out the positions is the trickiest part because it involves nonlinear equations. Once we have the positions, finding velocities and accelerations is easier because we're dealing with linear equations.
+**👉 Remember**, kinematic analysis doesn't just find positions, it also calculates velocities and accelerations. Figuring out the positions is the trickiest part because it involves nonlinear equations. Once we have the positions, finding velocities and accelerations is easier because we're dealing with linear equations.
 
 One of the unique things about the AnyBody Modeling System is its ability to handle closed kinematic chains. This is super important in biomechanics, where these chains pop up all the time. Think about activities like cycling, walking, or grabbing an object with both hands.
 

@@ -86,15 +86,22 @@ purpose, we have the lines:
 :end-before: //# END SNIPPET 1
 ```
 
-**They refer to two nodes that we created earlier, located on the `GlobalRef` and `UpperArm`
-segments. Notice the two dots in front of the names. They signify that
+They refer to two previously created nodes located on the `GlobalRef` and `UpperArm` segments, using their 
+**relative folder paths**. Notice the two dots in front of the names. They signify that
 the `GlobalRef` and `Segs` folders are defined two levels outside the folder
-we are writing into, in the model tree.**
+we are writing into, in the model tree.
 
 If you neglected the two dots, then AnyBody would search for the two objects in the "Shoulder" folder and fail
 to find them. This "dot" system is quite similar to the system you may
 know from directory structures in Dos, Windows, Unix, or just about any
 other computer operating system.
+
+:::{seealso}
+:class: dropdown
+**Absolute folder path** is another way to refer to objects in AnyScript and wil be used later in this tutorial. Absolute references are made by the complete name of an object. The complete name specifies all folders from the root, 
+i.e. from Main, and to the object like for instance:
+`Main.<foldername>.<subfoldername>.<objectname>`
+:::
 
 (reference-objects)=
 

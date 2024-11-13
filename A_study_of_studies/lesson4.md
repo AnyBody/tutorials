@@ -9,12 +9,11 @@ operation is similar to the `Kinematics` operation we've discussed before, but
 it goes a step further by calculating the forces in the system. This is also
 known as kinetic or dynamic analysis.
 
-:::{image} _static/lesson4/AnyBodyStudy.png
-:alt: AnyBodyStudy
-:scale: 50 %
-:::
-
-
+```{literalinclude} Snippets/lesson2/snip.arm2d-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
+```
 
 You might think that calculating forces in a rigid body mechanical system is
 straightforward. After all, isn't it just about setting up equilibrium equations
@@ -41,15 +40,16 @@ the system.
 
 To wrap up this tutorial on studies, let's put what we've learned into practice.
 Try running the `InverseDynamics` operations in the arm model,
-{download}`arm2d.any <Downloads/arm2d.zip>`, and the slider crank mechanism,
+{download}`arm2d.zip <Downloads/arm2d/arm2d.zip>`, and the slider crank mechanism,
 {download}`demo.SliderCrank3D.any <Downloads/Demo.SliderCrank3D.any>`. You'll
 see forces being calculated in both cases. Notice how the slider crank study
 uses the simpler `AnyMechStudy`, while the arm model uses `AnyBodyStudy`.
 
-:::{image} _static/lesson4/AnyBodyStudy-tree.png
-:alt: AnyBodyStudy model tree
-:scale: 50 %
-:::
+```{literalinclude} Snippets/lesson4/snip.SliderCrank3D-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
+```
 
 If you try to use `AnyMechStudy` in the arm model, the analysis will fail. This
 is because `AnyMechStudy` doesn't recognize the muscles as unknown forces. It

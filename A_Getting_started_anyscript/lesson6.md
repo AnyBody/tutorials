@@ -103,9 +103,12 @@ An STL (or other geometrical) object's axes are always oriented parallel to the 
 By visualizing the palm node's local reference system, you will realize that the dumbbell needs to be rotated 90 degrees
 about the local Y-axis.
 
-**Therefore to rotate the dumbbell by 90 degrees about the Y axis, you must rotate the "PalmNode" by 90 degrees w.r.t its parent
-frame, i.e. the "ForeArm". While the vector sRel denotes the "PalmNode's" relative location,you can add a rotation matrix
-ARel (optinal property) which will orient "PalmNode" w.r.t "ForeArm".**
+To rotate the dumbbell by 90 degrees around the Y-axis, adjust the orientation
+of the `PalmNode`, where the dumbbell is attached. The `sRel` vector specifies
+the position of the `PalmNode` relative to its parent frame, `ForeArm`. By
+adding the optional `ARel` property, you can set the orientation of the
+`PalmNode`. Set `ARel` to a rotation matrix that rotates 90 degrees around the
+Y-axis to correctly orient the dumbbell.
 
 You can use the `RotMat` function to generate the 3x3 rotation matrix:
 
@@ -132,4 +135,4 @@ The RGB property specifies the blend of colors Red, Green, and Blue on a normali
 ```
 
 This completes the Getting Started with AnyScript tutorial. The final
-result of your efforts is in {download}`demo.arm2d.any <Downloads/demo.arm2d.any>`.
+result of your efforts is in {download}`demo.arm2d.zip <Downloads/demo.arm2d.zip>`.

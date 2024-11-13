@@ -11,7 +11,7 @@ because a different solver is needed.
 In this tutorial we use an external optimizer together with AnyBody. The example
 is based on the model from the {doc}`previous lesson <lesson2>` but uses an
 optimizer from the [Scipy](https://scipy.org/) python library. The same
-could also have been achived with other optimization frameworks (like [NLopt](https://nlopt.readthedocs.io/en/latest/), or languages (like [MatLab](https://www.mathworks.com/products/matlab.html)).
+could also have been achived with other optimization frameworks (like [NLopt](https://nlopt.readthedocs.io/en/latest/), or languages like [MatLab](https://www.mathworks.com/products/matlab.html)).
 
 ## Requirements
 
@@ -209,7 +209,7 @@ In [10]: print(pmet)
 505.329399532772
 ```
 
-Now we get the time integral of the `Pmet_total` variable as as single value,
+Now we get the time integral of the `Pmet_total` variable as a single value,
 and we are now ready to define the optimization process.
 
 ## Setting up the optimization study

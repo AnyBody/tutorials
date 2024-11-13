@@ -30,16 +30,21 @@ behavior of the model. Some examples of applications are:
 
 %
 
-> ```{image} _static/intro/image1.gif
-> ```
->
-> Parameter study: Metabolic efficiency of a bicycle as a function of
-> seat height and seat horizontal position.
+
+```{figure} _static/intro/image1.gif
+:alt: Metabolic efficiency example
+:class: bg-primary
+:align: center
+
+Parameter study: Metabolic efficiency of a bicycle as a function of seat height and seat horizontal position.
+```
+
 
 This functionality is provided through two complementary
 {doc}`studies </A_study_of_studies/intro>`:
 
-The `AnyParamStudy` performs an exhaustive search of the variable
+**Parameter Study:** \
+The `AnyParamStudy` performs a parameter study, which is an exhaustive search of the variable
 space computing the model's reaction to every combination of the
 variables within a given interval. For instance, a parameter study could
 investigate the metabolic efficiency of a bicycle depending on the
@@ -52,12 +57,13 @@ is usually no problem to do, while a five parameter problem will lead to
 5^5 = 3125 analyses, which obviously is a more time-consuming
 undertaking, at least for larger models.
 
-The `AnyOptStudy` performs a systematic search within a parameter
+**Opimization Study:** \
+The `AnyOptStudy` performs an optimization study, which is a systematic search within a parameter
 space using optimization techniques of solutions that fulfill certain
 criteria. For instance, you could ask the study to find the saddle
 position that maximizes the metabolic efficiency of the bicycle while
 keeping the maximum muscle activity below a certain upper limit. The
-advantage of this study is that it does not need to compute al
+advantage of this study is that it does not need to compute all
 combinations of the parameters and therefore can handle spaces with
 multiple parameters within a reasonable time. The disadvantage is that
 it does not provide the overview of the design space that you get from a

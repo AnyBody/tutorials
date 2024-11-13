@@ -56,8 +56,8 @@ values. You will find the folder in the tree here:
 :align: center
 ```
 
-**Navigate to the "Right.Leg.JointReactionForce" folder
-by expanding the tree view like this**:
+**👉 Now** navigate to the "Right.Leg.JointReactionForce" folder
+by expanding the tree view like this:
 
 ```{image} _static/lesson3/image6.png
 :alt: Model tree forces

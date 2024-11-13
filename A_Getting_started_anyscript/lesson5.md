@@ -234,7 +234,7 @@ should see this:
 :::{note}
 :class: margin
 Applied forces do not have to be constant. They can change with time
-and other properties in the model.  Please refer to the {doc}`tutorial onforces <../The_mechanical_elements/intro>` for more
+and other properties in the model.  Please refer to the {doc}`tutorial on forces <../The_mechanical_elements/intro>` for more
 details.
 :::
 

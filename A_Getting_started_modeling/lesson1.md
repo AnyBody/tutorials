@@ -4,7 +4,7 @@
 # Lesson 1: Starting with a New Model
 
 In this tutorial, we will create a model of a single leg stepping on a
-pedal.
+pedal. This will be done by modifying an existing model template of a full human body.
 
 ## Creating a model from templates
 
@@ -89,7 +89,7 @@ parts that are imported from the AMMR, such as segments (bones), joints, muscles
 Information for scaling the size of the default human model is also stored here.
 In general, you won’t need to modify this information directly.
 
-The "Model" folder comes next this holds information specific to the application you're creating.
+The "Model" folder comes next which holds information specific to the application you're creating.
 In this case, this is the pedal model. The "Model" folder is sub-divided into three sub-folders:
 
 - **HumanModel** - This is a local reference to the "Main.HumanModel", located within the "Model" folder.

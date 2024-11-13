@@ -136,8 +136,8 @@ because it's defined to look exactly the same and is loaded exactly on top of th
 To solve this problem, you can change the initial/load time position of the two segments by adjusting
 r0 (translation w.r.t global frame at load-time) and Axes0 (rotation matrix w.r.t global frame at load-time).
 
-**Remember that your simulation, will only use these load-time positions as an initial guess, on the way to
-enforcing specified motions and constraints (such as joints between segments). More on this in the next lesson.**
+Remember that your simulation, will only use these load-time positions as an initial guess, on the way to
+enforcing specified motions and constraints (such as joints between segments). More on this in the next lesson.
 
 For now, let us first change `r0` - the global position of the segment at load-time.
 

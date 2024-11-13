@@ -7,9 +7,9 @@ The parameter study introduced in the preceding lesson provides a
 complete overview of the design space, but the study is only feasible
 when the problem has few independent parameters, preferably one or two.
 In the previous lesson we considered a problem with two parameters and 10
-steps in each direction of the design space leading to $5^2 = 25$
-analyses. If the problem had 10 parameters we would be facing $5^{10}$ or 9.7
-million analyses, which is an entirely different matter in terms of
+steps in each direction of the design space leading to $10^2 = 100$
+analyses. If the problem had 10 parameters we would be facing $10^{10}$ or 10 billion
+analyses, which is an entirely different matter in terms of
 computation times. The truth is that such so-called full factorial
 parameter studies are computationally infeasible when the problem has
 more than very few independent parameters. So what to do?
@@ -27,15 +27,19 @@ The AnyBody Modeling System provides a study to handle optimization
 problems. The mathematical definition of the problem it solves is as
 follows:
 
-Minimize
+Minimize the function
 
-$g_0(x_1..x_n)$
+\begin{gather*}
+g_0(x_1..x_n)
+\end{gather*}
 
-Subject to
+Subject to the following constraints
 
-$g_i(x_1..x_n) \leq 0 \\ \text{and} \\L_j \leq x_j \leq U_j$
+\begin{gather*}
+g_i(x_1..x_n) \leq 0 \\ \text{and} \\L_j \leq x_j \leq U_j
+\end{gather*}
 
-where $g_0$ is called the objective function, $x_j$, $j=1..n$ are the design variables, and $g_i$,
+where $g_0$ is called the objective function, $x_j$ for $j=1..n$ are the design variables, and $g_i$ for
 $i=1..m$ are the constraints. The definition of an optimization
 problem in AnyBody is therefore a question of appointing independent
 parameters as design variables and dependent parameters as the objective
@@ -60,10 +64,11 @@ proceed, let us briefly look at the properties of a typical
 musculoskeletal objective function and how the optimization algorithm
 solves the problem.
 
-```{image} _static/Optimization_studies/image1.gif
-```
-
-```{image} _static/Optimization_studies/image2.gif
+```{image} _static/Optimization_studies/image1.1.png
+:alt: Metabolic efficiency example
+:class: bg-primary
+:align: center
+:scale: 80%
 ```
 
 The two pictures above both show the result of a parameter study. The
@@ -93,91 +98,33 @@ it decides on a direction to take in step 1, but once the direction has
 been chosen, the line search in step 2 can be done with methods that do
 not predispose smoothness.
 
-## Adding the optimization class
+## Adding the Optimization Class
 
 Now that we know what to expect, we can proceed to the actual definition of the
 optimization study. If you didn't complete {doc}`lesson 1 <lesson1>`, download
-{download}`the finished parameter study model <Downloads/OptimBike2-final.zip>` to get started quickly.
+{download}`the finished parameter study model <Downloads/ParamBikeFinal.zip>` to get started quickly.
 
 The previous definition of the parameter
 study will help us a lot because an optimization study has almost
 exactly the same structure. So the first step would be to simply copy
 the parameter study:
 
-```AnyScriptDoc
-AnyParamStudy ParamStudy = {
-  Analysis = {
-    AnyOperation &Operation = ..Study.InverseDynamics;
-  };
-  nStep = {10,10};
-  AnyDesVar SaddleHeight = {
-    Val = Main.BikeParameters.SaddleHeight;
-      Min = 0.61;
-      Max = 0.69 /*+ 0.02*/;
-  };
-  AnyDesVar SaddlePos = {
-    Val = Main.BikeParameters.SaddlePos;
-      Min = -0.22 /*-0.03*/;
-      Max = -0.05;
-  };
-  AnyDesMeasure MaxAct = {
-    Val = max(..Study.MaxAct());
-  };
-  AnyDesMeasure Metab = {
-    Val = secint(..Study.Metabolism(),..Study.tArray);
-  };
-};
-
-§AnyParamStudy ParamStudy = {
-  Analysis = {
-    AnyOperation &Operation = ..Study.InverseDynamics;
-  };
-  nStep = {10,10};
-  AnyDesVar SaddleHeight = {
-    Val = Main.BikeParameters.SaddleHeight;
-      Min = 0.61;
-      Max = 0.69 /*+ 0.02*/;
-  };
-  AnyDesVar SaddlePos = {
-    Val = Main.BikeParameters.SaddlePos;
-      Min = -0.22 /*-0.03*/;
-      Max = -0.05;
-  };
-  AnyDesMeasure MaxAct = {
-    Val = max(..Study.MaxAct());
-  };
-  AnyDesMeasure Metab = {
-    Val = secint(..Study.Metabolism(),..Study.tArray);
-  };
-};§
+```{literalinclude} Snippets/lesson2/2Dbike1/BikeModel2D.main.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
-We proceed to change a few parameters:
+We proceed to change a few parameters and delete unnecessary lines:
 
-```AnyScriptDoc
-Any§Opt§Study §Opt§Study = {
-  Analysis = {
-    AnyOperation &Operation = ..Study.InverseDynamics;
-  };
-  AnyDesVar SaddleHeight = {
-    Val = Main.BikeParameters.SaddleHeight;
-      Min = 0.61;
-      Max = 0.69 /*+ 0.02*/;
-  };
-  AnyDesVar SaddlePos = {
-    Val = Main.BikeParameters.SaddlePos;
-      Min = -0.22 /*-0.03*/;
-      Max = -0.05;
-  };
-  AnyDesMeasure Metab = {
-    Val = secint(..Study.Metabolism(),..Study.tArray);
-    §Type = ObjectiveFun;§
-  };
-};
+```{literalinclude} Snippets/lesson2/2Dbike2/BikeModel2D.main.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
-Please notice that the `AnyDesMeasure MaxAct` was removed, and so was the
-entire line with the `nStep` specification. The optimization study does
+Please notice that the `AnyDesMeasure MaxAct` was removed, and so was the 
+line with the `nStep` specification. The optimization study does
 not use any particular step size but rather adapts its steps
 automatically to find the accurate position of the optimum. This is
 another advantage of optimization over a parameter study. Finally, we
@@ -186,24 +133,23 @@ is the objective function of the problem.
 
 This is the definition of an optimization problem that will vary the
 saddle height and horizontal position to minimize the metabolism. Let
-us run it and see what happens. Load the model in and please make sure
-that you have a Model View window open so that you can see the
-difference in the way the seat position is varied compared to the
-parameter study.
+us run it and see what happens. Loading the model should give you the following
+model view:
 
 ```{image} _static/Optimization_studies/runopt.png
+:alt: Loading the optimization study
+:class: bg-primary
+:align: center
 ```
 
-If the model loads you should get a screen picture similar to the one above this
-text.
+## Running the Optimization Study
 
-## Running the optimization study
-
-Select the `Main.OptStudy.Optimization` in the operation dropdown and
-then the Run button. The model starts cycling and after a few rounds you will
-notice the saddle position changing, but not in a systematic grid like in the
-parameters study. What you will see is gradual changes back and forth in
-different directions until the changes wear off and the position converges.
+Select `Main.OptStudy.Optimization` from the operation dropdown, click the Run button, 
+and ensure the model view is open. The model starts 
+cycling and after a few rounds you will notice the saddle position changing, 
+but not in a systematic grid like in the parameters study. What you will see 
+is gradual changes back and forth in different directions until the changes 
+wear off and the position converges.
 
 Every time you see the left-most number changing in the Output window it is
 an indication that the optimizer has picked a new optimization direction to try.
@@ -218,6 +164,9 @@ window. Do you still have the Chart window from the previous lesson
 with the Metabolism parameter study open? It should look like this:
 
 ```{image} _static/Optimization_studies/metab100.png
+:alt: Chart paramStudy 1
+:class: bg-primary
+:align: center
 ```
 
 If not, please run the ParamStudy again and plot the surface. When you
@@ -228,6 +177,9 @@ under Metab. This produces a simple 2-D graph showing the development of
 the metabolism over the 4 iterations:
 
 ```{image} _static/Optimization_studies/metabcon2.png
+:alt: Chart Opttudy 1
+:class: bg-primary
+:align: center
 ```
 
 The graph confirms that the vast majority of the improvement is obtained
@@ -244,6 +196,9 @@ changes.
 The optimal solution in the Model View looks like this:
 
 ```{image} _static/Optimization_studies/bikeopt2.png
+:alt: Final Model view
+:class: bg-primary
+:align: center
 ```
 
 Just above the `Metab` variable in the tree you can find the two
@@ -259,6 +214,9 @@ this window you will find panels listing series and data to be plotted.
 Please right-click in the series window and select "New":
 
 ```{image} _static/Optimization_studies/newseries.png
+:alt: Chart New Series
+:class: bg-primary
+:align: center
 ```
 
 This will give you a blank "Series 1". When you highlight it by clicking
@@ -270,6 +228,9 @@ and then expanding the `OptStudy` branch until the `SaddleHeight.Val` and
 `SaddlePos.Val`, respectively, can be selected:
 
 ```{image} _static/Optimization_studies/selectheight.png
+:alt: Chart select height
+:class: bg-primary
+:align: center
 ```
 
 Finally, in the `Value` field select `OptStudy.Metab.Val` and look carefully
@@ -279,13 +240,16 @@ the optimization process has taken through the design space to the
 minimum point. You can change the color of the line by clicking the second
 leftmost button (![chartsettings.png](_static/Optimization_studies/chartsettings.png)) in the toolbar directly over the graphics
 pane. This gives you access to all the settings and lets you control the
-appearance of graphs in detail. In the picture below we have selected
-`RGB = {1,0,0}`, i.e. red, for `Series1` and `Thickness = 4`:
+appearance of graphs in detail. Under Chart->Series->Series1->Lines the following
+parameters is set: `RGB = {1,0,0}`, i.e. red, and `Thickness = 4`.
 
 ```{image} _static/Optimization_studies/optpath2.png
+:alt: Chart OptPath 
+:class: bg-primary
+:align: center
 ```
 
-## Caveat when running Optimization studies
+## Caveat when Running Optimization Studies
 
 This plot illustrates the convergence history in the "landscape" of the
 objective function. Here we can see the reasons for the convergence
@@ -305,6 +269,9 @@ small 2 by 2 mm design area in the vicinity of the end-point of the fist
 optimization step.
 
 ```{image} _static/Optimization_studies/metabzoom2.png
+:alt: Chart Caveat
+:class: bg-primary
+:align: center
 ```
 
 This reveals a distinct (local) valley of
@@ -316,13 +283,21 @@ get stuck in there.
 An optimization process that gets stuck in this local minimum could have
 a convergence history like in the plots shown below
 
-![metabcon2_no_converge.gif](_static/Optimization_studies/image11.gif)
+```{image} _static/Optimization_studies/image11.gif
+:alt: Convergence history
+:class: bg-primary
+:align: center
+```
 
-![optpath2_no_converge.gif](_static/Optimization_studies/image12.gif)
+```{image} _static/Optimization_studies/image12.gif
+:alt: Convergence opt path
+:class: bg-primary
+:align: center
+```
 
-Notice how  how only the first
-iteration out of 7 provides significant improvement of the objective
-function. This step brings the design value down into to the valley. The
+Notice how only the first iteration out of 7 provides 
+significant improvement of the objective
+function. This step brings the design value down into the valley. The
 remaining iterations zigzags in the bottom of the valley without being
 able to get up and out and without providing any visible improvement.
 Finally, the convergence criterion is fulfilled. It can be mentioned
@@ -331,7 +306,7 @@ changes to be small.
 
 (optimization-contraint)=
 
-## Constrained optimization
+## Constrained Optimization
 
 In the beginning of this lesson, we mentioned that the optimization
 problem formulation also handles constraints. They can be used for all
@@ -342,16 +317,10 @@ distance between the crank and the seat is not too small, for instance
 larger than 0.66 m. This can be formulated very nicely as a constraint
 like this:
 
-```AnyScriptDoc
-AnyDesMeasure Metab = {
-  Val = secint(..Study.Metabolism(),..Study.tArray);
-  Type = ObjectiveFun;
-};
-
-§AnyDesMeasure SeatDist = {
-  Val = (.SaddleHeight.Val^2+.SaddlePos.Val^2)^0.5 - 0.66;
-  Type = GreaterThanZero;
-};§
+```{literalinclude} Snippets/lesson2/2Dbike3/BikeModel2D.main.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Notice that constraints are defined as `AnyDesMeasures` of type
@@ -382,12 +351,18 @@ click the run button. The optimization process will have the following
 convergence picture:
 
 ```{image} _static/Optimization_studies/metab2_constrained.png
+:alt: Metab value vs Steps
+:class: bg-primary
+:align: center
 ```
 
 If you alo re-run the parameter study, you can get this picture of the
 convergence:
 
 ```{image} _static/Optimization_studies/optpath2_constrained.png
+:alt: opt Study constrained
+:class: bg-primary
+:align: center
 ```
 
 We see that the result is indeed a compromise since the objective
@@ -400,6 +375,9 @@ constraint by plot the constraint value, i.e., the `SeatDist.Val`. This
 looks like:
 
 ```{image} _static/Optimization_studies/SeatDist2_constrained.png
+:alt: SeatDist vs Steps
+:class: bg-primary
+:align: center
 ```
 
 where it is obvious how the optimizer hits the constraint, bounces off,
@@ -414,6 +392,9 @@ from the crank and to achieve this it is further forward, see the
 picture below:
 
 ```{image} _static/Optimization_studies/BikeOpt2_constrained.png
+:alt: Final model view 2
+:class: bg-primary
+:align: center
 ```
 
 This completes the introduction to optimization studies.

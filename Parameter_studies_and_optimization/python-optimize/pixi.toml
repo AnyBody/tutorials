@@ -1,0 +1,14 @@
+[project]
+authors = ["Jacob Hilmar Adamsen <jha@anybodytech.com>"]
+channels = ["conda-forge"]
+description = "Add a short description here"
+name = "python-optimize"
+platforms = ["win-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = ">=3.12.7,<4"
+scipy = ">=1.14.1,<2"
+anypytools = ">=1.13.0,<2"
