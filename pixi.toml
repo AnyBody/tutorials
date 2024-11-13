@@ -11,6 +11,7 @@ clean = "rm -rf _build"
 linkcheck = {cmd="sphinx-build -M linkcheck . _build -q", depends-on = ["clean"]}
 build-pdf = {cmd="sphinx-build -M simplepdf . _build", depends-on = ["clean"]}
 build-html = "sphinx-build -M html . _build"
+build-html-future = "sphinx-build -M html . _build -t future_tutorials"
 build-html-all = "sphinx-build -M html . _build -a"
 html = {cmd= 'explorer .\_build\html\index.html', depends_on = ["build-html-all"]}
 pdf = {cmd= 'explorer .\_build\simplepdf\Agada-Documentation.pdf', depends_on = ["build-pdf"]}
