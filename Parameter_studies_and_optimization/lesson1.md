@@ -359,6 +359,8 @@ is that this bicycle model has a predefined ankle angle variation
 whereas a real human can compensate for a higher seat by letting the
 ankle operate in a more plantar-flexed position.
 
+### Calculating the metabolism of the muscles with integrals
+
 Before we finish this section, let us take a look at a particularly
 important feature of AnyScript mathematics: The ability to compute
 integral properties. AnyBody has a simple way of approximating the
