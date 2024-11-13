@@ -317,7 +317,7 @@ distance between the crank and the seat is not too small, for instance
 larger than 0.66 m. This can be formulated very nicely as a constraint
 like this:
 
-```{literalinclude} Snippets\lesson2\2Dbike3\BikeModel2D.main.any
+```{literalinclude} Snippets/lesson2/2Dbike3/BikeModel2D.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
