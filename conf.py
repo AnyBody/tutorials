@@ -183,6 +183,13 @@ myst_substitutions = {
 # Jupyter Notebook Configurations
 nb_execution_timeout = 150
 nb_execution_mode = "auto"
+nb_execution_excludepatterns = [
+    # Exclude the parameter opt from automatic execution.
+    # It will not run on linux machines since it needs the  AnyBody
+    # conda package
+    'Parameter_studies_and_optimization/lesson3/lesson3.ipynb'
+]
+
 
 
 no_index = r"""
