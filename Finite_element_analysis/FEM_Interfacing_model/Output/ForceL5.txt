@@ -1,0 +1,386 @@
+//# BEGIN SNIPPET 1
+Environment:
+ReferenceFrame=Global Model Frame;
+Gravity=  0.000000000000000e+00; -9.810000000000000e+00;  0.000000000000000e+00;
+Segments(1):
+Segment[0] type="string" value="Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg":
+AMesh=  1.000000000000000e+00,  0.000000000000000e+00,  0.000000000000000e+00;  0.000000000000000e+00,  1.000000000000000e+00,  0.000000000000000e+00;  0.000000000000000e+00,  0.000000000000000e+00,  1.000000000000000e+00;
+rMesh=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+
+TimeSamples:
+===================== Start of time-step =====================
+TimeSample[0]:
+t=  5.000000000000000e-01;
+Segment[0]:
+Name=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+m=  2.085000000000000e+00;
+Jmatrix=  1.076422714301704e-03, -7.332097576478196e-04,  1.911851423105570e-16; -7.332097576478196e-04,  8.034512626542353e-03,  1.992729550736324e-17;  1.911851423105570e-16,  1.992729550736324e-17,  8.110935340844058e-03;
+rCoM=  6.325230626546827e-02;  1.098926215155758e+00; -2.386373141289979e-04;
+r=  4.865335458081832e-03;  1.097710909584885e+00; -1.663913853632597e-04;
+Axes=  9.965544636569539e-01,  8.293504305365564e-02,  9.897469826339717e-04; -8.294094866470571e-02,  9.964835064044859e-01,  1.189203508319292e-02; -1.020881717920044e-10, -1.193315119779869e-02,  9.999287974163413e-01;
+rDot=  6.872245284238312e-04; -3.207848628296275e-06;  8.339651864885702e-05;
+Omega=  5.960661522872913e-03; -4.960922250038534e-04; -7.355636724610952e-04;
+rDDot=  5.417975149862113e-03; -6.404265081875947e-05; -3.917335883004452e-03;
+OmegaDot= -2.799872963651042e-01;  2.329828746699431e-02; -5.802481255161404e-03;
+
+Forces(23):
+Force[0]:
+Name=Main.HumanModel.BodyModel.Trunk.JointMuscles.L5SacrumJnt.Extension.Object.Muscle.PosMuscle;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyMuscleGeneric;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  5.383071658530822e-02;  1.085219905771958e+00; -6.630414155105627e-05;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(1):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  1.052447049232654e-02;  1.264538645205539e-01;  4.470381474715751e+01;
+...
+//# END SNIPPET 1
+
+Force[1]:
+Name=Main.HumanModel.BodyModel.Trunk.JointMuscles.L5SacrumJnt.Extension.Object.Muscle.NegMuscle;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyMuscleGeneric;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  5.383071658530822e-02;  1.085219905771958e+00; -6.630414155105627e-05;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(1):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]= -8.815128895659180e-18; -1.059157433065773e-16; -3.744320338122303e-14;
+
+
+Force[2]:
+Name=Main.HumanModel.BodyModel.Trunk.JointMuscles.L5SacrumJnt.LateralBend.Object.Muscle.PosMuscle;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyMuscleGeneric;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  5.383071658530822e-02;  1.085219905771958e+00; -6.630414155105627e-05;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(1):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  4.665398570435100e-13; -3.882904521955477e-14; -4.776533364786898e-23;
+
+
+Force[3]:
+Name=Main.HumanModel.BodyModel.Trunk.JointMuscles.L5SacrumJnt.LateralBend.Object.Muscle.NegMuscle;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyMuscleGeneric;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  5.383071658530822e-02;  1.085219905771958e+00; -6.630414155105627e-05;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(1):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]= -7.056880934498185e+00;  5.873280594954383e-01;  7.224983401968061e-10;
+
+
+Force[4]:
+Name=Main.HumanModel.BodyModel.Trunk.JointMuscles.L5SacrumJnt.AxialRotation.Object.Muscle.PosMuscle;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyMuscleGeneric;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  5.383071658530822e-02;  1.085219905771958e+00; -6.630414155105627e-05;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(1):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  5.164896344720577e-14;  6.205741059801824e-13; -1.767580068082793e-15;
+
+
+Force[5]:
+Name=Main.HumanModel.BodyModel.Trunk.JointMuscles.L5SacrumJnt.AxialRotation.Object.Muscle.NegMuscle;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyMuscleGeneric;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  5.383071658530822e-02;  1.085219905771958e+00; -6.630414155105627e-05;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(1):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]= -7.184143245640852e-01; -8.631912383787313e+00;  2.458625993574202e-02;
+
+
+Force[6]:
+Name=Main.HumanModel.BodyModel.Trunk.JointMuscles.L4L5Jnt.Extension.Object.Muscle.PosMuscle;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyMuscleGeneric;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  6.376423469413976e-02;  1.117514182908131e+00; -4.602085348264475e-04;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L4L5JntNode;
+Components(1):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]= -3.937265776241382e-02; -4.730714370890187e-01; -3.977769573258239e+01;
+
+
+Force[7]:
+Name=Main.HumanModel.BodyModel.Trunk.JointMuscles.L4L5Jnt.Extension.Object.Muscle.NegMuscle;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyMuscleGeneric;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  6.376423469413976e-02;  1.117514182908131e+00; -4.602085348264475e-04;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L4L5JntNode;
+Components(1):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  4.680050189611802e-17;  5.623186735851829e-16;  4.728195225705782e-14;
+
+
+Force[8]:
+Name=Main.HumanModel.BodyModel.Trunk.JointMuscles.L4L5Jnt.LateralBend.Object.Muscle.PosMuscle;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyMuscleGeneric;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  6.376423469413976e-02;  1.117514182908131e+00; -4.602085348264475e-04;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L4L5JntNode;
+Components(1):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]= -4.428360784125398e-13;  3.685623394000214e-14;  4.536463089304584e-23;
+
+
+Force[9]:
+Name=Main.HumanModel.BodyModel.Trunk.JointMuscles.L4L5Jnt.LateralBend.Object.Muscle.NegMuscle;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyMuscleGeneric;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  6.376423469413976e-02;  1.117514182908131e+00; -4.602085348264475e-04;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L4L5JntNode;
+Components(1):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  7.243286571608815e+00; -6.028421743203003e-01; -7.420105040933012e-10;
+
+
+Force[10]:
+Name=Main.HumanModel.BodyModel.Trunk.JointMuscles.L4L5Jnt.AxialRotation.Object.Muscle.PosMuscle;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyMuscleGeneric;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  6.376423469413976e-02;  1.117514182908131e+00; -4.602085348264475e-04;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L4L5JntNode;
+Components(1):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]= -4.756325726953617e-14; -5.714834120156269e-13;  6.843663662053824e-15;
+
+
+Force[11]:
+Name=Main.HumanModel.BodyModel.Trunk.JointMuscles.L4L5Jnt.AxialRotation.Object.Muscle.NegMuscle;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyMuscleGeneric;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  6.376423469413976e-02;  1.117514182908131e+00; -4.602085348264475e-04;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L4L5JntNode;
+Components(1):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  7.485593376315671e-01;  8.994111608917096e+00; -1.077068441467191e-01;
+
+
+Force[12]:
+Name=Main.HumanModel.BodyModel.Trunk.DiscStiffness.L5SacrumDiscMoment;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyForce;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  5.383071658530822e-02;  1.085219905771958e+00; -6.630414155105627e-05;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(3):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+
+
+Force[13]:
+Name=Main.HumanModel.BodyModel.Trunk.DiscStiffness.L4L5DiscMoment;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyForce;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  6.376423469413976e-02;  1.117514182908131e+00; -4.602085348264475e-04;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L4L5JntNode;
+Components(3):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+
+//# BEGIN SNIPPET 2
+Force[14]:
+Name=Main.HumanModel.BodyModel.Trunk.JointsLumbar.L5SacrumJnt.Constraints.Reaction;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnySphericalJoint.AnyKinEq.AnyReacForce;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  5.383071658530822e-02;  1.085219905771958e+00; -6.630414155105627e-05;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(3):
+F[0]= -4.047099577040779e+01;  3.368308411649852e+00;  4.143505818417398e-09;
+M[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[1]=  4.034949684340963e+01;  4.848084309754679e+02; -1.380878949303268e+00;
+M[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[2]=  3.250957444606481e-04;  3.906098008085889e-03;  1.380878966410157e+00;
+M[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+//# END SNIPPET 2
+
+Force[15]:
+Name=Main.HumanModel.BodyModel.Trunk.JointsLumbar.L4L5Jnt.Constraints.Reaction;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnySphericalJoint.AnyKinEq.AnyReacForce;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  6.376423469413976e-02;  1.117514182908131e+00; -4.602085348264475e-04;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L4L5JntNode;
+Components(3):
+F[0]=  3.879168199584341e+01; -3.228542967163284e+00; -3.973863988487123e-09;
+M[0]= -1.894272835195209e-14; -2.276012129312538e-13;  2.427009148517539e-13;
+F[1]= -3.865368392808426e+01; -4.644328510348597e+02;  5.561705133104396e+00;
+M[1]= -2.759530731716482e-12;  2.294158027819337e-13; -2.117935638807516e-14;
+F[2]= -5.516667484801657e-03; -6.628401442253525e-02; -5.573419046091280e+00;
+M[2]=  3.426242753646219e-14; -2.597420944883753e-15; -3.022728495629447e-18;
+
+
+Force[16]:
+Name=Main.HumanModel.BodyModel.Trunk.JointsLumbar.SpineRhythmDrvFlexion.Reaction;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyKinMotion.AnyReacForce;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  5.383071658530822e-02;  1.085219905771958e+00; -6.630414155105627e-05;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(6):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[3]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[3]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[4]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[4]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[5]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[5]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+
+
+Force[17]:
+Name=Main.HumanModel.BodyModel.Trunk.JointsLumbar.SpineRhythmDrvFlexion.Reaction;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyKinMotion.AnyReacForce;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  6.376423469413976e-02;  1.117514182908131e+00; -4.602085348264475e-04;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L4L5JntNode;
+Components(6):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[3]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[3]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[4]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[4]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[5]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[5]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+
+
+Force[18]:
+Name=Main.HumanModel.BodyModel.Trunk.JointsLumbar.SpineRhythmDrvRotation.Reaction;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyKinMotion.AnyReacForce;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  5.383071658530822e-02;  1.085219905771958e+00; -6.630414155105627e-05;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(6):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[3]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[3]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[4]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[4]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[5]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[5]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+
+
+Force[19]:
+Name=Main.HumanModel.BodyModel.Trunk.JointsLumbar.SpineRhythmDrvRotation.Reaction;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyKinMotion.AnyReacForce;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  6.376423469413976e-02;  1.117514182908131e+00; -4.602085348264475e-04;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L4L5JntNode;
+Components(6):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[3]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[3]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[4]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[4]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[5]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[5]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+
+
+Force[20]:
+Name=Main.HumanModel.BodyModel.Trunk.JointsLumbar.SpineRhythmDrvLatBending.Reaction;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyKinMotion.AnyReacForce;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  5.383071658530822e-02;  1.085219905771958e+00; -6.630414155105627e-05;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L5SacrumJntNode;
+Components(6):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[3]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[3]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[4]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[4]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[5]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[5]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+
+
+Force[21]:
+Name=Main.HumanModel.BodyModel.Trunk.JointsLumbar.SpineRhythmDrvLatBending.Reaction;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyFolder.AnyKinMotion.AnyReacForce;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  6.376423469413976e-02;  1.117514182908131e+00; -4.602085348264475e-04;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg.L4L5JntNode;
+Components(6):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[2]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[3]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[3]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[4]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[4]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[5]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[5]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+
+
+Force[22]:
+Name=Main.Model.ModelEnvironmentConnection.Drivers.CoMDriver.Reaction;
+Class=AnyMainFolder.AnyFolder.AnyFolder.AnyFolder.AnyKinEqSimpleDriver.AnyReacForce;
+SegmentName=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+SegmentID=0;
+Pos=  4.865335458081832e-03;  1.097710909584885e+00; -1.663913853632597e-04;
+RefFrame=Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+Components(2):
+F[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[0]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+F[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+M[1]=  0.000000000000000e+00;  0.000000000000000e+00;  0.000000000000000e+00;
+
+
+
+
+====================== End of time-step ======================
+
+
