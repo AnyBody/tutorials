@@ -192,6 +192,7 @@ nb_execution_excludepatterns = [
 
 
 
+
 no_index = r"""
 .. meta::
    :name=robots content=noindex: \ 
@@ -455,6 +456,10 @@ ogp_use_first_image = True  # if not found defaults to 'ogp_image'
 
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
+linkcheck_request_headers = {
+    r'https://docs.github.com/': {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; '
+                                                'rv:24.0) Gecko/20100101 Firefox/24.0'}
+}
 linkcheck_ignore = [
     r".*linkcheck_ignore",
     "https://doi.org/10.1115/1.4037100",  # asme.org prevents the linkcheck
