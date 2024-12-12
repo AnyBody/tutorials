@@ -469,6 +469,7 @@ linkcheck_ignore = [
     "https://doi.org/10.1080/10255840802459412",  # tandfonline sometimes blocks linkcheck
     "https://doi.org/10.1080/23335432.2014.993706",  # tandfonline sometimes blocks linkcheck
     "https://anyscript.org/tutorials/dev/",  # The dev sides can sometimes be missing.
+    "https://www.mathworks.com/products/matlab.html",  # Mathworks sometimes blocks linkcheck
 ]
 
 linkcheck_allowed_redirects = {
