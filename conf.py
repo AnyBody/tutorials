@@ -56,13 +56,14 @@ extensions = [
     "IPython.sphinxext.ipython_console_highlighting",
     "sphinx.ext.intersphinx",
     # 'sphinx.ext.autosectionlabel'
-    "myst_parser",
+    # "myst_parser",
     "sphinxext.opengraph",
     "sphinx_design",
     "sphinx_copybutton",
     "sphinx_togglebutton",
     "sphinxcontrib.youtube",
     "sphinx_simplepdf",
+    "myst_nb"
 ]
 
 myst_enable_extensions = [
@@ -118,7 +119,8 @@ exclude_patterns = [
     ".github",
     "README.md",
     "galleries/*",
-    ".pixi",
+    ".pixi/*",
+    "Parameter_studies_and_optimization/python-optimize/.pixi",
     "EXLCLUDED_*",
     ".pytest_cache",
 ]
@@ -176,6 +178,19 @@ myst_substitutions = {
     "CURRENT_YEAR": current_year,
     "caution_old_tutorial": caution_old_tutorial,
 }
+
+
+# Jupyter Notebook Configurations
+nb_execution_timeout = 150
+nb_execution_mode = "auto"
+nb_execution_excludepatterns = [
+    # Exclude the parameter opt from automatic execution.
+    # It will not run on linux machines since it needs the  AnyBody
+    # conda package
+    'Parameter_studies_and_optimization/lesson3/lesson3.ipynb'
+]
+
+
 
 
 no_index = r"""
@@ -441,6 +456,10 @@ ogp_use_first_image = True  # if not found defaults to 'ogp_image'
 
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
+linkcheck_request_headers = {
+    r'https://docs.github.com/': {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; '
+                                                'rv:24.0) Gecko/20100101 Firefox/24.0'}
+}
 linkcheck_ignore = [
     r".*linkcheck_ignore",
     "https://doi.org/10.1115/1.4037100",  # asme.org prevents the linkcheck
@@ -450,6 +469,7 @@ linkcheck_ignore = [
     "https://doi.org/10.1080/10255840802459412",  # tandfonline sometimes blocks linkcheck
     "https://doi.org/10.1080/23335432.2014.993706",  # tandfonline sometimes blocks linkcheck
     "https://anyscript.org/tutorials/dev/",  # The dev sides can sometimes be missing.
+    "https://www.mathworks.com/products/matlab.html",  # Mathworks sometimes blocks linkcheck
 ]
 
 linkcheck_allowed_redirects = {
