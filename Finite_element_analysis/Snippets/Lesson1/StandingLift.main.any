@@ -1,4 +1,4 @@
-#include "../libdef.any"
+#include "../../../libdef-ammr4.any"
 
 //class template for conditional contact
 #include "<ANYBODY_PATH_MODELUTILS>\FrictionContactMuscles\ConditionalContactClass.any"
@@ -52,10 +52,12 @@ Main = {
       #include "Model/JointsAndDrivers.any"
     };
     
-    #ifdef FEA_OUTPUT
-      // this block replaces an intact L5 geometry with a simplified one
-      #include "Model/L5Modifications.any"
-    #endif
+//# BEGIN SNIPPET 2
+// #ifdef FEA_OUTPUT
+  // this block replaces an intact L5 geometry with a simplified one
+  // #include "Model/L5Modifications.any"
+// #endif
+//# END SNIPPET 2
   };
   AnyBodyStudy Study = {
     AnyFolder &Model = .Model;
@@ -83,7 +85,7 @@ Main = {
     FormatStr = "";
     };*/
     AllSegmentsInStudyOnOff = Off;
-    AnySeg &L5Seg = Main.HumanModel.BodyModel.Trunk.SegmentsLumbar.L5Seg;
+    Segments = {&Main.HumanModel.BodyModel.Trunk.Segments.L5Seg};
   };    
 #endif
 //# END SNIPPET 1

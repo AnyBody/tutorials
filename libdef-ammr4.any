@@ -1,0 +1,7 @@
+#ifpathexists "../libdef.any"
+#include "../libdef-ammr4.any"
+#else
+#ifpathexists "<ANYBODY_PATH_INSTALLDIR>/AMMR/libdef.any"
+#include "<ANYBODY_PATH_INSTALLDIR>/AMMR/libdef.any"
+#endif
+#endif

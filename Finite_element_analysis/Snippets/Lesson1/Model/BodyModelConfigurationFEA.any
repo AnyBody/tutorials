@@ -9,8 +9,9 @@
 // #path HTML_DOC "<AMMR_PATH_DOC>/bm_config/index.html"
 // -----------------------------------------------------------------------------------
 
+
 //# BEGIN SNIPPET 1
-   // switch the muscles off for simplicity
+// switch the muscles off for simplicity
 #define BM_LEG_MUSCLES_RIGHT OFF
 #define BM_LEG_MUSCLES_LEFT OFF
 
