@@ -77,7 +77,7 @@ jobs:
         name: Checkout AMMR4
         with:
           repository: anybody/ammr4-beta
-          ref: master
+          ref: ammr4-beta
           path: ammr4
         
         
