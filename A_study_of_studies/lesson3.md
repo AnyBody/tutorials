@@ -17,15 +17,10 @@ So, get ready, and let's dive deeper into...
 ::::{dropdown} The long explanation -- *tl;dr*
 :open:
 
-:::{note}
-:class: margin 
-The physics term "rigid body" is called a "segment" in
-AnyBody to avoid confusion with the layman/physiological term for "body". 
-::: 
-
 An AnyBody model is essentially a collection of rigid segments, which you can
 visualize as potatoes floating in space. In the context of AnyBody, we refer to
-these "rigid bodies" as "segments".
+these "rigid bodies" as "segments". The physics term "rigid body" is called a 
+"segment" in AnyBody to avoid confusion with the layman/physiological term for "body". 
 
 Each segment can move in six different directions, or degrees of freedom: three
 movements along the coordinate axes and three rotations about the same axes. If

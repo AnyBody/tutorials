@@ -6,7 +6,8 @@
 :::{note} The AnyBody software comes with an inbuilt model repository - The
 AnyBody Managed Model Repository (AMMR). This tutorial starts with unpacking a
 local version of the AMMR. You can skip to {doc}`lesson 1 <lesson1>` if you have
-already done this. :::
+already done this. 
+:::
 
 ## Goals for this tutorial
 

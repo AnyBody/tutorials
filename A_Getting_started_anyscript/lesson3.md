@@ -102,11 +102,14 @@ the "Shoulder" folder and fail to find them. This "dot" system is quite similar
 to the system you may know from directory structures in Dos, Windows, Unix, or
 just about any other computer operating system.
 
-:::{seealso} :class: dropdown **Absolute folder path** is another way to refer
+:::{seealso} 
+:class: dropdown 
+**Absolute folder path** is another way to refer
 to objects in AnyScript and wil be used later in this tutorial. Absolute
 references are made by the complete name of an object. The complete name
 specifies all folders from the root, i.e. from Main, and to the object like for
-instance: `Main.<foldername>.<subfoldername>.<objectname>` :::
+instance: `Main.<foldername>.<subfoldername>.<objectname>` 
+:::
 
 (reference-objects)=
 
@@ -134,11 +137,13 @@ We then have:
 :end-before: //# END SNIPPET 1
 ```
 
-:::{note} Every node on a rigid body segment has its own reference frame which
+:::{note} 
+Every node on a rigid body segment has its own reference frame which
 moves along with the segment. By default, these coordinate systems are parallel
 to the segment frame. However, the relative orientations between these two
 frames can be altered by the user. Check the {literal}`ARel` property and
-AnyRefNode object in the AnyScript Reference Manual for more information. :::
+AnyRefNode object in the AnyScript Reference Manual for more information. 
+:::
 
 The AnyBody Modeling System is always three-dimensional, even when our model is
 two dimensional. The property `Axis = z` simply specifies that both segments
@@ -151,10 +156,12 @@ these axes. The out-of-plane relative orientation of the two segments can be
 adjusted by rotating the reference frames of the nodes being connected. This is
 relevant if you want one of the segments to rotate about some skewed axis.
 
-:::{caution} The first of the two nodes declared in the joint (in this case
+:::{caution} 
+The first of the two nodes declared in the joint (in this case
 `GroundNode`) becomes the default reference frame for the joint. When directly
 accessing the post-simulation values of constraint reaction forces etc., you
-must remember to interpret them in the joint’s default reference frame. :::
+must remember to interpret them in the joint’s default reference frame. 
+:::
 
 ## Creating a revolute elbow joint
 
