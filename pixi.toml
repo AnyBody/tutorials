@@ -50,6 +50,7 @@ pytest = "*"
 pytest-xdist = "*"
 anypytools = "*"
 debugpy = "*"
+pytest-split = "*"
 anybodycon = "==8.1.0beta2"
 
 [feature.test.target.win-64.tasks]

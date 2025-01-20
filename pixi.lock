@@ -837,6 +837,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/pyphen-0.17.0-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/pysocks-1.7.1-pyh09c184e_7.conda
       - conda: https://prefix.dev/conda-forge/noarch/pytest-8.3.4-pyhd8ed1ab_1.conda
+      - conda: https://prefix.dev/conda-forge/noarch/pytest-split-0.10.0-pyhff2d567_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/pytest-xdist-3.6.1-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/win-64/python-3.11.11-h3f84c4b_1_cpython.conda
       - conda: https://prefix.dev/conda-forge/noarch/python-dateutil-2.9.0.post0-pyhff2d567_1.conda
@@ -3855,6 +3856,16 @@ packages:
   license_family: MIT
   size: 259195
   timestamp: 1733217599806
+- conda: https://prefix.dev/conda-forge/noarch/pytest-split-0.10.0-pyhff2d567_0.conda
+  sha256: 2de536333c132df88358d3373a0cebc0280b958c59d4f54a1d56740f3aadae09
+  md5: 3bd32c44526b455aa146d8fdb27a65b3
+  depends:
+  - pytest >=5.0.0,<9.0.0
+  - python >=3.9
+  license: MIT
+  license_family: MIT
+  size: 16922
+  timestamp: 1732030924464
 - conda: https://prefix.dev/conda-forge/noarch/pytest-xdist-3.6.1-pyhd8ed1ab_1.conda
   sha256: fb35da93084d653b86918c200abb2f0b88aceb3b0526c6aaa21b844f565ae237
   md5: 59aad4fb37cabc0bacc73cf344612ddd
