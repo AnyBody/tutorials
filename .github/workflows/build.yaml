@@ -36,7 +36,7 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.8.1
         with:
           cache: true
-          cache-write: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
+          cache-write: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && github.ref_name == 'master' }}
         
       - run: pixi run sphinx-build -M linkcheck . _build -W --keep-going -a -q 
       
