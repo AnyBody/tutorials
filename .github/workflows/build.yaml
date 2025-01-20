@@ -73,12 +73,20 @@ jobs:
           repository: anybody/ammr
           ref: master
           path: ammr
-      
+      - uses: actions/checkout@v4
+        name: Checkout AMMR4
+        with:
+          repository: anybody/ammr4-beta
+          ref: ammr4-beta
+          path: ammr4
+        
+        
+        
       - name: Link AMMR
         shell: cmd
         run: | 
             echo #include "%GITHUB_WORKSPACE%/ammr/libdef.any" > libdef.any
-
+            echo #include "%GITHUB_WORKSPACE%/ammr4/libdef.any" > libdef-ammr4.any
           
       - uses: prefix-dev/setup-pixi@v0.8.1
         with:

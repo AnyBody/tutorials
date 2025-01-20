@@ -1,0 +1,99 @@
+#include "../../../libdef-ammr4.any"
+
+//class template for conditional contact
+#include "<ANYBODY_PATH_MODELUTILS>\FrictionContactMuscles\ConditionalContactClass.any"
+#include "<ANYBODY_PATH_MODELUTILS>\FrictionContactMuscles\ConditionalContactFootPlaneClass.any"
+
+/**
+This application can be a good starting point for new applications involving 
+the entire body, doing lifts from a standing posture. The model uses artificial 
+muscles between the feet and the floor for creating non-sticking boundary conditions.
+Similarly there are non-sticking boundary conditions between the hands and the box.
+The drivers for the model are listed in the file "JointsAndDrivers.any".
+
+Please note that this model can also output computed forces to be used by FEA. It is also
+used by FEA tutorial.
+*/
+Main = {
+  // ----------------------------------------------------------
+  // Path to draw settings
+  // ----------------------------------------------------------
+  #include "Model/DrawSettings.any"
+  
+  // ----------------------------------------------------------
+  // Body Model Configuration
+  // ----------------------------------------------------------
+  #ifdef FEA_OUTPUT
+  #include "Model/BodyModelConfigurationFEA.any"
+  #else
+  #include "Model/BodyModelConfiguration.any"
+  #endif
+
+  
+  // The Mannequin file specifies load-time positions for all the segments
+  // in the HumanModel. This is important for the model's ablity to resolve
+  // all the kinematic constraints when the model is analyzed.
+  // The mannequin file also drives those degrees of freedom of the human 
+  // model that are not governed by problem-specific drivers at run time.    
+  #include "Model/Mannequin.any" 
+
+  // Model of the human body to be used for the analysis  
+  #include "<ANYBODY_PATH_BODY>/HumanModel.any"
+
+  /// The actual model where all components are assembled  
+  AnyFolder Model ={
+    /// Body model without default drivers
+    AnyFolder &BodyModel=.HumanModel.BodyModel;
+    /// Reference to the mannequin folder (used by drivers)
+    AnyFolder &Mannequin =.HumanModel.Mannequin;  
+    
+    #include "Model/Environment.any"   
+    AnyFolder ModelEnvironmentConnection = {
+      #include "Model/JointsAndDrivers.any"
+    };
+    
+//# BEGIN SNIPPET 2
+// #ifdef FEA_OUTPUT
+  // this block replaces an intact L5 geometry with a simplified one
+  // #include "Model/L5Modifications.any"
+// #endif
+//# END SNIPPET 2
+  };
+  AnyBodyStudy Study = {
+    AnyFolder &Model = .Model;
+   
+    Gravity = {0.0, -9.81, 0.0};
+    
+//# BEGIN SNIPPET 1
+#ifndef FEA_OUTPUT
+// default values for the StandingLift example
+  tEnd = 1.0;
+  nStep = 30;
+#else
+// single step for the StandingLiftFEA example
+  tStart = 0.5;
+  tEnd = 0.5;
+  nStep = 1;    
+  AnyMechOutputFileForceExport ForceOutput = 
+  {
+    FileName = ANYBODY_PATH_OUTPUT+"/ForceL5.txt";
+    /*NumberFormat = 
+    {
+    Digits = 15;
+    Width = 22;
+    Style = ScientificNumber;
+    FormatStr = "";
+    };*/
+    AllSegmentsInStudyOnOff = Off;
+    Segments = {&Main.HumanModel.BodyModel.Trunk.Segments.L5Seg};
+  };    
+#endif
+//# END SNIPPET 1
+    
+  }; // End of study
+
+  // Include an operation sequence to run all required steps of your application (see Operations tab)
+    #include "<ANYBODY_PATH_MODELUTILS>\Operations\RunAppSequence.any"    
+  
+}; //Main
+

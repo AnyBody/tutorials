@@ -1,7 +1,7 @@
 ::: {rst-class} break
 :::
 
-# Lesson2: Initial Conditions
+# Lesson 2: Initial Conditions
 
 Before we look at the InitialConditions operation, let us just notice
 that when the model is loaded, the segments of the model are positioned

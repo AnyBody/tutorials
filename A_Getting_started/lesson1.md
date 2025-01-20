@@ -3,25 +3,30 @@
 
 # Lesson 1: Creating a Standing Model
 
-The standing model can be found in the AMMR folder under
-Applications/Examples. The main file is called StandingModel.Main.any.
+The standing model can be found in the AMMR folder under Applications/Examples.
+The main file is called StandingModel.Main.any.
 
-**While this file can be opened with the "File->Open" menu in AnyBody, do not do this! This tutorial will teach you an easier way
-to use the Standing Model as a starting template.**
+**While this file can be opened with the "File->Open" menu in AnyBody, do not do
+this! This tutorial will teach you an easier way to use the Standing Model as a
+starting template.**
 
 Key (modifiable) features of the standing model are:
 
 - Both feet are always connected to the ground.
 - The posture is defined by the joint angles for all major joints except the ankles.
-- The model automatically balances itself by maintaining its center of mass vertically above the ankle joints.
-  E.g., if the arms move forward, the entire body moves backwards to maintain the balance.
-- External forces can be applied to predefined nodes on the model. Muscle forces may change, to resist these forces and maintain balance.
+- The model automatically balances itself by maintaining its center of mass
+  vertically above the ankle joints. For example, if the arms move forward, the
+  entire body moves backward to maintain balance.
+- External forces can be applied to predefined nodes on the model. Muscle forces
+  may change to resist these forces and maintain balance.
 
 (model-templates)=
 
 ## Model templates
 
-To create a new standing model using the template model in the AMMR, click the "Create New from template" button ![Model_button](_static/lesson1/image_1.png) in the toolbar:
+To create a new standing model using the template model in the AMMR, click the
+"Create New from template" button ![Model_button](_static/lesson1/image_1.png)
+in the toolbar:
 
 ```{image} _static/lesson1/image_2.png
 :alt: Toolbar
@@ -66,11 +71,13 @@ to AMMR repository you want to use.
 
 To see the 3D graphical representation of the model you need to load.
 
-**Load/reload is a frequent operation and has been assigned to function
-key F7. You may also load your model by clicking** ![Load](_static/lesson1/image_6.png) **in the toolbar.**
+**Load/reload is a frequent operation and has been assigned to function key F7.
+You may also load your model by clicking** ![Load](_static/lesson1/image_6.png)
+**in the toolbar.**
 
-This action will load whatever file is chosen in the text editor. If a file is already loaded, the
-above action will simply reload the file until you give another file loading priority by right-clicking its tab and select “Load Model”.
+This action will load whatever file is chosen in the text editor. If a file is
+already loaded, the above action will simply reload the file until you give
+another file loading priority by right-clicking its tab and select “Load Model”.
 
 ```{image} _static/lesson1/image_7.png
 :alt: Load Model
@@ -80,8 +87,8 @@ above action will simply reload the file until you give another file loading pri
 
 ## The model view
 
-When loading is completed, the Model View window opens and shows the
-standing model: (You can open it manually from View -> Model Views).
+When loading is completed, the Model View window opens and shows the standing
+model: (You can open it manually from View -> Model Views).
 
 ```{image} _static/lesson1/image_5.png
 :alt: Model view
@@ -89,10 +96,10 @@ standing model: (You can open it manually from View -> Model Views).
 :align: center
 ```
 
-The icons in the toolbar at the top of the Model View window allow you
-to modify the image: zoom, pan, rotate, etc. They should be mostly
-self-explanatory. Now is a good time to play a bit around with them and
-to familiarize yourself with the options.
+The icons in the toolbar at the top of the Model View window allow you to modify
+the image: zoom, pan, rotate, etc. They should be mostly self-explanatory. Now
+is a good time to play a bit around with them and to familiarize yourself with
+the options.
 
 In practical use it is often necessary to change quickly between these
 functions, so keyboard shortcuts have been provided:

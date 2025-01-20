@@ -8,8 +8,8 @@ Here's an AnyScript file to start on if you have not completed the
 previous lesson: {download}`demo.lesson6.any <Downloads/demo.lesson6.any>`.
 :::
 
-So far the model graphically resembles a "stick figure representation".
-However realistic bone geometries can improve both aesthetics and
+So far, the model graphically resembles a "stick figure representation".
+However, realistic bone geometries can improve both aesthetics and
 visual comprehension of a model's anatomy, as illustrated
 by the two pictures below.
 
@@ -17,28 +17,28 @@ by the two pictures below.
 
 ## File formats for visualization objects
 
-3-D Geometric models for model components such as bones can be specified using files
+3-D geometric models for model components such as bones can be specified using files
 of the STL ASCII format.
 
 STL is a very simple graphical file format that represents object surfaces as
 triangles. Virtually all CAD systems can export an object in the STL format. So if your files are in the IGES,
-STEP, DXF etc. formats, load them in your favorite CAD system and convert to STL.
+STEP, DXF, etc. formats, load them in your favorite CAD system and convert to STL.
 
 STL files come in two varieties: ASCII and binary. AnyBody needs an ASCII file, so please make sure to choose that
 option during the export process.
 
-## Importing a STL file
+## Importing an STL file
 
 Since the bone models shown in the above tutorial may be a bit too elaborate for a
-basic tutorial, we will demonstrate this by adding an STL file for the dumbbel in the arm model.
+basic tutorial, we will demonstrate this by adding an STL file for the dumbbell in the arm model.
 
-Download the following model {download}`here(dumbbell.stl) <Downloads/dumbbell.stl>`.
+Download the dumbbell model {download}`here <Downloads/dumbbell.stl>`.
 
 The dumbbell STL should be added to the forearm, so add the following code - which imports the STL
 file into AnyBody - within the "ArmModel.Segs.ForeArm" object:
 
 :::{important}
-The STL-file must be saved in the same folder as the AnyBody script. 
+The STL file must be saved in the same folder as the AnyBody script. 
 :::
 
 ```{literalinclude} Snippets/lesson6/snip.NewModel.main-1.any

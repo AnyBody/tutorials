@@ -1,0 +1,14 @@
+BodyModel.Trunk.Segments.L5Seg = {
+  
+  BoneDraw.Visible = Off;
+  
+  AnyDrawSurf DrwSTL2 = {
+    FileName = "../Input/CAD/L5_withoutpedicle.stl";
+    RGB = ...ColorRef.Segments;
+    Opacity=1;
+    Face = 2;
+    AnyFunTransform3D &Scale =.Scale;
+    ScaleXYZ  = {1,1,1}/1000;
+  };
+  
+};
