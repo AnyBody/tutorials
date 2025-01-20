@@ -36,7 +36,7 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.8.1
         with:
           cache: true
-          cache-write: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
+          cache-write: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && github.ref_name == 'master' }}
         
       - run: pixi run sphinx-build -M linkcheck . _build -W --keep-going -a -q 
       
@@ -60,6 +60,11 @@ jobs:
 
   test-latest:
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        test_group: [1, 2, 3, 4, 5, 6, 7, 8]
+
 
     steps:
       - uses: actions/checkout@v4
@@ -80,8 +85,6 @@ jobs:
           ref: ammr4-beta
           path: ammr4
         
-        
-        
       - name: Link AMMR
         shell: cmd
         run: | 
@@ -100,7 +103,9 @@ jobs:
         if: ${{ !github.event.pull_request.head.repo.fork && github.repository == 'anybody/tutorials' }}
         run: |
           cd tutorials
-          pytest
+          pytest -n auto --dist worksteal `
+          --splits 8 --group ${{ matrix.test_group }} --splitting-algorithm=least_duration
+          
         env:
           RLM_LICENSE: ${{ secrets.LICENSE_TEST_SERVER }}
           RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_TEST_SERVER_PASSWORD }}
@@ -108,7 +113,7 @@ jobs:
   build-latest:
 
     runs-on: ubuntu-latest
-    needs: [link-check, test-latest]
+    needs: [link-check]
 
     steps:
       - uses: actions/checkout@v4
@@ -155,7 +160,7 @@ jobs:
           path: _build/html
 
   prepare-pages:
-    needs: [build-latest, build-tagged]
+    needs: [build-latest, build-tagged, test-latest]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
