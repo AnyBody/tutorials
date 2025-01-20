@@ -53,7 +53,7 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.8.1
         with:
           cache: true
-          cache-write: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
+          cache-write: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && github.ref_name == 'master' }}
   
       - run: pixi run sphinx-build -M linkcheck . _build -W --keep-going -a -q 
         continue-on-error: true
@@ -94,7 +94,7 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.8.1
         with:
           cache: true
-          cache-write: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
+          cache-write: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && github.ref_name == 'master' }}
           environments: test
           manifest-path: tutorials/pixi.toml
           activate-environment: true
@@ -123,7 +123,7 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.8.1
         with:
           cache: true
-          cache-write: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
+          cache-write: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && github.ref_name == 'master' }}
   
       - name: Build Documentation
         run: pixi run sphinx-build -M html . _build -W --keep-going -a -t draft
@@ -148,7 +148,7 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.8.1
         with:
           cache: true
-          cache-write: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
+          cache-write: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && github.ref_name == 'master' }}
     
       - name: Build Documentation
         run: pixi run sphinx-build -M html . _build -W --keep-going -a
