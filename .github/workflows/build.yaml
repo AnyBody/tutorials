@@ -108,7 +108,7 @@ jobs:
   build-latest:
 
     runs-on: ubuntu-latest
-    needs: [link-check, test-latest]
+    needs: [link-check]
 
     steps:
       - uses: actions/checkout@v4
@@ -155,7 +155,7 @@ jobs:
           path: _build/html
 
   prepare-pages:
-    needs: [build-latest, build-tagged]
+    needs: [build-latest, build-tagged, test-latest]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
