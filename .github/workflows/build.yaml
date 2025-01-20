@@ -102,6 +102,7 @@ jobs:
       - name: Test Snippets
         if: ${{ !github.event.pull_request.head.repo.fork && github.repository == 'anybody/tutorials' }}
         run: |
+          cd tutorials
           pytest -n auto --dist worksteal `
           --splits 8 --group ${{ matrix.test_group }} --splitting-algorithm=least_duration
           
