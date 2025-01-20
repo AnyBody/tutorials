@@ -100,7 +100,7 @@ jobs:
         if: ${{ !github.event.pull_request.head.repo.fork && github.repository == 'anybody/tutorials' }}
         run: |
           cd tutorials
-          pytest
+          pytest -n 4
         env:
           RLM_LICENSE: ${{ secrets.LICENSE_TEST_SERVER }}
           RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_TEST_SERVER_PASSWORD }}

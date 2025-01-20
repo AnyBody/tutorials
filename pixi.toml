@@ -1,9 +1,10 @@
 [project]
 name = "anybody-tutorial"
 version = "0.1.0"
-description = "Add a short description here"
+description = "Python enviroments for AnyBody's Tutorials"
 authors = ["Morten Enemark Lund <mel@anybodytech.com>"]
-channels = ["conda-forge", "anybody/label/rc81"]
+channels = ["https://prefix.dev/conda-forge", "https://prefix.dev/anybody-beta"]
+
 platforms = ["win-64","linux-64"]
 
 [tasks]
@@ -13,8 +14,8 @@ build-pdf = {cmd="sphinx-build -M simplepdf . _build", depends-on = ["clean"]}
 build-html = "sphinx-build -M html . _build"
 build-html-future = "sphinx-build -M html . _build -t future_tutorials"
 build-html-all = "sphinx-build -M html . _build -a"
-html = {cmd= 'explorer .\_build\html\index.html', depends_on = ["build-html-all"]}
-pdf = {cmd= 'explorer .\_build\simplepdf\Agada-Documentation.pdf', depends_on = ["build-pdf"]}
+html = {cmd= 'explorer .\_build\html\index.html', depends-on = ["build-html-all"]}
+pdf = {cmd= 'explorer .\_build\simplepdf\Agada-Documentation.pdf', depends-on = ["build-pdf"]}
 livehtml = "sphinx-autobuild . _build --port=0  --open-browser -j=4"
 
 
@@ -46,9 +47,10 @@ ipywidgets = ">=8.1.5,<9"
 
 [feature.test.target.win-64.dependencies]
 pytest = "*"
+pytest-xdist = "*"
 anypytools = "*"
 debugpy = "*"
-anybodycon = "8.1.0beta1"
+anybodycon = "==8.1.0beta2"
 
 [feature.test.target.win-64.tasks]
 pytest = "pytest"
