@@ -1,9 +1,10 @@
 [project]
 name = "anybody-tutorial"
 version = "0.1.0"
-description = "Add a short description here"
+description = "Python enviroments for AnyBody's Tutorials"
 authors = ["Morten Enemark Lund <mel@anybodytech.com>"]
-channels = ["conda-forge", "anybody/label/rc81"]
+channels = ["https://prefix.dev/conda-forge", "https://prefix.dev/anybody-beta"]
+
 platforms = ["win-64","linux-64"]
 
 [tasks]
@@ -13,18 +14,18 @@ build-pdf = {cmd="sphinx-build -M simplepdf . _build", depends-on = ["clean"]}
 build-html = "sphinx-build -M html . _build"
 build-html-future = "sphinx-build -M html . _build -t future_tutorials"
 build-html-all = "sphinx-build -M html . _build -a"
-html = {cmd= 'explorer .\_build\html\index.html', depends_on = ["build-html-all"]}
-pdf = {cmd= 'explorer .\_build\simplepdf\Agada-Documentation.pdf', depends_on = ["build-pdf"]}
+html = {cmd= 'explorer .\_build\html\index.html', depends-on = ["build-html-all"]}
+pdf = {cmd= 'explorer .\_build\simplepdf\Agada-Documentation.pdf', depends-on = ["build-pdf"]}
 livehtml = "sphinx-autobuild . _build --port=0  --open-browser -j=4"
 
 
 [dependencies]
-python = ">=3.11.6,<3.12"
+python = ">=3.12.8,<3.13"
 sphinxext-opengraph = ">=0.9.1,<0.10"
 sphinx-copybutton = ">=0.5.2,<0.6"
 sphinxcontrib-youtube = ">=1.4.1,<2"
 linkify-it-py = ">=2.0.3,<3"
-ipython = ">=8.29.0,<9"
+ipython = ">=8.31.0,<9"
 make = ">=4.4.1,<5"
 sphinx-autobuild = ">=2024.10.3,<2025"
 sphinx-simplepdf = ">=1.6.0,<2"
@@ -32,23 +33,26 @@ sphinx = ">=8.1.3,<9"
 pygments_anyscript = ">=1.4.0,<2"
 sphinx-togglebutton = ">=0.3.2,<0.4"
 sphinx-design = ">=0.6.1,<0.7"
-jinja2 = ">=3.1.4,<4"
-tomli = ">=2.0.1,<2.1"
-pytest = ">=8.3.3,<9"
+jinja2 = ">=3.1.5,<4"
+tomli = ">=2.2.1,<3"
+pytest = ">=8.3.4,<9"
 myst-parser = ">=4.0.0,<5"
 sphinx-book-theme = ">=1.1.3,<2"
 myst-nb = ">=1.1.2,<2"
 anypytools = ">=1.13.0,<2"
-scipy = ">=1.14.1,<2"
+scipy = ">=1.15.1,<2"
 ipywidgets = ">=8.1.5,<9"
-
+#Pin pydata-sphinx-theme to 0.15.4 to avoid bug with collapsible sidebar: https://github.com/executablebooks/sphinx-book-theme/issues/865
+pydata-sphinx-theme = "==0.15.4"
 
 
 [feature.test.target.win-64.dependencies]
 pytest = "*"
+pytest-xdist = "*"
 anypytools = "*"
 debugpy = "*"
-anybodycon = "8.1.0beta1"
+pytest-split = "*"
+anybodycon = "==8.1.0beta2"
 
 [feature.test.target.win-64.tasks]
 pytest = "pytest"
