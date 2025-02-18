@@ -46,7 +46,7 @@ For more informaion about the the AnyExp4SOLIDWORKS add-in, including installati
 please refer the manual "AnyBody Exporter for SolidWorks". This manual can be found by opening an
 AnyBody window, clikcing on 'Help' -> 'Documentation Home' in the top menu. 
 
-```{image} _static/lesson1/lesson1_image7.png
+```{image} _static/lesson1/lesson1_image7.PNG
 :alt: Documentation home
 :class: bg-primary
 :align: center
