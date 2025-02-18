@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - uses: prefix-dev/setup-pixi@v0.8.1
+      - uses: prefix-dev/setup-pixi@v0.8.2
         with:
           cache: true
           cache-write: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && github.ref_name == 'master' }}
@@ -50,7 +50,7 @@ jobs:
         with:
           ref: ${{ needs.find-tag.outputs.latest-tag }}
       
-      - uses: prefix-dev/setup-pixi@v0.8.1
+      - uses: prefix-dev/setup-pixi@v0.8.2
         with:
           cache: true
           cache-write: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && github.ref_name == 'master' }}
@@ -91,7 +91,7 @@ jobs:
             echo #include "%GITHUB_WORKSPACE%/ammr/libdef.any" > libdef.any
             echo #include "%GITHUB_WORKSPACE%/ammr4/libdef.any" > libdef-ammr4.any
           
-      - uses: prefix-dev/setup-pixi@v0.8.1
+      - uses: prefix-dev/setup-pixi@v0.8.2
         with:
           cache: true
           cache-write: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && github.ref_name == 'master' }}
@@ -120,7 +120,7 @@ jobs:
         with:
           fetch-depth: 0
     
-      - uses: prefix-dev/setup-pixi@v0.8.1
+      - uses: prefix-dev/setup-pixi@v0.8.2
         with:
           cache: true
           cache-write: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && github.ref_name == 'master' }}
@@ -145,7 +145,7 @@ jobs:
           ref: ${{ needs.find-tag.outputs.latest-tag }}
           fetch-depth: 0
 
-      - uses: prefix-dev/setup-pixi@v0.8.1
+      - uses: prefix-dev/setup-pixi@v0.8.2
         with:
           cache: true
           cache-write: ${{ contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && github.ref_name == 'master' }}
