@@ -1,0 +1,80 @@
+#include "libdef.any"
+
+Main = 
+{
+  // BodyModel configuration:
+  // Specify which limb segments to include, the type of muscles, joints, scaling etc
+  #include "Model/BodyModelConfiguration.any"
+  
+  // Include the Human model from AMMR
+  #include "<ANYBODY_PATH_BODY>\HumanModel.any"
+  
+  // Define desired posture or movement of the model
+  #include "Model\Mannequin.any"
+ 
+  // Compose the model used by the study
+  AnyFolder Model = 
+  {  
+     AnyVector CenterOfMassXZ = {0,0};
+     
+     // Definition for CoM(Center of Mass) of Human Model
+     #include "Model\CoM_View.any"
+ 
+     // Definition of additional AnyRefNode object in the human model
+     #include "Model\HumanRefNodes.any"
+     
+     // AnyScript file for the fitness machine from SolidWorks
+     #include "Input\FitnessMachine.any"
+    
+     Environment.GlobalRef.RightFootPrint = {
+       AnyVec3 HeelPosition = {-0.08, 0, 0.14};
+       AnyVec3 ToeDirection = {1, 0, 0.1}; 
+     };
+     Environment.GlobalRef.LeftFootPrint = {
+        AnyVec3 HeelPosition = {-0.08, 0, -0.14};
+        AnyVec3 ToeDirection = {1, 0, -0.1}; 
+     };
+    
+    // Include the body part of the Human model
+    AnyFolder &BodyModel = .HumanModel.BodyModel;
+    
+    // Include the default mannequin drivers
+    AnyFolder &DefaultMannequinDrivers = .HumanModel.DefaultMannequinDrivers;
+ 
+    // Environment files are used to include objects surrounding human,
+    // e.g. global reference frame
+    #include "Model\Environment.any"   
+    
+    AnyFolder ModelEnvironmentConnection = 
+    {
+      // This file contains all contraints to simulate the standing human
+      #include "Model/JointsAndDrivers.any"
+      
+      // Ground reaction force prediction
+      // #include "Model/GRFPrediction.any"
+      
+      // Include drivers of the fitness machine
+      #include "Model\MachineOperation.any"
+    };
+  };
+  // Define Study for running kinematics and inverse dynamics simulation analyses
+  AnyBodyStudy Study =
+  {
+    // Include the Model within the Study
+    AnyFolder &Model = .Model;  
+    
+    Gravity={0.0, -9.81, 0.0};
+    tStart = 0;
+    tEnd = 1; 
+    nStep = 61;
+    
+    // Overdeterminate solver is needed while using the 
+    // soft default mannequin drivers.
+    Kinematics.SolverType = KinSolOverDeterminate;
+    InitialConditions.SolverType = Kinematics.SolverType ;
+  };
+  // This is readymade simulation package including some pre-processing steps and the InverseDynamics analysis
+  #include "Model\RunAppSequence.any"
+  
+}; //Main
+
