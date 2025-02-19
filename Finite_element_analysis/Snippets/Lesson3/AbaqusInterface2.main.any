@@ -1,0 +1,96 @@
+#include "libdef.any"
+
+Main = 
+{
+  // BodyModel configuration:
+  // Specify which limb segments to include, the type of muscles, joints, scaling etc
+  #include "Model/BodyModelConfiguration.any"
+  
+  // Include the Human model from AMMR
+  #include "<ANYBODY_PATH_BODY>\HumanModel.any"
+  
+  // Define desired posture or movement of the model
+  #include "Model\Mannequin.any"
+ 
+  // Compose the model used by the study
+  AnyFolder Model = 
+  {  
+     // Center of Mass (COM) position in the ground YZ plane
+     // COM balance driver can be excluded with:
+     // #define EXCLUDE_COM_BALANCE_DRIVERS
+     AnyVector CenterOfMassXZ = {0,0};
+     
+     // Positioning of the right and left feet. 
+     // Ground-foot constraints can be excluded with:
+     // #define EXCLUDE_FOOT_CONSTRAINTS
+     Environment.GlobalRef.RightFootPrint = {
+        AnyVec3 HeelPosition = {-0.08, 0, 0.14};
+        AnyVec3 ToeDirection = {1, 0, 0.1}; 
+     };
+     Environment.GlobalRef.LeftFootPrint = {
+        AnyVec3 HeelPosition = {-0.08, 0, -0.14};
+        AnyVec3 ToeDirection = {1, 0, -0.1}; 
+     };
+    
+    // Include the body part of the Human model
+    AnyFolder &BodyModel = .HumanModel.BodyModel;
+    
+    // Include the default mannequin drivers
+    AnyFolder &DefaultMannequinDrivers = .HumanModel.DefaultMannequinDrivers;
+ 
+    // Environment files are used to include objects surrounding human,
+    // e.g. global reference frame
+    #include "Model\Environment.any"   
+    
+    AnyFolder ModelEnvironmentConnection = 
+    {
+      // This file contains all contraints to simulate the standing human
+      #include "Model/JointsAndDrivers.any"
+      
+      // Ground reaction force prediction
+      #include "Model/GRFPrediction.any"
+    };
+  };
+  // Define Study for running kinematics and inverse dynamics simulation analyses
+  AnyBodyStudy Study =
+  {
+    // Include the Model within the Study
+    AnyFolder &Model = .Model;  
+    
+    §tEnd = 10.0;§
+    Gravity={0.0, -9.81, 0.0};
+    nStep = §5§;
+
+//# BEGIN SNIPPET 1
+AnyMechOutputFileForceExport §FE_out§ =
+{
+  §FileName = "files_in/clavload.xml";
+  UseRefFrameOnOff = On;
+  RefFrame = &Main.HumanModel.BodyModel.Right.ShoulderArm.Seg.Clavicula.localrefframe;
+  AllSegmentsInStudyOnOff = Off;
+  XMLformatOnOff = On;
+  Segments = {&Main.HumanModel.BodyModel.Right.ShoulderArm.Seg.Clavicula};
+  MeshRefFrames = {&Main.HumanModel.BodyModel.Right.ShoulderArm.Seg.Clavicula.localrefframe};§
+};
+//# END SNIPPET 1
+    
+    // Overdeterminate solver is needed while using the 
+    // soft default mannequin drivers.
+    Kinematics.SolverType = KinSolOverDeterminate;
+    InitialConditions.SolverType = Kinematics.SolverType ;
+//# BEGIN SNIPPET 2
+}; // END of Study
+
+§AnyOperationShellExec ConvertToAbq={
+  Show=On;
+  FileName = "AnyFE2Abq.exe";
+  Arguments = "-i .\files_in\clavload.xml -o .\files_out\output.inp -m .\clavicula.inp";
+  WorkDir=".\ ";
+};§  
+//# END SNIPPET 2
+
+  // This is readymade simulation package including some pre-processing steps and the InverseDynamics analysis
+  #include "Model\RunAppSequence.any"
+  
+}; //Main
+
