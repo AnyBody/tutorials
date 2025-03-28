@@ -20,7 +20,7 @@ livehtml = "sphinx-autobuild . _build --port=0  --open-browser -j=4"
 
 
 [dependencies]
-python = ">=3.13.2,<3.14"
+python = ">=3.12,<3.13"
 sphinxext-opengraph = ">=0.9.1,<0.10"
 sphinx-copybutton = ">=0.5.2,<0.6"
 sphinxcontrib-youtube = ">=1.4.1,<2"
