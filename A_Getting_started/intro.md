@@ -3,7 +3,8 @@
 
 # Getting Started Tutorial
 
-:::{note} The AnyBody software comes with an inbuilt model repository - The
+:::{note} 
+The AnyBody software comes with an inbuilt model repository - The
 AnyBody Managed Model Repository (AMMR). This tutorial starts with unpacking a
 local version of the AMMR. You can skip to {doc}`lesson 1 <lesson1>` if you have
 already done this. 
@@ -21,24 +22,48 @@ the model view window
 This tutorial relies heavily on using the AnyBody Managed Model Repository (AMMR). 
 Follow the steps below to unpack a local version of the AMMR.
 
-# Setup the AMMR
+# Seting Up the AMMR
 
-Before you continue, you must unpack the entire repository and save it on your
-hard disk. To get a copy of the AMMR, press the Demo tab in the AnyBody
-assistant dialog box.
+*The AnyBody Managed Model Repository* (AMMR) is a comprehensive open library of
+musculoskeletal models and examples designed to use with the AnyBody Modeling
+System. It allows users to configure and combine different body models, which
+can be easily integrated into their own simulations and analyses.
 
-![...](_static/intro/image1.png)
+The AnyBody Managed Model Repository (AMMR) is included with the AnyBody
+Modeling System, but it needs to be manually installed or unpacked after
+installing AnyBody. You can install the AMMR from the AnyBody Assistant dialog
+that appears when AnyBody starts.
 
-Following the instructions in the Demo tab will install a copy of the AMMR in
-your documents folder by default. It is good practice to create a second local
-copy of the AMMR so that you do not overwrite the original AMMR folder by
-accident.
+To get a copy of the latest AMMR files, press the Demo tab in the AnyBody
+assistant dialog box. Then select the “Install the demo repository by clicking
+this link”
+
+```{figure} _static/intro/image1.png
+:alt: AMMR setup
+:class: bg-primary
+:align: center
+```
+
+This installs a copy of the AMMR locally in your documents folder by default. If
+there are multiple users using your computer, each of them will have to follow
+this guide. It is good practice to create a second local copy of the AMMR so
+that you do not overwrite the original AMMR folder by accident. There you can
+initialise a git repository in which you can version you models, keep a backup,
+or share them easily with the community.
+
+:::{important} 
+AnyBody Modelling System comes with a version of AMMR (not necessarily the
+latest) placed in the installation folder of the software. Do not directly use
+these files for your actual work as updates or reinstallation of AnyBody can
+overwrite your changes. So always **copy the files from the AMMR folder to your** 
+**working folder** before using them. 
+:::
 
 # AMMR structure
 
 Open a file manager and navigate to the directory where you unpacked the
-repository. You should see a folder structure that includes the following
-subfolders:
+repository (default is your documents folder). You should see a folder structure
+that includes the following subfolders:
 
 - **Application**: Includes demo simulations of activities such as cycling,
   lifting a box, or propelling a wheelchair.
