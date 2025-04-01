@@ -59,21 +59,21 @@ location of the file is shown in the title bar:
 :align: center
 ```
 
-:::{warning}
-If you saved your model in an other location be
-sure to modify the {file}`../libdef.any` file so it points
-to AMMR repository you want to use.
+:::{warning} 
+If you saved your model in an other location be sure to modify the file
+{file}`../libdef.any` so it points to AnyBody Managed Model Repository you
+want to use. 
 :::
 
 (loading-a-model)=
 
 ## Loading a model
 
-To see the 3D graphical representation of the model you need to load.
+To see the 3D graphical representation of the model you need to load it.
 
-**Load/reload is a frequent operation and has been assigned to function key F7.
-You may also load your model by clicking** ![Load](_static/lesson1/image_6.png)
-**in the toolbar.**
+Load/reload is a frequent operation and has been assigned the function key F7.
+You may also load your model by clicking ![Load](_static/lesson1/image_6.png)
+in the toolbar.
 
 This action will load whatever file is chosen in the text editor. If a file is
 already loaded, the above action will simply reload the file until you give
@@ -88,12 +88,13 @@ another file loading priority by right-clicking its tab and select “Load Model
 ## The model view
 
 When loading is completed, the Model View window opens and shows the standing
-model: (You can open it manually from View -> Model Views).
+model. You can open it manually from View -> Model Views.
 
 ```{image} _static/lesson1/image_5.png
 :alt: Model view
 :class: bg-primary
 :align: center
+:width: 70%
 ```
 
 The icons in the toolbar at the top of the Model View window allow you to modify
@@ -109,6 +110,150 @@ functions, so keyboard shortcuts have been provided:
 - The *Ctrl-Shift* combination activates the rotation function.
 - If you have a scrolling wheel on your mouse, this will zoom the model
   in and out.
+
+## Understanding the AnyScript Model Structure
+
+This Human Standing Model is a model from the AnyBody Managed Model Repository
+(AMMR). It uses the [Human Model](https://anyscript.org/ammr/beta/body/models.html#the-body-model)
+from the AMMR, which is used by most models you will encounter when using the AMMR.
+Regardless of complexity, all models share a common structure used to set them
+up.
+
+The models will typically have the following overall structure (*notice*, the
+AnyScript below is not excatly the same as the Standing Model used in this
+tutorial, but contains the same overall structure):
+
+```AnyScriptDoc
+// Include the libdef file from the AMMR
+#include "libdef.any"
+
+Main =
+{
+  // Define the BodyModel configuration
+  #include "Model/BodyModelConfiguration.any"
+
+  // Include the Human model from AMMR
+  #include "<ANYBODY_PATH_BODY>/HumanModel.any"
+
+  // Define desired posture or movement of the model
+  #include "Model\Mannequin.any"
+
+  // Compose the model
+  AnyFolder Model =
+  {
+    AnyFolder &BodyModel = .HumanModel.BodyModel;
+    AnyFolder Drivers = {...};
+    AnyFolder Environment = {...};
+  };
+
+  // Configuring the Study
+  AnyBodyStudy Study =
+  {
+    AnyFolder &Model= .Model;
+    Gravity = {0.0, -9.81,0.0}; // Gravity Vector
+    nStep = 10; // Number of steps
+    tStart = 0; // Start time
+    tEnd = 10.0; // End time
+  };
+};
+```
+
+Let us go through the different components of this structure to understand how they work.
+
+**Path to AMMR:** 
+
+:::{note} 
+:class: margin 
+Your can open a file by double-clicking on its name in the AnyScript.
+:::
+
+```AnyScriptDoc
+#include "libdef.any"
+```
+
+This means your model will include the content of the file called `libdef.any`.
+This file references to another `libdef.any` file located at the top-level
+folder of the AMMR, which specifies the AMMR directories to use in your model.
+You can have multiple versions of AMMR available on your computer, and this
+points to the version you wish to use. This line should be at the very beginning
+of your `main.any` file.
+
+**Configuring the Human Model:**
+
+```AnyScriptDoc
+Main =
+{
+  // Define the BodyModel configuration
+  #include "Model/BodyModelConfiguration.any"
+```
+
+Here, the main declaration of the model, `Main = {}`, is initiated, and file now
+becomes the main model file. All basic AnyScript contains a main file that
+defines the model’s structure, contents and the operations to be performed. 
+
+The file `BodyModelConfiguration.any` is included, which defines what parts of the
+human body model are included, through a number of switches called Body Model 
+(BM) parameters. BM parameters are always prefixed with `BM_` inside AnyScript.
+The values of these parameters are defined by `#define` and `#path` statements.
+
+**Including the Human Model**
+
+```AnyScriptDoc
+#include "<ANYBODY_PATH_BODY>/HumanModel.any"
+```
+
+The AMMR contains multiple musculoskeletal models. The above line includes the
+Human Model from the AMMR. The file path `<ANYBODY_PATH_BODY>` is defined in
+`libdef.any`. 
+
+It is important that the configuration statements are placed
+before this line.
+
+**Defining the Posture and Movement**
+
+```AnyScriptDoc
+#include "Model\Mannequin.any"
+```
+
+This includes the file `Mannequin.any` which defines the posture and movement of
+the human body model.
+
+**Composing the Model**
+
+```AnyScriptDoc
+AnyFolder Model =
+{
+  AnyFolder &BodyModel = .HumanModel.BodyModel;
+  AnyFolder Drivers = {...};
+  AnyFolder Environment = {...};
+};
+```
+
+This is where we combine the `Body` from the Human Model with extra things like
+drivers, external loads, and constraints. It could also be any models of the
+environment which the body interacts with or many other things.
+
+**The Study section**
+
+```AnyScriptDoc
+AnyBodyStudy Study =
+{
+  AnyFolder &Model= .Model;
+  Gravity = {0.0, -9.81,0.0}; // Gravity Vector
+  nStep = 10; // Number of steps
+  tStart = 0; // Start time
+  tEnd = 10.0; // End time
+};
+```
+
+The `AnyBodyStudy` is where you configure and define your simulation. It
+specifies start and end times of the simulation, and the number of steps. It also
+configures which solvers are used.
+
+Only the model elements which are referenced to within the Study will be
+included in the simulation. In this case, the line `AnyFolder &Model= .Model;`
+references to the Model folder, meaning everything in the Model folder is part of the
+simulation.
 
 You can now proceed to {doc}`lesson2`.
 

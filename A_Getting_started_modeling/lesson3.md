@@ -45,18 +45,27 @@ The following steps specify a total of 19 driver constraints for the model:
 
 ## The "Default mannequin drivers"
 
-Do all 19 driver constraints mentioned above need to be added before a kinematic simulation will work? Yes. But there
-is one model feature that will make your life easier.
+Do all 19 driver constraints mentioned above need to be added before a kinematic
+simulation will work? Yes. But there is one model feature that will make your
+life easier.
 
-**The human model includes "default drivers" which can constrain the human model's posture
-to the joint angles and velocities set in the "Mannequin.any" file.**
+**The human model includes "default drivers" which can constrain the human
+model's posture to the joint angles and velocities set in the "Mannequin.any"
+file.**
 
-The constraint enforced by the default drivers are defined as ‘soft’
-constraints - constraints that can be overridden by the 19 'hard constraints' which we will define.
+The constraint enforced by the default drivers are defined as ‘soft’ constraints
+- constraints that can be overridden by the 19 'hard constraints' which we will
+define.
 
-You can therefore sequentially add the 19 hard drivers on top of the soft default drivers, and deactivate the default
-drivers at the {ref}`very end of this lesson <kinematically-determined>`. The advantage is that you have a model whose
-kinematics can be tested at every step along the way.
+You can therefore sequentially add the 19 hard drivers on top of the soft
+default drivers, and deactivate the default drivers at the 
+{ref}`very end of this lesson <kinematically-determined>`. The advantage is that you 
+have a model whose kinematics can be tested at every step along the way.
+
+Due to the inclusion of soft drivers, solver settings are readjusted. The
+lines `Kinematics.SolverType` and `InitialConditions.SolverType` in the Study
+section in the buttom of the main file, defines that a kinematic overdeterminate
+solver is used.
 
 ## Step 1: Fixing the pelvis to ground
 
