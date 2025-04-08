@@ -1,486 +1,530 @@
-::: {rst-class} break
+# Lesson 1: Joint to Joint Scaling Methods
+
+This lesson covers five of the scaling laws available in AnyBody:
+
+- `_SCALING_STANDARD_` - scale to a standard size
+- `_SCALING_NONE_` - do not scale
+- `_SCALING_UNIFORM_` - scale equally in all directions; input is joint to
+  joint distances
+- `_SCALING_LENGTHMASS_` - scale taking mass into account; input is joint to
+  joint distances and mass
+- `_SCALING_LENGTHMASSFAT_` - scale taking mass and fat into account; input
+  is joint to joint distances
+
+## ScalingStandard
+
+The ScalingStandard law produces a model with the default parameters for mass and size
+corresponding roughly to the 50th percentile European male. It is used by
+default for non-specific models, or when there is no data available about the
+modeled subject. This law has no input parameter to modify.
+
+With the AnyBody Modeling System you already have a repository of models
+available. As a starting point for this tutorial, we will work with this model 
+from the AMMR:
+
+{file}`Applications/Examples/StandingModelScalingDisplay/StandingModelScalingDisplay.Main.any`
+
+First, copy the whole folder "StandingModelScalingDisplay" to your working
+directory. Then open the `StandingModelScalingDisplay.Main.any` file. 
+
+To use this law you do not need to do anything at all; however, for
+demonstration purposes the scaling law configuration parameter (BM_SCALING)
+will be set to use the default value in the main file as shown below:
+
+```AnyScriptDoc
+/*------------- SCALING CONFIGURATION SECTION --------------------*/
+
+// Scaling laws using joint to joint measures
+    §#define BM_SCALING _SCALING_STANDARD_§
+//  #define BM_SCALING _SCALING_NONE_
+//  #define BM_SCALING _SCALING_UNIFORM_
+//  #define BM_SCALING _SCALING_LENGTHMASS_
+//  #define BM_SCALING _SCALING_LENGTHMASSFAT_
+//  #define BM_SCALING _SCALING_XYZ_
+// fallback to standard scaling if no scaling is defined
+#ifndef BM_SCALING
+  #define BM_SCALING _SCALING_STANDARD_
+#endif
+
+//--------------- END OF SCALING CONFIGURATION -------------------
+```
+
+Now load the model and open a Model View window. You will see the
+standing model with the standard size.
+
+```{image} _static/lesson1/ScalingStandardFront.png
+:alt: ScalingStandardFront
+:align: center
+:width: 50%
+```
+
+:::{note} 
+If your model cannot load because it cannot open the file `libdef.any`, it is
+likely due to an incorrect path to the AMMR or the libdef file not being
+included in the copied folder. To resolve this issue, replace the line 
+`#include "../libdef.any"` with the following:
+
+```AnyScriptDoc
+#include "<ANYBODY_PATH_INSTALLDIR>/AMMR/libdef.any"
+```
 :::
 
-# Lesson 1: Personalizing individual segments based on geometric data from medical images
+## ScalingNone
 
-This tutorial presumes that you have read the AMMR documentation and know
-how to personalize your model using information about height, weight, and
-individual segment lengths.
-
-% on :doc:`Joint to joint scaling methods <ammr:Scaling/lesson1>` and :doc:`Scaling based on external body
-% measurements <ammr:/Scaling/lesson2>`.
-
-This lesson introduces an advanced approach to scaling based on a sequence of
-affine and non-affine transformations. Each of these transforms is constructed
-based either on subject-specific geometry or on a set of landmarks selected on
-the bone surface. As opposed to the simple scaling laws explained in the AMMR
-documentation, this lesson is rather methodological than conceptual and provides
-a good overview of how to pipeline and combine different 3D transforms to obtain
-subject-specific morphing and registration between frames of reference.
-
-## Linear point-based scaling
-
-Scaling schemes described in the AMMR documentation are based on
-anthropometric measurements and affine transform scaling. Such schemes
-are good assumptions when more accurate measurements are not feasible or not
-available. Therefore, these schemes are used quite often. However, a
-natural next step would be to improve the precision of a model by
-utilizing subject-specific geometry available from the medical images. Medical images
-contain more subject-specific information about the bone shapes and local
-deformities that cannot be handled by the anthropometric regression
-equations.
-
-The simplest inclusion of the subject-specific bone shape from medical
-image data is to find the affine (linear) transformation that fits a
-number of corresponding points that are selected on the source and the
-target geometries. These points could be fitted e.g. in a least-squares
-manner. This approach is similar to utilizing external body measurements
-as it relies on a linear transform. However, it is less dependent on the
-bone orientation and prior knowledge of dimensions to be measured. For
-example, you can locate any two points on source and target surface
-consistently without thinking of how a segment length was measured.
-
-Let us make a simple example of using landmark-based affine scaling.
-First, please download two femur surfaces,
-{download}`SourceFemur.stl <Downloads/SourceFemur.stl>` and
-{download}`TargetFemur.stl <Downloads/TargetFemur.stl>` and save them in your
-working directory. These femur geometries will be used for the rest of
-this tutorial. The source surface is an unscaled femur used in the
-standard AnyBody models in the AMMR. The target surface is a femur
-reconstructed from a CT image and saved as a surface mesh in STL format
-(courtesy of Prof. Sebastian Dendorfer, OTH Regensburg,
-Germany).
-
-Next, please download the AnyScript file
-{download}`lesson1a.main.any <Downloads/lesson1a.Main.any>`. This file contains
-a model with two segments which contain the definition of a surface
-each, one for the source (bone color) and one for the target (yellow) bone. When we load this
-model, the Model View should show the following picture:
-
-
-![Modelview of initial load](_static/lesson3/image1.png)
-
-To define a new scaling function let us insert a new AnyFunTransform3DLin2
-object after the target segment:
+This particular scaling law can be used for the studies, which require the unscaled cadaveric
+datasets, which were used for the construction of the body parts. Please enable the \_SCALING_NONE\_
+option in order to switch to this scaling law.
 
 ```AnyScriptDoc
-    AnySeg TargetFemur = 
-    {
-      Mass = 0; Jii = {0, 0, 0};
-      AnyDrawSurf Surface = 
-      {
-        FileName = "TargetFemur.stl";
-        RGB = {256,256,0}/256;
-      };
-    };
-    
-    §AnyFunTransform3DLin2 <ObjectName> =
-    {
-      //PreTransforms = {};
-      Points0 = ;
-      Points1 = ;
-      //Mode = VTK_LANDMARK_RIGIDBODY;
-    };§
+/*------------- SCALING CONFIGURATION SECTION --------------------*/
   
-  }; // MyModel
+// Scaling laws using joint to joint measures
+§//  #define BM_SCALING _SCALING_STANDARD_
+    #define BM_SCALING _SCALING_NONE_§
+//  #define BM_SCALING _SCALING_UNIFORM_
+//  #define BM_SCALING _SCALING_LENGTHMASS_
+//  #define BM_SCALING _SCALING_LENGTHMASSFAT_
+//  #define BM_SCALING _SCALING_XYZ_
 ```
 
-The `AnyFunTransform3DLin2` object allows us to build a transform that
-fits a set of source and target landmarks in a least-squares manner.
-The object constructs a linear transforms in a full
-affine (linear transformation with translation, rotation, size-scaling
-and skewing, i.e. 12 degrees of freedom), uniform (orthogonal rotation
-with uniform scaling and translation, i.e., 9 d.o.f.), or rigid-body
-manner (orthogonal rotation of unscaled object with translation, i.e., 6
-d.o.f.). Please note that the AnyFunTransform3DLin2 object utilizes the
-vtk-function/filter *vtkLandmarkTransform*, and, therefore inherits its
-modes:
+The result will not noticeably change as compared to the ScalingStandard, but
+minor differences can be observed when looking at the actual locations of the
+muscle attachment sites and so on.
 
-- `VTK_LANDMARK_AFFINE`
-- `VTK_LANDMARK_SIMILARITY`
-- `VTK_LANDMARK_RIGIDBODY`
+## Working with Known Body Part Dimensions
 
-A description of this function can be found
-[here](https://vtk.org/doc/release/7.1/html/classvtkLandmarkTransform.html).
+When modelling a specific person with known anthropometric factors, e.g. weight,
+height, body part lengths, etc., these details need to be incorporated into the model.
+In this case \_SCALING_STANDARD\_ and \_SCALING_NONE\_ are not applicable, since they
+correspond to predetermined human sizes and weights, which cannot be overwritten.
 
-For this example we want to register our source surface into the target one by using a
-full affine transform. Therefore, we select several corresponding points
-on the surfaces and put them into the two point-sets called Points0 and
-Points1, which are the source and target points, respectively. As the next
-step, we change the mode of the `AnyFunTransform3DLin2` object to
-`VFK_LANDMARK_AFFINE` to use the affine transform:
+For these purposes a number of additional scaling laws were implemented, which
+all share an input mechanism for subject-specific measurements. This mechanism
+lets the user overwrite the height, weight, fat percentage, and individual
+segmental measurements or scale factors. This is done like below:
 
 ```AnyScriptDoc
-AnyFunTransform3DLin2 §MyTransform§ =
-{
-  //PreTransforms = {};
-  Points0 =
-      §{{-0.00906139,    0.36453,  0.0175591}, // fovea capitis
-      {0.0358368,   -0.0100391, -0.0162062}, // lateral anterior condyle
-      {0.0295267,   -0.0112881,  0.0194889}, // medial anterior condyle
-      {0.0282045,     0.157599, -0.0172379}, // anterior mid shaft
-      {-0.0245689, -0.00701566, -0.0238393}, // lateral posterior condyle
-      {-0.0320739, -0.00877602,  0.0244234}};// medial posterior condyle§
+/*------------- SCALING CONFIGURATION SECTION --------------------*/
+  
+// Scaling laws using joint to joint measures
+//  #define BM_SCALING _SCALING_STANDARD_
+§//  #define BM_SCALING _SCALING_NONE_
+    #define BM_SCALING _SCALING_UNIFORM_§
+//  #define BM_SCALING _SCALING_LENGTHMASS_
 
-  Points1 =
-      §{{0.289913,0.420538,0.0138931},     // fovea capitis
-      {0.322038,0.433232,-0.378636},    // lateral anterior condyle
-      {0.289309,0.426839,-0.372994},    // medial anterior condyle
-      {0.328859,0.425856,-0.175012},    // anterior mid shaft
-      {0.306293,0.487243,-0.370319},    // lateral posterior condyle
-      {0.261891,0.47585,-0.372696}};    // medial posterior condyle
-  Mode = VTK_LANDMARK_AFFINE;§
+...
+
+// Example of how to overwrite the default values
+§Main.HumanModel.Anthropometrics.BodyHeight = 1.8;
+Main.HumanModel.Anthropometrics.BodyMass = 80;§
+```
+
+The above line shows how specific anthropometric factors can be overwritten
+from, say, the Main folder. We can now easily personalize the model using
+anthropometric measurements.
+
+### Do I Need to Overwrite All the Anthropometric Variables?
+
+No, you do not need to overwrite all the anthropometric variables. The
+implementation allows you to overwrite the ones you need. For example, if you
+only know the body mass and height, you can overwrite only these two variables
+and the rest will be calculated automatically.
+
+## ScalingUniform
+
+This law allows you to define the total weight of the model and the
+individual sizes of the bones. The length of each bone is defined as a
+joint to joint distance and the bone is then scaled in three dimensions
+proportionally to its length. To use this law you must change the
+scaling parameter to be \_SCALING_UNIFORM\_.
+
+In the previous section we showed how this can be done. Please do so, then load the
+model and have a look at the Model View window. Notice that the body size did
+not change from the standard scaling version. This is because the default values
+for segment masses and sizes in this file are the same as the standard values.
+But if you change them, the model will scale according to your specifications.
+
+Let us try to change the mass of the body. First, inspect the *BodyMass*
+variable in the Model Tree window. You can find it at
+`Main.HumanModel.Anthropometrics.BodyMass`. The default value is to 75 kg.
+
+Try changing it to 90 kg by changing the value in the line inserted above in the
+main file:
+
+```AnyScriptDoc
+Main.HumanModel.Anthropometrics.BodyHeight = 1.8;
+Main.HumanModel.Anthropometrics.BodyMass = §90§;
+```
+
+Now load the model again. Once again the size of the body did not change. In the
+ScalingUniform law, the `BodyMass` parameter controls the mass of the segments
+but not their sizes. As shown previously the overall body mass is distributed to
+each segment.
+
+So the `BodyMass` parameter only controls the segment masses. The size of the
+model is controlled by another list of variables defining the lengths of the
+different bones. The length of each segment can be set independently, for
+example we can increase the length of the right thigh by adding the following
+line to the main file in the 'Scaling Configuration Section':
+
+```AnyScriptDoc
+§Main.HumanModel.Anthropometrics.SegmentDimensions.Right.ThighLength = 0.626;§
+```
+
+Load the model again and have a look at the Model View window. The right
+femur bone is now bigger. It has been scaled uniformly in 3 directions
+according to the defined length. Notice that we only changed the size
+of the right femur and not the other bones, so this femur looks unreasonably
+big compared to the rest of the body. To avoid results such as this,
+it is important to feed those variables with consistent data rooted in
+real anthropometry.
+
+```{image} _static/lesson1/LargeFemurFront.png
+:alt: LargeFemurFront
+:align: center
+:width: 50%
+```
+
+Let us apply a more reasonable size. Please change the default values
+to the following set of consistent measures. Insert the following lines
+in the 'Scaling Configuration Section' in the main file:
+
+```AnyScriptDoc
+§Main.HumanModel.Anthropometrics.SegmentDimensions.PelvisWidth = 0.180;§
+§Main.HumanModel.Anthropometrics.SegmentDimensions.HeadHeight = 0.169;§
+§Main.HumanModel.Anthropometrics.SegmentDimensions.TrunkHeight = 0.754;§
+
+§Main.HumanModel.Anthropometrics.SegmentDimensions.Right.UpperArmLength = 0.405;§
+§Main.HumanModel.Anthropometrics.SegmentDimensions.Right.LowerArmLength =0.316;§
+Main.HumanModel.Anthropometrics.SegmentDimensions.Right.ThighLength = §0.548;§
+§Main.HumanModel.Anthropometrics.SegmentDimensions.Right.ShankLength = 0.551;§
+§Main.HumanModel.Anthropometrics.SegmentDimensions.Right.FootLength = 0.243;§
+
+§Main.HumanModel.Anthropometrics.SegmentDimensions.Left.UpperArmLength = 0.405;§
+§Main.HumanModel.Anthropometrics.SegmentDimensions.Left.LowerArmLength =0.316;§
+§Main.HumanModel.Anthropometrics.SegmentDimensions.Left.ThighLength = 0.548;§
+§Main.HumanModel.Anthropometrics.SegmentDimensions.Left.ShankLength = 0.551;§
+§Main.HumanModel.Anthropometrics.SegmentDimensions.Left.FootLength = 0.243;§
+```
+
+```{image} _static/lesson1/ScalingUniformFront.png
+:alt: ScalingUniformFront
+:align: center
+:width: 50%
+```
+
+When you reload the model you should see a tall body and with
+proportionate sizes of the segments. If you can't see the difference
+from the standard size model, notice how the feet are now sticking down
+below the reference frame.
+
+It should be obvious that this type of scaling requires good anthropometric data
+to give reasonable results. But such data is not always easily available. To
+help with this, the default values of the `_SCALING_UNIFORM_` law is implemented
+in a way that it only takes as input the body mass and the body height and
+subsequently scales all the segment lengths uniformly according to the defined
+body height. This may not give you a model where each bone matches a given
+subject, but it can be a reasonable estimate in cases where only the overall
+mass and height of the body is known. Try to comment out these lines again:
+
+```AnyScriptDoc
+§//§Main.HumanModel.Anthropometrics.SegmentDimensions.PelvisWidth = 0.180;
+§//§Main.HumanModel.Anthropometrics.SegmentDimensions.HeadHeight = 0.169;
+§//§Main.HumanModel.Anthropometrics.SegmentDimensions.TrunkHeight = 0.754;
+
+§//§Main.HumanModel.Anthropometrics.SegmentDimensions.Right.UpperArmLength = 0.405;
+§//§Main.HumanModel.Anthropometrics.SegmentDimensions.Right.LowerArmLength =0.316;
+§//§Main.HumanModel.Anthropometrics.SegmentDimensions.Right.ThighLength = 0.548;
+§//§Main.HumanModel.Anthropometrics.SegmentDimensions.Right.ShankLength = 0.551;
+§//§Main.HumanModel.Anthropometrics.SegmentDimensions.Right.FootLength = 0.243;
+
+§//§Main.HumanModel.Anthropometrics.SegmentDimensions.Left.UpperArmLength = 0.405;
+§//§Main.HumanModel.Anthropometrics.SegmentDimensions.Left.LowerArmLength =0.316;
+§//§Main.HumanModel.Anthropometrics.SegmentDimensions.Left.ThighLength = 0.548;
+§//§Main.HumanModel.Anthropometrics.SegmentDimensions.Left.ShankLength = 0.551;
+§//§Main.HumanModel.Anthropometrics.SegmentDimensions.Left.FootLength = 0.243;
+```
+
+Now it is easy to scale the body down to represent a small person.
+Use the following lines to set the body height to 1.65 m and the body mass to 60 kg:
+
+```AnyScriptDoc
+§Main.HumanModel.Anthropometrics.BodyHeight = 1.65;§
+§Main.HumanModel.Anthropometrics.BodyMass = 60;§
+```
+
+When you load the model you will see all the segments automatically
+scale down. The mass is also scaled, but as we said previously this is
+not visible graphically with this scaling law.
+
+## Scaling based on length and mass
+
+This law scales the size of the body according not only to the segment lengths
+but also to the segments masses. So unlike the ScalingUniform law it provides
+the opportunity to define tall and skinny people or small and squat people. Like
+in the ScalingUniform law, the total body mass is defined by the variable
+`BodyMass`. Just as previously, this total mass is then divided between the
+segments by means of coefficients, but the size scaling is different. Let us
+investigate it. In the main file, please choose the ScalingLengthMass law:
+
+```AnyScriptDoc
+/*------------- SCALING CONFIGURATION SECTION --------------------*/
+  
+// Scaling laws using joint to joint measures
+//  #define BM_SCALING _SCALING_STANDARD_
+//  #define BM_SCALING _SCALING_NONE_
+§//  #define BM_SCALING _SCALING_UNIFORM_
+    #define BM_SCALING _SCALING_LENGTHMASS_§
+//  #define BM_SCALING _SCALING_LENGTHMASSFAT_
+...
+```
+
+In the Main file, switch back the segment length values to the initial
+ones (by outcommenting the added lines) and increase the body mass to 110 kg:
+
+```AnyScriptDoc
+§//§Main.HumanModel.Anthropometrics.BodyHeight = 1.65;
+  Main.HumanModel.Anthropometrics.BodyMass = §110§;
+
+```
+
+Load the model and look at the Model View. Our model looks strange!
+The body is deformed and looks a bit like a Neanderthal.
+
+```{image} _static/lesson1/ScalingLengthMassFront.png
+:alt: LengthMass
+:align: center
+:width: 50%
+```
+
+What really happens is that the ScalingLengthMass law scales the sizes
+of the segments according to their masses, but only in two directions.
+The third scaling direction is controlled by the segment length
+variables. Unlike in the ScalingUniform law, the segment length
+variables just control one scaling direction and not the two others.
+
+So to have a normal-looking model we have to adjust segment mass and
+length simultaneously. As the mass we defined is 110 kg, a height of
+1.98 m could be reasonable:
+  
+```AnyScriptDoc
+Main.HumanModel.Anthropometrics.BodyHeight = §1.98§;
+Main.HumanModel.Anthropometrics.BodyMass = 110;
+```
+
+```{image} _static/lesson1/ScalingLengthMassCorrectFront.png
+:alt: LengthMassCorected
+:align: center
+:width: 50%
+```
+
+When you load the model you will see a more *Homo sapiens*-looking
+figure corresponding to a large 110kg and 1.98 m person.
+
+We mentioned at the beginning of the tutorial that the muscle strength
+is also scaled. It is time to have a look at it and compare muscle
+forces from different scaled models. To do so we need a body with
+muscles. Please add the muscles by commenting out the following section
+in the `BodyModelConfiguration.any` file:
+
+```AnyScriptDoc
+§// #define BM_LEG_MUSCLES_RIGHT OFF
+// #define BM_LEG_MUSCLES_LEFT OFF
+
+// #define BM_ARM_MUSCLES_RIGHT OFF
+// #define BM_ARM_MUSCLES_LEFT OFF
+
+// #define BM_TRUNK_MUSCLES OFF§
+```
+
+We also need to add some forces to the model in order to make it react
+and see muscle activity. This can be done by adding the following lines
+to the `Environment.any` file. This piece of code creates a force of 50 N
+on each hand and displays it in the model view:
+
+```AnyScriptDoc
+AnyFolder Environment = {
+  AnyFixedRefFrame GlobalRef = {Origin = {0.0,0.0,0.0};};
 };
-```
+ §
+AnyForce3D RightHandLoad = {
+  F = {0, -50, 0};
+  AnyRefFrame &Hand = Main.HumanModel.BodyModel.Right.ShoulderArm.Seg.Glove;
+};
 
-The selected points on the surface represent specific anatomical
-landmarks and points described in the comments of the AnyScript code.
-Final modification before we can use the constructed linear transform is
-to give this transformation a name and apply it to the source surface:
+AnyForce3D LeftHandLoad = {
+  F = {0, -50, 0};
+  AnyRefFrame &Hand = Main.HumanModel.BodyModel.Left.ShoulderArm.Seg.Glove;
+};
 
-```AnyScriptDoc
-AnySeg SourceFemur =
-{
-  Mass = 0; Jii = {0, 0, 0};
-  AnyDrawSurf Surface =
-  {
-    FileName = "SourceFemur.stl";
-    RGB = {222,202,176}/256;
-    §AnyFunTransform3D &ref = ..MyTransform;§
+AnyDrawVector DrawRightLoad = {
+  Vec = .RightHandLoad.F*0.015;
+  PointAway = On;
+  GlobalCoord = On;
+  Line = {
+    Style = Line3DStyleFull;
+    Thickness = 0.01;
+    RGB = {0, 0, 0};
+    End = {
+      Style = Line3DCapStyleArrow;
+      RGB = {0, 0, 0};
+      Thickness = 0.025;
+      Length = 0.025;
+    };
   };
+  AnyRefFrame &Hand = .RightHandLoad.Hand;
 };
-```
 
-Reloading the model and looking at the bones shown in the Model View, we
-can see that these bones are now merged. It will produce the following picture.
-
-<img src="_static/lesson3/image2.png" alt="Target and scaled source bone" width="60%">
-
-
-The source bone is now transformed, i.e., translated, scaled and
-skewed to match the target bone. To clearly view the difference between
-the transformed and the original source surface, let us add a new
-`AnyFunTransform3DLin2` called MyTransform2 to the model that we place
-after MyTransform. The intention is to construct a reverse rigid-body
-registration transform between target and source surface. Please note,
-the roles of the source points Points0 and target points Points1 are swapped,
-and the transformation mode is set to `VTK_LANDMARK_RIGIDBODY`.
-
-Additionally to that, a combination transform, containing the forward affine
-and back registration transforms, is added:
-
-```AnyScriptDoc
-§AnyFunTransform3DLin2 MyTransform2 = {
-  Points0 = .MyTransform.Points1;
-  Points1 = .MyTransform.Points0;
-  Mode = VTK_LANDMARK_RIGIDBODY;
-};
-AnyFunTransform3DIdentity MyTransform3 =
-{
-  PreTransforms = {&.MyTransform,&.MyTransform2};
+AnyDrawVector DrawLeftLoad = {
+  Vec = .LeftHandLoad.F*0.015;
+  PointAway = On;
+  GlobalCoord = On;
+  Line = {
+    Style = Line3DStyleFull;
+    Thickness = 0.01;
+    RGB = {0, 0, 0};
+    End = {
+      Style = Line3DCapStyleArrow;
+      RGB = {0, 0, 0};
+      Thickness = 0.025;
+      Length = 0.025;
+    };
+  };
+  AnyRefFrame &Hand = .LeftHandLoad.Hand;
 };§
 ```
 
-Finally, let us look at the effect of the constructed transform. We
-comment the transform used in the visualization of the source surface
-and create another surface that will show the combined transformation
-that we just constructed:
+```{image} _static/lesson1/AppliedForcesFront.png
+:alt: AppliedForcesFront
+:align: center
+:width: 50%
+```
+
+We are now ready to run an inverse dynamic analysis with our large 110kg model.
+Please load the model and run the 'RunApplication' operation from the Operations
+tab. Then open a chart window to investigate the results. By browsing your way
+to the MaxMuscleActivity in `Main.Study.Output` you should get the following
+value:
+
+```{image} _static/lesson1/MaxMuscleActivity198cm110kg.png
+:alt: MaxMuscleActivity198cm110kg
+:align: center
+```
+
+We will now try to model a small person to compare his muscle activity
+with the one we have just plotted. Let us enter the
+parameters for a 65kg and 1.70 m person:
 
 ```AnyScriptDoc
-AnySeg SourceFemur =
-{
-  Mass = 0; Jii = {0, 0, 0};
-  AnyDrawSurf Surface =
-  {
-    FileName = "SourceFemur.stl";
-    RGB = {222,202,176}/256;
-    §//§AnyFunTransform3D &ref = ..MyTransform;
-  };
-  §AnyDrawSurf SurfaceMorphed =
-  {
-    FileName = "SourceFemur.stl";
-    AnyFunTransform3D &ref = ..MyTransform3;
-  };§
-};
+Main.HumanModel.Anthropometrics.BodyHeight = §1.70§;
+Main.HumanModel.Anthropometrics.BodyMass = §65§;
 ```
 
-<img src="_static/lesson3/image3.png" alt="Original and scaled source bone" width="60%">
+We can load the model, run the 'RunApplication' operation and check the
+resultant value.
 
+```{image} _static/lesson1/MaxMuscleActivity170cm65kg.png
+:alt: MaxMuscleActivity170cm65kg
+:align: center
+```
 
-Looking at the Model View, we can see that the femur is now scaled. It
-became longer and now aligns with the original source femur position.
-From the previous picture, we also know that geometry is matching the
-target quite well too (and if you want to convince yourself, you can superimpose the
-target geometry using the MyTransform2 reverse registration transformation
-in the visualization of the target surface).
+For the same load on the hands (50 N) the tall heavy model has a muscle
+activity of 53.7 %, whereas the short model reaches 67.8 % of muscle
+activity. So our small model is definitely weaker than the tall one.
 
-With this example, we have shown how to morph the source into the target
-with a full affine scaling and subsequently applying a reverse
-registration to move the morphed geometry back.
+## ScalingLengthMassFat
 
-Notice that it is possible to reverse the combination, i.e., to apply
-the registration step first and then the scaling/morphing step. For
-instance, make a transformation similar to MyTransform, but insert
-MyTransform2 as pre-transformation. In this tutorial lesson, we shall
-however stay with the concept we presented so far.
+Most scaled models used for practical investigations use the
+ScalingLengthMassFat law. It works exactly like the ScalingLengthMass but with
+an additional parameter: it takes the fat percentage of the body into account.
+The argument is that the fat percentage adds to the mass of each segment, and in
+the ScalingLengthMass law, this would lead to an estimation of more muscle tissue
+rather than fat tissue. So, the fat percentage in this scaling model does not
+modify the mass or the size of the body. It is only used to calculate the
+strength of the muscles. Between two persons of similar segment masses, the one
+with higher fat percentage will have less muscle strength, because the volume
+otherwise occupied by the muscles is replaced by inactive fat.
 
-If the morphing accuracy is sufficient for your task you can proceed
-with your modeling and stop at this step. However, for the purpose of
-this tutorial, the desired accuracy has not been reached - some local
-features still do not match the target features, e.g. the lesser and the
-greater trochanter. The following steps explain how to capture more
-details and improve morphing for even better match.
-
-## Incorporating landmark-based nonlinearities into the scaling function
-
-The next level of detail can be achieved by introducing local nonlinear deformations
-by means of the `AnyFunTransform3DRBF` class. This class represents a nonlinear
-interpolation/extrapolation transformation, which is based on the Radial Basis Functions (RBF)
-method and uses landmarks selected on source and target surfaces. Detailed behaviour
-of this transform is described in an {doc}`appendix tutorial <lesson1_appendix>`.
-However, the focus of this tutorial is to demonstrate available pipelines of transforms. For
-simplicity, we use a preselected set of femoral landmarks and RBF settings.
-
-We start with the model from the previous steps to introduce the landmark-based
-nonlinear scaling. Several tranformations will build up into a pipeline, where
-pre-transforms will be used to inherit obtained accuracy throughout different steps.
-You can find the complete model here: {download}`lesson1b.Main.any <Downloads/lesson1b.Main.any>`.
-The following tutorial shows how to add an RBF transform with the recommended settings
-into the previously created model.
-
-First of all, let us configure the visualization of the transformation.
-Now that we know how to compare source and scaled geometries as well as
-reverse registration, we can switch off the registration step.
+So the mass and size scales are controlled as in the ScalingLengthMass model by
+the `BodyMass` variable and all the segment length variables respectively. The
+fat percentage is controlled in concert by the variables `BodyHeight` and
+`BodyMass`. These two variables are used to calculate the BMI (Body-Mass Index),
+and the BMI is used to calculate the fat percentage of the body according to
+Frankenfield, D. C.; Rowe, W. A.; Cooney, R. N.; Smith, J. S. & Becker, D.
+(2001): Limits of body mass index to detect obesity and predict body
+composition, Nutrition 17(1), 26-30. These variables can be found in the
+`Scaling/DefaultAnthropometrics.any` file which is included in the `HumanModel`
+file.
 
 ```AnyScriptDoc
-AnyFunTransform3DIdentity MyTransform3 =
-{
-  PreTransforms = {&.MyTransform§/*,&.MyTransform2*/§};
-};
+// Default values for the fat percentage found in (ammr\Body\AAUHuman\Scaling\DefaultAnthropometrics.any)
+AnyVar BMI ??= BodyMass/(BodyHeight^2);
+///Estimation from Frankenfield et al. (2001) valid for men
+AnyVar FatPercent ??= (-0.09 + 0.0149*BMI - 0.00009*BMI^2)*100;
 ```
 
-This will return our morphed geometry back to the target bone location
-and we can observe the improvements as we go. Let us now define an
-RBF transformation and another `AnyDrawSurf` object that will show the
-difference between the affine scaling and the new transformation
-pipeline employing nonlinear RBF transformations. For a better contrast
-of the different surfaces, we will also add some colors to the drawing
-of the surfaces:
+Obviously, it is important to input the correct height of the body when using
+this law. Please notice, however, that it is very easy for the user to
+substitute the formula for the fat percentage by another equation or possibly by
+a fixed number for modeling of a particular individual for whom the fat
+percentage has been measured directly. The values should **not** be modified
+directly in the containing file; instead, assign them different values in your
+working file by referencing to them. 
+
+The resultant value for the fat percentage is then directly used to
+compute an estimate of the strength of each muscle in the model.
+
+This advanced strength scaling makes a significant difference for the
+model that is short and heavy. The ScalingLengthMass law tends to
+over-estimate the strength of those models, because they often have a
+high fat percentage that is not taken into account by the law.
+
+We will try to illustrate this by plotting the muscle activity of the
+same short and heavy model with both ScalingLengthMass and
+ScalingLengthMassFat laws. We will begin by adjusting the anthropometrics
+to match a 90kg and 1.70 m person:
 
 ```AnyScriptDoc
-AnySeg SourceFemur = 
-{
-  Mass = 0; Jii = {0, 0, 0};
-...
-  §AnyDrawSurf SurfaceMorphedRBF =
-  {
-    FileName = "SourceFemur.stl";
-    AnyFunTransform3D &ref = ..MyRBFTransform;
-    RGB={1,0,0};
-  };§
-
-...
-...
-
-  §AnyFunTransform3DRBF MyRBFTransform =
-  {
-    PreTransforms = {&.MyTransform};
-    PolynomDegree = 1;
-    RBFDef.Type = RBF_Triharmonic;
-
-    Points0 = {
-      {-0.00920594,  0.36459700,  0.0174376},  // fovea capitis
-      { 0.03691960, -0.01011610, -0.0197803},  // anterior lateral condyle
-      { 0.03001110, -0.00998133,  0.0186877},  // anterior medial condyle
-      { 0.02009270,  0.34511400, -0.0387426},  // anterior greater trochanter point
-      { 0.02783850,  0.18320400, -0.0217463},  // anterior shaft point
-      {-0.02461770, -0.00623515, -0.0231383},  // posterior lateral condyle
-      {-0.03211040, -0.00908290,  0.0246153},  // posterior medial condyle
-      {-0.02643670,  0.35630800,  0.0014140},  // posterior head point
-      { 0.01780310,  0.36194400,  0.0059740},  // anterior head point
-      {-0.00197744,  0.38387300, -0.0031698},  // superior head point
-      {-0.00316772,  0.34248600,  0.0114698},  // inferior head point
-      {-0.02469710,  0.30335600, -0.0171113},  // medial lesser trochanter
-      {-0.00969883,  0.34826800, -0.0462823},  // distal trochanteric fossa
-      {-0.01959660,  0.36243100, -0.0441186},  // proximal posterior greater trochanter
-      {-0.00084335,  0.32253400, -0.0641596},  // distal trochanteric fossa
-      {-0.00431680,  0.35912600,  0.0036940}   // femoral COR
-    };
-    PointNames = {
-      "Medial_Head_Point",
-      "Anterior_LateralCondyle_Point",
-      "Anterior_MedialCondyle_Point",
-      "Anterior_GreaterTrochanter_Point",
-      "Anterior_Shaft_Point",
-      "Posterior_LateralCondyle_Point",
-      "Posterior_MedialCondyle_Point",
-      "Posterior_Head_Point",
-      "Anterior_Head_Point",
-      "Proximal_Head_Point",
-      "Infeior_Head_Point",
-      "Medial_LesserTrochanter_Point",
-      "Distal_TrochantericFossa_Point",
-      "Proximal_Posterior_GreaterTrochanter_Point",
-      "Lateral_Lesser_Trochanter_Point",
-      "Femoral_COR"
-    };
-
-    Points1 = {
-      { 0.2900, 0.4205, 0.0139},
-      { 0.3220, 0.4332,-0.3786},
-      { 0.2893, 0.4268,-0.3730},
-      { 0.3599, 0.4429,-0.0050},
-      { 0.3289, 0.4259,-0.1750},
-      { 0.3062, 0.4872,-0.3703},
-      { 0.2619, 0.4759,-0.3727},
-      { 0.2900, 0.4405, 0.0139},
-      { 0.3200, 0.4095, 0.0134},
-      { 0.3100, 0.4295, 0.0314},
-      { 0.2983, 0.4196,-0.0066},
-      { 0.3089, 0.4599,-0.0355},
-      { 0.3349, 0.4579, 0.0050},
-      { 0.3329, 0.4679, 0.0175},
-      { 0.3519, 0.4599,-0.0355},
-      { 0.3075, 0.4235, 0.0139}
-    };
-    BoundingBox =
-    {
-      Type = BB_Cartesian;
-      ScaleXYZ = {2, 2, 2};
-      DivisionFactorXYZ = 5*{1, 1, 1};
-    };
-    BoundingBoxOnOff = On;
-  };§
-}; // MyModel
-
+Main.HumanModel.Anthropometrics.BodyHeight = §1.70§;
+Main.HumanModel.Anthropometrics.BodyMass = §90§;
 ```
 
-```{image} _static/lesson3/image4.png
-:width: 60%
+Then please load the model and re-run the RunApplication operation. Notice that
+we should still be using the ScalingLengthMass law. You should now get the
+following value for the maximum muscle activity.
+
+```{image} _static/lesson1/MaxMuscleActivity170cm90kgLM.png
+:alt: MaxMuscleActivity170cm90kgLM
+:align: center
 ```
-<img src="_static/lesson3/image4.png" alt="Targe, linear, and RBF scaling" width="60%">
 
-
-This code constructs a transform, which deforms the source geometry
-into the target one using the thin-plate interpolation method and minimizes
-the distance between the selected key points (landmarks). This can be used
-when certain muscle attachment areas/points need to be scaled. Using this
-allows us improving the model by making some local features more accurate
-for the sensitive analyses. Please note that `MyTransform` object was
-included as a pre-transform as a rough scaling preceding the nonlinear
-RBF function, and it will be applied to the source entities, i.e. achieving
-the result of the previous step. Target bone is color-coded with the yellow color,
-initial linear scaling is grey, RBF-scaled bone is red. 
-
-
-:::{tip}
-mouse-over in the Model
-View helps to see the name of the object.
-:::
-
-However, it is still possible to improve the fitting of the femur surfaces and, thus,
-improve the accuracy of the model. Looking at the Model View you can notice that
-the red and yellow surfaces are slightly different, e.g. at the femoral head region.
-This is caused by the nature of the interpolation and a low number of control points.
-The following section will describe how to utilize surface information for the
-construction of an improved scaling law.
-
-## Incorporating surface based nonlinearities into the scaling function
-
-In this section, next improvement to the morphing is added by utilizing
-surface information. The surfaces will be requested to be morphed into each
-other, which will at the same time deform all related soft tissue attachment
-points accordingly. The `AnyFunTransform3DSTL` class is used for this purpose.
-This class constructs an RBF transformation similarly to the `AnyFunTransform3DRBF`
-by using either 1) corresponding vertices on the STL surfaces or 2) seeding a number
-of vertices on one surface and finding a matching closest point on the second.
-
-:::{note}
-For constructing a transformation using the vertices of STL surfaces, the surfaces
-have to be topologically equivalent, i.e. the surfaces have the same number of
-triangles and each neighbor and vertices represent the same features on both surfaces.
-:::
-
-For the latter option, we require an acceptable pre-registration
-transform, e.g. the RBF transform that was described previously, in
-order for the closest point search to make sense. Due to the implementation
-specifics, most of the RBF recommendations apply to this class as well.
-More details about how to create this kind of transforms are described in {doc}`appendix tutorial <lesson1_appendix>`. However, for this example, the
-recommended settings mentioned before will be used again.
-
-Let us repeat the step from the previous section by adding one more
-surface to the visualization and another scaling step. You can download
-the model with all modifications {download}`here <Downloads/lesson1c.Main.any>`:
+The next step is to run an analysis with the same body but with the
+ScalingLengthMassFat law:
 
 ```AnyScriptDoc
-AnySeg SourceFemur = 
-{
-  Mass = 0; Jii = {0, 0, 0};
-...
-  §AnyDrawSurf SurfaceMorphedSTL =
-  {
-    FileName = "SourceFemur.stl";
-    AnyFunTransform3D &ref = ..MySTLTransform;
-    RGB={0,0,1};
-  };§
+/*------------- SCALING CONFIGURATION SECTION --------------------*/
 
-...
-...
-
-  §AnyFunTransform3DSTL MySTLTransform =
-  {
-    PreTransforms = {&.MyRBFTransform};
-    PolynomDegree = 1;
-    RBFDef.Type = RBF_Triharmonic;
-    AnyFixedRefFrame Input = {
-      AnySurfSTL SourceSurf = {
-        FileName = "SourceFemur.stl";
-        ScaleXYZ = {1, 1, 1};
-      };
-      AnySurfSTL TargetSurf = {
-        FileName = "TargetFemur.stl";
-        ScaleXYZ = {1, 1, 1};
-      };
-    };
-
-    SurfaceObjects0 = {&Input.SourceSurf};
-    SurfaceObjects1 = {&Input.TargetSurf};
-    //FileName0 = "SourceFemur.stl";    // such definition was used previously
-    //FileName1 = "TargetFemur.stl";    // such definition was used previously
-    NumPoints = 1000;
-    BoundingBox.ScaleXYZ = {2, 2, 2};
-    BoundingBox.DivisionFactorXYZ = {1, 1, 1};
-    BoundingBoxOnOff = On;
-  };§
-
-}; // MyModel
-
+// Scaling laws using joint to joint measures
+//  #define BM_SCALING _SCALING_UNIFORM_
+§//  #define BM_SCALING _SCALING_LENGTHMASS_
+    #define BM_SCALING _SCALING_LENGTHMASSFAT_§
 ```
 
+Once again load the model and run the RunApplication operation. We should get
+the following results:
 
-<img src="_static/lesson3/image5.png" alt="Target, linear, and RBF, RBF-STL scaling" width="60%">
-
-Please note again the transform from the previous section of this
-tutorial was included as a pre-transform, which means we will start working with
-the result of the previous step. Reloading the model, we can now see all steps
-of scaling in one place and can switch them on and off. For example, let us try
-to hide affine and RBF scaled femurs to see the final results:
-
-
-
-<img src="_static/lesson3/image6.png" alt="RBF, RBF-STL scaling" width="60%">
-
-If we just look at the yellow target surface and the blue STL-transformed
-surface, we can see that the surfaces now match each other very well. That means
-that now the subject-specificity will be taken into account in the inverse
-dynamics simulation. The final model can be downloaded {download}`here <Downloads/lesson1d.Main.any>`.
-
-```{toctree}
-:hidden: true
-
- Lesson 1 appendix <lesson1_appendix>
+```{image} _static/lesson1/MaxMuscleActivity170cm90kgLMF.png
+:alt: MaxMuscleActivity170cm90kgLMF
+:align: center
 ```
 
-Finally, the only thing left is to include this scaling function into an
-actual model. {doc}`Lesson 2 <lesson2>` describes how this can be
-done.
+If we compare these two activity values, the difference is clear. The
+ScalingLengthMassFat law is increasing the muscle activity by
+approximately 16 percentage points in this case, from 50.7 % to 66.4 %. This shows the
+limits of the ScalingLengthMass law for extreme cases.
+ScalingLengthMassFat is able to cover a wider range of cases while
+keeping its accuracy.
+
+This completes Lesson 1: Joint to Joint Scaling Methods. {doc}`Lesson 2<lesson2>` 
+introduces a statistical scaling method based on external measures where an
+AnyBody plugin is used. 
