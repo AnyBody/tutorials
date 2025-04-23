@@ -24,12 +24,18 @@ Anatomically, via point muscles are mostly found in the lower
 extremities and in the spine, while the arms and shoulders almost
 exclusively have wrapping muscles.
 
-![Old leg Muscle wrapping](_static/lesson3/image1.jpeg)
+```{image} _static/lesson3/image1.jpeg
+:alt: Old leg Muscle wrapping
+:align: center
+```
 
 *Most muscles in the legs can be modeled
 reasonably with via point muscles.*
 
-![Deltoid muscles](_static/lesson3/image2.jpeg)
+```{image} _static/lesson3/image2.jpeg
+:alt: Deltoid muscles
+:align: center
+```
 
 *The deltoid muscle wraps over the head
 of the humerus.*
@@ -125,7 +131,10 @@ AnyMuscleViaPoint Muscle1 = {
 
 The figure below shows the result:
 
-![Simpel model with via point muscle](_static/lesson3/image3.jpeg)
+```{image} _static/lesson3/image3.jpeg
+:alt: Simple model with via point muscle
+:align: center
+```
 
 A muscle can pass through an unlimited number of via points, and the
 points can be attached to different segments. This can be used to create

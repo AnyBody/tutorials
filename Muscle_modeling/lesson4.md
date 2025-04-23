@@ -83,7 +83,10 @@ insertion point of the cylinder is at {0, 0, 0.2} corresponding exactly
 to half of the length of the cylinder of 0.4. This causes the cylinder
 to be inserted symmetrically about the xy plane as illustrated below:
 
-![wrapcylinder](_static/lesson4/image1.jpeg)
+```{image} _static/lesson4/image1.jpeg
+:alt: Wrap cylinder
+:align: center
+```
 
 The cylinder direction is always z in the coordinate direction of the
 object that the cylinder is inserted into. So, if the cylinder does not
@@ -109,7 +112,10 @@ AnyRefNode CylCenter = {
 
 &#160;Which causes the cylinder to rotate 20 degrees about the y axis.
 
-![wrap cylinder rotated](_static/lesson4/image2.jpeg)
+```{image} _static/lesson4/image2.jpeg
+:alt: Wrap cylinder rotated
+:align: center
+```
 
 There are a couple of things to notice about the cylinder: First of all
 the graphics looks like the cylinder is faceted. This is not really the
@@ -242,7 +248,10 @@ It is time to see what we have done. If you load the model and run the
 InverseDynamics analysis (and have done everything right), you will see
 the model moving through a sequence of positions like this:
 
-![wrap cylinder with via point sequence](_static/lesson4/image3.jpeg)
+```{image} _static/lesson4/image3.jpeg
+:alt: Wrap cylinder with via point sequence
+:align: center
+```
 
 As mentioned above, wrapping muscles can also have via points. In fact,
 we can easily change the via point muscle, Muscle1,  to wrap over the
@@ -269,7 +278,10 @@ to change the type from AnyMuscleViaPoint to AnyMuscleShortestPath and
 insert the wrapping surface and the StringMesh specification. This gives
 us the following result:
 
-![wrap cylinder two muscles](_static/lesson4/image4.jpeg)
+```{image} _static/lesson4/image4.jpeg
+:alt: Wrap cylinder two muscles
+:align: center
+```
 
 As you can see, both muscles are now wrapping over the cylinder, and we
 can run the InverseDynamics analysis. It seems to work, but the system
@@ -339,7 +351,10 @@ Step button rather than the run button. This will show you how the
 system uses the InitWrapVectors to pull the muscle to the other side of
 the cylinder:
 
-![wrap cylinder Init wrap vectors](_static/lesson4/image5.jpeg)
+```{image} _static/lesson4/image5.jpeg
+:alt: Wrap cylinder Init wrap vectors
+:align: center
+```
 
 If you keep pressing the step button you will see how the muscle now
 wraps on the other side of the cylinder.
