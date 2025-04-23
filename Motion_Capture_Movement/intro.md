@@ -36,6 +36,8 @@ independent possibilities, so the concept of DoF is rather general, and
 we shall explore it in a little more detail in the following on a very
 simple model.
 
+<!-- 
+----- From previous edition of this tutorial -----
 Please download and save the file
 {download}`pendulum.any <Downloads/pendulum.any>` in a working directory. Load
 the model into AnyBody and open a new model view. You should see a
@@ -62,6 +64,8 @@ define the position of the pendulum. This comes down to the fact that
 the pendulum has one DoF, i.e. one movement opportunity, and the model
 does not specify how to move that one DoF. The system has no way of
 determining which movement to perform before we have specified it.
+-->
+
 
 In the following lessons we will look at simple and more advanced ways
 to drive a model. For simplicity, we’ll stick with the simple pendulum,

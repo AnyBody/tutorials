@@ -3,7 +3,20 @@
 
 (making-things-move-move-real-mocap)=
 
-# Lesson 5: Using real data
+# Lesson 1: Using real data
+
+In biomechanics, we often want to make our models move as we have measured in
+the laboratory and the measurement technique would often be tracking of optical
+markers in space by means of synchronized cameras.
+
+There are many such systems available commercially, but a common feature of most
+of the systems is that they are capable of saving data on a standard format
+called a C3D file.
+
+A C3D file contains data of the spatial trajectory of optical markers fixed to
+the object whose motion we want to record. The file can also contain analog data
+such as force platform measurements or EMG. AnyBody can read the data from a C3D
+file directly. 
 
 Without further ado, let us import a real C3D file and drive a complete model.
 
@@ -48,7 +61,7 @@ file to drive the model with.
 #include "<ANYMOCAP_MODEL>"
 ```
 
-The model defines three section/files which must be customized.
+The model defines three sections/files which must be customized.
 
 - {file}`LabSpecificData.any`
 - {file}`SubjectSpecificData.any`
@@ -60,7 +73,9 @@ on line 13 we include the *AnyMocap* framework or base model.
 Now please load the model and open up a new Model View. You should see
 the following model:
 
-```{image} _static/lesson5/image1.png
+```{image} _static/lesson1/image1.png
+:alt: View of the model
+:align: center
 ```
 
 The model consist of number of operations which must be executed in the correct
@@ -68,7 +83,7 @@ order. The flow of the model is illustrated in the following figure.
 
 (model-flow-chart)=
 
-:::{figure} _static/lesson5/flow.png
+:::{figure} _static/lesson1/flow.png
 Illustration of the three processes for the Mocap models. Parameter
 identification, Marker tracking, and Inverse Dynamic analysis. See
 [Lund et al. 2015](https://doi.org/10.1080/23335432.2014.993706)
@@ -81,7 +96,10 @@ If you look closely at the model view, you can see that the skeleton is equipped
 markers and if you zoom in a little, you can also see that the markers
 carry small coordinate systems with red and green arrows.
 
-```{image} _static/lesson5/image2.png
+```{image} _static/lesson1/image2.png
+:alt: Close up view of leg
+:align: center
+:width: 60%
 ```
 
 ```{raw} html
@@ -111,7 +129,7 @@ points wrong, the resulting motion of the model will also be inaccurate.
 So the green arrows designate directions in which we have the greatest
 uncertainty about whether the marker is placed in the model as it was in
 the experiment. The good news is that we can optimize those marker
-placements exactly as we did in {doc}`lesson 4 <lesson4>`.
+placements exactly as we are going to do in {doc}`lesson 4 <lesson4>`.
 
 The model is set up to do this automatically, and if you are happy with the
 choice that has been made, you need not do anymore.
@@ -119,7 +137,7 @@ choice that has been made, you need not do anymore.
 :::{note}
 If you use a different marker protocol, or customize what is optimized you
 will need to modify the marker protocol. In this example, the marker
-protocol is define in the file The {file}`Setup/MarkerProtocol.any`. In the
+protocol is defined in the file {file}`Setup/MarkerProtocol.any`. In the
 interest of simplicity, we shall postpone the discussion of the marker
 protocol setup.
 :::
@@ -144,7 +162,10 @@ Without further ado, let us perform the optimization:
 
 Find the `Main.RunParameterIdentification` in the operations dropdown, and run it.
 
-![Opertions RunModtionAndParameterOpt](_static/lesson5/image3.png)
+```{image} _static/lesson1/image3.png
+:alt: Opertions RunModtionAndParameterOpt
+:align: center
+```
 
 You will see the model walking repeatedly over the force platforms,
 sometimes slowly and sometimes a bit faster depending on the speed of
@@ -189,14 +210,14 @@ the full optimization for each trial as we shall do later in this tutorial.
 
 ## Marker tracking and Inverse dynamics
 
-Let us proceed with the kinematic analysis. As we saw in {doc}`lesson2` marker
-based models usually require an over-determinate kinematic solver to handle the
-excess in information that the optical markers provide. The over-determinate
-solver in AMS works great, but it will calculate velocities and accelerations
-numerically. That has some performance issues when running inverse dynamics
-analysis. To overcome this problem, the MOCAP analysis is split into a two-step
-procedure, as illustrated on  figure {numref}`model-flow-chart`, separating
-the Marker tracking from the Inverse dynamic analysis.
+Let us proceed with the kinematic analysis. As we will see later in
+{doc}`lesson2` marker based models usually require an over-determinate kinematic
+solver to handle the excess in information that the optical markers provide. The
+over-determinate solver in AMS works great, but it will calculate velocities and
+accelerations numerically. That has some performance issues when running inverse
+dynamics analysis. To overcome this problem, the MOCAP analysis is split into a
+two-step procedure, as illustrated on  figure {numref}`model-flow-chart`,
+separating the Marker tracking from the Inverse dynamic analysis.
 
 The overdeterminate kinematic analysis solves the model for positions, and
 stores the joint angles as function of time. This step is the "Marker tracking"
@@ -204,10 +225,12 @@ step in figure {numref}`model-flow-chart`. These joint angles are then used in t
 second step with the determinate kinematic solver in the inverse dynamic
 analysis.
 
-In the Model the *Marker tracking* and *Inverse Dynamics* are combined into
+In the Model the *Marker tracking* and *Inverse Dynamics* are combined into a
 single operation called `Main.RunAnalysis`.
 
-```{image} _static/lesson5/Main.RunAnalysis.png
+```{image} _static/lesson1/Main.RunAnalysis.png
+:alt: Operations tree
+:align: center
 ```
 
 The operation contains everything
@@ -224,7 +247,9 @@ continuously calculate forces in more than 300 muscles. When the analysis is
 finished, you can open up a Chart view and investigate the results, for instance
 the hip joint reaction forces:
 
-```{image} _static/lesson5/image5.png
+```{image} _static/lesson1/image5.png
+:alt: Chart Fout
+:align: center
 ```
 
 ## Importing new motion data
@@ -242,12 +267,12 @@ point at a different file. A few lines into the Main file, you find
 this:
 
 ```AnyScriptDoc
-#path MOCAP_TRIAL_SPECIFIC_DATA "TrialSpecificData.any"
+#path MOCAP_TRIAL_SPECIFIC_DATA "Setup/TrialSpecificData_LowerExtremity.any"
 ```
 
 This file contains the settings you typically want to change when switching trials.
 
-Double-click the `TrialSpecificData.any` file name, and the file opens up
+Double-click the `TrialSpecificData_LowerExtremity.any` file name, and the file opens up
 in a new tab. Then, just a few lines down, refer to the new filename
 into the model:
 
@@ -259,19 +284,48 @@ TrialFileName = §"GaitFast_1"§;
 Since this is a new C3D file from a new trial, we also need to run the
 kinematic optimization again.
 
-This is all there is to it. We can now reload the model. To see the
-model moving (without doing the parameter optimization just now), locate
-and run the Kinematics (Marker tracking) operation in the Operation tree:
+Since we have included a new C3D file containing a different amount of frames,
+we have to adjust the first and last frame of the simulation. This is done in
+the `TrialSpecificData_LowerExtremity.any` file, where we have to make the
+following changes:
 
-![Operations, kinematics](_static/lesson5/image6.png)
+```AnyScriptDoc
+TrialFileName = "GaitFast_1";
+
+// This the C3D frame where the analysis starts
+// If not specified it defaults to the first frame of the C3D file
+//FirstFrame = .C3DFileData.Header.FirstFrameNo;
+FirstFrame = §.C3DFileData.Header.FirstFrameNo+5§;
+
+// This the C3D frame where the analysis ends
+// If not specified it defaults the first frame of the C3D file
+//LastFrame = .C3DFileData.Header.LastFrameNo;
+LastFrame = §.C3DFileData.Header.LastFrameNo-5§;
+```
+
+This defines that the simulation starts 5 frames after the first frame in the C3D
+file and ends 5 frames before the last frame in the C3D file.
+
+We can now load the model and see it moving (without doing the parameter
+optimization just now). Locate and run the Kinematics ("Marker tracking")
+operation in the Operation tree:
+
+```{image} _static/lesson1/image6.png
+:alt: Operations, kinematics
+:align: center
+```
 
 The movement seems to work fine and you will notice that this gait
 pattern is a little different from before. The steps are longer and the
 posture indicates that this is a person in a hurry.
 
-![Model view, marker tracking](_static/lesson5/image7.png)
+```{image} _static/lesson1/image7.png
+:alt: Model view, marker tracking
+:align: center
+:width: 80%
+```
 
-Now is the time to run the `Main.ParameterIdentification`.  It
+Now is the time to run the `Main.RunParameterIdentification`.  It
 takes a bit of time, and again you can speed up the process by switching
 off the update of the Model View window. Eventually, the process comes
 to an end and you get the message:
@@ -292,7 +346,7 @@ Next, we run the combined *Marker tracking* and *Inverse dynamics* (`Main.RunAna
 Which, after the analysis can provide a new hip joint force profile
 documenting that faster gait lead to higher hip joint forces.
 
-```{image} _static/lesson5/charview_higher_hip_forces.png
+```{image} _static/lesson1/charview_higher_hip_forces.png
 ```
 
 ## Using full-body models
@@ -302,28 +356,36 @@ lower extremities. The Model Repository contains another
 pre-cooked model for this purpose, and it will reveal that there is more
 data in the C3D file we just imported than we saw in lower extremity model.
 
-Open the full body example model `Plug-in-gait_Simple/FullBody.main.any`, then run
-`Main.ParameterIdentification`
-
+Open the full body example model `Plug-in-gait_Simple/FullBody.main.any`.
 Please load the model and open a Model View if you do not already have
 one. You will see the model as before, but now with the arms included.
 
-![Model view Fullbody initial load](_static/lesson5/image9.png)
+```{image} _static/lesson1/image9.png
+:alt: Model view Fullbody initial load
+:align: center
+:width: 80%
+```
 
-Select and run the RunMotionAndParameterOptimizationSequence in the
+Select and run the `Main.RunParameterIdentification` in the
 Operations tree:
 
-![Opertions RunModtionAndParameterOpt](_static/lesson5/image3.png)
+```{image} _static/lesson1/image3.png
+:alt: Opertions RunModtionAndParameterOpt
+:align: center
+```
 
 The model starts walking repeatedly over the force platforms including
 the arm motions while it tries to optimize segment lengths and marker
-positions. It takes 7 iterations and more time than before
+positions. It takes 5 iterations and considerable more time than before
 to optimize the model because this is a much larger problem, but as
 before you can speed up the process if you switch off the update of the
 Model View window. It is possible to monitor the convergence of the
 optimization problem from a Chart window like this:
 
-![Chart view, Kin objective](_static/lesson5/image11.png)
+```{image} _static/lesson1/image11.png
+:alt: Chart view, Kin objective
+:align: center
+```
 
 Eventually, the optimization process terminates and you can switch run the
 *Marker tracking* and *inverse dynamics* (`Main.RunAnalysis`) and perform the
@@ -333,7 +395,11 @@ This full-body model with almost 1000 muscle fascicles takes considerable more
 time to analyze but will reward you with very detailed information about the
 function of the muscle system in gait as illustrated below.
 
-![Model view, full body inverse dynamics](_static/lesson5/image12.png)
-
-The final {doc}`lesson <lesson6>` of this tutorial is about problems that may arise with
-C3D files.
+```{image} _static/lesson1/image12.png
+:alt: Model view, full body inverse dynamics
+:align: center
+```
+This concludes the introduction on how to use motion capture data in a complex
+musculoskeletal model. The following three lessons show how to set up a simple
+model using motion capture data, while the final {doc}`lesson <lesson5>` of this
+tutorial is about problems that may arise with C3D files. 

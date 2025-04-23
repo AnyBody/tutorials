@@ -1,7 +1,7 @@
 ::: {rst-class} break
 :::
 
-# Lesson 6: Troubleshooting C3D files
+# Lesson 5: Troubleshooting C3D files
 
 Occasionally you may experience problems reading C3D files and some of
 the common issues are treated below. But before we get to them, let us

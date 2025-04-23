@@ -3,72 +3,78 @@
 
 # Lesson 2: Using motion capture data
 
-In biomechanics, we often want to make our models move as we have measured in
-the laboratory and the measurement technique would often be tracking of optical
-markers in space by means of synchronized cameras.
+In the previous lesson, we explored how a large and complex AMMR model can be
+driven using motion capture data. Now, let's take a step back and start building
+our own simple model driven by motion capture data.
 
-There are many such systems available commercially, but a common feature of most
-of the systems is that they are capable of saving data on a standard format
-called a C3D file.
+Please download and save this 
+{download}`AnyBody Model of a pendulum <Downloads/pendulum.any>` and this file 
+{download}`pendulum.c3d<Downloads/pendulum.c3d>` in the same folder. Load 
+the model into AnyBody and open a new model view. You should see a vertical
+segment with a point at each end. It is, in fact, a pendulum model linked to the
+global reference frame by a revolute joint at its upper end point. We use this
+example because it is very simple and has a remote similarity with a human limb.
 
-A C3D file contains data of the spatial trajectory of optical markers fixed to
-the object whose motion we want to record. The file can also contain analog data
-such as force platform measurements or EMG.
+A hinged pendulum, like a forearm hinged at the elbow, will have just one DoF,
+hence only one driver is needed to drive its motion. The class `AnyKinMotion` with
+a polynomial driver function is already inserted in the model as its driver.
+Refer to {ref}`this prior tutorial <AnyKinMotion>` for more informaiton about
+this driver. 
 
-AnyBody can read the data from a C3D file directly. Please download and save the
-file {download}`pendulum.c3d <Downloads/pendulum.c3d>` in the directory where
-you saved the {file}`Pendulum.any` file.
+In the following we will drive the pendulum using motion capture data instead
+of using this driver.
 
-Next, place the cursor in the editor window just before the {code}`AnyKinMotion`
+## Driving Using Motion Capture Data 
+
+Now, place the cursor in the editor window just before the {code}`AnyKinMotion`
 object, click the Classes tab (on the right side of the screen), unfold the class list, and locate the
 {code}`AnyInputC3D` class. Right-click the class and choose “Insert Class
 Template”.
 
 ```AnyScriptDoc
-AnyInputC3D <ObjectName> =
+AnyInputC3D <ObjectName> = 
 {
-FileName = "";
-//ReadAllDataOnOff = On;
-//TruncateExtraCharsInNamesOnOff = On;
-//MakeNameUniqueStr = "_";
-//PointsScaleFactor = 1.0;
-//ConstructModelOnOff = On;
-//ConstructChartOnOff = On;
-//ConstructWeightFunUsingResidualOnOff = Off;
-//GapFillUsingResidualsOnOff = Off;
-//MarkerUseAllPointsOnOff = Off;
-//MarkerUseCamMaskOnOff = On;
-//MarkerIndices = ;
-//MarkerLabels = ;
-//MarkerFilterIndex = 0;
-//ProcessedDataFilterIndex = 0;
-//AnalogFilterIndex = -1;
-/*Filter =
-{
-z0 = ;
-AutomaticInitialConditionOnOff = On;
-FilterForwardBackwardOnOff = On;
-N = 2;
-W = ;
-Fs = 0.0;
-Fc = {10.0};
-Type = LowPass;
-};*/
-//WeightThreshold = 0.0;
-//WeightOutput = {{0.0, 1.0}, {0.0, 1.0}, {0.0, 1.0}};
-//WeightTransitionTime = 0.1;
-//SearchAndReplace = ;
-//WriteMarkerDataToFilesOnOff = Off;
-//MarkerScaleXYZ = {0.025, 0.025, 0.025};
-//MarkerRGB = {0.65, 0.65, 0.65};
-//MarkerDrawOnOff = On;
-//MarkerInterPolType = Bspline;
-//MarkerBsplineOrder = 4;
+  FileName = "";
+  //ReadAllDataOnOff = On;
+  //TruncateExtraCharsInNamesOnOff = On;
+  //MakeNameUniqueStr = "_";
+  //PointsScaleFactor = 1.0;
+  //ConstructModelOnOff = On;
+  //ConstructChartOnOff = On;
+  //ConstructWeightFunUsingResidualOnOff = Off;
+  //GapFillUsingResidualsOnOff = Off;
+  //MarkerUseAllPointsOnOff = Off;
+  //MarkerUseCamMaskOnOff = On;
+  //MarkerIndices = ;
+  //MarkerLabels = ;
+  //MarkerFilterIndex = 0;
+  //ProcessedDataFilterIndex = 0;
+  //AnalogFilterIndex = -1;
+  /*Filter = 
+  {
+  AutomaticInitialConditionOnOff = On;
+  FilterForwardBackwardOnOff = On;
+  N = 2;
+  W = ;
+  Fs = 0.0;
+  Fc = {10.0};
+  Type = LowPass;
+  };*/
+  //WeightThreshold = 0.0;
+  //WeightOutput = {{0.0, 1.0}, {0.0, 1.0}, {0.0, 1.0}};
+  //WeightTransitionTime = 0.1;
+  //SearchAndReplace = ;
+  //WriteMarkerDataToFilesOnOff = Off;
+  //MarkerScaleXYZ = {0.025, 0.025, 0.025};
+  //MarkerRGB = {0.65, 0.65, 0.65};
+  //MarkerDrawOnOff = On;
+  //MarkerInterPolType = Bspline;
+  //MarkerBsplineOrder = 4;
 };
 ```
 
 As you can see, the class has a lot of settings, but for now we shall
-only use two of them, namely FileName and ConstructChartOnOff. We also
+only use two of them, namely `FileName` and `ConstructChartOnOff`. We also
 give a name to the object:
 
 ```AnyScriptDoc
@@ -79,6 +85,7 @@ AnyInputC3D §C3D§ = {
   //PointsScaleFactor = 1;
   //ConstructModelOnOff = On;
   §ConstructChartOnOff = Off;§
+};
 ```
 
 `ConstructChartOnOff` instructs the C3D object to not draw 3D
@@ -115,7 +122,11 @@ Now the model should load with no problems, and you can go to the tree
 view in the left hand side of the screen, click the Model tab and unfold
 the MyModel tree down to the C3D object as shown below.
 
-![Model tree](_static/lesson2/image1.png)
+```{image} _static/lesson2/image1.png
+:alt: Model tree
+:align: center
+:width: 40%
+```
 
 A bit down in this object you find the Header section. When you unfold
 it you get access to a number of basic properties of the C3D file. Each
@@ -178,7 +189,10 @@ This eliminates possible numerical trouble with end points.
 Now the model should load and the Model View window will display a small, grey
 dot to the right of the pendulum end.
 
-![small dot](_static/lesson2/image2.jpeg)
+```{image} _static/lesson2/image2.jpeg
+:alt: small dot
+:align: center
+```
 
 The small dot is in fact the single marker contained in {file}`Pendulum.c3d`. A
 typical file from a real motion capture experiment can contain dozens of
@@ -189,7 +203,7 @@ Kinematics operation, you will see the pendulum move as before, while the marker
 performs an oscillating motion back and forth
 
 So how do we get the marker to drive the pendulum? This can be done
-quite easily with the AnyKinDriverMarker object. The steps are:
+quite easily with the `AnyKinDriverMarker` object. The steps are:
 
 1. Remove the existing driver that makes the pendulum rotate.
 2. Drive the marker point, `P1`, on the pendulum to follow the data
@@ -202,12 +216,9 @@ Then click the Classes tab on the right side of the screen,
 insert a new `AnyKinDriverMarker` template, and give it a name:
 
 ```AnyScriptDoc
-§AnyKinDriverMarker <ObjectName> =
+§AnyKinDriverMarker <ObjectName> = 
 {
-  //RefFrames = ;
-  //Surfaces = ;
-  //KinMeasureArr = ;
-  //KinMeasureIndexArr = ;
+  //viewKinMeasure.Visible = Off;
   //MeasureOrganizer = ;
   //CType = ;
   //WeightFun = ;
@@ -226,12 +237,9 @@ position of `P1` on the pendulum. This is specified with the first
 reference frame in the object:
 
 ```AnyScriptDoc
-AnyKinDriverMarker §C3DMotion§ =
+AnyKinDriverMarker §C3DMotion§  = 
 {
-  //RefFrames = ;
-  //Surfaces = ;
-  //KinMeasureArr = ;
-  //KinMeasureIndexArr = ;
+  //viewKinMeasure.Visible = Off;
   //MeasureOrganizer = ;
   //CType = ;
   //WeightFun = ;
@@ -255,12 +263,9 @@ a reasonable name to the `AnyParamFun` and remove the stuff after the
 equality sign:
 
 ```AnyScriptDoc
-AnyKinDriverMarker C3DMotion =
+AnyKinDriverMarker C3DMotion  = 
 {
-  //RefFrames = ;
-  //Surfaces = ;
-  //KinMeasureArr = ;
-  //KinMeasureIndexArr = ;
+  //viewKinMeasure.Visible = Off;
   //MeasureOrganizer = ;
   //CType = ;
   //WeightFun = ;
@@ -269,7 +274,7 @@ AnyKinDriverMarker C3DMotion =
   //DriverAcc0 = ;
   AnyRefFrame &Marker = .Pendulum.P1;
   //AnyRefFrame &<Insert name1> = <Insert object reference (or full object definition)>;
-  AnyParamFun §&Trajectory = ;§
+  §AnyParamFun &Trajectory = ;§
 };
 ```
 
@@ -278,7 +283,10 @@ window, unfold the MyModel branch and subsequently the `C3D` object ->
 `Points` -> `Markers` -> `L000` and arrive at `PosInterpol` as shown
 below.
 
-![Model tree 2](_static/lesson2/image3.png)
+```{image} _static/lesson2/image3.png
+:alt: Model tree 2
+:align: center
+```
 
 This is the actual interpolation function of the marker in question.
 Place the cursor after the equality sign of the `AnyParamFun` line,
@@ -308,14 +316,14 @@ Now load the model and run the kinematic analysis. You will get the
 following error message:
 
 ```none
-ERROR(OBJ.MCH.KIN3) :  ... Kinematic analysis failed in time step 0 : System is kinematically over-constrained
+ERROR(OBJ.MCH.KIN2): pendulum.any(64): MyStudy.InitialConditions: Model is kinematically over-constrained
 ```
 
-It is time to think back to the concept of degrees-of-freedom, DoF. In the
-beginning of the tutorial, we established that the free pendulum has one DoF.
-But the marker trajectory has three coordinates and therefore wants to drive
-`P1` of the pendulum in $x$, $y$ and $z$, i.e. two DoFs more
-than we have available.
+It is time to think of the concept of degrees-of-freedom, DoF, which is
+described in **The Mechanical tutorial**. A hinged pendulum, like a forearm
+hinged at the elbow, will have just one DoF. But the marker trajectory has three
+coordinates and therefore wants to drive `P1` of the pendulum in $x$, $y$ and
+$z$, i.e. two DoFs more than we have available.
 
 There are two possible solutions to this problem. Either we pick only one of the
 directions given by the marker and let the revolute joint decide the rest, or we
@@ -372,20 +380,14 @@ strictly necessary for the analysis and we can get rid of it altogether by an
 additional specification in the C3D object:
 
 ```AnyScriptDoc
-AnyInputC3D C3D =
-{
+AnyInputC3D C3D = {
   FileName = "pendulum.c3d";
-  //ReadAllDataOnOff = On;
   //TruncateExtraCharsInNamesOnOff = On;
   //MakeNameUniqueStr = "_";
-  //PointsScaleFactor = 1.0;
+  //PointsScaleFactor = 1;
   §ConstructModelOnOff = Off;§
   ConstructChartOnOff = Off;
-  //ConstructWeightFunUsingResidualOnOff = Off;
-  //GapFillUsingResidualsOnOff = Off;
-  //MarkerUseAllPointsOnOff = Off;
-  //MarkerUseCamMaskOnOff = On;
-  ...
+};
 ```
 
 With the unnecessary marker gone from the model, the kinematic analysis
@@ -393,7 +395,7 @@ runs much faster than before. Each marker adds DoFs and constraints to
 the model, and they require solution time. It is therefore more
 efficient to leave the markers out unless you really need them.
 
-Now that there is driver between pendulum and the marker, it is possible
+Now that there is a driver between pendulum and the marker, it is possible
 to simultaneously draw both the point on the pendulum and the marker
 from the C3D file. To do this, start by placing the cursor inside the
 AnyKinDriverMarker object.
@@ -427,7 +429,11 @@ AnyKinDriverMarker C3Dmotion =
 
 If you reload the model, you should see something like this:
 
-![Model view AnyKinDriver marker](_static/lesson2/image4.jpeg)
+```{image} _static/lesson2/image4.jpeg
+:alt: Model view AnyKinDriver marker
+:align: center
+:width: 50%
+```
 
 The blue dot illustrates the marker from the c3d file and the red line
 is drawn to illustrate the difference between the point on the segment
@@ -452,7 +458,11 @@ AnyDrawKinMeasure drw =
 
 Reloading the model should show you something like this:
 
-![Model view DrawKinMeasure](_static/lesson2/image5.jpeg)
+```{image} _static/lesson2/image5.jpeg
+:alt: Model view DrawKinMeasure
+:align: center
+:width: 50%
+```
 
 Let us briefly investigate the kinematic constraints of our model. Click
 the Model tab in the tree view on the left hand side of the screen and

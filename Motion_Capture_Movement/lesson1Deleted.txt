@@ -1,7 +1,7 @@
 ::: {rst-class} break
 :::
 
-# Lesson1: Simple drivers
+# Lesson 1: Simple drivers DELETED
 
 As mentioned above, we often have preconceived ideas about a system’s
 natural DoFs, such as abduction of the shoulder or flexion of the knee.
@@ -11,7 +11,7 @@ can very easily drive the pendulum using this DoF.
 
 The simplest mechanism of motion drivers in AnyBody is called
 `AnyKinMotion`. With Pendulum.any open in an editor and the model loaded,
-please place the cursor in the editor window just below then ending
+please place the cursor in the editor window just below the ending
 brace of the `AnySeg Pendulum` definition. Then click the Classes tab on
 the right-hand side of the editor window. Unfold the class list and
 scroll down to find `AnyKinMotion` . Right-click and insert an instance at

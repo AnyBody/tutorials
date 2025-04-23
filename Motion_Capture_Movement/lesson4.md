@@ -18,14 +18,16 @@ length of the femur and the location of the hip joint center are always somewhat
 uncertain. In this section, we are going to see how the data in a C3D file can
 help us automatically determine these parameters with good accuracy.
 
+## Building the Initial Model
+
 Please download and save the file
 {download}`multiple.c3d <Downloads/multiple.c3d>`.
 
-Then close all open windows in AnyBody and create a new Main file by
-clicking the ‘M’ tool button in the upper left hand corner of the main
-frame. This give you a dialog to create an empty model into which you can insert an
-`AnyInputC3D` object, refer to the {file}`multiple.c3d` file and specify the
-filter as we did before:
+Then close all open windows in AnyBody and create a new Basic Main file by
+clicking the ‘M’ tool button in the upper left hand corner of the main frame and
+save it in the same folder as the 'multiple.c3d' file. This gives you a dialog to
+create an empty model into which you can insert an `AnyInputC3D` object, refer
+to the {file}`multiple.c3d` file and specify the filter as we did before:
 
 ```AnyScriptDoc
 Main = {
@@ -93,11 +95,11 @@ AnyBodyStudy MyStudy = {
 };
 ```
 
-Now you should be able to load and run the model and see three blue
-markers travel through space in a motion that bears some resemblance to
-a football kick. The three markers are located on the same segment, and
-we happen to know that this segment is hinged in its upper end just like
-the pendulum in the previous lesson, but we do not know exactly where.
+Now you should be able to load and run kinematic analysis of the model and see
+three blue markers travel through space in a motion that bears some resemblance
+to a football kick. The three markers are located on the same segment, and we
+happen to know that this segment is hinged in its upper end just like the
+pendulum in the previous lesson, but we do not know exactly where.
 
 Three markers per segment are typical for many motion capture marker
 protocols. A segment with no other constraints, i.e. floating freely in
@@ -147,8 +149,8 @@ Main = {
       FileName = "multiple.c3d";
 ```
 
-Now we just need to use AnyKinDriverMarker objects to tie the marker
-trajectories to the three points we have defined on the segment and
+Now we just need to use `AnyKinDriverMarker` objects to tie the marker
+trajectories to the three points we have defined on the segment. Then
 select the solvers for over-determinate problems exactly as we did in
 the previous lesson (don’t forget to also select the over-determinate
 kinematics solver in the study section):
@@ -193,7 +195,7 @@ kinematics solver in the study section):
   };
 ```
 
-Now that we have created the AnyDrawKinMeasure objects, it is no longer
+Now that we have created the `AnyDrawKinMeasure` objects, it is no longer
 necessary to have the points drawn in the C3D object. So let us get rid
 of them:
 
@@ -244,7 +246,10 @@ AnyFixedRefFrame GlobalRef = {
 };
 ```
 
-![pendulum 1](_static/lesson4/image1.jpeg)
+```{image} _static/lesson4/image1.jpeg
+:alt: pendulum 1
+:align: center
+```
 
 The animation reveals that the leg seems to rotate about the origin of
 the global reference frame, although we have not explicitly defined any
@@ -299,12 +304,17 @@ constraints that must be exactly fulfilled. The consequence is that the
 blue marker dots inside the leg segment points now seem to deviate a bit
 further from the center of the points.
 
-![pendulum 2](_static/lesson4/image2.jpeg)
+```{image} _static/lesson4/image2.jpeg
+:alt: pendulum 2
+:align: center
+```
 
 There seems to be some unknown location of the joint center on the leg
 and possibly also of the marker points on the segment that we could
 either find by experimenting manually with the local coordinates of the
 points on the leg segment or, alternatively, ask AnyBody to find for us.
+
+## Setting Up the Parameter Optimization Study
 
 We are going to do the latter, and we shall employ a special study that
 AnyBody has implemented for the purpose. Please click on the Classes tab
@@ -315,33 +325,39 @@ after the end brace of the existing AnyBody Study, right-click the
 
 ```AnyScriptDoc
 // The study: Operations to be performed on the model
-  AnyBodyStudy MyStudy = {
-    AnyFolder &Model = .MyModel;
-    Gravity = {0.0, -9.81, 0.0};
-    AnyIntVar FirstFrame = Main.MyModel.C3D.Header.FirstFrameNo;
-    AnyIntVar LastFrame = Main.MyModel.C3D.Header.LastFrameNo;
-    tStart = FirstFrame/Main.MyModel.C3D.Header.VideoFrameRate+2*Kinematics.ApproxVelAccPerturb;
-    tEnd = LastFrame/Main.MyModel.C3D.Header.VideoFrameRate-2*Kinematics.ApproxVelAccPerturb;
-    InitialConditions.SolverType = KinSolOverDeterminate;
-    Kinematics.SolverType = KinSolOverDeterminate;
-  };
-  §AnyOptKinStudy <ObjectName> =
+AnyBodyStudy MyStudy = {
+  AnyFolder &Model = .MyModel;
+  Gravity = {0.0, -9.81, 0.0};
+  AnyIntVar FirstFrame = Main.MyModel.C3D.Header.FirstFrameNo;
+  AnyIntVar LastFrame = Main.MyModel.C3D.Header.LastFrameNo;
+  tStart = FirstFrame/Main.MyModel.C3D.Header.VideoFrameRate+2*Kinematics.ApproxVelAccPerturb;
+  tEnd = LastFrame/Main.MyModel.C3D.Header.VideoFrameRate-2*Kinematics.ApproxVelAccPerturb;
+  InitialConditions.SolverType = KinSolOverDeterminate;
+  Kinematics.SolverType = KinSolOverDeterminate;
+};
+§AnyOptKinStudy <ObjectName> = 
+{
+  //LogFile = "";
+  /*Analysis = 
   {
-    //LogFile = "";
-    /*Analysis =
-    {
-    Settings =
-    {
-    Echo = On;
-    ModelSceneUpdate = On;
-    };
-    //AnyOperation &<Insert name0> = <Insert object reference (or full object definition)>; You can make any number of these objects!
-    };*/
-    //MaxIterationStep = 100;
-    AnyDesMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
-    //AnyDesMeasure &<Insert name1> = <Insert object reference (or full object definition)>; You can make any number of these objects!
-    //AnyDesVar &<Insert name0> = <Insert object reference (or full object definition)>; You can make any number of these objects!
-  };§
+  Settings = 
+  {
+  Echo = On;
+  ModelSceneUpdate = On;
+  DisplayPriority = PriorityNormal;
+  SelectOnLoad = Off;
+  EchoRunDuration = Off;
+  };
+  //AnyOperation &<Insert name0> = <Insert object reference (or full object definition)>;
+  //AnyOperation &<Insert name1> = <Insert object reference (or full object definition)>; You can make any number of AnyOperation objects!
+  };*/
+  //MaxIterationStep = 100;
+  //AnyDesVar &<Insert name0> = <Insert object reference (or full object definition)>;
+  //AnyDesVar &<Insert name1> = <Insert object reference (or full object definition)>; You can make any number of AnyDesVar objects!
+  AnyDesMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
+  //AnyDesMeasure &<Insert name1> = <Insert object reference (or full object definition)>;
+  //AnyDesMeasure &<Insert name2> = <Insert object reference (or full object definition)>; You can make any number of AnyDesMeasure objects!
+};§
 ```
 
 The `AnyOptKinStudy`’s structure is very similar to the general optimization
@@ -414,12 +430,15 @@ AnyOptKinStudy OptKinStudy =
 Now we can reload the model and a new set of operations will have
 appeared:
 
-![image2](_static/lesson4/image3.png)
+```{image} _static/lesson4/image3.png
+:alt: Operation tree
+:align: center
+```
 
-Pick the `ParameterOptimization` and click the *Run* button.
+Pick the `ParameterOptimization` and click the *Execute* button.
 
 If you have a Model View open, you will see the pendulum starting to move and
-messages about the convergence of the process will appear in the Report View at
+messages about the convergence of the process will appear in the Output View at
 the bottom of the screen.
 
 Pay close attention to the location of the small blue markers inside the larger
@@ -428,12 +447,18 @@ centers of the yellow balls as a consequence of the optimization as shown below,
 where the left picture is the location of the markers before the joint location
 optimization, and the right picture shows the situation after optimization.
 
-![before opt](_static/lesson4/image2.jpeg) ![after opt](_static/lesson4/image4.jpeg)
+```{image} _static/lesson4/image4.jpeg
+:alt: before opt
+:align: center
+```
 
 This notion is confirmed by opening opening the chart view and plotting the
 development of the objective function of the problem:
 
-![opt history](_static/lesson4/image5.png)
+```{image} _static/lesson4/image5.png
+:alt: opt history
+:align: center
+```
 
 The graph shows that the norm of the difference between the measured
 marker positions and the corresponding nodes on the segment over the
@@ -451,19 +476,20 @@ you keep the model and specify a name for the new file, for instance
 If you open the new file you can see the saved values:
 
 ```none
-Jointx 1.574794116583949e-002
-Jointy 4.907819352974447e-001
-Jointz 6.507036792142549e-004
+Jointx 1.574794116582883e-02
+Jointy 4.907819352974451e-01
+Jointz 6.507036792142557e-04
 ```
 
 You can easily load these values into your model from the same context
 menu every time you have reloaded the model.
 
-Of course, to have the
-coordinates of the Joint node permanently updated, you can also simply
-copy and paste them into the sRel value directly in the Leg segment
-definition in your AnyScript file. Don’t do it yet, though. We are going
+Of course, to have the coordinates of the Joint node permanently updated, you
+can also simply copy and paste them into the sRel value directly in the Leg
+segment definition in your AnyScript file. Don’t do it yet, though. We are going
 to play a little more with the possibilities.
+
+### Including the Marker Positions in the Parameter Optimization
 
 The optimization we have just completed has presumed that we know well
 where the markers are located on the segment but are in doubt about the
@@ -524,7 +550,10 @@ To speed up the optimization study, try to disable Model View by clicking the "O
 
 The convergence should be quite fast in such a small model, and you arrive at the following solution:
 
-![Pendulum final](_static/lesson4/image6.jpeg)
+```{image} _static/lesson4/image6.jpeg
+:alt: Pendulum final
+:align: center
+```
 
 The solution appears to be bull’s eye in terms of placing the markers in
 the center of the yellow nodes. This is confirmed by the optimized value
@@ -577,7 +606,7 @@ less stable, the segment moves far away from the marker nodes in the
 process, and eventually the algorithm gives up with the error message:
 
 ```none
-Optimization failed : Failed to solve position analysis
+Failed to resolve kinematic constraints. Newton relaxation too small.
 ```
 
 You can understand the reason for this behavior if you look at the
@@ -608,7 +637,6 @@ technology works.
 % seealso: `Andersen et al. 2009 <http://www.tandfonline.com/doi/abs/10.1080/10255840903067080>`_
 % for details on how the parameter identification algorithm works, and the math behind.
 
-Now, let us change our focus to a top-down approach
-and see what the technology can do with real motion capture data. That
-will be the subject of {doc}`Lesson 5 <lesson5>`.
-
+Now that you've explored a comprehensive AMMR model using real motion capture
+data and created two simple models yourself, let's dive into some common
+troubleshooting tips for C3D files in {doc}`Lesson 5 <lesson5>`.

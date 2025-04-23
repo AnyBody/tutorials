@@ -21,6 +21,14 @@ Main = {
       AnyDrawSeg drw = {};
     };
     
+    AnyKinMotion JointDriver =
+    {
+      AnyRevoluteJoint &Jnt = .Joint;
+      AnyFunPolynomial DriverFun = {
+        PolyCoef = {{0, 5, -0.4}};
+      };
+    };
+    
     AnyRevoluteJoint Joint = {
       AnyRefFrame &Ground = .GlobalRef;
       AnyRefFrame &Pendulum = .Pendulum.Origin;
