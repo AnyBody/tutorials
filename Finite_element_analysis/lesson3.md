@@ -366,15 +366,26 @@ stress plot can be seen.
 
 :::{Tip} 
 :class: dropdown 
-**Instructions on how to run Abaqus analysis:**
+**Instructions on how to load the model and run Abaqus analysis:**
 
-1. Right-click on 'Jobs' and Create new job.
-2. Select your loaded model called 'output', name the job and click 'Continue...'
-3. In the pop-up window, you can edit your job - for this tutorial, we don't change
+1. Right-click on 'Models' and select 'Import...'
+2. In the pop-up dialog selected file extension to be '.inp'
+3. Select INP file generated in this tutorial and click 'OK'
+
+```{image} _static/lesson3/image9a.png
+:alt: Abaqus model loading
+:class: bg-primary
+:align: center
+```
+
+
+4. Right-click on 'Jobs' and Create new job.
+5. Select your loaded model called 'output', name the job and click 'Continue...'
+6. In the pop-up window, you can edit your job - for this tutorial, we don't change
  any settings, so click 'OK'
-4. Expand the Jobs folder to see your newly created job. Right-click on the job
+7. Expand the Jobs folder to see your newly created job. Right-click on the job
 and select 'Submit'.
-5. When the job is completed you can view the results by right-clicking on the job 
+8. When the job is completed you can view the results by right-clicking on the job 
 and selecting 'Results'.
 
 ```{image} _static/lesson3/image9.png
