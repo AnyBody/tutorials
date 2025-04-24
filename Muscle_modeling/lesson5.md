@@ -45,29 +45,82 @@ to go with a simpler model where the approximations are clear.
 Furthermore, more complex models need access to reliable source of data
 for their parameters, and they also need fairly costly calibration steps to improve accuracy.
 
-The following introduces the muscle models available in AnyBody. The simple (**AnyMuscleModel**) and the three-element (**AnyMuscleModel3E**) muscle models are the most commonly used ones in the AMMR, whereas the two-element (**AnyMuscleModel2ELin**) and the custom user-defined (**AnyMuscleModelUsr1**) models provide users with even more freedom to test, learn and benchmark muscle-tendon units.
+The following introduces the muscle models available in AnyBody. The simple
+(**AnyMuscleModel**) and the three-element (**AnyMuscleModel3E**) muscle models
+are the most commonly used ones in the AMMR, whereas the two-element
+(**AnyMuscleModel2ELin**) and the custom user-defined (**AnyMuscleModelUsr1**)
+models provide users with even more freedom to test, learn and benchmark
+muscle-tendon units.
 
-- `AnyMuscleModel`: This is the simplest conceivable muscle model, and it is the one we have used in the preceding lessons of this tutorial. The only required input to the model is the muscle's presumed isometric strength, F0, i.e. the force that the muscle can exert in a static condition at its optimal length. F0 is often believed to be proportional to the physiological cross sectional area of the muscle, and it is possible to find that dimension for most significant muscles in the human body from cadaver studies reported in the scientific literature. It is important to stress that the strength of this muscle model is independent of the muscle's current length and contraction velocity. It is known for a fact that muscles do not behave that way, but for models with moderate contraction velocities and small joint angle variations even this simple model will work reasonably well. Such has been shown to be the case for bicycling and gait. This model has a lesser need for calibration steps, which makes it beneficial to save effort while just preparing preliminary results for instance in a model ptorotyping phase.
-- `AnyMuscleModel3E`: This is a full-blown Hill model that takes parallel passive elasticity of the muscle, serial elasticity of the tendon, pennation angle of the fibers, and many other properties into account. The concepts for this model are adopted from [^cite_zajac_1989]. This model requires several physiological parameters that may be difficult to get or estimate for a particular muscle in a particular individual. Moreover, it applies non-linear force-length and force-velocity relationships, which means that the muscle vary strength depending on the length and contraction velocity. It also means and can loose its strength entirely and this calls for calibration of muscle parameters for each indivudualized model to match the muscle's working range to actual working range of the skeleton.
-- `AnyMuscleModel2ELin`: This model is simpler multi-element model than the three-element model. It presumes that the muscle strength is proportional to its current length and contraction velocity. This means that the muscle gets weaker when its length decreases or the contraction velocity increases. In other words, the muscle strength is bilinear in the length and velocity space. The model also presumes that the tendon is linearly elastic and as such contains two elements: A contractile element (the muscle), and a serial-elastic element (the tendon). The rationale behind this model is that a muscle has a certain passive elasticity built into it. If the muscle it stretched far enough, the passive elasticity will build up force and reduce the necessity for active muscle force. This is in some cases equivalent to an increase of the muscle's strength. Notice, however, that this model has the significant drawback that the force can be switched off even if the muscle is stretched very far, while the true passive elasticity will always provide a force when it is stretched. While this model is simpler than the three-element model, it does not provide a more efficient workflow because calibration is typically also needed for this model. Therefore, this model is used less frequently for real applications, because it will be natural to consider the two previously described models when choosing will be between simplicity and accuracy.
-- `AnyMuscleModelUsr1`: This is a custom user-defined muscle model. The user is free to define the strength of the muscle as any explicit expression of muscle variables (e.g. isometric strength (F0), volume(Vol0) or PCSA, fiber length (Lf0)), kinematic measures (e.g. actual fiber length and velocity), and even time. This freedom implies that it is also the user's task to make the most reasonable relationship to muscle and kinematic parameters for instance  to include when such paarmeters are affected by model scaling and calibration.
+- `AnyMuscleModel`: This is the simplest conceivable muscle model, and it is the
+  one we have used in the preceding lessons of this tutorial. The only required
+  input to the model is the muscle's presumed isometric strength, F0, i.e. the
+  force that the muscle can exert in a static condition at its optimal length.
+  F0 is often believed to be proportional to the physiological cross sectional
+  area of the muscle, and it is possible to find that dimension for most
+  significant muscles in the human body from cadaver studies reported in the
+  scientific literature. It is important to stress that the strength of this
+  muscle model is independent of the muscle's current length and contraction
+  velocity. It is known for a fact that muscles do not behave that way, but for
+  models with moderate contraction velocities and small joint angle variations
+  even this simple model will work reasonably well. Such has been shown to be
+  the case for bicycling and gait. This model has a lesser need for calibration
+  steps, which makes it beneficial to save effort while just preparing
+  preliminary results for instance in a model prototyping phase.
+- `AnyMuscleModel3E`: This is a full-blown Hill model that takes parallel
+  passive elasticity of the muscle, serial elasticity of the tendon, pennation
+  angle of the fibers, and many other properties into account. The concepts for
+  this model are adopted from [^cite_zajac_1989]. This model requires several
+  physiological parameters that may be difficult to get or estimate for a
+  particular muscle in a particular individual. Moreover, it applies non-linear
+  force-length and force-velocity relationships, which means that the muscle
+  vary strength depending on the length and contraction velocity. It also means
+  and can loose its strength entirely and this calls for calibration of muscle
+  parameters for each individualized model to match the muscle's working range
+  to actual working range of the skeleton.
+- `AnyMuscleModel2ELin`: This model is simpler multi-element model than the
+  three-element model. It presumes that the muscle strength is proportional to
+  its current length and contraction velocity. This means that the muscle gets
+  weaker when its length decreases or the contraction velocity increases. In
+  other words, the muscle strength is bilinear in the length and velocity space.
+  The model also presumes that the tendon is linearly elastic and as such
+  contains two elements: A contractile element (the muscle), and a
+  serial-elastic element (the tendon). The rationale behind this model is that a
+  muscle has a certain passive elasticity built into it. If the muscle is
+  stretched far enough, the passive elasticity will build up force and reduce
+  the necessity for active muscle force. This is in some cases equivalent to an
+  increase of the muscle's strength. Notice, however, that this model has the
+  significant drawback that the force can be switched off even if the muscle is
+  stretched very far, while the true passive elasticity will always provide a
+  force when it is stretched. While this model is simpler than the three-element
+  model, it does not provide a more efficient workflow because calibration is
+  typically also needed for this model. Therefore, this model is used less
+  frequently for real applications, because it will be natural to consider the
+  two previously described models when choosing will be between simplicity and
+  accuracy.
+- `AnyMuscleModelUsr1`: This is a custom user-defined muscle model. The user is
+  free to define the strength of the muscle as any explicit expression of muscle
+  variables (e.g. isometric strength (F0), volume(Vol0) or PCSA, fiber length
+  (Lf0)), kinematic measures (e.g. actual fiber length and velocity), and even
+  time. This freedom implies that it is also the user's task to make the most
+  reasonable relationship to muscle and kinematic parameters for instance  to
+  include when such parameters are affected by model scaling and calibration.
 
-In the remainder of this lesson we shall experiment with the consequences
-of the different muscle models and muscle model calibration.
-The AnyScript model from the previous lesson will suffice very nicely.
-You can download a functional version
-of the model here: {download}`MuscleDemo.5.any<Downloads/MuscleDemo.5.any>`.
+In the remainder of this lesson we shall experiment with the consequences of the
+different muscle models and muscle model calibration. The AnyScript model from
+the previous lesson will suffice very nicely. You can download a functional
+version of the model here:
+{download}`MuscleDemo.5.any<Downloads/MuscleDemo.5.any>`.
 
 ## AnyMuscleModel2ELin
 
-Right-click and save the file to your local disk, and subsequently open
-the model in the AnyBody Modeling System. We have already seen the
-consequences of using the simple muscle model, so we shall proceed
-directly to the two-element muscle, the AnyMuscleModel2ELin. Let us
-define such a muscle model. If you click the Classes tab in the tree
-view left of the edit window, expand the class tree, right-click the
-AnyMuscleModel2ELin class, and insert a template, you will obtain the
-following:
+Right-click and save the file to your local disk, and subsequently open the
+model in the AnyBody Modeling System. We have already seen the consequences of
+using the simple muscle model, so we shall proceed directly to the two-element
+muscle, the AnyMuscleModel2ELin. Let us define such a muscle model. If you click
+the Classes tab in the tree view left of the edit window, expand the class tree,
+right-click the AnyMuscleModel2ELin class, and insert a template, you will
+obtain the following:
 
 ```AnyScriptDoc
  AnyMuscleModel SimpleModel = {
@@ -184,7 +237,10 @@ plot several properties simultaneously in the Chart View by use of an
 asterix in the variable specification field at the top of the window
 like this:
 
-![chart view: muscle1.L](_static/lesson5/image2.png)
+```{image} _static/lesson5/image2.png
+:alt: chart view: muscle1.L
+:align: center
+```
 
 Now we can compare the variation of Lm and Lmdot to our settings of
 Lf0 and V0. Lm seems to vary between approximately 0.31 and 0.15. With
@@ -196,7 +252,10 @@ to have much effect. We can investigate the effect very easily simply by
 clicking the Strength property of the muscle and obtain the following
 graph:
 
-![muscle strength plot](_static/lesson5/image3.png)
+```{image} _static/lesson5/image3.png
+:alt: muscle strength plot
+:align: center
+```
 
 The strength does indeed decrease drastically from around 200 N to
 almost nothing as we expected when the muscle contracts.
@@ -204,7 +263,10 @@ almost nothing as we expected when the muscle contracts.
 Now that we have muscle data available, let us briefly review the
 parameters presented in the Chart View:
 
-![Muscle parameters](_static/lesson5/image4.png)
+```{image} _static/lesson5/image4.png
+:alt: Muscle parameters
+:align: center
+```
 
 
 
@@ -240,7 +302,7 @@ widths: 3 10
     - The contraction velocity of the contractile element.
 
   * - `Activity`
-    - The muscle active state in fractions of maxmum
+    - The muscle active state in fractions of maximum
       voluntary contraction.
 
   * - `CorrectedActivity`
@@ -322,7 +384,10 @@ in the beginning of the simulation. This, this decreases the strength of
 the muscle significantly as we can see by reloading, rerunning and
 plotting the Strength variable again:
 
-![muscle strength plot, v0=-0.3](_static/lesson5/image5.png)
+```{image} _static/lesson5/image5.png
+:alt: muscle strength plot, v0=-0.3
+:align: center
+```
 
 Instead of being monotonically decreasing, the muscle strength now
 improves slightly in the initial part of the simulation, but it is all
@@ -361,7 +426,10 @@ significant compared to the nominal muscle fiber length of Lf0 = 0.3
 m. Reducing the length of the tendon increases the length and thereby
 the strength of the muscle:
 
-![muscle strength plot, Lt0= 0.3](_static/lesson5/image6.png)
+```{image} _static/lesson5/image6.png
+:alt: muscle strength plot, Lt0= 0.3
+:align: center
+```
 
 The interdependency between the stretch of the tendon, the length of the
 muscle, and the strength of the muscle is the origin of another
@@ -374,7 +442,10 @@ which causes the tendon to stretch. But before we change anything, let
 us just notice that the variation of muscle length, Lm, over the
 movement in the absence of an external load is as shown below:
 
-![Lm plot, no external load](_static/lesson5/image7.png)
+```{image} _static/lesson5/image7.png
+:alt: Lm plot, no external load
+:align: center
+```
 
 Definition of an external force requires two new elements in the model:
 The force itself and a new node on the arm, which we shall call hand, to
@@ -414,7 +485,10 @@ changes its moment arm from positive to negative a shortly after the
 midpoint of the analysis. This causes the muscle length to vary in the
 following fashion:
 
-![Muscle length plot](_static/lesson5/image8.png)
+```{image} _static/lesson5/image8.png
+:alt: Muscle length plot
+:align: center
+```
 
 The interesting point here is that with the long tendon and the high
 load, the muscle no longer contracts uniformly. 
@@ -466,7 +540,10 @@ because it has the following components:
 3. A parallel-elastic element (PE) representing the passive stiffness of
    the muscle fibers.
 
-![muscle model](_static/lesson5/image9.png)
+```{image} _static/lesson5/image9.png
+:alt: muscle model
+:align: center
+```
 
 The figure above is a schematic representation of the muscle model. We
 can get a complete impression of the parameters of the model if we pick
@@ -601,7 +678,10 @@ activate it. But the muscle is not without force. The property Fp, which
 is the force in the parallel-elastic element of the muscle has the
 following behavior:
 
-![Force parallel elastic element](_static/lesson5/image10.png)
+```{image} _static/lesson5/image10.png
+:alt: Force parallel elastic element
+:align: center
+```
 
 In the initial phase of the movement, the parallel-elastic element is
 slack and adds no force to the muscle. But as the muscle gets extended,
@@ -612,7 +692,10 @@ passive force has another interesting effect, which we can see if we
 chart the property Lt, i.e. the length of the tendon (Notice that we
 have changed the scale of the ordinate axis):
 
-![Tendon length plot](_static/lesson5/image11.png)
+```{image} _static/lesson5/image11.png
+:alt: Tendon length plot
+:align: center
+```
 
 From the time the passive force sets in, the tendon starts to elongate a
 little bit.
@@ -821,14 +904,20 @@ A brief experiment with our model can reveal where the
 difficulty lies. In the model we have just investigated, the activity of
 Muscle2 has the following development over the movement:
 
-![Calibration. Lt0 plot](_static/lesson5/image31.png)
+```{image} _static/lesson5/image31.png
+:alt: Calibration. Lt0 plot
+:align: center
+```
 
 But what would happen if our guess of tendon length, Lt0, in the muscle
 model definition was just slightly off the correct value? Well if we
 change the current value from 0.5 m to 0.45 m, i.e. a reduction of 10%,
 we get the following activity:
 
-![Calibration Activity plot](_static/lesson5/image32.png)
+```{image} _static/lesson5/image32.png
+:alt: Calibration Activity plot
+:align: center
+```
 
 Not only is the shape of the graph different, the maximum activity is
 also significantly higher. An error of 10% in anthropometric
@@ -891,12 +980,18 @@ The muscle properties have been updated.
 Try running the InverseDynamics again and plot the Activity of Muscle2.
 You should see the following:
 
-![Cheap n dirty calibration, Activity plot](_static/lesson5/image33.png)
+```{image} _static/lesson5/image33.png
+:alt: Cheap n dirty calibration, Activity plot
+:align: center
+```
 
 As you can see, this is again very different from what we have seen
 before. Plotting the strength will reveal what has happened:
 
-![Cheap n dirty calibration, activity plot](_static/lesson5/image34.png)
+```{image} _static/lesson5/image34.png
+:alt: Cheap n dirty calibration, activity plot2
+:align: center
+```
 
 What FiberAndTendonAdjustment does is to run through the specified
 movement and compute the variation of the origin-insertion length of the
