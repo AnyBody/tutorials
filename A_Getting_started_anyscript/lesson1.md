@@ -95,7 +95,8 @@ model.
 You will notice "Todo:" comments inside the braces, to which we will return
 later.
 
-:::{note} The model objects that you create henceforth must be placed within the
+:::{note} 
+The model objects that you create henceforth must be placed within the
 "ArmModel" folder and should go between its pair of braces. 
 :::
 

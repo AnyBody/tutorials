@@ -3,6 +3,8 @@
 
 # Making Models using SOLIDWORKS
 
+(Making Models using SOLIDWORKS)=
+
 This tutorial shows how a CAD model designed in SOLIDWORKS can be
 imported into AnyBody and interact with the human model. This allows for
 analysis and optimization of the ergonomics of products.
