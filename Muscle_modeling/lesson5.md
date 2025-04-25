@@ -502,6 +502,7 @@ physiology, so it should be applied with care. In particular it does not
 model passive elasticity. The following section presents a full-blown
 Hill-type model, which does not have these shortcomings.
 
+(AnyMuscleModel3E)=
 ## AnyMuscleModel3E
 
 So far we have been focusing our attention on Muscle1 in the demo model
