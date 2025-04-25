@@ -71,6 +71,7 @@ hand.
 ```{image} _static/lesson6/image1.jpeg
 :alt: Arm 2D
 :align: center
+:width: 50%
 ```
 
 Currently, the model can't perform an inverse dynamics analysis because it lacks
@@ -78,7 +79,7 @@ muscles. If you try to run the InverseDynamics operation, you'll see an error
 message:
 
 ```
-NOTICE(OBJ1): MuscleDemo.6.any(103): ArmStudy.InverseDynamics: No muscles in the model.
+NOTICE(OBJ1): MuscleDemo.6.any(103): ArmStudy.InverseDynamics: No muscles or other recruited actuators in the model.
 ERROR(OBJ1): MuscleDemo.6.any(103): ArmStudy.InverseDynamics: No solution found: There are fewer unknown forces (muscles and reactions) than dynamic equations.
 ```
 
@@ -109,15 +110,15 @@ class tree, and insert a template.
  }; // Driver folder
 
 §AnyMuscleGeneric <ObjectName> = 
-    {
-      //viewForce.Visible = Off;
-      //MetabModel = Global.Null;
-      //FatigueModel = Global.Null;
-      //MuscleModel = Global.Null;
-      //Type = NonPositive;
-      AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
-      AnyKinMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
-    };§
+{
+  //viewForce.Visible = Off;
+  //MetabModel = Global.Null;
+  //FatigueModel = Global.Null;
+  //MuscleModel = Global.Null;
+  //Type = NonPositive;
+  AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
+  AnyKinMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
+};§
 ```
 
 Just as normal muscles, generic muscles must be associated with a muscle
@@ -322,8 +323,6 @@ we'll drive the hand directly instead.
    AnyRefFrame &ref2 = .Segs.LowerArm.PalmNode;
  };§
 
- 
-
  AnyFolder Drivers = {
   §AnyKinEqSimpleDriver HandDriver = {
      AnyKinLinear &Measure = ..HandPos;
@@ -371,6 +370,7 @@ turning on the horizontal support of the driver.
 ```{image} _static/lesson6/image4.gif
 :alt: no reaction MaxMuscleActivity plot
 :align: center
+:width: 65%
 ```
 
 The muscle activity stays fairly constant. This is because the moment arms are
@@ -388,6 +388,7 @@ mechanical system behaves differently from what we might anticipate:
 ```{image} _static/lesson6/image5.gif
 :alt: Full reaction MaxMuscleActivity plot
 :align: center
+:width: 65%
 ```
 
 You'll see that the muscle activity is much lower at the start of the movement
@@ -435,6 +436,7 @@ the specification line `Main.ArmStudy.Output.Model.*Torque.Fm`:
 ```{image} _static/lesson6/image6.gif
 :alt: Joint torques plot
 :align: center
+:width: 65%
 ```
 
 The red curve represents the shoulder joint torque, and the green curve
@@ -468,6 +470,7 @@ When you run the model again and look at the same graphs, you'll see this:
 ```{image} _static/lesson6/image7.gif
 :alt: Joint torques plot 2
 :align: center
+:width: 65%
 ```
 
 The wall is helpful in the initial stages of the movement. The torque generated
