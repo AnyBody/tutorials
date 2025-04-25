@@ -3,7 +3,11 @@
 
 # Introduction to Muscle Modeling
 
-![Muscles back](_static/intro/image1.jpeg)
+```{image} _static/intro/image1.png
+:alt: Muscles back
+:align: center
+:width: 50%
+```
 
 Muscles are the actuators of living bodies. They are activated by the
 central nervous system (CNS) by a complicated electro-chemical process.
@@ -15,14 +19,14 @@ the user to the necessary muscle forces in a process known as inverse
 dynamics. To do so, the system must know the properties of the muscles
 involved, and this is where muscle modeling comes into the picture.
 
-AnyBody contains four different muscle models ranging from simple to
-more complicated physiological behavior. The simplest model just assumes
-a constant strength of the muscle regardless of its working conditions.
-The more complicated models take such conditions as current length,
-contraction velocity, fiber length, pennation angle, tendon elasticity,
-and stiffness of passive tissues into account. Please refer to the
-AnyScript Reference Manual (Find it in AnyBody->Help) for concise
-information about the available muscle models:
+AnyBody contains four different muscle models ranging from simple to more
+complicated physiological behavior. The simplest model just assumes a constant
+strength of the muscle regardless of its working conditions. The more
+complicated models take such conditions as current length, contraction velocity,
+fiber length, pennation angle, tendon elasticity, and stiffness of passive
+tissues into account. Please refer to the AnyScript Reference Manual (Find it in
+AnyBody->Help->AnyScript Reference) for concise information about the available
+muscle models:
 
 1. AnyMuscleModel - assuming constant strength of the muscle
 2. AnyMuscleModel3E - a three element model taking serial and parallel
