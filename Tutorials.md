@@ -32,7 +32,7 @@ You can find the available tutorials in the sidebar. The tutorials are ordered i
 :titlesonly: true
 
 A_study_of_studies/index
-Making_things_move/index
+Motion_Capture_Movement/index
 MuscleRecruitment/index
 Muscle_modeling/index
 The_mechanical_elements/index
