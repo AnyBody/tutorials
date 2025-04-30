@@ -31,12 +31,12 @@ behavior of the model. Some examples of applications are:
 %
 
 
-```{figure} _static/intro/image1.gif
+```{figure} _static/intro/image1.png
 :alt: Metabolic efficiency example
-:class: bg-primary
 :align: center
+:width: 80%
 
-Parameter study: Metabolic efficiency of a bicycle as a function of seat height and seat horizontal position.
+Parameter study: Metabolism of a bicycle rider as a function of seat height and seat horizontal position.
 ```
 
 
