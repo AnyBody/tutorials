@@ -18,8 +18,8 @@ example because it is very simple and has a remote similarity with a human limb.
 A hinged pendulum, like a forearm hinged at the elbow, will have just one DoF,
 hence only one driver is needed to drive its motion. The class `AnyKinMotion` with
 a polynomial driver function is already inserted in the model as its driver.
-Refer to {ref}`this prior tutorial <AnyKinMotion>` for more informaiton about
-this driver. 
+Refer to Lesson 5 in the tutorial {doc}`How to Write AnyScript </A_Getting_started_anyscript/index>` 
+for more informaiton about this driver. 
 
 In the following we will drive the pendulum using motion capture data instead
 of using this driver.
@@ -31,61 +31,20 @@ object, click the Classes tab (on the right side of the screen), unfold the clas
 {code}`AnyInputC3D` class. Right-click the class and choose “Insert Class
 Template”.
 
-```AnyScriptDoc
-AnyInputC3D <ObjectName> = 
-{
-  FileName = "";
-  //ReadAllDataOnOff = On;
-  //TruncateExtraCharsInNamesOnOff = On;
-  //MakeNameUniqueStr = "_";
-  //PointsScaleFactor = 1.0;
-  //ConstructModelOnOff = On;
-  //ConstructChartOnOff = On;
-  //ConstructWeightFunUsingResidualOnOff = Off;
-  //GapFillUsingResidualsOnOff = Off;
-  //MarkerUseAllPointsOnOff = Off;
-  //MarkerUseCamMaskOnOff = On;
-  //MarkerIndices = ;
-  //MarkerLabels = ;
-  //MarkerFilterIndex = 0;
-  //ProcessedDataFilterIndex = 0;
-  //AnalogFilterIndex = -1;
-  /*Filter = 
-  {
-  AutomaticInitialConditionOnOff = On;
-  FilterForwardBackwardOnOff = On;
-  N = 2;
-  W = ;
-  Fs = 0.0;
-  Fc = {10.0};
-  Type = LowPass;
-  };*/
-  //WeightThreshold = 0.0;
-  //WeightOutput = {{0.0, 1.0}, {0.0, 1.0}, {0.0, 1.0}};
-  //WeightTransitionTime = 0.1;
-  //SearchAndReplace = ;
-  //WriteMarkerDataToFilesOnOff = Off;
-  //MarkerScaleXYZ = {0.025, 0.025, 0.025};
-  //MarkerRGB = {0.65, 0.65, 0.65};
-  //MarkerDrawOnOff = On;
-  //MarkerInterPolType = Bspline;
-  //MarkerBsplineOrder = 4;
-};
+```{literalinclude} Snippets/lesson2/snip.Pendulum.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 As you can see, the class has a lot of settings, but for now we shall
 only use two of them, namely `FileName` and `ConstructChartOnOff`. We also
 give a name to the object:
 
-```AnyScriptDoc
-AnyInputC3D §C3D§ = {
-  FileName =§ "pendulum.c3d";§
-  //TruncateExtraCharsInNamesOnOff = On;
-  //MakeNameUniqueStr = "_";
-  //PointsScaleFactor = 1;
-  //ConstructModelOnOff = On;
-  §ConstructChartOnOff = Off;§
-};
+```{literalinclude} Snippets/lesson2/snip.Pendulum.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 `ConstructChartOnOff` instructs the C3D object to not draw 3D
@@ -110,12 +69,10 @@ of your model. This will eliminate the study’s conflicting start and end times
 Just block-select the study section and click the “Comment out” tool button over
 the editor window (or press {literal}`Ctrl+Shift+k`):
 
-```AnyScriptDoc
-// The study: Operations to be performed on the model
-§//§  AnyBodyStudy MyStudy = {
-§//§    AnyFolder &Model = .MyModel;
-§//§    Gravity = {0.0, -9.81, 0.0};
-§//§  };
+```{literalinclude} Snippets/lesson2/snip.Pendulum.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 Now the model should load with no problems, and you can go to the tree
@@ -144,23 +101,18 @@ i.e. the simulation time spans ten seconds. We can now go to the editor
 window and remove the temporary double slashes in front of each line in
 the study section.
 
-```AnyScriptDoc
-// The study: Operations to be performed on the model
-§AnyBodyStudy MyStudy = {
-    AnyFolder &Model = .MyModel;
-    Gravity = {0.0, -9.81, 0.0};
-};§
+```{literalinclude} Snippets/lesson2/snip.Pendulum.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 …and insert specifications of simulation time:
 
-```AnyScriptDoc
-AnyBodyStudy MyStudy = {
-    AnyFolder &Model = .MyModel;
-    Gravity = {0.0, -9.81, 0.0};
-    §tStart = 0.05;
-    tEnd = 9.95;§
-};
+```{literalinclude} Snippets/lesson2/snip.Pendulum.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 There is also an automated way to handle the problem. The frame rate
@@ -168,15 +120,10 @@ variables we have just processed manually can also be referred to
 directly in the study section, such that the tStart and tEnd parameters
 automatically adapt to the C3D file. Try this instead:
 
-```AnyScriptDoc
-AnyBodyStudy MyStudy = {
-  AnyFolder &Model = .MyModel;
-  Gravity = {0.0, -9.81, 0.0};
-  §AnyIntVar FirstFrame = Main.MyModel.C3D.Header.FirstFrameNo;
-  AnyIntVar LastFrame = Main.MyModel.C3D.Header.LastFrameNo;
-  tStart = FirstFrame/Main.MyModel.C3D.Header.VideoFrameRate+2*Kinematics.ApproxVelAccPerturb;
-  tEnd = LastFrame/Main.MyModel.C3D.Header.VideoFrameRate-2*Kinematics.ApproxVelAccPerturb;§
-};
+```{literalinclude} Snippets/lesson2/snip.Pendulum.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Notice that we start the simulation `2*Kinematics.ApproxVelAccPerturb`
@@ -215,20 +162,10 @@ of the model. That takes care of step 1.
 Then click the Classes tab on the right side of the screen,
 insert a new `AnyKinDriverMarker` template, and give it a name:
 
-```AnyScriptDoc
-§AnyKinDriverMarker <ObjectName> = 
-{
-  //viewKinMeasure.Visible = Off;
-  //MeasureOrganizer = ;
-  //CType = ;
-  //WeightFun = ;
-  //DriverPos0 = ;
-  //DriverVel0 = ;
-  //DriverAcc0 = ;
-  AnyRefFrame &<Insert name0> = <Insert object reference (or full object definition)>;
-  //AnyRefFrame &<Insert name1> = <Insert object reference (or full object definition)>;
-  //AnyParamFun &<Insert name0> = <Insert object reference (or full object definition)>;
-};§
+```{literalinclude} Snippets/lesson2/snip.Pendulum.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 Just as before, the `AnyKinDriverMarker` object needs to know what to
@@ -236,20 +173,10 @@ drive and what to drive it with. The “what to drive” part is the
 position of `P1` on the pendulum. This is specified with the first
 reference frame in the object:
 
-```AnyScriptDoc
-AnyKinDriverMarker §C3DMotion§  = 
-{
-  //viewKinMeasure.Visible = Off;
-  //MeasureOrganizer = ;
-  //CType = ;
-  //WeightFun = ;
-  //DriverPos0 = ;
-  //DriverVel0 = ;
-  //DriverAcc0 = ;
-  §AnyRefFrame &Marker = .Pendulum.P1;§
-  //AnyRefFrame &<Insert name1> = <Insert object reference (or full object definition)>;
-  //AnyParamFun &<Insert name0> = <Insert object reference (or full object definition)>;
-};
+```{literalinclude} Snippets/lesson2/snip.Pendulum.main-5.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The marker coordinates in the C3D file are recorded in the laboratory
@@ -261,22 +188,6 @@ We are going to drive the point directly by means of the interpolation
 function specifying the marker trajectory in the C3D object. First, give
 a reasonable name to the `AnyParamFun` and remove the stuff after the
 equality sign:
-
-```AnyScriptDoc
-AnyKinDriverMarker C3DMotion  = 
-{
-  //viewKinMeasure.Visible = Off;
-  //MeasureOrganizer = ;
-  //CType = ;
-  //WeightFun = ;
-  //DriverPos0 = ;
-  //DriverVel0 = ;
-  //DriverAcc0 = ;
-  AnyRefFrame &Marker = .Pendulum.P1;
-  //AnyRefFrame &<Insert name1> = <Insert object reference (or full object definition)>;
-  §AnyParamFun &Trajectory = ;§
-};
-```
 
 Then click the Model tab in the tree view on the left hand side of the editor
 window, unfold the MyModel branch and subsequently the `C3D` object ->
@@ -293,23 +204,10 @@ Place the cursor after the equality sign of the `AnyParamFun` line,
 right-click the PosInterpol object, and choose “Insert object name”. You
 should get this:
 
-```AnyScriptDoc
-AnyKinDriverMarker C3DMotion =
-{
-  //RefFrames = ;
-  //Surfaces = ;
-  //KinMeasureArr = ;
-  //KinMeasureIndexArr = ;
-  //MeasureOrganizer = ;
-  //CType = ;
-  //WeightFun = ;
-  //DriverPos0 = ;
-  //DriverVel0 = ;
-  //DriverAcc0 = ;
-  AnyRefFrame &Marker = .Pendulum.P1;
-  //AnyRefFrame &<Insert name1> = <Insert object reference (or full object definition)>;
-  AnyParamFun &Trajectory = §Main.MyModel.C3D.Points.Markers.L000.PosInterpol§;
-};
+```{literalinclude} Snippets/lesson2/snip.Pendulum.main-6.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Now load the model and run the kinematic analysis. You will get the
@@ -350,18 +248,10 @@ Resolving the kinematics in the presence of moving markers is somewhat
 more complicated numerically, so we have to ask for a specific
 kinematics solver that can handle it. This is done in the study section:
 
-```AnyScriptDoc
-AnyBodyStudy MyStudy = {
-  AnyFolder &Model = .MyModel;
-  Gravity = {0.0, -9.81, 0.0};
-  AnyIntVar FirstFrame = Main.MyModel.C3D.Header.FirstFrameNo;
-  AnyIntVar LastFrame = Main.MyModel.C3D.Header.LastFrameNo;
-  tStart =FirstFrame/Main.MyModel.C3D.Header.VideoFrameRate+2*Kinematics.ApproxVelAccPerturb;
-  tEnd = LastFrame/Main.MyModel.C3D.Header.VideoFrameRate-2*Kinematics.ApproxVelAccPerturb;
-  §InitialConditions.SolverType = KinSolOverDeterminate;
-  Kinematics.SolverType = KinSolOverDeterminate;§
-
-};
+```{literalinclude} Snippets/lesson2/snip.Pendulum.main-6.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 The two additional lines select a kinematic solver for the
@@ -379,15 +269,10 @@ movement because it is hidden inside the pendulum. In fact, the marker is not
 strictly necessary for the analysis and we can get rid of it altogether by an
 additional specification in the C3D object:
 
-```AnyScriptDoc
-AnyInputC3D C3D = {
-  FileName = "pendulum.c3d";
-  //TruncateExtraCharsInNamesOnOff = On;
-  //MakeNameUniqueStr = "_";
-  //PointsScaleFactor = 1;
-  §ConstructModelOnOff = Off;§
-  ConstructChartOnOff = Off;
-};
+```{literalinclude} Snippets/lesson2/snip.Pendulum.main-6.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 3
+:end-before: //# END SNIPPET 3
 ```
 
 With the unnecessary marker gone from the model, the kinematic analysis
@@ -398,33 +283,16 @@ efficient to leave the markers out unless you really need them.
 Now that there is a driver between pendulum and the marker, it is possible
 to simultaneously draw both the point on the pendulum and the marker
 from the C3D file. To do this, start by placing the cursor inside the
-AnyKinDriverMarker object.
+`AnyKinDriverMarker` object.
 
 Then click the Classes tab on the right side of screen, insert a new
 `AnyDrawKinMeasure` template, remove the properties we will not need and give
 it a name:
 
-```AnyScriptDoc
-AnyKinDriverMarker C3Dmotion =
-{
-  //MeasureOrganizer = {};
-  //CType = ;
-  //WeightFun = {};
-  //DriverPos0 = {};
-  //DriverVel0 = {};
-  //DriverAcc0 = {};
-  AnyRefFrame &Marker = .Pendulum.P1;
-  //AnyRefFrame &<Insert name1> = <Insert object reference (or full object definition)>;
-  AnyParamFun &Trajectory =
-  Main.MyModel.C3D.Points.Markers.L000.PosInterpol;
-
-  §AnyDrawKinMeasure drw =
-  {
-    //Label = On;
-    //Size = 0.02;
-    //Line = On;
-  };§
-};
+```{literalinclude} Snippets/lesson2/snip.Pendulum.main-7.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 If you reload the model, you should see something like this:
@@ -447,13 +315,10 @@ the `Label` and `Line` settings to Off. Let us also change the size of the
 dots such that we can see both the point on the segment as well as the
 measured point.
 
-```AnyScriptDoc
-AnyDrawKinMeasure drw =
-{
-  §Label = Off;
-  Size = 0.07;
-  Line = Off;§
-};
+```{literalinclude} Snippets/lesson2/snip.Pendulum.main-8.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Reloading the model should show you something like this:
