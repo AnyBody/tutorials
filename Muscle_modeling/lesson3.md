@@ -27,6 +27,7 @@ exclusively have wrapping muscles.
 ```{image} _static/lesson3/image1.jpeg
 :alt: Old leg Muscle wrapping
 :align: center
+:width: 25%
 ```
 
 *Most muscles in the legs can be modeled
@@ -35,6 +36,7 @@ reasonably with via point muscles.*
 ```{image} _static/lesson3/image2.jpeg
 :alt: Deltoid muscles
 :align: center
+:width: 25%
 ```
 
 *The deltoid muscle wraps over the head
@@ -134,6 +136,7 @@ The figure below shows the result:
 ```{image} _static/lesson3/image3.jpeg
 :alt: Simple model with via point muscle
 :align: center
+:width: 40%
 ```
 
 A muscle can pass through an unlimited number of via points, and the

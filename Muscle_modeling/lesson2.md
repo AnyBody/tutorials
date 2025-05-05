@@ -17,18 +17,13 @@ value leading to the following display of the muscle:
 ```{image} _static/lesson2/image1.jpeg
 :alt: simple model with muscle
 :align: center
+:width: 40%
 ```
 
-Let us play around with the settings a bit. An easy way to display all
-the settings is to discard our manually defined AnyDrawMuscle object and
-insert a template from the class tree instead:
-
-```{image} _static/lesson2/image2.gif
-:alt: class tree AnyDrawMuscle
-:align: center
-```
-
-Erase the previous AnyDrawMuscle, right-click the AnyDrawMuscle in the
+Let us play around with the settings a bit. An easy way to display all the
+settings is to discard our manually defined AnyDrawMuscle object and insert a
+template from the class list instead. Find the AnyDrawMuscle object in the Class
+List, erase the previous AnyDrawMuscle, right-click the AnyDrawMuscle in the
 tree view, and insert an instance:
 
 ```AnyScriptDoc
@@ -174,6 +169,7 @@ the red shade of the muscle changes as its activity grows:
 ```{image} _static/lesson2/image4.jpeg
 :alt: Simple model two positions
 :align: center
+:width: 80%
 ```
 
 When the activity is zero, the color defaults to a rather pale red. You

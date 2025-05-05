@@ -76,6 +76,7 @@ SetInitialConditions operation, you should get the following picture:
 ```{image} _static/lesson1/image1.jpeg
 :alt: simple model
 :align: center
+:width: 40%
 ```
 
 The model has a driver, so you can run the kinematic analysis and see
@@ -101,6 +102,7 @@ picture until you get to the AnyMuscleModel.
 ```{image} _static/lesson1/image2.png
 :alt: class tree
 :align: center
+:width: 45%
 ```
 
 Notice that this class has three derived classes. These are more
@@ -187,14 +189,8 @@ simpler muscles of the body, primarily those in the extremities and the
 spine. You can, in fact, make a pretty decent model of the legs entirely
 with via point muscles.
 
-Place the cursor right after the end brace of the musle model,
-right-click the AnyMuscleViaPoint class in the tree, and insert an
-instance of it:
-
-```{image} _static/lesson1/image3.png
-:alt: class tree AnyMuscleViaPoint
-:align: center
-```
+Place the cursor right after the end brace of the musle model, in the Class
+List scroll down to find AnyMuscleViaPoint and insert an instance of it:
 
 ```AnyScriptDoc
 AnyMuscleModel SimpleModel = {
@@ -203,14 +199,19 @@ AnyMuscleModel SimpleModel = {
    //Vol0 = 0;
 };
 
-§ AnyMuscleViaPoint <ObjectName> = {
-   //RefFrames = ;
-   //Surfaces = ;
-   AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
+§AnyViaPointMuscle <ObjectName> = 
+{
+   //viewForce.Visible = Off;
+   //MetabModel = Null;
+   //FatigueModel = Null;
+   //MuscleModel = Null;
+   //viewMuscle.Visible = Off;
    AnyRefFrame &<Insert name0> = <Insert object reference (or full object definition)>;
    AnyRefFrame &<Insert name1> = <Insert object reference (or full object definition)>;
-   //AnyRefFrame &<Insert name2> = <Insert object reference (or full object definition)>; You can make any number of these objects!
-   };§
+   //AnyRefFrame &<Insert name2> = <Insert object reference (or full object definition)>;
+   //AnyRefFrame &<Insert name3> = <Insert object reference (or full object definition)>; You can make any number of AnyRefFrame objects!
+   AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
+};§
 ```
 
 Let us start by filling out what we can and removing what we have no use
@@ -272,11 +273,13 @@ Notice that we have added an AnyDrawMuscle object to the definition.
 Like other classes in AnyScript, muscles are not drawn in the Model View
 window unless you specifically ask for it. When you load the model and
 run the SetInitialConditions study you will get the following picture
-(if your model does not load, and you cannot find the error, {download}`clickhere to download a model that works <Downloads/MuscleDemo.1.any>`):
+(if your model does not load, and you cannot find the error, 
+{download}`click here to download a model that works <Downloads/MuscleDemo.1.any>`):
 
 ```{image} _static/lesson1/image4.jpeg
 :alt: simple model with muscle
 :align: center
+:width: 40%
 ```
 
 Notice that the muscle is now able to balance the gravity, and we are

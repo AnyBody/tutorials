@@ -129,16 +129,15 @@ obtain the following:
    //Vol0 = 0;
  };
 
-§AnyMuscleModel2ELin <ObjectName> = {
+§AnyMuscleModel2ELin <ObjectName> = 
+{
   F0 = 0.0;
   //Lf0 = 0.0;
   //Vol0 = 0.0;
-  //Lfbar = 0.0;
   Lt0 = 0.0;
   //Epsilon0 = 0.05;
-  //Epsilonbar = 0.05;
   V0 = 0.0;
- };§
+};§
 ```
 
 Let us briefly review the parameters:
@@ -178,7 +177,10 @@ widths: 3 10
 We can study the significance of the parameters in more detail, if we
 formulate the strength mathematically:
 
-$Strength = F_0 \left(2\frac{L_m}{{L}_{f0}}-1 \right) \left( 1-\frac{\dot{L}_m}{V_0} \right)$
+```{math}
+:label: muscle_strength_equation
+\text{Strength} = F_0 \left(2\frac{L_m}{{L}_{f0}}-1 \right) \left( 1-\frac{\dot{L}_m}{V_0} \right)
+```
 
 You can probably recognize the variable names in the table above from
 the symbols in the equation. As you can see, this is really a bilinear
@@ -375,7 +377,7 @@ AnyMuscleModel2ELin Model2 = {
    Lf0 = 0.3;
    Lt0 = 0.5;
    Epsilon0 = 0.05;
-  §V0 = -0.3§;
+   §V0 = -0.3§;
  };
 ```
 
@@ -387,6 +389,7 @@ plotting the Strength variable again:
 ```{image} _static/lesson5/image5.png
 :alt: muscle strength plot, v0=-0.3
 :align: center
+:width: 80%
 ```
 
 Instead of being monotonically decreasing, the muscle strength now
@@ -499,6 +502,7 @@ physiology, so it should be applied with care. In particular it does not
 model passive elasticity. The following section presents a full-blown
 Hill-type model, which does not have these shortcomings.
 
+(AnyMuscleModel3E)=
 ## AnyMuscleModel3E
 
 So far we have been focusing our attention on Muscle1 in the demo model
@@ -559,22 +563,20 @@ AnyMuscleModel2ELin Model2 = {
     V0 = -0.3;
  };
 
-§AnyMuscleModel3E <ObjectName> = {
-    F0 = 0.0;
-    //Lf0 = 0.0;
-    //Vol0 = 0.0;
-    Lt0 = 0.0;
-    //Gamma0 = 0.0;
-    //Epsilon0 = 0.05;
-    Fcfast = 0.0;
-    //Jt = 3.0;
-    //Jpe = 3.0;
-    //K1 = 2.0;
-    //K2 = 8.0;
-    //PEFactor = 5.0;
-    //Lfbar = 0.0;
-    //Gammabar = 0.0;
-    //Epsilonbar = 0.05;
+§AnyMuscleModel3E <ObjectName> = 
+{
+  F0 = 0.0;
+  //Lf0 = 0.0;
+  //Vol0 = 0.0;
+  Lt0 = 0.0;
+  //Gamma0 = 0.0;
+  //Epsilon0 = 0.05;
+  Fcfast = 0.5;
+  //Jt = 3.0;
+  //Jpe = 3.0;
+  //K1 = 2.0;
+  //K2 = 8.0;
+  //PEFactor = 5.0;
 };§
 ```
 
@@ -615,18 +617,18 @@ reasonable values for Muscle2 and study their influences:
 
 ```AnyScriptDoc
 AnyMuscleModel3E §Model3§ = {
-    F0 = §100§;
-    Lf0 = §0.3§;
-    Gamma0 = §30*pi/180§;
-    Epsilon0 = §0.05§;
-    Lt0 = §0.5§;
-    Fcfast = §0.4§;
-    §Jt = 3.0§;
-    §Jpe = 3.0§;
-    §K1 = 2§;
-    §K2 = 8§;
-    §PEFactor = 5§;
-  };
+  F0 = §100§;
+  Lf0 = §0.3§;
+  Gamma0 = §30*pi/180§;
+  Epsilon0 = §0.05§;
+  Lt0 = §0.5§;
+  Fcfast = §0.4§;
+  §Jt = 3.0§;
+  §Jpe = 3.0§;
+  §K1 = 2§;
+  §K2 = 8§;
+  §PEFactor = 5§;
+};
 ```
 
 Notice that Lf0 + Lt0 = 0.8, which is in the range of the Lmt
@@ -681,6 +683,7 @@ following behavior:
 ```{image} _static/lesson5/image10.png
 :alt: Force parallel elastic element
 :align: center
+:width: 70%
 ```
 
 In the initial phase of the movement, the parallel-elastic element is
@@ -695,6 +698,7 @@ have changed the scale of the ordinate axis):
 ```{image} _static/lesson5/image11.png
 :alt: Tendon length plot
 :align: center
+:width: 75%
 ```
 
 From the time the passive force sets in, the tendon starts to elongate a
@@ -776,7 +780,7 @@ to do some work. Let us systematically investigate the output:
 
 `````{list-table}
 ---
-widths: 4 8 3
+widths: 3 7 5
 header-rows: 1
 ---
 
@@ -878,7 +882,7 @@ header-rows: 1
 
 * - `Pm`
   - The mechanical power of the contractile element.
-  - ![...](_static/lesson5/image14.png)
+  - ![...](_static/lesson5/image35.png)
 
 
 * - `Pmt`
@@ -907,6 +911,7 @@ Muscle2 has the following development over the movement:
 ```{image} _static/lesson5/image31.png
 :alt: Calibration. Lt0 plot
 :align: center
+:width: 65%
 ```
 
 But what would happen if our guess of tendon length, Lt0, in the muscle
@@ -917,6 +922,7 @@ we get the following activity:
 ```{image} _static/lesson5/image32.png
 :alt: Calibration Activity plot
 :align: center
+:width: 65%
 ```
 
 Not only is the shape of the graph different, the maximum activity is
@@ -983,6 +989,7 @@ You should see the following:
 ```{image} _static/lesson5/image33.png
 :alt: Cheap n dirty calibration, Activity plot
 :align: center
+:width: 65%
 ```
 
 As you can see, this is again very different from what we have seen
@@ -991,6 +998,7 @@ before. Plotting the strength will reveal what has happened:
 ```{image} _static/lesson5/image34.png
 :alt: Cheap n dirty calibration, activity plot2
 :align: center
+:width: 65%
 ```
 
 What FiberAndTendonAdjustment does is to run through the specified
