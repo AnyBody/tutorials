@@ -127,7 +127,7 @@ exclude_patterns = [
 
 if not tags.has("future_tutorials"):
     exclude_patterns.append("Tutorials_future.md")
-    exclude_patterns.append("Introduction_to_mechanics/*")
+    # exclude_patterns.append("Introduction_to_mechanics/*")
 
 
 # The name of the Pygments (syntax highlighting) style to use.
