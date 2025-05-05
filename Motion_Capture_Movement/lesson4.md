@@ -190,21 +190,10 @@ evaluate them.
 
 We begin with the latter and make the following changes:
 
-```{literalinclude} Snippets/lesson4/snip.Multiple.main-4.any
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-5.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
-```
-
-```AnyScriptDoc
-AnyOptKinStudy §OptKinStudy§ =
-{
-  §Analysis = {
-     AnyOperation &Operation= ..MyStudy.Kinematics;
-  };§
-  //MaxIterationStep = 100;
-  AnyDesMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
-};
 ```
 
 Now we have specified that we want to optimize parameters to fit the
@@ -235,23 +224,10 @@ of the Joint node on the Leg segment is a variable in the problem.
 
 Similarly, we can add the y and z coordinates:
 
-```AnyScriptDoc
-AnyOptKinStudy OptKinStudy =
-{
-  Analysis = {
-     AnyOperation &Operation= ..MyStudy.Kinematics;
-  };
-  //MaxIterationStep = 100;
-  AnyDesVar Jointx = {
-    Val = Main.MyModel.Leg.Joint.sRel[0];
-  };
-  §AnyDesVar Jointy = {
-    Val = Main.MyModel.Leg.Joint.sRel[1];
-  };
-  AnyDesVar Jointz = {
-    Val = Main.MyModel.Leg.Joint.sRel[2];
-  };§
-};
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-6.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Now we can reload the model and a new set of operations will have
@@ -279,7 +255,7 @@ optimization, and the right picture shows the situation after optimization.
 :align: center
 ```
 
-This notion is confirmed by opening opening the chart view and plotting the
+This notion is confirmed by opening the chart view and plotting the
 development of the objective function of the problem:
 
 ```{image} _static/lesson4/image5.png
@@ -342,31 +318,10 @@ locations.
 The marker node position is included in the optimization in the same way
 as the Joint node:
 
-```AnyScriptDoc
-AnyOptKinStudy OptKinStudy =
-{
-  Analysis = {
-     AnyOperation &Operation= ..MyStudy.Kinematics;
-  };
-  //MaxIterationStep = 100;
-  AnyDesVar Jointx = {
-    Val = Main.MyModel.Leg.Joint.sRel[0];
-  };
-  AnyDesVar Jointy = {
-    Val = Main.MyModel.Leg.Joint.sRel[1];
-  };
-  AnyDesVar Jointz = {
-    Val = Main.MyModel.Leg.Joint.sRel[2];
-  };
-  §AnyDesVar R1x = {
-    Val = Main.MyModel.Leg.R1.sRel[0];
-  };
-  AnyDesVar R1y = {
-    Val = Main.MyModel.Leg.R1.sRel[1];
-  };
-  AnyDesVar R1z = {
-    Val = Main.MyModel.Leg.R1.sRel[2];
-  };§
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-7.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Please reload and re-run the `Main.OptKinStudy.ParameterOptimization`.
@@ -391,40 +346,10 @@ It appears that we have obtained an almost perfect solution, but why not
 include all the marker nodes in the optimization? Well, we can try
 adding another one:
 
-```AnyScriptDoc
-AnyOptKinStudy OptKinStudy =
-{
-  Analysis = {
-     AnyOperation &Operation= ..MyStudy.Kinematics;
-  };
-  //MaxIterationStep = 100;
-  AnyDesVar Jointx = {
-    Val = Main.MyModel.Leg.Joint.sRel[0];
-  };
-  AnyDesVar Jointy = {
-    Val = Main.MyModel.Leg.Joint.sRel[1];
-  };
-  AnyDesVar Jointz = {
-    Val = Main.MyModel.Leg.Joint.sRel[2];
-  };
-  AnyDesVar R1x = {
-    Val = Main.MyModel.Leg.R1.sRel[0];
-  };
-  AnyDesVar R1y = {
-    Val = Main.MyModel.Leg.R1.sRel[1];
-  };
-  AnyDesVar R1z = {
-    Val = Main.MyModel.Leg.R1.sRel[2];
-  };
-  §AnyDesVar R2x = {
-    Val = Main.MyModel.Leg.R2.sRel[0];
-  };
-  AnyDesVar R2y = {
-    Val = Main.MyModel.Leg.R2.sRel[1];
-  };
-  AnyDesVar R2z = {
-    Val = Main.MyModel.Leg.R2.sRel[2];
-  };§
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-8.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 When you reload the model and re-run the ParameterOptimization, you will
