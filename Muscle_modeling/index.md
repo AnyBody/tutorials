@@ -1,6 +1,7 @@
 ::: {rst-class} break
 :::
 
+(MuscleModeling)=
 # Muscle Modeling
 
 This tutorial introduces the many facilities for modeling muscles in the

@@ -1,7 +1,7 @@
 ::: {rst-class} break
 :::
 
-# A Study of Studies
+# A Study of Studies (Deleted)
 
 In AnyBody, all types of analysis, whether pure mechanical system
 analysis, musculoskeletal analysis or design analysis, are carried out

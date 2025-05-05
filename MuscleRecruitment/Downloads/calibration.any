@@ -121,7 +121,7 @@ Main = {
     AnyFolder Muscles = {
       // Simple muscle model with constant strength = 300 Newton
       AnyMuscleModel MusMdl = {
-        F0 = 600;
+        F0 = 400;
       };
       
       AnyMuscleModel3E BicepsLongModel = {

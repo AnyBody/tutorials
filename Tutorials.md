@@ -31,6 +31,7 @@ You can find the available tutorials in the sidebar. The tutorials are ordered i
 :hidden: true
 :titlesonly: true
 
+Introduction_to_mechanics/index
 A_study_of_studies/index
 Motion_Capture_Movement/index
 MuscleRecruitment/index

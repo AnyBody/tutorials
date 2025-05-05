@@ -68,7 +68,7 @@ solves the problem.
 :alt: Metabolic efficiency example
 :class: bg-primary
 :align: center
-:scale: 80%
+:width: 80%
 ```
 
 The two pictures above both show the result of a parameter study. The
@@ -144,16 +144,16 @@ model view:
 
 ## Running the Optimization Study
 
-Select `Main.OptStudy.Optimization` from the operation dropdown, click the Run button, 
-and ensure the model view is open. The model starts 
-cycling and after a few rounds you will notice the saddle position changing, 
-but not in a systematic grid like in the parameters study. What you will see 
-is gradual changes back and forth in different directions until the changes 
-wear off and the position converges.
+Select `Main.OptStudy.Optimization` from the operation dropdown, click the Run
+button, and ensure the model view is open. The model starts cycling and after a
+few rounds you will notice the saddle position changing, but not in a systematic
+grid like in the parameters study. What you will see is gradual changes back and
+forth in different directions until the changes wear off and the position
+converges.
 
 Every time you see the left-most number changing in the Output window it is
 an indication that the optimizer has picked a new optimization direction to try.
-You should see the number increasing in slow steps up to 4 before the process
+You should see the number increasing in slow steps up to 6 before the process
 stops and the system announces that it is finished. Please notice that the
 changes of saddle position in the last several steps is very minute, which is
 typical for optimization: the first steps bring large changes and large
@@ -171,10 +171,10 @@ with the Metabolism parameter study open? It should look like this:
 
 If not, please run the ParamStudy again and plot the surface. When you
 have this surface ready, please open another Chart window by clicking
-`View`->\`\`Charts\`\`->\`\`Chart2\`\`.  In the new window, please expand the tree
-down to Main.OptStudy.Output.Metab. Then click the Val variable
+`View`->`Charts`->`Chart2`.  In the new window, please expand the tree
+down to `Main.OptStudy.Output.Metab`. Then click the `Val` variable
 under Metab. This produces a simple 2-D graph showing the development of
-the metabolism over the 4 iterations:
+the metabolism over the 6 iterations:
 
 ```{image} _static/Optimization_studies/metabcon2.png
 :alt: Chart Opttudy 1
@@ -197,7 +197,6 @@ The optimal solution in the Model View looks like this:
 
 ```{image} _static/Optimization_studies/bikeopt2.png
 :alt: Final Model view
-:class: bg-primary
 :align: center
 ```
 
@@ -211,12 +210,13 @@ An interesting way to investigate the convergence is to plot it in the
 variable/objective space rather than over the iterations. This is what
 we need the window with the parameter study surface for. At the top of
 this window you will find panels listing series and data to be plotted.
-Please right-click in the series window and select "New":
+Please right-click in the series window and select "Add":
 
 ```{image} _static/Optimization_studies/newseries.png
 :alt: Chart New Series
 :class: bg-primary
 :align: center
+:width: 65%
 ```
 
 This will give you a blank "Series 1". When you highlight it by clicking
@@ -225,23 +225,18 @@ right-hand pane is empty. We are going to fill in the `SaddleHeight` and
 `SaddlePos` variables from the OptStudy as Abscissa and Abscissa2,
 respectively.  This is done by selecting Abscissa and Abscissa2 in turn
 and then expanding the `OptStudy` branch until the `SaddleHeight.Val` and
-`SaddlePos.Val`, respectively, can be selected:
-
-```{image} _static/Optimization_studies/selectheight.png
-:alt: Chart select height
-:class: bg-primary
-:align: center
-```
+`SaddlePos.Val`, respectively, can be selected.
 
 Finally, in the `Value` field select `OptStudy.Metab.Val` and look carefully
 at the plot. You will see that an additional polyline has been added. It
 originates approximately at the middle of the surface and shows the path
 the optimization process has taken through the design space to the
-minimum point. You can change the color of the line by clicking the second
-leftmost button (![chartsettings.png](_static/Optimization_studies/chartsettings.png)) in the toolbar directly over the graphics
-pane. This gives you access to all the settings and lets you control the
-appearance of graphs in detail. Under Chart->Series->Series1->Lines the following
-parameters is set: `RGB = {1,0,0}`, i.e. red, and `Thickness = 4`.
+minimum point. You can change the color of the line by clicking the Property
+Window button (![chartsettings.png](_static/Optimization_studies/chartsettings.png)) 
+in the toolbar directly over the graphics pane. This gives you access to all the
+settings and lets you control the appearance of graphs in detail. Under
+Chart->Series->Series1->Lines the following parameters is set: `RGB = {1,0,0}`,
+i.e. red, and `Thickness = 4`.
 
 ```{image} _static/Optimization_studies/optpath2.png
 :alt: Chart OptPath 
@@ -251,7 +246,7 @@ parameters is set: `RGB = {1,0,0}`, i.e. red, and `Thickness = 4`.
 
 ## Caveat when Running Optimization Studies
 
-This plot illustrates the convergence history in the "landscape" of the
+The above plot illustrates the convergence history in the "landscape" of the
 objective function. Here we can see the reasons for the convergence
 being as it is. Actually, the optimum value lies in a relatively flat
 region and therefore the exact mathematical location of the optimum may
@@ -329,7 +324,7 @@ optimization problem stated in the beginning of this lesson, we have
 only less-than-or-equal-to constraints, but there is only a minus sign
 in difference of making a greater-than-or-equal-to into a
 less-than-or-equal-to constraint. You can put this minus sign manually
-or you can use Type = `GreaterThanZero`, which is equivalent. Notice that
+or you can use `Type = GreaterThanZero`, which is equivalent. Notice that
 equality constraints are in principle also a possibility, but currently
 the optimization solvers in AnyBody do not handle this type of
 constraints. Moreover, it is most often possible to handle equality
@@ -354,15 +349,17 @@ convergence picture:
 :alt: Metab value vs Steps
 :class: bg-primary
 :align: center
+:width: 75%
 ```
 
-If you alo re-run the parameter study, you can get this picture of the
+If you also re-run the parameter study, you can get this picture of the
 convergence:
 
 ```{image} _static/Optimization_studies/optpath2_constrained.png
 :alt: opt Study constrained
 :class: bg-primary
 :align: center
+:width: 60%
 ```
 
 We see that the result is indeed a compromise since the objective
@@ -378,6 +375,7 @@ looks like:
 :alt: SeatDist vs Steps
 :class: bg-primary
 :align: center
+:width: 70%
 ```
 
 where it is obvious how the optimizer hits the constraint, bounces off,
@@ -393,7 +391,6 @@ picture below:
 
 ```{image} _static/Optimization_studies/BikeOpt2_constrained.png
 :alt: Final model view 2
-:class: bg-primary
 :align: center
 ```
 

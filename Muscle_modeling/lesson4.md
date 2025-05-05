@@ -65,15 +65,14 @@ statement, and change the cylinder parameters as shown below:
   AnyRefNode CylCenter = {
     sRel = {0, 0, -0.2};
 
-   §AnySurfCylinder WrapSurf = {
-      Radius = 0.15;
-      Length = 0.4;
-      //CapRatio = 0.1;
-      //CapRatio2 = 0.1;
-      AnyDrawParamSurf drw = {};
+    §AnySurfCylinder WrapSurf = {
+        Radius = 0.15;
+        Length = 0.4;
+        //CapRatio = 0.1;
+        //CapRatio2 = 0.1;
+        AnyDrawParamSurf drw = {};
     };§
   };
-
 };  // Global reference frame
 ```
 
@@ -83,7 +82,11 @@ insertion point of the cylinder is at {0, 0, 0.2} corresponding exactly
 to half of the length of the cylinder of 0.4. This causes the cylinder
 to be inserted symmetrically about the xy plane as illustrated below:
 
-![wrapcylinder](_static/lesson4/image1.jpeg)
+```{image} _static/lesson4/image1.jpeg
+:alt: Wrap cylinder
+:align: center
+:width: 60%
+```
 
 The cylinder direction is always z in the coordinate direction of the
 object that the cylinder is inserted into. So, if the cylinder does not
@@ -109,7 +112,11 @@ AnyRefNode CylCenter = {
 
 &#160;Which causes the cylinder to rotate 20 degrees about the y axis.
 
-![wrap cylinder rotated](_static/lesson4/image2.jpeg)
+```{image} _static/lesson4/image2.jpeg
+:alt: Wrap cylinder rotated
+:align: center
+:width: 60%
+```
 
 There are a couple of things to notice about the cylinder: First of all
 the graphics looks like the cylinder is faceted. This is not really the
@@ -242,20 +249,23 @@ It is time to see what we have done. If you load the model and run the
 InverseDynamics analysis (and have done everything right), you will see
 the model moving through a sequence of positions like this:
 
-![wrap cylinder with via point sequence](_static/lesson4/image3.jpeg)
+```{image} _static/lesson4/image3.jpeg
+:alt: Wrap cylinder with via point sequence
+:align: center
+```
 
 As mentioned above, wrapping muscles can also have via points. In fact,
 we can easily change the via point muscle, Muscle1,  to wrap over the
 cylinder even though it also has a via point:
 
 ```AnyScriptDoc
-Any§ShortestPath§Muscle Muscle1 = {
+§AnyMuscleShortestPath§ Muscle1 = {
   AnyMuscleModel &Model = .SimpleModel;
   AnyRefFrame &Orig = .GlobalRef.M1Origin;
   AnyRefFrame &Via = .Arm.ViaPoint;
-§ AnySurface &srf = .GlobalRef.CylCenter.WrapSurf;§
+  §AnySurface &srf = .GlobalRef.CylCenter.WrapSurf;§
   AnyRefFrame &Ins = .Arm.M1Insertion;
- §SPLine.StringMesh = 20;§
+  §SPLine.StringMesh = 20;§
   AnyDrawMuscle drw = {
     Bulging = 2;
     ColorScale = 1;
@@ -269,16 +279,17 @@ to change the type from AnyMuscleViaPoint to AnyMuscleShortestPath and
 insert the wrapping surface and the StringMesh specification. This gives
 us the following result:
 
-![wrap cylinder two muscles](_static/lesson4/image4.jpeg)
+```{image} _static/lesson4/image4.jpeg
+:alt: Wrap cylinder two muscles
+:align: center
+:width: 70%
+```
 
 As you can see, both muscles are now wrapping over the cylinder, and we
 can run the InverseDynamics analysis. It seems to work, but the system
 provides the following warning:
 
-`WARNING - Via-point 'Main.MyModel.GlobalRef.M1Origin' on
-'Main.MyModel.Muscle1.SPLine'`
-`is located below the wrapping surface
-'Main.MyModel.GlobalRef.CylCenter.WrapSurf'.`
+`WARNING(OBJ.MCH.KIN7): MuscleDemo.Ini.any(75): Muscle1.SPLine: Penetration of surface: WrapSurf: Via-point 'M1Origin' on 'SPLine' is located below the wrapping surface'WrapSurf`
 
 This is a warning that you will see rather frequently when working with
 complex models with wrapping. The warning comes when one of the end
@@ -316,7 +327,7 @@ AnyMuscleShortestPath Muscle2 = {
   AnySurface &srf = .GlobalRef.CylCenter.WrapSurf;
   AnyRefFrame &Ins = .Arm.M2Insertion;
   SPLine.StringMesh = 20;
- §SPLine.InitWrapPosVectors = {{-0.2, -0.2, 0}, {-0.05, -0.2, 0}};§
+  §SPLine.InitWrapPosVectors = {{-0.2, -0.2, 0}, {-0.05, -0.2, 0}};§
   AnyDrawMuscle drw = {
     Bulging = 2;
     ColorScale = 1;
@@ -339,7 +350,11 @@ Step button rather than the run button. This will show you how the
 system uses the InitWrapVectors to pull the muscle to the other side of
 the cylinder:
 
-![wrap cylinder Init wrap vectors](_static/lesson4/image5.jpeg)
+```{image} _static/lesson4/image5.jpeg
+:alt: Wrap cylinder Init wrap vectors
+:align: center
+:width: 60%
+```
 
 If you keep pressing the step button you will see how the muscle now
 wraps on the other side of the cylinder.

@@ -68,15 +68,18 @@ segments - an upper arm and a forearm. It's attached to the global reference
 frame at the shoulder and has a 100 N vertical load acting downwards at the
 hand.
 
-
-![Arm 2D](_static/lesson6/image1.jpeg)
+```{image} _static/lesson6/image1.jpeg
+:alt: Arm 2D
+:align: center
+:width: 50%
+```
 
 Currently, the model can't perform an inverse dynamics analysis because it lacks
 muscles. If you try to run the InverseDynamics operation, you'll see an error
 message:
 
 ```
-NOTICE(OBJ1): MuscleDemo.6.any(103): ArmStudy.InverseDynamics: No muscles in the model.
+NOTICE(OBJ1): MuscleDemo.6.any(103): ArmStudy.InverseDynamics: No muscles or other recruited actuators in the model.
 ERROR(OBJ1): MuscleDemo.6.any(103): ArmStudy.InverseDynamics: No solution found: There are fewer unknown forces (muscles and reactions) than dynamic equations.
 ```
 
@@ -107,15 +110,15 @@ class tree, and insert a template.
  }; // Driver folder
 
 §AnyMuscleGeneric <ObjectName> = 
-    {
-      //viewForce.Visible = Off;
-      //MetabModel = Global.Null;
-      //FatigueModel = Global.Null;
-      //MuscleModel = Global.Null;
-      //Type = NonPositive;
-      AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
-      AnyKinMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
-    };§
+{
+  //viewForce.Visible = Off;
+  //MetabModel = Global.Null;
+  //FatigueModel = Global.Null;
+  //MuscleModel = Global.Null;
+  //Type = NonPositive;
+  AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
+  AnyKinMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
+};§
 ```
 
 Just as normal muscles, generic muscles must be associated with a muscle
@@ -146,7 +149,8 @@ The empty fields in the muscle model must be filled in:
 ```AnyScriptDoc
 AnyMuscleModel §MusModel§ = {
   §F0 = 100.0;§
-};```
+};
+```
 
 Note that the simple muscle model class has the optional memebers (parameters) of `Lf0` and 
 `Vol0` that are usually left out for use with `AnyMuscleGeneric`.
@@ -238,8 +242,10 @@ Chart View. Look up the two joint torques as the Fm property of the general
 muscles. You can plot both of them at the same time using an asterisk (`*`), as
 shown below:
 
-
-![Chart view, Torques](_static/lesson6/image2.png)
+```{image} _static/lesson6/image2.png
+:alt: Chart view, Torques
+:align: center
+```
 
 In this example, we used the same strength (muscle model) for both joints. But
 in reality, maximum joint torque varies a lot. For example, knee extension
@@ -283,8 +289,10 @@ there's a high limit in compression against a supporting surface, a smaller
 limit for friction, and no reaction in tension. This is similar to how muscles
 work, and these conditions affect the entire system's mechanics.
 
-
-![Simple arm wall](_static/lesson6/image3.png)
+```{image} _static/lesson6/image3.png
+:alt: Simple arm wall
+:align: center
+```
 
 We'll make some changes to the simple arm model to explore contact in more
 detail. Let's imagine that the model's hand has a vertical wall for support. We
@@ -314,8 +322,6 @@ we'll drive the hand directly instead.
    AnyRefFrame &ref1 = .GlobalRef.Shoulder;
    AnyRefFrame &ref2 = .Segs.LowerArm.PalmNode;
  };§
-
- 
 
  AnyFolder Drivers = {
   §AnyKinEqSimpleDriver HandDriver = {
@@ -361,8 +367,11 @@ gravity and the applied load of 100 N are both vertical. You might think that a
 horizontal support wouldn't make much of a difference. But let's test this by
 turning on the horizontal support of the driver.
 
-
-![no reaction MaxMuscleActivity plot](_static/lesson6/image4.gif)
+```{image} _static/lesson6/image4.gif
+:alt: no reaction MaxMuscleActivity plot
+:align: center
+:width: 65%
+```
 
 The muscle activity stays fairly constant. This is because the moment arms are
 also constant. Both the gravity and the applied load of 100 N are vertical. You
@@ -376,7 +385,11 @@ Reaction.Type = {§On§, Off};
 This shows that mechanics can be more complex than expected. Even this simple
 mechanical system behaves differently from what we might anticipate:
 
-![Full reaction MaxMuscleActivity plot](_static/lesson6/image5.gif)
+```{image} _static/lesson6/image5.gif
+:alt: Full reaction MaxMuscleActivity plot
+:align: center
+:width: 65%
+```
 
 You'll see that the muscle activity is much lower at the start of the movement
 when the reaction is on, and it's similar towards the end of the movement. It
@@ -420,8 +433,11 @@ When you run the `InverseDynamics` operation again and plot the two joint
 torques, you'll see the following graph. You can plot them simultaneously with
 the specification line `Main.ArmStudy.Output.Model.*Torque.Fm`:
 
-
-![Joint torques plot](_static/lesson6/image6.gif)
+```{image} _static/lesson6/image6.gif
+:alt: Joint torques plot
+:align: center
+:width: 65%
+```
 
 The red curve represents the shoulder joint torque, and the green curve
 represents the elbow torque. Notice that the envelope of these two curves is
@@ -451,7 +467,11 @@ AnyRecruitedActuator WallReaction = {
 
 When you run the model again and look at the same graphs, you'll see this:
 
-![Joint torques plot 2](_static/lesson6/image7.gif)
+```{image} _static/lesson6/image7.gif
+:alt: Joint torques plot 2
+:align: center
+:width: 65%
+```
 
 The wall is helpful in the initial stages of the movement. The torque generated
 by the reaction force benefits both joints. In the later stages, the wall

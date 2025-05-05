@@ -14,15 +14,16 @@ AnyDrawMuscle drw = {};
 It obviously does not contain much, so every setting is at its default
 value leading to the following display of the muscle:
 
-![simple model with muscle](_static/lesson2/image1.jpeg)
+```{image} _static/lesson2/image1.jpeg
+:alt: simple model with muscle
+:align: center
+:width: 40%
+```
 
-Let us play around with the settings a bit. An easy way to display all
-the settings is to discard our manually defined AnyDrawMuscle object and
-insert a template from the class tree instead:
-
-![class tree AnyDrawMuscle](_static/lesson2/image2.gif)
-
-Erase the previous AnyDrawMuscle, right-click the AnyDrawMuscle in the
+Let us play around with the settings a bit. An easy way to display all the
+settings is to discard our manually defined AnyDrawMuscle object and insert a
+template from the class list instead. Find the AnyDrawMuscle object in the Class
+List, erase the previous AnyDrawMuscle, right-click the AnyDrawMuscle in the
 tree view, and insert an instance:
 
 ```AnyScriptDoc
@@ -130,7 +131,10 @@ how the muscle force goes up drastically with the reduced moment arm:
 Consequently the muscle now bulges more towards the end of the movement
 than it does in the beginning:
 
-![Chart view Muscle1.Fm](_static/lesson2/image3.gif)
+```{image} _static/lesson2/image3.gif
+:alt: Chart view Muscle1.Fm
+:align: center
+```
 
 The muscle thickness does not have to reflect force. Choosing other
 values for the Bulging property will give other results:
@@ -162,7 +166,11 @@ AnyDrawMuscle drw = {
 When you reload and run the InverseDynamicAnalysis, you will notice that
 the red shade of the muscle changes as its activity grows:
 
-![Simple model two positions](_static/lesson2/image4.jpeg)
+```{image} _static/lesson2/image4.jpeg
+:alt: Simple model two positions
+:align: center
+:width: 80%
+```
 
 When the activity is zero, the color defaults to a rather pale red. You
 can control this "initial" value of the scaled color through the

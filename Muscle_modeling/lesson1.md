@@ -73,7 +73,11 @@ Main = {
 When you load the model, open a model view window, and run the
 SetInitialConditions operation, you should get the following picture:
 
-![simple model](_static/lesson1/image1.jpeg)
+```{image} _static/lesson1/image1.jpeg
+:alt: simple model
+:align: center
+:width: 40%
+```
 
 The model has a driver, so you can run the kinematic analysis and see
 the movement. The arm flexes about the origin of the red reference
@@ -95,7 +99,11 @@ If you pick the Classes tab in the right-hand side of the window, then
 you will get access to the class tree. Expand the tree as shown in the
 picture until you get to the AnyMuscleModel.
 
-![class tree](_static/lesson1/image2.png)
+```{image} _static/lesson1/image2.png
+:alt: class tree
+:align: center
+:width: 45%
+```
 
 Notice that this class has three derived classes. These are more
 advanced muscle models, and we shall get to those later. However for the
@@ -181,27 +189,29 @@ simpler muscles of the body, primarily those in the extremities and the
 spine. You can, in fact, make a pretty decent model of the legs entirely
 with via point muscles.
 
-Place the cursor right after the end brace of the musle model,
-right-click the AnyMuscleViaPoint class in the tree, and insert an
-instance of it:
-
-![class tree AnyMuscleViaPoint](_static/lesson1/image3.png)
+Place the cursor right after the end brace of the musle model, in the Class
+List scroll down to find AnyMuscleViaPoint and insert an instance of it:
 
 ```AnyScriptDoc
 AnyMuscleModel SimpleModel = {
-      F0 = 100;
-      //Lf0 = 0;
-      //Vol0 = 0;
-   };
+   F0 = 100;
+   //Lf0 = 0;
+   //Vol0 = 0;
+};
 
-   § AnyMuscleViaPoint <ObjectName> = {
-      //RefFrames = ;
-      //Surfaces = ;
-      AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
-      AnyRefFrame &<Insert name0> = <Insert object reference (or full object definition)>;
-      AnyRefFrame &<Insert name1> = <Insert object reference (or full object definition)>;
-      //AnyRefFrame &<Insert name2> = <Insert object reference (or full object definition)>; You can make any number of these objects!
-    };§
+§AnyViaPointMuscle <ObjectName> = 
+{
+   //viewForce.Visible = Off;
+   //MetabModel = Null;
+   //FatigueModel = Null;
+   //MuscleModel = Null;
+   //viewMuscle.Visible = Off;
+   AnyRefFrame &<Insert name0> = <Insert object reference (or full object definition)>;
+   AnyRefFrame &<Insert name1> = <Insert object reference (or full object definition)>;
+   //AnyRefFrame &<Insert name2> = <Insert object reference (or full object definition)>;
+   //AnyRefFrame &<Insert name3> = <Insert object reference (or full object definition)>; You can make any number of AnyRefFrame objects!
+   AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
+};§
 ```
 
 Let us start by filling out what we can and removing what we have no use
@@ -263,15 +273,23 @@ Notice that we have added an AnyDrawMuscle object to the definition.
 Like other classes in AnyScript, muscles are not drawn in the Model View
 window unless you specifically ask for it. When you load the model and
 run the SetInitialConditions study you will get the following picture
-(if your model does not load, and you cannot find the error, {download}`clickhere to download a model that works <Downloads/MuscleDemo.1.any>`):
+(if your model does not load, and you cannot find the error, 
+{download}`click here to download a model that works <Downloads/MuscleDemo.1.any>`):
 
-![simple model with muscle](_static/lesson1/image4.jpeg)
+```{image} _static/lesson1/image4.jpeg
+:alt: simple model with muscle
+:align: center
+:width: 40%
+```
 
 Notice that the muscle is now able to balance the gravity, and we are
 able to run the InverseDynamicAnalysis. If you try it out and
 subsequently open a chart view, you are able to plot the muscle force:
 
-![muscle force](_static/lesson1/image5.png)
+```{image} _static/lesson1/image5.png
+:alt: muscle force
+:align: center
+```
 
 The muscle force is the item Fm in the list of properties you can plot
 for a muscle. As you can see, lots of other properties are available,

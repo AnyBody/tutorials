@@ -1,7 +1,7 @@
 ::: {rst-class} break
 :::
 
-# The Mechanical Elements
+# The Mechanical Elements (Deleted)
 
 {{ caution_old_tutorial }}
 

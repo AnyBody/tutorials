@@ -127,7 +127,7 @@ exclude_patterns = [
 
 if not tags.has("future_tutorials"):
     exclude_patterns.append("Tutorials_future.md")
-    exclude_patterns.append("Introduction_to_mechanics/*")
+    # exclude_patterns.append("Introduction_to_mechanics/*")
 
 
 # The name of the Pygments (syntax highlighting) style to use.
@@ -136,7 +136,7 @@ pygments_style = "AnyScript"
 
 current_year = os.environ.get("YEAR", datetime.now().year)
 
-ams_version = os.environ.get("AMS_VERSION", "8.1.0")
+ams_version = os.environ.get("AMS_VERSION", "8.1.1")
 if not re.match(r"^\d\.\d\.\d", ams_version):
     raise ValueError("Wrong format for AMS version, environment variable")
 ams_version_short = ams_version.rpartition(".")[0]
