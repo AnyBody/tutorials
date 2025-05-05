@@ -1,3 +1,5 @@
+//expect_errors = ["'<Insert'", "Model loading skipped"]
+
 // Todo: Write a small description of your model here
 Main = {
 
@@ -107,12 +109,14 @@ Main = {
     Kinematics.SolverType = KinSolOverDeterminate;
   };
 
-  AnyOptKinStudy OptKinStudy =
-  {
-    Analysis = {
-      AnyOperation &Operation= ..MyStudy.Kinematics;
-    };
-    //MaxIterationStep = 100;
-    AnyDesMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
-  };
+//# BEGIN SNIPPET 1
+AnyOptKinStudy §OptKinStudy§ =
+{
+  §Analysis = {
+    AnyOperation &Operation= ..MyStudy.Kinematics;
+  };§
+  //MaxIterationStep = 100;
+  AnyDesMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
+};
+//# END SNIPPET 1
 };
