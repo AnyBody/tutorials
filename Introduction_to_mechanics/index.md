@@ -3,7 +3,7 @@
 :::
 
 
-# Introduction to mechanics in AnyBody
+# Introduction to Mechanics in AnyBody
 
 
 The individual windows will be explained in greater detail in the

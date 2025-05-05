@@ -1,9 +1,12 @@
+{doc}`Introduction to Mechanics </Introduction_to_mechanics/index>`
+: Introduces the basic concepts of mechanics, including the fundamental principles of kinematics and dynamics.
+  It also provides an overview of the mechanical elements used in the AnyBody Modeling System.
 
 {doc}`A Study of Studies </A_study_of_studies/index>`
 : Explains the sequence of a typical study/simulation from initial conditions, kinematics to the
   inverse dynamic analysis.
 
-{doc}`Making things move </Making_things_move/index>`
+{doc}`Motion Capture Movement </Motion_Capture_Movement/index>`
 : Overview of the different
   possibilities to apply a motion to a body model.
   From simple drivers to motion caputure data.
