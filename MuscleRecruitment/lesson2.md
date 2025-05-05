@@ -3,8 +3,6 @@
 
 # Lesson 2: Linear Muscle Recruitment
 
-{{ caution_old_tutorial }}
-
 Let us begin this lesson with a physiological observation. We know that
 there is a metabolic cost involved in development of muscle force. Food
 is a limited resource for living organisms so it is likely that nature
@@ -28,8 +26,10 @@ $$
 \begin{aligned}
 & {\text{minimize}}
 & & G\left(\mathbf{f^{(M)}}\right) \\
+\\
 & \text{subject to}
 & & \mathbf{Cf} = \mathbf{r} \\
+\\
 &&& f_i^{(M)} \geq 0, i=1\ldots n^{(M)}
 \end{aligned}
 \end{equation*}
@@ -42,7 +42,7 @@ $$
 G = \frac{f_1}{N_1}+ \frac{f_2}{N_2}
 $$
 
-i.e., a linear combination of the two muscle forces, where the $N_1$ and  $N_2$
+I.e., a linear combination of the two muscle forces, where the $N_1$ and  $N_2$
 are some choice of normalization factors. Thinking about the physiology
 we might quickly get the idea that it is reasonable if strong muscles do
 more work than weak muscles, so $N_i$ acould be measures of the
@@ -56,18 +56,23 @@ AnyBodyStudy MyStudy = {
     AnyFolder &Model = .MyModel;
     Gravity = {0.0, -9.81, 0.0};
     nStep = 1000; // Lots of time steps to make it run slowly enough
-    § InverseDynamics.Criterion = {
+    §InverseDynamics.Criterion = {
         Type = MR_Linear;
     };§
 };
 ```
 
 This small addition specifies that the muscles must be recruited as a
-linear combination. The muscles forces are automatically normalized by
-the strengths. Running the analysis and plotting the result as before
+linear combination. The muscle forces are automatically normalized by
+their strengths. Running the analysis and plotting the result as before
 leaves us with this somewhat surprising result:
 
-![Chart view Model.star.Fm](_static/lesson2/image2.gif)
+```{image} _static/lesson2/image2.png
+:alt: Fm Force plot linear
+:class: bg-primary
+:align: center
+:width: 80%
+```
 
 It seems that the weaker M2 is slacking around doing nothing and leaving
 all the work to the stronger M1. It turns out that we always get this

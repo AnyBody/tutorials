@@ -3,8 +3,6 @@
 
 # Lesson 6: Composite Recruitment Criteria
 
-{{ caution_old_tutorial }}
-
 So far we have investigated recruitment criteria in the form of
 polynomial sums with degrees ranging from 1 (linear recruitment) to
 infinity (min/max recruitment). It is not given, however, that any
@@ -17,7 +15,7 @@ it might also be unreasonable that a lot of muscles should be activated
 if the external load is very small and/or some of the muscles have a
 very unfavorable moment arm and therefore can contribute very little.
 
-Praagman et al (2003, 2006) reviewed the physiological mechanisms behind
+Praagman et al[^cite_azdn17] [^cite_azdn18] reviewed the physiological mechanisms behind
 muscle contraction and concluded that there are two energy-consuming
 processes, namely detachment of cross bridges and re-uptake of calcium.
 If muscle recruitment is based on minimization of energy, then it is
@@ -34,27 +32,36 @@ AnyBodyStudy Study = {
   Gravity = {0.0, -9.81, 0.0};
   tEnd = Main.BikeParameters.T;
   nStep = 100;
-  §InverseDynamics.Criterion = {
-    Type = MR_QuadraticAux;
-    AuxLinearTerm.Weight = 0.0;
-  };§
+  InverseDynamics.Criterion = {
+    §Type = MR_QuadraticAux;
+    AuxLinearTerm.Weight = 0.0;§
+  };
 };
 ```
 
-…and let us also reduce the power consumption to a level that does not
-require upper limits on the muscle activation:
+Let us also reduce the power consumption to a level that does not require upper
+limits on the muscle activation, and set the SaddleHeight back to 0.63:
 
 ```AnyScriptDoc
+AnyVar SaddleHeight = §0.63§;  //Height of hip joint measured vertically from the crank
+
+...
+
 // Kinematic parameters
 AnyVar Cadence = 60.0; //Cadence in RPM
 AnyVar MechOutput = §250§; //Average Mechanical output over a cycle in Watt
 ```
 
-Loading and running this version will produce the exact same result as
-the standard quadratic criterion because the weight on the linear term
-is set to zero. The result looks like this:
+Loading and running the model will produce the exact same result as the standard
+quadratic criterion because the weight on the linear term,
+`AuxLinearTerm.Weight`, is set to zero. The graph for the muscles activity for
+all muscles looks like this:
 
-![Chart view Muscle activty](_static/lesson6/image1.png)
+```{image} _static/lesson6/image1.png
+:alt: AuxLinearTerm.Weight = 0
+:align: center
+:width: 90%
+```
 
 However, if we add a bit of weight to the linear term:
 
@@ -68,14 +75,18 @@ InverseDynamics.Criterion = {
 …we can influence the resulting recruitment and get the following
 result:
 
-![Chart view Muscle activty linear weight](_static/lesson6/image2.png)
+```{image} _static/lesson6/image2.png
+:alt: AuxLinearTerm.Weight = 0.1
+:align: center
+:width: 90%
+```
 
 The muscle synergy is slightly reduced by the linear term in the
 objective function, and the maximum muscle activation is consequently
 slightly higher. Is this better than the pure quadratic recruitment?
 That is difficult to answer, but the option allows a discerning user to
 influence the recruitment criterion and to build in physiological
-considerations such as those by Praagman et al.
+considerations such as those by Praagman et al[^cite_azdn17].
 
 The min/max muscle recruitment has a similar alternative form that
 allows for the addition of a linear or quadratic term to the objective
@@ -90,24 +101,20 @@ Obviously, the solution of an infinity-powered objective function
 requires some additional mathematical tricks. The trick is to redefine
 the muscle recruitment problem to the following form:
 
-Minimize
-
 $$
-\beta
-$$
-
-Subject to
-
-$$
-\frac{f_{i}^{\left( M \right)}}{N_{i}} \leq \beta,\ \ for\ i = 1..n^{(M)}
-$$
-
-$$
-\mathbf{\text{Cf}} = \mathbf{r}
-$$
-
-$$
-f_{i}^{(M)} \geq 0,\ \ for\ i = 1..n^{(M)}
+\begin{equation*}
+\begin{aligned}
+& {\text{minimize}}
+& & \beta \\
+\\
+& \text{subject to}
+& & \mathbf{\text{Cf}} = \mathbf{r} \\
+\\
+&&& f_{i}^{(M)} \geq 0,\ \ for\ \ i = 1..n^{(M)}  \\
+\\
+&&& \frac{f_{i}^{\left( M \right)}}{N_{i}} \leq \beta,\ \ for\ \ i = 1..n^{(M)}
+\end{aligned}
+\end{equation*}
 $$
 
 It is easy to see why this minimizes the maximum muscle activity: The
@@ -116,24 +123,20 @@ constraints is to simultaneously reduce all the muscle activities. The
 question now is: what happens if we add a quadratic auxiliary term to
 the objective function, $\beta$, this way:
 
-Minimize
-
 $$
-\beta + \varepsilon\sum_{i}^{}\left( \frac{f_{i}^{(M)}}{N_{i}} \right)^{2}
-$$
-
-Subject to
-
-$$
-\frac{f_{i}^{\left( M \right)}}{N_{i}} \leq \beta,\ \ for\ i = 1..n^{(M)}
-$$
-
-$$
-\mathbf{\text{Cf}} = \mathbf{r}
-$$
-
-$$
-f_{i}^{(M)} \geq 0,\ \ for\ i = 1..n^{(M)}
+\begin{equation*}
+\begin{aligned}
+& {\text{minimize}}
+& & \beta + \varepsilon\sum_{i}^{}\left( \frac{f_{i}^{(M)}}{N_{i}} \right)^{2} \\
+\\
+& \text{subject to}
+& & \mathbf{\text{Cf}} = \mathbf{r} \\
+\\
+&&& f_{i}^{(M)} \geq 0,\ \ for\ \ i = 1..n^{(M)}  \\
+\\
+&&& \frac{f_{i}^{\left( M \right)}}{N_{i}} \leq \beta,\ \ for\ \ i = 1..n^{(M)}
+\end{aligned}
+\end{equation*}
 $$
 
 where $\varepsilon$ is the weight we use to tune the influence of the quadratic
@@ -150,23 +153,27 @@ AnyBodyStudy Study = {
     };
 ```
 
-Reloading and rerunning produces the following rather attractive result:
+Reloading and rerunning the model produces the following rather attractive result:
 
-![Chart view Muscle activity MinMaxAux](_static/lesson6/image3.png)
+```{image} _static/lesson6/image3.png
+:alt: MinMaxAux
+:align: center
+:width: 90%
+```
 
-This appears to produce a combination of soft onset and offset of
-muscles together with a clearly defined envelope on which several
-muscles cooperate evenly to carry the load. Please notice, however, that
-the effect of the Weight property, i.e. the $\varepsilon$ in the objective
-function, is somewhat problem dependent because the size of the sum that
-it multiplies depends on the number of muscles in the system while the
-size of the $\beta$ variable remains between 0 and 1 for normal problems. So
-models with many muscles would typically require a smaller value of $\varepsilon$.
+This appears to produce a combination of soft onset and offset of muscles
+together with a clearly defined envelope on which several muscles cooperate
+evenly to carry the load. Please notice, however, that the effect of the Weight
+property `AuxQuadraticTerm.Weight`, i.e. the $\varepsilon$ in the objective
+function, is somewhat problem dependent because the size of the sum that it
+multiplies depends on the number of muscles in the system while the size of the
+$\beta$ variable remains between 0 and 1 for normal problems. So models with
+many muscles would typically require a smaller value of $\varepsilon$.
 
 From what we have seen so far, the MinMaxAux criterion looks ideal from
 a mathematical and physiological point-of-view. Unfortunately, there is
 one additional, physiological requirement that we have not touched upon,
-and on the MinMaxAux criterion fails on that. To understand it, let us
+and the MinMaxAux criterion fails on that. To understand it, let us
 make a thought experiment:
 
 1. We create a model of a person lifting a box. The mass of the box is
@@ -193,14 +200,8 @@ chance that some model parts are independent of each other.
 
 Let us carry on with {doc}`Lesson 7: Calibration <lesson_calibration>`. 
 
-
 ## References
 
-Praagman, M., Veeger, H.E.J., Chadwick, E.K., Colier, W.N., van der
-Helm, F.C. (2003). Muscle oxygen consumption, determined by NIRS, in
-relation to external force and EMG. Journal of Biomechancis, 36,
-905–912.
+[^cite_azdn17]: Praagman, M., Veeger, H.E.J., Chadwick, E.K., Colier, W.N., van der Helm, F.C. Muscle oxygen consumption, determined by NIRS, in relation to external force and EMG. Journal of Biomechancis, 36, 905–912 (2003).
 
-Praagman M, Chadwick EKJ, van der Helm FCT, Veeger HEJ (2006): The
-relationship between two different mechanical cost functions and muscle
-oxygen consumption. Journal of Biomechanics, 39, 758–765.
+[^cite_azdn18]: Praagman M, Chadwick EKJ, van der Helm FCT, Veeger HEJ. The relationship between two different mechanical cost functions and muscle oxygen consumption. Journal of Biomechancis, 39, 758–765 (2006).

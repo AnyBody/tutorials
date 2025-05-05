@@ -3,8 +3,6 @@
 
 # Lesson 1: The Basics of Muscle Recruitment
 
-{{ caution_old_tutorial }}
-
 Muscle recruitment in inverse dynamics is the process of determining
 which set of muscle forces will balance a given external load. If we
 take the trouble of setting up the system of equilibrium equations for a
@@ -12,7 +10,11 @@ musculoskeletal system by hand, then we can organize them on the
 following form:
 
 $$
+\begin{equation*}
+\begin{aligned}
 \mathbf{Cf}=\mathbf{r}
+\end{aligned}
+\end{equation*}
 $$
 
 where **f** is a vector of muscle and joint forces, **r** is a vector
@@ -45,25 +47,27 @@ $$
 \begin{aligned}
 & {\text{minimize}}
 & & G\left(\mathbf{f^{(M)}}\right) \\
+\\
 & \text{subject to}
 & & \mathbf{Cf} = \mathbf{r} \\
-&&& f_i^{(M)} \geq 0, i=1\ldots n^{(M)}
+\\
+&&& f_i^{(M)} \geq 0, \ \ for\ \ i=1\ldots n^{(M)}
 \end{aligned}
 \end{equation*}
 $$
 
-The equilibrium equations are constraints in this problem: whatever
-solution we find must balance the external forces. The requirement for
-positive muscle forces has also been added as a constraint to the
-problem. Only solutions adhering to these two requirements are
-acceptable, but out of these many solutions we are going to change the
-one that minimizes the function *G*, and are furthermore going to
+The equilibrium equations are constraints in this problem where we want to
+minimize some objective  function *G*: whatever solution we find must balance the
+external forces. The requirement for positive muscle forces has also been added
+as a constraint to the problem. Only solutions adhering to these two
+requirements are acceptable, but out of these many solutions we are going to
+change the one that minimizes the function *G*, and are furthermore going to
 anticipate that this function depends on the muscle forces. This seems
 reasonable because muscle recruitment is probably a result of biological
-adaptation and muscle work is costly for the organism and should be
-minimized in an environment where resources are limited. Now we just
-have to figure out what the function *G* actually is and unfortunately
-there is nobody around who knows it for sure.
+adaptation and muscle work is costly for the organism and should be minimized in
+an environment where resources are limited. Now we just have to figure out what
+the function *G* actually is and unfortunately there is nobody around who knows
+it for sure.
 
 So in the following we are going to play around with different choices
 and see what happens. AnyBody is great for this purpose because the
@@ -74,27 +78,34 @@ given purpose.
 So let’s get set up with a model that is suitable for experimentation
 with different definitions of the muscle recruitment problem. We shall
 begin with one that is very, very simple and work our way upwards from
-there. Please download right-click this link and save the file in a
+there. Please download this model and save the file in a
 working area of your hard disk:
 {download}`Recruitment.Main.any <Downloads/Recruitment.any>`.
 
-Open the model in the AnyBody Modeling System, load it into memory, open
-a Model View window, select the InverseDynamics operation, and click the
-Run button. You should see something like this:
+Open the model in the AnyBody Modeling System, load it, open a Model View
+window, and run the InverseDynamics operation. You should see something like
+this:
 
-![Model view simple model](_static/lesson1/image3.png)
+```{image} _static/lesson1/image3.png
+:alt: Simple model
+:align: center
+:width: 50%
+```
 
 The thick blue rod is an arm hinged at its left end to the origin of the
 global reference frame. A muscle is attached at the other end and the
 muscle elevates the arm against gravity.
 
-Please click Window->Chart (2D) to open up a new window for inspection
-of results. You can expand the tree on the left hand side of that window
-and find the muscle force, Fm, somewhere inside the properties of the M1
-muscle. When you click it you get a graphical representation of the
-muscle force:
+Please open the Chart view for inspection of the results. You can expand the
+tree on the left hand side of that window and find the muscle force, Fm, located
+at `Main.MyStudy.Output.Model.M1.Fm`. When you click it you should get the
+following graphical representation of the muscle force:
 
-![Chart view M1.fm](_static/lesson1/image4.png)
+```{image} _static/lesson1/image4.png
+:alt: M1 Force plot 1
+:class: bg-primary
+:align: center
+```
 
 Obviously, AnyBody has solved the equilibrium equations and has
 determined what the muscle force is at every instant of the simulation
@@ -103,7 +114,7 @@ time. But which objective function, $G$, has the system used?
 If we review this problem we can see that it has only a single degree of
 freedom and only a single muscle to carry the load. This actually means
 that the equilibrium equations are determinate (one degree of freedom
-and one muscle) and in this case it does no matter what $G$ is, so there
+and one muscle) and in this case it does not matter what $G$ is, so there
 is little we can do in the settings to influence the result of the
 analysis. The result is given by equilibrium alone and there is no other
 muscle force than the one you see in the graph that would be able to
@@ -160,15 +171,18 @@ AnyMuscleViaPoint M1 = {
 }; §
 ```
 
-Now two muscles will have to cooperate on the task of carrying one
-degree of freedom. Let us see what AnyBody, in the absence of any
-special specifications from the user, chooses to do. If you load and run
-the model, plot the muscle force of M1 as you did before, and then
-manually place an asterisk in place of the muscle name in the
-specification line in the Chart window, you should get something like
-this:
+Now two muscles will have to cooperate on the task of carrying one degree of
+freedom. Let us see what AnyBody, in the absence of any special specifications
+from the user, chooses to do. If you load and run the model, plot the muscle
+force of M1 as you did before, and then manually place an asterisk (*) instead
+of the muscle name, M1, in the specification line in the Chart view, you should
+get the force plot for both the muscles, like this:
 
-![Chart view star.Fm](_static/lesson1/image5.png)
+```{image} _static/lesson1/image5.png
+:alt: M1 Force plot *
+:class: bg-primary
+:align: center
+```
 
 We can observe that both muscles are working and that M1, which has the
 higher strength and better moment arm, is exerting more force than the
