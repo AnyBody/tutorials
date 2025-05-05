@@ -3,8 +3,6 @@
 
 # Lesson 4: Polynomial Muscle Recruitment
 
-{{ caution_old_tutorial }}
-
 In the previous two lessons, we learned that linear muscle recruitment
 leads to no muscle synergy at all, while quadratic muscle recruitment
 seems to result in some synergy between the muscles. In general, the
@@ -20,12 +18,12 @@ has a recruitment algorithm that lets you select your own order of the
 problem. Let us investigate it a little.
 
 First, let us change the power output of the bicycle model back to a
-manageable but still challenging level:
+manageable but still challenging level of 550 W:
 
 ```AnyScriptDoc
 // Kinematic parameters
 AnyVar Cadence = 60.0; //Cadence in RPM
-AnyVar MechOutput = §500§; //Average Mechanical output over a cycle in Watt
+AnyVar MechOutput = §550§; //Average Mechanical output over a cycle in Watt
 ```
 
 Then we change the study section to the polynomial option:
@@ -50,14 +48,19 @@ $$
 G = \sum_{i}\left( \frac{f_{i}}{N_{i}} \right)^{p}
 $$
 
-We have not, however, specified what the power *p* is. In the absence of
-a specification, AnyBody assumes *p* = 3, i.e. one higher than the
-quadratic criterion from before. When we ran the quadratic criterion
-with 500 W mechanical output, two of the muscle activities became
-constrained by the upper of 1. If we reload and rerun the model now, we
-get the following result:
+We have not, however, specified what the power *p* is. In the absence of a
+specification, AnyBody assumes *p* = 3, i.e. one higher than the quadratic
+criterion from before. If we were to run the quadratic criterion with 550 W
+mechanical output, one of the muscle activities become constrained by the upper
+of 100%. If we reload and rerun the model now with the polynomial option, we get
+the following result:
 
-![Chart view Muscle activity](_static/lesson4/image1.gif)
+```{image} _static/lesson4/image1.png
+:alt: Muscle activity plot 550W polynomial
+:class: bg-primary
+:align: center
+:width: 90%
+```
 
 The muscle activations are nice and smooth and the upper limit on the
 muscle activity is not active. It is hard to say which criterion is the
@@ -80,22 +83,32 @@ Watt
 …then we once again will have muscles limited by the upper bound on
 muscle recruitment:
 
-![Chart view Muscle activity 650 W](_static/lesson4/image2.gif)
+```{image} _static/lesson4/image2.png
+:alt: Muscle activity plot 650W polynomial
+:class: bg-primary
+:align: center
+:width: 90%
+```
 
 The polynomial criterion allows us to select a higher order if we like.
-It can be done like this:
+It can be done be defining the Power like this:
 
 ```AnyScriptDoc
 InverseDynamics.Criterion = {
-  Type = §MR_Polynomial§;
+  Type = MR_Polynomial;
   §Power = 5;§
 };
 ```
 
-which sets the order of the polynomial sum to 5. Reloading and rerunning
-the model produces this result:
+This sets the order of the polynomial sum to 5. Reloading and rerunning
+the model with a mechanical power output of 650 W produces this result:
 
-![Chart view Muscle activity Poly 5](_static/lesson4/image3.gif)
+```{image} _static/lesson4/image3.png
+:alt: Muscle activity plot 650W power 5
+:class: bg-primary
+:align: center
+:width: 90%
+```
 
 So it would appear that increasing the power of the criterion get the
 muscles to work more and more together and allow the organism to carry

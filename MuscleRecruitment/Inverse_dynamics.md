@@ -3,18 +3,15 @@
 
 # Inverse Dynamics of Muscle Systems
 
-{{ caution_old_tutorial }}
-
-
 The AnyBody Modeling System performs inverse dynamics as one of its
 central operations. In biomechanics, inverse dynamics is traditionally
-understood at the process of computing from measured ground reaction
+understood as the process of computing from measured ground reaction
 forces in a gait analysis to net moments in the anatomical joints.
 
 At least in AnyBody context, inverse dynamics is much more than that. In
 brief, inverse dynamics allows you to simulate muscle and joint forces
 in the entire body undergoing complex movements, taking dynamic inertia
-forces in to account, and not necessarily requiring measured forces in
+forces into account, and not necessarily requiring measured forces in
 the interface between the body and the environment. Inverse dynamics had
 the advantage that it allows for analysis of very complicated
 musculoskeletal systems comprising hundreds of muscles on desktop or
@@ -23,7 +20,11 @@ laptop computers in a few seconds.
 The figure below illustrates the simple principle behind inverse
 dynamics.
 
-![Inverse dynamic simple schematic](_static/Inverse_dynamics/image1.png)
+```{image} _static/Inverse_dynamics/image1.png
+:alt: Simple principle
+:align: center
+:width: 40%
+```
 
 If we know the magnitude of the external force, and we know the length
 of the forearm and the insertion point of the biceps muscle on the
@@ -37,7 +38,11 @@ computations with advanced software? Well, there are several
 complications that make realistic cases somewhat more challenging. The
 figure below illustrates some of them.
 
-![Inverse dynamic full model](_static/Inverse_dynamics/image2.png)
+```{image} _static/Inverse_dynamics/image2.png
+:alt: Realistic case
+:align: center
+:width: 45%
+```
 
 This figure is a much more anatomically realistic representation of the
 mechanics of a human upper extremity. Even if we count only from the
