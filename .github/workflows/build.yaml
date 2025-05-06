@@ -5,7 +5,7 @@ on:
   push:
     tags: ["*"]
   pull_request:
-    branches: [ master ]
+    branches: [ "master", "master.anybody.8.2" ]
   workflow_dispatch:
 
 
