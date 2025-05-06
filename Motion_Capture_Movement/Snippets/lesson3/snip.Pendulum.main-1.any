@@ -1,0 +1,95 @@
+//expect_errors = ["';' unexpected", "Model loading skipped"]
+
+// Model for the "Making Things Move" tutorial.
+
+Main = {
+  
+  // The actual body model goes in this folder
+  AnyFolder MyModel = {
+    
+    // Global Reference Frame
+    AnyFixedRefFrame GlobalRef = {
+    };  // Global reference frame
+    
+    AnySeg Pendulum = {
+      Mass = 1;
+      Jii = {1, 0.01, 1}/15;
+      AnyRefNode Origin = {
+        sRel = {0, 0.5, 0};
+      };
+      AnyRefNode P1 = {
+        sRel = {0, -0.5, 0};
+      };
+      AnyDrawSeg drw = {};
+    };
+    
+//# BEGIN SNIPPET 1
+AnyInputC3D C3D = {
+  FileName = "pendulum.c3d";
+  //TruncateExtraCharsInNamesOnOff = On;
+  //MakeNameUniqueStr = "_";
+  //PointsScaleFactor = 1;
+  ConstructModelOnOff = Off;
+  ConstructChartOnOff = Off;
+  §Filter =
+  {
+    z0 = ;
+    AutomaticInitialConditionOnOff = On;
+    FilterForwardBackwardOnOff = On;
+    N = 2;
+    W = ;
+    Fs = 0.0;
+    Fc = {10.0};
+    Type = LowPass;
+  };§
+};
+//# END SNIPPET 1
+
+//    AnyKinMotion JointDriver =
+//    {
+//      AnyRevoluteJoint &Jnt = .Joint;
+//      AnyFunPolynomial DriverFun = {
+//        PolyCoef = {{0, 5, -0.4}};
+//      };
+//    };
+
+    AnyKinDriverMarker C3DMotion  = 
+    {
+      //viewKinMeasure.Visible = Off;
+      //MeasureOrganizer = ;
+      //CType = ;
+      //WeightFun = ;
+      //DriverPos0 = ;
+      //DriverVel0 = ;
+      //DriverAcc0 = ;
+      AnyRefFrame &Marker = .Pendulum.P1;
+      //AnyRefFrame &<Insert name1> = <Insert object reference (or full object definition)>;
+      AnyParamFun &Trajectory = Main.MyModel.C3D.Points.Markers.L000.PosInterpol;
+      AnyDrawKinMeasure drw =
+      {
+        Label = Off;
+        Size = 0.07;
+        Line = Off;
+      };
+    };
+    
+    AnyRevoluteJoint Joint = {
+      AnyRefFrame &Ground = .GlobalRef;
+      AnyRefFrame &Pendulum = .Pendulum.Origin;
+    };
+    
+  }; // MyModel
+
+  // The study: Operations to be performed on the model
+  AnyBodyStudy MyStudy = {
+    AnyFolder &Model = .MyModel;
+    Gravity = {0.0, -9.81, 0.0};
+    AnyIntVar FirstFrame = Main.MyModel.C3D.Header.FirstFrameNo;
+    AnyIntVar LastFrame = Main.MyModel.C3D.Header.LastFrameNo;
+    tStart = FirstFrame/Main.MyModel.C3D.Header.VideoFrameRate+2*Kinematics.ApproxVelAccPerturb;
+    tEnd = LastFrame/Main.MyModel.C3D.Header.VideoFrameRate-2*Kinematics.ApproxVelAccPerturb;
+    InitialConditions.SolverType = KinSolOverDeterminate;
+    Kinematics.SolverType = KinSolOverDeterminate;
+  };
+  
+};  // Main

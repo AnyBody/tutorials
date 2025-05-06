@@ -58,26 +58,10 @@ play a bit with the settings and see whether we can get better results.
 Previously, we deleted the filter section of the `AnyInputC3D`. So please insert
 the following:
 
-```AnyScriptDoc
-AnyInputC3D C3D = {
-    FileName = "pendulum.c3d";
-    //TruncateExtraCharsInNamesOnOff = On;
-    //MakeNameUniqueStr = "_";
-    //PointsScaleFactor = 1;
-    ConstructModelOnOff = Off;
-    ConstructChartOnOff = Off;
-    §Filter =
-    {
-        z0 = ;
-        AutomaticInitialConditionOnOff = On;
-        FilterForwardBackwardOnOff = On;
-        N = 2;
-        W = ;
-        Fs = 0.0;
-        Fc = {10.0};
-        Type = LowPass;
-    };§
-};
+```{literalinclude} Snippets/lesson3/snip.Pendulum.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The first two lines pertain to the filter’s initial condition, and `z0`
@@ -89,18 +73,12 @@ in the signal, but it may not always be good enough, and in this case it
 can be relevant to set the initial conditions. For now, let us keep the
 automatic setting and therefore remove the incomplete line with `z0`:
 
-```AnyScriptDoc
-Filter = {
-    §// z0 = ;§
-    AutomaticInitialConditionOnOff = On;
-    FilterForwardBackwardOnOff = On;
-    N = 2;
-    W = ;
-    Fs = 0;
-    Fc = {10};
-    Type = LowPass;
-};
+```{literalinclude} Snippets/lesson3/snip.Pendulum.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
+
 The defined parameters have the following meanings:
 
  - The third line, `FilterForwardBackwardOnOff`, is mostly included for the
@@ -140,15 +118,10 @@ frequency of about 0.2 Hz and the orange curve about 0.4 Hz. This is
 safely below our present 10 Hz cutoff frequency, so there seems to be
 room to eliminate more noise by using a lower value of `Fc`. If we change,
 
-```AnyScriptDoc
-Filter = {
-    // z0 = ;
-    AutomaticInitialConditionOnOff = On;
-    FilterForwardBackwardOnOff = On;
-    N = 2;
-    Fc = {§2§};
-    Type = LowPass;
-};
+```{literalinclude} Snippets/lesson3/snip.Pendulum.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 …load and rerun the model, we can get the following accelerations:

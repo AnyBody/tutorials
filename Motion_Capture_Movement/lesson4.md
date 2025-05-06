@@ -29,53 +29,10 @@ save it in the same folder as the 'multiple.c3d' file. This gives you a dialog t
 create an empty model into which you can insert an `AnyInputC3D` object, refer
 to the {file}`multiple.c3d` file and specify the filter as we did before:
 
-```AnyScriptDoc
-Main = {
-
-  // The actual body model goes in this folder
-  AnyFolder MyModel = {
-    // Global Reference Frame
-    AnyFixedRefFrame GlobalRef = {
-    // Todo: Add points for grounding of the model here
-    };  // Global reference frame
-
-    AnyInputC3D §C3D§ =
-    {
-      FileName = §"multiple.c3d"§;
-      //ReadAllDataOnOff = On;
-      //TruncateExtraCharsInNamesOnOff = On;
-      //MakeNameUniqueStr = "_";
-      //PointsScaleFactor = 1.0;
-      //ConstructModelOnOff = On;
-      §ConstructChartOnOff = Off;§
-      //ConstructWeightFunUsingResidualOnOff = Off;
-      //GapFillUsingResidualsOnOff = Off;
-      //MarkerUseAllPointsOnOff = Off;
-      //MarkerUseCamMaskOnOff = On;
-      //MarkerIndices = ;
-      //MarkerLabels = ;
-      //MarkerFilterIndex = 0;
-      //ProcessedDataFilterIndex = 0;
-      //AnalogFilterIndex = -1;
-      §Filter =
-      {
-        AutomaticInitialConditionOnOff = On;
-        FilterForwardBackwardOnOff = On;
-        N = 2;
-        Fc = {3};
-        Type = LowPass;
-      };§
-      //WeightThreshold = 0.0;
-      //WeightOutput = {{0.0, 1.0}, {0.0, 1.0}, {0.0, 1.0}};
-      //WeightTransitionTime = 0.1;
-      //SearchAndReplace = ;
-      //WriteMarkerDataToFilesOnOff = Off;
-      //MarkerScaleXYZ = {0.025, 0.025, 0.025};
-      §MarkerRGB = {0, 0, 1};§
-      //MarkerDrawOnOff = On;
-      //MarkerInterPolType = Bspline;
-      //MarkerBsplineOrder = 4;
-    };
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Notice that we have also colored the markers blue with the `MarkerRGB`
@@ -83,16 +40,10 @@ property and disabled the plot of the 3D trajectories with the
 `ConstructChartOnOff` property. We also set the duration of the movement
 to automatically fit the C3D file as we have done before:
 
-```AnyScriptDoc
-// The study: Operations to be performed on the model
-AnyBodyStudy MyStudy = {
-  AnyFolder &Model = .MyModel;
-  Gravity = {0.0, -9.81, 0.0};
-  §AnyIntVar FirstFrame = Main.MyModel.C3D.Header.FirstFrameNo;
-  AnyIntVar LastFrame = Main.MyModel.C3D.Header.LastFrameNo;
-  tStart = FirstFrame/Main.MyModel.C3D.Header.VideoFrameRate+2*Kinematics.ApproxVelAccPerturb;
-  tEnd = LastFrame/Main.MyModel.C3D.Header.VideoFrameRate-2*Kinematics.ApproxVelAccPerturb;§
-};
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 Now you should be able to load and run kinematic analysis of the model and see
@@ -119,34 +70,10 @@ be used to determine other unknown factors in the model.
 Let us initially define a segment and some guesses of where the three
 markers may be located on it:
 
-```AnyScriptDoc
-Main = {
-
-  // The actual body model goes in this folder
-  AnyFolder MyModel = {
-    // Global Reference Frame
-    AnyFixedRefFrame GlobalRef = {
-      // Todo: Add points for grounding of the model here
-    };  // Global reference frame
-
-    §AnySeg Leg = {
-      Mass = 1;
-      Jii = {1, 0.01, 1}/15;
-      AnyRefNode R1 = {
-        sRel = {0.038, 0.18, 0.022};
-      };
-      AnyRefNode R2 = {
-        sRel = {-0.015, -0.104, 0.028};
-      };
-      AnyRefNode R3 = {
-        sRel = {-0.022, -0.403, -0.023};
-      };
-      AnyDrawSeg drw = {};
-    };§
-
-    AnyInputC3D C3D =
-    {
-      FileName = "multiple.c3d";
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Now we just need to use `AnyKinDriverMarker` objects to tie the marker
@@ -155,63 +82,20 @@ select the solvers for over-determinate problems exactly as we did in
 the previous lesson (don’t forget to also select the over-determinate
 kinematics solver in the study section):
 
-```AnyScriptDoc
-  §AnyKinDriverMarker C3Dmotion1 = {
-    AnyRefFrame &Marker = .Leg.R1;
-    AnyParamFun &Trajectory=
-    Main.MyModel.C3D.Points.Markers.L000.PosInterpol;
-    AnyDrawKinMeasure drw = {
-      Label = Off;Size = 0.03;Line = Off;
-    };
-  };
-  AnyKinDriverMarker C3Dmotion2 = {
-    AnyRefFrame &Marker = .Leg.R2;
-    AnyParamFun &Trajectory =
-    Main.MyModel.C3D.Points.Markers.L001.PosInterpol;
-    AnyDrawKinMeasure drw = {
-      Label = Off;Size = 0.03;Line = Off;
-    };
-  };
-  AnyKinDriverMarker C3Dmotion3 = {
-    AnyRefFrame &Marker = .Leg.R3;
-    AnyParamFun &Trajectory =
-    Main.MyModel.C3D.Points.Markers.L002.PosInterpol;
-    AnyDrawKinMeasure drw = {
-      Label = Off;Size = 0.03;Line = Off;
-    };
-  };§
-}; // MyModel
-
-// The study: Operations to be performed on the model
-  AnyBodyStudy MyStudy = {
-    AnyFolder &Model = .MyModel;
-    Gravity = {0.0, -9.81, 0.0};
-    AnyIntVar FirstFrame = Main.MyModel.C3D.Header.FirstFrameNo;
-    AnyIntVar LastFrame = Main.MyModel.C3D.Header.LastFrameNo;
-    tStart = FirstFrame/Main.MyModel.C3D.Header.VideoFrameRate+2*Kinematics.ApproxVelAccPerturb;
-    tEnd = LastFrame/Main.MyModel.C3D.Header.VideoFrameRate-2*Kinematics.ApproxVelAccPerturb;
-    §InitialConditions.SolverType = KinSolOverDeterminate;
-    Kinematics.SolverType = KinSolOverDeterminate;§
-  };
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 Now that we have created the `AnyDrawKinMeasure` objects, it is no longer
 necessary to have the points drawn in the C3D object. So let us get rid
 of them:
 
-```AnyScriptDoc
-AnyInputC3D C3D =
-{
-  FileName = "multiple.c3d";
-  //ReadAllDataOnOff = On;
-  //TruncateExtraCharsInNamesOnOff = On;
-  //MakeNameUniqueStr = "_";
-  //PointsScaleFactor = 1.0;
-  §ConstructModelOnOff = Off;§
-  ConstructChartOnOff = Off;
-  //ConstructWeightFunUsingResidualOnOff = Off;
-  //GapFillUsingResidualsOnOff = Off;
-  //MarkerUseAllPointsOnOff = Off;
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 3
+:end-before: //# END SNIPPET 3
 ```
 
 It is now possible to run the Kinematics operation and see the leg
@@ -219,31 +103,18 @@ segment move with the markers. The actual markers are not visible
 because they disappear inside the segment, but if we make the segment
 semi-transparent, they become visible:
 
-```AnyScriptDoc
-AnySeg Leg = {
-  Mass = 1;
-  Jii = {1, 0.01, 1}/15;
-  AnyRefNode R1 = {
-    sRel = {0.038, 0.18, 0.022};
-  };
-  AnyRefNode R2 = {
-    sRel = {-0.015, -0.104, 0.028};
-  };
-  AnyRefNode R3 = {
-    sRel = {-0.022, -0.403, -0.023};
-  };
-  AnyDrawSeg drw = {
-    §Opacity = 0.5;§
-  };
-};
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 We will also add a a drawing for the global reference frame, to better visualize the movement.
 
-```AnyScriptDoc
-AnyFixedRefFrame GlobalRef = {
-   §AnyDrawRefFrame drw = {};§
-};
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 ```{image} _static/lesson4/image1.jpeg
@@ -258,24 +129,10 @@ segment, but we do not know exactly where that is.
 
 Let us define a joint point at an approximate location on the leg:
 
-```AnyScriptDoc
-AnySeg Leg = {
-  Mass = 1;
-  Jii = {1, 0.01, 1}/15;
-  §AnyRefNode Joint = {
-    sRel = {0, 0.45, 0};
-  };§
-  AnyRefNode R1 = {
-    sRel = {0.038, 0.18, 0.022};
-  };
-  AnyRefNode R2 = {
-    sRel = {-0.015, -0.104, 0.028};
-  };
-  AnyRefNode R3 = {
-    sRel = {-0.022, -0.403, -0.023};
-  };
-  AnyDrawSeg drw = {Opacity = 0.5;};
-};
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 If you reload and re-run the model, you will see that the new point is
@@ -286,15 +143,10 @@ location for now.
 The next step is to create a revolute joint between the new point and
 the origin of the global reference frame:
 
-```AnyScriptDoc
-§AnyRevoluteJoint Joint = {
-  AnyRefFrame &Ground = .GlobalRef;
-  AnyRefFrame &Pendulum = .Leg.Joint;
-};§
-
-AnyInputC3D C3D =
-{
-  FileName = "multiple.c3d";
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 A reload and re-run will reveal that the point is now forced to coincide
@@ -323,41 +175,10 @@ Class List, and scroll down to find the `AnyOptKinStudy`. Place the cursor
 after the end brace of the existing AnyBody Study, right-click the
 `AnyOptKinStudy` in the Class Tree, and insert a template of the class:
 
-```AnyScriptDoc
-// The study: Operations to be performed on the model
-AnyBodyStudy MyStudy = {
-  AnyFolder &Model = .MyModel;
-  Gravity = {0.0, -9.81, 0.0};
-  AnyIntVar FirstFrame = Main.MyModel.C3D.Header.FirstFrameNo;
-  AnyIntVar LastFrame = Main.MyModel.C3D.Header.LastFrameNo;
-  tStart = FirstFrame/Main.MyModel.C3D.Header.VideoFrameRate+2*Kinematics.ApproxVelAccPerturb;
-  tEnd = LastFrame/Main.MyModel.C3D.Header.VideoFrameRate-2*Kinematics.ApproxVelAccPerturb;
-  InitialConditions.SolverType = KinSolOverDeterminate;
-  Kinematics.SolverType = KinSolOverDeterminate;
-};
-§AnyOptKinStudy <ObjectName> = 
-{
-  //LogFile = "";
-  /*Analysis = 
-  {
-  Settings = 
-  {
-  Echo = On;
-  ModelSceneUpdate = On;
-  DisplayPriority = PriorityNormal;
-  SelectOnLoad = Off;
-  EchoRunDuration = Off;
-  };
-  //AnyOperation &<Insert name0> = <Insert object reference (or full object definition)>;
-  //AnyOperation &<Insert name1> = <Insert object reference (or full object definition)>; You can make any number of AnyOperation objects!
-  };*/
-  //MaxIterationStep = 100;
-  //AnyDesVar &<Insert name0> = <Insert object reference (or full object definition)>;
-  //AnyDesVar &<Insert name1> = <Insert object reference (or full object definition)>; You can make any number of AnyDesVar objects!
-  AnyDesMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
-  //AnyDesMeasure &<Insert name1> = <Insert object reference (or full object definition)>;
-  //AnyDesMeasure &<Insert name2> = <Insert object reference (or full object definition)>; You can make any number of AnyDesMeasure objects!
-};§
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 3
+:end-before: //# END SNIPPET 3
 ```
 
 The `AnyOptKinStudy`’s structure is very similar to the general optimization
@@ -369,15 +190,10 @@ evaluate them.
 
 We begin with the latter and make the following changes:
 
-```AnyScriptDoc
-AnyOptKinStudy §OptKinStudy§ =
-{
-  §Analysis = {
-     AnyOperation &Operation= ..MyStudy.Kinematics;
-  };§
-  //MaxIterationStep = 100;
-  AnyDesMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
-};
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-5.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Now we have specified that we want to optimize parameters to fit the
@@ -408,23 +224,10 @@ of the Joint node on the Leg segment is a variable in the problem.
 
 Similarly, we can add the y and z coordinates:
 
-```AnyScriptDoc
-AnyOptKinStudy OptKinStudy =
-{
-  Analysis = {
-     AnyOperation &Operation= ..MyStudy.Kinematics;
-  };
-  //MaxIterationStep = 100;
-  AnyDesVar Jointx = {
-    Val = Main.MyModel.Leg.Joint.sRel[0];
-  };
-  §AnyDesVar Jointy = {
-    Val = Main.MyModel.Leg.Joint.sRel[1];
-  };
-  AnyDesVar Jointz = {
-    Val = Main.MyModel.Leg.Joint.sRel[2];
-  };§
-};
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-6.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Now we can reload the model and a new set of operations will have
@@ -452,7 +255,7 @@ optimization, and the right picture shows the situation after optimization.
 :align: center
 ```
 
-This notion is confirmed by opening opening the chart view and plotting the
+This notion is confirmed by opening the chart view and plotting the
 development of the objective function of the problem:
 
 ```{image} _static/lesson4/image5.png
@@ -515,31 +318,10 @@ locations.
 The marker node position is included in the optimization in the same way
 as the Joint node:
 
-```AnyScriptDoc
-AnyOptKinStudy OptKinStudy =
-{
-  Analysis = {
-     AnyOperation &Operation= ..MyStudy.Kinematics;
-  };
-  //MaxIterationStep = 100;
-  AnyDesVar Jointx = {
-    Val = Main.MyModel.Leg.Joint.sRel[0];
-  };
-  AnyDesVar Jointy = {
-    Val = Main.MyModel.Leg.Joint.sRel[1];
-  };
-  AnyDesVar Jointz = {
-    Val = Main.MyModel.Leg.Joint.sRel[2];
-  };
-  §AnyDesVar R1x = {
-    Val = Main.MyModel.Leg.R1.sRel[0];
-  };
-  AnyDesVar R1y = {
-    Val = Main.MyModel.Leg.R1.sRel[1];
-  };
-  AnyDesVar R1z = {
-    Val = Main.MyModel.Leg.R1.sRel[2];
-  };§
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-7.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Please reload and re-run the `Main.OptKinStudy.ParameterOptimization`.
@@ -564,40 +346,10 @@ It appears that we have obtained an almost perfect solution, but why not
 include all the marker nodes in the optimization? Well, we can try
 adding another one:
 
-```AnyScriptDoc
-AnyOptKinStudy OptKinStudy =
-{
-  Analysis = {
-     AnyOperation &Operation= ..MyStudy.Kinematics;
-  };
-  //MaxIterationStep = 100;
-  AnyDesVar Jointx = {
-    Val = Main.MyModel.Leg.Joint.sRel[0];
-  };
-  AnyDesVar Jointy = {
-    Val = Main.MyModel.Leg.Joint.sRel[1];
-  };
-  AnyDesVar Jointz = {
-    Val = Main.MyModel.Leg.Joint.sRel[2];
-  };
-  AnyDesVar R1x = {
-    Val = Main.MyModel.Leg.R1.sRel[0];
-  };
-  AnyDesVar R1y = {
-    Val = Main.MyModel.Leg.R1.sRel[1];
-  };
-  AnyDesVar R1z = {
-    Val = Main.MyModel.Leg.R1.sRel[2];
-  };
-  §AnyDesVar R2x = {
-    Val = Main.MyModel.Leg.R2.sRel[0];
-  };
-  AnyDesVar R2y = {
-    Val = Main.MyModel.Leg.R2.sRel[1];
-  };
-  AnyDesVar R2z = {
-    Val = Main.MyModel.Leg.R2.sRel[2];
-  };§
+```{literalinclude} Snippets/lesson4/snip.Multiple.main-8.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 When you reload the model and re-run the ParameterOptimization, you will

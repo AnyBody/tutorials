@@ -1,0 +1,91 @@
+//expect_errors = ["'<ObjectName>'", "Model loading skipped"]
+
+// Model for the "Making Things Move" tutorial.
+
+Main = {
+  
+  // The actual body model goes in this folder
+  AnyFolder MyModel = {
+    
+    // Global Reference Frame
+    AnyFixedRefFrame GlobalRef = {
+    };  // Global reference frame
+    
+    AnySeg Pendulum = {
+      Mass = 1;
+      Jii = {1, 0.01, 1}/15;
+      AnyRefNode Origin = {
+        sRel = {0, 0.5, 0};
+      };
+      AnyRefNode P1 = {
+        sRel = {0, -0.5, 0};
+      };
+      AnyDrawSeg drw = {};
+    };
+    
+//# BEGIN SNIPPET 1
+AnyInputC3D <ObjectName> = 
+{
+  FileName = "";
+  //ReadAllDataOnOff = On;
+  //TruncateExtraCharsInNamesOnOff = On;
+  //MakeNameUniqueStr = "_";
+  //PointsScaleFactor = 1.0;
+  //ConstructModelOnOff = On;
+  //ConstructChartOnOff = On;
+  //ConstructWeightFunUsingResidualOnOff = Off;
+  //GapFillUsingResidualsOnOff = Off;
+  //MarkerUseAllPointsOnOff = Off;
+  //MarkerUseCamMaskOnOff = On;
+  //MarkerIndices = ;
+  //MarkerLabels = ;
+  //MarkerFilterIndex = 0;
+  //ProcessedDataFilterIndex = 0;
+  //AnalogFilterIndex = -1;
+  /*Filter = 
+  {
+  AutomaticInitialConditionOnOff = On;
+  FilterForwardBackwardOnOff = On;
+  N = 2;
+  W = ;
+  Fs = 0.0;
+  Fc = {10.0};
+  Type = LowPass;
+  };*/
+  //WeightThreshold = 0.0;
+  //WeightOutput = {{0.0, 1.0}, {0.0, 1.0}, {0.0, 1.0}};
+  //WeightTransitionTime = 0.1;
+  //SearchAndReplace = ;
+  //WriteMarkerDataToFilesOnOff = Off;
+  //MarkerScaleXYZ = {0.025, 0.025, 0.025};
+  //MarkerRGB = {0.65, 0.65, 0.65};
+  //MarkerDrawOnOff = On;
+  //MarkerInterPolType = Bspline;
+  //MarkerBsplineOrder = 4;
+};
+//# END SNIPPET 1
+
+    AnyKinMotion JointDriver =
+    {
+      AnyRevoluteJoint &Jnt = .Joint;
+      AnyFunPolynomial DriverFun = {
+        PolyCoef = {{0, 5, -0.4}};
+      };
+    };
+    
+    AnyRevoluteJoint Joint = {
+      AnyRefFrame &Ground = .GlobalRef;
+      AnyRefFrame &Pendulum = .Pendulum.Origin;
+    };
+    
+  }; // MyModel
+  
+//# BEGIN SNIPPET 2
+// The study: Operations to be performed on the model
+§AnyBodyStudy MyStudy = {
+  AnyFolder &Model = .MyModel;
+  Gravity = {0.0, -9.81, 0.0};    
+};§
+//# END SNIPPET 2
+  
+};  // Main
