@@ -1,16 +1,29 @@
 // This is a very simple model for demonstration of muscle modeling
-
 Main = {
 
   AnyFolder MyModel = {
-
     // Global Reference Frame
     AnyFixedRefFrame GlobalRef = {
       AnyDrawRefFrame drw = {
         RGB = {1,0,0};
       };
-    AnyRefNode M1Origin = {
-        sRel = {0.0, 0.1, 0};
+      AnyRefNode M1Origin = {
+        sRel = {0.0, 0.15, 0};
+      };
+      AnyRefNode M2Origin = {
+        sRel = {0.0, 0.15, -0.05};
+      };
+      AnyRefNode CylCenter = {
+        sRel = {0, 0, -0.2};
+        ARel = RotMat(20*pi/180,y);
+
+        AnySurfCylinder WrapSurf = {
+          Radius = 0.15;
+          Length = 0.4;
+          //CapRatio = 0.1;
+          //CapRatio2 = 0.1;
+          AnyDrawParamSurf drw = {};
+        };
       };
     };  // Global reference frame
 
@@ -21,12 +34,15 @@ Main = {
       Jii = {0.100000, 1.000000, 1.000000}*0.03;
       AnyRefNode Jnt = {
         sRel = {-0.5, 0.0, 0};
-      };    
+      };
       AnyRefNode M1Insertion = {
-        sRel = {0.3, 0.05, 0.0};
+        sRel = {0.3, 0.05, 0};
+      };
+      AnyRefNode M2Insertion = {
+        sRel = {-0.2, 0.05, 0.05};
       };
       AnyRefNode ViaPoint = {
-        sRel = {0.0, 0.1, 0.0};
+        sRel = {0.0, 0.1, 0};
       };
       AnyDrawSeg drw = {};
     };
@@ -45,28 +61,52 @@ Main = {
       AnyRevoluteJoint &Jnt = .Jnt;
       Reaction.Type = {Off};
     };
-    AnyMuscleModel SimpleModel = 
-    {
-      F0 = 100;
-    };
-    AnyMuscleViaPoint Muscle = 
-    {
+
+//# BEGIN SNIPPET 1
+AnyMuscleModel SimpleModel = {
+  F0 = 100;
+  //Lf0 = 0.0;
+  //Vol0 = 0.0;
+};
+
+§AnyMuscleModel2ELin <ObjectName> = 
+{
+  F0 = 0.0;
+  //Lf0 = 0.0;
+  //Vol0 = 0.0;
+  Lt0 = 0.0;
+  //Epsilon0 = 0.05;
+  V0 = 0.0;
+};§
+//# END SNIPPET 1
+
+    AnyMuscleShortestPath Muscle1 = {
       AnyMuscleModel &Model = .SimpleModel;
       AnyRefFrame &Orig = .GlobalRef.M1Origin;
       AnyRefFrame &Via = .Arm.ViaPoint;
+      AnySurface &srf = .GlobalRef.CylCenter.WrapSurf;
       AnyRefFrame &Ins = .Arm.M1Insertion;
-      AnyDrawMuscle drw = 
-      {
-        //RGB = {1, 0, 0};
-        //Opacity = 1;
-        //DrawOnOff = 1;
+      SPLine.StringMesh = 20;
+      AnyDrawMuscle drw = {
         Bulging = 2;
         ColorScale = 1;
-        RGBColorScale = {0, 0, 1};
         MaxStress = 250000;
       };
     };
 
+    AnyMuscleShortestPath Muscle2 = {
+      AnyMuscleModel &Model = .SimpleModel;
+      AnyRefFrame &Orig = .GlobalRef.M2Origin;
+      AnySurface &srf = .GlobalRef.CylCenter.WrapSurf;
+      AnyRefFrame &Ins = .Arm.M2Insertion;
+      SPLine.StringMesh = 20;
+      SPLine.InitWrapPosVectors = {{-0.2, -0.2, 0}, {-0.05, -0.2, 0}};
+      AnyDrawMuscle drw = {
+        Bulging = 2;
+        ColorScale = 1;
+        MaxStress = 250000;
+      };
+    };
   }; // MyModel
 
   // The study: Operations to be performed on the model

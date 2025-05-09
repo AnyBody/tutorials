@@ -20,54 +20,10 @@ enable us to examine the properties of muscles.
 
 Here's an extremely simple {download}`one-degree-of-freedom model <Downloads/MuscleDemo.Ini.any>`.
 
-```AnyScriptDoc
-// This is a very simple model for demonstration of muscle modeling
-Main = {
-
-   AnyFolder MyModel = {
-
-     // Global Reference Frame
-     AnyFixedRefFrame GlobalRef = {
-       AnyDrawRefFrame drw = {
-         RGB = {1,0,0};
-       };
-     };  // Global reference frame
-
-     // Define one simple segment
-     AnySeg Arm = {
-       r0 = {0.500000, 0.000000, 0.000000};
-       Mass = 1.000000;
-       Jii = {0.100000, 1.000000, 1.000000}*0.035;
-       AnyRefNode Jnt = {
-         sRel = {-0.5, 0.0, 0};
-       };
-       AnyDrawSeg drw = {};
-     };
-
-     // Attach the segment to ground by a revolute joint
-     AnyRevoluteJoint Jnt = {
-       AnyRefFrame &ref1 = .GlobalRef;
-       AnyRefFrame &ref2 = .Arm.Jnt;
-       Axis = z;
-     };
-
-     // Drive the revolute joint at constant velocity
-     AnyKinEqSimpleDriver Drv = {
-       DriverPos = {-10*pi/180};
-       DriverVel = {40*pi/180};
-       AnyRevoluteJoint &Jnt = .Jnt;
-       Reaction.Type = {0};
-     };
-
-   }; // MyModel
-
-   // The study: Operations to be performed on the model
-   AnyBodyStudy MyStudy = {
-     AnyFolder &Model = .MyModel;
-     InverseDynamics.Criterion.Type = MR_MinMaxStrict;
-     Gravity = {0.0, -9.81, 0.0};
-   };
- };  // Main
+```{literalinclude} Snippets/lesson1/snip.Muscles.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 When you load the model, open a model view window, and run the
@@ -85,7 +41,8 @@ frame. If you try to run the InverseDynamicAnalysis, you will get an
 error:
 
 ```none
-ERROR(OBJ1) :   C:/../MuscleDemo.Ini.any(43)  :   MyStudy.InverseDynamics  :  No solution found :  There are fewer unknown forces (muscles and reactions) than dynamic equations.
+NOTICE(OBJ1): MuscleDemo.Ini.any(43): MyStudy.InverseDynamics: No muscles or other recruited actuators in the model.
+ERROR(OBJ1): MuscleDemo.Ini.any(43): MyStudy.InverseDynamics: No solution found: There are fewer unknown forces (muscles and reactions) than dynamic equations.
 ```
 
 This is because the model does not have any muscles to balance the arm
@@ -109,24 +66,14 @@ Notice that this class has three derived classes. These are more
 advanced muscle models, and we shall get to those later. However for the
 time being, place the cursor in the Editor View on an empty line just
 after the end brace of the driver definition, right-click the
-AnyMuscleModel class in the tree, and select "Insert Class
-Template".This causes an instance of the AnyMuscleModel class to be
+`AnyMuscleModel` class in the tree, and select "Insert Class
+Template".This causes an instance of the `AnyMuscleModel` class to be
 inserted into the model (new code marked with red):
 
-```AnyScriptDoc
-// Drive the revolute joint at constant velocity
-AnyKinEqSimpleDriver Drv = {
-  DriverPos = {-10*pi/180};
-  DriverVel = {40*pi/180};
-  AnyRevoluteJoint &Jnt = .Jnt;
-  Reaction.Type = {0};
-};
-
-§AnyMuscleModel <ObjectName> = {
-  F0 = 0.0;
-  //Lf0 = 0.0;
-  //Vol0 = 0.0;
-};§
+```{literalinclude} Snippets/lesson1/snip.Muscles.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 ```{raw} html
@@ -150,7 +97,7 @@ this simplicity, it is used with considerable success for many studies
 where the movements or postures are within the normal range of the
 involved joints, and where contraction velocities are small.
 
-There are two optional parameters for this model. Vol0 can be used in muscle
+There are two optional parameters for this model. `Vol0` can be used in muscle
 recruitment to form a muscle volume weighted sum of muscle activations; see e.g.
 [^cite_happee_van_der_hel_1995]. `Lf0` can be tuned in a calibration study; then
 using `Vol0`, modified physiological cross sectional area (`PCSA`) of the
@@ -160,12 +107,10 @@ used afterwards to modify the value for `F0`.
 Let us perform the necessary modifications to make the model useful to
 us:
 
-```AnyScriptDoc
-AnyMuscleModel §SimpleModel§ = {
-  F0 = §100§;
-  //Lf0 = 0.0;
-  //Vol0 = 0.0;
-};
+```{literalinclude} Snippets/lesson1/snip.Muscles.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The next step is to define a muscle that can use the model. This is
@@ -181,7 +126,7 @@ also provides force. These two properties are reflected in the way the
 muscle classes are derived from a kinematic measure as well as force
 classes.
 
-The simplest type of muscle is the AnyViaPoint muscle. It spans the path
+The simplest type of muscle is the `AnyViaPoint` muscle. It spans the path
 between origin and insertion by passing through any number of via points
 on the way. The via points are fixed to segments or to the global
 reference frame. It is a simple and convenient way to define many of the
@@ -189,40 +134,22 @@ simpler muscles of the body, primarily those in the extremities and the
 spine. You can, in fact, make a pretty decent model of the legs entirely
 with via point muscles.
 
-Place the cursor right after the end brace of the musle model, in the Class
-List scroll down to find AnyMuscleViaPoint and insert an instance of it:
+Place the cursor right after the end brace of the muscle model, open the *Class*
+*List*, scroll down to find `AnyMuscleViaPoint` and insert an instance of it:
 
-```AnyScriptDoc
-AnyMuscleModel SimpleModel = {
-   F0 = 100;
-   //Lf0 = 0;
-   //Vol0 = 0;
-};
-
-§AnyViaPointMuscle <ObjectName> = 
-{
-   //viewForce.Visible = Off;
-   //MetabModel = Null;
-   //FatigueModel = Null;
-   //MuscleModel = Null;
-   //viewMuscle.Visible = Off;
-   AnyRefFrame &<Insert name0> = <Insert object reference (or full object definition)>;
-   AnyRefFrame &<Insert name1> = <Insert object reference (or full object definition)>;
-   //AnyRefFrame &<Insert name2> = <Insert object reference (or full object definition)>;
-   //AnyRefFrame &<Insert name3> = <Insert object reference (or full object definition)>; You can make any number of AnyRefFrame objects!
-   AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
-};§
+```{literalinclude} Snippets/lesson1/snip.Muscles.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 Let us start by filling out what we can and removing what we have no use
 for:
 
-```AnyScriptDoc
-AnyMuscleViaPoint §Muscle1§ = {
-  AnyMuscleModel &§Model§ = §.SimpleModel§;
-  AnyRefFrame &<Insert name0> = <Insert object reference (or full object definition)>;
-  AnyRefFrame &<Insert name1> = <Insert object reference (or full object definition)>;
-};
+```{literalinclude} Snippets/lesson1/snip.Muscles.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Notice that we have left only two points in the list of via points. This
@@ -232,44 +159,21 @@ definition of the muscle we must define the necessary points on the
 model to attach the muscle to. We shall define the origin on the global
 reference frame and the insertion on the segment:
 
-```AnyScriptDoc
-// Global Reference Frame
-AnyFixedRefFrame GlobalRef = {
-  AnyDrawRefFrame drw = {
-    RGB = {1,0,0};
-  };
-  §AnyRefNode M1Origin = {
-    sRel = {0.0, 0.1, 0};
-  };§
-};  // Global reference frame
-
-// Define one simple segment
-AnySeg Arm = {
-  r = {0.500000, 0.000000, 0.000000};
-  Mass = 1.000000;
-  Jii = {0.100000, 1.000000, 1.000000}*0.1;
-  AnyRefNode Jnt = {
-    sRel = {-0.5, 0.0, 0};
-  };
- § AnyRefNode M1Insertion = {
-    sRel = {0.0, 0.1, 0};
-  };§
-  AnyDrawSeg drw = {};
-};
+```{literalinclude} Snippets/lesson1/snip.Muscles.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
-&#160;With these two points, we can complete the definition of the muscle:
+With these two points, we can complete the definition of the muscle:
 
-```AnyScriptDoc
-AnyMuscleViaPoint Muscle1 = {
-    AnyMuscleModel &Model = .SimpleModel;
-    AnyRefFrame &§Orig = .GlobalRef.M1Origin§;
-    AnyRefFrame &§Ins = .Arm.M1Insertion§;
-    §AnyDrawMuscle drw = {};§
-  };
+```{literalinclude} Snippets/lesson1/snip.Muscles.main-5.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
-Notice that we have added an AnyDrawMuscle object to the definition.
+Notice that we have added an `AnyDrawMuscle` object to the definition.
 Like other classes in AnyScript, muscles are not drawn in the Model View
 window unless you specifically ask for it. When you load the model and
 run the SetInitialConditions study you will get the following picture
@@ -284,14 +188,15 @@ run the SetInitialConditions study you will get the following picture
 
 Notice that the muscle is now able to balance the gravity, and we are
 able to run the InverseDynamicAnalysis. If you try it out and
-subsequently open a chart view, you are able to plot the muscle force:
+subsequently open a chart view, you are able to plot the muscle force under
+`Main.MyStudy.Output.Model.Muscle1.Fm`:
 
 ```{image} _static/lesson1/image5.png
 :alt: muscle force
 :align: center
 ```
 
-The muscle force is the item Fm in the list of properties you can plot
+The muscle force is the item `Fm` in the list of properties you can plot
 for a muscle. As you can see, lots of other properties are available,
 but if you try to plot them you will find that many of them are zero.
 This is because they are not relevant for this very simple type of
