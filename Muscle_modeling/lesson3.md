@@ -4,7 +4,7 @@
 # Lesson 3: Via-point Muscles
 
 Although the name of the muscle class we have used so far is
-AnyMuscleViaPoint, the example has only shown the muscle passing in a
+`AnyMuscleViaPoint`, the example has only shown the muscle passing in a
 straight line between two points. Real muscles in the body rarely do so.
 They are usually constrained by various obstacles on their way from
 origin to insertion, either by connective tissues or by the contact with
@@ -12,7 +12,7 @@ bone surfaces.
 
 In the former case, the muscle tends to pass as a piecewise straight
 line between the constrained points, and this is relatively easy to
-accomplish by means of an AnyMuscleViaPoint. In the latter case, the
+accomplish by means of an `AnyMuscleViaPoint`. In the latter case, the
 muscle may engage and release contact with the bone surfaces it
 encounters. This wrapping over bones is a problem of contact mechanics
 and optimization. It requires a different muscle class and it is
@@ -56,79 +56,40 @@ that bisects the angle formed by the muscle on the two sides of the via
 point.
 
 Let us modify the model we have been working on to investigate the
-properties of via point muscles. Initially we reduce the bulging to
+properties of via point muscles. Initially we edit the bulging to
 facilitate study of the muscle path.
 
-```AnyScriptDoc
-AnyDrawMuscle drw = {
-  //RGB = {0.554688, 0.101563, 0.117188};
-  //Opacity = 0.2;
-  //DrawOnOff = 1;
-  Bulging = 2;
-  ColorScale = 1;
-  //RGBColorScale = {0.957031, 0.785156, 0.785156};
-  MaxStress = 2500§00§;
-};
+```{literalinclude} Snippets/lesson3/snip.Muscles.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 We then move the insertion point of the muscle a bit further out and
 closer to the axis of the Arm segment to make room for a via point:
 
-```AnyScriptDoc
-AnySeg Arm = {
-  r0 = {0.500000, 0.000000, 0.000000};
-  Mass = 1.000000;
-  Jii = {0.100000, 1.000000, 1.000000}*0.1;
-  AnyRefNode Jnt = {
-    sRel = {-0.5, 0.0, 0};
-  };
-  AnyRefNode M1Insertion = {
-    sRel = {§0.3, 0.05§, 0};
-  };
-  AnyDrawSeg drw = {};
-};
+```{literalinclude} Snippets/lesson3/snip.Muscles.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 The next step is to introduce a new point on the Arm segment to function
 as the via point:
 
-```AnyScriptDoc
-AnySeg Arm = {
-  r = {0.500000, 0.000000, 0.000000};
-  Mass = 1.000000;
-  Jii = {0.100000, 1.000000, 1.000000}*0.1;
-  AnyRefNode Jnt = {
-    sRel = {-0.5, 0.0, 0};
-  };
-  AnyRefNode M1Insertion = {
-    sRel = {0.3, 0.05, 0};
-  };
- §AnyRefNode ViaPoint = {
-    sRel = {0.0, 0.1, 0};
-  };§
-  AnyDrawSeg drw = {};
-};
+```{literalinclude} Snippets/lesson3/snip.Muscles.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 We can then introduce the new point in the sequence of points defining
 the muscle:
 
-```AnyScriptDoc
-AnyMuscleViaPoint Muscle1 = {
-  AnyMuscleModel &Model = .SimpleModel;
-  AnyRefFrame &Orig = .GlobalRef.M1Origin;
- §AnyRefFrame &Via = .Arm.ViaPoint;§
-  AnyRefFrame &Ins = .Arm.M1Insertion;
-  AnyDrawMuscle drw = {
-    //RGB = {0.554688, 0.101563, 0.117188};
-    //Opacity = 0.2;
-    //DrawOnOff = 1;
-    Bulging = 2;
-    ColorScale = 1;
-    //RGBColorScale = {0.957031, 0.785156, 0.785156};
-    MaxStress = 250000;
-  };
-};
+```{literalinclude} Snippets/lesson3/snip.Muscles.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 The figure below shows the result:

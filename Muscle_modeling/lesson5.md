@@ -3,7 +3,7 @@
 
 # Lesson 5: Muscle Models
 
-Muscle model is a description of how a muscle behaves under different
+Muscle models are a description of how a muscle behaves under different
 operating conditions. There are two schools of thought within this area.
 
 - The first school pursues phenomenological models based on
@@ -111,38 +111,24 @@ different muscle models and muscle model calibration. The AnyScript model from
 the previous lesson will suffice very nicely. You can download a functional
 version of the model here:
 {download}`MuscleDemo.5.any<Downloads/MuscleDemo.5.any>`.
+Right-click and save the file to your local disk, and subsequently open the
+model in the AnyBody Modeling System.
 
 ## AnyMuscleModel2ELin
 
-Right-click and save the file to your local disk, and subsequently open the
-model in the AnyBody Modeling System. We have already seen the consequences of
-using the simple muscle model, so we shall proceed directly to the two-element
-muscle, the AnyMuscleModel2ELin. Let us define such a muscle model. If you click
-the Classes tab in the tree view left of the edit window, expand the class tree,
-right-click the AnyMuscleModel2ELin class, and insert a template, you will
-obtain the following:
+We have already seen the consequences of using the simple muscle model, so we
+shall proceed directly to the two-element muscle, the `AnyMuscleModel2ELin`. Let
+us define such a muscle model. If you click the Classes tab, expand the *class*
+*list*, right-click the `AnyMuscleModel2ELin` class, and insert a template, you
+will obtain the following:
 
-```AnyScriptDoc
- AnyMuscleModel SimpleModel = {
-   F0 = 100;
-   //Lf0 = 0;
-   //Vol0 = 0;
- };
-
-§AnyMuscleModel2ELin <ObjectName> = 
-{
-  F0 = 0.0;
-  //Lf0 = 0.0;
-  //Vol0 = 0.0;
-  Lt0 = 0.0;
-  //Epsilon0 = 0.05;
-  V0 = 0.0;
-};§
+```{literalinclude} Snippets/lesson5/snip.Muscles.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Let us briefly review the parameters:
-
-
 
 `````{list-table}
 ---
@@ -199,34 +185,20 @@ variables in the Chart View.
 Let us assign a name and some reasonable parameters to our two-element
 muscle model:
 
-```AnyScriptDoc
-AnyMuscleModel2ELin §Model2§ = {
-   F0 = §200§;
-   Lf0 = §0.3§;
-   Lt0 = §0.5§;
-   Epsilon0 = §0.05§;
-   V0 = §-8.0§;
- };
+```{literalinclude} Snippets/lesson5/snip.Muscles.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The parameters here are more or less random. In a moment we
 shall explain the ones that are less random, but first we must assign
 the new model to Muscle1:
 
-```AnyScriptDoc
-AnyMuscleShortestPath Muscle1 = {
-  AnyMuscleModel &Model = §.Model2§;
-  AnyRefFrame &Orig = .GlobalRef.M1Origin;
-  AnyRefFrame &Via = .Arm.ViaPoint;
-  AnySurface &srf = .GlobalRef.CylCenter.WrapSurf;
-  AnyRefFrame &Ins = .Arm.M1Insertion;
-  SPLine.StringMesh = 20;
-  AnyDrawMuscle drw = {
-    Bulging = 0;
-    ColorScale = 1;
-    MaxStress = 250000;
-  };
-};
+```{literalinclude} Snippets/lesson5/snip.Muscles.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 We are ready to run the analysis again and investigate the results. Pick
