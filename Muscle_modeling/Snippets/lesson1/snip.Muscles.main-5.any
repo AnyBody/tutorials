@@ -1,15 +1,13 @@
 // This is a very simple model for demonstration of muscle modeling
-
 Main = {
 
   AnyFolder MyModel = {
-
     // Global Reference Frame
     AnyFixedRefFrame GlobalRef = {
       AnyDrawRefFrame drw = {
         RGB = {1,0,0};
       };
-    AnyRefNode M1Origin = {
+      AnyRefNode M1Origin = {
         sRel = {0.0, 0.1, 0};
       };
     };  // Global reference frame
@@ -21,13 +19,10 @@ Main = {
       Jii = {0.100000, 1.000000, 1.000000}*0.03;
       AnyRefNode Jnt = {
         sRel = {-0.5, 0.0, 0};
-      };    
+      };
       AnyRefNode M1Insertion = {
-        sRel = {0.3, 0.05, 0.0};
-      };
-      AnyRefNode ViaPoint = {
-        sRel = {0.0, 0.1, 0.0};
-      };
+        sRel = {0.0, 0.1, 0};
+      }; 
       AnyDrawSeg drw = {};
     };
     
@@ -41,32 +36,26 @@ Main = {
     // Drive the revolute joint at constant velocity
     AnyKinEqSimpleDriver Drv = {
       DriverPos = {-10*pi/180};
-      DriverVel = {80*pi/180};
+      DriverVel = {40*pi/180};
       AnyRevoluteJoint &Jnt = .Jnt;
       Reaction.Type = {Off};
     };
-    AnyMuscleModel SimpleModel = 
-    {
+
+    AnyMuscleModel SimpleModel = {
       F0 = 100;
-    };
-    AnyMuscleViaPoint Muscle = 
-    {
-      AnyMuscleModel &Model = .SimpleModel;
-      AnyRefFrame &Orig = .GlobalRef.M1Origin;
-      AnyRefFrame &Via = .Arm.ViaPoint;
-      AnyRefFrame &Ins = .Arm.M1Insertion;
-      AnyDrawMuscle drw = 
-      {
-        //RGB = {1, 0, 0};
-        //Opacity = 1;
-        //DrawOnOff = 1;
-        Bulging = 2;
-        ColorScale = 1;
-        RGBColorScale = {0, 0, 1};
-        MaxStress = 250000;
-      };
+      //Lf0 = 0.0;
+      //Vol0 = 0.0;
     };
 
+//# BEGIN SNIPPET 1
+AnyMuscleViaPoint Muscle1 = {
+  AnyMuscleModel &Model = .SimpleModel;
+  AnyRefFrame &§Orig = .GlobalRef.M1Origin§;
+  AnyRefFrame &§Ins = .Arm.M1Insertion§;
+  §AnyDrawMuscle drw = {};§
+};
+//# END SNIPPET 1
+    
   }; // MyModel
 
   // The study: Operations to be performed on the model

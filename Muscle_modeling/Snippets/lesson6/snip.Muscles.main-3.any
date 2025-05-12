@@ -85,6 +85,28 @@ Main = {
       }; // Elbow driver
     }; // Driver folder
 
+AnyMuscleModel MusModel = {
+  F0 = 100.0;
+};
+
+//# BEGIN SNIPPET 1
+AnyMuscleGeneric ShoulderTorque  = 
+{
+  //viewForce.Visible = Off;
+  //Type = NonPositive;
+  AnyMuscleModel &Model = .MusModel;
+  AnyKinMeasure &Angle = .Jnts.Shoulder;
+};
+
+§AnyMuscleGeneric ElbowTorque = 
+{
+  //viewForce.Visible = Off;
+  //Type = NonPositive;
+  AnyMuscleModel &Model = .MusModel;
+  AnyKinMeasure &Angle = .Jnts.Elbow;
+};§
+//# END SNIPPET 1
+
     AnyFolder Loads = {
 
       //---------------------------------

@@ -1,3 +1,5 @@
+//expect_errors = ["<ObjectName>", "Model loading skipped"]
+
 // Demo example for general muscles. 
 
 Main = {
@@ -84,6 +86,25 @@ Main = {
         Reaction.Type = {Off};
       }; // Elbow driver
     }; // Driver folder
+
+//# BEGIN SNIPPET 1
+§AnyMuscleModel <ObjectName> = {
+   F0 = 0;
+   //Lf0 = 0;
+   //Vol0 = 0;
+ };§
+
+AnyMuscleGeneric <ObjectName> = 
+{
+  //viewForce.Visible = Off;
+  //MetabModel = Null;
+  //FatigueModel = Null;
+  //MuscleModel = Null;
+  //Type = NonPositive;
+  AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
+  AnyKinMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
+};
+//# END SNIPPET 1
 
     AnyFolder Loads = {
 

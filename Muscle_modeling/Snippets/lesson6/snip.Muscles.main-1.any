@@ -1,3 +1,5 @@
+//expect_errors = ["<ObjectName>", "Model loading skipped"]
+
 // Demo example for general muscles. 
 
 Main = {
@@ -66,24 +68,37 @@ Main = {
 
     }; // Jnts folder
 
-    AnyFolder Drivers = {
+//# BEGIN SNIPPET 1
+AnyFolder Drivers = {
 
-      //---------------------------------
-      AnyKinEqSimpleDriver ShoulderMotion = {
-        AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-        DriverPos = {-1.7};
-        DriverVel = {0.4};
-        Reaction.Type = {Off};
-      }; // Shoulder driver
+  //---------------------------------
+  AnyKinEqSimpleDriver ShoulderMotion = {
+    AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
+    DriverPos = {-1.7};
+    DriverVel = {0.4};
+    Reaction.Type = {Off};
+  }; // Shoulder driver
 
-      //---------------------------------
-      AnyKinEqSimpleDriver ElbowMotion = {
-        AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-        DriverPos = {1.5};
-        DriverVel = {0.7};
-        Reaction.Type = {Off};
-      }; // Elbow driver
-    }; // Driver folder
+  //---------------------------------
+  AnyKinEqSimpleDriver ElbowMotion = {
+    AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
+    DriverPos = {1.5};
+    DriverVel = {0.7};
+    Reaction.Type = {Off};
+  }; // Elbow driver
+}; // Driver folder
+
+§AnyMuscleGeneric <ObjectName> = 
+{
+  //viewForce.Visible = Off;
+  //MetabModel = Null;
+  //FatigueModel = Null;
+  //MuscleModel = Null;
+  //Type = NonPositive;
+  AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
+  AnyKinMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
+};§
+//# END SNIPPET 1
 
     AnyFolder Loads = {
 

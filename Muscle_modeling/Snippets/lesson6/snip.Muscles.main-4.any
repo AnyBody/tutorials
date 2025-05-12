@@ -49,41 +49,81 @@ Main = {
 
    }; // Segs folder
 
-    AnyFolder Jnts = {
+AnyFolder Jnts = {
 
-      //---------------------------------
-      AnyRevoluteJoint Shoulder = {
-        Axis = z;
-        AnyRefNode &GroundNode = ..GlobalRef.Shoulder;
-        AnyRefNode &UpperArmNode = ..Segs.UpperArm.ShoulderNode;
-      }; // Shoulder joint
+  //---------------------------------
+  AnyRevoluteJoint Shoulder = {
+    Axis = z;
+    AnyRefNode &GroundNode = ..GlobalRef.Shoulder;
+    AnyRefNode &UpperArmNode = ..Segs.UpperArm.ShoulderNode;
+  }; // Shoulder joint
 
-      AnyRevoluteJoint Elbow = {
-        Axis = z;
-        AnyRefNode &UpperArmNode = ..Segs.UpperArm.ElbowNode;
-        AnyRefNode &LowerArmNode = ..Segs.LowerArm.ElbowNode;
-      }; // Elbow joint
+  AnyRevoluteJoint Elbow = {
+    Axis = z;
+    AnyRefNode &UpperArmNode = ..Segs.UpperArm.ElbowNode;
+    AnyRefNode &LowerArmNode = ..Segs.LowerArm.ElbowNode;
+  }; // Elbow joint
+//# BEGIN SNIPPET 2
+}; // END of Jnts folder
 
-    }; // Jnts folder
+§AnyKinLinear HandPos = {
+  AnyRefFrame &ref1 = .GlobalRef.Shoulder;
+  AnyRefFrame &ref2 = .Segs.LowerArm.PalmNode;
+};§
 
-    AnyFolder Drivers = {
+AnyFolder Drivers = {
+  §AnyKinEqSimpleDriver HandDriver = {
+    AnyKinLinear &Measure = ..HandPos;
+    MeasureOrganizer = {0,1};
+    DriverPos = {0.45, -0.6};
+    DriverVel = {0, 0.5};
+    Reaction.Type = {Off, Off};
+  };
 
-      //---------------------------------
-      AnyKinEqSimpleDriver ShoulderMotion = {
-        AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-        DriverPos = {-1.7};
-        DriverVel = {0.4};
-        Reaction.Type = {Off};
-      }; // Shoulder driver
+  /*§
 
-      //---------------------------------
-      AnyKinEqSimpleDriver ElbowMotion = {
-        AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-        DriverPos = {1.5};
-        DriverVel = {0.7};
-        Reaction.Type = {Off};
-      }; // Elbow driver
-    }; // Driver folder
+  //---------------------------------
+  AnyKinEqSimpleDriver ShoulderMotion = {
+    AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
+    DriverPos = {-1.7};
+    DriverVel = {0.4};
+    Reaction.Type = {Off};
+  }; // Shoulder driver
+
+  //---------------------------------
+  AnyKinEqSimpleDriver ElbowMotion = {
+    AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
+    DriverPos = {1.5};
+    DriverVel = {0.7};
+    Reaction.Type = {Off};
+  }; // Elbow driver
+
+  §*/§
+
+}; // Driver folder
+//# END SNIPPET 2
+
+    AnyMuscleModel MusModel = {
+      F0 = 100.0;
+    };
+
+//# BEGIN SNIPPET 1
+AnyMuscleGeneric ShoulderTorque  = 
+{
+  //viewForce.Visible = Off;
+  §Type = NonNegative;§
+  AnyMuscleModel &Model = .MusModel;
+  AnyKinMeasure &Angle = .Jnts.Shoulder;
+};
+
+AnyMuscleGeneric ElbowTorque = 
+{
+  //viewForce.Visible = Off;
+  §Type = NonNegative;§
+  AnyMuscleModel &Model = .MusModel;
+  AnyKinMeasure &Angle = .Jnts.Elbow;
+};
+//# END SNIPPET 1
 
     AnyFolder Loads = {
 
