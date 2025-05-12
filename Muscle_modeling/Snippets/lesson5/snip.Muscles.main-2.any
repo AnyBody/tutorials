@@ -71,7 +71,7 @@ Main = {
 //# BEGIN SNIPPET 1
 AnyMuscleModel2ELin §Model2§ = {
    F0 = §200§;
-   Lf0 = §0.3§;
+   Lf0 = §0.2§;
    Lt0 = §0.5§;
    Epsilon0 = §0.05§;
    V0 = §-8.0§;

@@ -201,38 +201,38 @@ the new model to Muscle1:
 :end-before: //# END SNIPPET 2
 ```
 
-We are ready to run the analysis again and investigate the results. Pick
-the InverseDynamics analysis in the tree of operations and click the Run
-button. Then open a new Chart View and expand the tree in the Chart View
-as far down as Muscle1. You will see a whole list of muscle properties
-that you can chart simply by clicking them. Let us initially see how the
-properties Lm and Lmdot affecting the strength of the model. You can
-plot several properties simultaneously in the Chart View by use of an
-asterix in the variable specification field at the top of the window
-like this:
+We are ready to run the analysis again and investigate the results. Pick the
+InverseDynamics analysis in the tree of operations and click the Run button.
+Then open a new Chart View and expand the tree in the Chart View as far down as
+Muscle1, `Main.MyStudy.Output.Model.Muscle1`. You will see a whole list of
+muscle properties that you can chart simply by clicking them. Let us initially
+see how the properties `Lm` and `Lmdot` affecting the strength of the model. You can
+plot several properties simultaneously in the Chart View by use of an asterix (*) in
+the variable specification field at the top of the window like this:
 
 ```{image} _static/lesson5/image2.png
 :alt: chart view: muscle1.L
 :align: center
 ```
 
-Now we can compare the variation of Lm and Lmdot to our settings of
-Lf0 and V0. Lm seems to vary between approximately 0.31 and 0.15. With
-an Lf0 of 0.3 (= 2x0.15) this means that the muscle must come close to
+Now we can compare the variation of `Lm` and `Lmdot` to our settings of
+`Lf0` and `V0`. `Lm` seems to vary between approximately 0.33 and 0.15. With
+an `Lf0` of 0.2 (= 2x0.10) this means that the muscle must come close to
 the minimum length at which it has low strength when we approach the end
-of the movement. Lmdot varies between -0.24 and -0.06, and this is far
+of the movement. `Lmdot` varies between -0.24 and -0.05, and this is far
 from its speed limit V0 = -8, so the contraction speed is not expected
 to have much effect. We can investigate the effect very easily simply by
-clicking the Strength property of the muscle and obtain the following
+clicking the `Strength` property of the muscle and obtain the following
 graph:
 
 ```{image} _static/lesson5/image3.png
 :alt: muscle strength plot
 :align: center
+:width: 75%
 ```
 
-The strength does indeed decrease drastically from around 200 N to
-almost nothing as we expected when the muscle contracts.
+The strength does indeed decrease drastically from around 350 N to
+around 100 N as we expected when the muscle contracts.
 
 Now that we have muscle data available, let us briefly review the
 parameters presented in the Chart View:
@@ -241,8 +241,6 @@ parameters presented in the Chart View:
 :alt: Muscle parameters
 :align: center
 ```
-
-
 
 `````{list-table}
 ---
@@ -343,25 +341,21 @@ about the velocity? Well, the specified values of -8 m/s is a reasonable
 estimate for many physiological muscles, but let us try to decrease it
 and thereby make the muscle more sensitive to contraction velocity:
 
-```AnyScriptDoc
-AnyMuscleModel2ELin Model2 = {
-   F0 = 200;
-   Lf0 = 0.3;
-   Lt0 = 0.5;
-   Epsilon0 = 0.05;
-   §V0 = -0.3§;
- };
+```{literalinclude} Snippets/lesson5/snip.Muscles.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 A value of V0 = -0.3 is close to the contraction velocity of the muscle
 in the beginning of the simulation. This, this decreases the strength of
 the muscle significantly as we can see by reloading, rerunning and
-plotting the Strength variable again:
+plotting the `Strength` variable again:
 
 ```{image} _static/lesson5/image5.png
 :alt: muscle strength plot, v0=-0.3
 :align: center
-:width: 80%
+:width: 75%
 ```
 
 Instead of being monotonically decreasing, the muscle strength now
@@ -372,24 +366,24 @@ velocity, so this muscle model in spite of its simplicity is capable of
 balancing several of the effects of real muscle physiology.
 
 Another of the important input parameters in this example is the nominal
-tendon length, Lt0. This is a parameter that has a very large influence
+tendon length, `Lt0`. This is a parameter that has a very large influence
 on the muscle's performance. The total origin-insertion length of the
 muscle-tendon unit depends on the size and posture of the body. The
-muscle spans this length with the sum of muscle length, Lm, and tendon
-length, Lt, such that Lmt = Lm + Lt. Both Lm and Lt change during the
-movement of the body. Lt is given by its initial length, Lt0, and the
-elastic deformation. Lm has to take up whatever rest of Lmt that is
-available after Lt has been subtracted. In some cases, the tendon is
+muscle spans this length with the sum of muscle length, `Lm`, and tendon
+length, `Lt`, such that `Lmt = Lm + Lt`. Both `Lm` and `Lt` change during the
+movement of the body. `Lt` is given by its initial length, `Lt0`, and the
+elastic deformation. `Lm` has to take up whatever rest of `Lmt` that is
+available after `Lt` has been subtracted. In some cases, the tendon is
 significantly longer than the muscle, and this means that a relatively
 small variation of the tendon length results in a large relative
-variation of the portion of Lmt that the muscle has to fill. Obviously
-Lt0 plays a significant role for Lt and hence influences the working
-length of the muscle. Let us investigate this effect by reducing Lt0:
+variation of the portion of `Lmt` that the muscle has to fill. Obviously
+`Lt0` plays a significant role for `Lt` and hence influences the working
+length of the muscle. Let us investigate this effect by reducing `Lt0`:
 
 ```AnyScriptDoc
 AnyMuscleModel2ELin Model2 = {
    F0 = 200;
-   Lf0 = 0.3;
+   Lf0 = 0.2;
    Lt0 = §0.3§;
    Epsilon0 = 0.05;
    V0 = -0.3;
@@ -397,13 +391,14 @@ AnyMuscleModel2ELin Model2 = {
 ```
 
 This reduction of the tendon length from 0.5 to 0.3 m is very
-significant compared to the nominal muscle fiber length of Lf0 = 0.3
-m. Reducing the length of the tendon increases the length and thereby
+significant compared to the nominal muscle fiber length of `Lf0 = 0.3 m`. 
+Reducing the length of the tendon increases the length and thereby
 the strength of the muscle:
 
 ```{image} _static/lesson5/image6.png
 :alt: muscle strength plot, Lt0= 0.3
 :align: center
+:width: 75%
 ```
 
 The interdependency between the stretch of the tendon, the length of the
@@ -414,45 +409,23 @@ is not taken into account in the computation of the muscle strength.
 Nevertheless, let us investigate how the stretch of the tendon
 influences the muscle. We shall define an external load on the arm,
 which causes the tendon to stretch. But before we change anything, let
-us just notice that the variation of muscle length, Lm, over the
+us just notice that the variation of muscle length, `Lm`, over the
 movement in the absence of an external load is as shown below:
 
 ```{image} _static/lesson5/image7.png
 :alt: Lm plot, no external load
 :align: center
+:width: 75%
 ```
 
 Definition of an external force requires two new elements in the model:
 The force itself and a new node on the arm, which we shall call hand, to
 which the load can be applied:
 
-```AnyScriptDoc
- // Define one simple segment
- AnySeg Arm = {
-   r = {0.500000, 0.000000, 0.000000};
-   Mass = 1.000000;
-   Jii = {0.100000, 1.000000, 1.000000}*0.1;
-   AnyRefNode Jnt = {
-     sRel = {-0.5, 0.0, 0};
-   };
-   AnyRefNode M1Insertion = {
-     sRel = {0.3, 0.05, 0};
-   };
-   AnyRefNode M2Insertion = {
-     sRel = {-0.2, 0.05, 0.05};
-   };
-   AnyRefNode ViaPoint = {
-     sRel = {0.0, 0.1, 0};
-   };
-   §AnyRefNode Hand = {
-     sRel = {0.5, 0.0, 0};
-   };§
-   AnyDrawSeg drw = {};
- };
-§AnyForce3D Load = {
-   AnyRefNode &Attachment = .Arm.Hand;
-   F = {-100, -100, 0};
- };§
+```{literalinclude} Snippets/lesson5/snip.Muscles.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 The load is pointing down and backward at a 45 degree angle, so that it
@@ -463,6 +436,7 @@ following fashion:
 ```{image} _static/lesson5/image8.png
 :alt: Muscle length plot
 :align: center
+:width: 75%
 ```
 
 The interesting point here is that with the long tendon and the high
@@ -481,7 +455,7 @@ So far we have been focusing our attention on Muscle1 in the demo model
 and left Muscle2 with the simple muscle model. Let us briefly study what
 Muscle2 is actually doing (if you need an updated working model, you can
 download it here:
-{download}`MuscleDemo.5-2.any <Downloads/MuscleDemo.5-2.any>`. Muscle2 wraps
+{download}`MuscleDemo.5-2.any <Downloads/MuscleDemo.5-2.any>`). Muscle2 wraps
 about the cylinder and obviously extends significantly as the arm turns
 upward. If you run the analysis and plot the length of Muscle2, you will
 see that it increases from 0.7 to 1 meter. For a normal muscle (actually a
@@ -580,61 +554,34 @@ information:
 
 : This factor is related to Jpe. Where Jpe controls the shape of the nonlinearity, PEFactor controls the steepness of the force in the parallel-elastic element as it is elongated. If we imagine a completely inactive muscle and load the muscle with a force corresponding to the active strength of the muscle, i.e. F0, then the length of the elongated muscle fibers will be PEFactor x Lf0. In other words PEFactor is a dimensionless measure of the flexibility of the parallel-elastic element of the muscle.
 
-`Gammabar`
-
-: This is the deprecated parameter replaced by Gamma0.
-
 Knowing the significance of the different parameters, let us pick
 reasonable values for Muscle2 and study their influences:
 
-```AnyScriptDoc
-AnyMuscleModel3E §Model3§ = {
-  F0 = §100§;
-  Lf0 = §0.3§;
-  Gamma0 = §30*pi/180§;
-  Epsilon0 = §0.05§;
-  Lt0 = §0.5§;
-  Fcfast = §0.4§;
-  §Jt = 3.0§;
-  §Jpe = 3.0§;
-  §K1 = 2§;
-  §K2 = 8§;
-  §PEFactor = 5§;
-};
+```{literalinclude} Snippets/lesson5/snip.Muscles.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
-Notice that Lf0 + Lt0 = 0.8, which is in the range of the Lmt
+Notice that `Lf0 + Lt0 = 0.8`, which is in the range of the `Lmt`
 variation of Muscle2. This is important because it gives the muscle a
 reasonable chance of spanning the origin-insertion length.
 
 We also have to associate Muscle2 with the new muscle model:
 
-```AnyScriptDoc
-AnyMuscleShortestPath Muscle2 = {
-  AnyMuscleModel &Model = .§Model3§;
-  AnyRefFrame &Orig = .GlobalRef.M2Origin;
-  AnySurface &srf = .GlobalRef.CylCenter.WrapSurf;
-  AnyRefFrame &Ins = .Arm.M2Insertion;
-  SPLine.StringMesh = 20;
-  SPLine.InitWrapPosVectors = {{-0.2, -0.2, 0},{-0.05,-0.2, 0}};
-  AnyDrawMuscle drw = {
-    Bulging = 0;
-    ColorScale = 1;
-    MaxStress = 250000;
-  };
-};
+```{literalinclude} Snippets/lesson5/snip.Muscles.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 Finally, to have a more clean-cut case, we temporarily remove the
-external force that we previously added
+external force that we previously added.
 
-```AnyScriptDoc
-§/*§
-    AnyForce3D Load = {
-      AnyRefNode &Attachment = .Arm.Hand;
-      F = {-100, -100, 0};
-    };
-§*/§
+```{literalinclude} Snippets/lesson5/snip.Muscles.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 3
+:end-before: //# END SNIPPET 3
 ```
 
 We are ready to try running the InverseDynamics analysis again. Load the
@@ -645,17 +592,17 @@ the Chart View's tree, expand the folders as far as Muscle2, and try
 charting some of the parameters.
 
 The key to understanding the muscle's behavior is to study the forces in
-the muscle's different elements. The chart of Fm, which is the force in
+the muscle's different elements. The chart of `Fm`, which is the force in
 the muscle's contractile element, is very uninteresting. This muscle
 does not contribute to carrying the load, and hence the system does not
-activate it. But the muscle is not without force. The property Fp, which
+activate it. But the muscle is not without force. The property `Fp`, which
 is the force in the parallel-elastic element of the muscle has the
 following behavior:
 
 ```{image} _static/lesson5/image10.png
 :alt: Force parallel elastic element
 :align: center
-:width: 70%
+:width: 75%
 ```
 
 In the initial phase of the movement, the parallel-elastic element is
@@ -664,7 +611,7 @@ the passive muscle force sets in, and it continues to rise as the
 movement progresses. Notice that this passive force acts against the
 movement and hence requires Muscle1 to work that much more. But the
 passive force has another interesting effect, which we can see if we
-chart the property Lt, i.e. the length of the tendon (Notice that we
+chart the property `Lt`, i.e. the length of the tendon (Notice that we
 have changed the scale of the ordinate axis):
 
 ```{image} _static/lesson5/image11.png
@@ -677,7 +624,7 @@ From the time the passive force sets in, the tendon starts to elongate a
 little bit.
 
 The total origin-insertion length of the muscle-tendon unit is the
-tendon length plus the muscle length, i.e. Lm + Lt. When Lt is
+tendon length plus the muscle length, i.e. `Lm + Lt`. When `Lt` is
 stretched, the effect is that the muscle fibers stretch that much less,
 and since the muscle's strength depends on the momentary length of the
 contractile element, the strain in the tendon can influence the strength
@@ -712,33 +659,10 @@ not done by the system; the correction is local to each muscle.
 
 So much for passive properties! It is more instructive to investigate a
 muscle model with active force. The easiest way to do so is to enable
-our hand force again and change it to point directly upward. This causes
+our hand force again and change it to *point directly upward*. This causes
 the previously inactive Muscle2 to become active:
 
 ```AnyScriptDoc
- // Define one simple segment
- AnySeg Arm = {
-   r = {0.500000, 0.000000, 0.000000};
-   Mass = 1.000000;
-   Jii = {0.100000, 1.000000, 1.000000}*0.1;
-   AnyRefNode Jnt = {
-     sRel = {-0.5, 0.0, 0};
-   };
-   AnyRefNode M1Insertion = {
-     sRel = {0.3, 0.05, 0};
-   };
-   AnyRefNode M2Insertion = {
-     sRel = {-0.2, 0.05, 0.05};
-   };
-   AnyRefNode ViaPoint = {
-     sRel = {0.0, 0.1, 0};
-   };
-   AnyRefNode Hand = {
-     sRel = {0.5, 0.0, 0};
-   };
-   AnyDrawSeg drw = {};
- };
-
 §AnyForce3D Load = {
    AnyRefNode &Attachment = .Arm.Hand;
    F = {0, 10, 0};
@@ -870,15 +794,22 @@ header-rows: 1
 
 ## Calibration
 
-**Note:** This section describes calibration of muscle-tendon units briefly; for more details and more examples, please refer to {doc}`Inverse Dyanmics of Muscle Systems: Calibration <../MuscleRecruitment/lesson_calibration>`.
+:::{note}
+This section describes calibration of muscle-tendon units briefly; for more
+details and more examples, please refer to 
+{doc}`Inverse Dyanmics of Muscle Systems: Calibration <../MuscleRecruitment/lesson_calibration>`.
+:::
 
-One of the practical challenges in working with detailed muscle models
-in complex musculoskeletal systems is the dependency on defined fiber and tendon
-length (i.e. Lf0 and Lt0, respectively). These are input to the model but they must match accurately to the operation range of the model, which governed by the skeletal structure. The challenge is to make matching skeletal and muscle parameters, also when the model is scaled to match different anthropometrics.
+One of the practical challenges in working with detailed muscle models in
+complex musculoskeletal systems is the dependency on defined fiber and tendon
+length (i.e. `Lf0` and `Lt0`, respectively). These are input to the model but they
+must match accurately to the operation range of the model, which governed by the
+skeletal structure. The challenge is to make matching skeletal and muscle
+parameters, also when the model is scaled to match different anthropometrics.
 
 A brief experiment with our model can reveal where the
 difficulty lies. In the model we have just investigated, the activity of
-Muscle2 has the following development over the movement:
+Muscle2, has the following development over the movement:
 
 ```{image} _static/lesson5/image31.png
 :alt: Calibration. Lt0 plot
@@ -886,7 +817,7 @@ Muscle2 has the following development over the movement:
 :width: 65%
 ```
 
-But what would happen if our guess of tendon length, Lt0, in the muscle
+But what would happen if our guess of tendon length, `Lt0`, in the muscle
 model definition was just slightly off the correct value? Well if we
 change the current value from 0.5 m to 0.45 m, i.e. a reduction of 10%,
 we get the following activity:
@@ -919,15 +850,20 @@ and the other one requires additional information.
 
 There are two approaches for calibration in AnyBody (AnyBodyCalibrationStudy class):
 
-- Tendon-length calibration (operation: TendonLengthAdjustment)
-  adjusts the tendon length (Lt0) to obtain optimal conditions at a specific location under the assumption that the inputted fiber length is correct.
-- Two-parameter calibration adjusts both Lt0 and Lf0 (operation: FiberAndTendonAdjustment).
-  This method requires input about two specific points of the muscles' operation range and thereby it can match both fiber and tendon length. This method is a fairly new feature in AnyBody (version 7) and is not the default method in AMMR (e.g. version 1.x and 2.0).
+- Tendon-length calibration (operation: `TendonLengthAdjustment`)
+  adjusts the tendon length (`Lt0`) to obtain optimal conditions at a specific 
+  location under the assumption that the inputted fiber length is correct.
+- Two-parameter calibration adjusts both `Lt0` and `Lf0` (operation: `FiberAndTendonAdjustment`).
+  This method requires input about two specific points of the muscles' operation 
+  range and thereby it can match both fiber and tendon length. This method is a 
+  fairly new feature in AnyBody (version 7) and is not the default method in 
+  AMMR (e.g. version 1.x and 2.0).
 
 For details, please visit {doc}`Inverse Dyanmics of Muscle Systems: Calibration <../MuscleRecruitment/lesson_calibration>`.
 
-In the following, we demonstrate calibration by examples using the tendon-length calibration, i.e. calibrating Lt0.
-In the following two sections, we disucss two calibration strategies: "Cheap and dirty" and "Detailed" calibration.
+In the following, we demonstrate calibration by examples using the tendon-length
+calibration, i.e. calibrating `Lt0`. In the following two sections, we disucss two
+calibration strategies: "Cheap and dirty" and "Detailed" calibration.
 
 ### "Cheap and dirty" calibration
 
@@ -951,8 +887,8 @@ InverseDynamics operation of the original AnyBodyStudy. But when the
 analysis is done, the following message appears in the message window:
 
 ```none
-The tendon length of muscle Main.MyModel.Muscle2 was calibrated.
-The muscle properties have been updated.
+The tendon/fiber length was calibrated successfully.
+Design variables of the calibration model have been updated.
 ```
 
 Try running the InverseDynamics again and plot the Activity of Muscle2.
@@ -961,7 +897,7 @@ You should see the following:
 ```{image} _static/lesson5/image33.png
 :alt: Cheap n dirty calibration, Activity plot
 :align: center
-:width: 65%
+:width: 75%
 ```
 
 As you can see, this is again very different from what we have seen
@@ -975,9 +911,9 @@ before. Plotting the strength will reveal what has happened:
 
 What FiberAndTendonAdjustment does is to run through the specified
 movement and compute the variation of the origin-insertion length of the
-muscle. It subsequently changes the user-defined value of Lt0 such that
+muscle. It subsequently changes the user-defined value of `Lt0` such that
 the length of the contractile element equals the optimum fiber length,
-Lf0, when the origin-insertion length is at its mean value. Notice that
+`Lf0`, when the origin-insertion length is at its mean value. Notice that
 this does not necessarily correspond to the length when 50% of the
 movement has passed.
 
@@ -990,7 +926,7 @@ work if you are modeling a movement that is outside the typical posture
 of the joints in the model.
 
 Please notice that the tendon lengths specified in the AnyScript model
-are not altered by this method. Every time you reload the model you must
+are not altered by this method. Every time you *reload* the model you must
 run the FiberAndTendonAdjustment again.
 
 ### Detailed calibration
