@@ -7,10 +7,9 @@ The script editor currently shows the main file of the model, which includes the
 line of code `Main = {}`. Any basic AnyScript contains a main file that defines
 the model's structure and the operations to be performed on the model.
 
-The `Mannequin.any` file, included in the main file, determines the posture of
-the Standing Model by specifying the angles at the anatomical joints.
-
-Scroll down to the line that says `#include "Model\Mannequin.any"`.
+Scroll down to the line that says `#include "Model\Mannequin.any"`. This line
+means that your model will include the content of the file called `Mannequin.any`
+located in the Model folder, within the main file.
 
 ## Mannequin file structure
 
@@ -20,12 +19,12 @@ Scroll down to the line that says `#include "Model\Mannequin.any"`.
 :end-before: //# END SNIPPET 1
 ```
 
-**This line means that your model will include the content of the
-"Mannequin.any" file located in the Model folder, within the main file.**
+The `Mannequin.any` file determines the posture of the Standing Model by
+specifying the angles at the anatomical joints.
 
 Double-clicking the file name in the editor window after loading
 your model opens the mannequin file in a new tab. Then you see the
-following structure. (In the interest of legibility we have removed many
+following structure (in the interest of legibility we have removed many
 of the lines):
 
 ```{literalinclude} Snippets/lesson2/MyStandingHuman-2/Model/Mannequin.any
