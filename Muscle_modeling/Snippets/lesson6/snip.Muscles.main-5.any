@@ -63,10 +63,23 @@ Main = {
         AnyRefNode &UpperArmNode = ..Segs.UpperArm.ElbowNode;
         AnyRefNode &LowerArmNode = ..Segs.LowerArm.ElbowNode;
       }; // Elbow joint
+    }; // END of Jnts folder
 
-    }; // Jnts folder
+AnyKinLinear HandPos = {
+  AnyRefFrame &ref1 = .GlobalRef.Shoulder;
+  AnyRefFrame &ref2 = .Segs.LowerArm.PalmNode;
+};
 
     AnyFolder Drivers = {
+      AnyKinEqSimpleDriver HandDriver = {
+        AnyKinLinear &Measure = ..HandPos;
+        MeasureOrganizer = {0,1};
+        DriverPos = {0.45, -0.6};
+        DriverVel = {0, 0.5};
+        Reaction.Type = {Off, Off};
+      };
+
+      /*
 
       //---------------------------------
       AnyKinEqSimpleDriver ShoulderMotion = {
@@ -83,7 +96,42 @@ Main = {
         DriverVel = {0.7};
         Reaction.Type = {Off};
       }; // Elbow driver
-    }; // Driver folder
+
+      */
+
+//# BEGIN SNIPPET 1
+}; // END of Driver folder
+
+§AnyRecruitedActuator WallReaction = {
+  Type = NonPositive;
+  Volume = 1e-6; // Ignore this value. Only used in special volume weighted recruitement
+  Strength = 10000;
+  AnyKinMeasureOrg Org = {
+    AnyKinMeasure &wall = ..HandPos;
+    MeasureOrganizer = {0};
+  };
+};§
+//# END SNIPPET 1
+
+    AnyMuscleModel MusModel = {
+      F0 = 100.0;
+    };
+
+    AnyMuscleGeneric ShoulderTorque  = 
+    {
+      //viewForce.Visible = Off;
+      Type = NonNegative;
+      AnyMuscleModel &Model = .MusModel;
+      AnyKinMeasure &Angle = .Jnts.Shoulder;
+    };
+
+    AnyMuscleGeneric ElbowTorque = 
+    {
+      //viewForce.Visible = Off;
+      Type = NonNegative;
+      AnyMuscleModel &Model = .MusModel;
+      AnyKinMeasure &Angle = .Jnts.Elbow;
+    };
 
     AnyFolder Loads = {
 

@@ -17,8 +17,10 @@ acting along strings.
 There is an  {doc}`an entire tutorial lesson <../The_mechanical_elements/lesson4>` devoted to the subject *Kinematic Measures* in the
 section on {doc}`The Mechanical Elements <../The_mechanical_elements/intro>`. 
 :::
-The solution to our problem involves two classes: `AnyRecruitedActuator` and `AnyMuscleGeneric`. These classes can act on *Kinematic Measures*, which are an abstract 
-classes representing anything you can measure on a model..
+
+The solution to our problem involves two classes: `AnyRecruitedActuator` and
+`AnyMuscleGeneric`. These classes can act on *Kinematic Measures*, which are an
+abstract class representing anything you can measure on a model.
 
 For example:
 
@@ -35,10 +37,11 @@ Both classes are similar, but `AnyRecruitedActuator` is used for
 non-physiological elements like boundary conditions, contact forces, and
 residual forces. On the other hand, `AnyMuscleGeneric` is used for forces and
 moments that still represent the effect of real muscles, such as joint torques.
-The activity of `AnyMuscleGeneric` is included in the 'MaxMuscleActivity' output
+The activity of `AnyMuscleGeneric` is included in the `MaxMuscleActivity` output
 variable of the model.
 
-In this lesson, we will demonstrate how recruited actuators (and generic muscles) can be used for various modeling tasks.
+In this lesson, we will demonstrate how recruited actuators (and generic
+muscles) can be used for various modeling tasks.
 
 ## Recruited joint torque providers
 
@@ -85,63 +88,23 @@ ERROR(OBJ1): MuscleDemo.6.any(103): ArmStudy.InverseDynamics: No solution found:
 
 This error message means that the model can't be balanced without muscles. But
 we won't add real muscles. Instead, we'll add generic muscles to the revolute
-joints. The easiest way to add a generic muscle is from the class tree. Just
+joints. The easiest way to add a generic muscle is from the *class list*. Just
 place your cursor after the Drivers folder, find the AnyGeneralMuscle in the
 class tree, and insert a template.
 
-```AnyScriptDoc
-  AnyFolder Drivers = {
-
-   //---------------------------------
-   AnyKinEqSimpleDriver ShoulderMotion = {
-     AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-     DriverPos = {-1.7};
-     DriverVel = {0.4};
-     Reaction.Type = {0};
-   }; // Shoulder driver
-
-   //---------------------------------
-   AnyKinEqSimpleDriver ElbowMotion = {
-     AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-     DriverPos = {1.5};
-     DriverVel = {0.7};
-     Reaction.Type = {0};
-   }; // Elbow driver
- }; // Driver folder
-
-§AnyMuscleGeneric <ObjectName> = 
-{
-  //viewForce.Visible = Off;
-  //MetabModel = Global.Null;
-  //FatigueModel = Global.Null;
-  //MuscleModel = Global.Null;
-  //Type = NonPositive;
-  AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
-  AnyKinMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
-};§
+```{literalinclude} Snippets/lesson6/snip.Muscles.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Just as normal muscles, generic muscles must be associated with a muscle
 model. Let us insert a simple one:
 
-```AnyScriptDoc
-§AnyMuscleModel <ObjectName> = {
-   F0 = 0;
-   //Lf0 = 0;
-   //Vol0 = 0;
- };§
-
-AnyMuscleGeneric <ObjectName> = 
-{
-  //viewForce.Visible = Off;
-  //MetabModel = Global.Null;
-  //FatigueModel = Global.Null;
-  //MuscleModel = Global.Null;
-  //Type = NonPositive;
-  AnyMuscleModel &<Insert name0> = <Insert object reference (or full object definition)>;
-  AnyKinMeasure &<Insert name0> = <Insert object reference (or full object definition)>;
-};
-
+```{literalinclude} Snippets/lesson6/snip.Muscles.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The empty fields in the muscle model must be filled in:
@@ -175,22 +138,10 @@ AnyMuscleGeneric §ShoulderTorque§ =
 Providing a torque for the shoulder is not enough. We also need a torque
 in the elbow:
 
-```AnyScriptDoc
-AnyMuscleGeneric ShoulderTorque = 
-{
-  //viewForce.Visible = Off;
-  //Type = NonPositive;
-  AnyMuscleModel &Model = .MusModel;
-  AnyKinMeasure &Angle = .Jnts.Shoulder;
-};
-
-§AnyMuscleGeneric ElbowTorque = 
-{
-  //viewForce.Visible = Off;
-  //Type = NonPositive;
-  AnyMuscleModel &Model = .MusModel;
-  AnyKinMeasure &Angle = .Jnts.Elbow;
-};§
+```{literalinclude} Snippets/lesson6/snip.Muscles.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Having provided torques for the shoulder and elbow we can try to run the 
@@ -199,14 +150,13 @@ inverse dynamic analysis again.
 If you try to run the program now, you'll encounter a new error message:
 
 ```
-ERROR(OBJ.MCH.MUS4) :   MuscleDemo.6.any(122)  :   ArmStudy.InverseDynamics  :  Muscle recruitment solver :  infeasible problem with upper bounds
+ERROR(OBJ.MCH.MUS4): MuscleDemo.6.any(125): ArmStudy.InverseDynamics: Muscle recruitment solver: infeasible problem with upper bounds
 ```
-
 
 This error occurs because generic muscles, like normal muscles, can only act in
 one direction. The Type variable controls this direction. If the muscle acts in
-the positive direction of the joint angle, set Type = NonNegative. If it acts in
-the negative direction, set Type = NonPositive.
+the positive direction of the joint angle, set `Type = NonNegative`. If it acts in
+the negative direction, set `Type = NonPositive`.
 
 :::{note} The terms NonNegative and NonPositive can be confusing. They will be
 changed in future software versions. The current terms were chosen to show that
@@ -217,30 +167,16 @@ In this case, the external load tends to move in the negative angle direction
 for both the shoulder and elbow. So, the muscles should counteract in the
 positive direction.
 
-
-```AnyScriptDoc
-AnyMuscleGeneric ShoulderTorque = 
-{
-  //viewForce.Visible = Off;
-  §Type = NonNegative;§
-  AnyMuscleModel &Model = .MusModel;
-  AnyKinMeasure &Angle = .Jnts.Shoulder;
-};
-
-AnyMuscleGeneric ElbowTorque = 
-{
-  //viewForce.Visible = Off;
-  §Type = NonNegative;§
-  AnyMuscleModel &Model = .MusModel;
-  AnyKinMeasure &Angle = .Jnts.Elbow;
-};
-
+```{literalinclude} Snippets/lesson6/snip.Muscles.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Now, you can run the InverseDynamics operation. After running it, open a new
 Chart View. Look up the two joint torques as the Fm property of the general
-muscles. You can plot both of them at the same time using an asterisk (`*`), as
-shown below:
+muscles. You can plot both of them at the same time using an asterisk (`*`), 
+like this `Main.ArmStudy.Output.Model.*Torque.Fm`.
 
 ```{image} _static/lesson6/image2.png
 :alt: Chart view, Torques
@@ -300,58 +236,10 @@ need to change the kinematics so the arm slides along the wall. It's hard to
 figure out the joint angle variations needed for vertical hand movement, so
 we'll drive the hand directly instead.
 
-```AnyScriptDoc
- AnyFolder Jnts = {
-
-   //---------------------------------
-   AnyRevoluteJoint Shoulder = {
-     Axis = z;
-     AnyRefNode &GroundNode = ..GlobalRef.Shoulder;
-     AnyRefNode &UpperArmNode = ..Segs.UpperArm.ShoulderNode;
-   }; // Shoulder joint
-
-   AnyRevoluteJoint Elbow = {
-     Axis = z;
-     AnyRefNode &UpperArmNode = ..Segs.UpperArm.ElbowNode;
-     AnyRefNode &LowerArmNode = ..Segs.LowerArm.ElbowNode;
-   }; // Elbow joint
-
- }; // Jnts folder
-
-§AnyKinLinear HandPos = {
-   AnyRefFrame &ref1 = .GlobalRef.Shoulder;
-   AnyRefFrame &ref2 = .Segs.LowerArm.PalmNode;
- };§
-
- AnyFolder Drivers = {
-  §AnyKinEqSimpleDriver HandDriver = {
-     AnyKinLinear &Measure = ..HandPos;
-     MeasureOrganizer = {0,1};
-     DriverPos = {0.45, -0.6};
-     DriverVel = {0, 0.5};
-     Reaction.Type = {Off, Off};
-   };§
-
- § /*§
-   //---------------------------------
-   AnyKinEqSimpleDriver ShoulderMotion = {
-      AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-      DriverPos = {-1.7};
-      DriverVel = {0.4};
-      Reaction.Type = {Off};
-   }; // Shoulder driver
-
-   //---------------------------------
-   AnyKinEqSimpleDriver ElbowMotion = {
-      AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-      DriverPos = {1.5};
-      DriverVel = {0.7};
-      Reaction.Type = {Off};
-   }; // Elbow driver
-
- §*/§
-
- }; // Driver folder
+```{literalinclude} Snippets/lesson6/snip.Muscles.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 The previous two joint angle drivers have been disabled to avoid making the
@@ -363,9 +251,7 @@ provide any reaction forces to the arm.
 
 When you plot the `MaxMuscleActivity`, you'll see that the muscle activity
 remains fairly constant. This is because the moment arms are also constant. The
-gravity and the applied load of 100 N are both vertical. You might think that a
-horizontal support wouldn't make much of a difference. But let's test this by
-turning on the horizontal support of the driver.
+gravity and the applied load of 100 N are both vertical.
 
 ```{image} _static/lesson6/image4.gif
 :alt: no reaction MaxMuscleActivity plot
@@ -373,10 +259,8 @@ turning on the horizontal support of the driver.
 :width: 65%
 ```
 
-The muscle activity stays fairly constant. This is because the moment arms are
-also constant. Both the gravity and the applied load of 100 N are vertical. You
-might think that a horizontal support wouldn't make much of a difference. But
-let's test this by turning on the horizontal support of the driver:
+You might think that a horizontal support wouldn't make much of a difference.
+But let's test this by turning on the horizontal support of the HandDriver:
 
 ```AnyScriptDoc
 Reaction.Type = {§On§, Off};
@@ -406,19 +290,10 @@ Reaction.Type = {§Off§, Off};
 
 Subsequently we define a `AnyRecruitedActutor` object:
 
-```AnyScriptDoc
-      
- }; // Driver folder
-  
- §AnyRecruitedActuator WallReaction = {
-   Type = NonPositive;
-   Volume = 1e-6; // Ignore this value. Only used in special volume weighted recruitement
-   Strength = 10000;
-   AnyKinMeasureOrg Org = {
-     AnyKinMeasure &wall = ..HandPos;
-     MeasureOrganizer = {0};
-   };
- };§
+```{literalinclude} Snippets/lesson6/snip.Muscles.main-5.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Two things to note here:
@@ -439,9 +314,9 @@ the specification line `Main.ArmStudy.Output.Model.*Torque.Fm`:
 :width: 65%
 ```
 
-The red curve represents the shoulder joint torque, and the green curve
+The blue curve represents the shoulder joint torque, and the orange curve
 represents the elbow torque. Notice that the envelope of these two curves is
-identical to the MaxMuscleActivity curve we plotted earlier for the case of no
+identical to the `MaxMuscleActivity` curve we plotted earlier for the case of no
 support.
 
 You might think that the support would be beneficial in the final stages of the
@@ -453,16 +328,10 @@ benefit of the support.
 Let's see what happens if we turn the reaction force the other way, like if the
 hand could pull against the far side of the wall:
 
-```AnyScriptDoc
-AnyRecruitedActuator WallReaction = {
-   Type = §NonNegative§;
-   Volume = 1e-6; // Ignore this value. Only used in special volume weighted recruitement
-   Strength = 10000;
-   AnyKinMeasureOrg Org = {
-     AnyKinMeasure &wall = ..HandPos;
-     MeasureOrganizer = {0};
-   };
- };
+```{literalinclude} Snippets/lesson6/snip.Muscles.main-6.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 When you run the model again and look at the same graphs, you'll see this:

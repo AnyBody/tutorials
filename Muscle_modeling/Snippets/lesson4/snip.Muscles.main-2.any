@@ -1,18 +1,29 @@
 // This is a very simple model for demonstration of muscle modeling
-
 Main = {
 
   AnyFolder MyModel = {
+// Global Reference Frame
+AnyFixedRefFrame GlobalRef = {
+  AnyDrawRefFrame drw = {
+    RGB = {1,0,0};
+  };
+  AnyRefNode M1Origin = {
+    sRel = {0.0, 0.1, 0};
+  };
+//# BEGIN SNIPPET 1
+  AnyRefNode CylCenter = {
+    sRel = {0, 0, -0.2};
 
-    // Global Reference Frame
-    AnyFixedRefFrame GlobalRef = {
-      AnyDrawRefFrame drw = {
-        RGB = {1,0,0};
-      };
-    AnyRefNode M1Origin = {
-        sRel = {0.0, 0.1, 0};
-      };
-    };  // Global reference frame
+    §AnySurfCylinder WrapSurf = {
+      Radius = 0.15;
+      Length = 0.4;
+      //CapRatio = 0.1;
+      //CapRatio2 = 0.1;
+      AnyDrawParamSurf drw = {};
+    };§
+  };
+};  // Global reference frame
+//# END SNIPPET 1
 
     // Define one simple segment
     AnySeg Arm = {
@@ -21,12 +32,12 @@ Main = {
       Jii = {0.100000, 1.000000, 1.000000}*0.03;
       AnyRefNode Jnt = {
         sRel = {-0.5, 0.0, 0};
-      };    
+      };
       AnyRefNode M1Insertion = {
-        sRel = {0.3, 0.05, 0.0};
+        sRel = {0.3, 0.05, 0};
       };
       AnyRefNode ViaPoint = {
-        sRel = {0.0, 0.1, 0.0};
+        sRel = {0.0, 0.1, 0};
       };
       AnyDrawSeg drw = {};
     };
@@ -45,28 +56,29 @@ Main = {
       AnyRevoluteJoint &Jnt = .Jnt;
       Reaction.Type = {Off};
     };
-    AnyMuscleModel SimpleModel = 
-    {
+
+    AnyMuscleModel SimpleModel = {
       F0 = 100;
+      //Lf0 = 0.0;
+      //Vol0 = 0.0;
     };
-    AnyMuscleViaPoint Muscle = 
-    {
+
+    AnyMuscleViaPoint Muscle1 = {
       AnyMuscleModel &Model = .SimpleModel;
       AnyRefFrame &Orig = .GlobalRef.M1Origin;
       AnyRefFrame &Via = .Arm.ViaPoint;
       AnyRefFrame &Ins = .Arm.M1Insertion;
-      AnyDrawMuscle drw = 
-      {
-        //RGB = {1, 0, 0};
-        //Opacity = 1;
-        //DrawOnOff = 1;
+      AnyDrawMuscle drw = {
+        //RGB = {1, 0, 0};  //Red
+        //Opacity = 1.000000;
+        //DrawOnOff = 1.000000;
         Bulging = 2;
         ColorScale = 1;
-        RGBColorScale = {0, 0, 1};
+        //RGBColorScale = {0, 0, 1}; //Blue
         MaxStress = 250000;
       };
     };
-
+    
   }; // MyModel
 
   // The study: Operations to be performed on the model
