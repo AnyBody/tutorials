@@ -3,9 +3,6 @@
 
 # Force-Dependent Kinematics
 
-{{ caution_old_tutorial }}
-
-
 The objective of this tutorial is to explain a feature of the AnyBody Modeling
 System called force-dependent kinematics (FDK). This advanced feature allows the
 user to alter motion in a joint depending on the acting forces from muscles,

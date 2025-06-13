@@ -1,6 +1,7 @@
 ::: {rst-class} break
 :::
 
+(MuscleModeling_Ligaments)=
 # Lesson 7: Ligaments
 
 Ligaments are passive structures that connect articulating bones and

@@ -1,6 +1,7 @@
 ::: {rst-class} break
 :::
 
+(InverseDynamics_Calibration)=
 # Lesson 7: Calibration
 
 The final lesson in this tutorial will explain how to set up a simple
