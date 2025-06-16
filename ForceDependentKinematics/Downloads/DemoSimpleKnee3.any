@@ -41,7 +41,7 @@ Main = {
       
       // Origin of the quadriceps muscle.
       AnyRefNode Quadriceps = {
-        sRel = {0.00, 0.3, 0.0};
+        sRel = {0.06, 0.0, 0.0};
       };      
       AnyDrawSeg drw ={
         Opacity = 0.5;
