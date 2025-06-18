@@ -56,16 +56,50 @@ Main = {
       AnyRefFrame &Thigh = .Shank.Knee;
     };
     
-    AnyKinDriver HipDriver = {
-      DriverPos0 = {-90*pi/180};
-      DriverVel0 = {90*pi/180}/..MyStudy.tEnd;
-      AnyRevoluteJoint &Joint = .Hip;
+//# BEGIN SNIPPET 1
+AnyKinDriver HipDriver = {
+  DriverPos0 = {-90*pi/180};
+  DriverVel0 = {90*pi/180}/..MyStudy.tEnd;
+  §Reaction.Type = {Off};§
+  AnyRevoluteJoint &Joint = .Hip;
+};
+
+AnyKinDriver KneeDriver = {
+  DriverPos0 = {-90*pi/180};
+  DriverVel0 = {90*pi/180}/..MyStudy.tEnd;
+  §Reaction.Type = {Off};§
+  AnyRevoluteJoint &Joint = .Knee;
+};
+//# END SNIPPET 1
+
+    // Hip joint muscles
+    AnyMuscleGeneric HipFlex = {
+        MuscleModel = &MusMdl;
+        Type = NonNegative;
+        AnyRevoluteJoint &Joint = .Hip;
+        AnyMuscleModel MusMdl = {F0 = 232;};
     };
 
-    AnyKinDriver KneeDriver = {
-      DriverPos0 = {-90*pi/180};
-      DriverVel0 = {90*pi/180}/..MyStudy.tEnd;
-      AnyRevoluteJoint &Joint = .Knee;
+    AnyMuscleGeneric HipExtend = {
+        MuscleModel = &MusMdl;
+        Type = NonPositive;
+        AnyRevoluteJoint &Joint = .Hip;
+        AnyMuscleModel MusMdl = {F0 = 251;};
+    };
+
+    // Knee joint muscles
+    AnyMuscleGeneric KneeExtend = {
+        MuscleModel = &MusMdl;
+        Type = NonNegative;
+        AnyRevoluteJoint &Joint = .Knee;
+        AnyMuscleModel MusMdl = {F0 = 554;};
+    };
+
+    AnyMuscleGeneric KneeFlex = {
+        MuscleModel = &MusMdl;
+        Type = NonPositive;
+        AnyRevoluteJoint &Joint = .Knee;
+        AnyMuscleModel MusMdl = {F0 = 236;};
     };
     
   }; // MyModel

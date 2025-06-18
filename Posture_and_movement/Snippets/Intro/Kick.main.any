@@ -62,11 +62,43 @@ Main = {
       AnyRevoluteJoint &Joint = .Hip;
     };
 
-    AnyKinDriver KneeDriver = {
-      DriverPos0 = {-90*pi/180};
-      DriverVel0 = {90*pi/180}/..MyStudy.tEnd;
-      AnyRevoluteJoint &Joint = .Knee;
-    };
+//# BEGIN SNIPPET 1
+AnyKinDriver KneeDriver = {
+  DriverPos0 = {-90*pi/180};
+  DriverVel0 = {90*pi/180}/..MyStudy.tEnd;
+  AnyRevoluteJoint &Joint = .Knee;
+};
+
+§// Hip joint muscles
+AnyMuscleGeneric HipFlex = {
+    MuscleModel = &MusMdl;
+    Type = NonNegative;
+    AnyRevoluteJoint &Joint = .Hip;
+    AnyMuscleModel MusMdl = {F0 = 232;};
+};
+
+AnyMuscleGeneric HipExtend = {
+    MuscleModel = &MusMdl;
+    Type = NonPositive;
+    AnyRevoluteJoint &Joint = .Hip;
+    AnyMuscleModel MusMdl = {F0 = 251;};
+};
+
+// Knee joint muscles
+AnyMuscleGeneric KneeExtend = {
+    MuscleModel = &MusMdl;
+    Type = NonNegative;
+    AnyRevoluteJoint &Joint = .Knee;
+    AnyMuscleModel MusMdl = {F0 = 554;};
+};
+
+AnyMuscleGeneric KneeFlex = {
+    MuscleModel = &MusMdl;
+    Type = NonPositive;
+    AnyRevoluteJoint &Joint = .Knee;
+    AnyMuscleModel MusMdl = {F0 = 236;};
+};§
+//# END SNIPPET 1
     
   }; // MyModel
 
