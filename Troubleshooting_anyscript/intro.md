@@ -31,9 +31,8 @@ More precisely, you can get the following types of errors:
 
 ## Load-time errors
 
-A load-time error occurs when you load a model by pressing F7 or the
-M\<-S icon on top of each window. This causes the system to attempt a
-compilation of the model you have in the window, and any errors
+A load-time error occurs when you load a model, which causes the system to
+attempt a compilation of the model you have in the window. Any errors
 occurring in this respect are load-time errors.
 
 Load-time errors are problems with the syntax of the AnyScript model you
@@ -45,30 +44,35 @@ Each possible error that can occur is associated with an error message,
 and the system will print the message in the message window at the
 bottom of the screen, for instance like this:
 
-```console
-ERROR : C:\MyDocuments\AnyScripts\Main.any(42) : AnyVar : unexpected
+```none
+ERROR(XX.XX) : C:\MyDocuments\AnyScripts\Main.any(42) : AnyVar : unexpected
 ```
 
 or like this:
 
-```console
-ERROR : C:\MyDocuments\AnyScripts\Main.any(45) : cannot open file : DrawSetting.any
+```none
+ERROR(XX.XX) : C:\MyDocuments\AnyScripts\Main.any(45) : cannot open file : DrawSetting.any
 ```
 
 or this:
 
-```console
-ERROR : C:\MyDocuments\AnyScripts\Main.any(133) : EOF : unexpected
+```none
+ERROR(XX.XX) : C:\MyDocuments\AnyScripts\Main.any(133) : EOF : unexpected
 ```
 
-As you can see, error messages adhere to a certain structure. The first
-part after ERROR is the file in which the system encountered the error.
-Notice that this may be a different file from the one you were loading
-because the main file may spawn to include files during the loading of
-the model.
+As you can see, error messages adhere to a certain structure. It starts with the
+word `ERROR`, followed by some numbers and letters in a parentheses. This is the
+error code, which is a unique identifier for the error. Clicking on the error
+code will take you to the Reference Manual for that specific error, where you
+can find more information about it.
+
+The first part after `ERROR` is the file in which the system encountered the
+error. Notice that this may be a different file from the one you were loading
+because the main file may spawn to include files during the loading of the
+model.
 
 After the file name you find a number in parenthesis. This is the number
-of the line where the error occurred. If you double-click the file name
+of the line where the error occurred. If you click the file name
 or the number, the file opens, and the cursor is placed at the line in
 question. Be sure to click the file name or line number and not the
 error message.
@@ -96,8 +100,8 @@ example: Suppose by mistake you have included the wrong file like this:
 
 somewhere in the model. When the compiler spawns to the wrong file it is
 likely to meet statements or references to objects that do not exist.
-The compiler will report en error in WrongFile.any, but the real error
-is in the file that included WrongFile.any.
+The compiler will report en error in `WrongFile.any`, but the real error
+is in the file that included `WrongFile.any`.
 
 Here are some typical errors and their consequences:
 
@@ -110,6 +114,13 @@ closer investigation, the next line may be fully in order, and you get confused.
 The problem was really on the former line.
 
 Notice also that end braces must also have a semicolon after them.
+
+:::{note} 
+All preprocessor statements *do not* require a semicolon at the end. 
+
+Preprocessor statements are the ones that start with a `#` sign, such as
+`#include` and `#define`. 
+:::
 
 ### Unbalanced braces
 
@@ -133,7 +144,8 @@ will get a syntax error.
 
 ### Mix-up of of letters
 
-Beware that there is a difference between the letter 'O' and the digit zero, '0', and the letter 'l' and the digit one, '1'.
+Beware that there is a difference between the letter 'O' and the digit zero,
+'0', and the letter 'l' and the digit one, '1'.
 
 ### Inconsistent use of capitals
 
@@ -144,7 +156,8 @@ MyVariable = 1;
 Myvariable = 1;
 ```
 
-This also means that predefined class names such as AnyVar or AnyFolder must be written with correct capitalization.
+This also means that predefined class names such as `AnyVar` or `AnyFolder` must
+be written with correct capitalization.
 
 ### Missing reference operator
 
@@ -156,7 +169,7 @@ AnyFolder MyFolderCopy = MyFolder;
 
 you will get the error message:
 
-```console
+```none
 Folder assignment expected for this object.
 ```
 
@@ -185,11 +198,11 @@ AnySeg arm = {
 
 will produce the error:
 
-```console
+```none
 Obligatory initialization of member : AnyVec3 Jii is missing.
 ```
 
-The reason is that AnySeg has a property called Jii which must be given a value
+The reason is that `AnySeg` has a property called `Jii` which must be given a value
 before the definition is complete. Similarly, some objects have properties that
 are untouchable. This declaration:
 
@@ -201,16 +214,16 @@ AnySeg arm = {
 
 also causes an error:
 
-```console
+```none
 t : Initialization denied.
 ```
 
-because t is a protected variable. It is set automatically by the system and
+Because `t` is a protected variable. It is set automatically by the system and
 cannot be assigned a value by the user.
 
 ## Run-time errors
 
 Run-time errors occur during analysis of a successfully loaded model.
 Their nature and remedies are completely dependent on the nature of the
-study. Please refer to the tutorial "{doc}`A study of studies </A_study_of_studies/intro>`" for further
-information.
+study. Please refer to the Reference Manual for the specific error
+messages you may encounter.
