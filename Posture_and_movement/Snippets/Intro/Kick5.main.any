@@ -1,0 +1,171 @@
+// This model optimizes a football kicking motion of a two-segment
+// leg. The objective is to obtain maximum impact velocity within the
+// given strength of the leg.
+
+Main = {
+
+  // The model
+  AnyFolder MyModel = {
+
+    // Global Reference Frame
+    AnyFixedRefFrame GlobalRef = {
+      AnyDrawRefFrame drw = {
+        ScaleXYZ = {1,1,1}/5;
+      };
+    };  // Global reference frame
+    
+    // The thigh and shank segments both presume a center of
+    // mass placed one third of the length from their proximal 
+    // ends
+    AnySeg Thigh = {
+      AnyVar Length = 0.45;
+      Mass = 7.5;
+      Jii = Mass*{1,0.05,1}/100;
+      AnyDrawSeg drw = {};
+      r0 = {0,-Length/2,0};
+      AnyRefNode Hip = {
+        sRel = {0,.Length/3,0};
+      };
+      AnyRefNode Knee = {
+        sRel = {0,-2*.Length/3,0};
+      };
+    };
+
+    AnySeg Shank = {
+      AnyVar Length = 0.50;
+      Mass = 3.5;
+      Jii = Mass*{1,0.05,1}/100;
+      r0 = {0,-.Thigh.Length-Length/2,0};
+      AnyDrawSeg drw = {};
+      AnyRefNode Knee = {
+        sRel = {0,.Length/3,0};
+      };
+      AnyRefNode Foot = {
+        sRel = {0,-2*.Length/3,0};
+      };
+    };
+    
+    // We presume 2-D conditions and therefore use
+    // revolute joints for the hip as well as the knee.
+    AnyRevoluteJoint Hip = {
+      AnyRefFrame &Ground = .GlobalRef;
+      AnyRefFrame &Thigh = .Thigh.Hip;
+    };
+    AnyRevoluteJoint Knee = {
+      AnyRefFrame &Ground = .Thigh.Knee;
+      AnyRefFrame &Thigh = .Shank.Knee;
+    };
+    
+    // AnyKinDriver HipDriver = {
+    //   DriverPos0 = {-90*pi/180};
+    //   DriverVel0 = {90*pi/180}/..MyStudy.tEnd;
+    //   Reaction.Type = {Off};
+    //   AnyRevoluteJoint &Joint = .Hip;
+    // };
+
+    // AnyKinDriver KneeDriver = {
+    //   DriverPos0 = {-90*pi/180};
+    //   DriverVel0 = {90*pi/180}/..MyStudy.tEnd;
+    //   Reaction.Type = {Off};
+    //   AnyRevoluteJoint &Joint = .Knee;
+    // };
+
+    // Some initial guesses for the hip and knee angle
+    // movements.
+    AnyKinEqInterPolDriver HipDriver = {
+      T = {0, 0.25, 0.50, 0.75, 1}*..MyStudy.tEnd;
+      Data = {{-30, -30, -15, 0, 30}}*pi/180;
+      Type = Bspline;
+      BsplineOrder = 4;
+      AnyRevoluteJoint &Joint = .Hip;
+      Reaction.Type = {Off};
+    };
+
+    AnyKinEqInterPolDriver KneeDriver = {
+      T = {0, 0.25, 0.50, 0.75, 1}*..MyStudy.tEnd;
+      Data = {{-70, -70, -50, -40, -30}}*pi/180;
+      Type = Bspline;
+      BsplineOrder = 4;
+      AnyRevoluteJoint &Joint = .Knee;
+      Reaction.Type = {Off};
+    };
+
+    // Hip joint muscles
+    AnyMuscleGeneric HipFlex = {
+        MuscleModel = &MusMdl;
+        Type = NonNegative;
+        AnyRevoluteJoint &Joint = .Hip;
+        AnyMuscleModel MusMdl = {F0 = 232;};
+    };
+
+    AnyMuscleGeneric HipExtend = {
+        MuscleModel = &MusMdl;
+        Type = NonPositive;
+        AnyRevoluteJoint &Joint = .Hip;
+        AnyMuscleModel MusMdl = {F0 = 251;};
+    };
+
+    // Knee joint muscles
+    AnyMuscleGeneric KneeExtend = {
+        MuscleModel = &MusMdl;
+        Type = NonNegative;
+        AnyRevoluteJoint &Joint = .Knee;
+        AnyMuscleModel MusMdl = {F0 = 554;};
+    };
+
+    AnyMuscleGeneric KneeFlex = {
+        MuscleModel = &MusMdl;
+        Type = NonPositive;
+        AnyRevoluteJoint &Joint = .Knee;
+        AnyMuscleModel MusMdl = {F0 = 236;};
+    };
+    
+  }; // MyModel
+
+  // The study: Operations to be performed on the model
+  AnyBodyStudy MyStudy = {
+    AnyFolder &Model = .MyModel;
+    InverseDynamics.Criterion.Type = MR_MinMaxStrict;
+    Gravity = {0.0, -9.81, 0.0};
+    nStep = 50;
+    tEnd = 0.2;
+    AnyOutputFun BallVel= {
+      Val = 1.5*Main.MyModel.Shank.Mass*Main.MyModel.Shank.rDot[0]/(0.2+Main.MyModel.Shank.Mass);
+    };
+    AnyOutputFun MaxAct = {
+      Val = .MaxMuscleActivity;
+    };
+  };
+
+// Optimize the ball velocity after the kick.
+AnyOptStudy OptStudy = {
+  LogFile = "OptStudy.log";
+  MaxIterationStep = 25;
+
+  Analysis = {
+    AnyOperation &op = ..MyStudy.InverseDynamics;
+  };
+
+  // Constraint: All muscle activities below 100%
+  AnyDesMeasure MaxActivity = {
+    Val = max(..MyStudy.MaxAct()-1);
+    Type = LessThanZero;
+  };
+
+//# BEGIN SNIPPET 1
+  // Objective function: Max horizontal velocity of the foot
+  AnyDesMeasure KickVel = {
+    Val = -max(..MyStudy.BallVel());
+    Type = ObjectiveFun;
+  };
+
+  §AnyVar slack = 60*pi/180;
+
+  AnyDesVar Knee4 = {
+    Val = Main.MyModel.KneeDriver.Data[0][3];
+    Min = Val - .slack;
+    Max = Val + .slack;
+  };§
+};
+//# END SNIPPET 1
+};  // Main
