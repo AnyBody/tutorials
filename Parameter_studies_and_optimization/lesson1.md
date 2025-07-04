@@ -17,16 +17,17 @@ Or you may be interested in knowing how the seat height and horizontal
 position influence the muscle effort and metabolism of the rider. This
 is precisely what we shall do in this tutorial. To make life a bit
 easier for you, we have prepared a bicycle model you can download and
-play around with. {download}`Please click here to download the zip file ParamBike.zip <Downloads/ParamBike.zip>` and unpack it to some
-pertinent place on your hard disk.
+play around with. {download}`Please click here to download the zip file ParamBike.zip <Downloads/ParamBike.zip>` 
+and unpack it to some pertinent place on your hard disk.
 
-The bicycle model is pretty much the {ref}`2D Bike <ammr:sphx_glr_auto_examples_Sports_plot_BikeModel2D.py>` that you may know from the
+The bicycle model is pretty much the {ref}`2D Bike <ammr:sphx_glr_auto_examples_Sports_plot_BikeModel2D.py>` 
+that you may know from the
 {doc}`AnyBody Managed Model Repository <ammr:index>`.
 
 ```{image} _static/Defining_a_parameter/bike2D.png
 :alt: 2D bike model
-:class: bg-primary
 :align: center
+:width: 80%
 ```
 
 As you can see the model is very simple. It has two legs and a pelvis
@@ -96,9 +97,10 @@ defined.
 :alt: AnyScript class inserter
 :class: bg-primary
 :align: center
+:width: 35%
 ```
 
-A parameter study is as the name indicates a study. Therefore its
+A parameter study is, as the name indicates, a study. Therefore its
 natural position in the model is below the existing `AnyBodyStudy`. We can
 insert a new parameter study by means of the object inserter mechanism
 from the class tree. Place the cursor below the definition of the
@@ -261,9 +263,9 @@ the final `AnyParamStudy` looks like this:
 
 ## Running and Visualizing the Parameter Study
 
-It is finally time try it out. If you have typed everything correctly,
-then you should be able to load the model. Then find the `ParamStudy.ParameterStudy` operation in
-the operation dropdown:
+It is finally time to try it out. If you have typed everything correctly, then you
+should be able to load the model. Then find the `ParamStudy.ParameterStudy`
+operation in the operation dropdown:
 
 ```{image} _static/Defining_a_parameter/operation_select.png
 :alt: Operation selection
@@ -273,8 +275,8 @@ the operation dropdown:
 
 Make sure you have a Model View window open. With the ParameterStudy select in
 the operation drop-down click the "Run" botton. You should see the model starting to
-cycle, and if you watch the vicinity of the saddle carefully, you will
-see that the hip joint is changing its position on a 5 x 5 grid. With a
+cycle, and if you watch the saddle and hip joint position, you will
+see that they are changing their position on a 5 x 5 grid. With a
 reasonably fast computer it should take a minute or less to do the 25
 analyses after which the computations stop.
 
@@ -296,7 +298,7 @@ you will notice that the system rotates just like an ordinary Model
 View. 
 
 **👉 Now** expand the `Model` node in the tree until you can click the
-ParamStudy->Output->MaxAct->Val property. The coordinate system
+`ParamStudy->Output->MaxAct->Val` property. The coordinate system
 automatically attains a second abscissa axis and you can see a nice
 surface like this:
 
@@ -306,10 +308,10 @@ surface like this:
 :align: center
 ```
 
-The surface shows the maximum muscle activity over the cycle for each of
-the 25 combinations of parameters and provides a very nice overview of
-the behavior of the model. The surface reveals that the highest and most
-backward position results in the lowest muscle activity. Why not try higher and more backward,
+The surface shows the maximum muscle activity over the cycle for each of the 25
+combinations of parameters and provides a very nice overview of the behavior of
+the model. The surface reveals that the highest and most backward position
+results in the lowest muscle activity. Why not try higher and more backward,
 then? It is very simple to do this:
 
 ```{literalinclude} Snippets/lesson1/2Dbike-7/BikeModel2D.main.any
@@ -317,6 +319,14 @@ then? It is very simple to do this:
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
 ```
+
+:::{note}
+:class: margin 
+By looking at the bike in the Model View you will notice that the seat placement
+starts looking a bit odd and unrealistic at the outer most positions in the
+parameter study. In reality these positions could not be reached, but we don't
+take this into account in our model.
+:::
 
 When you re-run the parameter study, things will go well in the
 beginning, but towards the end of the 25 combinations you may notice
@@ -336,7 +346,7 @@ you go back to the AnyChart View and study the new surface:
 :alt: AnyChart 3 view
 :class: bg-primary
 :align: center
-:width: 80%
+:width: 70%
 ```
 
 The surface is now completely dominated by the one combination, which is
@@ -345,14 +355,14 @@ you change the scale of the value axis. This and all other settings are
 available if you open the Property Window
 ![chartsettings.png](_static/Defining_a_parameter/chartsettings.png)
 in the toolbar. Doing so will produce a window with a tree view
-in which you can select `ValueAxis`->\`\`Max\`\` and `ValueAxis`->\`\`Min\`\`. Try setting Max to 0.30 and Min to 0.15 and you
-should obtain the following:
+in which you can select *ValueAxis* -> *Max* and *ValueAxis* -> *Min*. 
+Try setting Max to 0.30 and Min to 0.15 and you should obtain the following:
 
 ```{image} _static/Defining_a_parameter/anychart4.png
 :alt: AnyChart 4 view
 :class: bg-primary
 :align: center
-:width: 80%
+:width: 70%
 ```
 
 What this study reveals is that in terms of muscle activity to drive the
@@ -382,8 +392,8 @@ simple to add up the muscle metabolisms in the AnyBody study:
 
 Notice that we have defined the `r` and `l` variables for convenience to
 limit the size of the expressions. If you run the **InverseDynamics Analysis**
-(go on and try!) you will find the new variable mentioned in the list of
-output. Plotting 'Pmet' as a function of 't' should result in the following chart:
+(go on and try) you will find the new variable mentioned in the list of
+output. Plotting `Pmet` as a function of `t` should result in the following chart:
 
 ```{image} _static/Defining_a_parameter/metabolism_curve.png
 :alt: AnyChart 4 view
@@ -405,7 +415,7 @@ of the `Pmet_total` variable before is has actually been computed:
 
 The second missing element is the actual integration of the function.
 This we perform in the parameter study where we define the
-AnyDesMeasure:
+`AnyDesMeasure`:
 
 ```{literalinclude} Snippets/lesson1/2Dbike-8/BikeModel2D.main.any
 :language: AnyScriptDoc
@@ -421,7 +431,7 @@ Notice the other two changes: We have changed the variable limits back
 to what they were before and we have decided to be a little more
 adventurous and have specified 10 variable steps in each direction. It
 is time to run the parameter study again. Now it is recemmended to turn off the model 
-view, in order to spped up the computation. The new Metab variable is now
+view, in order to speed up the computation. The new Metab variable is now
 available in the list under the `ParamStudy` in the Chart window and
 can be plotted as a function of the saddle height and position:
 
