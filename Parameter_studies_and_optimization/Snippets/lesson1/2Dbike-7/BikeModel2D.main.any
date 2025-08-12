@@ -20,10 +20,10 @@ Main = {
   AnyFolder BikeParameters = {
     
     // Geometry parameters
-    AnyVar PedalArmLength = 0.17;  //Length of pedal arm
-    AnyVar PedalArmWidth = 0.106; //Horizontal distance between left and right connecting point between foot and pedal
-    AnyVar SaddleHeight = 0.66 ;  //Height of hip joint measured vertically from the crank
-    AnyVar SaddlePos = -0.16;     //Horizontal pos of hipjoint measured from the crank
+    AnyVar PedalArmLength = 0.19;  //Length of pedal arm
+    AnyVar PedalArmWidth = 0.14; //Horizontal distance between left and right connecting point between foot and pedal
+    AnyVar SaddleHeight = 0.60;  //Height of hip joint measured vertically from the crank
+    AnyVar SaddlePos = -0.20;     //Horizontal pos of hipjoint measured from the crank
     
     // Loading parameters
     AnyVar Cadence = 80.0;   //Cadence in RPM 
@@ -76,43 +76,45 @@ AnyBodyStudy Study = {
   
   Gravity = {0.0, -9.81, 0.0};
   tEnd = Main.BikeParameters.T;
+  nStep = 50;
 
   §// Useful variables for the optimization
   AnyFolder &r = Main.Model.Leg2D.Right.Mus;
   AnyFolder &l = Main.Model.Leg2D.Left.Mus;
-  AnyVar Pmet_total = r.Ham.Pmet+r.BiFemSh.Pmet+r.GlutMax.Pmet+r.RectFem.Pmet+r.Vasti.Pmet+r.Gas.Pmet+r.Sol.Pmet+r.TibAnt.Pmet+l.Ham.Pmet+l.BiFemSh.Pmet+l.GlutMax.Pmet+l.RectFem.Pmet+l.Vasti.Pmet+l.Gas.Pmet+l.Sol.Pmet+l.TibAnt.Pmet;
- § 
+  AnyVar Pmet_total = r.Ham.Pmet+r.BiFemSh.Pmet+r.GlutMax.Pmet+r.RectFem.Pmet+r.Vasti.Pmet+r.Gas.Pmet+r.Sol.Pmet+r.TibAnt.Pmet+l.Ham.Pmet+l.BiFemSh.Pmet+l.GlutMax.Pmet+l.RectFem.Pmet+l.Vasti.Pmet+l.Gas.Pmet+l.Sol.Pmet+l.TibAnt.Pmet;§
+   
   AnyOutputFun MaxAct = {
     Val = .MaxMuscleActivity;
   };
 };
 //# END SNIPPET 2
 
+
 AnyParamStudy ParamStudy = {
   Analysis = {
     AnyOperation &Operation = ..Study.InverseDynamics;
   };
   nStep = {5,5};
-  
-//# BEGIN SNIPPET 1
+  //# BEGIN SNIPPET 1
 AnyDesVar SaddleHeight = {
   Val = Main.BikeParameters.SaddleHeight;
-  Min = 0.61;
-  Max = 0.69 §+ 0.02§;
+  Min = 0.57;
+  Max = 0.66 §+ 0.01§;
 };
 AnyDesVar SaddlePos = {
   Val = Main.BikeParameters.SaddlePos;
-  Min = -0.20 §- 0.03§;
-  Max = -0.05;
+  Min = -0.22 §- 0.044§;
+  Max = -0.12;
 };
-//# END SNIPPET 1
+  //# END SNIPPET 1
   AnyDesMeasure MaxAct = {
     Val = max(..Study.MaxAct());
   };
 };
+
   
   // Include an operation sequence to run all required steps of your application (see Operations tab)
-    #include "Model\RunAppSequence.any"  
+  #include "Model\RunAppSequence.any"  
   
 }; // Main
 
