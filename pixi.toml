@@ -3,7 +3,7 @@ name = "anybody-tutorial"
 version = "0.1.0"
 description = "Python enviroments for AnyBody's Tutorials"
 authors = ["Morten Enemark Lund <mel@anybodytech.com>"]
-channels = ["https://prefix.dev/conda-forge", "https://prefix.dev/anybody"]
+channels = ["https://prefix.dev/conda-forge", "https://prefix.dev/anybody", "https://prefix.dev/anybody-beta"]
 
 platforms = ["win-64","linux-64"]
 
@@ -51,7 +51,7 @@ pytest-xdist = "*"
 anypytools = "*"
 debugpy = "*"
 pytest-split = "*"
-anybodycon = "==8.1.0"
+anybodycon = "==8.1.4beta2"
 
 [feature.test.target.win-64.tasks]
 pytest = "pytest"
