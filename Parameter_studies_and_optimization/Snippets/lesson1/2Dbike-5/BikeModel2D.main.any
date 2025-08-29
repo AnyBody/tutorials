@@ -1,3 +1,5 @@
+//expect_errors = ["';' unexpected", "Model loading skipped"]
+
 #include "libdef.any"
 
 /**2-D bicyle model.
@@ -20,10 +22,10 @@ Main = {
   AnyFolder BikeParameters = {
     
     // Geometry parameters
-    AnyVar PedalArmLength = 0.17;  //Length of pedal arm
-    AnyVar PedalArmWidth = 0.106; //Horizontal distance between left and right connecting point between foot and pedal
-    AnyVar SaddleHeight = 0.66 ;  //Height of hip joint measured vertically from the crank
-    AnyVar SaddlePos = -0.16;     //Horizontal pos of hipjoint measured from the crank
+    AnyVar PedalArmLength = 0.19;  //Length of pedal arm
+    AnyVar PedalArmWidth = 0.14; //Horizontal distance between left and right connecting point between foot and pedal
+    AnyVar SaddleHeight = 0.60;  //Height of hip joint measured vertically from the crank
+    AnyVar SaddlePos = -0.20;     //Horizontal pos of hipjoint measured from the crank
     
     // Loading parameters
     AnyVar Cadence = 80.0;   //Cadence in RPM 
@@ -70,12 +72,12 @@ Main = {
   };
   
   // The study: Operations to be performed on the model
-
   AnyBodyStudy Study = {
     AnyFolder &Model = .Model;
     
     Gravity = {0.0, -9.81, 0.0};
     tEnd = Main.BikeParameters.T;
+    nStep = 50;
     AnyOutputFun MaxAct = {
       Val = .MaxMuscleActivity;
     };
@@ -85,27 +87,26 @@ AnyParamStudy ParamStudy = {
   Analysis = {
     AnyOperation &Operation = ..Study.InverseDynamics;
   };
-  nStep = {5,5}; //This definition of steps is not presented yet in tutorial 
+  nStep = ;
   AnyDesVar SaddleHeight = {
     Val = Main.BikeParameters.SaddleHeight;
-    Min = 0.61;
-    Max = 0.69;
+    Min = 0.57;
+    Max = 0.66;
   };
 //# BEGIN SNIPPET 1
 AnyDesVar SaddlePos = {
   Val = Main.BikeParameters.SaddlePos;
-  Min = -0.20;
-  Max = -0.05;
+  Min = -0.22;
+  Max = -0.12;
 };
-§AnyDesMeasure MaxAct = {
+AnyDesMeasure §MaxAct = {
   Val = max(..Study.MaxAct());
 };§
 //# END SNIPPET 1
-  //AnyDesMeasure &<Insert name1> = <Insert object reference (or full object definition)>; You can make any number of AnyDesMeasure objects!
 };
   
   // Include an operation sequence to run all required steps of your application (see Operations tab)
-    #include "Model\RunAppSequence.any"  
+  #include "Model\RunAppSequence.any"  
   
 }; // Main
 
