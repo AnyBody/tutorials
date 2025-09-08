@@ -106,6 +106,7 @@ All the other muscles are defined in the same way. Your model should resemble th
 :alt: Upper and lower arm with muscles
 :class: bg-primary
 :align: center
+:width: 50%
 ```
 
 ## The InitialConditions analysis
@@ -122,6 +123,7 @@ The assembled model should resemble the following figure.
 :alt: Upper and lower arm initial conditions
 :class: bg-primary
 :align: center
+:width: 50%
 ```
 
 (driver-reactions)=
@@ -182,6 +184,7 @@ You should get a curve that looks like the one below.
 :alt: Brachialis muscle force
 :class: bg-primary
 :align: center
+:width: 75%
 ```
 
 The drop in muscle force with movement progression is due to the decreasing moment arm of the
@@ -193,6 +196,7 @@ If you look at the muscle force in the BicepsLong, you see a different pattern:
 :alt: Biceps long muscle force
 :class: bg-primary
 :align: center
+:width: 75%
 ```
 
 This muscle's force increases during the movement because this muscle supports both, the shoulder and the
@@ -229,6 +233,7 @@ should see this:
 :alt: Biceps long with added force
 :class: bg-primary
 :align: center
+:width: 75%
 ```
 
 :::{note}

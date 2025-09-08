@@ -21,7 +21,10 @@ AnyFixedRefFrame GlobalRef = {
       Axes0 = RotMat(-90*pi/180, z);
       Mass = 2;
       Jii = {0.001, 0.01, 0.01};
-      AnyDrawSeg drw = {};
+      viewRefFrame.Visible = On;
+      viewNodes.Visible = On;
+      viewInertia.Visible = On;
+
       AnyRefNode ShoulderNode = {
         sRel = {-0.2,0,0};
       };
@@ -53,6 +56,10 @@ AnyFixedRefFrame GlobalRef = {
       r0 = {0.3, 0.0, 0.0};
       Mass = 2.0;
       Jii = {0.001,0.01,0.01};
+      viewRefFrame.Visible = On;
+      viewNodes.Visible = On;
+      viewInertia.Visible = On;
+
       AnyRefNode ElbowNode = {
         sRel = {-0.2,0,0};
       };
@@ -71,7 +78,6 @@ AnyFixedRefFrame GlobalRef = {
       AnyRefNode Triceps = {
         sRel = {-0.25,0,-0.05};
       };
-      AnyDrawSeg DrwSeg = {};
    }; // ForeArm
    
    // Todo: Add the model elements such as

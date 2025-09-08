@@ -4,28 +4,28 @@ Main = {
   // The actual body model goes in this folder
   AnyFolder ArmModel = {
   
-  //# BEGIN SNIPPET 1
+//# BEGIN SNIPPET 1
 // Global Reference Frame
 AnyFixedRefFrame GlobalRef = {
-  §AnyDrawRefFrame DrwGlobalRef = {};
+  §viewRefFrame.Visible = On;
 
-   AnyRefNode Shoulder = {
-     sRel = {0,0,0};
-   };
-   AnyRefNode DeltodeusA = {
-     sRel = {0.05,0,0};
-   };
-   AnyRefNode DeltodeusB = {
-     sRel = {-0.05,0,0};
-   };
-   AnyRefNode BicepsLong = {
-     sRel = {0.1,0,0};
-   };
-   AnyRefNode TricepsLong = {
-     sRel = {-0.1,0,0};
-   };§ 
+  AnyRefNode Shoulder = {
+    sRel = {0,0,0};
+  };
+  AnyRefNode DeltodeusA = {
+    sRel = {0.05,0,0};
+  };
+  AnyRefNode DeltodeusB = {
+    sRel = {-0.05,0,0};
+  };
+  AnyRefNode BicepsLong = {
+    sRel = {0.1,0,0};
+  };
+  AnyRefNode TricepsLong = {
+    sRel = {-0.1,0,0};
+  };§ 
 }; // Global Reference Frame
-  //# END SNIPPET 1
+//# END SNIPPET 1
 
   // Segments
   AnyFolder Segs = {
@@ -36,7 +36,10 @@ AnyFixedRefFrame GlobalRef = {
       Axes0 = RotMat(-90*pi/180, z);
       Mass = 2;
       Jii = {0.001, 0.01, 0.01};
-      AnyDrawSeg drw = {};
+      viewRefFrame.Visible = On;
+      viewNodes.Visible = On;
+      viewInertia.Visible = On;
+
       AnyRefNode ShoulderNode = {
         sRel = {-0.2,0,0};
       };
@@ -68,6 +71,10 @@ AnyFixedRefFrame GlobalRef = {
       r0 = {0.3, 0.0, 0.0};
       Mass = 2.0;
       Jii = {0.001,0.01,0.01};
+      viewRefFrame.Visible = On;
+      viewNodes.Visible = On;
+      viewInertia.Visible = On;
+      
       AnyRefNode ElbowNode = {
         sRel = {-0.2,0,0};
       };
@@ -86,7 +93,6 @@ AnyFixedRefFrame GlobalRef = {
       AnyRefNode Triceps = {
         sRel = {-0.25,0,-0.05};
       };
-      AnyDrawSeg DrwSeg = {};
    }; // ForeArm
    
    // Todo: Add the model elements such as

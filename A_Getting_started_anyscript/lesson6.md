@@ -32,14 +32,11 @@ option during the export process.
 Since the bone models shown in the above tutorial may be a bit too elaborate for a
 basic tutorial, we will demonstrate this by adding an STL file for the dumbbell in the arm model.
 
-Download the dumbbell model {download}`here <Downloads/dumbbell.stl>`.
+Download the dumbbell model {download}`here <Downloads/dumbbell.stl>`
+and save the STL file in the same folder as your AnyBody main script.
 
 The dumbbell STL should be added to the forearm, so add the following code - which imports the STL
-file into AnyBody - within the "ArmModel.Segs.ForeArm" object:
-
-:::{important}
-The STL file must be saved in the same folder as the AnyBody script. 
-:::
+file into AnyBody - within the `ArmModel.Segs.ForeArm` object:
 
 ```{literalinclude} Snippets/lesson6/snip.NewModel.main-1.any
 :language: AnyScriptDoc
@@ -47,7 +44,7 @@ The STL file must be saved in the same folder as the AnyBody script.
 :end-before: //# END SNIPPET 1
 ```
 
-Re-loading the model will result in a fully gray model view.
+Re-loading the model now will *not* result in a sensible model view.
 
 This is because the STL file's units was millimeters, whereas the arm model
 is in meters. This means the dumbbell's STL swallowed up the entire arm model in the model view.
@@ -59,13 +56,15 @@ We will therefore scale the dumbbell model down a 1000 times, in the following w
 :end-before: //# END SNIPPET 1
 ```
 
-Post re-loading, your model should resemble the figure below.The dumbbell is visible now and has the right size, but
-it is sitting at the center of mass of the lower arm rather than at the hand, and is not oriented correctly.
+Post re-loading, your model should resemble the figure below. The dumbbell is
+visible now and has the right size, but it is sitting at the center of mass of
+the lower arm rather than at the hand, and is not oriented correctly.
 
-```{image} _static/lesson6/image3.jpeg
+```{image} _static/lesson6/image3.png
 :alt: Dumbbell inserted
 :class: bg-primary
 :align: center
+:width: 50%
 ```
 
 ## Relocating your STL object
@@ -86,10 +85,11 @@ from the "ForeArm" folder to the "PalmNode" subfolder. Cut-paste the entire code
 Upon reloading, we see that the dumbbell attached to the
 right location, but is still not oriented correctly.
 
-```{image} _static/lesson6/image4.jpeg
+```{image} _static/lesson6/image4.png
 :alt: Dumbbell attached at Palm
 :class: bg-primary
 :align: center
+:width: 50%
 ```
 
 ## Reorienting your STL object
@@ -126,12 +126,14 @@ The dumbbell's color can be changed adding the property RGB to the STL file refe
 :end-before: //# END SNIPPET 1
 ```
 
-The RGB property specifies the blend of colors Red, Green, and Blue on a normalized scale of 0 to 1.
+The RGB property specifies the blend of colors Red, Green, and Blue on a
+normalized scale of 0 to 1.
 
-```{image} _static/lesson6/image5.jpeg
+```{image} _static/lesson6/image5.png
 :alt: Final dumbbell placement
 :class: bg-primary
 :align: center
+:width: 50%
 ```
 
 This completes the Getting Started with AnyScript tutorial. The final

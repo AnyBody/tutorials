@@ -8,7 +8,7 @@ sd_hide_title: true
 :class: sd-fs-4
 ```
 
-If you are a new user, please spend 7 minutes to watch the introductory video below before beginning the tutorials.
+If you are a new user, please spend 5 minutes to watch the introductory video below before beginning the tutorials.
 
 :::{only} offline 
 

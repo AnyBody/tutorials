@@ -5,12 +5,11 @@ Main = {
   AnyFolder ArmModel = {
   
     // Global Reference Frame
-    AnyFixedRefFrame GlobalRef = {
-      //# BEGIN SNIPPET 1
-AnyDrawRefFrame DrwGlobalRef = {
-  §ScaleXYZ = {0.1, 0.1, 0.1};
-  RGB = {0,1,0};§
-};
+//# BEGIN SNIPPET 1
+AnyFixedRefFrame GlobalRef = {
+  viewRefFrame.Visible = On;
+  §viewRefFrame.ScaleXYZ = {0.1, 0.1, 0.1};
+  viewRefFrame.RGB = {0,1,0};§
 //# END SNIPPET 1
 
       AnyRefNode Shoulder = {
@@ -39,7 +38,10 @@ AnyDrawRefFrame DrwGlobalRef = {
       Axes0 = RotMat(-90*pi/180, z);
       Mass = 2;
       Jii = {0.001, 0.01, 0.01};
-      AnyDrawSeg drw = {};
+      viewRefFrame.Visible = On;
+      viewNodes.Visible = On;
+      viewInertia.Visible = On;
+
       AnyRefNode ShoulderNode = {
         sRel = {-0.2,0,0};
       };
@@ -71,6 +73,10 @@ AnyDrawRefFrame DrwGlobalRef = {
       r0 = {0.3, 0.0, 0.0};
       Mass = 2.0;
       Jii = {0.001,0.01,0.01};
+      viewRefFrame.Visible = On;
+      viewNodes.Visible = On;
+      viewInertia.Visible = On;
+
       AnyRefNode ElbowNode = {
         sRel = {-0.2,0,0};
       };
@@ -89,7 +95,6 @@ AnyDrawRefFrame DrwGlobalRef = {
       AnyRefNode Triceps = {
         sRel = {-0.25,0,-0.05};
       };
-      AnyDrawSeg DrwSeg = {};
    }; // ForeArm
    
    // Todo: Add the model elements such as
