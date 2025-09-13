@@ -11,15 +11,18 @@ in the AMMR. It allows the usage of built-in, user-defined anthropometric scalin
 laws as well as individual segment morphing.
 
 :::{seealso}
-The AMMR documentation for instructions on how to configure the model to
-use the built-in scaling laws and provide general anthropometric information.
+In the [AMMR documentation](https://anyscript.org/ammr/Scaling/intro.html) you will find 
+instructions on how to configure the model to use the built-in *scaling laws* 
+and provide general anthropometric information.
 :::
 
 This tutorial introduces an advanced procedure of model personalization by means of
 nonlinear morphing for both, bone surface and relevant soft tissue attachment sites,
 to take a subject-specific shape. In this example, bone geometries segmented from medical
 images will be used to demonstrate how geometrically accurate subject-specific models can
-be constructed.
+be constructed. Before proceeding with this tutorial, it is recommended that you are familiar
+with the basic scaling laws and concepts presented in the 
+[AMMR documentation](https://anyscript.org/ammr/Scaling/intro.html).
 
 ::::{if-builder:: html
 ```{rubric} Tutorial content
