@@ -40,7 +40,7 @@ Let us configure this example to use ScalingStandard. We need to define
 the scaling configuration block. With this setting, the model is now scaled to
 the generic size. 
 
-```{literalinclude} Snippets/lesson2/StandingMan1/StandingModelScalingDisplay.Main.any
+```{literalinclude} Snippets/lesson2/StandingMan1/StandingModelScalingDisplay.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -52,7 +52,7 @@ modifications related to individual segment should be be done.
 This file is already present in the example and you can include it as shown
 below:
 
-```{literalinclude} Snippets/lesson2/StandingMan1/StandingModelScalingDisplay.Main.any
+```{literalinclude} Snippets/lesson2/StandingMan1/StandingModelScalingDisplay.main.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 2
 :end-before: //# END SNIPPET 2
