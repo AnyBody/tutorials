@@ -121,18 +121,18 @@ AnyRefNode PalmNode = {
     AnyFolder Drivers = {
       //---------------------------------
 
-      AnyKinEqSimpleDriver ShoulderMotion = {
+      AnyKinDriver ShoulderMotion = {
         AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-        DriverPos = {-100*pi/180};
-        DriverVel = {30*pi/180};
+        DriverPos0 = {-100*pi/180};
+        DriverVel0 = {30*pi/180};
         Reaction.Type = {Off};
       }; // Shoulder driver
-      
+
       //---------------------------------
-      AnyKinEqSimpleDriver ElbowMotion = {
+      AnyKinDriver ElbowMotion = {
         AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-        DriverPos = {90*pi/180};
-        DriverVel = {45*pi/180};
+        DriverPos0 = {90*pi/180};
+        DriverVel0 = {45*pi/180};
         Reaction.Type = {Off};
       }; // Elbow driver
     }; // Driver folder

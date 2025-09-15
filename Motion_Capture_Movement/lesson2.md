@@ -19,7 +19,7 @@ A hinged pendulum, like a forearm hinged at the elbow, will have just one DoF,
 hence only one driver is needed to drive its motion. The class `AnyKinMotion` with
 a polynomial driver function is already inserted in the model as its driver.
 Refer to Lesson 5 in the tutorial {doc}`How to Write AnyScript </A_Getting_started_anyscript/index>` 
-for more informaiton about this driver. 
+for more information about this driver. 
 
 In the following we will drive the pendulum using motion capture data instead
 of using this driver.
