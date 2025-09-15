@@ -55,7 +55,11 @@ motions between the two bones which will really help us understand the
 detailed functions of real joints. This is what the model will look
 like:
 
-![Simple knee](_static/fdk/image1.png)
+```{image} _static/fdk/image1.png
+:alt: Simple knee
+:align: center
+:width: 60%
+```
 
 This model is a knee joint extended by a single quadriceps muscle. The
 joint, however, is somewhat different from the idealized “engineering”

@@ -102,8 +102,8 @@ Main = {
   // The study: Operations to be performed on the model
   AnyBodyStudy ArmStudy = {
     AnyFolder &Model = .ArmModel;
-//    InverseDynamics.Criterion.Type = MR_MinMaxStrict;
-InverseDynamics.Criterion.Type = MR_Quadratic;
+    //InverseDynamics.Criterion.Type = MR_MinMaxStrict;
+    InverseDynamics.Criterion.Type = MR_Quadratic;
     Gravity = {0.0, -9.81, 0.0};
   };
 

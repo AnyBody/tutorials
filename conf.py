@@ -136,7 +136,7 @@ pygments_style = "AnyScript"
 
 current_year = os.environ.get("YEAR", datetime.now().year)
 
-ams_version = os.environ.get("AMS_VERSION", "8.1.0")
+ams_version = os.environ.get("AMS_VERSION", "8.1.1")
 if not re.match(r"^\d\.\d\.\d", ams_version):
     raise ValueError("Wrong format for AMS version, environment variable")
 ams_version_short = ams_version.rpartition(".")[0]
@@ -184,12 +184,12 @@ myst_substitutions = {
 nb_execution_timeout = 150
 nb_execution_mode = "auto"
 
-if not sys.platform.startswith("win"):
+if not tags.has("build-notebooks"):
     nb_execution_excludepatterns = [
         # Exclude the parameter opt from automatic execution.
         # It will not run on non-Windows machines since it needs the AnyBody
         # conda package
-        'Parameter_studies_and_optimization/lesson3/lesson3.ipynb'
+        '**/*.ipynb',
     ]
 
 

@@ -56,15 +56,15 @@ Main = {
       AnyRefFrame &Thigh = .Shank.Knee;
     };
     
-    AnyKinEqSimpleDriver HipDriver = {
-      DriverPos = {-90*pi/180};
-      DriverVel = {90*pi/180}/..MyStudy.tEnd;
+    AnyKinDriver HipDriver = {
+      DriverPos0 = {-90*pi/180};
+      DriverVel0 = {90*pi/180}/..MyStudy.tEnd;
       AnyRevoluteJoint &Joint = .Hip;
     };
 
-    AnyKinEqSimpleDriver KneeDriver = {
-      DriverPos = {-90*pi/180};
-      DriverVel = {90*pi/180}/..MyStudy.tEnd;
+    AnyKinDriver KneeDriver = {
+      DriverPos0 = {-90*pi/180};
+      DriverVel0 = {90*pi/180}/..MyStudy.tEnd;
       AnyRevoluteJoint &Joint = .Knee;
     };
     

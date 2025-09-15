@@ -78,7 +78,7 @@ Main = {
       AnyRefFrame &Ins = .Arm.M1Insertion;
       SPLine.StringMesh = 20;
       AnyDrawMuscle drw = {
-        Bulging = 4;
+        Bulging = 2;
         ColorScale = 1;
         MaxStress = 250000;
       };
@@ -92,7 +92,7 @@ Main = {
       SPLine.StringMesh = 20;
       SPLine.InitWrapPosVectors = {{-0.2, -0.2, 0},{-0.05,-0.2, 0}};
       AnyDrawMuscle drw = {
-        Bulging = 4;
+        Bulging = 2;
         ColorScale = 1;        
         MaxStress = 250000;
       };

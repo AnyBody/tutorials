@@ -279,7 +279,9 @@ reasonably fast computer it should take a minute or less to do the 25
 analyses after which the computations stop.
 
 :::{note}
-If you turn off the model view by clicking the ![TurnOnOff.png](_static/Defining_a_parameter/TurnOnOffModel.png) button, the computation should speed up.
+If you turn off the model view by clicking the 
+![TurnOnOff.png](_static/Defining_a_parameter/TurnOnOffModel.png) 
+button, the computation should speed up.
 
 Congratulations! You have completed your first parameter study. Let us
 investigate the result.
@@ -334,14 +336,15 @@ you go back to the AnyChart View and study the new surface:
 :alt: AnyChart 3 view
 :class: bg-primary
 :align: center
+:width: 80%
 ```
 
 The surface is now completely dominated by the one combination, which is
 difficult for the model to do. You can still see the surface shape if
 you change the scale of the value axis. This and all other settings are
-available if you click
-the ![chartsettings.png](_static/Defining_a_parameter/chartsettings.png)
-button in the toolbar. Doing so will produce a window with a tree view
+available if you open the Property Window
+![chartsettings.png](_static/Defining_a_parameter/chartsettings.png)
+in the toolbar. Doing so will produce a window with a tree view
 in which you can select `ValueAxis`->\`\`Max\`\` and `ValueAxis`->\`\`Min\`\`. Try setting Max to 0.30 and Min to 0.15 and you
 should obtain the following:
 
@@ -349,6 +352,7 @@ should obtain the following:
 :alt: AnyChart 4 view
 :class: bg-primary
 :align: center
+:width: 80%
 ```
 
 What this study reveals is that in terms of muscle activity to drive the

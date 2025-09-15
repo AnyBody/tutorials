@@ -15,37 +15,26 @@ A wrapping muscle is presumed to have an origin and an insertion just
 like the via point muscle. However, instead of interior via points it
 passes a set of surfaces. If the surfaces are blocking the way then the
 muscles finds the shortest geodetic path around the surface. For that reason, the
-name of the class is AnyMuscleShortestPath. The fact that the muscle
+name of the class is `AnyMuscleShortestPath`. The fact that the muscle
 always uses the shortest path means that it slides effortlessly on the
 surfaces, and hence there is no friction between the muscle and the
 surface.
 
 Enough talk! Let us prepare for addition of a wrapping muscle to our
 model. If for some reason you do not have a working model from the
-previous lessons, {download}`you can download onehere <Downloads/MuscleDemo.4.any>`.
+previous lessons, {download}`you can download one here <Downloads/MuscleDemo.4.any>`.
 
 A wrapping muscle needs one or several surfaces to wrap on, so the first
 thing to do is to define a surface. For convenience we shall attach the
 surface to the global reference frame, but such wrapping surfaces can be
 attached to any reference frame in the system, including segments. To be
 able to play around with the position of the surface, we initially
-define a point on GlobalRef for the purpose:
+define a point on `GlobalRef` for the purpose:
 
-```AnyScriptDoc
-// Global Reference Frame
-AnyFixedRefFrame GlobalRef = {
-  AnyDrawRefFrame drw = {
-    RGB = {1,0,0};
-  };
-  AnyRefNode M1Origin = {
-    sRel = {0.0, 0.1, 0};
-  };
-
-§ AnyRefNode CylCenter = {
-    sRel = {0, 0, -0.2};
-  };§
-
-};  // Global reference frame
+```{literalinclude} Snippets/lesson4/snip.Muscles.main-1.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Having defined the point, we can proceed to create a surface. The
@@ -56,25 +45,15 @@ really a lot of small planar triangles, and the corners and edges of the
 triangles will cause the muscles to slide discontinuously over the
 surface, which disturbs the analysis result. The parametric surfaces
 currently available are cylinders and ellipsoids. Let us try our luck
-with a cylinder. Go to the class tree, locate the class AnySurfCylinder,
-and insert an instance into the newly defined node on GlobalRef.
-Then define the name of the cylinder, add an AnyDrawParamSurf
+with a cylinder. Go to the *Class List*, locate the class `AnySurfCylinder`,
+and insert an instance into the newly defined node on `GlobalRef`.
+Then define the name of the cylinder, add an `AnyDrawParamSurf`
 statement, and change the cylinder parameters as shown below:
 
-```AnyScriptDoc
-  AnyRefNode CylCenter = {
-    sRel = {0, 0, -0.2};
-
-   §AnySurfCylinder WrapSurf = {
-      Radius = 0.15;
-      Length = 0.4;
-      //CapRatio = 0.1;
-      //CapRatio2 = 0.1;
-      AnyDrawParamSurf drw = {};
-    };§
-  };
-
-};  // Global reference frame
+```{literalinclude} Snippets/lesson4/snip.Muscles.main-2.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 Most of this should be self explanatory. However, notice that we inserted a
@@ -83,33 +62,32 @@ insertion point of the cylinder is at {0, 0, 0.2} corresponding exactly
 to half of the length of the cylinder of 0.4. This causes the cylinder
 to be inserted symmetrically about the xy plane as illustrated below:
 
-![wrapcylinder](_static/lesson4/image1.jpeg)
+```{image} _static/lesson4/image1.jpeg
+:alt: Wrap cylinder
+:align: center
+:width: 60%
+```
 
 The cylinder direction is always z in the coordinate direction of the
 object that the cylinder is inserted into. So, if the cylinder does not
 have the orientation you want, then the key to rotate it correctly is to
-control the direction of the AnyRefNode that it is inserted into. In
+control the direction of the `AnyRefNode` that it is inserted into. In
 fact, let us rotate it just a little bit to make things a bit more
 interesting:
 
-```AnyScriptDoc
-AnyRefNode CylCenter = {
-  sRel = {0, 0, -0.2};
- §ARel = RotMat(20*pi/180,y);§
-
-  AnySurfCylinder WrapSurf = {
-    Radius = 0.15;
-    Length = 0.4;
-    //CapRatio = 0.1;
-    //CapRatio2 = 0.1;
-    AnyDrawParamSurf drw = {};
-  };
-};
+```{literalinclude} Snippets/lesson4/snip.Muscles.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
-&#160;Which causes the cylinder to rotate 20 degrees about the y axis.
+Which causes the cylinder to rotate 20 degrees about the y axis.
 
-![wrap cylinder rotated](_static/lesson4/image2.jpeg)
+```{image} _static/lesson4/image2.jpeg
+:alt: Wrap cylinder rotated
+:align: center
+:width: 60%
+```
 
 There are a couple of things to notice about the cylinder: First of all
 the graphics looks like the cylinder is faceted. This is not really the
@@ -117,7 +95,7 @@ case. Graphically it is displayed with facets out of consideration of
 the efficiency of the graphics display, but from the point-of-view of
 the muscle it is a perfect cylinder. The second thing to notice is that
 the ends are capped in such a way that the edges are rounded. You can
-control the curvature of this cap by means of the CapRatio variable that
+control the curvature of this cap by means of the `CapRatio` variable that
 is currently commented out in the cylinder object definition. If you
 play a bit around with different values of the cap ratio then you will
 quickly get a feel for the effect of the variable. The caps allow you to
@@ -128,38 +106,18 @@ on the global reference frame and one point on the arm, and we can then
 articulate the joint and study the behavior of the wrapping algorithm.
 The point on the global reference frame is added like this:
 
-```AnyScriptDoc
-// Global Reference Frame
-AnyFixedRefFrame GlobalRef = {
-  AnyDrawRefFrame drw = {
-    RGB = {1,0,0};
-  };
-  AnyRefNode M1Origin = {
-    sRel = {0.0, 0.1, 0};
-  };
-
-§ AnyRefNode M2Origin = {
-    sRel = {0.0, 0.15, -0.05};
-  };§
+```{literalinclude} Snippets/lesson4/snip.Muscles.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 Similarly we add a point to the arm:
 
-```AnyScriptDoc
-// Define one simple segment
-AnySeg Arm = {
-  r = {0.500000, 0.000000, 0.000000};
-  Mass = 1.000000;
-  Jii = {0.100000, 1.000000, 1.000000}*0.1;
-  AnyRefNode Jnt = {
-    sRel = {-0.5, 0.0, 0};
-  };
-  AnyRefNode M1Insertion = {
-    sRel = {0.3, 0.05, 0};
-  };
- §AnyRefNode M2Insertion = {
-    sRel = {-0.2, 0.05, 0.05};
-  };§
+```{literalinclude} Snippets/lesson4/snip.Muscles.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 3
+:end-before: //# END SNIPPET 3
 ```
 
 Notice that we have given the origin and insertion points a bit of
@@ -168,39 +126,14 @@ offset will cause the muscles to cross the cylinder in a
 non-perpendicular path to the cylinder axis such as for instance the
 pronator muscles of the human forearm do.
 
-It is now possible to define the muscle wrapping over the cylinder. The
-easiest way to do it is to make a copy of the via point muscle, Muscle1,
-and then make the necessary changes:
+It is now possible to define the muscle wrapping over the cylinder by using the
+`AnyMuscleShortestPath` object. The easiest way to do it is to make a copy of
+the via point muscle, Muscle1, and then make the necessary changes:
 
-```AnyScriptDoc
-  AnyMuscleViaPoint Muscle1 = {
-    AnyMuscleModel &Model = .SimpleModel;
-    AnyRefFrame &Orig = .GlobalRef.M1Origin;
-    AnyRefFrame &Via = .Arm.ViaPoint;
-    AnyRefFrame &Ins = .Arm.M1Insertion;
-    AnyDrawMuscle drw = {
-      //RGB = {0.554688, 0.101563, 0.117188};
-      //Opacity = 0.2;
-      //DrawOnOff = 1;
-      Bulging = 2;
-      ColorScale = 1;
-      //RGBColorScale = {0.957031, 0.785156, 0.785156};
-      MaxStress = 250000;
-    };
-  };
-
-§AnyMuscleShortestPath Muscle2 = {
-    AnyMuscleModel &Model = .SimpleModel;
-    AnyRefFrame &Orig = .GlobalRef.M2Origin;
-    AnySurface &srf = .GlobalRef.CylCenter.WrapSurf;
-    AnyRefFrame &Ins = .Arm.M2Insertion;
-    SPLine.StringMesh = 20;
-    AnyDrawMuscle drw = {
-      Bulging = 2;
-      ColorScale = 1;
-      MaxStress = 250000;
-    };
-  };§
+```{literalinclude} Snippets/lesson4/snip.Muscles.main-3.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 4
+:end-before: //# END SNIPPET 4
 ```
 
 The two muscles are very similar in their definitions. They both have an
@@ -242,43 +175,39 @@ It is time to see what we have done. If you load the model and run the
 InverseDynamics analysis (and have done everything right), you will see
 the model moving through a sequence of positions like this:
 
-![wrap cylinder with via point sequence](_static/lesson4/image3.jpeg)
+```{image} _static/lesson4/image3.jpeg
+:alt: Wrap cylinder with via point sequence
+:align: center
+```
 
 As mentioned above, wrapping muscles can also have via points. In fact,
 we can easily change the via point muscle, Muscle1,  to wrap over the
 cylinder even though it also has a via point:
 
-```AnyScriptDoc
-Any§ShortestPath§Muscle Muscle1 = {
-  AnyMuscleModel &Model = .SimpleModel;
-  AnyRefFrame &Orig = .GlobalRef.M1Origin;
-  AnyRefFrame &Via = .Arm.ViaPoint;
-§ AnySurface &srf = .GlobalRef.CylCenter.WrapSurf;§
-  AnyRefFrame &Ins = .Arm.M1Insertion;
- §SPLine.StringMesh = 20;§
-  AnyDrawMuscle drw = {
-    Bulging = 2;
-    ColorScale = 1;
-    MaxStress = 250000;
-  };
-};
+```{literalinclude} Snippets/lesson4/snip.Muscles.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 1
+:end-before: //# END SNIPPET 1
 ```
 
 The definition of the two muscle types is very similar, so we only had
-to change the type from AnyMuscleViaPoint to AnyMuscleShortestPath and
-insert the wrapping surface and the StringMesh specification. This gives
+to change the type from `AnyMuscleViaPoint` to `AnyMuscleShortestPath` and
+insert the wrapping surface and the `StringMesh` specification. This gives
 us the following result:
 
-![wrap cylinder two muscles](_static/lesson4/image4.jpeg)
+```{image} _static/lesson4/image4.jpeg
+:alt: Wrap cylinder two muscles
+:align: center
+:width: 70%
+```
 
 As you can see, both muscles are now wrapping over the cylinder, and we
 can run the InverseDynamics analysis. It seems to work, but the system
 provides the following warning:
 
-`WARNING - Via-point 'Main.MyModel.GlobalRef.M1Origin' on
-'Main.MyModel.Muscle1.SPLine'`
-`is located below the wrapping surface
-'Main.MyModel.GlobalRef.CylCenter.WrapSurf'.`
+```none
+WARNING(OBJ.MCH.KIN7): MuscleDemo.Ini.any(72): Muscle1.SPLine: Penetration of surface: WrapSurf: Via-point 'M1Origin' on 'SPLine' is located below the wrapping surface'WrapSurf
+```
 
 This is a warning that you will see rather frequently when working with
 complex models with wrapping. The warning comes when one of the end
@@ -291,10 +220,10 @@ present case, the origin point of Muscle1 is only slightly below the
 cylinder surface, so the problem can be rectified by a small offset on
 the origin point:
 
-```AnyScriptDoc
-AnyRefNode M1Origin = {
-  sRel = {0.0, 0.1§5§, 0};
-};
+```{literalinclude} Snippets/lesson4/snip.Muscles.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 If you are analytically inclined, you may be thinking that the muscles
@@ -309,24 +238,14 @@ vectors. These are really points that the muscle initially should pass
 through. You can specify as many of these points as you like. In the
 example below we have used two:
 
-```AnyScriptDoc
-AnyMuscleShortestPath Muscle2 = {
-  AnyMuscleModel &Model = .SimpleModel;
-  AnyRefFrame &Orig = .GlobalRef.M2Origin;
-  AnySurface &srf = .GlobalRef.CylCenter.WrapSurf;
-  AnyRefFrame &Ins = .Arm.M2Insertion;
-  SPLine.StringMesh = 20;
- §SPLine.InitWrapPosVectors = {{-0.2, -0.2, 0}, {-0.05, -0.2, 0}};§
-  AnyDrawMuscle drw = {
-    Bulging = 2;
-    ColorScale = 1;
-    MaxStress = 250000;
-  };
-};
+```{literalinclude} Snippets/lesson4/snip.Muscles.main-4.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 3
+:end-before: //# END SNIPPET 3
 ```
 
-Notice that the InitWrapPosVectors like the StringMesh is part of an
-object called SPLine. This is an object in its own right that gets
+Notice that the `InitWrapPosVectors` like the `StringMesh` is part of an
+object called `SPLine`. This is an object in its own right that gets
 defined automatically inside a shortest path muscle. It is a special
 kind of {doc}`kinematic measure <../The_mechanical_elements/lesson4>` that is
 really a string that wraps just like a muscle but does nothing else than
@@ -334,12 +253,16 @@ measure its own length. These objects can be used outside the muscle
 definition for various purposes in the model, for instance for
 definition of springs or rubber bands.
 
-After you load the model with the added InitWrapVectors, try using the
-Step button rather than the run button. This will show you how the
-system uses the InitWrapVectors to pull the muscle to the other side of
+After you load the model with the added `InitWrapVectors`, try using the
+*Step button* rather than the run button. This will show you how the
+system uses the `InitWrapVectors` to pull the muscle to the other side of
 the cylinder:
 
-![wrap cylinder Init wrap vectors](_static/lesson4/image5.jpeg)
+```{image} _static/lesson4/image5.jpeg
+:alt: Wrap cylinder Init wrap vectors
+:align: center
+:width: 60%
+```
 
 If you keep pressing the step button you will see how the muscle now
 wraps on the other side of the cylinder.
