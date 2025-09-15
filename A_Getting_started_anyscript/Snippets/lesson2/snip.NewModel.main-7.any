@@ -12,15 +12,17 @@ AnyFolder ArmModel = {
 
   // Segments
   AnyFolder Segs = {
-    //# BEGIN SNIPPET 1
+//# BEGIN SNIPPET 1
 AnySeg UpperArm = {
   §r0 = {0.0, 0.3, 0.0};§
   //Axes0 = {{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
   Mass = 2;
   Jii = {0.001, 0.01, 0.01};
-  AnyDrawSeg drw = {};
-      //# END SNIPPET 1
-      §AnyRefNode ShoulderNode = {
+  viewRefFrame.Visible = On;
+  viewNodes.Visible = On;
+  viewInertia.Visible = On;
+//# END SNIPPET 1
+      AnyRefNode ShoulderNode = {
         sRel = {-0.2,0,0};
       };
       AnyRefNode ElbowNode = {
@@ -43,15 +45,18 @@ AnySeg UpperArm = {
       };
       AnyRefNode TricepsShort = {
         sRel = {-0.1,0,-0.01};
-      };§
+      };
     }; //UpperArm
 
-    //# BEGIN SNIPPET 2
+//# BEGIN SNIPPET 2
 AnySeg ForeArm = {
   §r0 = {0.3, 0.0, 0.0};§
   Mass = 2.0;
   Jii = {0.001,0.01,0.01};
-      //# END SNIPPET 2
+  viewRefFrame.Visible = On;
+  viewNodes.Visible = On;
+  viewInertia.Visible = On;
+//# END SNIPPET 2
       AnyRefNode ElbowNode = {
         sRel = {-0.2,0,0};
       };
@@ -70,8 +75,7 @@ AnySeg ForeArm = {
       AnyRefNode Triceps = {
         sRel = {-0.25,0,-0.05};
       };
-      AnyDrawSeg DrwSeg = {};
-   }; // ForeArm
+    }; // ForeArm
 
   }; // Segs folder
 

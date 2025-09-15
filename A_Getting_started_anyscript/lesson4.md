@@ -16,6 +16,7 @@ a forearm by the elbow. What we want to do now is to make the arm move.
 :alt: Upper and lower arm rotated
 :class: bg-primary
 :align: center
+:width: 50%
 ```
 
 :::{note}
