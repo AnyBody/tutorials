@@ -71,7 +71,7 @@ with the class type, followed by a chosen object name, and then assign it a
 value. The value can be a number, a string, or another object. `<ClassName>
 <objectname> = <value>;`.
 
-**👉 Now** reename `MyStudy` to `ArmModelStudy`, and replace all occurences of
+**👉 Now** rename `MyStudy` to `ArmModelStudy`, and replace all occurences of
 `MyModel` with `ArmModel`.
 
 :::{attention} 

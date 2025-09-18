@@ -21,7 +21,7 @@ the model view window
 This tutorial relies heavily on using the AnyBody Managed Model Repository (AMMR). 
 Follow the steps below to unpack a local version of the AMMR.
 
-# Setup the AMMR
+## Setup the AMMR
 
 Before you continue, you must unpack the entire repository and save it on your
 hard disk. To get a copy of the AMMR, press the Demo tab in the AnyBody
@@ -34,7 +34,7 @@ your documents folder by default. It is good practice to create a second local
 copy of the AMMR so that you do not overwrite the original AMMR folder by
 accident.
 
-# AMMR structure
+## AMMR structure
 
 Open a file manager and navigate to the directory where you unpacked the
 repository. You should see a folder structure that includes the following

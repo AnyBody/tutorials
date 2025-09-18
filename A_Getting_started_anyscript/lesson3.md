@@ -124,8 +124,8 @@ refer to the point as "GroundNode" instead of the longer external reference.
 **You will also realize that `GroundNode` is merely a reference (a pointer) to `GlobalRef.Shoulder`
 rather than a copy of it. We denote this by the** {literal}`&` **sign.**
 
-If "Main.ArmModel.GlobalRef.Shoulder" moves around,
-"Main.ArmModel.Jnts.Shoulder.GroundNode" will keep up with those changes in
+If `Main.ArmModel.GlobalRef.Shoulder` moves around,
+`Main.ArmModel.Jnts.Shoulder.GroundNode` will keep up with those changes in
 position. Hit F7 to reload the model again to make sure that the definition is
 correct.
 
@@ -213,8 +213,7 @@ It seems like everything is connected now, but we still get this annoying error
 message when we reload the model:
 
 ```none
-Model Warning: Study 'Main.ArmStudy' contains too few kinematic
-constraints to be kinematically determinate.
+Model Warning: Study 'Main.ArmStudy' contains too few kinematic constraints to be kinematically determinate.
 ```
 
 The explanation is that we have created joints, but we have not

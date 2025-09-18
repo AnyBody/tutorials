@@ -11,16 +11,16 @@ AnyFolder ArmModel = {
 
 
   // Segments
-  AnyFolder Segs = {
-    //# BEGIN SNIPPET 1
-AnySeg §UpperArm§ = {
-  //r0 = {0.0, 0.0, 0.0};
-  //Axes0 = {{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
-  Mass = §2§;
-  Jii = {§0.001, 0.01, 0.01§};
-}; §//UpperArm§
-    //# END SNIPPET 1
-  }; // Segs folder
+//# BEGIN SNIPPET 1
+AnyFolder Segs = {
+  AnySeg §UpperArm§ = {
+    //r0 = {0.0, 0.0, 0.0};
+    //Axes0 = {{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
+    Mass = §2§;
+    Jii = {§0.001, 0.01, 0.01§};
+  }; §//UpperArm§
+}; // Segs folder
+//# END SNIPPET 1
 
 };
   // The study: Operations to be performed on the model
