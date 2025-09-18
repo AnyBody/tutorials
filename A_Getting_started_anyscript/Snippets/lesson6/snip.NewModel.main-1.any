@@ -1,113 +1,118 @@
 // Todo: Write a small description of your model here
 
 Main = {
-  
   // The actual body model goes in this folder
   AnyFolder ArmModel = {
-    
+  
     // Global Reference Frame
     AnyFixedRefFrame GlobalRef = {
-      
-      AnyDrawRefFrame DrwGlobalRef = {
-        ScaleXYZ = {0.1, 0.1, 0.1};
-        RGB = {0,1,0};
+      viewRefFrame.Visible = On;
+      viewRefFrame.ScaleXYZ = {0.1, 0.1, 0.1};
+      viewRefFrame.RGB = {0,1,0};
+
+      AnyRefNode Shoulder = {
+        sRel = {0,0,0};
       };
-      AnyRefNode Shoulder = { 
-        sRel = {0,0,0}; 
+      AnyRefNode DeltodeusA = {
+        sRel = {0.05,0,0};
       };
-      AnyRefNode DeltodeusA = { 
-        sRel = {0.05,0,0}; 
+      AnyRefNode DeltodeusB = {
+        sRel = {-0.05,0,0};
       };
-      AnyRefNode DeltodeusB = { 
-        sRel = {-0.05,0,0}; 
+      AnyRefNode BicepsLong = {
+        sRel = {0.1,0,0};
       };
-      AnyRefNode BicepsLong = { 
-        sRel = {0.1,0,0}; 
+      AnyRefNode TricepsLong = {
+        sRel = {-0.1,0,0};
       };
-      AnyRefNode TricepsLong = { 
-        sRel = {-0.1,0,0}; 
-      };
-    };  // Global reference frame
-    
+    }; // Global Reference Frame
+
     // Segments
     AnyFolder Segs = {
+      
+      //UpperArm
       AnySeg UpperArm = {
-        r0 = {0, 0.3, 0};
-        Axes0 =RotMat(-90*pi/180, z);
+        r0 = {0.0, 0.3, 0.0};
+        Axes0 = RotMat(-90*pi/180, z);
         Mass = 2;
         Jii = {0.001, 0.01, 0.01};
-        AnyDrawSeg drw = {};
-        
+        viewRefFrame.Visible = On;
+        viewNodes.Visible = On;
+        viewInertia.Visible = On;
+
         AnyRefNode ShoulderNode = {
-          sRel = {-0.2,0,0}; 
+          sRel = {-0.2,0,0};
         };
         AnyRefNode ElbowNode = {
-          sRel = {0.2,0,0}; 
+          sRel = {0.2,0,0};
         };
-        AnyRefNode DeltodeusA = { 
-          sRel = {-0.1,0,0.02}; 
+        AnyRefNode DeltodeusA = {
+          sRel = {-0.1,0,0.02};
         };
-        AnyRefNode DeltodeusB = { 
-          sRel = {-0.1,0,-0.02}; 
+        AnyRefNode DeltodeusB = {
+          sRel = {-0.1,0,-0.02};
         };
-        AnyRefNode Brachialis = { 
-          sRel = {0.1,0,0.01}; 
+        AnyRefNode Brachialis = {
+          sRel = {0.1,0,0.01};
         };
-        AnyRefNode BicepsShort = { 
-          sRel = {-0.1,0,0.03}; 
+        AnyRefNode BicepsShort = {
+          sRel = {-0.1,0,0.03};
         };
-        AnyRefNode Brachioradialis = { 
-          sRel = {0.05,0,0.02}; 
+        AnyRefNode Brachioradialis = {
+          sRel = {0.05,0,0.02};
         };
-        AnyRefNode TricepsShort = { 
-          sRel = {-0.1,0,-0.01}; 
-        }; 
-      };  // UpperArm
-      
+        AnyRefNode TricepsShort = {
+          sRel = {-0.1,0,-0.01};
+        };
+      }; //UpperArm
+
+      // ForeArm
       AnySeg ForeArm = {
-        r0 = {0.3, 0, 0};        
+        r0 = {0.3, 0.0, 0.0};
         Mass = 2.0;
         Jii = {0.001,0.01,0.01};
+        viewRefFrame.Visible = On;
+        viewNodes.Visible = On;
+        viewInertia.Visible = On;
+
         AnyRefNode ElbowNode = {
           sRel = {-0.2,0,0};
         };
         AnyRefNode HandNode = {
           sRel = {0.2,0,0};
         };
-        AnyRefNode Brachialis = { 
-          sRel = {-0.1,0,0.02}; 
+        AnyRefNode Brachialis = {
+          sRel = {-0.1,0,0.02};
         };
-        AnyRefNode Brachioradialis = { 
-          sRel = {0.0,0,0.02}; 
+        AnyRefNode Brachioradialis = {
+          sRel = {0.0,0,0.02};
         };
-        AnyRefNode Biceps = { 
-          sRel = {-0.15,0,0.01}; 
+        AnyRefNode Biceps = {
+          sRel = {-0.15,0,0.01};
         };
-        AnyRefNode Triceps = { 
-          sRel = {-0.25,0,-0.05}; 
-        };
-        AnyRefNode PalmNode = {
-          sRel = {0.27,0,0};
+        AnyRefNode Triceps = {
+          sRel = {-0.25,0,-0.05};
         };
 //# BEGIN SNIPPET 1
-  AnyDrawSeg DrwSeg = {};
+  AnyRefNode PalmNode = {
+    sRel = {0.27,0,0};
+  };
   §AnyDrawSTL DrwSTL = {
     FileName = "dumbbell.stl";
   };§
 }; // ForeArm
 //# END SNIPPET 1
-      
     }; // Segs folder
-    
+
     // Joints 
     AnyFolder Jnts = {
       //---------------------------------
       AnyRevoluteJoint Shoulder = {
-        Axis = z;
         AnyRefNode &GroundNode = ..GlobalRef.Shoulder;
         AnyRefNode &UpperArmNode = ..Segs.UpperArm.ShoulderNode;
+        Axis = z;
       }; // Shoulder joint
-      
+
       AnyRevoluteJoint Elbow = {
         Axis = z;
         AnyRefNode &UpperArmNode = Main.ArmModel.Segs.UpperArm.ElbowNode;
@@ -131,11 +136,11 @@ Main = {
         DriverPos0 = {90*pi/180};
         DriverVel0 = {45*pi/180};
         Reaction.Type = {Off};
-      }; // Elbow driver
+      }; // Elbow driver 
     }; // Driver folder
-    
+
     AnyFolder Muscles = {
-    // Simple muscle model with constant strength = 400 Newton
+      // Simple muscle model with constant strength = 400 Newton
       AnyMuscleModel MusMdl = {
         F0 = 400;
       };
@@ -145,7 +150,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..Segs.UpperArm.Brachialis;
         AnyRefNode &Ins = ..Segs.ForeArm.Brachialis;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
 
       //---------------------------------
@@ -153,7 +158,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..GlobalRef.DeltodeusA;
         AnyRefNode &Ins = ..Segs.UpperArm.DeltodeusA;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
 
       //---------------------------------
@@ -161,7 +166,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..GlobalRef.DeltodeusB;
         AnyRefNode &Ins = ..Segs.UpperArm.DeltodeusB;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
 
       //---------------------------------
@@ -169,7 +174,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..Segs.UpperArm.Brachioradialis;
         AnyRefNode &Ins = ..Segs.ForeArm.Brachioradialis;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
 
       //---------------------------------
@@ -177,7 +182,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..Segs.UpperArm.BicepsShort;
         AnyRefNode &Ins = ..Segs.ForeArm.Biceps;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
 
       //---------------------------------
@@ -185,7 +190,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..Segs.UpperArm.TricepsShort;
         AnyRefNode &Ins = ..Segs.ForeArm.Triceps;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
 
       //---------------------------------
@@ -193,7 +198,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..GlobalRef.BicepsLong;
         AnyRefNode &Ins = ..Segs.ForeArm.Biceps;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
 
       //---------------------------------
@@ -201,7 +206,7 @@ Main = {
         AnyMuscleModel &MusMdl = ..Muscles.MusMdl;
         AnyRefNode &Org = ..GlobalRef.TricepsLong;
         AnyRefNode &Ins = ..Segs.ForeArm.Triceps;
-        AnyDrawMuscle DrwMus = {};
+        viewMuscle.Visible = On;
       };
     }; // Muscles folder
 
@@ -212,12 +217,12 @@ Main = {
         F = {0,-100,0}; // Force in Newton
       };
     }; // Loads folder
-  }; // MyModel
 
+  };// ArmModel
+  
   // The study: Operations to be performed on the model
   AnyBodyStudy ArmStudy = {
     AnyFolder &Model = .ArmModel;
     Gravity = {0.0, -9.81, 0.0};
   };
-  
-};  // Main
+}; 

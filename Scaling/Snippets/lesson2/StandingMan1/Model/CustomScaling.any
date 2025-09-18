@@ -1,0 +1,14 @@
+//# BEGIN SNIPPET 1
+// This is a place holder for the inclusion of custom scaling laws
+HumanModel.Scaling.GeometricalScaling = {
+  §Left.Thigh = {
+    #include "MyScalingFunction.any"
+    ScaleFunction.Custom = &MyScalingFunction.Transform;
+  };§
+
+//# END SNIPPET 1
+  Right.Thigh = {
+    #include "MyScalingFunction_Mirrored.any"
+    ScaleFunction.Custom = &MyScalingFunction_Mirrored.Transform;
+  };
+};

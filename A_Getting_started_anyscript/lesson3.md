@@ -51,12 +51,13 @@ the class properties alone):
 :end-before: //# END SNIPPET 1
 ```
 
-The first line, "`AnyDrawRefFrame` ..." merely displays the global reference
+The first line, "`viewRefFrame.Visible = On`" merely displays the global reference
 system in the graphics window. The remaining lines define point nodes attached
 to the global reference system.
 
-Let us scale down the display
-size and change its color to distinguish it from the yellow segments:
+Let us scale down the display size and change its color to distinguish it from
+the yellow segments. This is done by defining the `ScaleXYZ` and `RGB` properties
+of the `viewRefFrame` object:
 
 ```{literalinclude} Snippets/lesson3/snip.NewModel.main-3.any
 :language: AnyScriptDoc

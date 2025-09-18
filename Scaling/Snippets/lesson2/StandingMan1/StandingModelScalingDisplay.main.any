@@ -1,0 +1,91 @@
+#include "../libdef.any"
+
+/** 
+This application shows all the scaling laws available. 
+The model can be scaled either regarding to measures between joint center or by representation of a certain percentile of the population.
+For further details see the tutorial about scaling at
+https://anyscript.org/ammr-doc/Scaling/intro.html
+*/ 
+Main = {
+
+  // Model configuration:
+  // For more info on body model configuration options please
+  // load the model and double click on: 
+  #include "BodyModelConfiguration.any"
+
+
+  /*--------------- GENERAL CONFIGURATION SECTION ------------------*/
+  // Initial positions and velocities file used by this model
+  #include "Model/Mannequin.any"
+  
+  // Custom drawing settings used by this model
+  #include "Model/DrawSettings.any"
+  
+
+  //--------------- END OF GENERAL CONFIGURATION -------------------
+
+  /*------------- SCALING CONFIGURATION SECTION --------------------*/
+  
+//# BEGIN SNIPPET 1
+// Scaling laws using joint to joint measures
+    §#define BM_SCALING _SCALING_STANDARD_§
+//  #define BM_SCALING _SCALING_NONE_
+//  #define BM_SCALING _SCALING_UNIFORM_
+//  #define BM_SCALING _SCALING_LENGTHMASS_
+//  #define BM_SCALING _SCALING_LENGTHMASSFAT_
+//# END SNIPPET 1
+  //    #define BM_SCALING _SCALING_XYZ_
+  // fallback to standard scaling if no scaling is defined
+  #ifndef BM_SCALING
+    #define BM_SCALING _SCALING_STANDARD_
+  #endif
+  
+//# BEGIN SNIPPET 2
+//--------------- END OF SCALING CONFIGURATION -------------------
+
+§#include "Model\CustomScaling.any"§
+
+#include "<ANYBODY_PATH_BODY>/HumanModel.any"
+//# END SNIPPET 2
+  
+  // This folder collects the elements of the model. It is referred by the
+  // study section below as the target of the analyses.  
+  AnyFolder Model = {  
+    /// Body model without default drivers
+    AnyFolder &BodyModel=.HumanModel.BodyModel;
+    /// Reference to the mannequin folder (used by drivers)
+    AnyFolder &Mannequin =.HumanModel.Mannequin;
+
+    // Environment files are used to include objects surrounding human, e.g. global reference frame
+    #include "Model\Environment.any"   
+    
+    AnyFolder ModelEnvironmentConnection = {
+     // All added constraints reaction forces to simulate standing human
+     #include "Model\JointsAndDrivers.any"
+    };
+
+    // Head scaling visualization and measurements
+    // #define HEAD_SCALING_XYZ
+    #ifdef HEAD_SCALING_XYZ 
+      #include "Model\HeadScalingXYZ.any"
+    #endif
+    
+  };
+
+  
+  AnyBodyStudy Study = {
+    AnyFolder &Model = .Model;
+    
+    tEnd = 1.0;
+    Gravity = {0.0, -9.81, 0.0};
+    nStep = 1;
+    // these settings are needed for adding drivers without removing the default set 
+    InitialConditions.SolverType = KinSolOverDeterminate;
+    Kinematics.SolverType = KinSolOverDeterminate;
+    
+  }; // End of study
+
+  // Include an operation sequence to run all required steps of your application (see Operations tab)
+  #include "<ANYBODY_PATH_MODELUTILS>\Operations\RunAppSequence.any" 
+  
+}; //Main

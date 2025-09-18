@@ -5,7 +5,7 @@
 
 :::{note}
 **To follow this tutorial, it is recommended to first watch the
-introductory video found at this link:** "{doc}`Tutorial Overview <../index>`".
+introductory video found at this link:** "{doc}`Tutorial Overview <../GettingStarted>`".
 :::
 
 To create an AnyScript model from scratch, go to "File menu -> New from

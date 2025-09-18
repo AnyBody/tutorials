@@ -89,8 +89,11 @@ model's kinematics.** We will take care of this in the next lesson
 
 ## Displaying a segment
 
-To make something visible in AnyBody, you have to add a drawing object which
-defines visibility:
+To make something visible in AnyBody, you have two options - you can set the
+`Visible` property of the segment to `On`, or you can add a new drawing object
+which defines visibility of the segment.
+
+The first option is done by adding the following lines to the segment:
 
 ```{literalinclude} Snippets/lesson2/snip.NewModel.main-4.any
 :language: AnyScriptDoc
@@ -98,11 +101,29 @@ defines visibility:
 :end-before: //# END SNIPPET 1
 ```
 
+Here, the visibility of the *reference frame*, the *nodes*, and the *ellipsoid* — whose
+dimensions graphically represent the segment's inertia, `Jii` — are all set to be visible.
+Changing any component of `Jii` will alter the shape of the ellipsoid.
 Reload the model, and look at the Model View (you might have to press
 the <img src="_static/lesson2/image3.png" alt="Zoom-button" height="1.5em"> 
-button to locate your segment). The segment is displayed as an ellipsoid whose 
-dimensions capture the mass distribution represented by `Jii`.  Changing any 
-one component of `Jii` will alter the shape of the ellipse.
+button to locate your segment).
+
+The second option is to add a new drawing object of class `AnyDrawSeg` to the
+segment, which defines visibility of the segment.
+
+```AnyScriptDoc
+AnySeg UpperArm = {
+  //r0 = {0.0, 0.0, 0.0};
+  //Axes0 = {{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
+  Mass = 2;
+  Jii = {0.001, 0.01, 0.01};
+  §AnyDrawSeg drw = {};§
+}; //UpperArm
+```
+
+You can try both options and see the same result. For the rest of this tutorial,
+we will use the first option of setting the `Visible` properties to `On`. But
+you might see the second option in other tutorials and models.
 
 ## Adding point nodes to a segment
 
@@ -128,6 +149,7 @@ center of gravity by yellow pins.
 :alt: Upper arm with nodes
 :class: bg-primary
 :align: center
+:width: 70%
 ```
 
 ## Creating a second segment
@@ -146,7 +168,7 @@ it's defined to look exactly the same and is loaded exactly on top of the upper
 arm.**
 
 To solve this problem, you can change the initial/load time position of the two
-segments by adjusting r0 (translation w.r.t global frame at load-time) and Axes0
+segments by adjusting `r0` (translation w.r.t global frame at load-time) and `Axes0`
 (rotation matrix w.r.t global frame at load-time).
 
 Remember that your simulation, will only use these load-time positions as an
@@ -173,8 +195,8 @@ This will clearly separate the segments in your Model View:
 
 ```{image} _static/lesson2/image5.png
 :alt: Upper and lower arm
-:class: bg-primary
 :align: center
+:width: 60%
 ```
 
 ## Rotation matrices in AnyBody
@@ -199,9 +221,9 @@ Rotation matrices are a bit difficult to cook up on the fly. If your spatial
 thinking is good, you could maybe figure out the exact expressions for all 9
 components of the 3x3 Axes0 matrix.
 
-**An easier solution is to use a standard function named `RotMat`, which returns
-a rotation matrix corresponding to a given axis and rotation angle. Therefore,
-we can specify:**
+An easier solution is to use a standard function named `RotMat`, which returns
+a **rotation matrix** corresponding to a given axis and rotation angle. Therefore,
+we can specify:
 
 ```{literalinclude} Snippets/lesson2/snip.NewModel.main-9.any
 :language: AnyScriptDoc

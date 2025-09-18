@@ -18,7 +18,10 @@ AnySeg UpperArm = {
   //Axes0 = {{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
   Mass = 2;
   Jii = {0.001, 0.01, 0.01};
-  AnyDrawSeg drw = {};
+  viewRefFrame.Visible = On;
+  viewNodes.Visible = On;
+  viewInertia.Visible = On;
+  
   §AnyRefNode ShoulderNode = {
     sRel = {-0.2,0,0};
   };

@@ -15,21 +15,17 @@ Main = {
     // Todo. Add the model elements such as
     //       segments, joints, and muscles here.
 
-    AnySeg SourceFemur = 
-    {
+    AnySeg SourceFemur = {
       Mass = 0; Jii = {0, 0, 0};
-      AnyDrawSurf Surface = 
-      {
+      AnyDrawSurf Surface = {
         FileName = "SourceFemur.stl";
         RGB = {222,202,176}/256;
       };
     };
 
-    AnySeg TargetFemur = 
-    {
+    AnySeg TargetFemur = {
       Mass = 0; Jii = {0, 0, 0};
-      AnyDrawSurf Surface = 
-      {
+      AnyDrawSurf Surface = {
         FileName = "TargetFemur.stl";
         RGB = {256,256,0}/256;
       };
