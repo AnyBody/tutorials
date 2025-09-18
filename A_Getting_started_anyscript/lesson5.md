@@ -162,7 +162,7 @@ The drivers for shoulder and elbow motion thus default to applying the
 problematic, since we wish the muscles forces to be causing the motion instead.
 
 **👉 Now** The default driver reactions must therefore be switched off by
-setting the "Reaction.Type" property, for the muscles to cause the motion and
+setting the `Reaction.Type` property, for the muscles to cause the motion and
 not the drivers.
 
 ```{literalinclude} Snippets/lesson5/snip.NewModel.main-6.any

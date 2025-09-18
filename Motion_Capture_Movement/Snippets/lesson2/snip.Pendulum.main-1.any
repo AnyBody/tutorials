@@ -80,12 +80,10 @@ AnyInputC3D <ObjectName> =
     
   }; // MyModel
   
-//# BEGIN SNIPPET 2
-// The study: Operations to be performed on the model
-§AnyBodyStudy MyStudy = {
-  AnyFolder &Model = .MyModel;
-  Gravity = {0.0, -9.81, 0.0};    
-};§
-//# END SNIPPET 2
+  // The study: Operations to be performed on the model
+  AnyBodyStudy MyStudy = {
+    AnyFolder &Model = .MyModel;
+    Gravity = {0.0, -9.81, 0.0};    
+  };
   
 };  // Main

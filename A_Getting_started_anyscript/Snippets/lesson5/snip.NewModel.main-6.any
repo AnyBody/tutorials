@@ -95,9 +95,9 @@ Main = {
         };
         AnyDrawSeg DrwSeg = {};
 //# BEGIN SNIPPET 2
-  AnyRefNode PalmNode = {
+  §AnyRefNode PalmNode = {
     sRel = {0.27,0,0};
-  };
+  };§
 }; // ForeArm
 //# END SNIPPET 2
       
@@ -208,9 +208,10 @@ AnyFolder Drivers = {
         AnyRefNode &Ins = ..Segs.ForeArm.Triceps;
         viewMuscle.Visible = On;
       };
-    }; // Muscles folder
 
 //# BEGIN SNIPPET 3
+  }; // Muscles folder
+
   §AnyFolder Loads = {
   //---------------------------------
     AnyForce3D Dumbbell = {
@@ -218,7 +219,7 @@ AnyFolder Drivers = {
       F = {0,-100,0}; // Force in Newton
     };
   }; // Loads folder§
-}; // MyModel
+}; // ArmModel
 //# END SNIPPET 3
   
   // The study: Operations to be performed on the model

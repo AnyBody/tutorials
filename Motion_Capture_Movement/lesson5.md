@@ -23,7 +23,7 @@ about every conceivable computer system means that it has a rather
 complex structure and that there are rigid and precise rules for the
 creation of C3D files. An unfortunate consequence of this is that the
 format is error prone in the sense that not all software systems create
-C3D files that live completely up to the standard. The AnyInputC3D class
+C3D files that live completely up to the standard. The `AnyInputC3D` class
 in AnyBody is designed to cope with most of the common deviations from
 the standard, but occasionally you may run into a problem. Here are some
 of the common problems and solutions:
@@ -40,7 +40,7 @@ will be very far apart, and if you Zoom All in the model view, the
 markers may be so small compared to the viewed space that you cannot see
 them.
 
-The remedy is to set the PointScaleFactor in the AnyInputC3D object to
+The remedy is to set the `PointScaleFactor` in the `AnyInputC3D` object to
 0.001, for instance, in the case of data in millimeters.
 
 The second frequent explanation is that a C3D file contains two data
@@ -111,3 +111,7 @@ AnyBody passes through a piece of software that truncates the names,
 then AnyBody will be given a C3D file where all the marker names are
 truncated to just `MARK`. AnyBody will not accept non-unique marker
 names and therefore renames them automatically.
+
+This concludes the tutorials on implementing Motion Capture movement into
+AnyBody, building and driving simple models, addressing noise and filtering,
+identifying key parameters, and troubleshooting common issues with C3D files.

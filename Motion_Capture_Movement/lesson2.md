@@ -18,7 +18,7 @@ example because it is very simple and has a remote similarity with a human limb.
 A hinged pendulum, like a forearm hinged at the elbow, will have just one DoF,
 hence only one driver is needed to drive its motion. The class `AnyKinMotion` with
 a polynomial driver function is already inserted in the model as its driver.
-Refer to Lesson 5 in the tutorial {doc}`How to Write AnyScript </A_Getting_started_anyscript/index>` 
+Refer to Lesson 5 in the tutorial {ref}`How to Write AnyScript <AnyKinMotion>` 
 for more information about this driver. 
 
 In the following we will drive the pendulum using motion capture data instead
@@ -50,23 +50,24 @@ give a name to the object:
 `ConstructChartOnOff` instructs the C3D object to not draw 3D
 trajectories.
 
-Now, try loading the model again. You may get the following error
-message:
+Now, try loading the model again and run the Kinematics operation. You should get
+the following error message:
 
 ```none
 Time, 't', has an invalid value for this interpolation
 ```
 
-C3D files contain marker trajectories covering a certain time span and
+This is because C3D files contain marker trajectories covering a certain *time span* and
 what goes on outside that interval is undefined. Furthermore, the very
 beginning and very end of that time span may not be useful for the
 motion interpolation due to initial transients.
 
-If you have a C3D file of unknown duration, then you somehow have to figure out
-its start and end times to enable AnyBody to analyze it. A simple way to do this
-is to allow AnyBody to load the file by temporarily disabling the study section
-of your model. This will eliminate the study’s conflicting start and end times.
-Just block-select the study section and click the “Comment out” tool button over
+If you have a C3D file of unknown duration, you need to determine its start and
+end times so that AnyBody can analyze it. In this case, we can already load the
+model, which makes this task easy. If you have a model that cannot be loaded, a simple way
+to allow AnyBody to load the file is to temporarily disable the study section of
+your model. This will eliminate conflicting start and end times in the study.
+Simply select the study section and click the “Comment out” tool button above
 the editor window (or press {literal}`Ctrl+Shift+k`):
 
 ```{literalinclude} Snippets/lesson2/snip.Pendulum.main-2.any
@@ -75,9 +76,9 @@ the editor window (or press {literal}`Ctrl+Shift+k`):
 :end-before: //# END SNIPPET 2
 ```
 
-Now the model should load with no problems, and you can go to the tree
+Now the model should load with no problems, and you can go to the Model tree
 view in the left hand side of the screen, click the Model tab and unfold
-the MyModel tree down to the C3D object as shown below.
+MyModel tree down to the C3D object as shown below.
 
 ```{image} _static/lesson2/image1.png
 :alt: Model tree
@@ -85,10 +86,10 @@ the MyModel tree down to the C3D object as shown below.
 :width: 40%
 ```
 
-A bit down in this object you find the Header section. When you unfold
-it you get access to a number of basic properties of the C3D file. Each
-time you double-click a property, a window will pop up and give you its
-value. The important properties in question are these:
+A bit down in this object you find a folder named "Header". When you unfold it you
+get access to a number of basic properties of the C3D file. Each time you
+double-click a property, a window will pop up and give you its value. The
+important properties in question are these:
 
 ```AnyScriptDoc
 FirstFrameNo = 1
@@ -96,18 +97,10 @@ LastFrameNo = 1000
 VideoFrameRate = 100
 ```
 
-This shows that the file has a total of 1000 frames at 100 frames/sec,
-i.e. the simulation time spans ten seconds. We can now go to the editor
-window and remove the temporary double slashes in front of each line in
-the study section.
-
-```{literalinclude} Snippets/lesson2/snip.Pendulum.main-1.any
-:language: AnyScriptDoc
-:start-after: //# BEGIN SNIPPET 2
-:end-before: //# END SNIPPET 2
-```
-
-…and insert specifications of simulation time:
+This shows that the file has a total of 1000 frames at a frame rate of 
+100 frames/sec, i.e. the simulation time spans ten seconds. We can now go to the
+editor window and remove the temporary double slashes in front of each line to
+uncomment the study section and insert specifications of simulation time:
 
 ```{literalinclude} Snippets/lesson2/snip.Pendulum.main-3.any
 :language: AnyScriptDoc
@@ -117,7 +110,7 @@ the study section.
 
 There is also an automated way to handle the problem. The frame rate
 variables we have just processed manually can also be referred to
-directly in the study section, such that the tStart and tEnd parameters
+directly in the study section, such that the `tStart` and `tEnd` parameters
 automatically adapt to the C3D file. Try this instead:
 
 ```{literalinclude} Snippets/lesson2/snip.Pendulum.main-4.any
@@ -187,10 +180,10 @@ mention `GlobalRef` explicitly in the `AnyKinDriverMarker` object.
 We are going to drive the point directly by means of the interpolation
 function specifying the marker trajectory in the C3D object. First, give
 a reasonable name to the `AnyParamFun` and remove the stuff after the
-equality sign:
+equality sign.
 
 Then click the Model tab in the tree view on the left hand side of the editor
-window, unfold the MyModel branch and subsequently the `C3D` object ->
+window, unfold the MyModel branch and subsequently the `C3D` ->
 `Points` -> `Markers` -> `L000` and arrive at `PosInterpol` as shown
 below.
 
@@ -201,7 +194,7 @@ below.
 
 This is the actual interpolation function of the marker in question.
 Place the cursor after the equality sign of the `AnyParamFun` line,
-right-click the PosInterpol object, and choose “Insert object name”. You
+right-click the `PosInterpol` object, and choose “Insert object name”. You
 should get this:
 
 ```{literalinclude} Snippets/lesson2/snip.Pendulum.main-6.any
@@ -217,11 +210,10 @@ following error message:
 ERROR(OBJ.MCH.KIN2): pendulum.any(64): MyStudy.InitialConditions: Model is kinematically over-constrained
 ```
 
-It is time to think of the concept of degrees-of-freedom, DoF, which is
-described in **The Mechanical tutorial**. A hinged pendulum, like a forearm
-hinged at the elbow, will have just one DoF. But the marker trajectory has three
-coordinates and therefore wants to drive `P1` of the pendulum in $x$, $y$ and
-$z$, i.e. two DoFs more than we have available.
+It is time to think of the concept of degrees-of-freedom, DoF. A hinged
+pendulum, like a forearm hinged at the elbow, will have just one DoF. But the
+marker trajectory has three coordinates and therefore wants to drive `P1` of the
+pendulum in $x$, $y$ and $z$, i.e. two DoFs more than we have available.
 
 There are two possible solutions to this problem. Either we pick only one of the
 directions given by the marker and let the revolute joint decide the rest, or we
@@ -260,7 +252,8 @@ kinematic constraints than the system has DoFs.
 
 :::{note}
 See [Andersen MS, Damsgaard M, and Rasmussen J. 2007](https://doi.org/10.1080/10255840802459412)
-for detailed information about the algorithm behind the overdeterminate kinematic analysis.
+for detailed information about the algorithm behind the overdeterminate 
+kinematic analysis.
 :::
 
 Now you can reload and run the kinematic analysis and you should see the
@@ -276,7 +269,7 @@ additional specification in the C3D object:
 ```
 
 With the unnecessary marker gone from the model, the kinematic analysis
-runs much faster than before. Each marker adds DoFs and constraints to
+runs faster than before. Each marker adds DoFs and constraints to
 the model, and they require solution time. It is therefore more
 efficient to leave the markers out unless you really need them.
 

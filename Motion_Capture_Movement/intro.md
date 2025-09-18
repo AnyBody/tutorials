@@ -6,8 +6,8 @@
 Most biomechanical investigations involve some sort of movement, so
 getting the model to move in the desired way is at the core of
 musculoskeletal modeling. The AnyBody Modeling System offers many and
-rather advanced methods to make this happen. This tutorial explains the
-basics and some of the more common approaches.
+rather advanced methods to make this happen. This tutorial explains 
+some of the common approaches.
 
 :::{figure} _static/intro/cutting.jpg
 :align: center
@@ -67,6 +67,8 @@ determining which movement to perform before we have specified it.
 -->
 
 
-In the following lessons we will look at simple and more advanced ways
-to drive a model. For simplicity, we’ll stick with the simple pendulum,
-but exactly the same principles apply to much more complex models.
+In the following lessons we will look at simple and more advanced ways to drive
+a model. First, lesson 1 introduces an advanced gait model from AMMR of a
+walking human driven by motion capture data. The following lessons will explain
+how to build your own model to drive a simple pendulum using motion capture
+data, where exactly the same principles apply to much more complex models.

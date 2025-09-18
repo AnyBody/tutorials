@@ -176,6 +176,7 @@ initial guess, on the way to enforcing specified motions and constraints (such
 as joints between segments). More on this in the next lesson.
 
 For now, let us first change `r0` - the global position of the segment at load-time.
+First for the "UpperArm":
 
 ```{literalinclude} Snippets/lesson2/snip.NewModel.main-7.any
 :language: AnyScriptDoc
@@ -183,7 +184,7 @@ For now, let us first change `r0` - the global position of the segment at load-t
 :end-before: //# END SNIPPET 1
 ```
 
-and
+and then the "ForeArm":
 
 ```{literalinclude} Snippets/lesson2/snip.NewModel.main-7.any
 :language: AnyScriptDoc

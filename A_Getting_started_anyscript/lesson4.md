@@ -69,7 +69,7 @@ The folder contains two objects named `ShoulderMotion` and `ElbowMotion`,
 belonging to the `AnyKinDriver ` class.
 
 **All AnyBody drivers only work on the measures that are supplied to them**. The
-`AnyKinDriver ` class used in this case, constrains the supplied
+`AnyKinDriver` class used in this case, constrains the supplied
 measure's positions to a given value at time = 0 (`DriverPos0`) and changes this
 position at constant velocity thereon (`DriverVel0`).
 
@@ -124,7 +124,7 @@ contains a reference to same mechanical model, and a second reference object
 pointing to a folder with motion drivers, that are specific to that study.
 :::
 
-You must now run the **"Main.ArmStudy.Kinematics"** operation. If you need to
+You must now run the **"ArmStudy.Kinematics"** operation. If you need to
 refer back to how this is done, look at 
 {ref}`this prior tutorial<running-analysis>`.
 

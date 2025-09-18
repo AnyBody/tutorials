@@ -113,6 +113,11 @@ which is the relevant value for a signal like this, where the noise is
 high frequency, but the filters in AnyBody also allow for other types.
 Please refer to the reference manual for a complete description.
 
+:::{note}
+To quickly access the reference manual, simply place your cursor on 
+the desired word and press `F1`.
+:::
+
 In the graph of `Pendulum.r` above, the blue curve seems to have a
 frequency of about 0.2 Hz and the orange curve about 0.4 Hz. This is
 safely below our present 10 Hz cutoff frequency, so there seems to be

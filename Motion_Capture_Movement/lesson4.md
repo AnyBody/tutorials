@@ -23,11 +23,12 @@ help us automatically determine these parameters with good accuracy.
 Please download and save the file
 {download}`multiple.c3d <Downloads/multiple.c3d>`.
 
-Then close all open windows in AnyBody and create a new Basic Main file by
-clicking the ‘M’ tool button in the upper left hand corner of the main frame and
-save it in the same folder as the 'multiple.c3d' file. This gives you a dialog to
-create an empty model into which you can insert an `AnyInputC3D` object, refer
-to the {file}`multiple.c3d` file and specify the filter as we did before:
+Then close all open windows in AnyBody and create a new '*Basic Main*' file by
+clicking the ‘M’ tool button ![M](_static/lesson4/image7.png) in the upper left
+hand corner of the main frame and save it in the same folder as the
+'multiple.c3d' file. This gives you a dialog to create an empty model into which
+you can insert an `AnyInputC3D` object, refer to the {file}`multiple.c3d` file
+and specify the filter as we did in the previous two lessons:
 
 ```{literalinclude} Snippets/lesson4/snip.Multiple.main-1.any
 :language: AnyScriptDoc
@@ -288,7 +289,7 @@ You can easily load these values into your model from the same context
 menu every time you have reloaded the model.
 
 Of course, to have the coordinates of the Joint node permanently updated, you
-can also simply copy and paste them into the sRel value directly in the Leg
+can also simply copy and paste them into the `sRel` value directly in the Leg
 segment definition in your AnyScript file. Don’t do it yet, though. We are going
 to play a little more with the possibilities.
 
@@ -304,7 +305,7 @@ protocol that places most markers on well-defined bony landmarks in the
 model, there may still be doubt about the precise locations of some or
 all the markers, and the result of the joint location optimization also
 shows that especially the first marker location deviates somewhat from
-its corresponding AnyRefNode. This indicates that there are other
+its corresponding `AnyRefNode`. This indicates that there are other
 sources of error in the model, than the joint location, and indeed the
 recent relocation of the joint may be influenced by errors that are not
 associated with the joint location.

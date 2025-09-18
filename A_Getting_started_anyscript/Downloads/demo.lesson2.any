@@ -1,4 +1,4 @@
-  // Todo: Write a small description of your model here
+// Todo: Write a small description of your model here
 
 Main = {
   // The actual body model goes in this folder
@@ -15,6 +15,7 @@ Main = {
     //       segments, joints, and muscles here.
 
   };
+  
   // The study: Operations to be performed on the model
   AnyBodyStudy ArmStudy = {
     AnyFolder &Model = .ArmModel;

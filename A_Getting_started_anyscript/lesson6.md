@@ -97,7 +97,7 @@ still not oriented correctly.
 
 :::{note} 
 You can visualize a node's local reference system, by selecting the
-node in the model tree (e.g., "Main.ArmModel.Segs.ForeArm.PalmNode") and
+node in the model tree (e.g., `Main.ArmModel.Segs.ForeArm.PalmNode`) and
 right-clicking and selecting "Model View->This object->View". 
 :::
 

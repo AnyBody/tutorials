@@ -18,11 +18,8 @@ the object whose motion we want to record. The file can also contain analog data
 such as force platform measurements or EMG. AnyBody can read the data from a C3D
 file directly. 
 
-Without further ado, let us import a real C3D file and drive a complete model.
-
 The AnyBody Modeling System offers you virtually unlimited ways of doing
-things, and probably more than the average user can comprehend, so we
-are going to start with a simple and top-down procedure.
+things, and probably more than the average user can comprehend.
 
 The AnyBody Model Repository (> 2.0), contains some pre-cooked examples which
 are easy to drive with your own data and which contain some really neat features
@@ -30,7 +27,8 @@ for data processing.
 
 :::{note}
 Make sure you have installed your own copy of the AnyBody Model repository (AMMR).
-See the {doc}`AMMR documentation <ammr:ammr_installation>`.
+See the {doc}`AMMR documentation <ammr:ammr_installation>` for instructions on how 
+to install it.
 :::
 
 1. Go to the folder {file}`Application/MocapExamples/Plug-in-gait_Simple`.
@@ -63,9 +61,9 @@ file to drive the model with.
 
 The model defines three sections/files which must be customized.
 
-- {file}`LabSpecificData.any`
-- {file}`SubjectSpecificData.any`
 - {file}`TrialSpecificData.any`.
+- {file}`SubjectSpecificData.any`
+- {file}`LabSpecificData.any`
 
 Following this structure is not strictly necessary, but good practice. Finally,
 on line 13 we include the *AnyMocap* framework or base model.
@@ -172,7 +170,8 @@ sometimes slowly and sometimes a bit faster depending on the speed of
 your computer and the progress of the computation.
 
 :::{note}
-The process speeds up significantly if you switch off the Model View.
+The process speeds up significantly if you switch off the Model View 
+![ModelViewOff](_static/lesson1/disable_modelview.png).
 :::
 
 When operation is done you will see the line `Optimization converged` in the *Output* windows
@@ -376,7 +375,7 @@ Operations tree:
 
 The model starts walking repeatedly over the force platforms including
 the arm motions while it tries to optimize segment lengths and marker
-positions. It takes 5 iterations and considerable more time than before
+positions. It takes 4 iterations and **considerable more time** than before
 to optimize the model because this is a much larger problem, but as
 before you can speed up the process if you switch off the update of the
 Model View window. It is possible to monitor the convergence of the
