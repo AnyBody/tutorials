@@ -3,8 +3,20 @@
 
 # Lesson 2: Including a Custom Scaling Function into Your Model
 
-This lesson explains how we can use our own custom scaling function,
-which we designed in Lesson 1 and combine it with the overall human body scaling laws.
+This lesson explains how to use your own custom scaling function designed in
+Lesson 1 and combine it with the overall human body scaling laws, so
+anthropometric scaling and subject-specific scaling are combined.
+
+Shortly explained, the sections in this lesson are as follows:
+
+- **Prepare the base model**: Opening the Standing Human Model and preparing the
+  model for subject-specific scaling.
+
+- **Include your custom scaling function**: Add your custom scaling function
+  to personalize a single segment (the femur).
+
+- **Include a mirrored custom scaling function**: Apply the same custom scaling
+  to the opposite femur by mirroring the original scaling function.
 
 ```{seealso}
 This lesson uses the human body scaling laws presented in the AMMR, thus
@@ -210,16 +222,24 @@ scaling law into the model.
 :width: 50%
 ```
 
-If we worked with a bone that does not have a controlateral pair, e.g.
-vertebrae, skull, etc., or just wanted to personalize a single side, we would
-continue with running the inverse dynamics. But as an exercise, we want to
-continue and scale the other side as well to ensure symmetry of the model.
-Normally, we would use the contralateral patient-specific bone and
-copy the scaling code. But, in our case, only one side was available. We will assume
-that the body is symmetric, which is only true up to a certain extent.
-So let us include a similar scaling for the corresponding mirrored pair.
-In the next section we will describe how to introduce mirroring to our
-scaling functions.
+:::{warning}
+It is important to note that the scaling function so far only personalizes a
+single bone (one femur). The rest of the body still uses the standard body 
+model with anthropometric scaling laws.
+:::
+
+If we worked with a bone that does not have a contralateral pair (e.g. vertebrae
+or skull), or if you intentionally personalize only one side of the human body,
+we would continue with running the inverse dynamics. However, for paired
+segments like the femur it is recommended to also scale the other side of the
+model to ensure symmetry of the body. 
+
+Best practice is to have patient-specific geometry for both sides and reuse the
+scaling code with the second dataset. But, in this tutorial, only one side is
+available, so we assume that the body is symmetric, which is only true up to a
+certain extent. So let us include a similar scaling for the corresponding
+mirrored pair. In the next section we will describe how to introduce mirroring
+to our scaling functions.
 
 ## Introducing a Mirrored Custom Scaling Function
 

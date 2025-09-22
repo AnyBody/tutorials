@@ -16,6 +16,16 @@ instructions on how to configure the model to use the built-in *scaling laws*
 and provide general anthropometric information.
 :::
 
+Scaling schemes described in the AMMR documentation are based on
+anthropometric measurements and affine transform scaling. Such schemes
+are good assumptions when more accurate measurements are not feasible or not
+available. Therefore, these schemes are used quite often. However, a
+natural next step would be to improve the precision of a model by
+utilizing subject-specific geometry available from the medical images. Medical images
+contain more subject-specific information about the bone shapes and local
+deformities that cannot be handled by the anthropometric regression
+equations.
+
 This tutorial introduces an advanced procedure of model personalization by means of
 nonlinear morphing for both, bone surface and relevant soft tissue attachment sites,
 to take a subject-specific shape. In this example, bone geometries segmented from medical
@@ -32,6 +42,6 @@ with the basic scaling laws and concepts presented in the
 ```{toctree}
 :maxdepth: 1
 
-Lesson 1: Scaling based on medical images <lesson1>
-Lesson 2: Including a custom scaling function into your model <lesson2>
+Lesson 1: Scaling Based on Medical Images <lesson1>
+Lesson 2: Including a Custom Scaling Function into Your Model <lesson2>
 ```
