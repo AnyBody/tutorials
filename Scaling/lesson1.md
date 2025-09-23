@@ -3,11 +3,18 @@
 
 # Lesson 1: Personalizing Individual Segments Based on Geometric Data from Medical Images
 
+:::{note}
 This tutorial presumes that you have read the [AMMR documentation](https://anyscript.org/ammr/Scaling/intro.html)
 and know how to personalize your model using information about height, weight,
 and individual segment lengths.
+:::
 
-This lesson introduces an advanced approach to scaling based on a sequence of
+In this lesson you will learn how to personalize a bone segment (the femur) so
+a generic model matches a specific person’s anatomy from medical imaging. We do
+this by scaling the bone surface, starting with basic affine
+transformations and advancing to more sophisticated nonlinear methods.
+
+You will be introduced to an advanced approach to scaling based on a sequence of
 affine and non-affine transformations. Each of these transforms is constructed
 based either on subject-specific geometry or on a set of landmarks selected on
 the bone surface. As opposed to the simple scaling laws explained in the AMMR
@@ -15,17 +22,20 @@ documentation, this lesson is rather methodological than conceptual and provides
 a good overview of how to pipeline and combine different 3D transforms to obtain
 subject-specific morphing and registration between frames of reference.
 
-## Linear Point-Based Scaling
+Shortly explained, the sections in this lesson are as follows:
 
-Scaling schemes described in the AMMR documentation are based on
-anthropometric measurements and affine transform scaling. Such schemes
-are good assumptions when more accurate measurements are not feasible or not
-available. Therefore, these schemes are used quite often. However, a
-natural next step would be to improve the precision of a model by
-utilizing subject-specific geometry available from the medical images. Medical images
-contain more subject-specific information about the bone shapes and local
-deformities that cannot be handled by the anthropometric regression
-equations.
+- **Linear Point-Based Scaling**: Using a *set of matching landmarks (points)* on
+  the source and target geometries to construct a *linear* transform
+  (move, rotate, scale, and skew) that scales the source into the target
+  geometry.
+
+- **Landmark-Based Nonlinearities**: Refining the scaling by adding a *nonlinear*
+  transform fitted to a *new set of matching landmarks (points)*.
+
+- **Surface-Based Nonlinearities**: Further refining the scaling by adding a
+  *nonlinear* transform fitted to the *surfaces* of the source and target geometries.
+
+## Linear Point-Based Scaling
 
 The simplest inclusion of the subject-specific bone shape from medical
 image data is to find the affine (linear) transformation that fits a
@@ -100,6 +110,20 @@ step, we change the mode of the `AnyFunTransform3DLin2` object to
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
 ```
+
+:::{admonition} Tip for landmark selection
+:class: tip dropdown 
+If you want to extract the coordinates of the points on the surfaces in *your own
+model*, you can use the open source software MeshLab, which can be downloaded
+{download}`here<https://www.meshlab.net/>`.
+
+1. Import the STL surface into MeshLab
+2. Use the `PickPoints` tool to select points on the surface by right-clicking
+   on the desired locations ![PickPoints](_static/lesson2/image4.png)
+3. Save the points to a file
+4. Open the saved file in a text editor and copy the coordinates of the points
+   into your AnyScript model (be aware of the order of the x-, y-, and z-coordinates)
+:::
 
 The selected points on the surface represent specific anatomical
 landmarks and points described in the comments of the AnyScript code.
