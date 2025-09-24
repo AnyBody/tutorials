@@ -138,8 +138,8 @@ model view:
 
 ```{image} _static/Optimization_studies/runopt.png
 :alt: Loading the optimization study
-:class: bg-primary
 :align: center
+:width: 70%
 ```
 
 ## Running the Optimization Study
@@ -153,7 +153,7 @@ converges.
 
 Every time you see the left-most number changing in the Output window it is
 an indication that the optimizer has picked a new optimization direction to try.
-You should see the number increasing in slow steps up to 6 before the process
+You should see the number increasing in slow steps up to 7 before the process
 stops and the system announces that it is finished. Please notice that the
 changes of saddle position in the last several steps is very minute, which is
 typical for optimization: the first steps bring large changes and large
@@ -174,7 +174,7 @@ have this surface ready, please open another Chart window by clicking
 `View`->`Charts`->`Chart2`.  In the new window, please expand the tree
 down to `Main.OptStudy.Output.Metab`. Then click the `Val` variable
 under Metab. This produces a simple 2-D graph showing the development of
-the metabolism over the 6 iterations:
+the metabolism over the 7 iterations:
 
 ```{image} _static/Optimization_studies/metabcon2.png
 :alt: Chart Opttudy 1
@@ -198,6 +198,7 @@ The optimal solution in the Model View looks like this:
 ```{image} _static/Optimization_studies/bikeopt2.png
 :alt: Final Model view
 :align: center
+:width: 70%
 ```
 
 Just above the `Metab` variable in the tree you can find the two
@@ -207,16 +208,16 @@ over the iterations. This is also quite usual for optimization
 processes.
 
 An interesting way to investigate the convergence is to plot it in the
-variable/objective space rather than over the iterations. This is what
-we need the window with the parameter study surface for. At the top of
-this window you will find panels listing series and data to be plotted.
+variable/objective space rather than over the iterations. This is what we need
+the window with the parameter study surface for. Go back to Chart 1. At the top
+of this window you will find panels listing series and data to be plotted.
 Please right-click in the series window and select "Add":
 
 ```{image} _static/Optimization_studies/newseries.png
 :alt: Chart New Series
 :class: bg-primary
 :align: center
-:width: 65%
+:width: 55%
 ```
 
 This will give you a blank "Series 1". When you highlight it by clicking
@@ -340,6 +341,21 @@ combination of variables, but in general it can also be properties such
 as muscle forces, joint reactions, point locations, segment velocities,
 and any other model property that the system can compute.
 
+In this constrained optimization problem, it is beneficial to adjust the initial
+guess for the saddle height and saddle position to a slightly higher value. The
+convergence speed of the optimization algorithm depends on the starting point:
+if the initial guess violates the seat distance constraint, the optimizer may
+require many iterations to find a feasible solution. By setting the
+`SaddleHeight` and `SaddlePos` parameters under `BikeParameters` to 0.625 m and
+0.21 m, the initial configuration satisfies the constraint, resulting in a faster
+and more efficient convergence.
+
+```{literalinclude} Snippets/lesson2/2Dbike3/BikeModel2D.main.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
+```
+
 Enough talk; let's try the optimization with the constraint added.
 Please load the model again, select the `Main.OptStudy.Optimization` operation, and
 click the run button. The optimization process will have the following
@@ -352,14 +368,17 @@ convergence picture:
 :width: 75%
 ```
 
+Thanks to the improved initial guess, the optimization now converges in fewer
+iterations than before, despite a constraint being added to the problem.
+
 If you also re-run the parameter study, you can get this picture of the
-convergence:
+convergence path through the design space:
 
 ```{image} _static/Optimization_studies/optpath2_constrained.png
 :alt: opt Study constrained
 :class: bg-primary
 :align: center
-:width: 60%
+:width: 70%
 ```
 
 We see that the result is indeed a compromise since the objective
@@ -378,7 +397,7 @@ looks like:
 :width: 70%
 ```
 
-where it is obvious how the optimizer hits the constraint, bounces off,
+Here it is obvious how the optimizer hits the constraint, bounces off,
 hits again, etc. and finally it converges. At no point in time, the
 constraint value becomes negative, which was exactly what we prescribed
 in its definition.
@@ -392,6 +411,7 @@ picture below:
 ```{image} _static/Optimization_studies/BikeOpt2_constrained.png
 :alt: Final model view 2
 :align: center
+:width: 70%
 ```
 
 This completes the introduction to optimization studies.

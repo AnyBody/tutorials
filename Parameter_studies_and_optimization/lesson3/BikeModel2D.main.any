@@ -15,16 +15,13 @@ You can do lots of interesting stuff with this model:
 - Separate internal work for acceleraton of body segments
 from external work on the crank.*/
 Main = {  
-
-  /// Various parameters for setting up the bicycle and the riding characteristics.
   AnyFolder BikeParameters = {
-    
     // Geometry parameters
-    AnyVar PedalArmLength =0.17;  //Length of pedal arm
-    AnyVar PedalArmWidth = 0.106; //Horizontal distance between left and right connecting point between foot and pedal
-    AnyVar SaddleHeight = 0.66 ;  //Height of hip joint measured vertically from the crank
-    AnyVar SaddlePos = -0.16;     //Horizontal pos of hipjoint measured from the crank
-    
+    AnyVar PedalArmLength = 0.19;  //Length of pedal arm
+    AnyVar PedalArmWidth = 0.14; //Horizontal distance between left and right connecting point between foot and pedal
+    AnyVar SaddleHeight = 0.625;  //Height of hip joint measured vertically from the crank
+    AnyVar SaddlePos = -0.21;     //Horizontal pos of hipjoint measured from the crank
+
     // Loading parameters
     AnyVar Cadence = 80.0;   //Cadence in RPM 
     AnyVar MechOutput = 165; //Average Mechanical output over a cycle in Watt
@@ -56,7 +53,6 @@ Main = {
   #include "Model/Scaling.any"
   
   
-  
   /// This folder is a place to assemble all the elements to include in the
   /// study.
   AnyFolder Model = {
@@ -70,41 +66,40 @@ Main = {
     #include "Model/BikeFrameGroundConnection.any"
   };
   
-  /// The study: Operations to be performed on the model
+  // The study: Operations to be performed on the model
   AnyBodyStudy Study = {
     AnyFolder &Model = .Model;
-    nStep = 50;
     
     Gravity = {0.0, -9.81, 0.0};
     tEnd = Main.BikeParameters.T;
-    
+    nStep = 50;
     // Useful variables for the optimization
     AnyFolder &r = Main.Model.Leg2D.Right.Mus;
     AnyFolder &l = Main.Model.Leg2D.Left.Mus;
     AnyVar Pmet_total = r.Ham.Pmet+r.BiFemSh.Pmet+r.GlutMax.Pmet+r.RectFem.Pmet+r.Vasti.Pmet+r.Gas.Pmet+r.Sol.Pmet+r.TibAnt.Pmet+l.Ham.Pmet+l.BiFemSh.Pmet+l.GlutMax.Pmet+l.RectFem.Pmet+l.Vasti.Pmet+l.Gas.Pmet+l.Sol.Pmet+l.TibAnt.Pmet;
-        
+      
     AnyOutputFun MaxAct = {
       Val = .MaxMuscleActivity;
     };
     AnyOutputFun Metabolism = {
       Val = .Pmet_total;
-    };    
+    };
   };
 
   AnyParamStudy ParamStudy = {
     Analysis = {
       AnyOperation &Operation = ..Study.InverseDynamics;
     };
-    nStep = {20,20};
+    nStep = {10,10};
     AnyDesVar SaddleHeight = {
       Val = Main.BikeParameters.SaddleHeight;
-        Min = 0.61;
-        Max = 0.69 /*+ 0.02*/;
+      Min = 0.57;
+      Max = 0.66 /*+ 0.01*/;
     };
     AnyDesVar SaddlePos = {
       Val = Main.BikeParameters.SaddlePos;
-        Min = -0.20 /*-0.03*/;
-        Max = -0.05;
+      Min = -0.22 /*- 0.044*/;
+      Max = -0.12;
     };
     AnyDesMeasure MaxAct = {
       Val = max(..Study.MaxAct());
@@ -112,37 +107,36 @@ Main = {
     AnyDesMeasure Metab = {
       Val = secint(..Study.Metabolism(),..Study.tArray);
     };
-  };  
+  };
 
   AnyOptStudy OptStudy = {
     Analysis = {
       AnyOperation &Operation = ..Study.InverseDynamics;
-      Settings.Echo = Off;
-      Settings.ModelSceneUpdate=Off;
     };
+    
     AnyDesVar SaddleHeight = {
       Val = Main.BikeParameters.SaddleHeight;
-        Min = 0.61;
-        Max = 0.69 /*+ 0.02*/;
+      Min = 0.57;
+      Max = 0.66 /*+ 0.01*/;
     };
     AnyDesVar SaddlePos = {
       Val = Main.BikeParameters.SaddlePos;
-        Min = -0.20 /*-0.03*/;
-        Max = -0.05;
+      Min = -0.22 /*- 0.044*/;
+      Max = -0.12;
     };
     AnyDesMeasure Metab = {
       Val = secint(..Study.Metabolism(),..Study.tArray);
       Type = ObjectiveFun;
     };
     AnyDesMeasure SeatDist = {
-      Val = (.SaddleHeight.Val^2+.SaddlePos.Val^2)^0.5 - 0.66;
+      Val = (.SaddleHeight.Val^2+.SaddlePos.Val^2)^0.5 - 0.65;
       Type = GreaterThanZero;
-    };    
+    };
   };
-  
-  
+
+
   // Include an operation sequence to run all required steps of your application (see Operations tab)
-    #include "Model\RunAppSequence.any"  
+  #include "Model\RunAppSequence.any"  
   
 }; // Main
 
