@@ -93,7 +93,14 @@ Main = {
         AnyRefNode Triceps = {
           sRel = {-0.25,0,-0.05};
         };
-      }; // ForeArm
+        AnyDrawSeg DrwSeg = {};
+//# BEGIN SNIPPET 2
+  §AnyRefNode PalmNode = {
+    sRel = {0.27,0,0};
+  };§
+}; // ForeArm
+//# END SNIPPET 2
+      
     }; // Segs folder
 
     // Joints 
@@ -112,20 +119,21 @@ Main = {
       }; // Elbow joint
     }; // Jnts folder
 
-    AnyFolder Drivers = {
-      //---------------------------------
 //# BEGIN SNIPPET 1
-  AnyKinEqSimpleDriver ShoulderMotion = {
+AnyFolder Drivers = {
+  //---------------------------------
+  AnyKinDriver ShoulderMotion = {
     AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
-    DriverPos = {-100*pi/180};
-    DriverVel = {30*pi/180};
+    DriverPos0 = {-100*pi/180};
+    DriverVel0 = {30*pi/180};
     §Reaction.Type = {Off};§
   }; // Shoulder driver
+
   //---------------------------------
-  AnyKinEqSimpleDriver ElbowMotion = {
+  AnyKinDriver ElbowMotion = {
     AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
-    DriverPos = {90*pi/180};
-    DriverVel = {45*pi/180};
+    DriverPos0 = {90*pi/180};
+    DriverVel0 = {45*pi/180};
     §Reaction.Type = {Off};§
   }; // Elbow driver 
 }; // Driver folder
@@ -200,11 +208,21 @@ Main = {
         AnyRefNode &Ins = ..Segs.ForeArm.Triceps;
         viewMuscle.Visible = On;
       };
-    }; // Muscles folder
 
-  }; // The study: Operations to be performed on the model
-  // ArmModel
+//# BEGIN SNIPPET 3
+  }; // Muscles folder
 
+  §AnyFolder Loads = {
+  //---------------------------------
+    AnyForce3D Dumbbell = {
+      AnyRefNode &PalmNode = ..Segs.ForeArm.PalmNode;
+      F = {0,-100,0}; // Force in Newton
+    };
+  }; // Loads folder§
+}; // ArmModel
+//# END SNIPPET 3
+  
+  // The study: Operations to be performed on the model
   AnyBodyStudy ArmStudy = {
     AnyFolder &Model = .ArmModel;
     Gravity = {0.0, -9.81, 0.0};

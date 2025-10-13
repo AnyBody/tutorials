@@ -114,21 +114,21 @@ Main = {
 
     AnyFolder Drivers = {
       //---------------------------------
-      AnyKinEqSimpleDriver ShoulderMotion = {
+      AnyKinDriver ShoulderMotion = {
 //# BEGIN SNIPPET 1
 AnyRevoluteJoint &Jnt = ..Jnts.Shoulder;
 //# END SNIPPET 1
-        DriverPos = {-100*pi/180};
-        DriverVel = {30*pi/180};
+        DriverPos0 = {-100*pi/180};
+        DriverVel0 = {30*pi/180};
       }; // Shoulder driver
       //---------------------------------
-      AnyKinEqSimpleDriver ElbowMotion = {
+      AnyKinDriver ElbowMotion = {
 //# BEGIN SNIPPET 2
 AnyRevoluteJoint &Jnt = ..Jnts.Elbow;
 //# END SNIPPET 2
-        DriverPos = {90*pi/180};
-        DriverVel = {45*pi/180};
-      }; // Elbow driver 
+        DriverPos0 = {90*pi/180};
+        DriverVel0 = {45*pi/180};
+      }; // Elbow driver
     }; // Driver folder
 
   }; // The study: Operations to be performed on the model

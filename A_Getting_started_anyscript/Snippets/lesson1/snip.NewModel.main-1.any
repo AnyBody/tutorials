@@ -16,11 +16,10 @@ AnyFolder §ArmModel§ = {
   //       segments, joints, and muscles here.
 
 };
+// The study: Operations to be performed on the model
+AnyBodyStudy §ArmStudy§ = {
+  AnyFolder &Model = .§ArmModel§;
+  Gravity = {0.0, -9.81, 0.0};
+};
 //# END SNIPPET 1
-  // The study: Operations to be performed on the model
-  AnyBodyStudy ArmStudy = {
-    AnyFolder &Model = .ArmModel;
-    Gravity = {0.0, -9.81, 0.0};
-  };
-
 };
