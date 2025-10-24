@@ -108,14 +108,14 @@ locale_dirs = ["locale/"]
 
 gettext_compact = False
 
-
-redirects = {
-    "Making_things_move/index" : "../Motion_Capture_Movement/index.html",
-    "Making_things_move/lesson5" : "../Motion_Capture_Movement/lesson1.html",
-    "Scaling/lesson3" : "../Scaling/index.html",
-    "Scaling/lesson3_appendix" : "../Scaling/index.html",
-    "Scaling/lesson4" : "../Scaling/index.html"
-}
+if not tags.has("offline"):
+    redirects = {
+        "Making_things_move/index" : "../Motion_Capture_Movement/index.html",
+        "Making_things_move/lesson5" : "../Motion_Capture_Movement/lesson1.html",
+        "Scaling/lesson3" : "../Scaling/index.html",
+        "Scaling/lesson3_appendix" : "../Scaling/index.html",
+        "Scaling/lesson4" : "../Scaling/index.html"
+    }
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
