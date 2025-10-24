@@ -191,6 +191,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-book-theme-1.1.4-pyh29332c3_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-copybutton-0.5.2-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-design-0.6.1-pyhd8ed1ab_2.conda
+      - conda: https://prefix.dev/conda-forge/noarch/sphinx-reredirects-1.0.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-simplepdf-1.6.0-pyh29332c3_2.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-togglebutton-0.3.2-pyhd8ed1ab_0.tar.bz2
       - conda: https://prefix.dev/conda-forge/noarch/sphinxcontrib-applehelp-2.0.0-pyhd8ed1ab_1.conda
@@ -411,6 +412,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-book-theme-1.1.4-pyh29332c3_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-copybutton-0.5.2-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-design-0.6.1-pyhd8ed1ab_2.conda
+      - conda: https://prefix.dev/conda-forge/noarch/sphinx-reredirects-1.0.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-simplepdf-1.6.0-pyh29332c3_2.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-togglebutton-0.3.2-pyhd8ed1ab_0.tar.bz2
       - conda: https://prefix.dev/conda-forge/noarch/sphinxcontrib-applehelp-2.0.0-pyhd8ed1ab_1.conda
@@ -648,6 +650,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-book-theme-1.1.4-pyh29332c3_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-copybutton-0.5.2-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-design-0.6.1-pyhd8ed1ab_2.conda
+      - conda: https://prefix.dev/conda-forge/noarch/sphinx-reredirects-1.0.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-simplepdf-1.6.0-pyh29332c3_2.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-togglebutton-0.3.2-pyhd8ed1ab_0.tar.bz2
       - conda: https://prefix.dev/conda-forge/noarch/sphinxcontrib-applehelp-2.0.0-pyhd8ed1ab_1.conda
@@ -870,6 +873,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-book-theme-1.1.4-pyh29332c3_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-copybutton-0.5.2-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-design-0.6.1-pyhd8ed1ab_2.conda
+      - conda: https://prefix.dev/conda-forge/noarch/sphinx-reredirects-1.0.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-simplepdf-1.6.0-pyh29332c3_2.conda
       - conda: https://prefix.dev/conda-forge/noarch/sphinx-togglebutton-0.3.2-pyhd8ed1ab_0.tar.bz2
       - conda: https://prefix.dev/conda-forge/noarch/sphinxcontrib-applehelp-2.0.0-pyhd8ed1ab_1.conda
@@ -4339,6 +4343,16 @@ packages:
   license_family: MIT
   size: 911336
   timestamp: 1734614675610
+- conda: https://prefix.dev/conda-forge/noarch/sphinx-reredirects-1.0.0-pyhd8ed1ab_0.conda
+  sha256: 960b4459f898fb3115099b89be53dfd5903d4a7572ca0cc4dd8fafdd966b5bf9
+  md5: 38f2e4c88b88a2a636fd72184a3ca8d8
+  depends:
+  - python >=3.11
+  - sphinx >=7.4
+  license: MIT
+  license_family: MIT
+  size: 12679
+  timestamp: 1748852791643
 - conda: https://prefix.dev/conda-forge/noarch/sphinx-simplepdf-1.6.0-pyh29332c3_2.conda
   sha256: 07670170f40de1c9d2371fafe5b526e24fc510a4d713be5aa047d9dfc0fc5e18
   md5: 05448fb057f71bb6196fe6b1be874328
