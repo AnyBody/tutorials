@@ -43,6 +43,7 @@ anypytools = ">=1.13.1,<2"
 scipy = ">=1.15.2,<2"
 ipywidgets = ">=8.1.5,<9"
 pydata-sphinx-theme = ">=0.15.4,<0.16"
+sphinx-reredirects = ">=1.0.0,<2"
 
 
 [feature.test.target.win-64.dependencies]

@@ -63,7 +63,8 @@ extensions = [
     "sphinx_togglebutton",
     "sphinxcontrib.youtube",
     "sphinx_simplepdf",
-    "myst_nb"
+    "myst_nb",
+    "sphinx_reredirects"
 ]
 
 myst_enable_extensions = [
@@ -107,6 +108,14 @@ locale_dirs = ["locale/"]
 
 gettext_compact = False
 
+
+redirects = {
+    "Making_things_move/index" : "Motion_Capture_Movement/index",
+    "Making_things_move/lesson5" : "Motion_Capture_Movement/lesson1",
+    "Scaling/lesson3" : "Scaling/index",
+    "Scaling/lesson3_appendix" : "Scaling/index",
+    "Scaling/lesson4" : "Scaling/index"
+}
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
