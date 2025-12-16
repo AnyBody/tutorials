@@ -133,7 +133,7 @@ jobs:
       - name: Build Documentation
         run: pixi run sphinx-build -M html . _build -W --keep-going -a -t draft
     
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: beta-version
           path: _build/html
@@ -159,7 +159,7 @@ jobs:
         run: pixi run sphinx-build -M html . _build -W --keep-going -a
             
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: tagged-version
           path: _build/html
