@@ -43,7 +43,7 @@ them locally to view the layout and see results before pushing changes to the
 server. It is often not necesssary when making small fixes to existing
 tutorials. But when writing major new sections it nice to view how things look.
 
-The easiest way to install needed packages tools, is to have the [pixi package manger](https://pixi.sh) installed.
+The easiest way to install needed packages tools, is to have the [pixi package manger](https://pixi.prefix.dev/) installed.
 
 Then run the following commands to install the necesssary packages.
 
