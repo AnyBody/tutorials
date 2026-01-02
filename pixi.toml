@@ -46,12 +46,19 @@ pydata-sphinx-theme = ">=0.15.4,<0.16"
 sphinx-reredirects = ">=1.0.0,<2"
 
 
+[feature.test.pypi-options.dependency-overrides]
+pytest = ">=9.0.2,<10"
+
+[feature.test.pypi-dependencies]
+pytest-split = ">=0.10.0"
+
+
 [feature.test.target.win-64.dependencies]
 pytest = ">=9.0.2,<10"
 pytest-xdist = ">=3.8.0,<4"
 anypytools = ">=1.20.2,<2"
 debugpy = ">=1.8.19,<2"
-pytest-split = ">=0.8.2,<0.9"
+# pytest-split = ">=0.10.0"
 anybodycon = ">=8.1.4,<9"
 
 [feature.test.target.win-64.tasks]
