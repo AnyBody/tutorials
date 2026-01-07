@@ -1,9 +1,9 @@
-[project]
+[workspace]
 name = "anybody-tutorial"
 version = "0.1.0"
 description = "Python enviroments for AnyBody's Tutorials"
 authors = ["Morten Enemark Lund <mel@anybodytech.com>"]
-channels = ["https://prefix.dev/conda-forge", "https://prefix.dev/anybody"]
+channels = ["https://prefix.dev/conda-forge", "anybody", "anybody/label/rc"]
 
 platforms = ["win-64","linux-64"]
 
@@ -20,39 +20,46 @@ livehtml = "sphinx-autobuild . _build --port=0  --open-browser -j=4"
 
 
 [dependencies]
-python = ">=3.12,<3.13"
-sphinxext-opengraph = ">=0.9.1,<0.10"
+python = ">=3.13,<3.14"
+sphinxext-opengraph = ">=0.13.0,<0.14"
 sphinx-copybutton = ">=0.5.2,<0.6"
 sphinxcontrib-youtube = ">=1.4.1,<2"
 linkify-it-py = ">=2.0.3,<3"
-ipython = ">=9.0.2,<10"
+ipython = ">=9.8.0,<10"
 make = ">=4.4.1,<5"
-sphinx-autobuild = ">=2024.10.3,<2025"
-sphinx-simplepdf = ">=1.6.0,<2"
+sphinx-autobuild = ">=2025.8.25,<2026"
+sphinx-simplepdf = ">=1.7.0,<2"
 sphinx = ">=8.2.3,<9"
-pygments_anyscript = ">=1.4.0,<2"
+pygments_anyscript = ">=1.5.0,<2"
 sphinx-togglebutton = ">=0.3.2,<0.4"
 sphinx-design = ">=0.6.1,<0.7"
 jinja2 = ">=3.1.6,<4"
-tomli = ">=2.2.1,<3"
-pytest = ">=8.3.5,<9"
+tomli = ">=2.3.0,<3"
+pytest = ">=9.0.2,<10"
 myst-parser = ">=4.0.1,<5"
 sphinx-book-theme = ">=1.1.4,<2"
-myst-nb = ">=1.2.0,<2"
-anypytools = ">=1.13.1,<2"
-scipy = ">=1.15.2,<2"
-ipywidgets = ">=8.1.5,<9"
+myst-nb = ">=1.3.0,<2"
+anypytools = ">=1.20.2,<2"
+scipy = ">=1.16.3,<2"
+ipywidgets = ">=8.1.8,<9"
 pydata-sphinx-theme = ">=0.15.4,<0.16"
 sphinx-reredirects = ">=1.0.0,<2"
 
 
+[feature.test.pypi-options.dependency-overrides]
+pytest = ">=9.0.2,<10"
+
+[feature.test.pypi-dependencies]
+pytest-split = ">=0.10.0"
+
+
 [feature.test.target.win-64.dependencies]
-pytest = "*"
-pytest-xdist = "*"
-anypytools = "*"
-debugpy = "*"
-pytest-split = "*"
-anybodycon = "==8.1.0"
+pytest = ">=9.0.2,<10"
+pytest-xdist = ">=3.8.0,<4"
+anypytools = ">=1.20.2,<2"
+debugpy = ">=1.8.19,<2"
+# pytest-split = ">=0.10.0"
+anybodycon = ">=8.2.0beta8"
 
 [feature.test.target.win-64.tasks]
 pytest = "pytest"
