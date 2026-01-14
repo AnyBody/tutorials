@@ -20,7 +20,7 @@ livehtml = "sphinx-autobuild . _build --port=0  --open-browser -j=4"
 
 
 [dependencies]
-python = ">=3.13,<3.14"
+python = ">=3.14,<3.15"
 sphinxext-opengraph = ">=0.13.0,<0.14"
 sphinx-copybutton = ">=0.5.2,<0.6"
 sphinxcontrib-youtube = ">=1.4.1,<2"
@@ -46,20 +46,14 @@ pydata-sphinx-theme = ">=0.15.4,<0.16"
 sphinx-reredirects = ">=1.0.0,<2"
 
 
-[feature.test.pypi-options.dependency-overrides]
-pytest = ">=9.0.2,<10"
-
-[feature.test.pypi-dependencies]
-pytest-split = ">=0.10.0"
-
 
 [feature.test.target.win-64.dependencies]
 pytest = ">=9.0.2,<10"
 pytest-xdist = ">=3.8.0,<4"
 anypytools = ">=1.20.2,<2"
 debugpy = ">=1.8.19,<2"
-# pytest-split = ">=0.10.0"
-anybodycon = ">=8.2.0beta8"
+pytest-split = ">=0.10.0"
+anybodycon = ">=8.2.0beta9"
 
 [feature.test.target.win-64.tasks]
 pytest = "pytest"
