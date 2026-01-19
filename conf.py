@@ -465,11 +465,10 @@ ogp_image = "https://anyscript.org/tutorials/_static/anybody_tutorials_logo.png"
 ogp_use_first_image = True  # if not found defaults to 'ogp_image'
 
 
-user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0"
 
 linkcheck_request_headers = {
-    r'https://docs.github.com/': {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; '
-                                                'rv:24.0) Gecko/20100101 Firefox/24.0'}
+    r'https://docs.github.com/': {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0'}
 }
 linkcheck_ignore = [
     r".*linkcheck_ignore",
