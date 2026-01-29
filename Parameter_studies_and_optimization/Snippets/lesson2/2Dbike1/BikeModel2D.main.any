@@ -22,10 +22,10 @@ Main = {
   AnyFolder BikeParameters = {
     
     // Geometry parameters
-    AnyVar PedalArmLength = 0.17;  //Length of pedal arm
-    AnyVar PedalArmWidth = 0.106; //Horizontal distance between left and right connecting point between foot and pedal
-    AnyVar SaddleHeight = 0.66 ;  //Height of hip joint measured vertically from the crank
-    AnyVar SaddlePos = -0.16;     //Horizontal pos of hipjoint measured from the crank
+    AnyVar PedalArmLength = 0.19;  //Length of pedal arm
+    AnyVar PedalArmWidth = 0.120; //Horizontal distance between left and right connecting point between foot and pedal
+    AnyVar SaddleHeight = 0.64;  //Height of hip joint measured vertically from the crank
+    AnyVar SaddlePos = -0.15;     //Horizontal pos of hipjoint measured from the crank
     
     // Loading parameters
     AnyVar Cadence = 80.0;   //Cadence in RPM 
@@ -100,13 +100,13 @@ AnyParamStudy ParamStudy = {
     
   AnyDesVar SaddleHeight = {
     Val = Main.BikeParameters.SaddleHeight;
-    Min = 0.61;
-    Max = 0.69 /*+ 0.02*/;
+    Min = 0.57;
+    Max = 0.65 /*+ 0.02*/;
   };
   AnyDesVar SaddlePos = {
     Val = Main.BikeParameters.SaddlePos;
-    Min = -0.20 /*- 0.03*/;
-    Max = -0.05;
+    Min = -0.22 /*- 0.03*/;
+    Max = -0.12;
   };
   AnyDesMeasure MaxAct = {
     Val = max(..Study.MaxAct());
@@ -124,13 +124,13 @@ AnyParamStudy ParamStudy = {
     
   AnyDesVar SaddleHeight = {
     Val = Main.BikeParameters.SaddleHeight;
-    Min = 0.61;
-    Max = 0.69 /*+ 0.02*/;
+    Min = 0.57;
+    Max = 0.65 /*+ 0.02*/;
   };
   AnyDesVar SaddlePos = {
     Val = Main.BikeParameters.SaddlePos;
-    Min = -0.20 /*- 0.03*/;
-    Max = -0.05;
+    Min = -0.22 /*- 0.03*/;
+    Max = -0.12;
   };
   AnyDesMeasure MaxAct = {
     Val = max(..Study.MaxAct());

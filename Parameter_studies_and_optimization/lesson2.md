@@ -136,10 +136,10 @@ saddle height and horizontal position to minimize the metabolism. Let
 us run it and see what happens. Loading the model should give you the following
 model view:
 
-```{image} _static/Optimization_studies/runopt.png
+```{image} _static/Defining_a_parameter/bike2D.png
 :alt: Loading the optimization study
-:class: bg-primary
 :align: center
+:width: 60%
 ```
 
 ## Running the Optimization Study
@@ -159,9 +159,17 @@ changes of saddle position in the last several steps is very minute, which is
 typical for optimization: the first steps bring large changes and large
 improvements, while the last many steps only improve slightly.
 
+:::{note}
+If you turn off the model view by clicking the 
+![TurnOnOff.png](_static/Defining_a_parameter/TurnOnOffModel.png) 
+button, the computation should speed up.
+:::
+
 Now we are going to study the results in more detail using the Chart
 window. Do you still have the Chart window from the previous lesson
 with the Metabolism parameter study open? It should look like this:
+
+// **CHANGE THIS IMAGE WHEN THE PARAMETER STUDY WORKS!!**
 
 ```{image} _static/Optimization_studies/metab100.png
 :alt: Chart paramStudy 1
@@ -174,7 +182,7 @@ have this surface ready, please open another Chart window by clicking
 `View`->`Charts`->`Chart2`.  In the new window, please expand the tree
 down to `Main.OptStudy.Output.Metab`. Then click the `Val` variable
 under Metab. This produces a simple 2-D graph showing the development of
-the metabolism over the 6 iterations:
+the metabolism over the 7 iterations:
 
 ```{image} _static/Optimization_studies/metabcon2.png
 :alt: Chart Opttudy 1
@@ -198,6 +206,7 @@ The optimal solution in the Model View looks like this:
 ```{image} _static/Optimization_studies/bikeopt2.png
 :alt: Final Model view
 :align: center
+:width: 60%
 ```
 
 Just above the `Metab` variable in the tree you can find the two
@@ -211,6 +220,8 @@ variable/objective space rather than over the iterations. This is what
 we need the window with the parameter study surface for. At the top of
 this window you will find panels listing series and data to be plotted.
 Please right-click in the series window and select "Add":
+
+// **CHANGE THIS IMAGE WHEN THE PARAMETER STUDY WORKS!!**
 
 ```{image} _static/Optimization_studies/newseries.png
 :alt: Chart New Series
@@ -237,6 +248,8 @@ in the toolbar directly over the graphics pane. This gives you access to all the
 settings and lets you control the appearance of graphs in detail. Under
 Chart->Series->Series1->Lines the following parameters is set: `RGB = {1,0,0}`,
 i.e. red, and `Thickness = 4`.
+
+// **CHANGE THIS IMAGE WHEN THE PARAMETER STUDY WORKS!!**
 
 ```{image} _static/Optimization_studies/optpath2.png
 :alt: Chart OptPath 
@@ -309,7 +322,7 @@ sorts of purposes. For instance we notice that the optimal solution is a
 rather low saddle position, cf. the picture above. Suppose that for some
 reason, this position is too low. We, therefore, want to ensure that the
 distance between the crank and the seat is not too small, for instance
-larger than 0.66 m. This can be formulated very nicely as a constraint
+larger than 0.63 m. This can be formulated very nicely as a constraint
 like this:
 
 ```{literalinclude} Snippets/lesson2/2Dbike3/BikeModel2D.main.any
@@ -340,10 +353,10 @@ combination of variables, but in general it can also be properties such
 as muscle forces, joint reactions, point locations, segment velocities,
 and any other model property that the system can compute.
 
-Enough talk; let's try the optimization with the constraint added.
-Please load the model again, select the `Main.OptStudy.Optimization` operation, and
-click the run button. The optimization process will have the following
-convergence picture:
+Enough talk; let's try the optimization with the constraint added. Please load
+the model again, select the `Main.OptStudy.Optimization` operation, and click
+the run button. The optimization process will take longer than before and will
+converge in 7 iterations with the following convergence picture:
 
 ```{image} _static/Optimization_studies/metab2_constrained.png
 :alt: Metab value vs Steps
@@ -354,6 +367,8 @@ convergence picture:
 
 If you also re-run the parameter study, you can get this picture of the
 convergence:
+
+// **CHANGE THIS IMAGE WHEN THE PARAMETER STUDY WORKS!!**
 
 ```{image} _static/Optimization_studies/optpath2_constrained.png
 :alt: opt Study constrained
@@ -389,9 +404,10 @@ the unconstrained solution: The hip position is now higher, i.e., longer
 from the crank and to achieve this it is further forward, see the
 picture below:
 
-```{image} _static/Optimization_studies/BikeOpt2_constrained.png
-:alt: Final model view 2
+```{image} _static/Optimization_studies/bikeOpt3.png
+:alt: Final Model view constrained
 :align: center
+:width: 60%
 ```
 
 This completes the introduction to optimization studies.

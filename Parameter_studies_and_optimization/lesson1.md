@@ -17,32 +17,30 @@ Or you may be interested in knowing how the seat height and horizontal
 position influence the muscle effort and metabolism of the rider. This
 is precisely what we shall do in this tutorial. To make life a bit
 easier for you, we have prepared a bicycle model you can download and
-play around with. {download}`Please click here to download the zip file ParamBike.zip <Downloads/ParamBike.zip>` and unpack it to some
-pertinent place on your hard disk.
+play around with. Please {download}`click here to download <Downloads/ParamBike.zip>` 
+the zip file "ParamBike.zip" and unpack it to some pertinent place on your hard disk.
 
 The bicycle model is pretty much the {ref}`2D Bike <ammr:sphx_glr_auto_examples_Sports_plot_BikeModel2D.py>` that you may know from the
 {doc}`AnyBody Managed Model Repository <ammr:index>`.
 
 ```{image} _static/Defining_a_parameter/bike2D.png
 :alt: 2D bike model
-:class: bg-primary
 :align: center
+:width: 60%
 ```
 
-As you can see the model is very simple. It has two legs and a pelvis
-that is rigidly fixed to the seat. The feet are attached to the crank
-mechanism, and the crank is loaded by a sinusoidal torque and constant
-angular velocity producing a mean mechanical output of 165 W. It has a
-total of 18 muscles - nine on each leg. You can control the
-design parameters of the bicycle and the way the rider propels the
-pedals by means of the variables at the top of the main file. It might
-be a good idea to play a bit around with the variables and run some
-analyses. Try, for instance, to raise and lower the seat. Notice that if
-you raise the seat more than a few centimeters, the model has trouble
-reaching the pedals. This is really a kinematical problem, but it causes
-momentarily very high muscle activities and, if you raise the seat
-further, makes the kinematical analysis break down because the feet lose
-the contact with the pedals.
+As you can see the model is very simple. It has two legs and a pelvis that is
+rigidly fixed to the seat. The feet are attached to the crank mechanism, and the
+crank is loaded by a sinusoidal torque and constant angular velocity producing a
+mean mechanical output of 165 W. It has a total of 18 muscles - nine on each
+leg. You can control the design parameters of the bicycle and the way the rider
+propels the pedals by means of the variables at the top of the main file. It
+might be a good idea to play a bit around with the variables and run some
+analyses. Try, for instance, to raise and lower the seat. Notice that if you
+raise the seat too much, the model has trouble reaching the pedals. This is
+really a kinematical problem, but it causes momentarily very high muscle
+activities and, if you raise the seat further, makes the kinematical analysis
+break down because the feet lose the contact with the pedals.
 
 The crank torque profile of a bicycle rider changes when the set is
 moved horizontally because the location of the cycle's dead center
@@ -103,8 +101,8 @@ natural position in the model is below the existing `AnyBodyStudy`. We can
 insert a new parameter study by means of the object inserter mechanism
 from the class tree. Place the cursor below the definition of the
 `AnyBodyStudy`, click the Classes tab in the tree view, locate the
-AnyParamStudy under Class List, right-click, and insert a template of the class. You
-should get the following result:
+`AnyParamStudy` under Class List, right-click, and insert a template of the class. 
+You should get the following result:
 
 ```{literalinclude} Snippets/lesson1/2Dbike-1/BikeModel2D.main.any
 :language: AnyScriptDoc
@@ -262,8 +260,8 @@ the final `AnyParamStudy` looks like this:
 ## Running and Visualizing the Parameter Study
 
 It is finally time try it out. If you have typed everything correctly,
-then you should be able to load the model. Then find the `ParamStudy.ParameterStudy` operation in
-the operation dropdown:
+then you should be able to load the model. Then find the `ParamStudy.ParameterStudy` 
+operation in the operation dropdown:
 
 ```{image} _static/Defining_a_parameter/operation_select.png
 :alt: Operation selection
