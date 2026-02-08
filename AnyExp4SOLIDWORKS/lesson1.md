@@ -28,18 +28,31 @@ should be fixed to the global origin. And the other parts should be
 connected to this base and each other by the mates. The total number of
 DOF (degrees-of-freedom) of this model should be one.
 
+## Exporting the Model Using AnyExp4SOLIDWORKS 
+
 Let us try to translate this model into a corresponding AnyScript model. Before
 exporting the model, **make sure the SOLIDWORKS assembly is set to configuration
-'Mate_Config1'** by double-clicking on it in the Configuration Manager window. If you
-have registered the AnyBody Exporter™ for SOLIDWORKS® (AnyExp4SOLIDWORKS™)
-add-in successfully, then you will see the menu of the AnyExp4SOLIDWORKS add-in
-on the SOLIDWORKS menu like this:
+'Mate_Config1'** by double-clicking on it in the Configuration Manager window. 
+
+The AnyBody Exporter™ for SOLIDWORKS® (AnyExp4SOLIDWORKS™) is bundled with the
+AnyBody Modeling System, so the exporter will automatically be downloaded and
+installed when you install the AnyBody Modeling System. On the 
+[AnyBody Technology webpage](https://www.anybodytech.com/resources/customer-downloads#fe-interface-tools)
+you can download the latest version of the AnyBody Modeling System.
+
+Using AnyExp4SOLIDWORKS™ requires a special license, but if you have registered
+the add-in successfully, then you will see the AnyExp4SOLIDWORKS
+add-in on the SOLIDWORKS menu under Tools like this:
 
 ```{image} _static/lesson1/lesson1_image2.png
 :alt: AnyExp4SOLIDWORKS menu
 :class: bg-primary
 :align: center
 ```
+
+If the add-in does not appear, then go to 'Tools' -> 'Add-Ins' and check the box
+for AnyExp4SOLIDWORKS to activate it. Afterwards, you may need to restart
+SOLIDWORKS to see the add-in menu.
 
 :::{seealso}
 For more informaion about the the AnyExp4SOLIDWORKS add-in, including installation instructions, 
@@ -57,7 +70,7 @@ This will direct you to the AnyBody manuals page where all the manuals can be fo
 From there, click on the 'AnyBody Exporter for SolidWorks' to access the specific manual.  
 ::: 
 
-Then start the translation process by selecting the ‘Export to AnyScript’ menu
+Now, start the translation process by selecting the ‘Export to AnyScript’ menu
 item. Doing this will display the following dialog.
 
 ```{image} _static/lesson1/lesson1_image3.png
