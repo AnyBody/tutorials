@@ -3,6 +3,8 @@
 
 # Trouble Shooting AnyScript Models
 
+{{ caution_old_tutorial }}
+
 If you think mechanics is simple, it's probably just because you haven't
 worked with three-dimensional space yet. The laws of mechanics are
 pretty easy to comprehend as long as stuff is moving on a
