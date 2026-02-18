@@ -186,6 +186,7 @@ myst_substitutions = {
     "AMMR_VERSION": ammr_version,
     "CURRENT_YEAR": current_year,
     "caution_old_tutorial": caution_old_tutorial,
+    "AMMR_DEMO_INST_DIR": f"`~/Documents/{ams_version_x}/AMMR.v{ammr_version}-Demo`",
 }
 
 

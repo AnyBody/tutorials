@@ -18,27 +18,34 @@ The AnyBody Managed Model Repository (AMMR), is an open library of musculoskelet
 models and examples ready to be used with the AnyBody Modeling System.
 
 The [AMMR documentation](https://anyscript.org/ammr/) is hosted
-separately, and contains a few tutorials and other usefull information. The
-[Creating a Human Model from scratch](https://anyscript.org/ammr/creating_model_from_scratch.html) tutorial is
-recommended for new users.
+separately, and contains usefull information. The tutorial 
+{doc}`Getting Started - First Steps </A_Getting_started/index>` is recommended for 
+new users, and explains how to use the AMMR to create a simple standing model.
+Also, see the chapter {doc}`Best Practices<ammr_best_practices>`
+for good recommendations on how to work with the AMMR.
 
 
-
-```{rubric} AMMR documentation
+```{rubric} AMMR Documentation
 ```
 
 - [Main AMMR documentation](https://anyscript.org/ammr/)
-- [Getting started with the AMMR](https://anyscript.org/ammr/getting_started.html)
+- [Gallery of Examples](https://anyscript.org/ammr/Applications/index.html)
 - [Configuring the Body Model](https://anyscript.org/ammr/bm_config/index.html)
 
-```{rubric} AMMR Tutorials
+```{rubric} AMMR Applications and Tools
 ```
+
+- [The AnyMoCap Framework](https://anyscript.org/ammr/anymocap/index.html)
+- [Ground Reaction Force Predictions](https://anyscript.org/ammr/grf_prediction/grf-prediction.html)
+- [Scaling](https://anyscript.org/ammr/Scaling/intro.html)
+
+::::{if-builder:: html
+```{rubric} Tutorial content
+```
+::::
 
 ```{toctree}
 :maxdepth: 1
 
-Creating a Human Model from scratch <https://anyscript.org/ammr/creating_model_from_scratch.html>
-Scaling: Joint to joint scaling <https://anyscript.org/ammr/Scaling/lesson1.html>
-Scaling: External Body Measurements <https://anyscript.org/ammr/Scaling/lesson2.html>
-Scaling: Segmental scaling factors <https://anyscript.org/ammr/Scaling/lesson3.html>
+ammr_best_practices
 ```
