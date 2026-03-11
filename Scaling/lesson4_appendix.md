@@ -2,42 +2,42 @@
 myst:
   substitutions:
     image1: |-
-      ```{image} _static/lesson1_appendix/image2.png
+      ```{image} _static/lesson4_appendix/image2.png
       :width: 80%
       ```
     image10: |-
-      ```{image} _static/lesson1_appendix/image10.png
+      ```{image} _static/lesson4_appendix/image10.png
       :width: 80%
       ```
     image11: |-
-      ```{image} _static/lesson1_appendix/image11.png
+      ```{image} _static/lesson4_appendix/image11.png
       :width: 80%
       ```
     image12: |-
-      ```{image} _static/lesson1_appendix/image12.png
+      ```{image} _static/lesson4_appendix/image12.png
       :width: 80%
       ```
     image13: |-
-      ```{image} _static/lesson1_appendix/image13.png
+      ```{image} _static/lesson4_appendix/image13.png
       :width: 80%
       ```
     image2: |-
-      ```{image} _static/lesson1_appendix/image3.png
+      ```{image} _static/lesson4_appendix/image3.png
       :width: 80%
       ```
     image3: |-
-      ```{image} _static/lesson1_appendix/image4.png
+      ```{image} _static/lesson4_appendix/image4.png
       :width: 80%
       ```
     image4: |-
-      ```{image} _static/lesson1_appendix/image5.png
+      ```{image} _static/lesson4_appendix/image5.png
       :width: 80%
       ```
 ---
 
 # Appendix: Morphing based on landmarks
 
-This tutorial is an appendix to the {doc}`Lesson 1 <lesson1>`, where
+This tutorial is an appendix to the {doc}`Lesson 4 <lesson4>`, where
 construction of an advanced scaling function is introduced.
 
 This lesson is a brief introduction to the interpolation functions based on
@@ -261,7 +261,7 @@ look at the Model View, you can observe two surfaces and two point clouds – a
 red point cloud corresponding to the point cloud prior to the RBF transform, and
 a blue point cloud corresponding to the result of application of the RBF transform:
 
-```{image} _static/lesson1_appendix/image1.png
+```{image} _static/lesson4_appendix/image1.png
 :alt: Point cloud and surfaces beginning
 :class: bg-primary
 :align: center
@@ -287,7 +287,7 @@ script. At first, we change the `RBFDef.Param` and see how this internal paramet
 of radial basis function affects the behavior of the scaling law. Let us try to
 set it to *0.2*, *2*, *20*, and *200*.
 
-```{literalinclude} Snippets/lesson1Appendix/snip.AppendixA.main-1.any
+```{literalinclude} Snippets/lesson4Appendix/snip.AppendixA.main-1.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
@@ -318,19 +318,19 @@ Let us fix this parameter to 0.2 and try to increase the number of
 landmarks by uncommenting all the landmarks provided in the example for
 both source and target sets – will it increase the accuracy?
 
-```{literalinclude} Snippets/lesson1Appendix/snip.AppendixA.main-2.any
+```{literalinclude} Snippets/lesson4Appendix/snip.AppendixA.main-2.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
 ```
 
-```{literalinclude} Snippets/lesson1Appendix/snip.AppendixA.main-2.any
+```{literalinclude} Snippets/lesson4Appendix/snip.AppendixA.main-2.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 2
 :end-before: //# END SNIPPET 2
 ```
 
-```{image} _static/lesson1_appendix/image6.png
+```{image} _static/lesson4_appendix/image6.png
 :alt: Param 0.2 and many landmarks
 :class: bg-primary
 :align: center
@@ -352,7 +352,7 @@ AnyFunTransform3DRBF RBFTransform = {
 ...
 ```
 
-```{image} _static/lesson1_appendix/image7.png
+```{image} _static/lesson4_appendix/image7.png
 :alt: Param 0.2 and RBF_ThinPlate
 :class: bg-primary
 :align: center
@@ -378,7 +378,7 @@ term. Let us try to switch it on and set the `PolynomDegree` to 1,
 which is recommended by the reference manual. Now our approximation
 looks smoother and probably more reasonable:
 
-```{image} _static/lesson1_appendix/image8.png
+```{image} _static/lesson4_appendix/image8.png
 :alt: PolynomDegree 1
 :class: bg-primary
 :align: center
@@ -393,13 +393,13 @@ its points as both source and target landmarks making a candidate point
 for extrapolation to be transformed into itself. Let us try to switch on
 the bounding box corners and face points to be included as landmarks:
 
-```{literalinclude} Snippets/lesson1Appendix/snip.AppendixA.main-3.any
+```{literalinclude} Snippets/lesson4Appendix/snip.AppendixA.main-3.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
 ```
 
-```{image} _static/lesson1_appendix/image9.png
+```{image} _static/lesson4_appendix/image9.png
 :alt: Bounding box on
 :class: bg-primary
 :align: center
@@ -464,7 +464,7 @@ recommendation to change the number of landmarks until the desired or an
 acceptable accuracy is reached. Let us change the number of points to
 the values of *20*, *200*, *400*, and *1000*:
 
-```{literalinclude} Snippets/lesson1Appendix/snip.AppendixB.main-4.any
+```{literalinclude} Snippets/lesson4Appendix/snip.AppendixB.main-4.any
 :language: AnyScriptDoc
 :start-after: //# BEGIN SNIPPET 1
 :end-before: //# END SNIPPET 1
