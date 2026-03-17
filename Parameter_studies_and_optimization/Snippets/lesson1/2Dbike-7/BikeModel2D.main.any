@@ -23,7 +23,7 @@ Main = {
     AnyVar PedalArmLength = 0.19;  //Length of pedal arm
     AnyVar PedalArmWidth = 0.120; //Horizontal distance between left and right connecting point between foot and pedal
     AnyVar SaddleHeight = 0.64;  //Height of hip joint measured vertically from the crank
-    AnyVar SaddlePos = -0.15;     //Horizontal pos of hipjoint measured from the crank
+    AnyVar SaddlePos = -0.19;     //Horizontal pos of hipjoint measured from the crank
     
     // Loading parameters
     AnyVar Cadence = 80.0;   //Cadence in RPM 
@@ -98,7 +98,7 @@ AnyParamStudy ParamStudy = {
 AnyDesVar SaddleHeight = {
   Val = Main.BikeParameters.SaddleHeight;
   Min = 0.57;
-  Max = 0.65 §+ 0.04§;
+  Max = 0.65 §+ 0.03§;
 };
 AnyDesVar SaddlePos = {
   Val = Main.BikeParameters.SaddlePos;

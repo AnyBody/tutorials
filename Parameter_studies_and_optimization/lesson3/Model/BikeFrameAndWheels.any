@@ -23,7 +23,7 @@ AnyFolder BikeModel = {
     AnyRefNode Handlebar = { 
       sRel = {0.500,0.630,-0.0}; 
       AnyDrawSurf Handlebar ={
-        FileName = "../../../Input/Handlebar";
+        FileName = "../Input/Handlebar";
         ScaleXYZ={1,1,1};
         RGB=Main.DrawSettings.Colors.AnyBodyGreen;
       };
@@ -53,7 +53,7 @@ AnyFolder BikeModel = {
     };
     
     AnyDrawSurf BikeFrameSurf ={
-      FileName = "../../../Input/Frame";
+      FileName = "../Input/Frame";
       ScaleXYZ={1,1,1};
       RGB=....DrawSettings.Colors.AnyBodyBlue;
     };  
@@ -67,7 +67,7 @@ AnyFolder BikeModel = {
     AnyRefNode RPedal = { sRel = {0,....BikeParameters.PedalArmLength,....BikeParameters.PedalArmWidth}; };      
     AnyRefNode LPedal = { sRel = {0,-....BikeParameters.PedalArmLength,-....BikeParameters.PedalArmWidth}; };      
     AnyDrawSurf CrankSurf ={
-      FileName = "../../../Input/Sprocket";
+      FileName = "../Input/Sprocket";
       ScaleXYZ={1,1,1};
       RGB=....DrawSettings.Colors.AnyBodyGreen; 
     };
@@ -99,7 +99,7 @@ AnyFolder BikeModel = {
     AnyRefNode Wheel = { sRel = {0,0,0}; };
     
     AnyDrawSurf CrankSTL ={
-      FileName = "../../../Input/BackWheel";
+      FileName = "../Input/BackWheel";
       ScaleXYZ={1,1,1};
       RGB=....DrawSettings.Colors.AnyBodyGreen;
     };  
@@ -124,7 +124,7 @@ AnyFolder BikeModel = {
     Jii = {0.00,0.00,0.00};
     AnyRefNode Wheel = { sRel = {0,0,0}; };
     AnyDrawSurf Crank ={
-      FileName = "../../../Input/FrontWheel";
+      FileName = "../Input/FrontWheel";
       ScaleXYZ={1,1,1};
       RGB=Main.DrawSettings.Colors.AnyBodyGreen;
     };  
@@ -149,7 +149,7 @@ AnyFolder BikeModel = {
     Jii = {0.00,0.00,0.00};
     AnyRefNode Pin = { sRel = {0,0,0}; };
     AnyDrawSurf SaddlePin ={
-      FileName = "../../../Input/SaddlePin";
+      FileName = "../Input/SaddlePin";
       ScaleXYZ={1,1,1};
       RGB=Main.DrawSettings.Colors.AnyBodyGreen;
     };  
@@ -174,7 +174,7 @@ AnyFolder BikeModel = {
     Jii = {0.00,0.00,0.00};
     AnyRefNode SaddleNode = { sRel = {0,0,0}; };
     AnyDrawSurf SaddleDrw ={
-      FileName = "../../../Input/Saddle";
+      FileName = "../Input/Saddle";
       ScaleXYZ={1,1,1};
       RGB=Main.DrawSettings.Colors.AnyBodyGreen;
     };  

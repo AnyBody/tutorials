@@ -131,15 +131,25 @@ another advantage of optimization over a parameter study. Finally, we
 have added a type specification to the Metab object specifying that this
 is the objective function of the problem.
 
-This is the definition of an optimization problem that will vary the
-saddle height and horizontal position to minimize the metabolism. Let
-us run it and see what happens. Loading the model should give you the following
-model view:
+This is the definition of an optimization problem that will vary the saddle
+height and horizontal position to minimize the metabolism. Let us run it and see
+what happens. Loading the model and running the `InitialConditions` operation
+should give you the following model view:
 
 ```{image} _static/Defining_a_parameter/bike2D.png
 :alt: Loading the optimization study
 :align: center
 :width: 60%
+```
+
+Before we run the optimization, we make the following minor modifications to the
+variable limits. This is done to speed up the optimization process and make it
+converge faster in this case by narrowing down the possibe design space:
+
+```{literalinclude} Snippets/lesson2/2Dbike3/BikeModel2D.main.any
+:language: AnyScriptDoc
+:start-after: //# BEGIN SNIPPET 2
+:end-before: //# END SNIPPET 2
 ```
 
 ## Running the Optimization Study
@@ -153,7 +163,7 @@ converges.
 
 Every time you see the left-most number changing in the Output window it is
 an indication that the optimizer has picked a new optimization direction to try.
-You should see the number increasing in slow steps up to 6 before the process
+You should see the number increasing in slow steps up to 4 before the process
 stops and the system announces that it is finished. Please notice that the
 changes of saddle position in the last several steps is very minute, which is
 typical for optimization: the first steps bring large changes and large
@@ -169,9 +179,7 @@ Now we are going to study the results in more detail using the Chart
 window. Do you still have the Chart window from the previous lesson
 with the Metabolism parameter study open? It should look like this:
 
-// **CHANGE THIS IMAGE WHEN THE PARAMETER STUDY WORKS!!**
-
-```{image} _static/Optimization_studies/metab100.png
+```{image} _static/Defining_a_parameter/anychart5.png
 :alt: Chart paramStudy 1
 :class: bg-primary
 :align: center
@@ -182,7 +190,7 @@ have this surface ready, please open another Chart window by clicking
 `View`->`Charts`->`Chart2`.  In the new window, please expand the tree
 down to `Main.OptStudy.Output.Metab`. Then click the `Val` variable
 under Metab. This produces a simple 2-D graph showing the development of
-the metabolism over the 7 iterations:
+the metabolism over the 3 iterations:
 
 ```{image} _static/Optimization_studies/metabcon2.png
 :alt: Chart Opttudy 1
@@ -221,8 +229,6 @@ we need the window with the parameter study surface for. At the top of
 this window you will find panels listing series and data to be plotted.
 Please right-click in the series window and select "Add":
 
-// **CHANGE THIS IMAGE WHEN THE PARAMETER STUDY WORKS!!**
-
 ```{image} _static/Optimization_studies/newseries.png
 :alt: Chart New Series
 :class: bg-primary
@@ -239,17 +245,14 @@ and then expanding the `OptStudy` branch until the `SaddleHeight.Val` and
 `SaddlePos.Val`, respectively, can be selected.
 
 Finally, in the `Value` field select `OptStudy.Metab.Val` and look carefully
-at the plot. You will see that an additional polyline has been added. It
-originates approximately at the middle of the surface and shows the path
-the optimization process has taken through the design space to the
+at the plot. You will see that an additional polyline has been added. It shows the 
+path the optimization process has taken through the design space to the
 minimum point. You can change the color of the line by clicking the Property
 Window button (![chartsettings.png](_static/Optimization_studies/chartsettings.png)) 
 in the toolbar directly over the graphics pane. This gives you access to all the
 settings and lets you control the appearance of graphs in detail. Under
 Chart->Series->Series1->Lines the following parameters is set: `RGB = {1,0,0}`,
 i.e. red, and `Thickness = 4`.
-
-// **CHANGE THIS IMAGE WHEN THE PARAMETER STUDY WORKS!!**
 
 ```{image} _static/Optimization_studies/optpath2.png
 :alt: Chart OptPath 
@@ -322,7 +325,7 @@ sorts of purposes. For instance we notice that the optimal solution is a
 rather low saddle position, cf. the picture above. Suppose that for some
 reason, this position is too low. We, therefore, want to ensure that the
 distance between the crank and the seat is not too small, for instance
-larger than 0.63 m. This can be formulated very nicely as a constraint
+larger than 0.66 m. This can be formulated very nicely as a constraint
 like this:
 
 ```{literalinclude} Snippets/lesson2/2Dbike3/BikeModel2D.main.any
@@ -333,8 +336,8 @@ like this:
 
 Notice that constraints are defined as `AnyDesMeasures` of type
 `LessThanZero` or `GreaterThanZero`. In the mathematical formulation of the
-optimization problem stated in the beginning of this lesson, we have
-only less-than-or-equal-to constraints, but there is only a minus sign
+optimization problem stated in the beginning of this lesson, we only
+have less-than-or-equal-to constraints, but there is only a minus sign
 in difference of making a greater-than-or-equal-to into a
 less-than-or-equal-to constraint. You can put this minus sign manually
 or you can use `Type = GreaterThanZero`, which is equivalent. Notice that
@@ -355,20 +358,19 @@ and any other model property that the system can compute.
 
 Enough talk; let's try the optimization with the constraint added. Please load
 the model again, select the `Main.OptStudy.Optimization` operation, and click
-the run button. The optimization process will take longer than before and will
-converge in 7 iterations with the following convergence picture:
+the run button. The optimization process may sometimes take longer to converge
+when you add constraints to it. In this case it should converge in 5 iterations
+with the following convergence picture for the metabolism:
 
 ```{image} _static/Optimization_studies/metab2_constrained.png
 :alt: Metab value vs Steps
 :class: bg-primary
 :align: center
-:width: 75%
+:width: 70%
 ```
 
 If you also re-run the parameter study, you can get this picture of the
-convergence:
-
-// **CHANGE THIS IMAGE WHEN THE PARAMETER STUDY WORKS!!**
+convergence path in the design space:
 
 ```{image} _static/Optimization_studies/optpath2_constrained.png
 :alt: opt Study constrained
@@ -383,7 +385,7 @@ case. The path of the design values bounces off the constraint and
 finally it gets stuck on the constraint even though the objective
 function still has a downwards inclination. The constraint lies like a
 wall through the design space. We can see the convergence path along the
-constraint by plot the constraint value, i.e., the `SeatDist.Val`. This
+constraint by plotting the constraint value, i.e., the `SeatDist.Val`. This
 looks like:
 
 ```{image} _static/Optimization_studies/SeatDist2_constrained.png
@@ -393,15 +395,15 @@ looks like:
 :width: 70%
 ```
 
-where it is obvious how the optimizer hits the constraint, bounces off,
-hits again, etc. and finally it converges. At no point in time, the
-constraint value becomes negative, which was exactly what we prescribed
+Here it is obvious how the optimizer hits the constraint, bounces off,
+hits again, etc. and finally it converges. At no point in time, does the
+constraint value become negative, which was exactly what we prescribed
 in its definition.
 
 A final look at the result could be the picture of the model after this
 constained optimization, which shows a visible difference compared to
-the unconstrained solution: The hip position is now higher, i.e., longer
-from the crank and to achieve this it is further forward, see the
+the unconstrained solution: The saddle position is now higher, i.e., longer
+from the crank and to achieve this it is further forward. See the
 picture below:
 
 ```{image} _static/Optimization_studies/bikeOpt3.png
