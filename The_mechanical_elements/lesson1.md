@@ -19,9 +19,8 @@ elements take part.
 Segments in AnyBody are basically a set of mass properties as you can
 see below.
 
-```{image} _static/lesson1/image1.jpeg
+```{image} _static/lesson1/image1.png
 :alt: Segments in AnyBody
-:class: bg-primary
 :align: center
 :width: 45%
 ```

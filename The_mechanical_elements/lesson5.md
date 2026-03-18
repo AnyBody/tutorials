@@ -152,7 +152,6 @@ direction of the force.
 
 ```{image} _static/lesson5/image1.png
 :alt: Simple arm model with force
-:class: bg-primary
 :align: center
 :width: 45%
 ```
@@ -229,7 +228,6 @@ negative *y* axis of the PalmNode reference system to which it is attached.
 
 ```{image} _static/lesson5/image2.png
 :alt: Arm model with force 2
-:class: bg-primary
 :align: center
 :width: 45%
 ```

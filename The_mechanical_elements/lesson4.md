@@ -45,7 +45,8 @@ able to put the hand (actually the wrist since this simple model has no
 hand) directly at the desired position in space and have the elbow and
 shoulder joints follow implicitly. This is where the kinematic measures
 come into play. Let's start off with the model just about where we left
-in the "Getting Started with AnyScript" tutorial. Please {download}`click here to download the necessary file (Measures.any) <Downloads/Measures.any>`,
+in the "Getting Started with AnyScript" tutorial. Please 
+{download}`click here to download the necessary files <Downloads/demo.arm2d.zip>`,
 and save it in some working directory on your own hard disk.
 
 Let us try initially to create a kinematic measure that will allow us to
@@ -62,7 +63,7 @@ kinematic measures and joints:
       
       // These are the nodes that the measure refers to
       AnyFixedRefFrame &Ground = Main.ArmModel.GlobalRef;
-      AnyRefNode &UpperArmNode = Main.ArmModel.Segs.LowerArm.HandNode;
+      AnyRefNode &UpperArmNode = Main.ArmModel.Segs.ForeArm.HandNode;
       
       Ref = 0;
     };
@@ -80,10 +81,10 @@ So far, we have just added a measure that allows us to track the
 movement of the hand, but it is still driven by the joint drivers as
 before. Let's investigate what we have. Load the model and run a
 KinematicAnalysis or an InverseDynamicAnalysis, and subsequently open a
-ChartFX view.
+Chart view.
 
 Expanding the tree though
-Main.ArmModelStudy.Output.Model.KinematicMeasures.WristPos will give you
+`Main.ArmModelStudy.Output.Model.KinematicMeasures.WristPos` will give you
 the options shown to the below.
 
 ```{image} _static/lesson4/image2.png
@@ -93,14 +94,14 @@ the options shown to the below.
 :width: 30%
 ```
 
-Click Pos, and you will get three graphs tracking the x, y, and z
+Click `Pos`, and you will get three graphs tracking the x, y, and z
 components of the WristPos kinematic measure.
 
 ```{image} _static/lesson4/image3.png
 :alt: WristPos.Pos graph
 :class: bg-primary
 :align: center
-:width: 95%
+:width: 85%
 ```
 
 The z component (blue curve) of the measure remains zero throughout the
@@ -171,7 +172,8 @@ may be difficult to find in more complex cases.
 To conclude, the special feature about kinematic measures is that you
 can drive them. In AnyBody, you can drive anything that you can measure,
 and this is really a unique facility. If something went wrong for you
-along the way, you can {download}`download a commented version of the final result here (Measures2.any) <Downloads/Measures2.any>`.
+along the way, you can download a commented version of the final result 
+{download}`here <Downloads/Final.demo.arm2d.zip>`.
 
-he last lesson in the tutorial on mechanical elements is {doc}`lesson5`.
+The last lesson in the tutorial on mechanical elements is {doc}`lesson5`.
 
