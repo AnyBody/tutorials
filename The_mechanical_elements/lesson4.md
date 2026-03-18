@@ -30,7 +30,12 @@ Do you remember the simple arm example of the "{doc}`Getting Started: AnyScript 
 tutorial? That was a 2-D model of an arm where we produced the movement
 by driving the angles of the shoulder and elbow joints directly.
 
-![Simple arm model](_static/lesson4/image1.png)
+```{image} _static/lesson4/image1.png
+:alt: Simple arm model
+:class: bg-primary
+:align: center
+:width: 55%
+```
 
 But let us imagine that we wanted the hand to reach out and grab
 something at a specific position. It would probably be difficult to
@@ -81,12 +86,22 @@ Expanding the tree though
 Main.ArmModelStudy.Output.Model.KinematicMeasures.WristPos will give you
 the options shown to the below.
 
-![Model tree KinematicMeasures](_static/lesson4/image2.png)
+```{image} _static/lesson4/image2.png
+:alt: Model tree KinematicMeasures
+:class: bg-primary
+:align: center
+:width: 30%
+```
 
 Click Pos, and you will get three graphs tracking the x, y, and z
 components of the WristPos kinematic measure.
 
-![WristPos.Pos graph](_static/lesson4/image3.png)
+```{image} _static/lesson4/image3.png
+:alt: WristPos.Pos graph
+:class: bg-primary
+:align: center
+:width: 95%
+```
 
 The z component (blue curve) of the measure remains zero throughout the
 movement because the model is two-dimensional. The top curve (red) is
