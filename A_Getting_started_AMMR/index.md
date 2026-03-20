@@ -35,7 +35,7 @@ for good recommendations on how to work with the AMMR.
 ```{rubric} AMMR Applications and Tools
 ```
 
-- [The AnyMoCap Framework](https://anyscript.org/ammr/anymocap/index.html)
+- [The AnyMoCap Framework](https://anyscript.org/ammr/anymocap/index.html) 
 - [Ground Reaction Force Predictions](https://anyscript.org/ammr/grf_prediction/grf-prediction.html)
 - [Scaling](https://anyscript.org/ammr/Scaling/intro.html)
 
