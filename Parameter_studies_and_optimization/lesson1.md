@@ -13,36 +13,35 @@ finding the standing posture by which you can hold a heavy box as easily
 as possible between your hands. Or how the position of a handle
 influences the muscular effort of operating it.
 
-Or you may be interested in knowing how the seat height and horizontal
+Or you may be interested in knowing how the saddle height and horizontal
 position influence the muscle effort and metabolism of the rider. This
 is precisely what we shall do in this tutorial. To make life a bit
 easier for you, we have prepared a bicycle model you can download and
-play around with. {download}`Please click here to download the zip file ParamBike.zip <Downloads/ParamBike.zip>` and unpack it to some
-pertinent place on your hard disk.
+play around with. Please {download}`click here to download <Downloads/ParamBike.zip>` 
+the zip file "ParamBike.zip" and unpack it to some pertinent place on your hard disk.
 
-The bicycle model is pretty much the {ref}`2D Bike <ammr:sphx_glr_auto_examples_Sports_plot_BikeModel2D.py>` that you may know from the
-{doc}`AnyBody Managed Model Repository <ammr:index>`.
+The bicycle model is pretty much the {ref}`2D Bike <ammr:sphx_glr_auto_examples_Sports_plot_BikeModel2D.py>` 
+that you may know from the {doc}`AnyBody Managed Model Repository <ammr:index>`.
 
 ```{image} _static/Defining_a_parameter/bike2D.png
 :alt: 2D bike model
-:class: bg-primary
 :align: center
+:width: 60%
 ```
 
-As you can see the model is very simple. It has two legs and a pelvis
-that is rigidly fixed to the seat. The feet are attached to the crank
-mechanism, and the crank is loaded by a sinusoidal torque and constant
-angular velocity producing a mean mechanical output of 165 W. It has a
-total of 18 muscles - nine on each leg. You can control the
-design parameters of the bicycle and the way the rider propels the
-pedals by means of the variables at the top of the main file. It might
-be a good idea to play a bit around with the variables and run some
-analyses. Try, for instance, to raise and lower the seat. Notice that if
-you raise the seat more than a few centimeters, the model has trouble
-reaching the pedals. This is really a kinematical problem, but it causes
-momentarily very high muscle activities and, if you raise the seat
-further, makes the kinematical analysis break down because the feet lose
-the contact with the pedals.
+If you load and run the `InitialConditions` operation, you can see that the
+model is very simple. It has two legs and a pelvis that is rigidly fixed to the
+seat. The feet are attached to the crank mechanism, and the crank is loaded by a
+sinusoidal torque and constant angular velocity producing a mean mechanical
+output of 165 W. It has a total of 18 muscles - nine on each leg. You can
+control the design parameters of the bicycle and the way the rider propels the
+pedals by means of the variables at the top of the main file. It might be a good
+idea to play a bit around with the variables and run some analyses. Try, for
+instance, to raise and lower the seat. Notice that if you raise the seat too
+much, the model has trouble reaching the pedals. This is really a kinematical
+problem, but it causes momentarily very high muscle activities and, if you raise
+the seat further, makes the kinematical analysis break down because the feet
+lose the contact with the pedals.
 
 The crank torque profile of a bicycle rider changes when the set is
 moved horizontally because the location of the cycle's dead center
@@ -103,8 +102,8 @@ natural position in the model is below the existing `AnyBodyStudy`. We can
 insert a new parameter study by means of the object inserter mechanism
 from the class tree. Place the cursor below the definition of the
 `AnyBodyStudy`, click the Classes tab in the tree view, locate the
-AnyParamStudy under Class List, right-click, and insert a template of the class. You
-should get the following result:
+`AnyParamStudy` under Class List, right-click, and insert a template of the class. 
+You should get the following result:
 
 ```{literalinclude} Snippets/lesson1/2Dbike-1/BikeModel2D.main.any
 :language: AnyScriptDoc
@@ -262,8 +261,8 @@ the final `AnyParamStudy` looks like this:
 ## Running and Visualizing the Parameter Study
 
 It is finally time try it out. If you have typed everything correctly,
-then you should be able to load the model. Then find the `ParamStudy.ParameterStudy` operation in
-the operation dropdown:
+then you should be able to load the model. Then find the `ParamStudy.ParameterStudy` 
+operation in the operation dropdown:
 
 ```{image} _static/Defining_a_parameter/operation_select.png
 :alt: Operation selection
@@ -321,7 +320,15 @@ then? It is very simple to do this:
 When you re-run the parameter study, things will go well in the
 beginning, but towards the end of the 25 combinations you may notice
 muscles beginning to bulge more and momentarily attain the color
-of magenta. This is the system's way of demonstrating that the muscles
+of magenta. Additionally, you will see the following notice messages 
+in the output window:
+
+```none
+NOTICE(OBJ.OPR1): BikeModel2D.main.any(72): Study.InverseDynamics: Operation finished with non-fatal errors. Please verify whether these errors are acceptable.
+NOTICE(OBJ.OPR1): BikeModel2D.main.any(82): ParamStudy.Analysis: Operation finished with non-fatal errors. Please verify whether these errors are acceptable.
+```
+
+This is the system's way of demonstrating that the muscles
 have been loaded above 100% of their strength. The reason why this
 happens is that, as the seat rises, the model gets into positions where
 it is difficult for the feet to reach the pedals. Just before the feet
@@ -345,8 +352,8 @@ you change the scale of the value axis. This and all other settings are
 available if you open the Property Window
 ![chartsettings.png](_static/Defining_a_parameter/chartsettings.png)
 in the toolbar. Doing so will produce a window with a tree view
-in which you can select `ValueAxis`->\`\`Max\`\` and `ValueAxis`->\`\`Min\`\`. Try setting Max to 0.30 and Min to 0.15 and you
-should obtain the following:
+in which you can select `ValueAxis`->`Max` and `ValueAxis`->`Min`. 
+Try setting Max to 0.30 and Min to 0.15 and you should obtain the following:
 
 ```{image} _static/Defining_a_parameter/anychart4.png
 :alt: AnyChart 4 view
@@ -381,7 +388,7 @@ simple to add up the muscle metabolisms in the AnyBody study:
 ```
 
 Notice that we have defined the `r` and `l` variables for convenience to
-limit the size of the expressions. If you run the **InverseDynamics Analysis**
+limit the size of the expressions. If you run the **Inverse Dynamics Analysis**
 (go on and try!) you will find the new variable mentioned in the list of
 output. Plotting 'Pmet' as a function of 't' should result in the following chart:
 
@@ -392,10 +399,11 @@ output. Plotting 'Pmet' as a function of 't' should result in the following char
 ```
 
 The area under this curve is the total metabolism combusted over a crank
-revolution. To compute this we must introduce two more elements. The
-first one is an `AnyOutputFun` as we have seen it before. The purpose of
-this function is to make it semantically possible to refer to the output
-of the `Pmet_total` variable before is has actually been computed:
+revolution. To compute this we must introduce two more elements. The first one
+is an `AnyOutputFun` as we have seen it before. The purpose of this function is
+to make it semantically possible to refer to the output of the `Pmet_total`
+variable before is has actually been computed. This is done by adding the
+following code to the `AnyBodyStudy`:
 
 ```{literalinclude} Snippets/lesson1/2Dbike-8/BikeModel2D.main.any
 :language: AnyScriptDoc
@@ -417,7 +425,7 @@ The secint function performs a numerical integration of the first
 argument against the second argument. Each argument must be an array and
 the number of components in the two arguments must be the same.
 
-Notice the other two changes: We have changed the variable limits back
+**Notice the other two changes**: We have changed the variable limits back
 to what they were before and we have decided to be a little more
 adventurous and have specified 10 variable steps in each direction. It
 is time to run the parameter study again. Now it is recemmended to turn off the model 
