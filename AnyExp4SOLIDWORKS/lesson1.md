@@ -28,23 +28,27 @@ should be fixed to the global origin. And the other parts should be
 connected to this base and each other by the mates. The total number of
 DOF (degrees-of-freedom) of this model should be one.
 
+## Exporting the Model Using AnyExp4SOLIDWORKS 
+
 Let us try to translate this model into a corresponding AnyScript model. Before
 exporting the model, **make sure the SOLIDWORKS assembly is set to configuration
-'Mate_Config1'** by double-clicking on it in the Configuration Manager window. If you
-have registered the AnyBody Exporter™ for SOLIDWORKS® (AnyExp4SOLIDWORKS™)
-add-in successfully, then you will see the menu of the AnyExp4SOLIDWORKS add-in
-on the SOLIDWORKS menu like this:
+'Mate_Config1'** by double-clicking on it in the Configuration Manager window. 
 
-```{image} _static/lesson1/lesson1_image2.png
-:alt: AnyExp4SOLIDWORKS menu
-:class: bg-primary
-:align: center
-```
+The AnyBody Exporter™ for SOLIDWORKS® (AnyExp4SOLIDWORKS™) is an add-in for
+SOLIDWORKS that can translate a SOLIDWORKS CAD assembly into its corresponding
+AnyScript model, which can then be used in the AnyBody Modeling System.
+AnyExp4SOLIDWORKS is installed through the installer for the AnyBody Modeling
+System. Please, find details about the installation procedure in the "Install Guide", and
+for more information about the the AnyExp4SOLIDWORKS add-in itself, please see
+the manual "AnyBody Exporter for SolidWorks". On the 
+[AnyBody Technology webpage](https://www.anybodytech.com/resources/customer-downloads)
+you can download the latest version of the AnyBody Modeling System.
 
-:::{seealso}
-For more informaion about the the AnyExp4SOLIDWORKS add-in, including installation instructions, 
-please refer the manual "AnyBody Exporter for SolidWorks". This manual can be found by opening an
-AnyBody window, clikcing on 'Help' -> 'Documentation Home' in the top menu. 
+:::{tip}
+
+The "Install Guide" and the manual "AnyBody Exporter for SolidWorks" can be
+found by opening an AnyBody window, clikcing on 'Help' -> 'Documentation Home'
+in the top menu. 
 
 ```{image} _static/lesson1/lesson1_image7.PNG
 :alt: Documentation home
@@ -53,11 +57,25 @@ AnyBody window, clikcing on 'Help' -> 'Documentation Home' in the top menu.
 :width: 50%
 ```
 
-This will direct you to the AnyBody manuals page where all the manuals can be found. 
-From there, click on the 'AnyBody Exporter for SolidWorks' to access the specific manual.  
+This will direct you to the AnyBody manuals page where all the manuals and the
+install guide can be found. 
 ::: 
 
-Then start the translation process by selecting the ‘Export to AnyScript’ menu
+Using AnyExp4SOLIDWORKS™ requires a special license, but if you have registered
+the add-in successfully, then you will see the AnyExp4SOLIDWORKS
+add-in on the SOLIDWORKS menu under Tools like this:
+
+```{image} _static/lesson1/lesson1_image2.png
+:alt: AnyExp4SOLIDWORKS menu
+:class: bg-primary
+:align: center
+```
+
+If the add-in does not appear, then go to 'Tools' -> 'Add-Ins' and check the box
+for AnyExp4SOLIDWORKS to activate it. Afterwards, you may need to restart
+SOLIDWORKS to see the add-in menu.
+
+Now, start the translation process by selecting the ‘Export to AnyScript’ menu
 item. Doing this will display the following dialog.
 
 ```{image} _static/lesson1/lesson1_image3.png
