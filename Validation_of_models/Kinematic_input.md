@@ -10,12 +10,22 @@ the horizontal position, and the green curve is the vertical position.
 The lateral position remains zero and is the blue curve. It looks very
 reasonable, and it does not seem to be infested with significant noise.
 
-![rowpos.gif](_static/Kinematic_input/image1.gif)
+```{image} _static/Kinematic_input/image1.gif
+:alt: Position of the thorax over time
+:class: bg-primary
+:align: center
+:width: 50%
+```
 
 To find velocities, the system automatically differentiates positional
 data with respect to time and we get the following:
 
-![rowvel.gif](_static/Kinematic_input/image2.gif)
+```{image} _static/Kinematic_input/image2.gif
+:alt: Velocity of the thorax over time
+:class: bg-primary
+:align: center
+:width: 50%
+```
 
 It still looks reasonable except for a suspicion that the maximum
 velocity around 12 m/s may be a bit high over such a short distance. The
@@ -23,7 +33,12 @@ system dfferentiates the velocity function to obtain the accelerations,
 which subsequently according to the second law of Newton will generate
 forces:
 
-![rowacc.gif](_static/Kinematic_input/image3.gif)
+```{image} _static/Kinematic_input/image3.gif
+:alt: Acceleration of the thorax over time
+:class: bg-primary
+:align: center
+:width: 50%
+```
 
 This graph still looks nice and smooth, but notice the values: The
 maximum acceleration is around 300 m/s^2 or 30 g. Notice that this is

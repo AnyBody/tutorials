@@ -19,7 +19,11 @@ elements take part.
 Segments in AnyBody are basically a set of mass properties as you can
 see below.
 
-![segments](_static/lesson1/image1.jpeg)
+```{image} _static/lesson1/image1.png
+:alt: Segments in AnyBody
+:align: center
+:width: 45%
+```
 
 Segments do not have any particular shape associated with them. By
 default a segment is originated in its Center of Mass (CoM), but it is
@@ -48,14 +52,24 @@ Notice that the AnyDrawSeg is just an empty pair of braces signifying
 that we are using the standard settings. This will produce the following
 image:
 
-![Potato segment](_static/lesson1/image2.png)
+```{image} _static/lesson1/image2.png
+:alt: Potato segment
+:class: bg-primary
+:align: center
+:width: 45%
+```
 
 The AnyDrawSeg always represents segments as ellipsoids with axis ratios
 corresponding to the inertia properties. But the AnyDrawSeg class has
 multiple settings that can be used to control the appearence of the
 segment:
 
-![Drawobjects](_static/lesson1/image3.png)
+```{image} _static/lesson1/image3.png
+:alt: Drawobjects
+:class: bg-primary
+:align: center
+:width: 90%
+```
 
 Please refer to the reference manual for further explanation. The
 {doc}`Getting Started with AnyScript <../A_Getting_started_anyscript/intro>` tutorial
