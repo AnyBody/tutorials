@@ -111,12 +111,12 @@ AnyFolder MyScalingFunction = {
     RBFDef.Type = RBF_Triharmonic;
     AnyFixedRefFrame Input = {
       AnySurfSTL SourceSurf = {
-        FileName = "../../../lesson1/SourceFemur";
+        FileName = "../../../lesson4/SourceFemur";
         ScaleXYZ = {1, 1, 1};
         AnyFunTransform3D &pre = ....TSeg2ScaleFrame;
       };
       AnySurfSTL TargetSurf = {
-        FileName = "../../../lesson1/TargetFemur";
+        FileName = "../../../lesson4/TargetFemur";
         ScaleXYZ = {1, 1, 1};
       };
     };
