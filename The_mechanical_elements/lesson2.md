@@ -44,7 +44,12 @@ You can read much more about this subject in the tutorial {doc}`A study of Studi
 AnyBody provides you with a variety of ways you can connect segments by
 joints. The class tree reveals the following joint class structure:
 
-![Class tree joints](_static/lesson2/image1.png)
+```{image} _static/lesson2/image1.png
+:alt: Class tree joints
+:class: bg-primary
+:align: center
+:width: 35%
+```
 
 The different types are described in detail in the AnyScript Reference
 manual (Find it in AnyBody->Help). For examples on how to use joints,
