@@ -79,7 +79,7 @@ A closer inspection of the Application branch reveals that it has four subfolder
   measurements.
 
 :::{important}
-AnyBody Modelling System comes with a version of AMMR (not necessarily the
+AnyBody Modeling System comes with a version of AMMR (not necessarily the
 latest) placed in the installation folder of the software. Do not directly use
 these files for your actual work as updates or reinstallation of AnyBody can
 overwrite your changes. So always **copy the files from the AMMR folder to your**
