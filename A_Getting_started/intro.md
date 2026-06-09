@@ -90,4 +90,5 @@ overwrite your changes. So always **copy the files from the AMMR folder to your*
 :class: seealso
 
 With that knowledge, you are all set to go, and you can proceed with
-{doc}`Lesson 1: Creating the standing model <lesson1>` using the template. :::
+{doc}`Lesson 1: Creating the standing model <lesson1>` using the template. 
+:::
