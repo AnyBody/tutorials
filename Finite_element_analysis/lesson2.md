@@ -257,10 +257,11 @@ template can be altered to fit to your actual problem.
 **👉 Now**, one thing you have to change is the name of the file and the path to
 your FE model. Please, open the template file and change the line shown below to
 fit to your setup. You have to include the path to your model and name the file
-'clavicular_base' as below.
+'clavicular_base' as below. Note that a local path is used here. The `..`
+notation sets the path to one folder up from the examples folder.
 
 ```console
-RESUME,'clavicular_base','db','C:\Users\jha\Desktop\AnsysTutorial\HumanStanding',0,0
+RESUME,'clavicular_base','db','..',0,0
 ```
 
 Finally, we also need to adjust the scaling between the AnyBody and Ansys models
