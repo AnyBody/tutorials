@@ -150,7 +150,11 @@ object. For now, let's just reload the object and run the model. You
 should see a red arrow pointing down from the hand indicating the
 direction of the force.
 
-![Simple arm model with force](_static/lesson5/image1.png)
+```{image} _static/lesson5/image1.png
+:alt: Simple arm model with force
+:align: center
+:width: 45%
+```
 
 One of the advantages of defining models in a computer language is that
 numbers can be replaced by mathematical expressions. So instead of the
@@ -222,7 +226,11 @@ show the force now changing direction with the movement of the arm but
 maintaining its direction perpendicular to the forearm, i.e. in the
 negative *y* axis of the PalmNode reference system to which it is attached.
 
-![Arm model with force 2](_static/lesson5/image2.png)
+```{image} _static/lesson5/image2.png
+:alt: Arm model with force 2
+:align: center
+:width: 45%
+```
 
 ## AnyForce: Internal forces (sort of)
 

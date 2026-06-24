@@ -139,8 +139,8 @@ wants to make the best of its resources. The user has some amount of
 control over this criterion, but in its basic form it is a minimum
 fatigue criterion that distributes the loads as evenly as possible
 between the muscles taking their individual strengths into account.
-Please refer to {doc}`A Study of Studies </A_study_of_studies/intro>` for more detailed
-information.
+Please refer to the tutorial {doc}`Inverse Dynamics of Muscle Systems </MuscleRecruitment/index>` 
+for more detailed information.
 
 So the system basically presumes that the body has the knowledge and the
 desire to activate muscles optimally. This is supported by a lot of
