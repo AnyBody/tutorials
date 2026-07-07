@@ -1,0 +1,102 @@
+headStr="""
+!File written by the AnyBody Modeling System to transfer forces and moments from a AnyBody Analysis to a FEA model defined in Ansys
+!Please do carefully review the input and output of this analysis
+!AnyBody Technology: Notice that this file is written in a test format!
+
+!Specification of the base file (meshed geometry without boundary conditions)
+!RESUME,'clav_base','db','C:\Users\sd.ANYBODY\TEMP\Clavicle_paper\FE\',0,0 
+
+!Definition of the beam elements connecting the muscle insertion points with the bone surfaces
+/prep7
+scale =1000
+RadiusSel = 0.005*scale
+LocalCoord = 1000
+
+!Balkenelement elastisch
+!et,500+forceNr,4
+!mp,ex,500+forceNr,1.1e12
+!mp,nuxy,500+forceNr,0.3
+!r,500+forceNr,0.001*scale*0.001*scale,(0.001*scale)**4/12,(0.001*scale)**4/12,0.001*scale,0.001*scale
+
+!Turn on Inertia Relief 
+!Intertia Relief
+!MP,DENS,500,1000*0.000000000001
+irlf,1
+FINISH  
+"""
+    
+tailStr="""
+/prep7
+csys,LocalCoord
+localNr = 250000+forceNr
+nodeForceNr = 250000+forceNr
+
+clocal,localNr,0,posx*scale,posy*scale,posz*scale
+csys,localNr
+n,nodeForceNr,0,0,0
+nrotat,nodeForceNr      ! Aligns nodal COS with active COS
+f,nodeForceNr,fx,forceX,,nodeForceNr,1
+f,nodeForceNr,fy,forceY,,nodeForceNr,1
+f,nodeForceNr,fz,forceZ,,nodeForceNr,1
+f,nodeForceNr,mx,(momentX*scale),,nodeForceNr,1		! Conversion from N/m => N/mm if needed
+f,nodeForceNr,my,(momentY*scale),,nodeForceNr,1		! Conversion from N/m => N/mm if needed
+f,nodeForceNr,mz,(momentZ*scale),,nodeForceNr,1		! Conversion from N/m => N/mm if needed
+
+nsel,u,,,250000,nodeForceNr,1    !add
+esel,u,mat,,500,500,1
+esel,u,mat,,500,2000,1
+!esel,u,type,,2
+!esel,u,type,,3
+alls,below,elem
+nsel,r,ext
+   
+nodeNext=node(0,0,0)   
+
+*get,nlocx,NODE,nodeNext,LOC,X
+*get,nlocy,NODE,nodeNext,LOC,Y
+*get,nlocz,NODE,nodeNext,LOC,Z
+ellength=(nlocx**2+nlocy**2+nlocz**2)**0.5
+
+et,500+forceNr,4
+mp,ex,500+forceNr,1.1e15
+mp,nuxy,500+forceNr,0.2
+r,500+forceNr,0.001*scale*0.001*scale,(0.001*scale)**4/12,(0.001*scale)**4/12,0.001*scale,0.001*scale
+MP,DENS,500+forceNr,1*0.000000000001/ellength
+
+
+clocal,1001,2,nlocx,nlocy,nlocz 
+!esel,u,mat,,100,100,1
+!esel,u,mat,,50,60,1
+!alls,below,elem
+!nsel,r,ext
+nsel,r,loc,x,0,RadiusSel
+
+type,500+forceNr
+mat,500+forceNr
+real,500+forceNr
+csys,localNr
+
+*get,nodeSet,node,0,count
+*get,nodeMin,node,0,num,min
+*do,i,1,nodeSet
+e,nodeMin,nodeForceNr
+temp = ndnext(nodeMin)
+nodeMin = temp
+*enddo
+alls
+csys,LocalCoord
+
+!!!!!!!!!!!!!!!!!!!!!
+"""
+
+finalStr="""
+!To Do
+/sol
+solcon,off,off
+nsubst,1,1,1
+neqit,1
+lnsrch,off
+nlgeom,off 
+!SOLVE   
+
+"""
