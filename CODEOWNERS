@@ -1,20 +1,19 @@
 # Default reviewer, until the different parts gets their own owner
-* @melund
+* @bkje14
 
-
-/A_Getting_started/* @Kristofferiversen
-/A_Getting_started_anyscript/* @Hamedshayestehpour 
-/A_Getting_started_modeling/* @Hamedshayestehpour
+/A_Getting_started/*@divyaksh-chander
+/A_Getting_started_anyscript/* @divyaksh-chander
+/A_Getting_started_modeling/*@divyaksh-chander
 /Posture_and_movement/* @bkje14
 
 
-/A_study_of_studies/* @melund
-/Validation_of_models/* @melund
-/MuscleRecruitment/lesson7.rst @melund
+/A_study_of_studies/* @mdabt
+/Validation_of_models/* @mdabt
+/MuscleRecruitment/lesson7.rst @mdabt
 
 
-/Making_things_move/* @melund
-/Advanced_script_features/* @melund
+/Making_things_move/* @mdabt
+/Advanced_script_features/* @bkje14
 
 
 /MuscleRecruitment/* @toerholm 
@@ -23,7 +22,7 @@
 
 
 /Muscle_modeling/* @bkje14 
-/Parameter_studies_and_optimization/* @melund
+/Parameter_studies_and_optimization/* @mdabt
 
 
 /ForceDependentKinematics/* @toerholm
@@ -34,22 +33,21 @@
 /Scaling/* @pgalibarov
 
 # GUI
-/Interface_features/intro.rst @JDThomsen
+/Interface_features/intro.rst @bkje14
 # Editor
-/Interface_features/lesson1.rst @JDThomsen
+/Interface_features/lesson1.rst @bkje14
 # Model tree
-/Interface_features/lesson4.rst @JDThomsen
+/Interface_features/lesson4.rst @bkje14
 
 # Model view window
 /Interface_features/lesson2.rst @JDThomsen
 # Chart view window
 /Interface_features/lesson3.rst @JDThomsen
-# Command line applicaiton
+# Command line application
 /Interface_features/lesson5.rst @JDThomsen
 # AnyProject
-/Interface_features/lesson7.rst @JDThomsen
+/Interface_features/lesson7.rst @mdabt
 # Modifying loaded values (SetValue etc.)
-/Interface_features/lesson6.rst @JDThomsen
+/Interface_features/lesson6.rst @mdabt
 
 /Troubleshooting_anyscript/* @mdabt
-
